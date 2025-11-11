@@ -1680,6 +1680,1088 @@ export default function BusinessLoanCalculator() {
 
           
 
+          {/* SEO Content Sections */}
+          <div className="space-y-8 sm:space-y-12 md:space-y-16 mt-8 sm:mt-12 md:mt-16">
+            
+            {/* Introduction Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  What is a Business Loan Calculator?
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The Business Loan Calculator is a powerful financial tool designed to help entrepreneurs, business owners, and financial planners estimate monthly payments, total interest costs, and critical financial metrics for commercial loans. Whether you're seeking startup capital, equipment financing, working capital, or expansion funding, this calculator provides instant, accurate projections to support your business decisions.
+                  </p>
+                  
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-6 mb-4">Why Use Our Business Loan Calculator?</h3>
+                  <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                    <li><strong>Instant Results:</strong> Get accurate monthly payment estimates in seconds</li>
+                    <li><strong>Comprehensive Analysis:</strong> View DSCR (Debt Service Coverage Ratio), LTV (Loan-to-Value), and total interest calculations</li>
+                    <li><strong>Multiple Loan Types:</strong> Supports SBA 7(a), SBA 504, term loans, equipment financing, and lines of credit</li>
+                    <li><strong>Detailed Amortization:</strong> See exact payment breakdown over the life of your loan</li>
+                    <li><strong>100% Free:</strong> No registration, no hidden fees, unlimited calculations</li>
+                    <li><strong>Export & Share:</strong> Download PDF reports or share calculations with partners and lenders</li>
+                  </ul>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-6 mb-4">Who Benefits from the Business Loan Calculator?</h3>
+                  <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                    <li><strong>Entrepreneurs & Startups:</strong> Estimate funding needs and affordability before approaching lenders</li>
+                    <li><strong>Small Business Owners:</strong> Plan for equipment purchases, inventory expansion, or facility improvements</li>
+                    <li><strong>Financial Advisors:</strong> Provide clients with accurate loan projections and debt capacity analysis</li>
+                    <li><strong>Commercial Lenders:</strong> Quickly calculate payments and ratios during client consultations</li>
+                    <li><strong>CFOs & Controllers:</strong> Model different financing scenarios for strategic planning</li>
+                    <li><strong>Real Estate Investors:</strong> Evaluate commercial property financing options and cash flow impact</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* How to Use Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  How to Use the Business Loan Calculator
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Step-by-Step Guide:</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 p-4 sm:p-6 rounded-lg border-l-4 border-blue-600">
+                      <h4 className="font-bold text-blue-900 mb-2 flex items-center gap-2">
+                        <span className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                        Enter Loan Amount
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        Input the total amount you need to borrow. This could be anywhere from $5,000 for small working capital needs to $5 million for major expansion or commercial real estate. Consider your actual business needs and avoid borrowing more than necessary.
+                      </p>
+                      <p className="text-sm text-blue-700 mt-2 ml-10 italic">
+                        Example: $250,000 for equipment purchase and working capital
+                      </p>
+                    </div>
+
+                    <div className="bg-green-50 p-4 sm:p-6 rounded-lg border-l-4 border-green-600">
+                      <h4 className="font-bold text-green-900 mb-2 flex items-center gap-2">
+                        <span className="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                        Set Interest Rate
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        Enter the annual interest rate quoted by your lender. Business loan rates typically range from 5% to 30% depending on loan type, creditworthiness, and collateral. SBA loans often have lower rates (6-9%), while alternative lenders may charge higher rates.
+                      </p>
+                      <p className="text-sm text-green-700 mt-2 ml-10 italic">
+                        Example: 7.5% APR for an SBA 7(a) loan
+                      </p>
+                    </div>
+
+                    <div className="bg-purple-50 p-4 sm:p-6 rounded-lg border-l-4 border-purple-600">
+                      <h4 className="font-bold text-purple-900 mb-2 flex items-center gap-2">
+                        <span className="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                        Choose Loan Term
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        Select the repayment period in years or months. Longer terms mean lower monthly payments but higher total interest. Equipment loans: 3-7 years. Commercial real estate: 10-25 years. Working capital: 1-3 years.
+                      </p>
+                      <p className="text-sm text-purple-700 mt-2 ml-10 italic">
+                        Example: 10 years (120 months) for equipment and working capital
+                      </p>
+                    </div>
+
+                    <div className="bg-orange-50 p-4 sm:p-6 rounded-lg border-l-4 border-orange-600">
+                      <h4 className="font-bold text-orange-900 mb-2 flex items-center gap-2">
+                        <span className="bg-orange-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span>
+                        Select Loan Type
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        Choose the type that matches your financing: Term Loan (standard installment), Line of Credit (revolving), SBA 7(a)/504 (government-backed), or Equipment Financing. Each type has different calculation methods and typical terms.
+                      </p>
+                      <p className="text-sm text-orange-700 mt-2 ml-10 italic">
+                        Example: Term Loan for predictable monthly payments
+                      </p>
+                    </div>
+
+                    <div className="bg-indigo-50 p-4 sm:p-6 rounded-lg border-l-4 border-indigo-600">
+                      <h4 className="font-bold text-indigo-900 mb-2 flex items-center gap-2">
+                        <span className="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">5</span>
+                        Enter Business Revenue (Optional)
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        Input your annual gross revenue to calculate Debt Service Coverage Ratio (DSCR). Lenders typically require DSCR of 1.25 or higher. This shows whether your business generates enough cash flow to cover loan payments.
+                      </p>
+                      <p className="text-sm text-indigo-700 mt-2 ml-10 italic">
+                        Example: $600,000 annual revenue
+                      </p>
+                    </div>
+
+                    <div className="bg-pink-50 p-4 sm:p-6 rounded-lg border-l-4 border-pink-600">
+                      <h4 className="font-bold text-pink-900 mb-2 flex items-center gap-2">
+                        <span className="bg-pink-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">6</span>
+                        Enter Collateral Value (Optional)
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        If you're pledging collateral (equipment, real estate, inventory), enter its appraised value to calculate Loan-to-Value (LTV) ratio. Most lenders prefer LTV below 80%, meaning your collateral should be worth at least 125% of the loan amount.
+                      </p>
+                      <p className="text-sm text-pink-700 mt-2 ml-10 italic">
+                        Example: $350,000 in equipment and real estate
+                      </p>
+                    </div>
+
+                    <div className="bg-teal-50 p-4 sm:p-6 rounded-lg border-l-4 border-teal-600">
+                      <h4 className="font-bold text-teal-900 mb-2 flex items-center gap-2">
+                        <span className="bg-teal-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">7</span>
+                        Calculate and Analyze
+                      </h4>
+                      <p className="text-gray-700 ml-10">
+                        Click "Calculate Business Loan" to see your results. Review monthly payments, total interest, DSCR, and LTV. Use the amortization schedule to see payment breakdown over time. Export to PDF for lender presentations or share with partners.
+                      </p>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">Pro Tips:</h3>
+                  <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                    <li><strong>Compare Multiple Scenarios:</strong> Calculate with different terms (7 vs 10 vs 15 years) to find the optimal balance between monthly payment affordability and total interest cost</li>
+                    <li><strong>Target Strong DSCR:</strong> Aim for DSCR of 1.5 or higher to improve approval odds and potentially negotiate better rates</li>
+                    <li><strong>Consider Total Interest:</strong> Longer terms reduce monthly burden but significantly increase total interest paid over the loan life</li>
+                    <li><strong>Plan for Rate Changes:</strong> If considering variable-rate financing, calculate payments at rates 2-3% higher than current to ensure affordability</li>
+                    <li><strong>Use for Negotiations:</strong> Bring calculator results to lender meetings to demonstrate financial literacy and serious preparation</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Real-World Examples Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Business Loan Calculator Examples
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none space-y-8">
+                  
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+                    <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4">Example 1: Manufacturing Startup Equipment Financing</h3>
+                    <p className="text-gray-700 mb-4">
+                      <strong>Scenario:</strong> Sarah is launching a small manufacturing business and needs to purchase machinery and equipment. She has secured a building lease and has $75,000 saved as a down payment for equipment.
+                    </p>
+                    <div className="bg-white p-4 rounded-lg mb-4">
+                      <p className="font-bold text-gray-900 mb-2">Input Values:</p>
+                      <ul className="list-none space-y-1 text-gray-700">
+                        <li>Loan Amount: $250,000</li>
+                        <li>Interest Rate: 7.5% APR</li>
+                        <li>Loan Term: 10 years (120 months)</li>
+                        <li>Loan Type: SBA 7(a) Term Loan</li>
+                        <li>Annual Revenue (projected): $600,000</li>
+                        <li>Collateral Value: $350,000 (equipment + personal guarantee)</li>
+                      </ul>
+                    </div>
+                    <div className="bg-blue-100 p-4 rounded-lg mb-4">
+                      <p className="font-bold text-blue-900 mb-2">Results:</p>
+                      <ul className="list-none space-y-1 text-blue-900">
+                        <li>Monthly Payment: $2,970</li>
+                        <li>Total Amount Paid: $356,400</li>
+                        <li>Total Interest: $106,400</li>
+                        <li>Annual Debt Service: $35,640</li>
+                        <li>DSCR: 16.84 (Excellent - far exceeds 1.25 requirement)</li>
+                        <li>LTV: 71.4% (Excellent - well below 80% threshold)</li>
+                      </ul>
+                    </div>
+                    <p className="text-gray-700">
+                      <strong>Interpretation:</strong> Sarah's loan is highly favorable. Her projected revenue provides a DSCR of 16.84, meaning she has nearly 17 times the cash flow needed to cover annual payments. The 71.4% LTV indicates strong collateral backing. Monthly payments of $2,970 represent just 5.9% of monthly revenue, leaving ample room for operating expenses and profit.
+                    </p>
+                    <p className="text-green-700 font-semibold mt-2">
+                      Action Steps: Apply with confidence. Consider negotiating for a lower rate given strong financials. Set aside 10% of revenue monthly for debt service to ensure timely payments. Plan to refinance after 3-5 years if business grows as projected.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200">
+                    <h3 className="text-xl sm:text-2xl font-bold text-green-900 mb-4">Example 2: Restaurant Expansion - Comparing 7-Year vs 15-Year Terms</h3>
+                    <p className="text-gray-700 mb-4">
+                      <strong>Scenario:</strong> Mike owns a successful restaurant and wants to expand to a second location. He needs $500,000 for leasehold improvements, equipment, and initial inventory. He's comparing shorter and longer loan terms.
+                    </p>
+                    
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                      <div className="bg-white p-4 rounded-lg border-2 border-green-500">
+                        <p className="font-bold text-green-900 mb-2">Option A: 7-Year Term</p>
+                        <ul className="list-none space-y-1 text-gray-700 text-sm">
+                          <li>Loan Amount: $500,000</li>
+                          <li>Interest Rate: 6.5% APR</li>
+                          <li>Loan Term: 7 years (84 months)</li>
+                          <li>Monthly Payment: $7,366</li>
+                          <li>Total Paid: $618,744</li>
+                          <li>Total Interest: $118,744</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Option B: 15-Year Term</p>
+                        <ul className="list-none space-y-1 text-gray-700 text-sm">
+                          <li>Loan Amount: $500,000</li>
+                          <li>Interest Rate: 7.25% APR</li>
+                          <li>Loan Term: 15 years (180 months)</li>
+                          <li>Monthly Payment: $4,550</li>
+                          <li>Total Paid: $819,000</li>
+                          <li>Total Interest: $319,000</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-700 mb-2">
+                      <strong>Comparison Analysis:</strong>
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                      <li><strong>Monthly Savings (15-year):</strong> $2,816 per month (38% lower payment)</li>
+                      <li><strong>Interest Cost Difference:</strong> $200,256 more over loan life with 15-year term</li>
+                      <li><strong>Cash Flow Impact:</strong> 7-year term requires $88,392 annually; 15-year requires $54,600</li>
+                      <li><strong>Break-Even Point:</strong> If monthly savings are reinvested at 8% return, break-even occurs around year 12</li>
+                    </ul>
+
+                    <p className="text-gray-700 mt-4">
+                      <strong>Recommendation:</strong> If Mike's combined restaurant revenue is $1.2M+ annually, the 7-year term is optimal. It saves $200K in interest and builds equity faster. However, if the new location needs 12-18 months to reach profitability, the 15-year term provides crucial cash flow breathing room during the startup phase.
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200">
+                    <h3 className="text-xl sm:text-2xl font-bold text-purple-900 mb-4">Example 3: Working Capital Line of Credit for Seasonal Business</h3>
+                    <p className="text-gray-700 mb-4">
+                      <strong>Scenario:</strong> Jennifer runs a landscaping company with highly seasonal revenue. She needs a $150,000 line of credit to cover payroll and equipment during the slow winter months when revenue drops but expenses continue.
+                    </p>
+                    <div className="bg-white p-4 rounded-lg mb-4">
+                      <p className="font-bold text-gray-900 mb-2">Input Values:</p>
+                      <ul className="list-none space-y-1 text-gray-700">
+                        <li>Credit Line Amount: $150,000</li>
+                        <li>Interest Rate: 9.5% APR</li>
+                        <li>Loan Type: Revolving Line of Credit</li>
+                        <li>Annual Revenue: $850,000</li>
+                        <li>Expected Usage: 6 months per year (winter season)</li>
+                      </ul>
+                    </div>
+                    <div className="bg-purple-100 p-4 rounded-lg mb-4">
+                      <p className="font-bold text-purple-900 mb-2">Cost Analysis:</p>
+                      <ul className="list-none space-y-1 text-purple-900">
+                        <li>Monthly Interest (if fully drawn): $1,188</li>
+                        <li>Interest Cost (6 months at full draw): $7,125</li>
+                        <li>Interest Cost (6 months at 50% draw): $3,563</li>
+                        <li>Annual Cost Range: $3,563 - $7,125 (0.4% - 0.8% of revenue)</li>
+                      </ul>
+                    </div>
+                    <p className="text-gray-700">
+                      <strong>Strategic Insight:</strong> Unlike a term loan, Jennifer only pays interest on the amount she actually uses. If she draws $150,000 in November-April and pays it down May-October, her total annual interest is around $7,125 versus $14,250 for a full-year term loan. This flexibility is perfect for seasonal businesses.
+                    </p>
+                    <p className="text-purple-700 font-semibold mt-2">
+                      Best Practices: Draw conservatively (only what's needed), maintain a repayment schedule during high-revenue months, keep credit utilization below 50% when possible to preserve borrowing capacity for emergencies, and review annually to ensure the line size matches business growth.
+                    </p>
+                  </div>
+
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Understanding Results Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Understanding Your Business Loan Results
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                  
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Key Metrics Explained:</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                      <h4 className="font-bold text-blue-900 mb-3 text-lg">Monthly Payment</h4>
+                      <p className="text-gray-700 mb-2">
+                        The fixed amount you'll pay each month for the loan term. This includes both principal (loan balance reduction) and interest (lender's fee for borrowing). Understanding this number is critical for cash flow planning.
+                      </p>
+                      <p className="text-sm text-blue-700 italic">
+                        Rule of Thumb: Monthly payments should not exceed 15-20% of your monthly gross revenue for healthy cash flow management.
+                      </p>
+                    </div>
+
+                    <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
+                      <h4 className="font-bold text-green-900 mb-3 text-lg">Total Interest Paid</h4>
+                      <p className="text-gray-700 mb-2">
+                        The total cost of borrowing over the entire loan term. This is the difference between what you borrowed and what you'll ultimately repay. Lower interest rates and shorter terms reduce this cost significantly.
+                      </p>
+                      <p className="text-sm text-green-700 italic">
+                        Example: On a $200,000 loan at 7% for 10 years, you'll pay approximately $73,000 in interest. At 6% for 7 years, interest drops to $47,000.
+                      </p>
+                    </div>
+
+                    <div className="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-600">
+                      <h4 className="font-bold text-yellow-900 mb-3 text-lg">Debt Service Coverage Ratio (DSCR)</h4>
+                      <p className="text-gray-700 mb-4">
+                        DSCR measures whether your business generates enough cash flow to cover loan payments. It's calculated as: Annual Net Operating Income ÷ Annual Debt Service.
+                      </p>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="bg-white p-4 rounded-lg">
+                          <p className="font-bold text-green-700 mb-2">DSCR ≥ 1.25 (Excellent)</p>
+                          <p className="text-sm text-gray-600">Strong approval likelihood. Business generates 25%+ more cash than needed for payments. Preferred by most lenders.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-lg">
+                          <p className="font-bold text-blue-700 mb-2">DSCR 1.0 - 1.24 (Good)</p>
+                          <p className="text-sm text-gray-600">Acceptable but tight. Business covers payments with minimal cushion. May qualify with strong credit or collateral.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-lg">
+                          <p className="font-bold text-orange-700 mb-2">DSCR 0.8 - 0.99 (Caution)</p>
+                          <p className="text-sm text-gray-600">Insufficient cash flow. Requires additional collateral, guarantors, or higher down payment. Consider smaller loan amount.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-lg">
+                          <p className="font-bold text-red-700 mb-2">DSCR &lt; 0.8 (High Risk)</p>
+                          <p className="text-sm text-gray-600">Likely denial. Cash flow cannot support debt. Focus on revenue growth or reduce loan amount before applying.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
+                      <h4 className="font-bold text-purple-900 mb-3 text-lg">Loan-to-Value Ratio (LTV)</h4>
+                      <p className="text-gray-700 mb-4">
+                        LTV compares your loan amount to the value of collateral pledged. Calculated as: (Loan Amount ÷ Collateral Value) × 100. Lower LTV means less lender risk and often better rates.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="bg-white p-4 rounded-lg">
+                          <div className="flex justify-between items-center mb-2">
+                            <p className="font-bold text-green-700">LTV ≤ 80% (Excellent)</p>
+                            <span className="text-2xl">✓</span>
+                          </div>
+                          <p className="text-sm text-gray-600">Strong collateral position. Qualifies for best rates. Lender has 20%+ equity cushion protecting against default loss.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-lg">
+                          <div className="flex justify-between items-center mb-2">
+                            <p className="font-bold text-blue-700">LTV 80-90% (Good)</p>
+                            <span className="text-2xl">✓</span>
+                          </div>
+                          <p className="text-sm text-gray-600">Acceptable range for most lenders. May require mortgage insurance or personal guarantee on amounts exceeding 80% threshold.</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-lg">
+                          <div className="flex justify-between items-center mb-2">
+                            <p className="font-bold text-orange-700">LTV &gt; 90% (Needs Improvement)</p>
+                            <span className="text-2xl">!</span>
+                          </div>
+                          <p className="text-sm text-gray-600">High risk for lender. Consider larger down payment, additional collateral, or smaller loan amount. Higher interest rates likely.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-600">
+                      <h4 className="font-bold text-indigo-900 mb-3 text-lg">Amortization Schedule</h4>
+                      <p className="text-gray-700 mb-2">
+                        A detailed breakdown showing how each payment is split between principal and interest over time. Early payments are mostly interest; later payments are mostly principal. This schedule is crucial for:
+                      </p>
+                      <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                        <li>Tax planning (interest is often tax-deductible for businesses)</li>
+                        <li>Understanding equity buildup in collateral</li>
+                        <li>Planning prepayment strategies to minimize interest</li>
+                        <li>Cash flow forecasting for the loan term</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">When to Seek Professional Advice:</h3>
+                  <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                    <li><strong>DSCR below 1.0:</strong> Consult a business advisor or accountant to review revenue projections and expense optimization before applying</li>
+                    <li><strong>Comparing multiple loan offers:</strong> A commercial loan broker can help negotiate terms and identify the best overall package (not just lowest rate)</li>
+                    <li><strong>Complex financing structures:</strong> SBA 504 loans, sale-leasebacks, or mezzanine financing require specialized expertise</li>
+                    <li><strong>Covenant negotiations:</strong> Commercial loans often include financial covenants (minimum cash reserves, maximum debt ratios) that require careful review</li>
+                    <li><strong>Tax implications:</strong> Large loans impact depreciation schedules, interest deductions, and business valuation for tax purposes</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Formula Explained Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Business Loan Formula Explained
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                  
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">The Standard Amortization Formula:</h3>
+                  
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border-2 border-blue-300 mb-6">
+                    <p className="text-center text-gray-900 font-mono text-lg mb-4">
+                      M = P × [r(1 + r)ⁿ] / [(1 + r)ⁿ - 1]
+                    </p>
+                    <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="font-bold text-blue-900 mb-1">Where:</p>
+                        <ul className="list-none space-y-1 text-gray-700">
+                          <li><strong>M</strong> = Monthly Payment</li>
+                          <li><strong>P</strong> = Principal (loan amount)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <ul className="list-none space-y-1 text-gray-700">
+                          <li><strong>r</strong> = Monthly interest rate (annual rate / 12)</li>
+                          <li><strong>n</strong> = Total number of payments (years × 12)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Step-by-Step Calculation Example:</h3>
+                  
+                  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl">
+                    <p className="font-bold text-gray-900 mb-4">Calculating payments for a $250,000 business loan at 7.5% APR for 10 years:</p>
+                    
+                    <div className="space-y-4">
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Step 1: Identify the variables</p>
+                        <ul className="list-none space-y-1 text-gray-700 pl-4">
+                          <li>P (Principal) = $250,000</li>
+                          <li>Annual Interest Rate = 7.5%</li>
+                          <li>Loan Term = 10 years</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Step 2: Convert to monthly values</p>
+                        <ul className="list-none space-y-1 text-gray-700 pl-4">
+                          <li>r (Monthly Rate) = 7.5% ÷ 12 = 0.625% = 0.00625</li>
+                          <li>n (Total Payments) = 10 years × 12 = 120 months</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Step 3: Calculate (1 + r)ⁿ</p>
+                        <p className="text-gray-700 pl-4">(1 + 0.00625)¹²⁰ = (1.00625)¹²⁰ = 2.1137</p>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Step 4: Calculate numerator</p>
+                        <p className="text-gray-700 pl-4">r(1 + r)ⁿ = 0.00625 × 2.1137 = 0.01321</p>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Step 5: Calculate denominator</p>
+                        <p className="text-gray-700 pl-4">(1 + r)ⁿ - 1 = 2.1137 - 1 = 1.1137</p>
+                      </div>
+
+                      <div className="bg-gray-50 p-4 rounded-lg">
+                        <p className="font-bold text-gray-900 mb-2">Step 6: Divide numerator by denominator</p>
+                        <p className="text-gray-700 pl-4">0.01321 ÷ 1.1137 = 0.01186</p>
+                      </div>
+
+                      <div className="bg-blue-100 p-4 rounded-lg border-2 border-blue-400">
+                        <p className="font-bold text-blue-900 mb-2">Step 7: Multiply by principal</p>
+                        <p className="text-blue-900 pl-4">M = $250,000 × 0.01186 = <span className="text-xl font-bold">$2,965</span></p>
+                        <p className="text-sm text-blue-700 mt-2 pl-4 italic">Monthly Payment: $2,965 (approximately $2,970 with rounding)</p>
+                      </div>
+
+                      <div className="bg-green-50 p-4 rounded-lg mt-4">
+                        <p className="font-bold text-green-900 mb-2">Total Loan Cost:</p>
+                        <ul className="list-none space-y-1 text-gray-700 pl-4">
+                          <li>Monthly Payment: $2,970</li>
+                          <li>Total Payments: $2,970 × 120 = $356,400</li>
+                          <li>Total Interest: $356,400 - $250,000 = <strong>$106,400</strong></li>
+                          <li>Interest as % of Principal: 42.6%</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">Special Calculation: Line of Credit Interest</h3>
+                  <div className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                    <p className="text-gray-700 mb-4">
+                      Lines of credit use a simpler calculation since you only pay interest on the outstanding balance:
+                    </p>
+                    <p className="text-center text-gray-900 font-mono text-lg mb-4">
+                      Monthly Interest = Outstanding Balance × (Annual Rate ÷ 12)
+                    </p>
+                    <p className="text-gray-700 mb-2">
+                      <strong>Example:</strong> $100,000 line of credit at 9.5% APR
+                    </p>
+                    <ul className="list-none space-y-1 text-gray-700 pl-4">
+                      <li>Monthly Rate: 9.5% ÷ 12 = 0.792%</li>
+                      <li>If you draw $50,000: Monthly Interest = $50,000 × 0.00792 = $396</li>
+                      <li>If you draw full $100,000: Monthly Interest = $100,000 × 0.00792 = $792</li>
+                    </ul>
+                    <p className="text-sm text-purple-700 mt-4 italic">
+                      Note: You only pay interest on what you actually borrow, making lines of credit ideal for seasonal cash flow needs or unpredictable expenses.
+                    </p>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">Understanding Principal vs. Interest Over Time:</h3>
+                  <p className="text-gray-700">
+                    In the early years of a loan, most of your payment goes toward interest. As the principal balance decreases, more of each payment reduces the principal. This is because interest is calculated on the remaining balance.
+                  </p>
+                  <div className="bg-gray-50 p-6 rounded-lg mt-4">
+                    <p className="font-bold text-gray-900 mb-3">Example: $250,000 loan at 7.5% for 10 years</p>
+                    <div className="grid sm:grid-cols-3 gap-4 text-sm">
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-bold text-blue-900 mb-2">Payment #1 (Month 1)</p>
+                        <p className="text-gray-700">Principal: $1,407</p>
+                        <p className="text-gray-700">Interest: $1,563</p>
+                        <p className="text-xs text-gray-500 mt-1">Interest = 52.6% of payment</p>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-bold text-green-900 mb-2">Payment #60 (Month 60)</p>
+                        <p className="text-gray-700">Principal: $1,932</p>
+                        <p className="text-gray-700">Interest: $1,038</p>
+                        <p className="text-xs text-gray-500 mt-1">Interest = 35.0% of payment</p>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-bold text-purple-900 mb-2">Payment #120 (Final)</p>
+                        <p className="text-gray-700">Principal: $2,951</p>
+                        <p className="text-gray-700">Interest: $19</p>
+                        <p className="text-xs text-gray-500 mt-1">Interest = 0.6% of payment</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Loan Type Comparison Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Business Loan Type Comparison
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none">
+                  <p className="text-gray-700 mb-6">
+                    Choosing the right business loan type is critical for both approval odds and long-term financial health. Each loan type has distinct characteristics, qualification requirements, and ideal use cases.
+                  </p>
+
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <table className="w-full min-w-[800px] border-collapse">
+                      <thead>
+                        <tr className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                          <th className="p-4 text-left font-bold rounded-tl-lg">Loan Type</th>
+                          <th className="p-4 text-left font-bold">Typical Amount</th>
+                          <th className="p-4 text-left font-bold">Interest Rate</th>
+                          <th className="p-4 text-left font-bold">Term Length</th>
+                          <th className="p-4 text-left font-bold rounded-tr-lg">Best For</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200">
+                        <tr className="bg-blue-50 hover:bg-blue-100 transition-colors">
+                          <td className="p-4">
+                            <div className="font-bold text-blue-900">SBA 7(a) Loan</div>
+                            <div className="text-xs text-gray-600 mt-1">Government-backed</div>
+                          </td>
+                          <td className="p-4 text-gray-700">$50K - $5M</td>
+                          <td className="p-4 text-green-700 font-semibold">5.5% - 8%</td>
+                          <td className="p-4 text-gray-700">Up to 25 years</td>
+                          <td className="p-4 text-sm text-gray-700">Working capital, equipment, real estate, business acquisition</td>
+                        </tr>
+                        <tr className="bg-white hover:bg-gray-50 transition-colors">
+                          <td className="p-4">
+                            <div className="font-bold text-gray-900">SBA 504 Loan</div>
+                            <div className="text-xs text-gray-600 mt-1">Government-backed CRE</div>
+                          </td>
+                          <td className="p-4 text-gray-700">$125K - $5.5M</td>
+                          <td className="p-4 text-green-700 font-semibold">5% - 7.5%</td>
+                          <td className="p-4 text-gray-700">10, 20, or 25 years</td>
+                          <td className="p-4 text-sm text-gray-700">Commercial real estate purchase, major equipment, construction</td>
+                        </tr>
+                        <tr className="bg-green-50 hover:bg-green-100 transition-colors">
+                          <td className="p-4">
+                            <div className="font-bold text-green-900">Term Loan (Bank)</div>
+                            <div className="text-xs text-gray-600 mt-1">Traditional financing</div>
+                          </td>
+                          <td className="p-4 text-gray-700">$25K - $5M+</td>
+                          <td className="p-4 text-yellow-700 font-semibold">6% - 12%</td>
+                          <td className="p-4 text-gray-700">1 - 20 years</td>
+                          <td className="p-4 text-sm text-gray-700">Established businesses with strong credit, expansion, acquisitions</td>
+                        </tr>
+                        <tr className="bg-white hover:bg-gray-50 transition-colors">
+                          <td className="p-4">
+                            <div className="font-bold text-gray-900">Equipment Financing</div>
+                            <div className="text-xs text-gray-600 mt-1">Asset-based</div>
+                          </td>
+                          <td className="p-4 text-gray-700">$5K - $5M</td>
+                          <td className="p-4 text-yellow-700 font-semibold">6% - 15%</td>
+                          <td className="p-4 text-gray-700">3 - 7 years</td>
+                          <td className="p-4 text-sm text-gray-700">Machinery, vehicles, technology, medical equipment</td>
+                        </tr>
+                        <tr className="bg-purple-50 hover:bg-purple-100 transition-colors">
+                          <td className="p-4">
+                            <div className="font-bold text-purple-900">Line of Credit</div>
+                            <div className="text-xs text-gray-600 mt-1">Revolving credit</div>
+                          </td>
+                          <td className="p-4 text-gray-700">$10K - $1M</td>
+                          <td className="p-4 text-orange-700 font-semibold">8% - 20%</td>
+                          <td className="p-4 text-gray-700">6 months - 3 years</td>
+                          <td className="p-4 text-sm text-gray-700">Seasonal cash flow, short-term inventory, payroll gaps</td>
+                        </tr>
+                        <tr className="bg-white hover:bg-gray-50 transition-colors">
+                          <td className="p-4">
+                            <div className="font-bold text-gray-900">Bridge Loan</div>
+                            <div className="text-xs text-gray-600 mt-1">Short-term</div>
+                          </td>
+                          <td className="p-4 text-gray-700">$50K - $5M</td>
+                          <td className="p-4 text-orange-700 font-semibold">9% - 18%</td>
+                          <td className="p-4 text-gray-700">6 - 18 months</td>
+                          <td className="p-4 text-sm text-gray-700">Time-sensitive opportunities, pending larger financing, acquisitions</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">Detailed Loan Type Guidance:</h3>
+
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                      <h4 className="font-bold text-blue-900 mb-3 text-lg">When to Choose SBA 7(a) Loans</h4>
+                      <p className="text-gray-700 mb-3">
+                        SBA 7(a) loans offer the best combination of low rates, long terms, and flexible use. They're ideal when you need substantial capital but may not qualify for conventional bank financing due to limited collateral or operating history.
+                      </p>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <p className="font-semibold text-green-700 mb-2">Pros:</p>
+                          <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                            <li>Low interest rates (prime + 2.25% - 2.75%)</li>
+                            <li>Long repayment terms reduce monthly burden</li>
+                            <li>Up to 90% LTV on real estate</li>
+                            <li>Can refinance existing debt</li>
+                            <li>Government guarantee reduces lender risk</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-red-700 mb-2">Cons:</p>
+                          <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                            <li>Extensive documentation required</li>
+                            <li>45-90 day approval timeline</li>
+                            <li>Personal guarantee typically required</li>
+                            <li>Not available for speculative businesses</li>
+                            <li>SBA fees (2-3.75% of loan amount)</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600">
+                      <h4 className="font-bold text-green-900 mb-3 text-lg">When to Choose Term Loans</h4>
+                      <p className="text-gray-700 mb-3">
+                        Traditional term loans work best for established businesses with strong financials that need quick access to capital without the SBA's bureaucracy. Banks typically require 2+ years in business and DSCR of 1.25 or higher.
+                      </p>
+                      <p className="text-sm text-gray-600 italic">
+                        Best for: Businesses with $500K+ annual revenue, good credit (680+), and clear purpose for funds (expansion, acquisition, major inventory purchase).
+                      </p>
+                    </div>
+
+                    <div className="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-600">
+                      <h4 className="font-bold text-purple-900 mb-3 text-lg">When to Choose Equipment Financing</h4>
+                      <p className="text-gray-700 mb-3">
+                        Equipment loans are secured by the equipment itself, making approval easier even for newer businesses. The equipment serves as collateral, reducing lender risk and often qualifying you for better rates than unsecured loans.
+                      </p>
+                      <p className="text-sm text-gray-600 mb-3 italic">
+                        Typical structure: 80-100% financing, term matches equipment useful life (3-7 years), $1 buyout at end.
+                      </p>
+                      <p className="text-purple-700 font-semibold">
+                        Pro Tip: Section 179 tax deduction allows you to deduct the full purchase price of qualifying equipment in the first year, providing significant tax savings.
+                      </p>
+                    </div>
+
+                    <div className="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-600">
+                      <h4 className="font-bold text-orange-900 mb-3 text-lg">When to Choose a Line of Credit</h4>
+                      <p className="text-gray-700 mb-3">
+                        Lines of credit are perfect for managing cash flow fluctuations, not for purchasing fixed assets. They provide flexibility to draw funds as needed and only pay interest on the outstanding balance.
+                      </p>
+                      <div className="bg-white p-4 rounded-lg mt-3">
+                        <p className="font-semibold text-gray-900 mb-2">Ideal Use Cases:</p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                          <li>Seasonal businesses with revenue fluctuations (landscaping, retail, tourism)</li>
+                          <li>Covering payroll during slow periods</li>
+                          <li>Taking advantage of bulk purchase discounts</li>
+                          <li>Managing accounts receivable gaps (invoice financing alternative)</li>
+                          <li>Emergency working capital reserve</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-xl border-2 border-yellow-400 mt-8">
+                    <h4 className="font-bold text-yellow-900 mb-3 text-lg flex items-center gap-2">
+                      <Info className="w-5 h-5" />
+                      Important Decision Factor: Speed vs. Cost
+                    </h4>
+                    <p className="text-gray-700">
+                      SBA loans offer the lowest rates but take 1-3 months to close. Alternative lenders can fund in 1-3 days but charge 15-30% APR. For time-sensitive opportunities, consider a bridge loan from an alternative lender, then refinance with an SBA loan once the urgency passes. The extra interest cost is often worth securing a critical business opportunity.
+                    </p>
+                  </div>
+
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Frequently Asked Questions
+                </h2>
+                <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none space-y-6">
+                  
+                  <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-3">
+                      What credit score do I need to qualify for a business loan?
+                    </h3>
+                    <p className="text-gray-700">
+                      Minimum credit scores vary by loan type and lender. SBA 7(a) loans typically require a personal credit score of 680+, though some lenders accept 650+ with compensating factors (strong cash flow, substantial collateral, or industry experience). Traditional bank term loans usually require 700+. Alternative lenders may approve scores as low as 550, but expect significantly higher interest rates (18-30% APR). Your business credit score (FICO SBSS or Dun & Bradstreet PAYDEX) also matters for established companies.
+                    </p>
+                    <p className="text-sm text-blue-700 mt-2 italic">
+                      If your score is below 680, focus on: paying down credit card balances below 30% utilization, correcting any credit report errors, and establishing a track record of on-time payments for 6-12 months before applying.
+                    </p>
+                  </div>
+
+                  <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-green-900 mb-3">
+                      How much can I borrow for my business?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Loan amounts depend on several factors:
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                      <li><strong>Revenue-based:</strong> Most lenders cap loans at 25-50% of annual revenue. A business earning $1M yearly might qualify for $250K-$500K.</li>
+                      <li><strong>DSCR-based:</strong> Your loan payment cannot exceed available cash flow. Lenders want DSCR of 1.25+, meaning your net operating income should be 125% of your annual debt service.</li>
+                      <li><strong>Collateral-based:</strong> Secured loans can reach 80-90% of collateral value. $500K in equipment might support a $400K-$450K loan.</li>
+                      <li><strong>Loan type limits:</strong> SBA 7(a) caps at $5M, SBA 504 at $5.5M, while some alternative lenders offer up to $10M for qualified borrowers.</li>
+                    </ul>
+                    <p className="text-green-700 font-semibold mt-3">
+                      Pro Tip: Apply for slightly less than your maximum qualification. Leaving a cushion demonstrates financial prudence to lenders and provides breathing room if revenue temporarily dips.
+                    </p>
+                  </div>
+
+                  <div className="bg-purple-50 p-6 rounded-xl border-l-4 border-purple-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-purple-900 mb-3">
+                      What is a good DSCR (Debt Service Coverage Ratio)?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Debt Service Coverage Ratio measures your ability to service debt from operating income. It's calculated as Net Operating Income ÷ Total Debt Service (all loan payments).
+                    </p>
+                    <div className="space-y-2">
+                      <p className="text-gray-700"><strong>DSCR 1.25-1.50:</strong> Minimum acceptable by most lenders. Shows you generate 25-50% more cash than needed for debt payments.</p>
+                      <p className="text-gray-700"><strong>DSCR 1.50-2.00:</strong> Strong position. Qualifies for best rates and terms. Demonstrates healthy cushion for business fluctuations.</p>
+                      <p className="text-gray-700"><strong>DSCR above 2.00:</strong> Excellent. You may be under-leveraged and could potentially borrow more to fuel growth if desired.</p>
+                      <p className="text-gray-700"><strong>DSCR below 1.00:</strong> Cash flow insufficient to cover debt. Likely denial or requirement for additional collateral/guarantors.</p>
+                    </div>
+                    <p className="text-sm text-purple-700 mt-3 italic">
+                      Example: If your business has $240,000 net operating income and annual loan payments of $180,000, your DSCR is 1.33 ($240K ÷ $180K) - acceptable but close to minimums.
+                    </p>
+                  </div>
+
+                  <div className="bg-orange-50 p-6 rounded-xl border-l-4 border-orange-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-orange-900 mb-3">
+                      Can I get a business loan without collateral?
+                    </h3>
+                    <p className="text-gray-700">
+                      Yes, unsecured business loans exist but typically require: 2+ years in business, strong credit (700+), healthy revenue ($250K+ annually), and proven profitability. Expect higher interest rates (10-20% vs. 6-10% for secured loans) and lower loan amounts (often capped at $250K). Lenders compensate for higher risk with stricter terms.
+                    </p>
+                    <p className="text-gray-700 mt-3">
+                      <strong>Alternatives to traditional collateral:</strong> Some lenders accept alternative security like accounts receivable, inventory, or future credit card receivables. SBA 7(a) loans may require only limited collateral if the loan is under $350K. However, personal guarantees are almost always required for unsecured loans, putting your personal assets at risk if the business defaults.
+                    </p>
+                  </div>
+
+                  <div className="bg-indigo-50 p-6 rounded-xl border-l-4 border-indigo-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-indigo-900 mb-3">
+                      Should I choose a shorter or longer loan term?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      The optimal term balances monthly affordability with total interest cost:
+                    </p>
+                    <div className="grid sm:grid-cols-2 gap-4 mb-3">
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-bold text-green-700 mb-2">Shorter Terms (3-7 years)</p>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Pros:</strong></p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700 mb-2">
+                          <li>Less total interest paid</li>
+                          <li>Build equity faster</li>
+                          <li>Lower total cost of borrowing</li>
+                          <li>Debt-free sooner</li>
+                        </ul>
+                        <p className="text-sm text-gray-600"><strong>Cons:</strong></p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                          <li>Higher monthly payments</li>
+                          <li>Less cash flow flexibility</li>
+                          <li>Harder to qualify</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-bold text-orange-700 mb-2">Longer Terms (10-25 years)</p>
+                        <p className="text-sm text-gray-600 mb-2"><strong>Pros:</strong></p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700 mb-2">
+                          <li>Lower monthly payments</li>
+                          <li>Better cash flow management</li>
+                          <li>Easier to qualify</li>
+                          <li>More working capital preserved</li>
+                        </ul>
+                        <p className="text-sm text-gray-600"><strong>Cons:</strong></p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                          <li>Significantly more interest paid</li>
+                          <li>Slower equity buildup</li>
+                          <li>Extended financial obligation</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p className="text-indigo-700 font-semibold">
+                      Rule of Thumb: Match loan term to asset life. Equipment loan? 5-7 years. Commercial real estate? 15-25 years. Working capital? 1-3 years. Never finance short-lived assets with long-term debt.
+                    </p>
+                  </div>
+
+                  <div className="bg-pink-50 p-6 rounded-xl border-l-4 border-pink-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-pink-900 mb-3">
+                      What documents do I need to apply for a business loan?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Required documentation varies by lender and loan type, but expect to provide:
+                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-semibold text-gray-900 mb-2">Financial Documents:</p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                          <li>2-3 years of business tax returns (Form 1120, 1120S, or 1065)</li>
+                          <li>2-3 years of personal tax returns (Form 1040)</li>
+                          <li>Profit & Loss statements (P&L) for current year</li>
+                          <li>Balance sheet showing assets and liabilities</li>
+                          <li>3-6 months of business bank statements</li>
+                          <li>Accounts receivable and accounts payable aging reports</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-semibold text-gray-900 mb-2">Business Documents:</p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                          <li>Business license and registration certificates</li>
+                          <li>Articles of incorporation or organization</li>
+                          <li>Business plan (especially for startups or large loans)</li>
+                          <li>Ownership structure documentation</li>
+                          <li>Commercial lease agreement (if applicable)</li>
+                          <li>Contracts or purchase orders (proof of revenue)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg">
+                        <p className="font-semibold text-gray-900 mb-2">Additional Requirements:</p>
+                        <ul className="list-disc pl-5 space-y-1 text-sm text-gray-700">
+                          <li>Personal financial statement listing all assets/liabilities</li>
+                          <li>Resume showing relevant business experience</li>
+                          <li>Collateral documentation (appraisals, titles, deeds)</li>
+                          <li>Explanation of loan purpose and use of funds</li>
+                          <li>Debt schedule listing all current business debts</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p className="text-sm text-pink-700 mt-3 italic">
+                      Startups with limited history may substitute with strong personal credit, industry experience documentation, and detailed financial projections showing path to profitability.
+                    </p>
+                  </div>
+
+                  <div className="bg-teal-50 p-6 rounded-xl border-l-4 border-teal-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-teal-900 mb-3">
+                      How long does business loan approval take?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Timeline varies significantly by loan type and lender:
+                    </p>
+                    <ul className="list-none space-y-2 text-gray-700">
+                      <li><strong>SBA Loans:</strong> 45-90 days. Extensive documentation and government guarantee process create longer timelines.</li>
+                      <li><strong>Traditional Bank Loans:</strong> 30-60 days. Thorough underwriting and committee approvals take time.</li>
+                      <li><strong>Online/Alternative Lenders:</strong> 1-7 days. Streamlined digital applications and automated underwriting speed process.</li>
+                      <li><strong>Equipment Financing:</strong> 3-10 days. Asset-based lending reduces risk assessment time.</li>
+                      <li><strong>Lines of Credit:</strong> 5-14 days. Once established, additional draws can be same-day or next-day.</li>
+                    </ul>
+                    <p className="text-teal-700 font-semibold mt-3">
+                      Speed up approval: Have all documents organized before applying, respond quickly to lender requests, maintain clean books, and work with a loan broker who knows which lenders fit your profile.
+                    </p>
+                  </div>
+
+                  <div className="bg-yellow-50 p-6 rounded-xl border-l-4 border-yellow-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-yellow-900 mb-3">
+                      Can I pay off my business loan early?
+                    </h3>
+                    <p className="text-gray-700">
+                      Most business loans allow early payoff, but check for prepayment penalties. These penalties compensate lenders for lost interest income and typically apply to the first 1-5 years of the loan. Penalties range from 1-5% of the outstanding balance or several months' interest.
+                    </p>
+                    <p className="text-gray-700 mt-3">
+                      <strong>When early payoff makes sense:</strong> If you can refinance at 2+ percentage points lower, if your business has excess cash earning less than your loan interest rate, or if you're selling the business and must clear debt. <strong>When to avoid early payoff:</strong> If prepayment penalties exceed interest savings, if you'd deplete emergency reserves, or if the cash could generate higher returns invested in business growth.
+                    </p>
+                  </div>
+
+                  <div className="bg-red-50 p-6 rounded-xl border-l-4 border-red-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-red-900 mb-3">
+                      What happens if I can't make my business loan payment?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Missing payments has serious consequences, but proactive communication can minimize damage:
+                    </p>
+                    <div className="space-y-2">
+                      <p className="text-gray-700"><strong>Immediate actions:</strong> Contact your lender immediately (before the payment is due if possible). Many lenders offer hardship programs, temporary payment reductions, or restructuring options. Being proactive demonstrates good faith and often leads to better outcomes than waiting for default.</p>
+                      <p className="text-gray-700"><strong>Short-term consequences:</strong> Late fees (typically $25-$50 or 5% of payment), negative marks on business and personal credit reports after 30+ days late, increased interest rate (if variable), and potential acceleration of loan (full balance becomes due).</p>
+                      <p className="text-gray-700"><strong>Long-term consequences:</strong> If you default, lenders can seize collateral, pursue personal guarantors' assets, file lawsuits for unpaid amounts, and report to credit bureaus (damaging credit for 7 years).</p>
+                    </div>
+                    <p className="text-red-700 font-bold mt-3">
+                      Prevention strategy: Maintain a cash reserve of 3-6 months of loan payments, monitor cash flow weekly, and address revenue problems early before they become payment problems. If trouble looms, explore refinancing or debt consolidation before you miss payments.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 p-6 rounded-xl border-l-4 border-gray-600">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">
+                      Should I refinance my business loan?
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Refinancing can save substantial money if conditions are right. Consider refinancing when:
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                      <li><strong>Interest rates have dropped 1-2% or more:</strong> Even after closing costs, you'll save significantly over the loan term.</li>
+                      <li><strong>Your credit has improved significantly:</strong> A 50+ point credit score increase or 2+ years of strong payment history can qualify you for better rates.</li>
+                      <li><strong>Your business has grown:</strong> Higher revenue and profitability may qualify you for better terms or allow you to consolidate multiple loans.</li>
+                      <li><strong>You need to extend the term:</strong> If cash flow is tight, refinancing to a longer term reduces monthly burden (but increases total interest).</li>
+                      <li><strong>You want to switch from variable to fixed:</strong> If rates are rising, locking in a fixed rate provides payment certainty and protects against future increases.</li>
+                    </ul>
+                    <p className="text-gray-700 mt-3">
+                      <strong>Calculate break-even:</strong> If closing costs are $5,000 and you save $250/month, you'll break even in 20 months. If you plan to keep the loan longer than that, refinancing makes financial sense.
+                    </p>
+                  </div>
+
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Related Calculators Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Related Financial Calculators
+                </h2>
+                <p className="text-gray-700 mb-6">
+                  Expand your financial planning with these complementary tools. Each calculator helps you make data-driven decisions for different aspects of your business or personal finances.
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 hover-elevate transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-blue-600 p-3 rounded-lg">
+                        <Calculator className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-blue-900 text-lg">Mortgage Calculator</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-4">
+                      Calculate monthly mortgage payments for commercial or residential properties. Includes PMI, property tax, insurance, and HOA fees for complete affordability analysis.
+                    </p>
+                    <p className="text-xs text-blue-700 italic">
+                      Best for: Commercial real estate purchases, rental property investments, business facility purchases
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200 hover-elevate transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-green-600 p-3 rounded-lg">
+                        <TrendingDown className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-green-900 text-lg">ROI Calculator</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-4">
+                      Measure return on investment for business purchases, equipment, marketing campaigns, or any business expense. Compare multiple investment options side-by-side.
+                    </p>
+                    <p className="text-xs text-green-700 italic">
+                      Best for: Equipment purchase decisions, marketing ROI, expansion analysis, capital allocation
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200 hover-elevate transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-purple-600 p-3 rounded-lg">
+                        <DollarSign className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-purple-900 text-lg">Cash Flow Calculator</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-4">
+                      Project future cash flow based on revenue, expenses, and payment schedules. Essential for understanding if you can afford new debt obligations.
+                    </p>
+                    <p className="text-xs text-purple-700 italic">
+                      Best for: Pre-loan planning, seasonal business forecasting, working capital management
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl border border-orange-200 hover-elevate transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-orange-600 p-3 rounded-lg">
+                        <PieChart className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-orange-900 text-lg">Break-Even Calculator</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-4">
+                      Determine how much revenue you need to cover fixed costs, variable costs, and loan payments. Critical for new business ventures or expansion planning.
+                    </p>
+                    <p className="text-xs text-orange-700 italic">
+                      Best for: Startup planning, new product launches, expansion viability assessment
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl border border-teal-200 hover-elevate transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-teal-600 p-3 rounded-lg">
+                        <Building2 className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-teal-900 text-lg">Debt Service Coverage Calculator</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-4">
+                      Calculate your business's ability to service debt obligations. Lenders use this metric to assess creditworthiness and loan approval likelihood.
+                    </p>
+                    <p className="text-xs text-teal-700 italic">
+                      Best for: Pre-qualification assessment, multiple loan scenario comparison, financial health monitoring
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-xl border border-indigo-200 hover-elevate transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="bg-indigo-600 p-3 rounded-lg">
+                        <Clock className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-indigo-900 text-lg">Loan Comparison Calculator</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-4">
+                      Compare multiple loan offers side-by-side including total cost, monthly payment, and long-term savings. Find the most cost-effective financing option.
+                    </p>
+                    <p className="text-xs text-indigo-700 italic">
+                      Best for: Evaluating competing loan offers, refinance decisions, term length optimization
+                    </p>
+                  </div>
+
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Final CTA Section */}
+            <Card className="bg-gradient-to-br from-blue-600 to-indigo-700 shadow-2xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10 text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                  Ready to Plan Your Business Financing?
+                </h2>
+                <p className="text-blue-100 text-base sm:text-lg mb-6 max-w-3xl mx-auto">
+                  Use our Business Loan Calculator to get instant, accurate payment estimates and make confident financing decisions. Whether you're starting a new venture, expanding operations, or purchasing equipment, understanding your loan costs is the first step to success.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6">
+                  <div className="flex items-center gap-2 text-blue-100">
+                    <span className="text-2xl">✓</span>
+                    <span className="text-sm sm:text-base">100% Free Forever</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-100">
+                    <span className="text-2xl">✓</span>
+                    <span className="text-sm sm:text-base">Instant Results</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-100">
+                    <span className="text-2xl">✓</span>
+                    <span className="text-sm sm:text-base">No Registration Required</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-blue-100">
+                    <span className="text-2xl">✓</span>
+                    <span className="text-sm sm:text-base">Export & Share Results</span>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  size="lg"
+                  className="bg-white text-blue-600 hover:bg-blue-50 font-bold px-8 py-6 text-lg shadow-xl"
+                  data-testid="button-scroll-to-top"
+                >
+                  Start Calculating Now
+                </Button>
+                <p className="text-blue-200 text-sm mt-6">
+                  Join thousands of business owners who trust DapsiWow for accurate financial planning
+                </p>
+              </CardContent>
+            </Card>
+
+          </div>
+
           </div>
       </main>
 
