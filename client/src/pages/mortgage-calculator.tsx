@@ -1103,7 +1103,7 @@ const MortgageCalculator = () => {
             },
             "featureList": [
               "Calculate monthly mortgage payments for FHA, VA, and conventional loans",
-              "Include PMI, property taxes, homeowners insurance, and HOA fees",
+              "Include PMI, property taxes, insurance, and HOA fees",
               "Generate detailed amortization schedules up to 40 years",
               "Compare different mortgage loan types side-by-side",
               "Calculate extra payment benefits and interest savings",
@@ -1392,6 +1392,7 @@ const MortgageCalculator = () => {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "DapsiWow",
+            "alternateName": "DapsiWow Financial Tools",
             "url": "https://dapsiwow.com",
             "logo": {
               "@type": "ImageObject",
@@ -1399,18 +1400,25 @@ const MortgageCalculator = () => {
               "width": 250,
               "height": 60
             },
-            "description": "Free online financial calculators and tools trusted by millions of users worldwide",
-            "sameAs": [
-              "https://www.facebook.com/DapsiWow",
-              "https://twitter.com/DapsiWow",
-              "https://www.linkedin.com/company/dapsiwow"
-            ],
+            "description": "Free online financial, text, and health tools to make your life easier. No sign-up required.",
             "contactPoint": {
               "@type": "ContactPoint",
               "contactType": "Customer Support",
               "email": "support@dapsiwow.com",
               "availableLanguage": ["English"]
-            }
+            },
+            "sameAs": [
+              "https://www.facebook.com/DapsiWow",
+              "https://twitter.com/DapsiWow",
+              "https://www.linkedin.com/company/dapsiwow",
+              "https://www.instagram.com/dapsiwow"
+            ],
+            "foundingDate": "2024",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "value": "10-50"
+            },
+            "slogan": "Free Tools to Make Everything Simple"
           })}
         </script>
         <script type="application/ld+json">
@@ -1508,6 +1516,69 @@ const MortgageCalculator = () => {
               "value": "10-50"
             },
             "slogan": "Free Tools to Make Everything Simple"
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FinancialProduct",
+            "name": "Mortgage Payment Calculator",
+            "description": "Calculate monthly mortgage payments with PMI, property taxes, homeowners insurance, and HOA fees for FHA, VA, and conventional loans",
+            "url": "https://dapsiwow.com/tools/mortgage-calculator",
+            "category": "Mortgage Calculator",
+            "feesAndCommissionsSpecification": "Free to use. No registration required. No hidden fees.",
+            "interestRate": {
+              "@type": "QuantitativeValue",
+              "name": "Interest Rate",
+              "description": "Annual interest rate for mortgage calculation",
+              "unitText": "Percent"
+            },
+            "provider": {
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com"
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Mortgage Calculator",
+            "alternateName": ["Free Mortgage Calculator", "Mortgage Payment Calculator", "PITI Calculator", "Home Loan Calculator"],
+            "description": "Free online mortgage calculator to calculate monthly payments with PMI, property taxes, homeowners insurance, and HOA fees",
+            "url": "https://dapsiwow.com/tools/mortgage-calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any (Web Browser)",
+            "browserRequirements": "Requires JavaScript enabled",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "featureList": [
+              "Calculate monthly mortgage payments",
+              "Include PMI, property taxes, insurance, HOA fees",
+              "Generate detailed amortization schedules",
+              "Compare FHA, VA, and conventional loans",
+              "Calculate extra payment savings",
+              "Support biweekly and weekly payments",
+              "Download PDF reports",
+              "Share calculations via social media"
+            ],
+            "screenshot": "https://dapsiwow.com/screenshots/mortgage-calculator.jpg",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "3247",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "creator": {
+              "@type": "Organization",
+              "name": "DapsiWow"
+            }
           })}
         </script>
       </Helmet>
@@ -2231,14 +2302,14 @@ const MortgageCalculator = () => {
 
         {/* SEO Content Sections */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 space-y-8 sm:space-y-12 md:space-y-16">
-          
+
           {/* Introduction Section */}
           <section className="prose prose-sm sm:prose lg:prose-lg max-w-none">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Mortgage Calculator?</h2>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-4">
               A <strong>Mortgage Calculator</strong> is a free online tool that helps you estimate your monthly home loan payments based on the purchase price, down payment, interest rate, and loan term. Whether you're a first-time homebuyer exploring affordability, a homeowner considering refinancing, or a real estate investor analyzing deals, this calculator provides instant, accurate results.
             </p>
-            
+
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-6 sm:mt-8 mb-3 sm:mb-4">Why Use Our Mortgage Calculator?</h3>
             <ul className="space-y-2 text-base sm:text-lg text-gray-700 list-disc pl-5 sm:pl-6">
               <li><strong>Instant Results:</strong> Get your monthly payment breakdown in seconds</li>
@@ -2273,9 +2344,9 @@ const MortgageCalculator = () => {
           {/* How to Use Section */}
           <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-blue-50 to-indigo-50 p-6 sm:p-8 md:p-10 rounded-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">How to Use the Mortgage Calculator</h2>
-            
+
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-6 mb-3">Step-by-Step Guide:</h3>
-            
+
             <div className="space-y-4 sm:space-y-6">
               <div className="bg-white p-4 sm:p-6 rounded-lg shadow-sm">
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
@@ -2357,7 +2428,7 @@ const MortgageCalculator = () => {
               <div className="bg-white border-2 border-blue-200 p-6 sm:p-8 rounded-xl">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 1: First-Time Homebuyer with 10% Down</h3>
                 <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Sarah is buying her first home and has saved $50,000 for a down payment on a $500,000 house.</p>
-                
+
                 <div className="bg-blue-50 p-4 rounded-lg mb-4">
                   <h4 className="font-bold text-gray-900 mb-2">Input Values:</h4>
                   <ul className="text-gray-700 space-y-1">
@@ -2383,7 +2454,7 @@ const MortgageCalculator = () => {
                 </div>
 
                 <p className="text-gray-700"><strong>Interpretation:</strong> With 10% down, Sarah's monthly payment includes PMI of $187. She can request PMI removal once her loan-to-value ratio reaches 78%, saving $2,244 annually.</p>
-                
+
                 <p className="text-gray-700 mt-3"><strong>Action Steps:</strong></p>
                 <ul className="text-gray-700 list-disc pl-5 space-y-1">
                   <li>Budget for $3,607/month total housing cost</li>
@@ -2396,7 +2467,7 @@ const MortgageCalculator = () => {
               <div className="bg-white border-2 border-green-200 p-6 sm:p-8 rounded-xl">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 2: 15-Year vs 30-Year Comparison</h3>
                 <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Mike wants to compare the total cost difference between a 15-year and 30-year mortgage on a $400,000 home with 20% down.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-orange-50 p-4 rounded-lg">
                     <h4 className="font-bold text-gray-900 mb-2">30-Year Mortgage:</h4>
@@ -2439,7 +2510,7 @@ const MortgageCalculator = () => {
               <div className="bg-white border-2 border-purple-200 p-6 sm:p-8 rounded-xl">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 3: Extra Payments Strategy</h3>
                 <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Lisa has a $350,000 mortgage at 6.25% for 30 years and wants to know the impact of adding $200/month extra.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-bold text-gray-900 mb-2">Standard Payment:</h4>
@@ -2606,7 +2677,7 @@ const MortgageCalculator = () => {
           </section>
 
           {/* Loan Type Comparison Section */}
-          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-purple-50 to-pink-50 p-6 sm:p-8 md:p-10 rounded-2xl">
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-orange-50 to-amber-50 p-6 sm:p-8 md:p-10 rounded-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6">FHA vs VA vs Conventional Loans</h2>
 
             <div className="overflow-x-auto -mx-6 sm:mx-0">
@@ -2812,9 +2883,9 @@ const MortgageCalculator = () => {
           </section>
 
           {/* Final CTA Section */}
-          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 sm:p-12 md:p-16 rounded-2xl text-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">Ready to Plan Your Home Purchase?</h2>
-            <p className="text-lg sm:text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
+          <section className="prose prose-sm sm:prose max-w-none bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 sm:p-10 md:p-14 rounded-xl sm:rounded-2xl text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-white">Ready to Plan Your Home Purchase?</h2>
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Use our free mortgage calculator to understand your monthly payments, compare loan options, and make informed decisions about your home purchase.
             </p>
 
