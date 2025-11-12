@@ -1,5 +1,5 @@
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import Header from '@/components/Header';
@@ -10,11 +10,10 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Calculator, TrendingUp, Clock, Percent, Download, Share2, PieChart as PieChartIcon, BarChart3, RotateCcw, ArrowRight } from 'lucide-react';
+import { Info, Calculator, TrendingUp, Clock, Percent, Download, Share2, PieChart as PieChartIcon, BarChart3, RotateCcw, ArrowRight, AlertCircle } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
-import { jsPDF } from 'jspdf';
 import ShareResultsButton from '@/components/ShareResultsButton';
 
 interface SimpleInterestResult {
@@ -50,17 +49,19 @@ export default function SimpleInterestCalculator() {
   const [showComparison, setShowComparison] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [comparisonScenarios, setComparisonScenarios] = useState<ComparisonScenario[]>([]);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const resultsRef = useRef<HTMLDivElement>(null);
   const yearlyBreakdownScrollRef = useRef<HTMLDivElement>(null);
   const comparisonScrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isTouchDragging, setIsTouchDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
 
-  // Drag scrolling handlers for tables
+  // Drag scrolling handlers for tables (mouse)
   const handleMouseDown = (e: React.MouseEvent, ref: React.RefObject<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (!ref.current || isTouchDragging) return;
     setIsDragging(true);
     setStartX(e.pageX - ref.current.offsetLeft);
     setScrollLeft(ref.current.scrollLeft);
@@ -82,28 +83,70 @@ export default function SimpleInterestCalculator() {
     ref.current.scrollLeft = scrollLeft - walk;
   };
 
-  const calculateSimpleInterest = () => {
-    const p = parseFloat(principal);
-    const r = parseFloat(interestRate) / 100;
-    const t = timeUnit === 'years' ? parseFloat(timePeriod) : parseFloat(timePeriod) / 12;
+  // Touch scrolling handlers for mobile/tablet
+  const handleTouchStart = (e: React.TouchEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!ref.current) return;
+    setIsTouchDragging(true);
+    setStartX(e.touches[0].pageX - ref.current.offsetLeft);
+    setScrollLeft(ref.current.scrollLeft);
+  };
 
-    if (!Number.isFinite(p) || !Number.isFinite(r) || !Number.isFinite(t) || p <= 0 || r <= 0 || t <= 0) return;
+  const handleTouchEnd = () => {
+    setIsTouchDragging(false);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!isTouchDragging || !ref.current) return;
+    const x = e.touches[0].pageX - ref.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    ref.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const calculateSimpleInterest = () => {
+    const errors: Record<string, string> = {};
+    const p = parseFloat(principal);
+    const r = parseFloat(interestRate);
+    const t = parseFloat(timePeriod);
+
+    if (!principal || principal.trim() === '' || !Number.isFinite(p) || p <= 0) {
+      errors.principal = 'Please enter a valid principal amount greater than 0';
+    }
+    if (!interestRate || interestRate.trim() === '' || !Number.isFinite(r) || r <= 0) {
+      errors.interestRate = 'Please enter a valid interest rate greater than 0';
+    }
+    if (!timePeriod || timePeriod.trim() === '' || !Number.isFinite(t) || t <= 0) {
+      errors.timePeriod = 'Please enter a valid time period greater than 0';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors in the form and try again.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setValidationErrors({});
 
     // Simple Interest Formula: SI = P × R × T
-    const simpleInterest = p * r * t;
+    const rDecimal = r / 100;
+    const timeInYears = timeUnit === 'years' ? t : t / 12;
+    const simpleInterest = p * rDecimal * timeInYears;
     const totalAmount = p + simpleInterest;
-    const monthlyInterest = simpleInterest / (t * 12);
+    const monthlyInterest = simpleInterest / (timeInYears * 12);
 
     // Calculate yearly breakdown
     const yearlyBreakdown = [];
-    const years = Math.ceil(t);
+    const years = Math.ceil(timeInYears);
     
     for (let year = 1; year <= years; year++) {
-      const currentYearTime = Math.min(year, t);
-      const previousYearTime = Math.min(year - 1, t);
+      const currentYearTime = Math.min(year, timeInYears);
+      const previousYearTime = Math.min(year - 1, timeInYears);
       
-      const cumulativeInterest = p * r * currentYearTime;
-      const previousCumulativeInterest = p * r * previousYearTime;
+      const cumulativeInterest = p * rDecimal * currentYearTime;
+      const previousCumulativeInterest = p * rDecimal * previousYearTime;
       const interestEarned = cumulativeInterest - previousCumulativeInterest;
       const totalAmountYear = p + cumulativeInterest;
       
@@ -122,6 +165,17 @@ export default function SimpleInterestCalculator() {
       monthlyInterest,
       yearlyBreakdown
     });
+
+    toast({
+      title: "Calculation Complete!",
+      description: "Simple interest has been calculated successfully.",
+    });
+
+    if (resultsRef.current) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
   };
 
   // Load parameters from URL on mount (for shared links)
@@ -297,9 +351,10 @@ export default function SimpleInterestCalculator() {
     toast({ title: "Opening WhatsApp share..." });
   };
 
-  const handleDownloadYearlyBreakdownPDF = () => {
+  const handleDownloadYearlyBreakdownPDF = async () => {
     if (!result || !result.yearlyBreakdown || result.yearlyBreakdown.length === 0) return;
 
+    const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
@@ -432,9 +487,10 @@ export default function SimpleInterestCalculator() {
     });
   };
 
-  const handleDownloadComparisonPDF = () => {
+  const handleDownloadComparisonPDF = async () => {
     if (comparisonScenarios.length === 0) return;
 
+    const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
@@ -603,9 +659,10 @@ export default function SimpleInterestCalculator() {
     });
   };
 
-  const exportToPDF = () => {
+  const exportToPDF = async () => {
     if (!result) return;
 
+    const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
@@ -866,7 +923,7 @@ export default function SimpleInterestCalculator() {
     });
   };
 
-  const formatCurrency = (amount: number) => {
+  const formatCurrency = useMemo(() => {
     const currencyMap: { [key: string]: { locale: string; currency: string } } = {
       USD: { locale: 'en-US', currency: 'USD' },
       EUR: { locale: 'de-DE', currency: 'EUR' },
@@ -881,14 +938,15 @@ export default function SimpleInterestCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
-    return new Intl.NumberFormat(config.locale, {
+    const formatter = new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    }).format(amount);
-  };
+    });
+    
+    return (amount: number) => formatter.format(amount);
+  }, [currency]);
 
   const handleCopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -1309,12 +1367,18 @@ export default function SimpleInterestCalculator() {
                             id="principal"
                             type="number"
                             value={principal}
-                            onChange={(e) => setPrincipal(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            onChange={(e) => { setPrincipal(e.target.value); setValidationErrors(prev => ({ ...prev, principal: '' })); }}
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.principal ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="10,000"
                             data-testid="input-principal"
                           />
                         </div>
+                        {validationErrors.principal && (
+                          <div className="flex items-center gap-1 text-red-600 text-xs sm:text-sm mt-1" data-testid="error-principal">
+                            <AlertCircle className="w-4 h-4" />
+                            <span>{validationErrors.principal}</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Interest Rate */}
@@ -1337,14 +1401,20 @@ export default function SimpleInterestCalculator() {
                             id="interest-rate"
                             type="number"
                             value={interestRate}
-                            onChange={(e) => setInterestRate(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            onChange={(e) => { setInterestRate(e.target.value); setValidationErrors(prev => ({ ...prev, interestRate: '' })); }}
+                            className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="8.00"
                             step="0.01"
                             data-testid="input-interest-rate"
                           />
                           <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
+                        {validationErrors.interestRate && (
+                          <div className="flex items-center gap-1 text-red-600 text-xs sm:text-sm mt-1" data-testid="error-interest-rate">
+                            <AlertCircle className="w-4 h-4" />
+                            <span>{validationErrors.interestRate}</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Time Period */}
@@ -1364,8 +1434,8 @@ export default function SimpleInterestCalculator() {
                           <Input
                             type="number"
                             value={timePeriod}
-                            onChange={(e) => setTimePeriod(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            onChange={(e) => { setTimePeriod(e.target.value); setValidationErrors(prev => ({ ...prev, timePeriod: '' })); }}
+                            className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.timePeriod ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="5"
                             min="1"
                             data-testid="input-time-period"
@@ -1380,6 +1450,12 @@ export default function SimpleInterestCalculator() {
                             </SelectContent>
                           </Select>
                         </div>
+                        {validationErrors.timePeriod && (
+                          <div className="flex items-center gap-1 text-red-600 text-xs sm:text-sm mt-1" data-testid="error-time-period">
+                            <AlertCircle className="w-4 h-4" />
+                            <span>{validationErrors.timePeriod}</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </TooltipProvider>
@@ -1448,6 +1524,7 @@ export default function SimpleInterestCalculator() {
                             onClick={shareOnFacebook}
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors"
+                            data-testid="button-share-facebook"
                           >
                             <FaFacebook className="w-4 h-4 mr-1.5" />
                             Facebook
@@ -1456,6 +1533,7 @@ export default function SimpleInterestCalculator() {
                             onClick={shareOnTwitter}
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors"
+                            data-testid="button-share-twitter"
                           >
                             <FaTwitter className="w-4 h-4 mr-1.5" />
                             Twitter
@@ -1464,6 +1542,7 @@ export default function SimpleInterestCalculator() {
                             onClick={shareOnLinkedIn}
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors"
+                            data-testid="button-share-linkedin"
                           >
                             <FaLinkedin className="w-4 h-4 mr-1.5" />
                             LinkedIn
@@ -1472,6 +1551,7 @@ export default function SimpleInterestCalculator() {
                             onClick={shareOnWhatsApp}
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors"
+                            data-testid="button-share-whatsapp"
                           >
                             <FaWhatsapp className="w-4 h-4 mr-1.5" />
                             WhatsApp
@@ -1481,6 +1561,7 @@ export default function SimpleInterestCalculator() {
                             variant="outline"
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
+                            data-testid="button-share-more"
                           >
                             <Share2 className="w-4 h-4 mr-1.5" />
                             More
@@ -1517,6 +1598,7 @@ export default function SimpleInterestCalculator() {
                             variant="outline"
                             size="sm"
                             className="mt-2 sm:mt-3 rounded-lg text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
+                            data-testid="button-copy-result"
                           >
                             Copy Result
                           </Button>
@@ -1736,11 +1818,14 @@ export default function SimpleInterestCalculator() {
                           <p className="text-sm text-gray-600 mb-4">See how your interest accumulates year by year.</p>
                           <div 
                             ref={yearlyBreakdownScrollRef}
-                            className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                            className={`overflow-x-auto -mx-4 sm:mx-0 ${(isDragging || isTouchDragging) ? 'cursor-grabbing' : 'cursor-grab'}`}
                             onMouseDown={(e) => handleMouseDown(e, yearlyBreakdownScrollRef)}
                             onMouseLeave={handleMouseLeave}
                             onMouseUp={handleMouseUp}
                             onMouseMove={(e) => handleMouseMove(e, yearlyBreakdownScrollRef)}
+                            onTouchStart={(e) => handleTouchStart(e, yearlyBreakdownScrollRef)}
+                            onTouchEnd={handleTouchEnd}
+                            onTouchMove={(e) => handleTouchMove(e, yearlyBreakdownScrollRef)}
                           >
                             <table className="w-full min-w-[600px] select-none" data-testid="yearly-breakdown-table">
                               <thead>
@@ -1808,11 +1893,14 @@ export default function SimpleInterestCalculator() {
                 <p className="text-sm text-gray-600 mb-4">Compare different investment scenarios side-by-side to find the best option.</p>
                 <div 
                   ref={comparisonScrollRef}
-                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                  className={`overflow-x-auto -mx-4 sm:mx-0 ${(isDragging || isTouchDragging) ? 'cursor-grabbing' : 'cursor-grab'}`}
                   onMouseDown={(e) => handleMouseDown(e, comparisonScrollRef)}
                   onMouseLeave={handleMouseLeave}
                   onMouseUp={handleMouseUp}
                   onMouseMove={(e) => handleMouseMove(e, comparisonScrollRef)}
+                  onTouchStart={(e) => handleTouchStart(e, comparisonScrollRef)}
+                  onTouchEnd={handleTouchEnd}
+                  onTouchMove={(e) => handleTouchMove(e, comparisonScrollRef)}
                 >
                   <table className="w-full min-w-[600px] select-none" data-testid="comparison-table">
                     <thead>
