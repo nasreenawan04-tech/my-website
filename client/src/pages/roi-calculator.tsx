@@ -1,6 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'wouter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -8,17 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Calculator, TrendingUp, DollarSign, PieChart, BarChart3, ChevronRight } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, LineChart, Line } from 'recharts';
-import { RotateCcw } from 'lucide-react';
-import { jsPDF } from 'jspdf';
-import ShareResultsButton from '@/components/ShareResultsButton';
-import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { z } from 'zod';
-import { useAuth } from '@/contexts/AuthContext';
-import { saveCalculation } from '@/lib/calculationHistory';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Calculator, TrendingDown, Clock, DollarSign } from 'lucide-react';
 
 interface ROIResult {
   roi: number;
@@ -270,11 +260,11 @@ export default function ROICalculator() {
         <title>ROI Calculator - Calculate Returns in Seconds | DapsiWow</title>
         <meta name="description" content="Calculate ROI instantly with our free calculator. Compare investments, track performance, and make data-driven decisions. Used by 2,500+ investors." />
         <meta name="keywords" content="roi calculator, roi calculator online free, investment roi calculator, business roi calculator, return on investment calculator, free roi calculator 2025, annualized roi calculator, roi calculator with inflation, marketing roi calculator, real estate roi calculator" />
-
+        
         <meta name="author" content="DapsiWow" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://dapsiwow.com/tools/roi-calculator" />
-
+        
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="ROI Calculator - Calculate Returns in Seconds | DapsiWow" />
@@ -285,13 +275,13 @@ export default function ROICalculator() {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
-
+        
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ROI Calculator - Calculate Returns in Seconds | DapsiWow" />
         <meta name="twitter:description" content="Calculate ROI instantly with our free calculator. Compare investments, track performance, and make data-driven decisions. Used by 2,500+ investors." />
         <meta name="twitter:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
         <meta name="twitter:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
-
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -374,7 +364,7 @@ export default function ROICalculator() {
             }
           })}
         </script>
-
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -627,21 +617,30 @@ export default function ROICalculator() {
       <Header />
 
       {/* Breadcrumb Navigation */}
-      <div className="bg-white border-b border-gray-200">
+      <nav aria-label="Breadcrumb" className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <Link href="/finance-tools" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">
-              Finance Tools
-            </Link>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <span className="text-gray-600 font-medium">ROI Calculator</span>
-          </nav>
+          <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <a href="/" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-home">
+                <span itemProp="name">Home</span>
+              </a>
+              <meta itemProp="position" content="1" />
+            </li>
+            <li className="text-gray-400">/</li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <a href="/finance-tools" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-finance-tools">
+                <span itemProp="name">Finance Tools</span>
+              </a>
+              <meta itemProp="position" content="2" />
+            </li>
+            <li className="text-gray-400">/</li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name" className="text-gray-700 font-medium">ROI Calculator</span>
+              <meta itemProp="position" content="3" />
+            </li>
+          </ol>
         </div>
-      </div>
+      </nav>
 
       <main>
         {/* Hero Section */}
@@ -665,7 +664,7 @@ export default function ROICalculator() {
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
                 <div className="flex items-center gap-2 text-slate-700">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
+                  <TrendingDown className="w-5 h-5 text-green-600" />
                   <span className="text-sm font-medium">Track Returns</span>
                 </div>
                 <div className="flex items-center gap-2 text-slate-700">
@@ -1065,9 +1064,9 @@ export default function ROICalculator() {
           {/* How to Use ROI Calculator Section */}
           <section className="prose prose-slate max-w-none" data-testid="section-how-to-use">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="how-to-use-roi-calculator">How to Use the ROI Calculator</h2>
-
+            
             <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">Step-by-Step Guide:</h3>
-
+            
             <div className="space-y-6">
               <div className="border-l-4 border-blue-500 pl-4">
                 <h4 className="text-xl font-semibold text-gray-900 mb-2">Step 1: Select Currency</h4>
@@ -1204,9 +1203,9 @@ export default function ROICalculator() {
           {/* Understanding Your ROI Results Section */}
           <section className="prose prose-slate max-w-none" data-testid="section-understanding-results">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="understanding-roi-results">Understanding Your ROI Results</h2>
-
+            
             <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">ROI Result Categories</h3>
-
+            
             <div className="space-y-4">
               <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
                 <h4 className="text-lg font-semibold text-green-900 mb-2">Excellent ROI (20% or higher)</h4>
@@ -1250,7 +1249,7 @@ export default function ROICalculator() {
           {/* ROI Calculation Formula Explained Section */}
           <section className="prose prose-slate max-w-none" data-testid="section-formula">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-formula-explained">ROI Calculation Formula Explained</h2>
-
+            
             <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">The Standard ROI Formula</h3>
             <div className="bg-gray-100 p-6 rounded-lg my-4">
               <p className="text-center text-2xl font-mono font-bold text-gray-900">
@@ -1293,7 +1292,7 @@ export default function ROICalculator() {
           {/* Tips and Best Practices Section */}
           <section className="prose prose-slate max-w-none" data-testid="section-tips">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-tips-best-practices">Tips and Best Practices for Calculating Accurate ROI</h2>
-
+            
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-lg border border-gray-200">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Include All Costs</h3>
@@ -1355,7 +1354,7 @@ export default function ROICalculator() {
           {/* ROI vs Other Metrics Section */}
           <section className="prose prose-slate max-w-none" data-testid="section-comparison">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-vs-other-metrics">ROI vs Other Financial Metrics</h2>
-
+            
             <div className="overflow-x-auto">
               <table className="min-w-full bg-white border border-gray-300 rounded-lg">
                 <thead className="bg-gray-100">
@@ -1414,7 +1413,7 @@ export default function ROICalculator() {
           {/* FAQ Section */}
           <section className="prose prose-slate max-w-none" data-testid="section-faq">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="faq">Frequently Asked Questions (FAQ)</h2>
-
+            
             <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-what-is-roi">What is ROI and how is it calculated?</h3>
             <p className="text-gray-700">
               ROI (Return on Investment) is a performance measure used to evaluate the profitability of an investment. It's calculated as: <strong>ROI = ((Final Value - Initial Investment) / Initial Investment) × 100</strong>. A positive ROI indicates profit, while negative ROI indicates a loss. For example, if you invest $1,000 and it grows to $1,200, your ROI is 20%.
@@ -1464,11 +1463,6 @@ export default function ROICalculator() {
             <p className="text-gray-700">
               Key factors include: initial investment amount, final value (including all returns), time period, fees and expenses, taxes, inflation, market conditions, risk level, and opportunity cost. For accurate ROI calculation, include all costs (purchase price, fees, maintenance) and all returns (appreciation, dividends, interest, rental income). External factors like economic conditions and industry trends also significantly impact actual ROI.
             </p>
-
-            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-using-calculator">How do I use the ROI calculator effectively?</h3>
-            <p className="text-gray-700">
-              To use the ROI calculator effectively: (1) Input accurate data for initial investment, final value, and time period. (2) Select the correct currency. (3) Choose the appropriate calculation type (Basic, Investment, or Business). (4) Double-check your inputs to ensure accuracy. (5) Understand the results and interpretation provided. (6) Use the annualized ROI for long-term comparisons. (7) Consider the calculator as a tool to guide decisions, not a sole determinant.
-            </p>
           </section>
 
           {/* Final Call-to-Action Section */}
@@ -1478,7 +1472,7 @@ export default function ROICalculator() {
               <p className="text-lg text-gray-700 mb-6">
                 Make smarter investment decisions with our free ROI calculator. Get instant, accurate results with detailed breakdowns and annualized returns analysis.
               </p>
-
+              
               <div className="bg-white p-6 rounded-lg shadow-md mb-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Start Calculating Now:</h3>
                 <ul className="list-none space-y-2 text-gray-700 mb-6 text-left">
@@ -1503,7 +1497,7 @@ export default function ROICalculator() {
                     <span><strong>100% Free</strong> - No registration or hidden fees required</span>
                   </li>
                 </ul>
-
+                
                 <a href="#roi-calculator-tool" className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg no-underline" data-testid="button-scroll-to-calculator">
                   Use ROI Calculator Now →
                 </a>
@@ -1516,7 +1510,7 @@ export default function ROICalculator() {
                     Check our <a href="#faq" className="text-blue-600 hover:text-blue-700">FAQ section</a> or <a href="/help-center" className="text-blue-600 hover:text-blue-700">Help Center</a> for detailed guidance on using the calculator.
                   </p>
                 </div>
-
+                
                 <div className="bg-white p-4 rounded-lg border border-gray-200">
                   <h4 className="font-semibold text-gray-900 mb-2">Share This Tool</h4>
                   <p className="text-gray-700 text-sm">
