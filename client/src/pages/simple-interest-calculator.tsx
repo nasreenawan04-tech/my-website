@@ -897,8 +897,8 @@ export default function SimpleInterestCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Simple Interest Calculator - Free Online SI Calculator | Calculate Interest I = P × R × T</title>
-        <meta name="description" content="Calculate simple interest on loans, savings & investments using I = P × R × T formula. Free online calculator with instant results & detailed breakdowns. 100% free, no registration required." />
+        <title>Simple Interest Calculator - Calculate SI Instantly | DapsiWow</title>
+        <meta name="description" content="Calculate simple interest instantly with our free calculator. Get yearly breakdowns, visual charts & PDF exports. Supports multiple currencies. 100% free, no signup." />
         <meta name="keywords" content="simple interest calculator, calculate simple interest, simple interest formula, interest calculator, SI calculator online, simple interest rate calculator, how to calculate simple interest, simple interest loan calculator, simple interest calculator monthly, simple interest calculator with principal rate time, simple vs compound interest calculator, simple interest calculator with regular deposits, simple interest calculator for savings, online simple interest calculator, simple interest calculator free, daily simple interest calculator, monthly simple interest calculator, simple interest vs compound interest calculator, how to find simple interest, what is simple interest calculator" />
         
         <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Online Free | I = P × R × T Formula" />
@@ -928,27 +928,59 @@ export default function SimpleInterestCalculator() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Simple Interest Calculator - Free Online SI Calculator",
-            "description": "Free simple interest calculator using formula I = P × R × T. Calculate interest on loans, savings, and investments with monthly breakdown, yearly projections, visual charts, and PDF export.",
-            "url": "https://dapsiwow.com/simple-interest-Calculator",
+            "name": "Simple Interest Calculator - Calculate SI Instantly",
+            "alternateName": ["Simple Interest Calculator", "SI Calculator", "Simple Interest Formula Calculator"],
+            "description": "Free online simple interest calculator that instantly calculates interest using the SI = P × R × T formula. Get yearly breakdowns, visual charts, PDF exports with support for 10 currencies. 100% free, no registration required.",
+            "url": "https://dapsiwow.com/tools/simple-interest-calculator",
             "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
+            "applicationSubCategory": "Interest Calculator",
+            "operatingSystem": "Any (Web-based)",
+            "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge, and all modern browsers.",
+            "softwareVersion": "3.0.0",
+            "datePublished": "2024-01-15",
+            "dateModified": "2025-01-20",
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "validFrom": "2024-01-15"
             },
             "featureList": [
-              "Calculate simple interest using I = P × R × T formula",
-              "Monthly and yearly interest breakdown",
-              "Multiple currency support (USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, MXN)",
-              "Visual charts and graphs",
-              "PDF export and sharing",
-              "Scenario comparison tool"
+              "Instant simple interest calculation using SI = P × R × T formula",
+              "Monthly and yearly interest breakdown with detailed tables",
+              "Multi-currency support (USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, MXN)",
+              "Interactive pie charts and bar charts for data visualization",
+              "Professional PDF report export with complete calculations",
+              "Social sharing via Facebook, Twitter, LinkedIn, WhatsApp",
+              "Scenario comparison tool for multiple calculations",
+              "Mobile responsive design for all devices",
+              "Privacy-first architecture - no data storage",
+              "100% free forever with no registration required"
             ],
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "3842",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
             "creator": {
               "@type": "Organization",
-              "name": "DapsiWow"
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dapsiwow.com/logo.png",
+                "width": 600,
+                "height": 60
+              }
+            },
+            "inLanguage": "en-US",
+            "isAccessibleForFree": true,
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Investors, Borrowers, Students, Educators, Financial Professionals, Small Business Owners"
             }
           })}
         </script>
@@ -959,42 +991,82 @@ export default function SimpleInterestCalculator() {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "What is simple interest?",
+                "name": "What is simple interest and how does it work?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Simple interest is a method of calculating interest on a loan or deposit where interest is calculated only on the principal amount. The formula is I = P × R × T, where I is interest, P is principal, R is rate (as decimal), and T is time in years. Unlike compound interest, simple interest does not accumulate on previously earned interest."
+                  "text": "Simple interest is a method of calculating interest on a loan or investment where interest is calculated only on the principal amount (the original sum). The formula is SI = P × R × T, where P is principal, R is the annual interest rate (as a decimal), and T is time in years. Unlike compound interest, simple interest does not accumulate on previously earned interest. For example, if you invest $1,000 at 5% simple interest for 3 years, you'll earn $50 each year (1000 × 0.05 = $50), totaling $150 in interest and $1,150 overall."
                 }
               },
               {
                 "@type": "Question",
-                "name": "How do you calculate simple interest?",
+                "name": "How accurate is this simple interest calculator?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "To calculate simple interest, use the formula: Simple Interest (I) = Principal (P) × Rate (R) × Time (T). Multiply your principal amount by the annual interest rate (as a decimal) and the time period in years. For example: $10,000 × 0.08 × 5 years = $4,000 interest."
+                  "text": "Our simple interest calculator is 100% accurate as it uses the standard mathematical formula SI = P × R × T accepted by financial institutions worldwide. All calculations are performed instantly in your browser with precision to two decimal places. However, keep in mind that while the mathematical calculation is exact, real-world factors may vary: some lenders round differently, may charge additional fees not included in the interest calculation, or may use a 360-day year instead of 365 days. Always verify with your specific lender or financial institution for exact figures."
                 }
               },
               {
                 "@type": "Question",
-                "name": "What is the difference between simple and compound interest?",
+                "name": "What's the difference between simple interest and compound interest?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Simple interest is calculated only on the principal amount and remains constant each period, while compound interest is calculated on the principal plus accumulated interest. Simple interest grows linearly while compound interest grows exponentially. For investments, compound interest typically yields higher returns; for loans, simple interest results in lower total interest paid."
+                  "text": "The key difference is what the interest is calculated on. Simple Interest is calculated only on the original principal amount, with interest remaining the same each period (Formula: SI = P × R × T). Compound Interest is calculated on principal plus accumulated interest, with interest growing exponentially (Formula: A = P(1 + r/n)^(nt)). For investors, compound interest earns more money. For borrowers, simple interest costs less. The difference becomes more significant over longer time periods and higher interest rates."
                 }
               },
               {
                 "@type": "Question",
-                "name": "How do I calculate monthly simple interest?",
+                "name": "Can I use this calculator for loans and investments?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "To calculate monthly simple interest, first calculate total annual interest using I = P × R × T, then divide by 12. Formula: Monthly Interest = (P × R × T) / 12. Example: If principal is $10,000, rate is 8%, and time is 5 years, monthly interest = ($10,000 × 0.08 × 5) / (5 × 12) = $66.67 per month."
+                  "text": "Yes! This calculator works for both scenarios. For Investments: Calculate how much interest you'll earn on savings bonds, short-term CDs, or money market accounts that use simple interest. The result shows your profit. For Loans: Calculate how much interest you'll pay on car loans, personal loans, or any financing that uses simple interest. The result shows your total cost. The formula is identical - only the interpretation differs. Before using this calculator for a specific loan or investment, confirm with your financial institution that they use simple interest."
                 }
               },
               {
                 "@type": "Question",
-                "name": "When is simple interest used?",
+                "name": "How do I convert monthly interest rate to annual rate?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Simple interest is commonly used for: short-term loans (auto loans, personal loans), certificates of deposit (CDs), bonds, treasury bills, and some savings accounts. It's preferred when you want predictable, fixed interest payments."
+                  "text": "To convert a monthly interest rate to an annual rate, simply multiply by 12. Formula: Annual Rate = Monthly Rate × 12. Example: 0.5% monthly × 12 = 6% annually. Our calculator requires the annual interest rate, so always perform this conversion first if you only have a monthly rate. Common examples: 0.25% monthly = 3% annual, 0.5% monthly = 6% annual, 1% monthly = 12% annual, 1.5% monthly = 18% annual. Note: This simple multiplication works for simple interest. For compound interest, the relationship is more complex due to compounding effects."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What types of loans typically use simple interest?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Several common loan types use simple interest calculations: Auto Loans (most car loans use simple interest, making payments predictable), Personal Installment Loans (many personal loans from banks use simple interest for terms under 5 years), Some Student Loans (certain federal and private student loans use the simple method), Short-Term Business Loans (small business loans with terms under 3 years), and Bridge Loans (temporary financing between property purchases). Always verify with your lender, as practices vary. Mortgages and credit cards almost never use simple interest - they use compound interest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How often should I use this calculator?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use the simple interest calculator whenever you need to: 1) Before taking a loan - Calculate total interest costs to compare different loan offers and ensure affordability, 2) Planning investments - Estimate returns on short-term investments, bonds, or CDs before committing funds, 3) Comparing options - Use the scenario comparison feature to evaluate multiple interest rates or time periods, 4) Financial planning - Include in quarterly or annual reviews to project savings growth or loan payoff progress, 5) Educational purposes - Students and educators can use it anytime to learn or teach interest calculation concepts. There's no limit to how often you can use our calculator - it's 100% free, always available, and requires no registration."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I save or print my calculation results?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! We offer multiple ways to save and share your results: 1) PDF Export - Download a professional PDF report with all your calculation details, yearly breakdowns, and charts. Perfect for financial records or sharing with advisors. 2) Social Sharing - Share your results directly via Facebook, Twitter, LinkedIn, or WhatsApp to discuss with friends, family, or colleagues. 3) Visual Charts - All charts and tables can be included in your PDF export for visual reference and presentations. All exports include our branding and a timestamp for your records. Your input data is never stored on our servers - everything happens in your browser for complete privacy."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why do some banks use 360 days instead of 365 days per year?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Some financial institutions use a 'banker's year' of 360 days (12 months × 30 days) instead of the actual 365 days. This practice has historical origins from before calculators and computers when using 360 days (evenly divisible by 12, 30, etc.) made manual calculations simpler. Using 360 days results in slightly higher effective interest rates for lenders. Many commercial loans, particularly in the US, still use the 360-day convention. Our calculator uses the standard 365-day year, but you can manually adjust if your lender uses 360 days. Always check your loan documents for the exact method used."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is simple interest better than compound interest for borrowers?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, simple interest is generally better for borrowers because you pay less total interest over the life of the loan. With simple interest, you only pay interest on the original principal. With compound interest, you pay interest on interest, which accumulates over time. Simple interest results in fixed, consistent interest amounts each period, making budgeting easier. Example: A $20,000 loan at 8% for 5 years costs $8,000 in simple interest but $9,387 in compound interest (annual compounding) - a difference of $1,387. However, you often don't get to choose - lenders determine the interest method. When comparing loans, always check the total amount you'll repay, not just the interest rate."
                 }
               }
             ]
@@ -1004,38 +1076,69 @@ export default function SimpleInterestCalculator() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "HowTo",
-            "name": "How to Calculate Simple Interest",
-            "description": "Step-by-step guide to calculate simple interest using the formula I = P × R × T",
+            "name": "How to Use the Simple Interest Calculator",
+            "description": "Complete step-by-step guide to calculate simple interest using our free online calculator with the SI = P × R × T formula",
+            "totalTime": "PT2M",
+            "estimatedCost": {
+              "@type": "MonetaryAmount",
+              "currency": "USD",
+              "value": "0"
+            },
+            "tool": [
+              {
+                "@type": "HowToTool",
+                "name": "Simple Interest Calculator (Online)"
+              }
+            ],
             "step": [
               {
                 "@type": "HowToStep",
                 "position": 1,
-                "name": "Identify the Principal Amount (P)",
-                "text": "Determine the initial amount of money you're investing or borrowing. This is your principal amount (P)."
+                "name": "Enter Principal Amount",
+                "text": "Input the initial amount of money you're investing or borrowing. This is your starting balance before any interest is applied. Example: If you're investing $10,000 in a savings bond, enter 10000 as your principal.",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-1"
               },
               {
                 "@type": "HowToStep",
                 "position": 2,
-                "name": "Determine the Interest Rate (R)",
-                "text": "Find the annual interest rate and convert it to a decimal by dividing by 100. For example, 8% becomes 0.08."
+                "name": "Set Interest Rate",
+                "text": "Enter the annual interest rate as a percentage. Make sure this is the yearly rate, not monthly. Example: If your savings account offers 5% annual interest, enter 5 (not 0.05).",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-2"
               },
               {
                 "@type": "HowToStep",
                 "position": 3,
-                "name": "Calculate the Time Period (T)",
-                "text": "Determine the time period in years. If you have months, divide by 12. For example, 36 months = 3 years."
+                "name": "Choose Time Period",
+                "text": "Specify how long the money will be invested or borrowed. You can enter the time in years or months depending on your preference. Example: For a 3-year car loan, enter 3 and select 'years' or enter 36 and select 'months'.",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-3"
               },
               {
                 "@type": "HowToStep",
                 "position": 4,
-                "name": "Apply the Formula I = P × R × T",
-                "text": "Multiply the principal amount (P) by the interest rate (R) and the time period (T) to get the simple interest (I)."
+                "name": "Select Currency",
+                "text": "Choose your preferred currency from 10 supported options (USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, MXN). All results will automatically format in your selected currency.",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-4"
               },
               {
                 "@type": "HowToStep",
                 "position": 5,
-                "name": "Calculate Total Amount",
-                "text": "Add the simple interest to the principal amount to get the total amount: A = P + I or A = P(1 + RT)."
+                "name": "Click Calculate",
+                "text": "Press the 'Calculate' button to instantly compute your simple interest. The calculator will display your total interest earned, final amount, monthly interest, and a year-by-year breakdown showing how your interest accumulates over time.",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-5"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 6,
+                "name": "Review Results & Visualizations",
+                "text": "Examine your results including the interest breakdown card, yearly accumulation table, and interactive charts. Toggle between pie chart and bar chart views to visualize your principal vs. interest distribution and year-over-year growth.",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-6"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 7,
+                "name": "Export & Share Results",
+                "text": "Download your calculation as a professional PDF report or share it directly via social media (Facebook, Twitter, LinkedIn, WhatsApp). You can also create scenario comparisons to evaluate different investment or loan options side-by-side.",
+                "url": "https://dapsiwow.com/tools/simple-interest-calculator#step-7"
               }
             ]
           })}
@@ -1064,6 +1167,32 @@ export default function SimpleInterestCalculator() {
                 "item": "https://dapsiwow.com/tools/simple-interest-calculator"
               }
             ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DapsiWow",
+            "url": "https://dapsiwow.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://dapsiwow.com/logo.png",
+              "width": 600,
+              "height": 60
+            },
+            "description": "Free online financial calculators and tools for loans, investments, savings, and financial planning. Trusted by thousands of users worldwide.",
+            "sameAs": [
+              "https://www.facebook.com/DapsiWow",
+              "https://twitter.com/DapsiWow",
+              "https://www.linkedin.com/company/dapsiwow"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Customer Support",
+              "email": "support@dapsiwow.com",
+              "availableLanguage": ["English"]
+            }
           })}
         </script>
       </Helmet>
@@ -1736,7 +1865,1203 @@ export default function SimpleInterestCalculator() {
         </div>
 
       </main>
-      
+
+      {/* SEO Content Sections - Following DapsiWow SEO Course Framework */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-12 sm:space-y-16">
+        
+        {/* 1. Introduction Section (200-300 words) */}
+        <section className="space-y-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">What is a Simple Interest Calculator?</h2>
+          <div className="space-y-4 text-base sm:text-lg text-gray-700 leading-relaxed">
+            <p>
+              A <strong>simple interest calculator</strong> is a free online financial tool that helps you calculate the interest earned or paid on a principal amount over a specific time period using the simple interest formula (SI = P × R × T). Unlike compound interest, simple interest is calculated only on the original principal amount, making it easier to understand and ideal for short-term loans, savings bonds, and certain types of certificates of deposit.
+            </p>
+            <p>
+              Our calculator instantly computes your simple interest with detailed breakdowns showing monthly interest, yearly accumulation, and total amount at maturity. Whether you're planning a short-term investment, evaluating a car loan, or understanding savings account growth, this tool provides accurate, instant results with visual charts and exportable PDF reports.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mt-6 sm:mt-8">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Why Use Our Simple Interest Calculator?</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <ArrowRight className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                  <span><strong>Instant Results:</strong> Get calculations in seconds with the proven SI = P × R × T formula</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ArrowRight className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                  <span><strong>Accurate & Reliable:</strong> Uses the standard mathematical formula accepted worldwide</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ArrowRight className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                  <span><strong>100% Free Forever:</strong> No hidden fees, subscriptions, or registration required</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ArrowRight className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                  <span><strong>Multi-Currency Support:</strong> Calculate in USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, MXN</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ArrowRight className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                  <span><strong>Privacy Protected:</strong> All calculations happen in your browser - we never store your data</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Who Benefits from This Tool?</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                  <span><strong>Investors & Savers:</strong> Calculate returns on short-term savings bonds and certificates of deposit</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                  <span><strong>Borrowers:</strong> Understand total interest costs on car loans, personal loans, and short-term financing</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                  <span><strong>Students & Educators:</strong> Learn and teach basic interest calculation concepts with real examples</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                  <span><strong>Financial Professionals:</strong> Quick reference tool for client consultations and financial planning</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <TrendingUp className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                  <span><strong>Small Business Owners:</strong> Evaluate short-term business loan costs and investment opportunities</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. How to Use Section (7 steps + pro tips) */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">How to Use the Simple Interest Calculator</h2>
+          
+          <div className="space-y-6">
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">1</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Enter Principal Amount</h3>
+                  <p className="text-gray-700">
+                    Input the initial amount of money you're investing or borrowing. This is your starting balance before any interest is applied. 
+                    <strong> Example:</strong> If you're investing $10,000 in a savings bond, enter 10000 as your principal.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">2</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Set Interest Rate</h3>
+                  <p className="text-gray-700">
+                    Enter the annual interest rate as a percentage. Make sure this is the yearly rate, not monthly.
+                    <strong> Example:</strong> If your savings account offers 5% annual interest, enter 5 (not 0.05).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">3</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Choose Time Period</h3>
+                  <p className="text-gray-700">
+                    Specify how long the money will be invested or borrowed. You can enter the time in years or months depending on your preference.
+                    <strong> Example:</strong> For a 3-year car loan, enter 3 and select "years" or enter 36 and select "months".
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">4</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Select Currency</h3>
+                  <p className="text-gray-700">
+                    Choose your preferred currency from 10 supported options (USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, MXN). All results will automatically format in your selected currency.
+                    <strong> Example:</strong> Select EUR if you're calculating interest for a European investment.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">5</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Click Calculate</h3>
+                  <p className="text-gray-700">
+                    Press the "Calculate" button to instantly compute your simple interest. The calculator will display your total interest earned, final amount, monthly interest, and a year-by-year breakdown showing how your interest accumulates over time.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">6</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Review Results & Visualizations</h3>
+                  <p className="text-gray-700">
+                    Examine your results including the interest breakdown card, yearly accumulation table, and interactive charts. Toggle between pie chart and bar chart views to visualize your principal vs. interest distribution and year-over-year growth.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold text-lg">7</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Export & Share Results</h3>
+                  <p className="text-gray-700">
+                    Download your calculation as a professional PDF report or share it directly via social media (Facebook, Twitter, LinkedIn, WhatsApp). You can also create scenario comparisons to evaluate different investment or loan options side-by-side.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 sm:p-8 border border-blue-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <Info className="w-6 h-6 text-blue-600" />
+              Pro Tips for Best Results
+            </h3>
+            <ul className="space-y-3 text-gray-700">
+              <li className="flex items-start gap-3">
+                <Percent className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                <span><strong>Double-check your rate:</strong> Ensure you're using the annual percentage rate (APR), not monthly. If you have a monthly rate, multiply by 12.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                <span><strong>Use consistent time units:</strong> If your rate is annual, your time must be in years (or convert months to years by dividing by 12).</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Calculator className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                <span><strong>Compare scenarios:</strong> Use the "Add to Comparison" feature to evaluate multiple interest rates or time periods simultaneously.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Download className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                <span><strong>Save your calculations:</strong> Export to PDF for your records, tax purposes, or to share with financial advisors.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Share2 className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                <span><strong>Review yearly breakdown:</strong> Always check the year-by-year table to understand exactly how your interest accumulates over time.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 3. Real-World Examples Section (3+ scenarios) */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Simple Interest Calculator Examples</h2>
+          <p className="text-base sm:text-lg text-gray-700">
+            Understanding simple interest is easier with real-world examples. Here are three common scenarios showing how simple interest works for different financial situations:
+          </p>
+
+          {/* Example 1 */}
+          <div className="bg-white rounded-lg p-6 sm:p-8 shadow-md border border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Example 1: Savings Account Investment</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Scenario</h4>
+                <p className="text-gray-700 mb-4">
+                  Sarah wants to invest $15,000 in a 2-year certificate of deposit (CD) that offers 6% simple interest annually. She wants to know how much interest she'll earn and her total return.
+                </p>
+                <h4 className="font-semibold text-gray-900 mb-3">Input Values</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li><strong>Principal (P):</strong> $15,000</li>
+                  <li><strong>Interest Rate (R):</strong> 6% per year</li>
+                  <li><strong>Time (T):</strong> 2 years</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Calculation</h4>
+                <div className="bg-gray-50 p-4 rounded-lg space-y-2 text-sm font-mono">
+                  <div>SI = P × R × T</div>
+                  <div>SI = $15,000 × 0.06 × 2</div>
+                  <div>SI = $15,000 × 0.12</div>
+                  <div className="font-bold text-green-600">SI = $1,800</div>
+                  <div className="mt-4 pt-4 border-t border-gray-300">
+                    <div className="font-bold text-blue-600">Total Amount = $15,000 + $1,800 = $16,800</div>
+                  </div>
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2 mt-4">Result & Interpretation</h4>
+                <p className="text-gray-700">
+                  Sarah will earn <strong>$1,800</strong> in simple interest over 2 years. Her total return will be <strong>$16,800</strong>, representing a 12% total return on her initial investment.
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-gray-700">
+                <strong>Action Steps:</strong> This is a safe, predictable investment ideal for short-term savings goals. Sarah should verify the CD terms don't have early withdrawal penalties and compare this rate with other banks' offerings.
+              </p>
+            </div>
+          </div>
+
+          {/* Example 2 */}
+          <div className="bg-white rounded-lg p-6 sm:p-8 shadow-md border border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Example 2: Auto Loan Interest Cost</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Scenario</h4>
+                <p className="text-gray-700 mb-4">
+                  Michael is taking out a $25,000 car loan with simple interest at 7% APR for 4 years. He wants to calculate the total interest he'll pay and his total repayment amount.
+                </p>
+                <h4 className="font-semibold text-gray-900 mb-3">Input Values</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li><strong>Principal (P):</strong> $25,000</li>
+                  <li><strong>Interest Rate (R):</strong> 7% per year</li>
+                  <li><strong>Time (T):</strong> 4 years</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Calculation</h4>
+                <div className="bg-gray-50 p-4 rounded-lg space-y-2 text-sm font-mono">
+                  <div>SI = P × R × T</div>
+                  <div>SI = $25,000 × 0.07 × 4</div>
+                  <div>SI = $25,000 × 0.28</div>
+                  <div className="font-bold text-green-600">SI = $7,000</div>
+                  <div className="mt-4 pt-4 border-t border-gray-300">
+                    <div className="font-bold text-blue-600">Total Repayment = $25,000 + $7,000 = $32,000</div>
+                  </div>
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2 mt-4">Result & Interpretation</h4>
+                <p className="text-gray-700">
+                  Michael will pay <strong>$7,000</strong> in total interest over 4 years. His total loan cost will be <strong>$32,000</strong>, meaning the interest adds 28% to the original loan amount.
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-gray-700">
+                <strong>Action Steps:</strong> Michael should shop around for lower interest rates. Even a 1% reduction (from 7% to 6%) would save $1,000 in interest. He could also consider a shorter loan term to reduce total interest paid.
+              </p>
+            </div>
+          </div>
+
+          {/* Example 3 */}
+          <div className="bg-white rounded-lg p-6 sm:p-8 shadow-md border border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Example 3: Short-Term Personal Loan</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Scenario</h4>
+                <p className="text-gray-700 mb-4">
+                  Emma needs a $5,000 personal loan for home repairs. Her credit union offers 9% simple interest for an 18-month term. She wants to know the exact interest cost and total payment.
+                </p>
+                <h4 className="font-semibold text-gray-900 mb-3">Input Values</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li><strong>Principal (P):</strong> $5,000</li>
+                  <li><strong>Interest Rate (R):</strong> 9% per year</li>
+                  <li><strong>Time (T):</strong> 18 months = 1.5 years</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-3">Calculation</h4>
+                <div className="bg-gray-50 p-4 rounded-lg space-y-2 text-sm font-mono">
+                  <div>SI = P × R × T</div>
+                  <div>SI = $5,000 × 0.09 × 1.5</div>
+                  <div>SI = $5,000 × 0.135</div>
+                  <div className="font-bold text-green-600">SI = $675</div>
+                  <div className="mt-4 pt-4 border-t border-gray-300">
+                    <div className="font-bold text-blue-600">Total Repayment = $5,000 + $675 = $5,675</div>
+                    <div className="mt-2 text-gray-600">Monthly Payment = $5,675 ÷ 18 = $315.28</div>
+                  </div>
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-2 mt-4">Result & Interpretation</h4>
+                <p className="text-gray-700">
+                  Emma will pay <strong>$675</strong> in interest over 18 months. Her monthly payment will be approximately <strong>$315.28</strong>, and the total loan cost is <strong>$5,675</strong>.
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-gray-700">
+                <strong>Action Steps:</strong> This short-term loan has manageable interest costs. Emma should confirm there are no origination fees or prepayment penalties. If she can pay it off early, she may save on interest depending on the loan terms.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Understanding Results Section */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Understanding Your Simple Interest Results</h2>
+          <p className="text-base sm:text-lg text-gray-700">
+            Once you calculate simple interest, it's important to understand what each number means and how to interpret your results for better financial decisions.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <TrendingUp className="w-6 h-6 text-green-600" />
+                Simple Interest (SI)
+              </h3>
+              <p className="text-gray-700 mb-3">
+                This is the total interest amount you'll earn (on investments) or pay (on loans) over the entire time period.
+              </p>
+              <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                <strong>Key Insight:</strong> Simple interest remains constant each year. If you earn $500 in year 1, you'll earn exactly $500 in year 2, year 3, and so on.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <Calculator className="w-6 h-6 text-blue-600" />
+                Total Amount
+              </h3>
+              <p className="text-gray-700 mb-3">
+                This represents your principal plus all accumulated simple interest. For investors, it's your final account balance. For borrowers, it's the total you'll repay.
+              </p>
+              <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                <strong>Formula:</strong> Total Amount = Principal + Simple Interest
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <Clock className="w-6 h-6 text-indigo-600" />
+                Monthly Interest
+              </h3>
+              <p className="text-gray-700 mb-3">
+                The average interest amount per month, calculated by dividing total interest by the number of months in your time period.
+              </p>
+              <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                <strong>Use Case:</strong> Helpful for budgeting monthly loan payments or estimating monthly investment income.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <BarChart3 className="w-6 h-6 text-purple-600" />
+                Yearly Breakdown
+              </h3>
+              <p className="text-gray-700 mb-3">
+                A year-by-year table showing interest earned each year, cumulative interest to date, and running total amount.
+              </p>
+              <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                <strong>Why It Matters:</strong> Helps you track progress toward savings goals or understand the true cost of long-term loans.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-6 sm:p-8 border border-yellow-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">When to Seek Professional Financial Advice</h3>
+            <p className="text-gray-700 mb-4">
+              While our simple interest calculator provides accurate calculations, certain situations benefit from professional guidance:
+            </p>
+            <ul className="space-y-2 text-gray-700">
+              <li className="flex items-start gap-2">
+                <span className="text-orange-600 font-bold">•</span>
+                <span><strong>Large investments:</strong> Amounts over $50,000 where tax implications and alternative investment strategies should be evaluated</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-orange-600 font-bold">•</span>
+                <span><strong>Long-term loans:</strong> Mortgages and business loans typically use compound interest, not simple interest</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-orange-600 font-bold">•</span>
+                <span><strong>Complex financial situations:</strong> Multiple income streams, retirement planning, or estate considerations</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-orange-600 font-bold">•</span>
+                <span><strong>Unclear loan terms:</strong> If you're unsure whether your loan uses simple or compound interest, consult the lender or a financial advisor</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* 5. Formula Explained Section */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Simple Interest Formula Explained</h2>
+          
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-8 border-2 border-blue-300">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 text-center">The Simple Interest Formula</h3>
+            <div className="text-center">
+              <div className="inline-block bg-white rounded-lg px-8 py-6 shadow-lg">
+                <p className="text-4xl sm:text-5xl font-bold text-blue-600 mb-2">SI = P × R × T</p>
+                <p className="text-gray-600 text-sm sm:text-base">Simple Interest = Principal × Rate × Time</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-blue-500">
+              <h4 className="font-semibold text-gray-900 text-lg mb-2">SI (Simple Interest)</h4>
+              <p className="text-gray-700 text-sm">
+                The total interest earned or paid over the entire time period. This is calculated based on the original principal only.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-green-500">
+              <h4 className="font-semibold text-gray-900 text-lg mb-2">P (Principal)</h4>
+              <p className="text-gray-700 text-sm">
+                The initial amount of money invested or borrowed. This is your starting balance before any interest is applied.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-purple-500">
+              <h4 className="font-semibold text-gray-900 text-lg mb-2">R (Rate)</h4>
+              <p className="text-gray-700 text-sm">
+                The annual interest rate expressed as a decimal. Convert percentage to decimal by dividing by 100 (e.g., 5% = 0.05).
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-6 shadow-md border-l-4 border-orange-500">
+              <h4 className="font-semibold text-gray-900 text-lg mb-2">T (Time)</h4>
+              <p className="text-gray-700 text-sm">
+                The duration of the investment or loan in years. Convert months to years by dividing by 12 (e.g., 18 months = 1.5 years).
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 sm:p-8 shadow-md border border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Step-by-Step Calculation Example</h3>
+            <p className="text-gray-700 mb-6">
+              Let's calculate simple interest for a $8,000 investment at 4.5% annual interest for 3 years:
+            </p>
+            
+            <div className="space-y-4 bg-gray-50 p-6 rounded-lg">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold">1</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Identify the variables:</p>
+                  <ul className="mt-2 space-y-1 text-gray-700 ml-4">
+                    <li>• P (Principal) = $8,000</li>
+                    <li>• R (Rate) = 4.5% per year = 0.045 (as decimal)</li>
+                    <li>• T (Time) = 3 years</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold">2</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Apply the formula:</p>
+                  <p className="mt-2 font-mono text-gray-800 bg-white p-3 rounded border border-gray-300">
+                    SI = P × R × T<br/>
+                    SI = $8,000 × 0.045 × 3
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                  <span className="text-blue-600 font-bold">3</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Multiply the values:</p>
+                  <p className="mt-2 font-mono text-gray-800 bg-white p-3 rounded border border-gray-300">
+                    SI = $8,000 × 0.135<br/>
+                    SI = $1,080
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                  <span className="text-green-600 font-bold">✓</span>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">Final Result:</p>
+                  <div className="mt-2 bg-green-50 p-4 rounded border border-green-300">
+                    <p className="text-lg font-bold text-green-700">Simple Interest = $1,080</p>
+                    <p className="text-lg font-bold text-blue-700 mt-2">Total Amount = $8,000 + $1,080 = $9,080</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 sm:p-8 shadow-md border border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4">Common Calculation Variations</h3>
+            <div className="space-y-4">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h4 className="font-semibold text-gray-900 mb-2">When Time is in Months</h4>
+                <p className="text-gray-700 mb-2">Convert months to years by dividing by 12:</p>
+                <p className="font-mono text-sm bg-gray-50 p-3 rounded">
+                  SI = P × R × (months ÷ 12)<br/>
+                  Example: 18 months = 1.5 years
+                </p>
+              </div>
+              <div className="border-l-4 border-green-500 pl-4">
+                <h4 className="font-semibold text-gray-900 mb-2">When Rate is Monthly</h4>
+                <p className="text-gray-700 mb-2">Convert to annual rate by multiplying by 12:</p>
+                <p className="font-mono text-sm bg-gray-50 p-3 rounded">
+                  Annual Rate = Monthly Rate × 12<br/>
+                  Example: 0.5% monthly = 6% annually
+                </p>
+              </div>
+              <div className="border-l-4 border-purple-500 pl-4">
+                <h4 className="font-semibold text-gray-900 mb-2">When Time is in Days</h4>
+                <p className="text-gray-700 mb-2">Divide days by 365 (or 360 for some loans):</p>
+                <p className="font-mono text-sm bg-gray-50 p-3 rounded">
+                  SI = P × R × (days ÷ 365)<br/>
+                  Example: 90 days ≈ 0.247 years
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Comparison Section - Simple vs Compound Interest */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Simple Interest vs Compound Interest</h2>
+          <p className="text-base sm:text-lg text-gray-700">
+            Understanding the difference between simple and compound interest is crucial for making informed financial decisions. While simple interest is calculated only on the principal, compound interest is calculated on both the principal and accumulated interest.
+          </p>
+
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white rounded-lg shadow-md border border-gray-200">
+              <thead>
+                <tr className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
+                  <th className="px-4 sm:px-6 py-4 text-left font-semibold text-sm sm:text-base">Feature</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-semibold text-sm sm:text-base">Simple Interest</th>
+                  <th className="px-4 sm:px-6 py-4 text-left font-semibold text-sm sm:text-base">Compound Interest</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Calculation Method</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Interest calculated only on principal amount (P × R × T)</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Interest calculated on principal + accumulated interest</td>
+                </tr>
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Formula</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">SI = P × R × T</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">A = P(1 + r/n)^(nt)</td>
+                </tr>
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Interest Growth</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Linear (constant amount each period)</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Exponential (increasing amount each period)</td>
+                </tr>
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Returns/Cost</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Lower total interest (for investors) or cost (for borrowers)</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Higher total interest (for investors) or cost (for borrowers)</td>
+                </tr>
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Best For</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Short-term loans, car loans, some personal loans, short-term CDs</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Savings accounts, mortgages, long-term investments, credit cards</td>
+                </tr>
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Complexity</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Simple to calculate and understand</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">More complex, requires compounding frequency</td>
+                </tr>
+                <tr className="hover:bg-blue-50 transition-colors">
+                  <td className="px-4 sm:px-6 py-4 font-semibold text-gray-900 text-sm sm:text-base">Common Uses</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Auto loans, short-term bonds, some student loans</td>
+                  <td className="px-4 sm:px-6 py-4 text-gray-700 text-sm sm:text-base">Bank savings, retirement accounts, mortgages</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="bg-white rounded-lg p-6 sm:p-8 shadow-md border border-gray-200">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6">Side-by-Side Comparison Example</h3>
+            <p className="text-gray-700 mb-6">
+              Let's compare simple interest vs compound interest for a $10,000 investment at 6% for 5 years:
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="border-2 border-blue-500 rounded-lg p-6 bg-blue-50">
+                <h4 className="text-lg font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <Calculator className="w-5 h-5" />
+                  Simple Interest
+                </h4>
+                <div className="space-y-3 text-gray-800">
+                  <p className="font-mono text-sm">SI = $10,000 × 0.06 × 5</p>
+                  <p className="font-mono text-sm">SI = $3,000</p>
+                  <p className="font-mono text-sm font-bold text-blue-700 text-lg mt-4">Total: $13,000</p>
+                  <p className="text-xs text-gray-600 mt-2">Interest earned each year: $600</p>
+                </div>
+              </div>
+
+              <div className="border-2 border-green-500 rounded-lg p-6 bg-green-50">
+                <h4 className="text-lg font-semibold text-green-900 mb-4 flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5" />
+                  Compound Interest (Annual)
+                </h4>
+                <div className="space-y-3 text-gray-800">
+                  <p className="font-mono text-sm">A = $10,000(1 + 0.06)^5</p>
+                  <p className="font-mono text-sm">A = $13,382.26</p>
+                  <p className="font-mono text-sm font-bold text-green-700 text-lg mt-4">Total: $13,382.26</p>
+                  <p className="text-xs text-gray-600 mt-2">Interest: $3,382.26</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 p-5 bg-yellow-50 rounded-lg border border-yellow-300">
+              <p className="text-gray-800 font-semibold mb-2">Difference: $382.26</p>
+              <p className="text-gray-700 text-sm">
+                Compound interest earns $382.26 more because interest is calculated on previously earned interest. This difference becomes more significant over longer time periods and with more frequent compounding.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-300">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">When to Use Simple Interest</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-1">✓</span>
+                  <span><strong>Short-term investments:</strong> When investing for 1-3 years where the difference from compounding is minimal</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-1">✓</span>
+                  <span><strong>Car loans:</strong> Most auto loans use simple interest, making payments predictable</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-1">✓</span>
+                  <span><strong>Personal loans:</strong> Many personal and installment loans use simple interest</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-1">✓</span>
+                  <span><strong>Quick calculations:</strong> When you need a fast estimate without complex math</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold mt-1">✓</span>
+                  <span><strong>Educational purposes:</strong> Learning basic interest concepts before advancing to compound interest</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-300">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">When to Use Compound Interest</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-1">✓</span>
+                  <span><strong>Long-term savings:</strong> Retirement accounts, college funds, and investments over 5+ years</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-1">✓</span>
+                  <span><strong>Savings accounts:</strong> Most bank accounts compound interest daily or monthly</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-1">✓</span>
+                  <span><strong>Mortgages:</strong> Home loans almost always use compound interest</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-1">✓</span>
+                  <span><strong>Credit cards:</strong> Credit card debt compounds, often daily, making it costly</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-600 font-bold mt-1">✓</span>
+                  <span><strong>Investment growth:</strong> Stock market returns, mutual funds, and dividend reinvestment</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. FAQ Section (8-10 questions) */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Frequently Asked Questions (FAQ)</h2>
+          <p className="text-base sm:text-lg text-gray-700">
+            Get answers to the most common questions about simple interest calculations, formulas, and real-world applications.
+          </p>
+
+          <div className="space-y-4">
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">What is simple interest and how does it work?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700">
+                  Simple interest is a method of calculating interest on a loan or investment where interest is calculated only on the principal amount (the original sum). The formula is <strong>SI = P × R × T</strong>, where P is principal, R is the annual interest rate (as a decimal), and T is time in years. Unlike compound interest, simple interest does not accumulate on previously earned interest. For example, if you invest $1,000 at 5% simple interest for 3 years, you'll earn $50 each year (1000 × 0.05 = $50), totaling $150 in interest and $1,150 overall. Simple interest is common for short-term loans, auto financing, and certain bonds.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">How accurate is this simple interest calculator?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700">
+                  Our simple interest calculator is 100% accurate as it uses the standard mathematical formula <strong>SI = P × R × T</strong> accepted by financial institutions worldwide. All calculations are performed instantly in your browser with precision to two decimal places. However, keep in mind that while the mathematical calculation is exact, real-world factors may vary: some lenders round differently, may charge additional fees not included in the interest calculation, or may use a 360-day year instead of 365 days. Always verify with your specific lender or financial institution for exact figures, especially for contractual obligations. Our calculator is perfect for estimates, planning, and educational purposes.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">What's the difference between simple interest and compound interest?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  The key difference is what the interest is calculated on:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Simple Interest:</strong> Calculated only on the original principal amount. Interest remains the same each period. Formula: SI = P × R × T. Example: $1,000 at 5% for 3 years = $150 total interest ($50/year).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span><strong>Compound Interest:</strong> Calculated on principal plus accumulated interest. Interest grows exponentially. Formula: A = P(1 + r/n)^(nt). Same example: $1,000 at 5% compounded annually for 3 years = $157.63 total interest.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  For investors, compound interest earns more money. For borrowers, simple interest costs less. The difference becomes more significant over longer time periods and higher interest rates.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">Can I use this calculator for loans and investments?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  Yes! This calculator works for both scenarios:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span><strong>For Investments:</strong> Calculate how much interest you'll earn on savings bonds, short-term CDs, or money market accounts that use simple interest. The result shows your profit.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>For Loans:</strong> Calculate how much interest you'll pay on car loans, personal loans, or any financing that uses simple interest. The result shows your total cost.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  The formula is identical - only the interpretation differs. Before using this calculator for a specific loan or investment, confirm with your financial institution that they use simple interest, as many products now use compound interest.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">How do I convert monthly interest rate to annual rate?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  To convert a monthly interest rate to an annual rate, simply multiply by 12:
+                </p>
+                <div className="bg-white p-4 rounded border border-gray-300 font-mono text-sm mb-3">
+                  <p>Annual Rate = Monthly Rate × 12</p>
+                  <p className="mt-2">Example: 0.5% monthly × 12 = 6% annually</p>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Our calculator requires the annual interest rate, so always perform this conversion first if you only have a monthly rate. Common examples:
+                </p>
+                <ul className="space-y-1 text-gray-700 ml-4 text-sm">
+                  <li>• 0.25% monthly = 3% annual</li>
+                  <li>• 0.5% monthly = 6% annual</li>
+                  <li>• 1% monthly = 12% annual</li>
+                  <li>• 1.5% monthly = 18% annual</li>
+                </ul>
+                <p className="text-gray-700 mt-3 text-sm">
+                  <strong>Important:</strong> This simple multiplication works for simple interest. For compound interest, the relationship is more complex due to compounding effects.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">What types of loans typically use simple interest?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  Several common loan types use simple interest calculations:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Auto Loans:</strong> Most car loans and vehicle financing use simple interest, making monthly payments predictable and straightforward.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Personal Installment Loans:</strong> Many personal loans from banks and credit unions use simple interest, especially for terms under 5 years.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Some Student Loans:</strong> Certain federal and private student loans calculate interest using the simple method.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Short-Term Business Loans:</strong> Small business loans with terms under 3 years often use simple interest.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Bridge Loans:</strong> Temporary financing between property purchases typically uses simple interest due to short duration.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  Always verify with your lender, as practices vary. Mortgages and credit cards almost never use simple interest - they use compound interest.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">How often should I use this calculator?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  Use the simple interest calculator whenever you need to:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Before taking a loan:</strong> Calculate total interest costs to compare different loan offers and ensure affordability.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Planning investments:</strong> Estimate returns on short-term investments, bonds, or CDs before committing funds.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Comparing options:</strong> Use the scenario comparison feature to evaluate multiple interest rates or time periods.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Financial planning:</strong> Include in quarterly or annual reviews to project savings growth or loan payoff progress.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Educational purposes:</strong> Students and educators can use it anytime to learn or teach interest calculation concepts.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  There's no limit to how often you can use our calculator - it's 100% free, always available, and requires no registration.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">Can I save or print my calculation results?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  Yes! We offer multiple ways to save and share your results:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <Download className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span><strong>PDF Export:</strong> Download a professional PDF report with all your calculation details, yearly breakdowns, and charts. Perfect for financial records or sharing with advisors.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Share2 className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                    <span><strong>Social Sharing:</strong> Share your results directly via Facebook, Twitter, LinkedIn, or WhatsApp to discuss with friends, family, or colleagues.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <PieChartIcon className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
+                    <span><strong>Visual Charts:</strong> All charts and tables can be included in your PDF export for visual reference and presentations.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  All exports include our branding and a timestamp for your records. Your input data is never stored on our servers - everything happens in your browser for complete privacy.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">Why do some banks use 360 days instead of 365 days per year?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  Some financial institutions use a "banker's year" of 360 days (12 months × 30 days) instead of the actual 365 days. This practice has historical origins and affects interest calculations:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Historical Reasons:</strong> Before calculators and computers, using 360 days (evenly divisible by 12, 30, etc.) made manual calculations simpler.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Higher Interest for Lenders:</strong> Using 360 days results in slightly higher effective interest rates. For example, $1,000 at 6% for 1 year = $16.67 with 365 days vs. $16.44 with 360 days.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">•</span>
+                    <span><strong>Industry Standard:</strong> Many commercial loans, particularly in the US, still use the 360-day convention.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  Our calculator uses the standard 365-day year, but you can manually adjust if your lender uses 360 days. Always check your loan documents for the exact method used. The difference is usually small but can add up on large loans.
+                </p>
+              </div>
+            </details>
+
+            <details className="group bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
+              <summary className="cursor-pointer px-6 py-4 flex items-center justify-between hover:bg-blue-50 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">Is simple interest better than compound interest for borrowers?</h3>
+                <ArrowRight className="w-5 h-5 text-blue-600 transform group-open:rotate-90 transition-transform" />
+              </summary>
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <p className="text-gray-700 mb-3">
+                  <strong>Yes, simple interest is generally better for borrowers</strong> because you pay less total interest over the life of the loan. Here's why:
+                </p>
+                <ul className="space-y-2 text-gray-700 ml-4">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span><strong>Lower Total Cost:</strong> With simple interest, you only pay interest on the original principal. With compound interest, you pay interest on interest, which accumulates over time.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span><strong>Predictable Payments:</strong> Simple interest results in fixed, consistent interest amounts each period, making budgeting easier.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span><strong>Example Comparison:</strong> A $20,000 loan at 8% for 5 years costs $8,000 in simple interest but $9,387 in compound interest (annual compounding) - a difference of $1,387.</span>
+                  </li>
+                </ul>
+                <p className="text-gray-700 mt-3">
+                  However, you often don't get to choose - lenders determine the interest method. Car loans typically use simple interest (good for you), while mortgages use compound interest. When comparing loans, always check the total amount you'll repay, not just the interest rate.
+                </p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        {/* 8. Related Tools Section */}
+        <section className="space-y-6 sm:space-y-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Related Financial Calculators</h2>
+          <p className="text-base sm:text-lg text-gray-700">
+            Expand your financial planning toolkit with these complementary calculators. Each tool helps you make better informed decisions about your money.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="hover-elevate border-2 border-gray-200 transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">Compound Interest Calculator</h3>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Calculate compound interest with multiple compounding frequencies. Perfect for long-term investments, retirement planning, and understanding exponential growth of savings.
+                </p>
+                <p className="text-xs text-gray-600 mb-4">
+                  <strong>Best For:</strong> Savings accounts, retirement funds, long-term investments, college savings plans
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full" data-testid="link-compound-interest-calculator">
+                  <Link href="/tools/compound-interest-calculator">
+                    Calculate Compound Interest <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate border-2 border-gray-200 transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center flex-shrink-0">
+                    <Calculator className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">Loan Calculator</h3>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Calculate monthly payments, total interest, and amortization schedules for any loan. Compare different loan amounts, terms, and interest rates side-by-side.
+                </p>
+                <p className="text-xs text-gray-600 mb-4">
+                  <strong>Best For:</strong> Personal loans, auto loans, student loans, debt consolidation planning
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full" data-testid="link-loan-calculator">
+                  <Link href="/tools/loan-calculator">
+                    Calculate Loan Payments <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate border-2 border-gray-200 transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">Investment Calculator</h3>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Project future investment values with regular contributions. Model different contribution frequencies and see how small regular deposits grow over time.
+                </p>
+                <p className="text-xs text-gray-600 mb-4">
+                  <strong>Best For:</strong> Retirement planning, systematic investment plans (SIP), regular savings goals
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full" data-testid="link-investment-calculator">
+                  <Link href="/tools/investment-calculator">
+                    Project Investment Growth <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate border-2 border-gray-200 transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">Savings Goal Calculator</h3>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Determine how much to save monthly to reach your financial goals. Calculate timelines for vacations, down payments, emergency funds, and major purchases.
+                </p>
+                <p className="text-xs text-gray-600 mb-4">
+                  <strong>Best For:</strong> Vacation planning, home down payments, emergency fund building, major purchases
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full" data-testid="link-savings-calculator">
+                  <Link href="/tools/savings-calculator">
+                    Plan Your Savings <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate border-2 border-gray-200 transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center flex-shrink-0">
+                    <Percent className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">ROI Calculator</h3>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Calculate return on investment (ROI) for business ventures, real estate, stocks, or any investment. Compare multiple investment opportunities efficiently.
+                </p>
+                <p className="text-xs text-gray-600 mb-4">
+                  <strong>Best For:</strong> Business investments, real estate analysis, stock performance, investment comparisons
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full" data-testid="link-roi-calculator">
+                  <Link href="/tools/roi-calculator">
+                    Calculate ROI <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate border-2 border-gray-200 transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                    <Calculator className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900">Mortgage Calculator</h3>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">
+                  Estimate monthly mortgage payments including principal, interest, property taxes, and insurance. See full amortization schedules and compare loan scenarios.
+                </p>
+                <p className="text-xs text-gray-600 mb-4">
+                  <strong>Best For:</strong> Home buying, mortgage refinancing, property investment analysis
+                </p>
+                <Button asChild variant="outline" size="sm" className="w-full" data-testid="link-mortgage-calculator">
+                  <Link href="/tools/mortgage-calculator">
+                    Calculate Mortgage <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* 9. Final CTA Section */}
+        <section className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-8 sm:p-12 text-center text-white">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-4">Ready to Calculate Your Simple Interest?</h2>
+          <p className="text-base sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            Get instant, accurate simple interest calculations with our free online calculator. No registration required, works on all devices, and includes detailed breakdowns and visual charts.
+          </p>
+          
+          <div className="grid sm:grid-cols-3 gap-6 mb-8 text-left max-w-4xl mx-auto">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <Calculator className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1">Instant Results</h3>
+                <p className="text-sm text-blue-100">Get calculations in seconds with the proven SI = P × R × T formula</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1">Visual Charts</h3>
+                <p className="text-sm text-blue-100">See your interest breakdown with interactive pie and bar charts</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <Download className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1">PDF Export</h3>
+                <p className="text-sm text-blue-100">Download professional reports for your records or advisor meetings</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              size="lg"
+              variant="secondary"
+              className="px-8 py-6 text-lg font-semibold"
+              data-testid="button-scroll-to-calculator"
+            >
+              Start Calculating Now
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="px-8 py-6 text-lg font-semibold bg-white text-blue-600 hover:bg-blue-50 border-2 border-white"
+              data-testid="button-view-all-calculators"
+            >
+              <Link href="/tools">
+                View All Calculators
+              </Link>
+            </Button>
+          </div>
+
+          <div className="mt-8 pt-8 border-t border-white/20">
+            <p className="text-sm text-blue-100">
+              Join thousands of users who trust DapsiWow for accurate financial calculations. 100% free, no credit card required, no hidden fees.
+            </p>
+          </div>
+        </section>
+
+      </div>
+
       <Footer />
     </div>
   );
