@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,11 +8,11 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { jsPDF } from 'jspdf';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { z } from 'zod';
 
 interface CompoundInterestResult {
   finalAmount: number;
@@ -42,6 +42,27 @@ interface CompoundInterestResult {
   }>;
 }
 
+// Comprehensive Zod validation schema
+const compoundInterestSchema = z.object({
+  principal: z.number().positive("Principal must be greater than 0").max(1000000000, "Principal is too large"),
+  interestRate: z.number().positive("Interest rate must be greater than 0").max(100, "Interest rate cannot exceed 100%"),
+  timePeriod: z.number().positive("Time period must be greater than 0").max(1200, "Time period is too long (max 1200 months or 100 years)"),
+  sipAmount: z.number().min(0, "SIP amount cannot be negative").max(1000000000, "SIP amount is too large"),
+  stepUpPercentage: z.number().min(0, "Step-up percentage cannot be negative").max(100, "Step-up percentage cannot exceed 100%"),
+  inflationRate: z.number().min(0, "Inflation rate cannot be negative").max(50, "Inflation rate is too high"),
+  goalAmount: z.number().min(0, "Goal amount cannot be negative").max(10000000000, "Goal amount is too large"),
+});
+
+type ValidationErrors = {
+  principal?: string;
+  interestRate?: string;
+  timePeriod?: string;
+  sipAmount?: string;
+  stepUpPercentage?: string;
+  inflationRate?: string;
+  goalAmount?: string;
+};
+
 export default function CompoundInterestCalculator() {
   const { toast } = useToast();
   const [principal, setPrincipal] = useState('10000');
@@ -61,6 +82,11 @@ export default function CompoundInterestCalculator() {
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+
+  // Refs for auto-calculation after URL params load
+  const calculateButtonRef = useRef<HTMLButtonElement>(null);
+  const shouldAutoCalculate = useRef(false);
 
   // Drag scrolling state for yearly breakdown table
   const tableScrollRef = useRef<HTMLDivElement>(null);
@@ -98,17 +124,49 @@ export default function CompoundInterestCalculator() {
       if (goalParam === 'true') setEnableGoalPlanning(true);
       if (goalAmountParam) setGoalAmount(goalAmountParam);
 
-      // Trigger calculation after state updates
-      setTimeout(() => {
-        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
-        if (calculateButton) {
-          calculateButton.click();
-        }
-      }, 100);
+      // Flag to trigger auto-calculation after state updates
+      shouldAutoCalculate.current = true;
     }
   }, []);
 
+  // Auto-calculate when URL parameters are loaded
+  useEffect(() => {
+    if (shouldAutoCalculate.current && principal && interestRate && timePeriod) {
+      calculateCompoundInterest();
+      shouldAutoCalculate.current = false;
+    }
+  }, [principal, interestRate, timePeriod, timeUnit, compoundFrequency, enableSIP, sipAmount, sipFrequency, stepUpPercentage, inflationRate, enableGoalPlanning, goalAmount]);
+
   const calculateCompoundInterest = () => {
+    // Clear previous validation errors
+    setValidationErrors({});
+
+    // Validate all inputs using Zod schema
+    const validationResult = compoundInterestSchema.safeParse({
+      principal: parseFloat(principal),
+      interestRate: parseFloat(interestRate),
+      timePeriod: parseFloat(timePeriod),
+      sipAmount: parseFloat(sipAmount),
+      stepUpPercentage: parseFloat(stepUpPercentage),
+      inflationRate: parseFloat(inflationRate),
+      goalAmount: parseFloat(goalAmount),
+    });
+
+    if (!validationResult.success) {
+      const errors: ValidationErrors = {};
+      validationResult.error.errors.forEach((error) => {
+        const fieldName = error.path[0] as keyof ValidationErrors;
+        errors[fieldName] = error.message;
+      });
+      setValidationErrors(errors);
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors in the form and try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const p = parseFloat(principal);
     const r = parseFloat(interestRate) / 100;
     const t = timeUnit === 'years' ? parseFloat(timePeriod) : parseFloat(timePeriod) / 12;
@@ -295,8 +353,8 @@ export default function CompoundInterestCalculator() {
                             compoundFrequency === '12' ? 'Monthly' : 'Daily';
     const sipFreqDisplay = sipFrequency === '12' ? 'Monthly' : 'Annually';
 
-    let shareText = `💰 Compound Interest Calculator Results\n\n`;
-    shareText += `📊 Investment Details:\n`;
+    let shareText = `Compound Interest Calculator Results\n\n`;
+    shareText += `Investment Details:\n`;
     shareText += `• Principal: ${formatCurrency(parseFloat(principal))}\n`;
     shareText += `• Interest Rate: ${interestRate}% annually\n`;
     shareText += `• Time Period: ${timeDisplay}\n`;
@@ -309,19 +367,19 @@ export default function CompoundInterestCalculator() {
       }
     }
 
-    shareText += `\n💵 Results Breakdown:\n`;
+    shareText += `\nResults Breakdown:\n`;
     shareText += `• Final Amount: ${formatCurrency(result.finalAmount)}\n`;
     shareText += `• Total Interest Earned: ${formatCurrency(result.totalInterest)}\n`;
     shareText += `• Total Contributions: ${formatCurrency(result.totalContributions)}\n`;
 
     if (showRealValue && parseFloat(inflationRate) > 0) {
-      shareText += `\n✨ Inflation Adjusted:\n`;
+      shareText += `\nInflation Adjusted:\n`;
       shareText += `• Real Value: ${formatCurrency(result.realValue)}\n`;
       shareText += `• Inflation Rate: ${inflationRate}%\n`;
     }
 
     if (result.goalAnalysis && enableGoalPlanning) {
-      shareText += `\n🎯 Goal Analysis:\n`;
+      shareText += `\nGoal Analysis:\n`;
       if (result.goalAnalysis.isGoalAchievable) {
         shareText += `• Time to Reach Goal: ${result.goalAnalysis.timeToReachGoal} years\n`;
       } else {
@@ -329,12 +387,12 @@ export default function CompoundInterestCalculator() {
       }
     }
 
-    shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
+    shareText += `\nView & Calculate: ${shareableUrl}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: '💰 Compound Interest Calculator Results',
+          title: 'Compound Interest Calculator Results',
           text: shareText,
           url: shareableUrl
         });
@@ -396,7 +454,7 @@ export default function CompoundInterestCalculator() {
       goalAmount: goalAmount
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    const tweetText = `💰 My compound interest: ${formatCurrency(result.finalAmount)} from ${formatCurrency(parseFloat(principal))} at ${interestRate}% - Calculate yours free!`;
+    const tweetText = `My compound interest: ${formatCurrency(result.finalAmount)} from ${formatCurrency(parseFloat(principal))} at ${interestRate}% - Calculate yours free!`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareableUrl)}`;
     window.open(twitterUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
     toast({ title: "Opening Twitter share..." });
@@ -443,15 +501,17 @@ export default function CompoundInterestCalculator() {
       goalAmount: goalAmount
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    const whatsappText = `💰 Compound Interest Calculator Results:\n\nPrincipal: ${formatCurrency(parseFloat(principal))}\nRate: ${interestRate}%\nFinal Amount: ${formatCurrency(result.finalAmount)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\n\nCalculate yours: ${shareableUrl}`;
+    const whatsappText = `Compound Interest Calculator Results:\n\nPrincipal: ${formatCurrency(parseFloat(principal))}\nRate: ${interestRate}%\nFinal Amount: ${formatCurrency(result.finalAmount)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\n\nCalculate yours: ${shareableUrl}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     toast({ title: "Opening WhatsApp share..." });
   };
 
-  const handleDownloadYearlyBreakdownPDF = () => {
+  const handleDownloadYearlyBreakdownPDF = async () => {
     if (!result || !result.yearlyBreakdown) return;
 
+    // Lazy load jsPDF to reduce initial bundle size
+    const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
@@ -620,9 +680,11 @@ export default function CompoundInterestCalculator() {
     });
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     if (!result) return;
 
+    // Lazy load jsPDF to reduce initial bundle size
+    const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
@@ -901,7 +963,8 @@ export default function CompoundInterestCalculator() {
     });
   };
 
-  const formatCurrency = (amount: number) => {
+  // Memoize currency formatter to prevent recreation on every render
+  const formatCurrency = useMemo(() => {
     const currencyMap: { [key: string]: { locale: string; currency: string } } = {
       USD: { locale: 'en-US', currency: 'USD' },
       EUR: { locale: 'de-DE', currency: 'EUR' },
@@ -917,13 +980,15 @@ export default function CompoundInterestCalculator() {
 
     const config = currencyMap[currency] || currencyMap.USD;
 
-    return new Intl.NumberFormat(config.locale, {
+    const formatter = new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    }).format(amount);
-  };
+    });
+
+    return (amount: number) => formatter.format(amount);
+  }, [currency]);
 
   const canonicalUrl = "https://dapsiwow.com/tools/compound-interest-calculator";
   const siteUrl = "https://dapsiwow.com";
@@ -937,7 +1002,7 @@ export default function CompoundInterestCalculator() {
       <Helmet>
         <html lang="en" />
         <title>Compound Interest Calculator - Investment Growth | DapsiWow</title>
-        <meta name="description" content="Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns." />
+        <meta name="description" content="Calculate compound interest with our free tool. See your investment growth, SIP returns, and retirement plan with yearly breakdowns. Start calculating now!" />
         <meta name="keywords" content="compound interest calculator, free compound interest calculator, compound interest calculator with monthly contributions, daily compound interest calculator, SIP calculator, systematic investment plan calculator, retirement compound interest calculator, investment growth calculator, 401k calculator, IRA calculator" />
 
         {/* Canonical */}
@@ -973,7 +1038,7 @@ export default function CompoundInterestCalculator() {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="DapsiWow - Free Online Tools" />
         <meta property="og:title" content="Compound Interest Calculator - Investment Growth | DapsiWow" />
-        <meta property="og:description" content="Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns." />
+        <meta property="og:description" content="Calculate compound interest with our free tool. See your investment growth, SIP returns, and retirement plan with yearly breakdowns. Start calculating now!" />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -984,7 +1049,7 @@ export default function CompoundInterestCalculator() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={canonicalUrl} />
         <meta name="twitter:title" content="Compound Interest Calculator - Investment Growth | DapsiWow" />
-        <meta name="twitter:description" content="Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns." />
+        <meta name="twitter:description" content="Calculate compound interest with our free tool. See your investment growth, SIP returns, and retirement plan with yearly breakdowns. Start calculating now!" />
         <meta name="twitter:image" content={ogImageUrl} />
         <meta name="twitter:image:alt" content="Compound Interest Calculator - Track investment growth with SIP deposits, inflation adjustment, and retirement planning tools" />
         <meta name="twitter:creator" content="@DapsiWow" />
@@ -1330,7 +1395,7 @@ export default function CompoundInterestCalculator() {
                             </SelectContent>
                           </Select>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Time is the most powerful factor in compound interest!</p>
+                        <p className="text-xs sm:text-sm text-gray-500">Pro Tip: Time is the most powerful factor in compound interest!</p>
                       </div>
                     </div>
                   </TooltipProvider>
