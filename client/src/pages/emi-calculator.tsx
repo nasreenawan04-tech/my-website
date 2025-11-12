@@ -1090,6 +1090,27 @@ export default function EMICalculator() {
       <Header />
 
       <main>
+        {/* Breadcrumb Navigation */}
+        <div className="bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav className="flex" aria-label="Breadcrumb">
+              <ol className="flex items-center space-x-2 text-sm">
+                <li>
+                  <a href="/" className="text-gray-500 hover:text-gray-700">Home</a>
+                </li>
+                <li className="flex items-center">
+                  <span className="mx-2 text-gray-400">/</span>
+                  <a href="/finance-tools" className="text-gray-500 hover:text-gray-700">Finance Tools</a>
+                </li>
+                <li className="flex items-center">
+                  <span className="mx-2 text-gray-400">/</span>
+                  <span className="text-gray-900 font-medium">EMI Calculator</span>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
