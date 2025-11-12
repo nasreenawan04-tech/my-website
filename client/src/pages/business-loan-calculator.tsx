@@ -1084,24 +1084,24 @@ export default function BusinessLoanCalculator() {
 
       {/* Breadcrumb Navigation */}
       <nav aria-label="Breadcrumb" className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3">
-          <ol className="flex items-center flex-wrap gap-x-1.5 sm:gap-x-2 gap-y-1 text-xs sm:text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <a href="/" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors" data-testid="breadcrumb-home">
+              <a href="/" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-home">
                 <span itemProp="name">Home</span>
               </a>
               <meta itemProp="position" content="1" />
             </li>
-            <li className="text-gray-400 select-none" aria-hidden="true">/</li>
+            <li className="text-gray-400">/</li>
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <a href="/finance-tools" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors whitespace-nowrap" data-testid="breadcrumb-finance-tools">
+              <a href="/finance-tools" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-finance-tools">
                 <span itemProp="name">Finance Tools</span>
               </a>
               <meta itemProp="position" content="2" />
             </li>
-            <li className="text-gray-400 select-none" aria-hidden="true">/</li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="flex-shrink min-w-0">
-              <span itemProp="name" className="text-gray-700 font-medium break-words">Business Loan Calculator</span>
+            <li className="text-gray-400">/</li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name" className="text-gray-700 font-medium">Business Loan Calculator</span>
               <meta itemProp="position" content="3" />
             </li>
           </ol>
