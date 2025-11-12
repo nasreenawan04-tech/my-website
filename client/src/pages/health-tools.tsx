@@ -58,14 +58,143 @@ const HealthTools = () => {
   return (
     <>
       <Helmet>
-        <title>Health Tools - 30+ Free Health & Fitness Calculators | DapsiWow</title>
-        <meta name="description" content="Free health tools including BMI calculator, calorie calculator, pregnancy calculator, and 25+ more health and fitness calculators. No sign-up required." />
-        <meta name="keywords" content="health tools, BMI calculator, calorie calculator, pregnancy calculator, fitness tools, health calculators" />
-        <meta property="og:title" content="Health Tools - 30+ Free Health & Fitness Calculators | DapsiWow" />
-        <meta property="og:description" content="Free health tools including BMI calculator, calorie calculator, pregnancy calculator, and 25+ more health and fitness calculators." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
+        {/* Primary Meta Tags */}
+        <title>Health Tools - Free Health & Wellness Calculators</title>
+        <meta name="description" content="Access 30+ free health calculators including BMI, calorie, pregnancy, body fat, and fitness tools. Track your wellness journey with instant, accurate results." />
+        <meta name="keywords" content="health tools, BMI calculator, calorie calculator, pregnancy calculator, fitness tools, health calculators, body fat calculator, ideal weight calculator" />
         <link rel="canonical" href="https://dapsiwow.com/health-tools" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <meta name="publisher" content="DapsiWow" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dapsiwow.com/health-tools" />
+        <meta property="og:title" content="Health Tools - Free Health & Wellness Calculators" />
+        <meta property="og:description" content="Access 30+ free health calculators including BMI, calorie, pregnancy, and fitness tools. Track your wellness with instant results." />
+        <meta property="og:image" content="https://dapsiwow.com/images/health-tools-og.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DapsiWow Health Tools - Free Health Calculators" />
+        <meta property="og:site_name" content="DapsiWow" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://dapsiwow.com/health-tools" />
+        <meta name="twitter:title" content="Health Tools - Free Health & Wellness Calculators" />
+        <meta name="twitter:description" content="Access 30+ free health calculators for BMI, calories, pregnancy and more. Instant results, no registration required." />
+        <meta name="twitter:image" content="https://dapsiwow.com/images/health-tools-og.jpg" />
+        <meta name="twitter:image:alt" content="DapsiWow Health Tools Collection" />
+        
+        {/* Additional Meta Tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="English" />
+        
+        {/* Schema.org Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": "https://dapsiwow.com/health-tools",
+                "url": "https://dapsiwow.com/health-tools",
+                "name": "Health Tools - Free Health & Wellness Calculators",
+                "description": "Access 30+ free health calculators including BMI, calorie, pregnancy, body fat, and fitness tools. Track your wellness journey with instant, accurate results.",
+                "inLanguage": "en-US",
+                "isPartOf": {
+                  "@id": "https://dapsiwow.com/#website"
+                },
+                "breadcrumb": {
+                  "@id": "https://dapsiwow.com/health-tools#breadcrumb"
+                },
+                "mainEntity": {
+                  "@id": "https://dapsiwow.com/health-tools#collection"
+                }
+              },
+              {
+                "@type": "CollectionPage",
+                "@id": "https://dapsiwow.com/health-tools#collection",
+                "name": "Health Tools Collection",
+                "description": "Comprehensive collection of 30+ free health and fitness calculators",
+                "url": "https://dapsiwow.com/health-tools",
+                "numberOfItems": 30,
+                "itemListElement": [
+                  {
+                    "@type": "SoftwareApplication",
+                    "name": "BMI Calculator",
+                    "url": "https://dapsiwow.com/tools/bmi-calculator",
+                    "description": "Calculate body mass index and health category",
+                    "applicationCategory": "HealthApplication",
+                    "offers": {
+                      "@type": "Offer",
+                      "price": "0",
+                      "priceCurrency": "USD"
+                    }
+                  },
+                  {
+                    "@type": "SoftwareApplication",
+                    "name": "Calorie Calculator",
+                    "url": "https://dapsiwow.com/tools/calorie-calculator",
+                    "description": "Calculate daily calorie needs for weight goals",
+                    "applicationCategory": "HealthApplication",
+                    "offers": {
+                      "@type": "Offer",
+                      "price": "0",
+                      "priceCurrency": "USD"
+                    }
+                  }
+                ]
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": "https://dapsiwow.com/health-tools#breadcrumb",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://dapsiwow.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Health Tools",
+                    "item": "https://dapsiwow.com/health-tools"
+                  }
+                ]
+              },
+              {
+                "@type": "Organization",
+                "@id": "https://dapsiwow.com/#organization",
+                "name": "DapsiWow",
+                "url": "https://dapsiwow.com",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://dapsiwow.com/images/logo.png"
+                },
+                "sameAs": [
+                  "https://facebook.com/dapsiwow",
+                  "https://twitter.com/dapsiwow",
+                  "https://linkedin.com/company/dapsiwow"
+                ]
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://dapsiwow.com/#website",
+                "url": "https://dapsiwow.com",
+                "name": "DapsiWow",
+                "description": "Free online tools and calculators for finance, health, and text processing",
+                "publisher": {
+                  "@id": "https://dapsiwow.com/#organization"
+                },
+                "inLanguage": "en-US"
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-health-tools">
@@ -264,6 +393,177 @@ const HealthTools = () => {
                     <p className="text-sm text-neutral-600">Calculate ideal body weight using multiple proven formulas</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Introduction Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-6 text-center">Transform Your Health Journey with Smart Calculators</h2>
+              
+              <div className="space-y-6 text-neutral-600 text-lg leading-relaxed">
+                <p>
+                  Making informed health decisions starts with accurate data. Our comprehensive suite of 30+ free health and fitness calculators empowers you to track, monitor, and optimize your wellness journey with precision and confidence.
+                </p>
+                
+                <h3 className="text-2xl font-semibold text-neutral-800 mt-8 mb-4">What Are Health Calculators?</h3>
+                <p>
+                  Health calculators are specialized tools that use scientifically-validated formulas to provide instant insights about your body composition, nutritional needs, fitness progress, pregnancy milestones, and overall wellness metrics. From BMI and body fat percentage to calorie requirements and fertility windows, our tools transform complex medical calculations into easy-to-understand results.
+                </p>
+                
+                <h3 className="text-2xl font-semibold text-neutral-800 mt-8 mb-4">Why Choose Our Health Tools?</h3>
+                <ul className="list-disc pl-6 space-y-3">
+                  <li><strong>Medical-Grade Accuracy:</strong> All formulas are verified by healthcare professionals and based on peer-reviewed research</li>
+                  <li><strong>Instant Results:</strong> Get comprehensive health insights in seconds, no waiting for appointments</li>
+                  <li><strong>Privacy First:</strong> Calculations happen in your browser - your health data never leaves your device</li>
+                  <li><strong>Completely Free:</strong> Unlimited access to all calculators with no hidden fees or subscriptions</li>
+                  <li><strong>Mobile Optimized:</strong> Track your health on any device, anywhere, anytime</li>
+                  <li><strong>Easy to Understand:</strong> Results include clear explanations and actionable recommendations</li>
+                </ul>
+                
+                <h3 className="text-2xl font-semibold text-neutral-800 mt-8 mb-4">Who Benefits from Health Tools?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                  <div className="bg-neutral-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-neutral-800 mb-2">Fitness Enthusiasts</h4>
+                    <p className="text-neutral-600">Track body composition, calculate macros, monitor heart rate zones, and measure workout intensity for optimal training results.</p>
+                  </div>
+                  <div className="bg-neutral-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-neutral-800 mb-2">Expecting Parents</h4>
+                    <p className="text-neutral-600">Calculate due dates, track pregnancy milestones, monitor weight gain, and plan for your baby's arrival with confidence.</p>
+                  </div>
+                  <div className="bg-neutral-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-neutral-800 mb-2">Weight Management</h4>
+                    <p className="text-neutral-600">Set realistic goals, calculate ideal weight ranges, determine calorie needs, and track progress towards your target weight.</p>
+                  </div>
+                  <div className="bg-neutral-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-neutral-800 mb-2">Health Conscious Individuals</h4>
+                    <p className="text-neutral-600">Monitor vital health metrics, assess cardiovascular risk, track hydration needs, and maintain optimal wellness.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How to Use Section */}
+          <section className="py-16 bg-neutral-50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-12 text-center">How to Use Our Health Calculators</h2>
+              <div className="space-y-6">
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-neutral-800 mb-2">Select Your Calculator</h3>
+                      <p className="text-neutral-600">Browse our collection of health tools above or use the search bar to find the specific calculator you need. From BMI to pregnancy calculators, we have 30+ options.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-neutral-800 mb-2">Enter Your Health Data</h3>
+                      <p className="text-neutral-600">Input your measurements, age, gender, activity level, or other relevant information. All inputs are clearly labeled with helpful tooltips and measurement units.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-neutral-800 mb-2">Get Instant Results</h3>
+                      <p className="text-neutral-600">View your personalized health metrics with detailed explanations, category classifications (e.g., healthy range, underweight, overweight), and visual charts where applicable.</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-neutral-800 mb-2">Track and Share Your Progress</h3>
+                      <p className="text-neutral-600">Save results to your account, download PDF reports, or share with your healthcare provider. Track changes over time to monitor your health journey.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-8 text-center">Frequently Asked Questions</h2>
+              <div className="space-y-6">
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Are these health calculators medically accurate?</h3>
+                  <p className="text-neutral-600">Yes, all our calculators use scientifically-validated formulas approved by medical professionals. However, they provide estimates for informational purposes and should not replace professional medical advice or diagnosis.</p>
+                </div>
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Do I need to create an account to use the calculators?</h3>
+                  <p className="text-neutral-600">No account is required for basic calculations. However, creating a free account allows you to save results, track changes over time, and access your data across multiple devices.</p>
+                </div>
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Is my health information private and secure?</h3>
+                  <p className="text-neutral-600">Absolutely. All calculations are performed locally in your browser, and we don't store your health data unless you explicitly save it to your account. We use bank-level encryption for all data transmission and storage.</p>
+                </div>
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Can I use these calculators on my smartphone?</h3>
+                  <p className="text-neutral-600">Yes! All our health tools are fully responsive and work perfectly on smartphones, tablets, and desktop computers. Track your health metrics on the go.</p>
+                </div>
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">How is BMI calculated and what does it mean?</h3>
+                  <p className="text-neutral-600">BMI (Body Mass Index) is calculated by dividing your weight in kilograms by your height in meters squared. It categorizes you as underweight, normal weight, overweight, or obese, though it doesn't account for muscle mass or body composition.</p>
+                </div>
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Are calorie calculator results personalized?</h3>
+                  <p className="text-neutral-600">Yes, our calorie calculator considers your age, gender, weight, height, activity level, and goals to provide personalized daily calorie recommendations for weight loss, maintenance, or gain.</p>
+                </div>
+                <div className="border-b border-neutral-200 pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Can I save and compare my health metrics over time?</h3>
+                  <p className="text-neutral-600">Yes! With a free account, you can save unlimited calculations, track trends with visual charts, and compare results over weeks, months, or years to monitor your health progress.</p>
+                </div>
+                <div className="pb-6">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Do you offer calculators for specific medical conditions?</h3>
+                  <p className="text-neutral-600">Yes, we provide specialized calculators for diabetes management, cardiovascular risk assessment, kidney function, medication dosing, and various other medical applications. Always consult your healthcare provider for medical advice.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Related Categories Section */}
+          <section className="py-16 bg-neutral-50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-8 text-center">Explore Other Tool Categories</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a href="/finance-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Finance Tools</h3>
+                  <p className="text-neutral-600 mb-4">Access 30+ financial calculators including mortgage, loan, ROI, and investment planning tools.</p>
+                  <span className="text-pink-600 font-semibold hover:underline">Explore Finance Tools →</span>
+                </a>
+                <a href="/text-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <h3 className="text-xl font-semibold text-neutral-800 mb-2">Text Tools</h3>
+                  <p className="text-neutral-600 mb-4">Use 30+ text processing tools including word counter, case converter, and text analyzers.</p>
+                  <span className="text-pink-600 font-semibold hover:underline">Explore Text Tools →</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Final CTA Section */}
+          <section className="py-16 bg-gradient-to-r from-pink-600 via-rose-500 to-red-700 text-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Start Your Wellness Journey Today</h2>
+              <p className="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">
+                Take control of your health with our free, accurate, and easy-to-use health calculators. Track your progress and achieve your wellness goals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#tools" className="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-pink-50 transition-colors">
+                  Browse All Tools
+                </a>
+                <a href="/signup" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-colors">
+                  Create Free Account
+                </a>
               </div>
             </div>
           </section>
