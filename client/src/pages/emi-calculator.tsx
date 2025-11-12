@@ -1092,24 +1092,24 @@ export default function EMICalculator() {
       <main>
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
-              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <a href="/" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-home">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3">
+            <ol className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400" itemScope itemType="https://schema.org/BreadcrumbList">
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="flex-shrink-0">
+                <a href="/" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors" data-testid="breadcrumb-home">
                   <span itemProp="name">Home</span>
                 </a>
                 <meta itemProp="position" content="1" />
               </li>
-              <li className="text-gray-400">/</li>
-              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <a href="/finance-tools" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-finance-tools">
+              <li className="text-gray-400 flex-shrink-0" aria-hidden="true">/</li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="flex-shrink-0">
+                <a href="/finance-tools" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline whitespace-nowrap transition-colors" data-testid="breadcrumb-finance-tools">
                   <span itemProp="name">Finance Tools</span>
                 </a>
                 <meta itemProp="position" content="2" />
               </li>
-              <li className="text-gray-400">/</li>
-              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                <span itemProp="name" className="text-gray-700 font-medium">EMI Calculator</span>
+              <li className="text-gray-400 flex-shrink-0" aria-hidden="true">/</li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="flex-shrink-0">
+                <span itemProp="name" className="text-gray-700 font-medium whitespace-nowrap">EMI Calculator</span>
                 <meta itemProp="position" content="3" />
               </li>
             </ol>
