@@ -115,16 +115,34 @@ const BMICalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
+        {/* Primary Meta Tags */}
         <title>BMI Calculator - Free Body Mass Index Calculator | DapsiWow</title>
-        <meta name="description" content="Free BMI calculator to calculate your Body Mass Index instantly. Get accurate BMI results, health category classification, and personalized weight recommendations with metric and imperial unit support." />
+        <meta name="description" content="Free BMI calculator with instant results. Calculate Body Mass Index, get health category classification, and personalized weight recommendations for optimal health." />
         <meta name="keywords" content="BMI calculator, body mass index calculator, BMI chart, healthy weight calculator, weight category, obesity calculator, BMI formula, ideal weight calculator, health assessment tool, fitness calculator" />
-        <meta property="og:title" content="BMI Calculator - Free Body Mass Index Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your BMI (Body Mass Index) with our free calculator. Get instant results, health category classification, and weight recommendations." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/tools/bmi-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/bmi-calculator" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/bmi-calculator" />
+        <meta name="publisher" content="DapsiWow" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dapsiwow.com/tools/bmi-calculator" />
+        <meta property="og:title" content="BMI Calculator - Free Body Mass Index Calculator | DapsiWow" />
+        <meta property="og:description" content="Calculate your BMI instantly with our free Body Mass Index calculator. Get health category classification and personalized weight recommendations." />
+        <meta property="og:image" content="https://dapsiwow.com/images/bmi-calculator-og.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DapsiWow BMI Calculator - Free Body Mass Index Tool" />
+        <meta property="og:site_name" content="DapsiWow" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://dapsiwow.com/tools/bmi-calculator" />
+        <meta name="twitter:title" content="BMI Calculator - Free Body Mass Index Calculator | DapsiWow" />
+        <meta name="twitter:description" content="Free BMI calculator with instant results. Get health category classification and weight recommendations." />
+        <meta name="twitter:image" content="https://dapsiwow.com/images/bmi-calculator-og.jpg" />
+        <meta name="twitter:image:alt" content="DapsiWow BMI Calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -151,6 +169,192 @@ const BMICalculator = () => {
               "@type": "Organization",
               "name": "DapsiWow",
               "url": "https://dapsiwow.com"
+            }
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://dapsiwow.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Health Tools",
+                "item": "https://dapsiwow.com/health-tools"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "BMI Calculator",
+                "item": "https://dapsiwow.com/tools/bmi-calculator"
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate BMI (Body Mass Index)",
+            "description": "Step-by-step guide to calculate your BMI using our free online calculator",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Select Unit System",
+                "text": "Choose between metric (kg/cm) or imperial (lbs/ft) measurement units based on your preference."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Enter Your Weight",
+                "text": "Input your current body weight in kilograms or pounds depending on your selected unit system."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Enter Your Height",
+                "text": "Input your height in centimeters or feet and inches based on your selected measurement system."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Calculate BMI",
+                "text": "Click 'Calculate BMI' to instantly see your Body Mass Index, health category, and personalized weight recommendations."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is BMI and what does it measure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "BMI (Body Mass Index) is a numerical value derived from your height and weight that indicates body composition. It's calculated as weight (kg) divided by height squared (m²). BMI helps categorize individuals into underweight, normal weight, overweight, or obese ranges, providing a quick health screening tool."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I calculate my BMI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To calculate BMI, divide your weight in kilograms by your height in meters squared (BMI = kg/m²). For imperial units, divide weight in pounds by height in inches squared, then multiply by 703. Our calculator does this automatically for both metric and imperial units."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is BMI accurate for everyone?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "BMI is approximately 80% accurate for the general population as a health screening tool. However, it may be less accurate for athletes with high muscle mass, elderly individuals with reduced bone density, pregnant women, and growing children. It's most effective when used alongside other health indicators."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What's considered a healthy BMI range?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For most adults, a BMI between 18.5 and 24.9 is considered healthy. BMI below 18.5 is underweight, 25-29.9 is overweight, and 30+ is classified as obese. However, optimal BMI can vary based on individual factors like muscle mass, bone density, age, and ethnicity."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does BMI differ between men and women?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The BMI calculation formula is identical for both sexes. However, women typically have higher body fat percentages than men at the same BMI level, which some healthcare providers consider during interpretation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How often should I calculate my BMI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Monthly BMI calculations are sufficient for general health monitoring. During active weight management programs, weekly measurements can help track progress while accounting for normal weight fluctuations."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I have a healthy lifestyle with a high BMI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, some individuals with higher BMIs can be metabolically healthy, especially if they exercise regularly, eat well, and have good cardiovascular markers. BMI is just one health indicator among many."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should athletes rely on BMI calculations?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Athletes, especially those in strength sports, may find BMI less accurate due to higher muscle mass. Body fat percentage and performance metrics are often more relevant for athletic populations."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does BMI relate to life expectancy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Research shows that BMIs in the normal range (18.5-24.9) are associated with lower mortality risks. However, factors like fitness level, diet quality, and genetics also significantly impact longevity."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "At what age should BMI monitoring begin?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For adults (18+), regular BMI monitoring can begin as part of routine health assessments. Children and teens require age and gender-specific BMI percentiles rather than adult categories."
+                }
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://dapsiwow.com/#organization",
+            "name": "DapsiWow",
+            "url": "https://dapsiwow.com",
+            "logo": "https://dapsiwow.com/logo.png",
+            "description": "Free online calculators and tools for health, finance, and productivity",
+            "sameAs": [
+              "https://www.facebook.com/dapsiwow",
+              "https://twitter.com/dapsiwow",
+              "https://www.linkedin.com/company/dapsiwow"
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://dapsiwow.com/#website",
+            "url": "https://dapsiwow.com",
+            "name": "DapsiWow",
+            "description": "Free online calculators and tools for finance, health, and productivity",
+            "publisher": {
+              "@id": "https://dapsiwow.com/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://dapsiwow.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
             }
           })}
         </script>
@@ -756,6 +960,62 @@ const BMICalculator = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Related Health Tools Section */}
+            <section className="mt-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Related Health Calculators</h2>
+              <p className="text-lg text-gray-700 mb-6">
+                Explore our comprehensive suite of free health calculators to monitor your wellness and fitness goals:
+              </p>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="/tools/calorie-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-calorie-calculator">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Calorie Calculator</h3>
+                  <p className="text-gray-700 text-sm">Calculate daily calorie needs based on your activity level, age, and weight goals. Perfect for weight management and fitness planning.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Calories →</span>
+                </a>
+
+                <a href="/tools/body-fat-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-body-fat-calculator">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Body Fat Calculator</h3>
+                  <p className="text-gray-700 text-sm">Estimate your body fat percentage using various measurement methods. Get accurate assessments for better health tracking.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Body Fat →</span>
+                </a>
+
+                <a href="/tools/ideal-weight-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-ideal-weight-calculator">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Ideal Weight Calculator</h3>
+                  <p className="text-gray-700 text-sm">Determine your ideal weight range based on height, age, and gender using multiple scientific formulas for accurate results.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Ideal Weight →</span>
+                </a>
+
+                <a href="/tools/pregnancy-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-pregnancy-calculator">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Pregnancy Calculator</h3>
+                  <p className="text-gray-700 text-sm">Calculate due date, conception date, and pregnancy milestones. Track your pregnancy journey week by week with detailed insights.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Due Date →</span>
+                </a>
+
+                <a href="/tools/macro-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-macro-calculator">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Macro Calculator</h3>
+                  <p className="text-gray-700 text-sm">Calculate optimal protein, carbs, and fat intake for your fitness goals. Essential for bodybuilders and health enthusiasts.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Macros →</span>
+                </a>
+
+                <a href="/tools/heart-rate-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-heart-rate-calculator">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Heart Rate Calculator</h3>
+                  <p className="text-gray-700 text-sm">Calculate target heart rate zones for optimal cardio training. Improve fitness efficiency with personalized heart rate targets.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Heart Rate →</span>
+                </a>
+              </div>
+
+              <div className="bg-blue-50 p-6 rounded-lg mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Need More Health Tools?</h3>
+                <p className="text-gray-700 mb-4">
+                  Browse our complete collection of 30+ free health and wellness calculators. All tools are free, require no registration, and work on any device.
+                </p>
+                <a href="/health-tools" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors no-underline" data-testid="link-all-health-tools">
+                  View All Health Tools →
+                </a>
+              </div>
+            </section>
           </div>
         </div>
       </main>

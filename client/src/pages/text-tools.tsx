@@ -360,11 +360,11 @@ const TextTools = () => {
               <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Text Tools</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="text-center p-4 bg-yellow-50 rounded-xl">
+                  <a href="/tools/word-counter" className="text-center p-4 bg-yellow-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer no-underline" data-testid="link-word-counter">
                     <i className="fas fa-calculator text-2xl text-yellow-600 mb-2"></i>
                     <h3 className="font-semibold text-neutral-800">Word Counter</h3>
                     <p className="text-sm text-neutral-600">Count words & characters</p>
-                  </div>
+                  </a>
                   <div className="text-center p-4 bg-green-50 rounded-xl">
                     <i className="fas fa-spell-check text-2xl text-green-600 mb-2"></i>
                     <h3 className="font-semibold text-neutral-800">Grammar Checker</h3>

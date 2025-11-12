@@ -456,6 +456,7 @@ export default function ROICalculator() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": "https://dapsiwow.com/#organization",
             "name": "DapsiWow",
             "url": "https://dapsiwow.com",
             "logo": "https://dapsiwow.com/logo.png",
@@ -465,6 +466,28 @@ export default function ROICalculator() {
               "https://twitter.com/dapsiwow",
               "https://www.linkedin.com/company/dapsiwow"
             ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://dapsiwow.com/#website",
+            "url": "https://dapsiwow.com",
+            "name": "DapsiWow",
+            "description": "Free online calculators and tools for finance, health, and productivity",
+            "publisher": {
+              "@id": "https://dapsiwow.com/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://dapsiwow.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
           })}
         </script>
 

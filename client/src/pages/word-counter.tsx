@@ -140,16 +140,34 @@ Speaking time: ${result.speakingTime} minute(s)`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Word Counter - Count Words, Characters & Text Statistics | DapsiWow</title>
+        {/* Primary Meta Tags */}
+        <title>Word Counter - Free Text Analysis Tool | DapsiWow</title>
         <meta name="description" content="Free online word counter tool to count words, characters, sentences, paragraphs and calculate reading time. Real-time text analysis for writers, students and professionals." />
         <meta name="keywords" content="word counter, character counter, text statistics, word count tool, sentence counter, paragraph counter, reading time calculator, text analyzer" />
-        <meta property="og:title" content="Word Counter - Count Words, Characters & Text Statistics" />
-        <meta property="og:description" content="Free online word counter with real-time text analysis. Count words, characters, sentences and calculate reading time instantly." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/tools/word-counter" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/word-counter" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/word-counter" />
+        <meta name="publisher" content="DapsiWow" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dapsiwow.com/tools/word-counter" />
+        <meta property="og:title" content="Word Counter - Free Text Analysis Tool | DapsiWow" />
+        <meta property="og:description" content="Free online word counter with real-time text analysis. Count words, characters, sentences and calculate reading time instantly." />
+        <meta property="og:image" content="https://dapsiwow.com/images/word-counter-og.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DapsiWow Word Counter - Free Text Analysis Tool" />
+        <meta property="og:site_name" content="DapsiWow" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://dapsiwow.com/tools/word-counter" />
+        <meta name="twitter:title" content="Word Counter - Free Text Analysis Tool | DapsiWow" />
+        <meta name="twitter:description" content="Free word counter with real-time text analysis. Count words, characters, sentences, and reading time." />
+        <meta name="twitter:image" content="https://dapsiwow.com/images/word-counter-og.jpg" />
+        <meta name="twitter:image:alt" content="DapsiWow Word Counter" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -172,6 +190,176 @@ Speaking time: ${result.speakingTime} minute(s)`;
               "Speaking time calculation",
               "Text statistics export"
             ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://dapsiwow.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Text Tools",
+                "item": "https://dapsiwow.com/text-tools"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Word Counter",
+                "item": "https://dapsiwow.com/tools/word-counter"
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Count Words and Analyze Text",
+            "description": "Step-by-step guide to use our free word counter tool for text analysis",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter or Paste Text",
+                "text": "Type or paste your text directly into the text area. The tool supports unlimited text length for comprehensive analysis."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "View Real-Time Statistics",
+                "text": "As you type, watch real-time updates of word count, character count, sentences, paragraphs, and reading time estimates."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Analyze Advanced Metrics",
+                "text": "Review detailed statistics including unique words, average word length, words per sentence, and longest/shortest words."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Export or Clear Data",
+                "text": "Copy the statistics for your records or clear the text area to analyze new content."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How accurate is the word count?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our word counter uses industry-standard algorithms identical to those used by Microsoft Word, Google Docs, and other professional writing software, ensuring consistent and accurate results."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What defines a word in the count?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A word is any sequence of characters separated by spaces, including numbers, abbreviations, hyphenated words, and contractions, each counted as individual words."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is reading time calculated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Reading time uses an average speed of 200 words per minute for adults, while speaking time is calculated at 130 words per minute based on conversational pace."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are unique words?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Unique words represent the number of distinct words in your text, calculated case-insensitively to help measure vocabulary diversity and content richness."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my text data secure and private?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, all text analysis happens locally in your browser. Your content is never transmitted to our servers, stored, or shared with any third parties."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does the tool work with different languages?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our word counter works with most languages that use space-separated words, including English, Spanish, French, German, and many other Latin script languages."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use this for academic writing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely! Our tool is perfect for academic assignments, research papers, dissertations, and any writing with specific word count requirements."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are advanced statistics?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Advanced statistics include metrics like unique words, average word length, words per sentence, and longest/shortest words to help improve writing quality."
+                }
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://dapsiwow.com/#organization",
+            "name": "DapsiWow",
+            "url": "https://dapsiwow.com",
+            "logo": "https://dapsiwow.com/logo.png",
+            "description": "Free online calculators and tools for health, finance, and productivity",
+            "sameAs": [
+              "https://www.facebook.com/dapsiwow",
+              "https://twitter.com/dapsiwow",
+              "https://www.linkedin.com/company/dapsiwow"
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://dapsiwow.com/#website",
+            "url": "https://dapsiwow.com",
+            "name": "DapsiWow",
+            "description": "Free online calculators and tools for finance, health, and productivity",
+            "publisher": {
+              "@id": "https://dapsiwow.com/#organization"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://dapsiwow.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
           })}
         </script>
       </Helmet>
@@ -685,38 +873,61 @@ Speaking time: ${result.speakingTime} minute(s)`;
               </CardContent>
             </Card>
 
-            {/* Related Tools */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Text Tools</h2>
-                <p className="text-gray-600 mb-8">Enhance your text analysis workflow with our comprehensive suite of complementary tools.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <a href="/tools/character-counter" className="block bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl hover:shadow-lg transition-shadow group border border-blue-100">
-                    <div className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-700 transition-colors text-xl font-bold">
-                      C
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Character Counter</h3>
-                    <p className="text-gray-600 text-sm">Count characters with precision for social media posts, meta descriptions, and character-limited content.</p>
-                  </a>
+            {/* Related Text Tools Section */}
+            <section className="mt-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Related Text Tools</h2>
+              <p className="text-lg text-gray-700 mb-6">
+                Enhance your text analysis workflow with our comprehensive suite of free writing and editing tools:
+              </p>
 
-                  <a href="/tools/sentence-counter" className="block bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl hover:shadow-lg transition-shadow group border border-green-100">
-                    <div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-700 transition-colors text-xl font-bold">
-                      S
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-green-600">Sentence Counter</h3>
-                    <p className="text-gray-600 text-sm">Analyze sentence structure and count sentences to improve readability and writing flow.</p>
-                  </a>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="/tools/character-counter" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-character-counter">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Character Counter</h3>
+                  <p className="text-gray-700 text-sm">Count characters with precision for social media posts, meta descriptions, and character-limited content. Includes space counting options.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Count Characters →</span>
+                </a>
 
-                  <a href="/tools/paragraph-counter" className="block bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl hover:shadow-lg transition-shadow group border border-purple-100">
-                    <div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-700 transition-colors text-xl font-bold">
-                      P
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-600">Paragraph Counter</h3>
-                    <p className="text-gray-600 text-sm">Count paragraphs and analyze text structure for better content organization and formatting.</p>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
+                <a href="/tools/sentence-counter" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-sentence-counter">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Sentence Counter</h3>
+                  <p className="text-gray-700 text-sm">Analyze sentence structure and count sentences to improve readability and writing flow. Perfect for content optimization.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Count Sentences →</span>
+                </a>
+
+                <a href="/tools/paragraph-counter" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-paragraph-counter">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Paragraph Counter</h3>
+                  <p className="text-gray-700 text-sm">Count paragraphs and analyze text structure for better content organization and formatting. Essential for document editing.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Count Paragraphs →</span>
+                </a>
+
+                <a href="/tools/text-case-converter" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-case-converter">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Text Case Converter</h3>
+                  <p className="text-gray-700 text-sm">Convert text to UPPERCASE, lowercase, Title Case, or Sentence case. Instantly transform text formatting for any purpose.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Convert Text Case →</span>
+                </a>
+
+                <a href="/tools/line-counter" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-line-counter">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Line Counter</h3>
+                  <p className="text-gray-700 text-sm">Count lines of text for coding projects, poetry analysis, or document formatting. Supports multiple line break types.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Count Lines →</span>
+                </a>
+
+                <a href="/tools/reading-time-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-reading-time">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Reading Time Calculator</h3>
+                  <p className="text-gray-700 text-sm">Estimate reading and speaking time for articles, presentations, and speeches. Optimize content length for your audience.</p>
+                  <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Time →</span>
+                </a>
+              </div>
+
+              <div className="bg-blue-50 p-6 rounded-lg mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Need More Text Tools?</h3>
+                <p className="text-gray-700 mb-4">
+                  Explore our complete collection of 20+ free text analysis and writing tools. Perfect for writers, students, editors, and content creators.
+                </p>
+                <a href="/text-tools" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors no-underline" data-testid="link-all-text-tools">
+                  View All Text Tools →
+                </a>
+              </div>
+            </section>
           </div>
         </div>
       </main>
