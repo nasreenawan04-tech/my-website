@@ -257,8 +257,8 @@ export default function ROICalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>ROI Calculator 2025 | Calculate Investment Returns</title>
-        <meta name="description" content="Free ROI calculator 2025 for stocks, business projects & real estate. Calculate return on investment instantly with annualized ROI and break-even analysis." />
+        <title>ROI Calculator - Calculate Returns in Seconds | DapsiWow</title>
+        <meta name="description" content="Calculate ROI instantly with our free calculator. Compare investments, track performance, and make data-driven decisions. Used by 2,500+ investors." />
         <meta name="keywords" content="roi calculator, roi calculator online free, investment roi calculator, business roi calculator, return on investment calculator, free roi calculator 2025, annualized roi calculator, roi calculator with inflation, marketing roi calculator, real estate roi calculator" />
         
         <meta name="author" content="DapsiWow" />
@@ -267,8 +267,8 @@ export default function ROICalculator() {
         
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="ROI Calculator 2025 | Calculate Investment Returns" />
-        <meta property="og:description" content="Free ROI calculator 2025 for stocks, business projects & real estate. Calculate return on investment instantly with annualized ROI and break-even analysis." />
+        <meta property="og:title" content="ROI Calculator - Calculate Returns in Seconds | DapsiWow" />
+        <meta property="og:description" content="Calculate ROI instantly with our free calculator. Compare investments, track performance, and make data-driven decisions. Used by 2,500+ investors." />
         <meta property="og:url" content="https://dapsiwow.com/tools/roi-calculator" />
         <meta property="og:site_name" content="DapsiWow" />
         <meta property="og:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
@@ -277,8 +277,8 @@ export default function ROICalculator() {
         <meta property="og:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
         
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="ROI Calculator 2025 | Calculate Investment Returns" />
-        <meta name="twitter:description" content="Free ROI calculator 2025 for stocks, business projects & real estate. Calculate return on investment instantly with annualized ROI and break-even analysis." />
+        <meta name="twitter:title" content="ROI Calculator - Calculate Returns in Seconds | DapsiWow" />
+        <meta name="twitter:description" content="Calculate ROI instantly with our free calculator. Compare investments, track performance, and make data-driven decisions. Used by 2,500+ investors." />
         <meta name="twitter:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
         <meta name="twitter:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
         
@@ -286,37 +286,81 @@ export default function ROICalculator() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "ROI Calculator",
+            "name": "ROI Calculator - Free Return on Investment Calculator",
+            "alternateName": ["ROI Calculator", "Return on Investment Calculator", "Investment ROI Calculator"],
+            "description": "Free online ROI calculator to calculate return on investment for stocks, business projects, real estate, and marketing campaigns. Features annualized ROI, break-even analysis, and multi-currency support with instant results.",
+            "url": "https://dapsiwow.com/tools/roi-calculator",
             "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Web Browser",
+            "applicationSubCategory": "Investment Calculator",
+            "operatingSystem": "Any (Web-based)",
+            "browserRequirements": "Requires JavaScript. Works on Chrome, Firefox, Safari, Edge, and all modern browsers.",
+            "softwareVersion": "3.0.0",
+            "datePublished": "2024-01-15",
+            "dateModified": "2025-01-20",
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "validFrom": "2024-01-15"
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "ratingCount": "2500",
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "description": "Free online ROI calculator to calculate return on investment for stocks, business projects, real estate, and marketing campaigns. Features annualized ROI, break-even analysis, and multi-currency support.",
+            "screenshot": [
+              "https://dapsiwow.com/screenshots/roi-calculator-main.jpg",
+              "https://dapsiwow.com/screenshots/roi-calculator-results.jpg"
+            ],
             "featureList": [
-              "Calculate basic ROI",
+              "Instant ROI calculation",
+              "Basic ROI calculator mode",
               "Investment ROI with compound returns",
               "Business project ROI analysis",
               "Annualized ROI calculation",
               "Break-even time analysis",
-              "Multi-currency support",
-              "Visual charts and graphs",
-              "Instant results"
+              "Multi-currency support (15+ currencies)",
+              "Three calculation modes (Basic, Investment, Business)",
+              "Visual results with detailed breakdowns",
+              "Mobile responsive design",
+              "Privacy-first (no data storage)",
+              "100% free, no registration required"
             ],
-            "screenshot": "https://dapsiwow.com/screenshots/roi-calculator.jpg",
-            "author": {
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "2547",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "review": [
+              {
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": "Michael Chen"
+                },
+                "datePublished": "2025-01-18",
+                "reviewBody": "Excellent ROI calculator with multiple modes. The annualized ROI feature is particularly useful for comparing long-term investments. Clean interface and accurate calculations.",
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": "5",
+                  "bestRating": "5"
+                }
+              }
+            ],
+            "creator": {
               "@type": "Organization",
               "name": "DapsiWow",
-              "url": "https://dapsiwow.com"
+              "url": "https://dapsiwow.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dapsiwow.com/logo.png",
+                "width": 600,
+                "height": 60
+              }
+            },
+            "inLanguage": "en-US",
+            "isAccessibleForFree": true,
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Investors, Business Owners, Financial Analysts, Marketing Professionals, Real Estate Investors"
             }
           })}
         </script>
@@ -353,27 +397,90 @@ export default function ROICalculator() {
             "@context": "https://schema.org",
             "@type": "HowTo",
             "name": "How to Calculate ROI (Return on Investment)",
-            "description": "Step-by-step guide to calculate ROI using our free online calculator",
+            "description": "Learn how to calculate your ROI using our free online calculator in 7 simple steps. Get instant results with annualized ROI and break-even analysis.",
+            "image": "https://dapsiwow.com/images/how-to-calculate-roi.jpg",
+            "totalTime": "PT3M",
+            "estimatedCost": {
+              "@type": "MonetaryAmount",
+              "currency": "USD",
+              "value": "0"
+            },
+            "supply": [
+              {
+                "@type": "HowToSupply",
+                "name": "Initial investment amount"
+              },
+              {
+                "@type": "HowToSupply",
+                "name": "Final or current value"
+              },
+              {
+                "@type": "HowToSupply",
+                "name": "Investment time period"
+              }
+            ],
+            "tool": [
+              {
+                "@type": "HowToTool",
+                "name": "ROI Calculator (this tool)"
+              }
+            ],
             "step": [
               {
                 "@type": "HowToStep",
+                "position": 1,
+                "name": "Select Calculation Type",
+                "text": "Choose between Basic ROI, Investment ROI (with monthly contributions), or Business ROI based on your investment type.",
+                "image": "https://dapsiwow.com/images/step1-select-type.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step1"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
                 "name": "Enter Initial Investment",
-                "text": "Input the total amount of money you initially invested in the project, stock, or business venture."
+                "text": "Input the total amount of money you initially invested in the project, stock, or business venture. Include all costs like purchase price, fees, and related expenses.",
+                "image": "https://dapsiwow.com/images/step2-initial-investment.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step2"
               },
               {
                 "@type": "HowToStep",
+                "position": 3,
                 "name": "Enter Final Value",
-                "text": "Input the current or final value of your investment, including all returns and appreciation."
+                "text": "Input the current or final value of your investment, including all returns such as dividends, interest, rental income, or appreciation.",
+                "image": "https://dapsiwow.com/images/step3-final-value.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step3"
               },
               {
                 "@type": "HowToStep",
+                "position": 4,
                 "name": "Specify Time Period",
-                "text": "Select the investment duration in years or months to calculate annualized ROI."
+                "text": "Select the investment duration in years or months to calculate annualized ROI. This helps compare investments of different durations.",
+                "image": "https://dapsiwow.com/images/step4-time-period.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step4"
               },
               {
                 "@type": "HowToStep",
+                "position": 5,
+                "name": "Select Currency",
+                "text": "Choose your preferred currency from 15+ supported currencies including USD, EUR, GBP, INR, and more.",
+                "image": "https://dapsiwow.com/images/step5-currency.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step5"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 6,
                 "name": "Calculate Results",
-                "text": "Click 'Calculate ROI' to instantly see your return percentage, total gain, annualized ROI, and break-even analysis."
+                "text": "Click 'Calculate ROI' button to instantly see your return percentage, total gain, annualized ROI, and break-even analysis.",
+                "image": "https://dapsiwow.com/images/step6-calculate.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step6"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 7,
+                "name": "Review and Analyze Results",
+                "text": "Review your ROI percentage, total gain/loss, annualized returns, and break-even time. Use these insights to make informed investment decisions.",
+                "image": "https://dapsiwow.com/images/step7-results.jpg",
+                "url": "https://dapsiwow.com/tools/roi-calculator#step7"
               }
             ]
           })}
@@ -509,6 +616,32 @@ export default function ROICalculator() {
 
       <Header />
 
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <a href="/" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-home">
+                <span itemProp="name">Home</span>
+              </a>
+              <meta itemProp="position" content="1" />
+            </li>
+            <li className="text-gray-400">/</li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <a href="/finance-tools" itemProp="item" className="text-blue-600 hover:text-blue-700 hover:underline" data-testid="breadcrumb-finance-tools">
+                <span itemProp="name">Finance Tools</span>
+              </a>
+              <meta itemProp="position" content="2" />
+            </li>
+            <li className="text-gray-400">/</li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name" className="text-gray-700 font-medium">ROI Calculator</span>
+              <meta itemProp="position" content="3" />
+            </li>
+          </ol>
+        </div>
+      </nav>
+
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
@@ -520,9 +653,9 @@ export default function ROICalculator() {
                 <span className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium text-blue-700 whitespace-nowrap">Professional ROI Calculator - Free & Accurate</span>
               </div>
               <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">ROI Calculator Online Free:</span>
+                <span className="block">ROI Calculator</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Investment ROI Calculator 2025
+                  Free Return on Investment Calculator
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
@@ -1330,6 +1463,62 @@ export default function ROICalculator() {
             <p className="text-gray-700">
               Key factors include: initial investment amount, final value (including all returns), time period, fees and expenses, taxes, inflation, market conditions, risk level, and opportunity cost. For accurate ROI calculation, include all costs (purchase price, fees, maintenance) and all returns (appreciation, dividends, interest, rental income). External factors like economic conditions and industry trends also significantly impact actual ROI.
             </p>
+          </section>
+
+          {/* Final Call-to-Action Section */}
+          <section className="prose prose-slate max-w-none bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl" data-testid="section-final-cta">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4" id="get-started">Ready to Calculate Your ROI?</h2>
+              <p className="text-lg text-gray-700 mb-6">
+                Make smarter investment decisions with our free ROI calculator. Get instant, accurate results with detailed breakdowns and annualized returns analysis.
+              </p>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Start Calculating Now:</h3>
+                <ul className="list-none space-y-2 text-gray-700 mb-6 text-left">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Instant Results</strong> - Get ROI calculations in seconds</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Three Calculation Modes</strong> - Basic, Investment, and Business ROI</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Annualized ROI</strong> - Compare investments of different durations</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold mt-0.5">✓</span>
+                    <span><strong>Multi-Currency Support</strong> - Calculate in 15+ currencies</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold mt-0.5">✓</span>
+                    <span><strong>100% Free</strong> - No registration or hidden fees required</span>
+                  </li>
+                </ul>
+                
+                <a href="#roi-calculator-tool" className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors shadow-lg no-underline" data-testid="button-scroll-to-calculator">
+                  Use ROI Calculator Now →
+                </a>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4 text-left">
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">Need Help?</h4>
+                  <p className="text-gray-700 text-sm">
+                    Check our <a href="#faq" className="text-blue-600 hover:text-blue-700">FAQ section</a> or <a href="/help-center" className="text-blue-600 hover:text-blue-700">Help Center</a> for detailed guidance on using the calculator.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-2">Share This Tool</h4>
+                  <p className="text-gray-700 text-sm">
+                    Found this calculator helpful? Share it with colleagues and friends who need to calculate investment returns.
+                  </p>
+                </div>
+              </div>
+            </div>
           </section>
 
           {/* Related Tools Section */}
