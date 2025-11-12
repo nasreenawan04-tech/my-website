@@ -257,8 +257,8 @@ export default function ROICalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Free ROI Calculator 2025 | Calculate Investment Returns Instantly</title>
-        <meta name="description" content="Calculate ROI in seconds with our free 2025 calculator. Get instant results for investments, business projects, real estate & marketing. Includes annualized ROI, break-even analysis & charts. No signup required." />
+        <title>ROI Calculator 2025 | Calculate Investment Returns</title>
+        <meta name="description" content="Free ROI calculator 2025 for stocks, business projects & real estate. Calculate return on investment instantly with annualized ROI and break-even analysis." />
         <meta name="keywords" content="roi calculator, roi calculator online free, investment roi calculator, business roi calculator, return on investment calculator, free roi calculator 2025, annualized roi calculator, roi calculator with inflation, marketing roi calculator, real estate roi calculator" />
         
         <meta name="author" content="DapsiWow" />
@@ -267,8 +267,8 @@ export default function ROICalculator() {
         
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Free ROI Calculator 2025 | Calculate Investment Returns Instantly" />
-        <meta property="og:description" content="Calculate ROI in seconds with our free calculator. Get instant results for investments, business projects, real estate & marketing. Includes annualized ROI & break-even analysis." />
+        <meta property="og:title" content="ROI Calculator 2025 | Calculate Investment Returns" />
+        <meta property="og:description" content="Free ROI calculator 2025 for stocks, business projects & real estate. Calculate return on investment instantly with annualized ROI and break-even analysis." />
         <meta property="og:url" content="https://dapsiwow.com/tools/roi-calculator" />
         <meta property="og:site_name" content="DapsiWow" />
         <meta property="og:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
@@ -277,15 +277,15 @@ export default function ROICalculator() {
         <meta property="og:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
         
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free ROI Calculator 2025 | Calculate Investment Returns Instantly" />
-        <meta name="twitter:description" content="Calculate ROI in seconds. Get instant results for investments, business projects & marketing. Free annualized ROI & break-even analysis." />
+        <meta name="twitter:title" content="ROI Calculator 2025 | Calculate Investment Returns" />
+        <meta name="twitter:description" content="Free ROI calculator 2025 for stocks, business projects & real estate. Calculate return on investment instantly with annualized ROI and break-even analysis." />
         <meta name="twitter:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
         <meta name="twitter:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
         
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
+            "@type": "WebApplication",
             "name": "ROI Calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Web Browser",
