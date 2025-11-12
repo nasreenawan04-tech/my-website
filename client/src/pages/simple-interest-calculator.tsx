@@ -199,23 +199,23 @@ export default function SimpleInterestCalculator() {
     // Create comprehensive share text
     const termDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
 
-    let shareText = `💰 Simple Interest Calculator Results\n\n`;
-    shareText += `📊 Investment Details:\n`;
+    let shareText = `Simple Interest Calculator Results\n\n`;
+    shareText += `Investment Details:\n`;
     shareText += `• Principal Amount: ${formatCurrency(result.principalAmount)}\n`;
     shareText += `• Interest Rate: ${interestRate}%\n`;
     shareText += `• Time Period: ${termDisplay}\n`;
     
-    shareText += `\n💵 Interest Breakdown:\n`;
+    shareText += `\nInterest Breakdown:\n`;
     shareText += `• Simple Interest: ${formatCurrency(result.simpleInterest)}\n`;
     shareText += `• Monthly Interest: ${formatCurrency(result.monthlyInterest)}\n`;
     shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
 
-    shareText += `\n🔗 Calculate yours: ${shareableUrl}`;
+    shareText += `\nCalculate yours: ${shareableUrl}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
-          title: '💰 Simple Interest Calculator Results',
+          title: 'Simple Interest Calculator Results',
           text: shareText,
           url: shareableUrl
         });
@@ -259,7 +259,7 @@ export default function SimpleInterestCalculator() {
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
-    const tweetText = `💰 My Simple Interest calculation: ${formatCurrency(result.simpleInterest)} interest on ${formatCurrency(result.principalAmount)} at ${interestRate}% for ${termDisplay} - Calculate yours free!`;
+    const tweetText = `My Simple Interest calculation: ${formatCurrency(result.simpleInterest)} interest on ${formatCurrency(result.principalAmount)} at ${interestRate}% for ${termDisplay} - Calculate yours free!`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareableUrl)}`;
     window.open(twitterUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
     toast({ title: "Opening Twitter share..." });
@@ -291,7 +291,7 @@ export default function SimpleInterestCalculator() {
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
-    const whatsappText = `💰 Simple Interest Calculator Results:\n\nPrincipal: ${formatCurrency(result.principalAmount)}\nRate: ${interestRate}%\nTerm: ${termDisplay}\nInterest: ${formatCurrency(result.simpleInterest)}\nTotal: ${formatCurrency(result.totalAmount)}\n\nCalculate yours: ${shareableUrl}`;
+    const whatsappText = `Simple Interest Calculator Results:\n\nPrincipal: ${formatCurrency(result.principalAmount)}\nRate: ${interestRate}%\nTerm: ${termDisplay}\nInterest: ${formatCurrency(result.simpleInterest)}\nTotal: ${formatCurrency(result.totalAmount)}\n\nCalculate yours: ${shareableUrl}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     toast({ title: "Opening WhatsApp share..." });
@@ -897,8 +897,8 @@ export default function SimpleInterestCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Simple Interest Calculator - Calculate SI Instantly | DapsiWow</title>
-        <meta name="description" content="Calculate simple interest instantly with our free calculator. Get yearly breakdowns, visual charts & PDF exports. Supports multiple currencies. 100% free, no signup." />
+        <title>Simple Interest Calculator - Free SI Tool | DapsiWow</title>
+        <meta name="description" content="Calculate simple interest fast with our free SI calculator. Get yearly breakdowns, charts & PDF reports. Supports 10 currencies. Start now, no signup needed." />
         <meta name="keywords" content="simple interest calculator, calculate simple interest, simple interest formula, interest calculator, SI calculator online, simple interest rate calculator, how to calculate simple interest, simple interest loan calculator, simple interest calculator monthly, simple interest calculator with principal rate time, simple vs compound interest calculator, simple interest calculator with regular deposits, simple interest calculator for savings, online simple interest calculator, simple interest calculator free, daily simple interest calculator, monthly simple interest calculator, simple interest vs compound interest calculator, how to find simple interest, what is simple interest calculator" />
         
         <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Online Free | I = P × R × T Formula" />
