@@ -13,15 +13,55 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow: Free Finance, Text, Health and other Online Tools</title>
-        <meta name="description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers." />
+        <title>DapsiWow - 180+ Free Online Tools | Finance, Text, Health</title>
+        <meta name="description" content="Access 180+ free online tools instantly. Calculate loans, convert text, track health metrics. No registration, no fees, no downloads. Used by millions. Start now." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
-        <meta property="og:title" content="DapsiWow: Free Finance, Text, Health and other Online Tools" />
-        <meta property="og:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools." />
+        <meta name="author" content="DapsiWow Team" />
+        <meta name="publisher" content="DapsiWow" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href="https://dapsiwow.com/" />
+        
+        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text, Health" />
+        <meta property="og:description" content="Access 180+ free online tools instantly. Calculate loans, convert text, track health metrics. No registration, no fees. Used by millions worldwide." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://dapsiwow.com/" />
+        <meta property="og:image" content="https://dapsiwow.com/images/dapsiwow-og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="DapsiWow - Free Online Tools Platform with 180+ Calculators and Utilities" />
+        <meta property="og:site_name" content="DapsiWow" />
+        <meta property="og:locale" content="en_US" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@DapsiWow" />
+        <meta name="twitter:creator" content="@DapsiWow" />
+        <meta name="twitter:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text, Health" />
+        <meta name="twitter:description" content="Access 180+ free online tools instantly. Calculate loans, convert text, track health metrics. No registration required. Start now." />
+        <meta name="twitter:image" content="https://dapsiwow.com/images/dapsiwow-twitter-card.jpg" />
+        <meta name="twitter:image:alt" content="DapsiWow Free Online Tools Platform" />
+        
+        <meta name="pinterest-rich-pin" content="true" />
+        <meta name="pinterest:description" content="DapsiWow: 180+ Free Online Tools for Finance, Text Processing, and Health Tracking. No Registration Required." />
+        
+        <meta name="geo.region" content="US" />
+        <meta name="geo.placename" content="United States" />
+        <meta name="distribution" content="global" />
+        <meta name="language" content="English" />
+        <meta name="rating" content="General" />
+        
+        <meta name="date" content="2025-01-15" />
+        <meta name="last-modified" content="2025-01-20" />
+        <meta name="copyright" content="© 2025 DapsiWow. All rights reserved." />
+        
+        <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/" />
+        <link rel="alternate" hrefLang="en-US" href="https://dapsiwow.com/" />
+        <link rel="alternate" hrefLang="en-GB" href="https://dapsiwow.com/" />
+        <link rel="alternate" hrefLang="en-CA" href="https://dapsiwow.com/" />
+        <link rel="alternate" hrefLang="en-AU" href="https://dapsiwow.com/" />
+        <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/" />
+        
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="application-name" content="DapsiWow Tools" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
