@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -88,11 +88,22 @@ export default function CompoundInterestCalculator() {
   const calculateButtonRef = useRef<HTMLButtonElement>(null);
   const shouldAutoCalculate = useRef(false);
 
-  // Drag scrolling state for yearly breakdown table
+  // Drag and touch scrolling state for yearly breakdown table
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Helper function to clear specific validation error
+  const clearError = (field: keyof ValidationErrors) => {
+    if (validationErrors[field]) {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
 
   // Load parameters from URL on mount (for shared links)
   useEffect(() => {
@@ -302,7 +313,7 @@ export default function CompoundInterestCalculator() {
     setResult(null);
   };
 
-  // Drag scrolling handlers for yearly breakdown table
+  // Drag and touch scrolling handlers for yearly breakdown table
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!tableScrollRef.current) return;
     setIsDragging(true);
@@ -324,6 +335,25 @@ export default function CompoundInterestCalculator() {
     const x = e.pageX - tableScrollRef.current.offsetLeft;
     const walk = (x - startX) * 2;
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  // Touch event handlers for mobile horizontal scrolling
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!tableScrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - tableScrollRef.current.offsetLeft);
+    setScrollLeft(tableScrollRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !tableScrollRef.current) return;
+    const x = e.touches[0].pageX - tableScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
   };
 
   const handleShare = async () => {
@@ -1324,12 +1354,18 @@ export default function CompoundInterestCalculator() {
                             id="principal"
                             type="number"
                             value={principal}
-                            onChange={(e) => setPrincipal(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            onChange={(e) => { setPrincipal(e.target.value); clearError('principal'); }}
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.principal ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                             placeholder="10,000"
                             data-testid="input-principal"
                           />
                         </div>
+                        {validationErrors.principal && (
+                          <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-principal">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <span>{validationErrors.principal}</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Interest Rate */}
@@ -1352,14 +1388,20 @@ export default function CompoundInterestCalculator() {
                             id="interest-rate"
                             type="number"
                             value={interestRate}
-                            onChange={(e) => setInterestRate(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            onChange={(e) => { setInterestRate(e.target.value); clearError('interestRate'); }}
+                            className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.interestRate ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                             placeholder="8.00"
                             step="0.01"
                             data-testid="input-interest-rate"
                           />
                           <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                         </div>
+                        {validationErrors.interestRate && (
+                          <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-interest-rate">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <span>{validationErrors.interestRate}</span>
+                          </div>
+                        )}
                       </div>
 
                       {/* Time Period */}
@@ -1379,8 +1421,8 @@ export default function CompoundInterestCalculator() {
                           <Input
                             type="number"
                             value={timePeriod}
-                            onChange={(e) => setTimePeriod(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            onChange={(e) => { setTimePeriod(e.target.value); clearError('timePeriod'); }}
+                            className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 ${validationErrors.timePeriod ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                             placeholder="10"
                             min="1"
                             data-testid="input-time-period"
@@ -1395,6 +1437,12 @@ export default function CompoundInterestCalculator() {
                             </SelectContent>
                           </Select>
                         </div>
+                        {validationErrors.timePeriod && (
+                          <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-time-period">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <span>{validationErrors.timePeriod}</span>
+                          </div>
+                        )}
                         <p className="text-xs sm:text-sm text-gray-500">Pro Tip: Time is the most powerful factor in compound interest!</p>
                       </div>
                     </div>
@@ -1430,12 +1478,18 @@ export default function CompoundInterestCalculator() {
                               id="sip-amount"
                               type="number"
                               value={sipAmount}
-                              onChange={(e) => setSipAmount(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              onChange={(e) => { setSipAmount(e.target.value); clearError('sipAmount'); }}
+                              className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.sipAmount ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                               placeholder="1,000"
                               data-testid="input-sip-amount"
                             />
                           </div>
+                          {validationErrors.sipAmount && (
+                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-sip-amount">
+                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                              <span>{validationErrors.sipAmount}</span>
+                            </div>
+                          )}
                         </div>
 
                         <div className="space-y-2 sm:space-y-3">
@@ -1462,14 +1516,20 @@ export default function CompoundInterestCalculator() {
                               id="step-up"
                               type="number"
                               value={stepUpPercentage}
-                              onChange={(e) => setStepUpPercentage(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              onChange={(e) => { setStepUpPercentage(e.target.value); clearError('stepUpPercentage'); }}
+                              className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.stepUpPercentage ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                               placeholder="5"
                               step="0.01"
                               data-testid="input-step-up"
                             />
                             <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
+                          {validationErrors.stepUpPercentage && (
+                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-step-up">
+                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                              <span>{validationErrors.stepUpPercentage}</span>
+                            </div>
+                          )}
                         </div>
 
                         <div className="space-y-2 sm:space-y-3">
@@ -1481,14 +1541,20 @@ export default function CompoundInterestCalculator() {
                               id="inflation-rate"
                               type="number"
                               value={inflationRate}
-                              onChange={(e) => setInflationRate(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              onChange={(e) => { setInflationRate(e.target.value); clearError('inflationRate'); }}
+                              className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.inflationRate ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                               placeholder="3"
                               step="0.01"
                               data-testid="input-inflation-rate"
                             />
                             <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
+                          {validationErrors.inflationRate && (
+                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-inflation-rate">
+                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                              <span>{validationErrors.inflationRate}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
@@ -1519,22 +1585,29 @@ export default function CompoundInterestCalculator() {
                               id="goal-amount"
                               type="number"
                               value={goalAmount}
-                              onChange={(e) => setGoalAmount(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              onChange={(e) => { setGoalAmount(e.target.value); clearError('goalAmount'); }}
+                              className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.goalAmount ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
                               placeholder="100,000"
                               data-testid="input-goal-amount"
                             />
                           </div>
+                          {validationErrors.goalAmount && (
+                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-goal-amount">
+                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                              <span>{validationErrors.goalAmount}</span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateCompoundInterest}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200"
+                      size="lg"
+                      className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg"
                       data-testid="button-calculate"
                     >
                       <Calculator className="w-5 h-5 mr-2" />
@@ -1543,7 +1616,8 @@ export default function CompoundInterestCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      size="lg"
+                      className="w-full sm:w-auto font-semibold"
                       data-testid="button-reset"
                     >
                       Reset Calculator
@@ -1559,7 +1633,6 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowBreakdown(!showBreakdown)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-breakdown"
                         >
                           {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
@@ -1568,7 +1641,6 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-chart"
                         >
                           <PieChart className="w-4 h-4 mr-1.5" />
@@ -1578,7 +1650,6 @@ export default function CompoundInterestCalculator() {
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-export-pdf"
                         >
                           <Download className="w-4 h-4 mr-1.5" />
@@ -1588,7 +1659,6 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowRealValue(!showRealValue)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-real-value"
                         >
                           {showRealValue ? 'Hide' : 'Show'} Inflation Adjusted
@@ -1602,48 +1672,52 @@ export default function CompoundInterestCalculator() {
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="rounded-full sm:rounded-lg bg-[#1877f2] text-white flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
+                            data-testid="button-share-facebook"
                           >
-                            <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <FaFacebook className="w-4 h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">Facebook</span>
                           </Button>
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="rounded-full sm:rounded-lg bg-[#1da1f2] text-white flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
+                            data-testid="button-share-twitter"
                           >
-                            <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <FaTwitter className="w-4 h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">Twitter</span>
                           </Button>
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="rounded-full sm:rounded-lg bg-[#0077b5] text-white flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
+                            data-testid="button-share-linkedin"
                           >
-                            <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <FaLinkedin className="w-4 h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">LinkedIn</span>
                           </Button>
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="rounded-full sm:rounded-lg bg-[#25d366] text-white flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
+                            data-testid="button-share-whatsapp"
                           >
-                            <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <FaWhatsapp className="w-4 h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">WhatsApp</span>
                           </Button>
                           <Button
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="rounded-full sm:rounded-lg flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
                             data-testid="button-share"
                           >
-                            <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <Share2 className="w-4 h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">More</span>
                           </Button>
                         </div>
@@ -1885,6 +1959,10 @@ export default function CompoundInterestCalculator() {
                   onMouseLeave={handleMouseLeave}
                   onMouseUp={handleMouseUp}
                   onMouseMove={handleMouseMove}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                  data-testid="table-yearly-breakdown"
                 >
                   <table className="w-full min-w-[600px]">
                     <thead>
@@ -1942,23 +2020,23 @@ export default function CompoundInterestCalculator() {
               
               <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                 <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <Check className="w-5 h-5 text-blue-600 font-bold flex-shrink-0" />
                   <span className="text-base sm:text-lg text-gray-700"><strong>Instant Results:</strong> Get compound interest calculations in seconds with detailed yearly breakdowns</span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <Check className="w-5 h-5 text-blue-600 font-bold flex-shrink-0" />
                   <span className="text-base sm:text-lg text-gray-700"><strong>Accurate:</strong> Uses the standard compound interest formula with support for daily, monthly, quarterly, and annual compounding</span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <Check className="w-5 h-5 text-blue-600 font-bold flex-shrink-0" />
                   <span className="text-base sm:text-lg text-gray-700"><strong>Free Forever:</strong> No hidden fees, registration, or subscription required</span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <Check className="w-5 h-5 text-blue-600 font-bold flex-shrink-0" />
                   <span className="text-base sm:text-lg text-gray-700"><strong>SIP Support:</strong> Model systematic investment plans with step-up contributions</span>
                 </li>
                 <li className="flex items-start gap-2 sm:gap-3">
-                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <Check className="w-5 h-5 text-blue-600 font-bold flex-shrink-0" />
                   <span className="text-base sm:text-lg text-gray-700"><strong>Inflation Adjustment:</strong> See real purchasing power of your future wealth</span>
                 </li>
               </ul>
@@ -2533,7 +2611,7 @@ export default function CompoundInterestCalculator() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {/* Calculator 1 */}
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Loan Calculator</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-4">Calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, and mortgages.</p>
                   <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Planning loan repayments and comparing loan offers</p>
@@ -2545,7 +2623,7 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 {/* Calculator 2 */}
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Simple Interest Calculator</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-4">Calculate simple interest for short-term investments, bonds, and loans with linear growth patterns.</p>
                   <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Short-term loans and fixed-interest investments</p>
@@ -2557,7 +2635,7 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 {/* Calculator 3 */}
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">ROI Calculator</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-4">Measure return on investment for business ventures, real estate, stocks, and other investment opportunities.</p>
                   <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Comparing investment opportunities and business decisions</p>
@@ -2569,7 +2647,7 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 {/* Calculator 4 */}
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Mortgage Calculator</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-4">Estimate monthly mortgage payments including property tax, insurance, PMI, and HOA fees with amortization schedules.</p>
                   <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Home buying decisions and mortgage affordability</p>
@@ -2581,7 +2659,7 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 {/* Calculator 5 */}
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">EMI Calculator</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-4">Calculate Equated Monthly Installments for personal loans, home loans, car loans with detailed repayment breakdowns.</p>
                   <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Indian loan structures and EMI planning</p>
@@ -2593,7 +2671,7 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 {/* Calculator 6 */}
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Investment Calculator</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-4">Project investment portfolio growth with various scenarios including lump sums, regular contributions, and market variations.</p>
                   <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Long-term investment strategy and wealth planning</p>
@@ -2614,17 +2692,17 @@ export default function CompoundInterestCalculator() {
                 Start calculating your investment growth today with our free compound interest calculator. No registration, no hidden fees - just powerful financial insights at your fingertips.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 flex-wrap">
                 <div className="flex items-center gap-2 text-white/90">
-                  <span className="text-green-300 font-bold text-lg">✓</span>
+                  <Check className="w-5 h-5 text-green-300 flex-shrink-0" />
                   <span className="text-sm sm:text-base">100% Free Forever</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/90">
-                  <span className="text-green-300 font-bold text-lg">✓</span>
+                  <Check className="w-5 h-5 text-green-300 flex-shrink-0" />
                   <span className="text-sm sm:text-base">Instant Accurate Results</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/90">
-                  <span className="text-green-300 font-bold text-lg">✓</span>
+                  <Check className="w-5 h-5 text-green-300 flex-shrink-0" />
                   <span className="text-sm sm:text-base">No Registration Required</span>
                 </div>
               </div>
@@ -2632,7 +2710,7 @@ export default function CompoundInterestCalculator() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="bg-white text-blue-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 mb-6"
+                className="bg-white text-blue-600 font-bold mb-6"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 data-testid="button-scroll-top-cta"
               >
