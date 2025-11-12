@@ -347,6 +347,141 @@ export default function ROICalculator() {
             ]
           })}
         </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate ROI (Return on Investment)",
+            "description": "Step-by-step guide to calculate ROI using our free online calculator",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Initial Investment",
+                "text": "Input the total amount of money you initially invested in the project, stock, or business venture."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Enter Final Value",
+                "text": "Input the current or final value of your investment, including all returns and appreciation."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Specify Time Period",
+                "text": "Select the investment duration in years or months to calculate annualized ROI."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Calculate Results",
+                "text": "Click 'Calculate ROI' to instantly see your return percentage, total gain, annualized ROI, and break-even analysis."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is ROI and how is it calculated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ROI (Return on Investment) is a performance measure used to evaluate the profitability of an investment. It's calculated as: ROI = ((Final Value - Initial Investment) / Initial Investment) × 100. A positive ROI indicates profit, while negative ROI indicates a loss."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is a good ROI percentage?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A good ROI depends on the investment type and risk level. Generally, an annual ROI of 7-10% is considered good for stocks, 15-20% for business investments, and 8-12% for real estate. Higher returns typically involve higher risk."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is annualized ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Annualized ROI is the average annual return of an investment over a specified time period. It accounts for compounding and provides a standardized measure to compare investments of different durations."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is ROI different from ROAS?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ROI measures total profitability as a percentage of investment cost, while ROAS (Return on Ad Spend) specifically measures revenue generated from advertising campaigns. ROAS is expressed as a ratio (e.g., 5:1), while ROI is a percentage."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can ROI be negative?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, ROI can be negative when the final value is less than the initial investment, indicating a loss. A negative ROI means you've lost money on the investment."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is break-even time in ROI calculation?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Break-even time is the period required for cumulative profits to equal the initial investment cost. It indicates when an investment starts generating net positive returns."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How accurate is the ROI calculator?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our ROI calculator uses standard financial formulas and is highly accurate for calculating returns. However, actual investment performance may vary due to market conditions, fees, taxes, and other factors not included in basic calculations."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I use simple or annualized ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use simple ROI for short-term investments (less than 1 year) or quick comparisons. Use annualized ROI for long-term investments or when comparing investments of different durations, as it accounts for time value of money."
+                }
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DapsiWow",
+            "url": "https://dapsiwow.com",
+            "logo": "https://dapsiwow.com/logo.png",
+            "description": "Free online financial calculators and tools for investments, loans, mortgages, and business analysis",
+            "sameAs": [
+              "https://www.facebook.com/dapsiwow",
+              "https://twitter.com/dapsiwow",
+              "https://www.linkedin.com/company/dapsiwow"
+            ]
+          })}
+        </script>
+
+        <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="en-US" href="https://dapsiwow.com/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="en-GB" href="https://dapsiwow.com/en-gb/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="en-CA" href="https://dapsiwow.com/en-ca/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="en-AU" href="https://dapsiwow.com/en-au/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="es" href="https://dapsiwow.com/es/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="fr" href="https://dapsiwow.com/fr/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="de" href="https://dapsiwow.com/de/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="pt" href="https://dapsiwow.com/pt/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="it" href="https://dapsiwow.com/it/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="ja" href="https://dapsiwow.com/ja/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="zh" href="https://dapsiwow.com/zh/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="ko" href="https://dapsiwow.com/ko/tools/roi-calculator" />
+        <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/tools/roi-calculator" />
       </Helmet>
 
       <Header />
@@ -727,6 +862,508 @@ export default function ROICalculator() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* SEO Content Sections */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 space-y-12 sm:space-y-16">
+          {/* What is ROI Calculator Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-what-is-roi">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="what-is-roi-calculator">What is ROI Calculator?</h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              The <strong>ROI Calculator</strong> is a free online financial tool that helps you calculate return on investment for various scenarios including stocks, business projects, real estate, and marketing campaigns. Whether you're an investor tracking portfolio performance, a business owner evaluating project profitability, or a marketer measuring campaign effectiveness, this calculator provides instant, accurate ROI analysis.
+            </p>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Why Use Our ROI Calculator?</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li><strong>Instant Results:</strong> Get ROI calculations in seconds with our optimized algorithm</li>
+              <li><strong>Multiple Calculation Types:</strong> Basic ROI, investment ROI with compound returns, and business project ROI</li>
+              <li><strong>Annualized ROI:</strong> Automatically calculates annualized return for accurate performance comparison</li>
+              <li><strong>Free Forever:</strong> No hidden fees, registration, or subscription required</li>
+              <li><strong>Mobile-Friendly:</strong> Calculate ROI on any device, anywhere, anytime</li>
+              <li><strong>Multi-Currency Support:</strong> Calculate in 15+ currencies including USD, EUR, GBP, JPY, and more</li>
+              <li><strong>Privacy First:</strong> We don't store your personal or financial data</li>
+            </ul>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Who Benefits from ROI Calculator?</h3>
+            <div className="grid md:grid-cols-2 gap-4 mt-4">
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Investors & Traders</h4>
+                <p className="text-gray-700 text-sm">Track stock performance, compare investment opportunities, and measure portfolio returns</p>
+              </div>
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Business Owners</h4>
+                <p className="text-gray-700 text-sm">Evaluate project profitability, justify capital expenditures, and measure business growth</p>
+              </div>
+              <div className="bg-purple-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Marketing Professionals</h4>
+                <p className="text-gray-700 text-sm">Measure campaign ROI, optimize marketing spend, and demonstrate value to stakeholders</p>
+              </div>
+              <div className="bg-orange-50 p-4 rounded-lg">
+                <h4 className="font-semibold text-gray-900 mb-2">Real Estate Investors</h4>
+                <p className="text-gray-700 text-sm">Calculate property investment returns, compare rental yields, and analyze flip opportunities</p>
+              </div>
+            </div>
+          </section>
+
+          {/* How to Use ROI Calculator Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-how-to-use">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="how-to-use-roi-calculator">How to Use the ROI Calculator</h2>
+            
+            <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">Step-by-Step Guide:</h3>
+            
+            <div className="space-y-6">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h4 className="text-xl font-semibold text-gray-900 mb-2">Step 1: Select Currency</h4>
+                <p className="text-gray-700">Choose your preferred currency from 15+ options including USD, EUR, GBP, JPY, CNY, INR, CAD, AUD, CHF, and more. This ensures your results are displayed in the currency relevant to your investment.</p>
+              </div>
+
+              <div className="border-l-4 border-green-500 pl-4">
+                <h4 className="text-xl font-semibold text-gray-900 mb-2">Step 2: Choose Calculation Type</h4>
+                <p className="text-gray-700">Select from three calculation modes:</p>
+                <ul className="list-disc pl-6 mt-2 space-y-1 text-gray-700">
+                  <li><strong>Basic ROI:</strong> Simple return calculation for one-time investments</li>
+                  <li><strong>Investment ROI:</strong> Advanced calculation with monthly contributions and compound returns</li>
+                  <li><strong>Business ROI:</strong> Project-based ROI with annual revenue, costs, and break-even analysis</li>
+                </ul>
+              </div>
+
+              <div className="border-l-4 border-purple-500 pl-4">
+                <h4 className="text-xl font-semibold text-gray-900 mb-2">Step 3: Enter Investment Details</h4>
+                <p className="text-gray-700">Input your investment values. For basic ROI, enter initial investment, final value, and time period. For investment ROI, add monthly contributions and expected annual return. For business ROI, specify project cost, annual revenue, annual costs, and project duration.</p>
+              </div>
+
+              <div className="border-l-4 border-orange-500 pl-4">
+                <h4 className="text-xl font-semibold text-gray-900 mb-2">Step 4: Calculate and Analyze Results</h4>
+                <p className="text-gray-700">Click "Calculate ROI" to instantly see your return percentage, total gain/loss, annualized ROI, and detailed interpretation. The calculator automatically determines if your investment is excellent, good, profitable, or showing a loss.</p>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Pro Tips for Accurate ROI Calculation:</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Include all investment costs: purchase price, fees, commissions, and related expenses</li>
+              <li>Account for all returns: dividends, interest, appreciation, and realized gains</li>
+              <li>Use annualized ROI when comparing investments of different time periods</li>
+              <li>Consider external factors like inflation, taxes, and opportunity costs for complete analysis</li>
+              <li>Update calculations regularly to track ongoing investment performance</li>
+            </ul>
+          </section>
+
+          {/* ROI Calculator Examples Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-examples">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-calculator-examples">ROI Calculator Examples</h2>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">Example 1: Stock Investment ROI</h3>
+            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+              <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Sarah invested in tech stocks and wants to calculate her return over 2 years.</p>
+              <div className="bg-white p-4 rounded border border-gray-200 mb-4">
+                <p className="font-semibold text-gray-900 mb-2">Input Values:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Initial Investment: $10,000</li>
+                  <li>Final Value: $13,500 (including dividends)</li>
+                  <li>Time Period: 2 years</li>
+                </ul>
+              </div>
+              <div className="bg-blue-50 p-4 rounded">
+                <p className="font-semibold text-gray-900 mb-2">Results:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Total Gain: $3,500</li>
+                  <li>ROI: +35.00%</li>
+                  <li>Annualized ROI: +16.19% per year</li>
+                  <li>Interpretation: Excellent ROI - significantly outperforming market averages</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Example 2: Business Project ROI</h3>
+            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+              <p className="text-gray-700 mb-4"><strong>Scenario:</strong> A company invests in new manufacturing equipment and needs to justify the expense.</p>
+              <div className="bg-white p-4 rounded border border-gray-200 mb-4">
+                <p className="font-semibold text-gray-900 mb-2">Input Values:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Project Cost: $50,000</li>
+                  <li>Annual Revenue: $20,000</li>
+                  <li>Annual Costs: $5,000</li>
+                  <li>Project Duration: 3 years</li>
+                </ul>
+              </div>
+              <div className="bg-green-50 p-4 rounded">
+                <p className="font-semibold text-gray-900 mb-2">Results:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Annual Profit: $15,000</li>
+                  <li>Total Profit: $45,000</li>
+                  <li>Net Gain: -$5,000 (after initial investment)</li>
+                  <li>ROI: -10.00% over 3 years</li>
+                  <li>Break-even Time: 3.33 years</li>
+                  <li>Interpretation: Negative ROI in short term, but breaks even in year 4</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Example 3: Marketing Campaign ROI</h3>
+            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+              <p className="text-gray-700 mb-4"><strong>Scenario:</strong> A marketing team runs a digital advertising campaign and measures its effectiveness.</p>
+              <div className="bg-white p-4 rounded border border-gray-200 mb-4">
+                <p className="font-semibold text-gray-900 mb-2">Input Values:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Campaign Cost (Initial Investment): $5,000</li>
+                  <li>Revenue Generated (Final Value): $22,000</li>
+                  <li>Campaign Duration: 3 months</li>
+                </ul>
+              </div>
+              <div className="bg-purple-50 p-4 rounded">
+                <p className="font-semibold text-gray-900 mb-2">Results:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Total Gain: $17,000</li>
+                  <li>ROI: +340.00%</li>
+                  <li>Annualized ROI: +1,678.74%</li>
+                  <li>Interpretation: Exceptional marketing ROI - highly successful campaign</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Example 4: Real Estate Investment ROI</h3>
+            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+              <p className="text-gray-700 mb-4"><strong>Scenario:</strong> An investor purchases a rental property and calculates returns after 5 years.</p>
+              <div className="bg-white p-4 rounded border border-gray-200 mb-4">
+                <p className="font-semibold text-gray-900 mb-2">Input Values:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Initial Investment: $200,000 (purchase + fees)</li>
+                  <li>Final Value: $280,000 (sale price + rental income)</li>
+                  <li>Time Period: 5 years</li>
+                </ul>
+              </div>
+              <div className="bg-orange-50 p-4 rounded">
+                <p className="font-semibold text-gray-900 mb-2">Results:</p>
+                <ul className="list-disc pl-6 space-y-1 text-gray-700">
+                  <li>Total Gain: $80,000</li>
+                  <li>ROI: +40.00%</li>
+                  <li>Annualized ROI: +6.96% per year</li>
+                  <li>Interpretation: Good ROI for real estate - solid steady returns</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Understanding Your ROI Results Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-understanding-results">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="understanding-roi-results">Understanding Your ROI Results</h2>
+            
+            <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">ROI Result Categories</h3>
+            
+            <div className="space-y-4">
+              <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                <h4 className="text-lg font-semibold text-green-900 mb-2">Excellent ROI (20% or higher)</h4>
+                <p className="text-gray-700 mb-2"><strong>Meaning:</strong> Exceptional performance significantly above market averages</p>
+                <p className="text-gray-700 mb-2"><strong>Implications:</strong> Very profitable investment with strong growth potential</p>
+                <p className="text-gray-700"><strong>Recommendations:</strong> Consider increasing investment allocation, monitor for sustainability, and look for similar opportunities</p>
+              </div>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+                <h4 className="text-lg font-semibold text-yellow-900 mb-2">Good ROI (10-20%)</h4>
+                <p className="text-gray-700 mb-2"><strong>Meaning:</strong> Above-average returns beating inflation and market benchmarks</p>
+                <p className="text-gray-700 mb-2"><strong>Implications:</strong> Solid investment showing healthy growth</p>
+                <p className="text-gray-700"><strong>Recommendations:</strong> Maintain current strategy, continue monitoring performance, diversify risk</p>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                <h4 className="text-lg font-semibold text-blue-900 mb-2">Positive ROI (0-10%)</h4>
+                <p className="text-gray-700 mb-2"><strong>Meaning:</strong> Profitable but modest returns, possibly below market averages</p>
+                <p className="text-gray-700 mb-2"><strong>Implications:</strong> Investment is gaining value but underperforming</p>
+                <p className="text-gray-700"><strong>Recommendations:</strong> Evaluate if returns justify risk, consider alternative investments, optimize strategy</p>
+              </div>
+
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                <h4 className="text-lg font-semibold text-red-900 mb-2">Negative ROI (Below 0%)</h4>
+                <p className="text-gray-700 mb-2"><strong>Meaning:</strong> Investment is losing money</p>
+                <p className="text-gray-700 mb-2"><strong>Implications:</strong> Current strategy is not working; losses are occurring</p>
+                <p className="text-gray-700"><strong>Recommendations:</strong> Investigate cause of loss, consider cutting losses, reassess investment thesis, seek professional advice</p>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">When to Seek Professional Advice</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li>Consistently negative ROI across multiple investments</li>
+              <li>Large capital investments requiring detailed financial analysis</li>
+              <li>Complex tax implications affecting net returns</li>
+              <li>Retirement planning and long-term wealth management</li>
+              <li>Business decisions with significant financial consequences</li>
+            </ul>
+          </section>
+
+          {/* ROI Calculation Formula Explained Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-formula">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-formula-explained">ROI Calculation Formula Explained</h2>
+            
+            <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-4">The Standard ROI Formula</h3>
+            <div className="bg-gray-100 p-6 rounded-lg my-4">
+              <p className="text-center text-2xl font-mono font-bold text-gray-900">
+                ROI = ((Final Value - Initial Investment) / Initial Investment) × 100
+              </p>
+            </div>
+
+            <h4 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Variables:</h4>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li><strong>Final Value:</strong> Current or ending value of investment including all returns (dividends, interest, appreciation)</li>
+              <li><strong>Initial Investment:</strong> Total amount invested including purchase price, fees, and related costs</li>
+              <li><strong>ROI:</strong> Return on Investment expressed as a percentage</li>
+            </ul>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Annualized ROI Formula</h3>
+            <div className="bg-gray-100 p-6 rounded-lg my-4">
+              <p className="text-center text-xl font-mono font-bold text-gray-900">
+                Annualized ROI = ((Final Value / Initial Investment)^(1/Years) - 1) × 100
+              </p>
+            </div>
+            <p className="text-gray-700 mt-4">
+              Annualized ROI accounts for the time value of money and provides a standardized annual return rate, making it easier to compare investments of different durations. This formula uses compound annual growth rate (CAGR) principles to show average yearly performance.
+            </p>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Example Calculation</h3>
+            <div className="bg-blue-50 p-6 rounded-lg">
+              <p className="text-gray-700 mb-4"><strong>Given:</strong> Initial Investment = $10,000, Final Value = $14,000, Time = 3 years</p>
+              <p className="text-gray-700 mb-2"><strong>Simple ROI:</strong></p>
+              <p className="font-mono text-gray-800 mb-4">ROI = (($14,000 - $10,000) / $10,000) × 100 = 40.00%</p>
+              <p className="text-gray-700 mb-2"><strong>Annualized ROI:</strong></p>
+              <p className="font-mono text-gray-800">Annualized ROI = (($14,000 / $10,000)^(1/3) - 1) × 100 = 11.87% per year</p>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Accuracy and Limitations</h3>
+            <p className="text-gray-700">
+              While ROI calculation is straightforward and widely used, it has limitations. It doesn't account for risk, inflation, opportunity cost, or time value of money (unless using annualized ROI). For comprehensive investment analysis, consider combining ROI with other metrics like IRR, NPV, and risk-adjusted returns.
+            </p>
+          </section>
+
+          {/* Tips and Best Practices Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-tips">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-tips-best-practices">Tips and Best Practices for Calculating Accurate ROI</h2>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Include All Costs</h3>
+                <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                  <li>Purchase price or initial capital</li>
+                  <li>Transaction fees and commissions</li>
+                  <li>Maintenance and operational costs</li>
+                  <li>Taxes and regulatory fees</li>
+                  <li>Professional service charges</li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Account for All Returns</h3>
+                <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                  <li>Capital appreciation or depreciation</li>
+                  <li>Dividend payments and interest earned</li>
+                  <li>Rental income or recurring revenue</li>
+                  <li>Tax benefits and deductions</li>
+                  <li>Sale proceeds and liquidation value</li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Use the Right Timeframe</h3>
+                <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                  <li>Match timeframes for fair comparisons</li>
+                  <li>Use annualized ROI for multi-year investments</li>
+                  <li>Consider holding period when evaluating</li>
+                  <li>Update calculations for ongoing investments</li>
+                  <li>Factor in time value of money</li>
+                </ul>
+              </div>
+
+              <div className="bg-white p-6 rounded-lg border border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Consider External Factors</h3>
+                <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                  <li>Inflation impact on real returns</li>
+                  <li>Market conditions and economic cycles</li>
+                  <li>Currency exchange rate fluctuations</li>
+                  <li>Industry-specific trends and risks</li>
+                  <li>Opportunity cost of alternative investments</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">Expert Recommendations</h3>
+            <div className="bg-blue-50 p-6 rounded-lg">
+              <ul className="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Track ROI regularly to identify trends and patterns in investment performance</li>
+                <li>Compare your ROI against relevant benchmarks (S&P 500, industry averages, peer investments)</li>
+                <li>Document all assumptions and data sources for transparent, reproducible calculations</li>
+                <li>Use conservative estimates when projecting future returns to avoid overoptimistic expectations</li>
+                <li>Combine ROI with qualitative factors like strategic fit, risk tolerance, and long-term goals</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* ROI vs Other Metrics Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-comparison">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="roi-vs-other-metrics">ROI vs Other Financial Metrics</h2>
+            
+            <div className="overflow-x-auto">
+              <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 border-b">Metric</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 border-b">What It Measures</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 border-b">Best For</th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 border-b">Key Difference</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">ROI</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Total profitability as percentage of investment</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">General investment comparison, business projects</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Simple, doesn't account for time</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">ROAS</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Revenue per dollar spent on advertising</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Marketing campaigns, ad spend optimization</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Ratio (e.g., 5:1), not percentage</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">IRR</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Annual growth rate accounting for cash flow timing</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Multi-period investments, complex cash flows</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Considers timing of cash flows</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">NPV</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Present value of future cash flows minus initial cost</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Capital budgeting, project evaluation</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Dollar amount, not percentage</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">Payback Period</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Time to recover initial investment</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Risk assessment, liquidity analysis</td>
+                    <td className="px-6 py-4 text-sm text-gray-700">Time-based, not return-based</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">When to Use Each Metric</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700">
+              <li><strong>Use ROI when:</strong> You need a quick, simple profitability comparison across different investment types</li>
+              <li><strong>Use ROAS when:</strong> You're evaluating marketing and advertising campaign effectiveness</li>
+              <li><strong>Use IRR when:</strong> Investments have multiple cash flows at different times (real estate, private equity)</li>
+              <li><strong>Use NPV when:</strong> You need absolute dollar value of an investment opportunity</li>
+              <li><strong>Use Payback Period when:</strong> Liquidity and speed of capital recovery are priorities</li>
+            </ul>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-faq">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="faq">Frequently Asked Questions (FAQ)</h2>
+            
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-what-is-roi">What is ROI and how is it calculated?</h3>
+            <p className="text-gray-700">
+              ROI (Return on Investment) is a performance measure used to evaluate the profitability of an investment. It's calculated as: <strong>ROI = ((Final Value - Initial Investment) / Initial Investment) × 100</strong>. A positive ROI indicates profit, while negative ROI indicates a loss. For example, if you invest $1,000 and it grows to $1,200, your ROI is 20%.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-good-roi">What is a good ROI percentage?</h3>
+            <p className="text-gray-700">
+              A good ROI depends on the investment type and risk level. Generally, an annual ROI of 7-10% is considered good for stocks, 15-20% for business investments, and 8-12% for real estate. Marketing campaigns often target 500% or higher ROI. Higher returns typically involve higher risk, so always evaluate ROI in context of your risk tolerance and investment objectives.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-annualized-roi">What is annualized ROI?</h3>
+            <p className="text-gray-700">
+              Annualized ROI is the average annual return of an investment over a specified time period. It accounts for compounding and provides a standardized measure to compare investments of different durations. The formula is: <strong>Annualized ROI = ((Final Value / Initial Investment)^(1/Years) - 1) × 100</strong>. This is essential for comparing a 5-year investment to a 2-year investment on equal terms.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-roi-vs-roas">How is ROI different from ROAS?</h3>
+            <p className="text-gray-700">
+              ROI measures total profitability as a percentage of investment cost across all investment types, while ROAS (Return on Ad Spend) specifically measures revenue generated from advertising campaigns. ROAS is expressed as a ratio (e.g., 5:1 means $5 revenue for every $1 spent), while ROI is a percentage. ROAS focuses on gross revenue, whereas ROI considers net profit after all costs.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-negative-roi">Can ROI be negative?</h3>
+            <p className="text-gray-700">
+              Yes, ROI can be negative when the final value is less than the initial investment, indicating a loss. A negative ROI means you've lost money on the investment. For example, if you invest $10,000 and it decreases to $8,000, your ROI is -20%. Negative ROI signals the need to reassess your investment strategy or consider cutting losses.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-break-even">What is break-even time in ROI calculation?</h3>
+            <p className="text-gray-700">
+              Break-even time is the period required for cumulative profits to equal the initial investment cost. It indicates when an investment starts generating net positive returns. For business projects, this is calculated as Initial Investment divided by Annual Net Profit. A shorter break-even time generally indicates lower risk and faster capital recovery.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-calculator-accuracy">How accurate is the ROI calculator?</h3>
+            <p className="text-gray-700">
+              Our ROI calculator uses standard financial formulas and is highly accurate for calculating returns based on the inputs provided. However, actual investment performance may vary due to market conditions, transaction fees, taxes, inflation, and other factors not included in basic calculations. Always use the calculator as a guide and consult financial professionals for major investment decisions.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-simple-vs-annualized">Should I use simple or annualized ROI?</h3>
+            <p className="text-gray-700">
+              Use simple ROI for short-term investments (less than 1 year) or quick profitability comparisons. Use annualized ROI for long-term investments or when comparing investments of different durations, as it accounts for time value of money and compounding effects. Annualized ROI provides a more accurate picture of performance for multi-year investments and enables fair comparisons across different timeframes.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-improve-roi">How can I improve my investment ROI?</h3>
+            <p className="text-gray-700">
+              Improve ROI by: (1) Reducing costs through negotiation, efficiency improvements, and eliminating waste; (2) Increasing returns through value optimization, diversification, and strategic timing; (3) Minimizing fees and taxes through tax-advantaged accounts and low-cost investment vehicles; (4) Reinvesting profits to leverage compounding; (5) Continuously monitoring and rebalancing your portfolio based on performance and market conditions.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-3" id="faq-factors-affecting-roi">What factors affect ROI calculation?</h3>
+            <p className="text-gray-700">
+              Key factors include: initial investment amount, final value (including all returns), time period, fees and expenses, taxes, inflation, market conditions, risk level, and opportunity cost. For accurate ROI calculation, include all costs (purchase price, fees, maintenance) and all returns (appreciation, dividends, interest, rental income). External factors like economic conditions and industry trends also significantly impact actual ROI.
+            </p>
+          </section>
+
+          {/* Related Tools Section */}
+          <section className="prose prose-slate max-w-none" data-testid="section-related-tools">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6" id="related-calculators">Related Financial Calculators</h2>
+            <p className="text-lg text-gray-700 mb-6">
+              Explore our comprehensive suite of free financial calculators to make informed financial decisions:
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <a href="/tools/loan-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-loan-calculator">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Loan Calculator</h3>
+                <p className="text-gray-700 text-sm">Calculate monthly payments, total interest, and amortization schedules for any loan. Perfect for auto loans, personal loans, and debt planning.</p>
+                <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Loan Payments →</span>
+              </a>
+
+              <a href="/tools/mortgage-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-mortgage-calculator">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Mortgage Calculator</h3>
+                <p className="text-gray-700 text-sm">Estimate home loan payments with taxes, insurance, and PMI. Compare different scenarios to find the perfect mortgage for your budget.</p>
+                <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Mortgage →</span>
+              </a>
+
+              <a href="/tools/business-loan-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-business-loan-calculator">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Business Loan Calculator</h3>
+                <p className="text-gray-700 text-sm">Calculate business loan payments and compare financing options. Essential for entrepreneurs and small business owners planning growth.</p>
+                <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Business Loan →</span>
+              </a>
+
+              <a href="/tools/simple-interest-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-simple-interest-calculator">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Simple Interest Calculator</h3>
+                <p className="text-gray-700 text-sm">Calculate simple interest on savings, investments, or loans. Understand how interest accumulates over time with straightforward calculations.</p>
+                <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Simple Interest →</span>
+              </a>
+
+              <a href="/tools/compound-interest-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-compound-interest-calculator">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Compound Interest Calculator</h3>
+                <p className="text-gray-700 text-sm">Discover the power of compound interest for long-term investments. See how your money grows with regular contributions and compounding.</p>
+                <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Compound Interest →</span>
+              </a>
+
+              <a href="/tools/investment-calculator" className="block bg-white p-6 rounded-lg border-2 border-gray-200 hover:border-blue-500 hover:shadow-lg transition-all no-underline" data-testid="link-investment-calculator">
+                <h3 className="text-xl font-semibold text-gray-900 mb-2 no-underline">Investment Calculator</h3>
+                <p className="text-gray-700 text-sm">Project investment growth with detailed analysis of returns, fees, and time horizons. Plan your financial future with confidence.</p>
+                <span className="text-blue-600 font-medium text-sm mt-2 inline-block">Calculate Investment Growth →</span>
+              </a>
+            </div>
+
+            <div className="bg-blue-50 p-6 rounded-lg mt-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Need More Financial Tools?</h3>
+              <p className="text-gray-700 mb-4">
+                Browse our complete collection of 180+ free financial, health, and productivity calculators. All tools are free, require no registration, and work on any device.
+              </p>
+              <a href="/finance-tools" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors no-underline" data-testid="link-all-tools">
+                View All Financial Tools →
+              </a>
+            </div>
+          </section>
         </div>
       </main>
 
