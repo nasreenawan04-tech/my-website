@@ -1110,6 +1110,127 @@ export default function ROICalculator() {
                       Reset
                     </Button>
                   </div>
+
+                  {/* ROI Analysis Actions - Moved from Results Section */}
+                  {result && (
+                    <>
+                      {/* Toggle Buttons */}
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 print:hidden">
+                        <Button
+                          onClick={() => setShowChart(!showChart)}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-show-chart"
+                          aria-expanded={showChart}
+                          aria-label={showChart ? 'Hide breakdown chart' : 'Show breakdown chart'}
+                        >
+                          {showChart ? 'Hide' : 'Show'} Breakdown Chart
+                        </Button>
+                        <Button
+                          onClick={() => setShowComparison(!showComparison)}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-show-comparison"
+                          aria-expanded={showComparison}
+                          aria-label={showComparison ? 'Hide comparison table' : 'Show comparison table'}
+                        >
+                          {showComparison ? 'Hide' : 'Show'} Comparison
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-add-comparison"
+                        >
+                          Add to Comparison
+                        </Button>
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1.5" />
+                          Export PDF
+                        </Button>
+                      </div>
+
+                      {/* Social Share Section */}
+                      <div className="border-t pt-3 sm:pt-4 mt-3 sm:mt-4">
+                        <h4 className="text-sm font-medium text-gray-700 mb-3 text-center">Share your results:</h4>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                          <Button
+                            onClick={() => {
+                              const text = `Check out my ROI results: ${formatPercentage(result.roi)} return with ${formatCurrency(result.totalGain)} total gain! Calculate yours at`;
+                              const url = `https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
+                            }}
+                            className="bg-[#1877F2] hover:bg-[#1565C0] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-facebook"
+                          >
+                            <FaFacebook className="w-4 h-4 mr-2" />
+                            Facebook
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours:`;
+                              const url = `https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                            }}
+                            className="bg-[#1DA1F2] hover:bg-[#1A91DA] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-twitter"
+                          >
+                            <FaTwitter className="w-4 h-4 mr-2" />
+                            Twitter
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              const text = `ROI Results: ${formatPercentage(result.roi)} return, ${formatCurrency(result.totalGain)} total gain. Calculate yours at`;
+                              const url = `https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+                            }}
+                            className="bg-[#0077B5] hover:bg-[#006399] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-linkedin"
+                          >
+                            <FaLinkedin className="w-4 h-4 mr-2" />
+                            LinkedIn
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours: https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                            }}
+                            className="bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-whatsapp"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-2" />
+                            WhatsApp
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              if (navigator.share) {
+                                navigator.share({
+                                  title: 'ROI Calculator Results',
+                                  text: `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain!`,
+                                  url: 'https://dapsiwow.com/tools/roi-calculator'
+                                }).catch(() => {});
+                              }
+                            }}
+                            variant="outline"
+                            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-more"
+                          >
+                            <Share2 className="w-4 h-4 mr-2" />
+                            More
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Results Section */}
@@ -1194,122 +1315,6 @@ export default function ROICalculator() {
                              result.roi >= 0 ? 'Positive ROI - This investment is profitable' :
                              'Negative ROI - This investment results in a loss'}
                           </div>
-                        </div>
-                      </div>
-
-                      {/* Toggle Buttons */}
-                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 print:hidden">
-                        <Button
-                          onClick={() => setShowChart(!showChart)}
-                          variant="outline"
-                          size="sm"
-                          className="rounded-full text-xs sm:text-sm"
-                          data-testid="button-show-chart"
-                          aria-expanded={showChart}
-                          aria-label={showChart ? 'Hide breakdown chart' : 'Show breakdown chart'}
-                        >
-                          {showChart ? 'Hide' : 'Show'} Breakdown Chart
-                        </Button>
-                        <Button
-                          onClick={() => setShowComparison(!showComparison)}
-                          variant="outline"
-                          size="sm"
-                          className="rounded-full text-xs sm:text-sm"
-                          data-testid="button-show-comparison"
-                          aria-expanded={showComparison}
-                          aria-label={showComparison ? 'Hide comparison table' : 'Show comparison table'}
-                        >
-                          {showComparison ? 'Hide' : 'Show'} Comparison
-                        </Button>
-                        <Button
-                          onClick={addToComparison}
-                          variant="outline"
-                          size="sm"
-                          className="rounded-full text-xs sm:text-sm"
-                          data-testid="button-add-comparison"
-                        >
-                          Add to Comparison
-                        </Button>
-                        <Button
-                          onClick={handleDownloadPDF}
-                          variant="outline"
-                          size="sm"
-                          className="rounded-full text-xs sm:text-sm"
-                          data-testid="button-export-pdf"
-                        >
-                          <Download className="w-4 h-4 mr-1.5" />
-                          Export PDF
-                        </Button>
-                      </div>
-
-                      {/* Social Share Section */}
-                      <div className="border-t pt-3 sm:pt-4">
-                        <h4 className="text-sm font-medium text-gray-700 mb-3 text-center">Share your results:</h4>
-                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                          <Button
-                            onClick={() => {
-                              const text = `Check out my ROI results: ${formatPercentage(result.roi)} return with ${formatCurrency(result.totalGain)} total gain! Calculate yours at`;
-                              const url = `https://dapsiwow.com/tools/roi-calculator`;
-                              window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
-                            }}
-                            className="bg-[#1877F2] hover:bg-[#1565C0] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
-                            data-testid="button-share-facebook"
-                          >
-                            <FaFacebook className="w-4 h-4 mr-2" />
-                            Facebook
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours:`;
-                              const url = `https://dapsiwow.com/tools/roi-calculator`;
-                              window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-                            }}
-                            className="bg-[#1DA1F2] hover:bg-[#1A91DA] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
-                            data-testid="button-share-twitter"
-                          >
-                            <FaTwitter className="w-4 h-4 mr-2" />
-                            Twitter
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              const text = `ROI Results: ${formatPercentage(result.roi)} return, ${formatCurrency(result.totalGain)} total gain. Calculate yours at`;
-                              const url = `https://dapsiwow.com/tools/roi-calculator`;
-                              window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
-                            }}
-                            className="bg-[#0077B5] hover:bg-[#006399] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
-                            data-testid="button-share-linkedin"
-                          >
-                            <FaLinkedin className="w-4 h-4 mr-2" />
-                            LinkedIn
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours: https://dapsiwow.com/tools/roi-calculator`;
-                              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-                            }}
-                            className="bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
-                            data-testid="button-share-whatsapp"
-                          >
-                            <FaWhatsapp className="w-4 h-4 mr-2" />
-                            WhatsApp
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              if (navigator.share) {
-                                navigator.share({
-                                  title: 'ROI Calculator Results',
-                                  text: `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain!`,
-                                  url: 'https://dapsiwow.com/tools/roi-calculator'
-                                }).catch(() => {});
-                              }
-                            }}
-                            variant="outline"
-                            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
-                            data-testid="button-share-more"
-                          >
-                            <Share2 className="w-4 h-4 mr-2" />
-                            More
-                          </Button>
                         </div>
                       </div>
                     </div>
