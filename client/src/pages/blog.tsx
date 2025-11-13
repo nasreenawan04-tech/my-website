@@ -158,7 +158,7 @@ export default function BlogPage() {
               placeholder="Search articles by title, keyword, or topic..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-10"
+              className="pl-10 pr-10 border-2 border-gray-300 dark:border-gray-600 focus:border-primary"
               data-testid="input-search-blog"
             />
             {searchQuery && (
