@@ -54,12 +54,28 @@ export default function BlogPost() {
     }
   };
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    toast({
-      title: "Link copied",
-      description: "Post URL copied to clipboard",
-    });
+  const copyToClipboard = async (text: string) => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+        toast({
+          title: "Link copied",
+          description: "Post URL copied to clipboard",
+        });
+      } else {
+        toast({
+          title: "Unable to copy",
+          description: "Please copy the URL manually: " + text,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Copy failed",
+        description: "Please copy the URL manually: " + text,
+        variant: "destructive",
+      });
+    }
   };
 
   return (

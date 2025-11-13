@@ -16,7 +16,7 @@ export default function BlogPage() {
     ? blogPosts.filter(post => post.category === selectedCategory)
     : blogPosts;
 
-  const featuredPost = blogPosts[0];
+  const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -74,61 +74,63 @@ export default function BlogPage() {
       </div>
 
       {/* Featured Post */}
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 mb-12 sm:mb-16">
-        <Card className="overflow-hidden hover-elevate active-elevate-2 transition-colors">
-          <Link href={`/blog/${featuredPost.slug}`}>
-            <div className="grid md:grid-cols-2 gap-0">
-              <div className="relative h-64 md:h-auto">
-                <img
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="w-full h-full object-cover"
-                  data-testid="img-featured-post"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary text-primary-foreground" data-testid="badge-featured">
-                    <TrendingUp className="w-3 h-3 mr-1" />
-                    Featured
+      {featuredPost && (
+        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 mb-12 sm:mb-16">
+          <Card className="overflow-hidden hover-elevate active-elevate-2 transition-colors">
+            <Link href={`/blog/${featuredPost.slug}`}>
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative h-64 md:h-auto">
+                  <img
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    className="w-full h-full object-cover"
+                    data-testid="img-featured-post"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-primary text-primary-foreground" data-testid="badge-featured">
+                      <TrendingUp className="w-3 h-3 mr-1" />
+                      Featured
+                    </Badge>
+                  </div>
+                </div>
+                
+                <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+                  <Badge variant="secondary" className="w-fit mb-4" data-testid={`badge-category-featured`}>
+                    {featuredPost.category}
                   </Badge>
+                  
+                  <h2 
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 line-clamp-2" 
+                    data-testid="title-featured-post"
+                  >
+                    {featuredPost.title}
+                  </h2>
+                  
+                  <p 
+                    className="text-muted-foreground text-base sm:text-lg mb-6 line-clamp-3" 
+                    data-testid="excerpt-featured-post"
+                  >
+                    {featuredPost.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                    <time dateTime={featuredPost.dateISO} data-testid="date-featured-post">
+                      {featuredPost.date}
+                    </time>
+                    <span>•</span>
+                    <span data-testid="readtime-featured-post">5 min read</span>
+                  </div>
+                  
+                  <span className="inline-flex items-center gap-2 text-primary font-medium group">
+                    Read Article
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </span>
                 </div>
               </div>
-              
-              <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                <Badge variant="secondary" className="w-fit mb-4" data-testid={`badge-category-featured`}>
-                  {featuredPost.category}
-                </Badge>
-                
-                <h2 
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 line-clamp-2" 
-                  data-testid="title-featured-post"
-                >
-                  {featuredPost.title}
-                </h2>
-                
-                <p 
-                  className="text-muted-foreground text-base sm:text-lg mb-6 line-clamp-3" 
-                  data-testid="excerpt-featured-post"
-                >
-                  {featuredPost.excerpt}
-                </p>
-                
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                  <time dateTime={featuredPost.dateISO} data-testid="date-featured-post">
-                    {featuredPost.date}
-                  </time>
-                  <span>•</span>
-                  <span data-testid="readtime-featured-post">5 min read</span>
-                </div>
-                
-                <Button variant="default" className="w-fit group" data-testid="button-read-featured">
-                  Read Article
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </div>
-            </div>
-          </Link>
-        </Card>
-      </div>
+            </Link>
+          </Card>
+        </div>
+      )}
 
       {/* Category Filter */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
