@@ -773,24 +773,88 @@ export default function LoanCalculator() {
           });
           
           if (tableCanvas && tableCanvas.height > 0) {
+            const bottomMargin = 30;
+            const tableWidth = pageWidth - (2 * margin);
+            const scaledHeight = (tableCanvas.height * tableWidth) / tableCanvas.width;
+            
+            // Helper function to add header
+            const addComparisonHeader = (continued: boolean = false) => {
+              doc.setFontSize(14);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              const headerText = continued 
+                ? 'LOAN SCENARIO COMPARISON - CONTINUED'
+                : 'LOAN SCENARIO COMPARISON';
+              doc.text(headerText, margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              const lineWidth = continued ? 90 : 70;
+              doc.line(margin, yPos, margin + lineWidth, yPos);
+              yPos += 10;
+              doc.setTextColor(0, 0, 0);
+            };
+
+            // Start first page
             doc.addPage();
             yPos = margin;
+            addComparisonHeader(false);
 
-            doc.setFontSize(14);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor(30, 58, 138);
-            doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
-            yPos += 2;
-            doc.setDrawColor(37, 99, 235);
-            doc.line(margin, yPos, margin + 70, yPos);
-            yPos += 10;
-            doc.setTextColor(0, 0, 0);
-
-            const tableImgData = tableCanvas.toDataURL('image/png');
-            const tableWidth = pageWidth - (2 * margin);
-            const tableHeight = Math.min((tableCanvas.height * tableWidth) / tableCanvas.width, pageHeight - yPos - 30);
-
-            doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
+            // Calculate available height per page
+            const availableHeightFirstPage = pageHeight - yPos - bottomMargin;
+            
+            // If it fits on one page, use simple approach
+            if (scaledHeight <= availableHeightFirstPage) {
+              const tableImgData = tableCanvas.toDataURL('image/png');
+              doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, scaledHeight);
+            } else {
+              // Split across two pages
+              const scale = tableWidth / tableCanvas.width;
+              const sourceHeightFirstPage = availableHeightFirstPage / scale;
+              const sourceHeightSecondPage = tableCanvas.height - sourceHeightFirstPage;
+              
+              // Create off-screen canvas for first page slice
+              const firstPageCanvas = document.createElement('canvas');
+              firstPageCanvas.width = tableCanvas.width;
+              firstPageCanvas.height = sourceHeightFirstPage;
+              const firstPageCtx = firstPageCanvas.getContext('2d');
+              
+              if (firstPageCtx) {
+                // Draw first slice
+                firstPageCtx.drawImage(
+                  tableCanvas,
+                  0, 0, tableCanvas.width, sourceHeightFirstPage,
+                  0, 0, tableCanvas.width, sourceHeightFirstPage
+                );
+                const firstPageImgData = firstPageCanvas.toDataURL('image/png');
+                doc.addImage(firstPageImgData, 'PNG', margin, yPos, tableWidth, availableHeightFirstPage);
+              }
+              
+              // Add second page
+              doc.addPage();
+              yPos = margin;
+              addComparisonHeader(true);
+              
+              // Calculate available height for second page
+              const availableHeightSecondPage = pageHeight - yPos - bottomMargin;
+              const scaledHeightSecondPage = sourceHeightSecondPage * scale;
+              
+              // Create off-screen canvas for second page slice
+              const secondPageCanvas = document.createElement('canvas');
+              secondPageCanvas.width = tableCanvas.width;
+              secondPageCanvas.height = sourceHeightSecondPage;
+              const secondPageCtx = secondPageCanvas.getContext('2d');
+              
+              if (secondPageCtx) {
+                // Draw second slice
+                secondPageCtx.drawImage(
+                  tableCanvas,
+                  0, sourceHeightFirstPage, tableCanvas.width, sourceHeightSecondPage,
+                  0, 0, tableCanvas.width, sourceHeightSecondPage
+                );
+                const secondPageImgData = secondPageCanvas.toDataURL('image/png');
+                doc.addImage(secondPageImgData, 'PNG', margin, yPos, tableWidth, Math.min(scaledHeightSecondPage, availableHeightSecondPage));
+              }
+            }
           }
         } catch (error) {
           console.error('Error capturing comparison table:', error);

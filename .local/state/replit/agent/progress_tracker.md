@@ -452,3 +452,12 @@
 [x] 414. Verify no LSP errors after implementing canvas-splitting logic
 [x] 415. Restart workflow and verify application running successfully with hot module replacement
 [x] 416. Complete Amortization Schedule two-page split implementation - production-ready ✓
+[x] 417. Implement canvas-splitting approach to split Loan Comparison across two pages in Loan Calculator PDF export (November 13, 2025)
+[x] 418. Add helper function addComparisonHeader with "CONTINUED" support for second page header
+[x] 419. Implement intelligent page detection - if comparison table fits on one page, use simple single-image approach
+[x] 420. Create off-screen canvas slicing for first page portion of comparison table (availableHeightFirstPage / scale)
+[x] 421. Create off-screen canvas slicing for second page portion with remaining source height
+[x] 422. Use drawImage to extract page-sized slices from full comparison canvas without quality loss
+[x] 423. Verify no LSP errors after implementing canvas-splitting logic for Loan Comparison
+[x] 424. Restart workflow and verify application running successfully with hot module replacement
+[x] 425. Complete Loan Comparison two-page split implementation - production-ready ✓
