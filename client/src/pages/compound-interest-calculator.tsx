@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ToolBreadcrumbs from '@/components/ToolBreadcrumbs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -1217,7 +1216,6 @@ export default function CompoundInterestCalculator() {
       </Helmet>
 
       <Header />
-      <ToolBreadcrumbs currentLabel="Compound Interest Calculator" />
 
       <main>
         {/* Hero Section */}
