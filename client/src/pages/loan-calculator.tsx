@@ -91,6 +91,7 @@ export default function LoanCalculator() {
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
+  const amortizationRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -785,6 +786,37 @@ export default function LoanCalculator() {
           doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
         } catch (error) {
           console.error('Error capturing comparison table:', error);
+        }
+      }
+
+      // Capture amortization schedule if visible
+      if (showAmortization && amortizationRef.current) {
+        try {
+          doc.addPage();
+          yPos = margin;
+
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 90, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+
+          const amortizationCanvas = await html2canvas(amortizationRef.current, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          const amortizationImgData = amortizationCanvas.toDataURL('image/png');
+          const amortizationWidth = pageWidth - (2 * margin);
+          const amortizationHeight = Math.min((amortizationCanvas.height * amortizationWidth) / amortizationCanvas.width, pageHeight - yPos - 30);
+
+          doc.addImage(amortizationImgData, 'PNG', margin, yPos, amortizationWidth, amortizationHeight);
+        } catch (error) {
+          console.error('Error capturing amortization schedule:', error);
         }
       }
 
@@ -1954,7 +1986,7 @@ export default function LoanCalculator() {
                       </Button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                    <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={amortizationRef}>
                       <table className="w-full min-w-[600px]" data-testid="amortization-table">
                         <thead className="bg-gray-50">
                           <tr>
