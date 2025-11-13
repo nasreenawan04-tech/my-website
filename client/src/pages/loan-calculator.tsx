@@ -2129,134 +2129,140 @@ export default function LoanCalculator() {
             </CardContent>
           </Card>
 
-          {result && showAmortization && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3
-                    className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
-                    onClick={() => setShowAmortization(false)}
-                    title="Click to hide schedule"
-                  >
-                    Amortization Schedule (First 5 Years)
-                  </h3>
-                  <Button
-                    onClick={handleDownloadAmortizationPDF}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
-                    data-testid="button-export-amortization-pdf"
-                  >
-                    <Download className="w-4 h-4" />
-                    Export PDF
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                <div
-                  ref={tableScrollRef}
-                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                  onMouseDown={handleMouseDown}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseUp={handleMouseUp}
-                  onMouseMove={handleMouseMove}
-                >
-                  <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {result.amortizationSchedule.map((payment, index) => (
-                        <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(payment.payment)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(payment.principal)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
-                            {formatCurrency(payment.interest)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
-                            {formatCurrency(payment.balance)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          )}
+          {((showComparison && comparisonLoans.length > 0) || (result && showAmortization)) && (
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl overflow-hidden">
+              <CardContent className="p-0">
+                <div className="flex flex-col">
+                  {/* Loan Comparison Section */}
+                  {showComparison && comparisonLoans.length > 0 && (
+                    <div className="p-4 sm:p-6 lg:p-8">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Loan Comparison</h3>
+                        <Button
+                          onClick={handleDownloadComparisonPDF}
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                          data-testid="button-export-comparison-pdf"
+                        >
+                          <Download className="w-4 h-4" />
+                          Export PDF
+                        </Button>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
+                      <div className="overflow-x-auto -mx-4 sm:mx-0">
+                        <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                          <thead>
+                            <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Loan</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Amount</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Term</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly Payment</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Interest</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-100">
+                            {comparisonLoans.map((loan, index) => (
+                              <tr key={index} className="hover:bg-blue-50 transition-colors">
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{loan.name}</td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                                  {formatCurrency(loan.amount)}
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                                  {loan.rate}%
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                                  {loan.term} {loan.termUnit}
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
+                                  {formatCurrency(loan.monthlyPayment)}
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
+                                  {formatCurrency(loan.totalInterest)}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="mt-4 sm:mt-6">
+                        <Button
+                          onClick={() => setComparisonLoans([])}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        >
+                          Clear Comparison
+                        </Button>
+                      </div>
+                    </div>
+                  )}
 
-          {showComparison && comparisonLoans.length > 0 && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Loan Comparison</h3>
-                  <Button
-                    onClick={handleDownloadComparisonPDF}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
-                    data-testid="button-export-comparison-pdf"
-                  >
-                    <Download className="w-4 h-4" />
-                    Export PDF
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[600px]" data-testid="comparison-table">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Loan</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Amount</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Term</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly Payment</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Interest</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {comparisonLoans.map((loan, index) => (
-                        <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{loan.name}</td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(loan.amount)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {loan.rate}%
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {loan.term} {loan.termUnit}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(loan.monthlyPayment)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(loan.totalInterest)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="mt-4 sm:mt-6">
-                  <Button
-                    onClick={() => setComparisonLoans([])}
-                    variant="outline"
-                    size="sm"
-                    className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                  >
-                    Clear Comparison
-                  </Button>
+                  {/* Amortization Schedule Section with gradient bridge */}
+                  {result && showAmortization && (
+                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 lg:p-8 border-t">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <h3
+                          className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
+                          onClick={() => setShowAmortization(false)}
+                          title="Click to hide schedule"
+                        >
+                          Amortization Schedule (First 5 Years)
+                        </h3>
+                        <Button
+                          onClick={handleDownloadAmortizationPDF}
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                          data-testid="button-export-amortization-pdf"
+                        >
+                          <Download className="w-4 h-4" />
+                          Export PDF
+                        </Button>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
+                      <div
+                        ref={tableScrollRef}
+                        className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                        onMouseDown={handleMouseDown}
+                        onMouseLeave={handleMouseLeave}
+                        onMouseUp={handleMouseUp}
+                        onMouseMove={handleMouseMove}
+                      >
+                        <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
+                          <thead>
+                            <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
+                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-100">
+                            {result.amortizationSchedule.map((payment, index) => (
+                              <tr key={index} className="hover:bg-blue-50 transition-colors">
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                                  {formatCurrency(payment.payment)}
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
+                                  {formatCurrency(payment.principal)}
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
+                                  {formatCurrency(payment.interest)}
+                                </td>
+                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
+                                  {formatCurrency(payment.balance)}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
