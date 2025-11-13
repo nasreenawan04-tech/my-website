@@ -67,7 +67,7 @@ export function BlogCard({ post }: BlogCardProps) {
         </CardContent>
         
         <CardFooter className="pt-0 pb-4 sm:pb-5 lg:pb-6 px-4 sm:px-5 lg:px-6">
-          <span className="text-primary font-semibold inline-flex items-center gap-2 group-hover:gap-3 transition-all text-sm sm:text-base" data-testid={`link-read-more-${post.id}`}>
+          <span className="text-primary font-semibold inline-flex items-center gap-2 transition-colors text-sm sm:text-base" data-testid={`link-read-more-${post.id}`}>
             Read More
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </span>
