@@ -430,3 +430,12 @@
 [x] 392. Verify chart capture (lines 728-759) uses same scale, background color, and error handling as ROI Calculator
 [x] 393. Confirm color palette and spacing align with ROI Calculator standards (blue header, slate text, color-coded metrics)
 [x] 394. Architect pass: "No functional discrepancies found" - Loan Calculator PDF export already matches ROI Calculator perfectly ✓
+[x] 395. Remove Export PDF buttons from Loan Calculator Amortization Schedule and Loan Comparison sections (November 13, 2025)
+[x] 396. Remove Export PDF button from Loan Comparison section header - simplified flex container to clean div with heading
+[x] 397. Remove Export PDF button from Amortization Schedule section header - preserved clickable heading functionality
+[x] 398. Remove unused handleDownloadAmortizationPDF function (~135 lines) to eliminate dead code
+[x] 399. Remove unused handleDownloadComparisonPDF function (~170 lines) to reduce bundle size
+[x] 400. Verify no LSP errors after removing PDF export functions and buttons
+[x] 401. Restart workflow and verify application running successfully with hot module replacement
+[x] 402. Architect pass: "Loan calculator amortization and comparison PDF exports were removed cleanly without impacting the primary report download" - No orphaned imports, TypeScript errors, or broken references
+[x] 403. Complete removal of Export PDF buttons from Amortization Schedule and Loan Comparison sections - production-ready ✓
