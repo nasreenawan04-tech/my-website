@@ -729,7 +729,7 @@ export default function LoanCalculator() {
         try {
           // Capture first, then add page only if successful
           const chartCanvas = await html2canvas(chartRef.current, {
-            scale: 2,
+            scale: 1.5,
             backgroundColor: '#ffffff',
             logging: false
           });
@@ -750,11 +750,11 @@ export default function LoanCalculator() {
             yPos += 10;
             doc.setTextColor(0, 0, 0);
 
-            const chartImgData = chartCanvas.toDataURL('image/png');
+            const chartImgData = chartCanvas.toDataURL('image/jpeg', 0.85);
             const chartWidth = pageWidth - (2 * margin);
             const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
 
-            doc.addImage(chartImgData, 'PNG', margin, yPos, chartWidth, chartHeight);
+            doc.addImage(chartImgData, 'JPEG', margin, yPos, chartWidth, chartHeight);
             yPos += chartHeight + 10;
           }
         } catch (error) {
@@ -767,7 +767,7 @@ export default function LoanCalculator() {
         try {
           // Capture first, then add page only if successful
           const tableCanvas = await html2canvas(comparisonRef.current, {
-            scale: 2,
+            scale: 1.5,
             backgroundColor: '#ffffff',
             logging: false
           });
@@ -824,9 +824,9 @@ export default function LoanCalculator() {
                   0, sourceYOffset, tableCanvas.width, sourceHeightForPage,
                   0, 0, tableCanvas.width, sourceHeightForPage
                 );
-                const pageImgData = pageCanvas.toDataURL('image/png');
+                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
                 const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'PNG', margin, yPos, tableWidth, renderedHeight);
+                doc.addImage(pageImgData, 'JPEG', margin, yPos, tableWidth, renderedHeight);
                 
                 // Move to next slice
                 sourceYOffset += sourceHeightForPage;
@@ -853,7 +853,7 @@ export default function LoanCalculator() {
         try {
           // Capture first, then add page only if successful
           const amortizationCanvas = await html2canvas(amortizationRef.current, {
-            scale: 2,
+            scale: 1.5,
             backgroundColor: '#ffffff',
             logging: false
           });
@@ -910,9 +910,9 @@ export default function LoanCalculator() {
                   0, sourceYOffset, amortizationCanvas.width, sourceHeightForPage,
                   0, 0, amortizationCanvas.width, sourceHeightForPage
                 );
-                const pageImgData = pageCanvas.toDataURL('image/png');
+                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
                 const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'PNG', margin, yPos, amortizationWidth, renderedHeight);
+                doc.addImage(pageImgData, 'JPEG', margin, yPos, amortizationWidth, renderedHeight);
                 
                 // Move to next slice
                 sourceYOffset += sourceHeightForPage;
