@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Slider } from '@/components/ui/slider';
-import { Info, Calculator, Home, DollarSign, TrendingDown, Download, Share2, PieChart, Clock } from 'lucide-react';
+import { Info, Calculator, Home, DollarSign, TrendingDown, Download, Share2, PieChart, Clock, RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
@@ -2363,67 +2363,58 @@ const MortgageCalculator = () => {
           )}
 
           {showComparison && comparisonMortgages.length > 0 && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Mortgage Comparison</h3>
-                  <Button
-                    onClick={() => setComparisonMortgages([])}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
-                    data-testid="button-clear-comparison"
-                  >
-                    Clear Comparison
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">Compare different mortgage scenarios side-by-side to find the best option.</p>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[800px]" data-testid="comparison-table">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Scenario</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Home Price</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Down Payment</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Loan Amount</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Term</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly Payment</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Interest</th>
+            <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t mt-6 sm:mt-8">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
+                  Mortgage Comparison
+                </h3>
+                <Button
+                  onClick={() => setComparisonMortgages([])}
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                  data-testid="button-clear-comparison"
+                >
+                  <RotateCcw className="w-4 h-4 mr-1.5" />
+                  Clear All
+                </Button>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">Compare different mortgage scenarios side-by-side.</p>
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Scenario</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Home Price</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Down Payment</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan Amount</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Term</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly Payment</th>
+                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    {comparisonMortgages.map((mortgage, index) => (
+                      <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
+                        <td className="px-4 py-3 text-sm text-gray-900 font-medium">{mortgage.name}</td>
+                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.homePrice)}</td>
+                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.downPayment)}</td>
+                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.loanAmount)}</td>
+                        <td className="px-4 py-3 text-sm text-right text-gray-900">{mortgage.rate}%</td>
+                        <td className="px-4 py-3 text-sm text-right text-gray-900">{mortgage.term} years</td>
+                        <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">
+                          {formatCurrency(mortgage.monthlyPayment)}
+                        </td>
+                        <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">
+                          {formatCurrency(mortgage.totalInterest)}
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {comparisonMortgages.map((mortgage, index) => (
-                        <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{mortgage.name}</td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(mortgage.homePrice)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(mortgage.downPayment)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(mortgage.loanAmount)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {mortgage.rate}%
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {mortgage.term} years
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(mortgage.monthlyPayment)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(mortgage.totalInterest)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
 
           {/* SEO Content Sections */}
