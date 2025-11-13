@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ToolBreadcrumbs from '@/components/ToolBreadcrumbs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -1256,6 +1257,7 @@ export default function SimpleInterestCalculator() {
       </Helmet>
       
       <Header />
+      <ToolBreadcrumbs currentLabel="Simple Interest Calculator" />
       
       <main>
         {/* Hero Section */}
