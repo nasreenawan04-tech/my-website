@@ -400,3 +400,5 @@
 [x] 362. Restart workflow and verify ROI Calculator page loads without errors
 [x] 363. Take screenshot to confirm ROI Calculator displays correctly with hero, forms, and content
 [x] 364. Complete all ROI Calculator error fixes - page fully functional
+[x] 365. Remove breadcrumb navigation from ROI Calculator (Home > Finance Tools > ROI Calculator)
+[x] 366. Verify breadcrumb removal with screenshot - page now goes directly from header to hero section

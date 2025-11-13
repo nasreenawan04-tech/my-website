@@ -633,23 +633,6 @@ export default function ROICalculator() {
 
       <Header />
 
-      {/* Breadcrumb Navigation */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav className="flex items-center space-x-2 text-sm">
-            <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <Link href="/finance-tools" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">
-              Finance Tools
-            </Link>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <span className="text-gray-600 font-medium">ROI Calculator</span>
-          </nav>
-        </div>
-      </div>
-
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
