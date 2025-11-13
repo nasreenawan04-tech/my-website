@@ -60,6 +60,7 @@
     "firebase": "^12.4.0",
     "framer-motion": "^11.13.1",
     "fuse.js": "^7.1.0",
+    "html2canvas": "^1.4.1",
     "input-otp": "^1.4.2",
     "jspdf": "^3.0.3",
     "jsqr": "^1.4.0",

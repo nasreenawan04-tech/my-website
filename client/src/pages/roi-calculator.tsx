@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, LineChart, Line } from 'recharts';
 import { RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import ShareResultsButton from '@/components/ShareResultsButton';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
@@ -31,7 +32,21 @@ interface ROIResult {
   breakEvenTime: number;
 }
 
+interface ROIComparison {
+  label: string;
+  calculationType: string;
+  roi: number;
+  totalGain: number;
+  totalReturn: number;
+  initialInvestment: number;
+  annualizedROI: number;
+  timePeriod: string;
+}
+
 export default function ROICalculator() {
+  const { toast } = useToast();
+  const { user } = useAuth();
+  
   const [calculationType, setCalculationType] = useState('basic');
 
   // Basic ROI
@@ -54,6 +69,15 @@ export default function ROICalculator() {
 
   const [currency, setCurrency] = useState('USD');
   const [result, setResult] = useState<ROIResult | null>(null);
+  
+  // Toggle states for showing different sections
+  const [showChart, setShowChart] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonEntries, setComparisonEntries] = useState<ROIComparison[]>([]);
+  
+  // Refs for PDF export
+  const chartRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
 
   const currencies = [
     { code: 'USD', name: 'US Dollar' },
@@ -236,6 +260,62 @@ export default function ROICalculator() {
     setProjectDuration('3');
     setCurrency('USD');
     setResult(null);
+    setShowChart(false);
+    setShowComparison(false);
+    setComparisonEntries([]);
+    setErrors({});
+  };
+
+  const addToComparison = () => {
+    if (!result) {
+      toast({
+        title: "No Result",
+        description: "Please calculate ROI first before adding to comparison.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Create label based on calculation type
+    let label = '';
+    let timePeriodStr = '';
+    
+    if (calculationType === 'basic') {
+      label = `Basic ROI - ${currency}${formatNumber(parseFloat(initialInvestment))}`;
+      timePeriodStr = `${timePeriod} ${timeUnit}`;
+    } else if (calculationType === 'investment') {
+      label = `Investment - ${currency}${formatNumber(parseFloat(investmentAmount))} + ${currency}${formatNumber(parseFloat(monthlyContribution))}/mo`;
+      timePeriodStr = `${investmentYears} years`;
+    } else {
+      label = `Business - ${currency}${formatNumber(parseFloat(projectCost))}`;
+      timePeriodStr = `${projectDuration} years`;
+    }
+
+    const newEntry: ROIComparison = {
+      label,
+      calculationType,
+      roi: result.roi,
+      totalGain: result.totalGain,
+      totalReturn: result.totalReturn,
+      initialInvestment: result.initialInvestment,
+      annualizedROI: result.annualizedROI,
+      timePeriod: timePeriodStr,
+    };
+
+    setComparisonEntries([...comparisonEntries, newEntry]);
+    setShowComparison(true);
+
+    toast({
+      title: "Added to Comparison",
+      description: `${label} has been added to comparison table.`,
+    });
+  };
+
+  const formatNumber = (num: number): string => {
+    return new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(num);
   };
 
   const formatCurrency = (amount: number) => {
@@ -269,6 +349,126 @@ export default function ROICalculator() {
 
   const formatPercentage = (percentage: number) => {
     return `${percentage >= 0 ? '+' : ''}${percentage.toFixed(2)}%`;
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!result) return;
+
+    try {
+      const doc = new jsPDF();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 20;
+      let yPos = 20;
+
+      // Title
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text('ROI Calculator Results', pageWidth / 2, yPos, { align: 'center' });
+      yPos += 15;
+
+      // Calculation type and currency
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'normal');
+      const typeLabel = calculationType === 'basic' ? 'Basic ROI' : calculationType === 'investment' ? 'Investment ROI' : 'Business ROI';
+      doc.text(`Calculation Type: ${typeLabel}`, margin, yPos);
+      yPos += 8;
+      doc.text(`Currency: ${currency}`, margin, yPos);
+      yPos += 12;
+
+      // Key Results
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('Key Results:', margin, yPos);
+      yPos += 10;
+
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`ROI: ${formatPercentage(result.roi)}`, margin, yPos);
+      yPos += 7;
+      doc.text(`Annualized ROI: ${formatPercentage(result.annualizedROI)}`, margin, yPos);
+      yPos += 7;
+      doc.text(`Initial Investment: ${formatCurrency(result.initialInvestment)}`, margin, yPos);
+      yPos += 7;
+      doc.text(`Final Value: ${formatCurrency(result.finalValue)}`, margin, yPos);
+      yPos += 7;
+      doc.text(`Total Gain: ${formatCurrency(result.totalGain)}`, margin, yPos);
+      yPos += 7;
+      doc.text(`Total Return: ${formatCurrency(result.totalReturn)}`, margin, yPos);
+      yPos += 15;
+
+      // Capture charts if visible
+      if (showChart && chartRef.current) {
+        try {
+          doc.addPage();
+          yPos = 20;
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.text('ROI Breakdown Charts:', margin, yPos);
+          yPos += 10;
+
+          const chartCanvas = await html2canvas(chartRef.current, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          const chartImgData = chartCanvas.toDataURL('image/png');
+          const chartWidth = pageWidth - (2 * margin);
+          const chartHeight = (chartCanvas.height * chartWidth) / chartCanvas.width;
+
+          doc.addImage(chartImgData, 'PNG', margin, yPos, chartWidth, chartHeight);
+        } catch (error) {
+          console.error('Error capturing charts:', error);
+        }
+      }
+
+      // Capture comparison table if exists
+      if (comparisonEntries.length > 0 && comparisonRef.current) {
+        try {
+          doc.addPage();
+          yPos = 20;
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.text('Comparison Table:', margin, yPos);
+          yPos += 10;
+
+          const tableCanvas = await html2canvas(comparisonRef.current, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          const tableImgData = tableCanvas.toDataURL('image/png');
+          const tableWidth = pageWidth - (2 * margin);
+          const tableHeight = (tableCanvas.height * tableWidth) / tableCanvas.width;
+
+          doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
+        } catch (error) {
+          console.error('Error capturing comparison table:', error);
+        }
+      }
+
+      // Footer on last page
+      const totalPages = (doc as any).internal.getNumberOfPages();
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+        doc.setFontSize(9);
+        doc.text(`Generated by DapsiWow ROI Calculator - ${new Date().toLocaleDateString()}`, pageWidth / 2, pageHeight - 10, { align: 'center' });
+      }
+
+      doc.save('roi-calculator-results.pdf');
+
+      toast({
+        title: "PDF Downloaded",
+        description: "Your ROI results with charts and comparison have been saved as a PDF.",
+      });
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast({
+        title: "PDF Generation Failed",
+        description: "There was an error generating the PDF. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -996,6 +1196,122 @@ export default function ROICalculator() {
                           </div>
                         </div>
                       </div>
+
+                      {/* Toggle Buttons */}
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 print:hidden">
+                        <Button
+                          onClick={() => setShowChart(!showChart)}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-show-chart"
+                          aria-expanded={showChart}
+                          aria-label={showChart ? 'Hide breakdown chart' : 'Show breakdown chart'}
+                        >
+                          {showChart ? 'Hide' : 'Show'} Breakdown Chart
+                        </Button>
+                        <Button
+                          onClick={() => setShowComparison(!showComparison)}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-show-comparison"
+                          aria-expanded={showComparison}
+                          aria-label={showComparison ? 'Hide comparison table' : 'Show comparison table'}
+                        >
+                          {showComparison ? 'Hide' : 'Show'} Comparison
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-add-comparison"
+                        >
+                          Add to Comparison
+                        </Button>
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1.5" />
+                          Export PDF
+                        </Button>
+                      </div>
+
+                      {/* Social Share Section */}
+                      <div className="border-t pt-3 sm:pt-4">
+                        <h4 className="text-sm font-medium text-gray-700 mb-3 text-center">Share your results:</h4>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                          <Button
+                            onClick={() => {
+                              const text = `Check out my ROI results: ${formatPercentage(result.roi)} return with ${formatCurrency(result.totalGain)} total gain! Calculate yours at`;
+                              const url = `https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
+                            }}
+                            className="bg-[#1877F2] hover:bg-[#1565C0] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-facebook"
+                          >
+                            <FaFacebook className="w-4 h-4 mr-2" />
+                            Facebook
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours:`;
+                              const url = `https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                            }}
+                            className="bg-[#1DA1F2] hover:bg-[#1A91DA] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-twitter"
+                          >
+                            <FaTwitter className="w-4 h-4 mr-2" />
+                            Twitter
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              const text = `ROI Results: ${formatPercentage(result.roi)} return, ${formatCurrency(result.totalGain)} total gain. Calculate yours at`;
+                              const url = `https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+                            }}
+                            className="bg-[#0077B5] hover:bg-[#006399] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-linkedin"
+                          >
+                            <FaLinkedin className="w-4 h-4 mr-2" />
+                            LinkedIn
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours: https://dapsiwow.com/tools/roi-calculator`;
+                              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                            }}
+                            className="bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-whatsapp"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-2" />
+                            WhatsApp
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              if (navigator.share) {
+                                navigator.share({
+                                  title: 'ROI Calculator Results',
+                                  text: `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain!`,
+                                  url: 'https://dapsiwow.com/tools/roi-calculator'
+                                }).catch(() => {});
+                              }
+                            }}
+                            variant="outline"
+                            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            data-testid="button-share-more"
+                          >
+                            <Share2 className="w-4 h-4 mr-2" />
+                            More
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
@@ -1010,6 +1326,130 @@ export default function ROICalculator() {
             </CardContent>
           </Card>
         </div>
+
+        {/* ROI Breakdown Chart */}
+        {result && showChart && (
+          <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-6 sm:mt-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6" data-testid="heading-breakdown-chart">
+                  ROI Breakdown
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6" ref={chartRef}>
+                  {/* Donut Chart - Investment vs Gain */}
+                  <div className="bg-white rounded-lg p-4 border border-gray-100">
+                    <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Investment vs Gain</h4>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <RechartsPieChart>
+                        <Pie
+                          data={[
+                            { name: 'Initial Investment', value: Math.abs(result.initialInvestment), color: '#3B82F6' },
+                            { name: result.totalGain >= 0 ? 'Total Gain' : 'Total Loss', value: Math.abs(result.totalGain), color: result.totalGain >= 0 ? '#10B981' : '#EF4444' }
+                          ]}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={90}
+                          paddingAngle={2}
+                          dataKey="value"
+                          label={(entry) => `${entry.name}: ${formatCurrency(entry.value)}`}
+                        >
+                          {[
+                            { name: 'Initial Investment', value: Math.abs(result.initialInvestment), color: '#3B82F6' },
+                            { name: result.totalGain >= 0 ? 'Total Gain' : 'Total Loss', value: Math.abs(result.totalGain), color: result.totalGain >= 0 ? '#10B981' : '#EF4444' }
+                          ].map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                        <Legend />
+                      </RechartsPieChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  {/* Bar Chart - ROI Comparison */}
+                  <div className="bg-white rounded-lg p-4 border border-gray-100">
+                    <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">ROI Metrics</h4>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart
+                        data={[
+                          { name: 'ROI %', value: result.roi },
+                          { name: 'Annualized %', value: result.annualizedROI }
+                        ]}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <RechartsTooltip formatter={(value: number) => `${value.toFixed(2)}%`} />
+                        <Bar dataKey="value" fill={result.roi >= 0 ? '#10B981' : '#EF4444'} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Comparison Table */}
+        {showComparison && comparisonEntries.length > 0 && (
+          <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-6 sm:mt-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900" data-testid="heading-comparison-table">
+                    ROI Comparison
+                  </h3>
+                  <Button
+                    onClick={() => setComparisonEntries([])}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                    data-testid="button-clear-comparison"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-1.5" />
+                    Clear All
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">Compare different ROI scenarios side-by-side.</p>
+                <div className="overflow-x-auto -mx-4 sm:mx-0" ref={comparisonRef}>
+                  <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Scenario</th>
+                        <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Type</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">ROI %</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Annualized %</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Initial Investment</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Gain</th>
+                        <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Period</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {comparisonEntries.map((entry, index) => (
+                        <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
+                          <td className="px-4 py-3 text-sm text-gray-900 font-medium">{entry.label}</td>
+                          <td className="px-4 py-3 text-sm text-gray-600 capitalize">{entry.calculationType}</td>
+                          <td className={`px-4 py-3 text-sm text-right font-semibold ${entry.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {formatPercentage(entry.roi)}
+                          </td>
+                          <td className={`px-4 py-3 text-sm text-right font-semibold ${entry.annualizedROI >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {formatPercentage(entry.annualizedROI)}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(entry.initialInvestment)}</td>
+                          <td className={`px-4 py-3 text-sm text-right font-semibold ${entry.totalGain >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {entry.totalGain >= 0 ? '+' : ''}{formatCurrency(entry.totalGain)}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-right text-gray-600">{entry.timePeriod}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* SEO Content Sections */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 space-y-12 sm:space-y-16">
