@@ -1942,53 +1942,44 @@ export default function LoanCalculator() {
                     </div>
                   )}
 
-                  {/* Amortization Schedule Section with gradient bridge */}
+                  {/* Amortization Schedule Section */}
                   {result && showAmortization && (
-                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 lg:p-8 border-t">
-                      <div className="mb-4 sm:mb-6">
-                        <h3
-                          className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
-                          onClick={() => setShowAmortization(false)}
-                          title="Click to hide schedule"
-                        >
+                    <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
                           Amortization Schedule (First 5 Years)
                         </h3>
+                        <Button
+                          onClick={() => setShowAmortization(false)}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                          data-testid="button-hide-amortization"
+                        >
+                          <RotateCcw className="w-4 h-4 mr-1.5" />
+                          Hide Schedule
+                        </Button>
                       </div>
                       <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                      <div
-                        ref={tableScrollRef}
-                        className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                        onMouseDown={handleMouseDown}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseUp={handleMouseUp}
-                        onMouseMove={handleMouseMove}
-                      >
-                        <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
-                          <thead>
-                            <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
-                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
-                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
-                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
-                              <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
+                      <div className="overflow-x-auto -mx-4 sm:mx-0">
+                        <table className="w-full min-w-[600px]" data-testid="amortization-table">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment #</th>
+                              <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment</th>
+                              <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Principal</th>
+                              <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Interest</th>
+                              <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Balance</th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-100">
+                          <tbody className="divide-y divide-gray-200 bg-white">
                             {result.amortizationSchedule.map((payment, index) => (
-                              <tr key={index} className="hover:bg-blue-50 transition-colors">
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                                  {formatCurrency(payment.payment)}
-                                </td>
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
-                                  {formatCurrency(payment.principal)}
-                                </td>
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
-                                  {formatCurrency(payment.interest)}
-                                </td>
-                                <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
-                                  {formatCurrency(payment.balance)}
-                                </td>
+                              <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`amortization-row-${index}`}>
+                                <td className="px-4 py-3 text-sm text-gray-900 font-medium">{payment.month}</td>
+                                <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(payment.payment)}</td>
+                                <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(payment.principal)}</td>
+                                <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(payment.interest)}</td>
+                                <td className="px-4 py-3 text-sm text-right font-semibold text-gray-900">{formatCurrency(payment.balance)}</td>
                               </tr>
                             ))}
                           </tbody>
