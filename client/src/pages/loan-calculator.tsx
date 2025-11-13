@@ -2142,10 +2142,10 @@ export default function LoanCalculator() {
                           onClick={handleDownloadComparisonPDF}
                           variant="outline"
                           size="sm"
-                          className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                          className="rounded-full text-xs sm:text-sm"
                           data-testid="button-export-comparison-pdf"
                         >
-                          <Download className="w-4 h-4" />
+                          <Download className="w-4 h-4 mr-1.5" />
                           Export PDF
                         </Button>
                       </div>
@@ -2214,10 +2214,10 @@ export default function LoanCalculator() {
                           onClick={handleDownloadAmortizationPDF}
                           variant="outline"
                           size="sm"
-                          className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                          className="rounded-full text-xs sm:text-sm"
                           data-testid="button-export-amortization-pdf"
                         >
-                          <Download className="w-4 h-4" />
+                          <Download className="w-4 h-4 mr-1.5" />
                           Export PDF
                         </Button>
                       </div>
