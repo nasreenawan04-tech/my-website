@@ -3,12 +3,18 @@ export interface BlogPost {
   title: string;
   slug: string;
   date: string;
+  dateISO: string; // ISO-8601 format for SEO
+  dateModified: string; // ISO-8601 format for schema.org
   category: string;
   image: string;
   excerpt: string;
-  content: string;
+  content: string; // NOTE: HTML content should be sanitized if sourced externally to prevent XSS
   metaDescription: string;
   keywords: string[];
+  author: {
+    name: string;
+    type: string;
+  };
 }
 
 export const blogPosts: BlogPost[] = [
@@ -17,11 +23,17 @@ export const blogPosts: BlogPost[] = [
     title: "How to Improve Your Website SEO with AI",
     slug: "how-to-improve-your-website-seo-with-ai",
     date: "Nov 13, 2025",
+    dateISO: "2025-11-13T00:00:00Z",
+    dateModified: "2025-11-13T00:00:00Z",
     category: "SEO",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
     excerpt: "AI is changing how websites get ranked — here's how to use it effectively for better search engine rankings.",
     metaDescription: "Discover how AI-powered SEO tools can optimize content, improve rankings, and drive organic traffic to your website in 2025.",
     keywords: ["AI SEO", "website optimization", "search engine ranking", "SEO tools"],
+    author: {
+      name: "DapsiWow Editorial Team",
+      type: "Organization"
+    },
     content: `
       <div class="prose prose-lg max-w-none">
         <p class="text-lg text-muted-foreground mb-6">
@@ -96,11 +108,17 @@ export const blogPosts: BlogPost[] = [
     title: "10 Essential Financial Calculators Every Business Owner Needs",
     slug: "10-essential-financial-calculators-every-business-owner-needs",
     date: "Nov 12, 2025",
+    dateISO: "2025-11-12T00:00:00Z",
+    dateModified: "2025-11-12T00:00:00Z",
     category: "Finance",
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop&q=80",
     excerpt: "Discover the must-have financial calculators that help business owners make informed decisions and maximize profitability.",
     metaDescription: "Explore 10 essential financial calculators every business owner should use for budgeting, ROI analysis, loan calculations, and more.",
     keywords: ["financial calculators", "business tools", "ROI calculator", "loan calculator"],
+    author: {
+      name: "DapsiWow Editorial Team",
+      type: "Organization"
+    },
     content: `
       <div class="prose prose-lg max-w-none">
         <p class="text-lg text-muted-foreground mb-6">
@@ -220,11 +238,17 @@ export const blogPosts: BlogPost[] = [
     title: "The Ultimate Guide to Text Formatting Tools for Content Creators",
     slug: "ultimate-guide-text-formatting-tools-content-creators",
     date: "Nov 10, 2025",
+    dateISO: "2025-11-10T00:00:00Z",
+    dateModified: "2025-11-10T00:00:00Z",
     category: "Productivity",
     image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=80",
     excerpt: "Save hours of manual work with these essential text formatting tools that every content creator should know about.",
     metaDescription: "Learn about powerful text formatting tools that help content creators save time, improve consistency, and produce professional content faster.",
     keywords: ["text tools", "content creation", "productivity", "formatting tools"],
+    author: {
+      name: "DapsiWow Editorial Team",
+      type: "Organization"
+    },
     content: `
       <div class="prose prose-lg max-w-none">
         <p class="text-lg text-muted-foreground mb-6">

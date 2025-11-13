@@ -75,8 +75,10 @@ export default function BlogPost() {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://dapsiwow.com/blog/${post.slug}`} />
         <meta property="og:image" content={post.image} />
-        <meta property="article:published_time" content={post.date} />
+        <meta property="article:published_time" content={post.dateISO} />
+        <meta property="article:modified_time" content={post.dateModified} />
         <meta property="article:section" content={post.category} />
+        <meta property="article:author" content={post.author.name} />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -95,10 +97,11 @@ export default function BlogPost() {
             "headline": post.title,
             "description": post.metaDescription,
             "image": post.image,
-            "datePublished": post.date,
+            "datePublished": post.dateISO,
+            "dateModified": post.dateModified,
             "author": {
-              "@type": "Organization",
-              "name": "DapsiWow"
+              "@type": post.author.type,
+              "name": post.author.name
             },
             "publisher": {
               "@type": "Organization",
@@ -111,7 +114,9 @@ export default function BlogPost() {
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": `https://dapsiwow.com/blog/${post.slug}`
-            }
+            },
+            "keywords": post.keywords.join(", "),
+            "articleSection": post.category
           })}
         </script>
       </Helmet>
@@ -147,7 +152,7 @@ export default function BlogPost() {
           </Badge>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
-            <time dateTime={post.date} data-testid="text-post-date">
+            <time dateTime={post.dateISO} data-testid="text-post-date">
               {post.date}
             </time>
           </div>

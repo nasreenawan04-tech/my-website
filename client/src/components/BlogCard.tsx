@@ -10,8 +10,8 @@ interface BlogCardProps {
 
 export function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`}>
-      <Card className="hover-elevate active-elevate-2 h-full flex flex-col overflow-hidden transition-colors cursor-pointer">
+    <Card className="hover-elevate active-elevate-2 h-full flex flex-col overflow-hidden transition-colors">
+      <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
         <div className="relative h-48 overflow-hidden">
           <img
             src={post.image}
@@ -35,7 +35,7 @@ export function BlogCard({ post }: BlogCardProps) {
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4" />
-            <time dateTime={post.date} data-testid={`date-blog-${post.id}`}>
+            <time dateTime={post.dateISO} data-testid={`date-blog-${post.id}`}>
               {post.date}
             </time>
           </div>
@@ -55,7 +55,7 @@ export function BlogCard({ post }: BlogCardProps) {
             Read More →
           </span>
         </CardFooter>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 }
