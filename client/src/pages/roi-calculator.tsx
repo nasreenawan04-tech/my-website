@@ -1161,19 +1161,21 @@ export default function ROICalculator() {
 
                       {/* Social Share Section */}
                       <div className="border-t pt-3 sm:pt-4 mt-3 sm:mt-4">
-                        <h4 className="text-sm font-medium text-gray-700 mb-3 text-center">Share your results:</h4>
-                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                        <p className="text-center text-xs sm:text-sm md:text-base font-medium text-gray-700 mb-2 sm:mb-3 px-2">Share your results:</p>
+                        <div className="flex flex-wrap justify-center items-center gap-1.5 xs:gap-2 sm:gap-3 px-2 sm:px-0">
                           <Button
                             onClick={() => {
                               const text = `Check out my ROI results: ${formatPercentage(result.roi)} return with ${formatCurrency(result.totalGain)} total gain! Calculate yours at`;
                               const url = `https://dapsiwow.com/tools/roi-calculator`;
                               window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`, '_blank');
                             }}
-                            className="bg-[#1877F2] hover:bg-[#1565C0] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             data-testid="button-share-facebook"
+                            aria-label="Share on Facebook"
                           >
-                            <FaFacebook className="w-4 h-4 mr-2" />
-                            Facebook
+                            <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Facebook</span>
                           </Button>
                           <Button
                             onClick={() => {
@@ -1181,11 +1183,13 @@ export default function ROICalculator() {
                               const url = `https://dapsiwow.com/tools/roi-calculator`;
                               window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
                             }}
-                            className="bg-[#1DA1F2] hover:bg-[#1A91DA] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             data-testid="button-share-twitter"
+                            aria-label="Share on Twitter"
                           >
-                            <FaTwitter className="w-4 h-4 mr-2" />
-                            Twitter
+                            <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Twitter</span>
                           </Button>
                           <Button
                             onClick={() => {
@@ -1193,22 +1197,26 @@ export default function ROICalculator() {
                               const url = `https://dapsiwow.com/tools/roi-calculator`;
                               window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
                             }}
-                            className="bg-[#0077B5] hover:bg-[#006399] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             data-testid="button-share-linkedin"
+                            aria-label="Share on LinkedIn"
                           >
-                            <FaLinkedin className="w-4 h-4 mr-2" />
-                            LinkedIn
+                            <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">LinkedIn</span>
                           </Button>
                           <Button
                             onClick={() => {
                               const text = `My ROI: ${formatPercentage(result.roi)} with ${formatCurrency(result.totalGain)} gain! Calculate yours: https://dapsiwow.com/tools/roi-calculator`;
                               window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
                             }}
-                            className="bg-[#25D366] hover:bg-[#1EBE57] text-white rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             data-testid="button-share-whatsapp"
+                            aria-label="Share on WhatsApp"
                           >
-                            <FaWhatsapp className="w-4 h-4 mr-2" />
-                            WhatsApp
+                            <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">WhatsApp</span>
                           </Button>
                           <Button
                             onClick={() => {
@@ -1221,11 +1229,13 @@ export default function ROICalculator() {
                               }
                             }}
                             variant="outline"
-                            className="rounded-full px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium"
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             data-testid="button-share-more"
+                            aria-label="More share options"
                           >
-                            <Share2 className="w-4 h-4 mr-2" />
-                            More
+                            <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">More</span>
                           </Button>
                         </div>
                       </div>
