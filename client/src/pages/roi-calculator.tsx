@@ -359,53 +359,218 @@ export default function ROICalculator() {
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
       const margin = 20;
-      let yPos = 20;
+      let yPos = 0;
 
-      // Title
-      doc.setFontSize(20);
+      // Professional Header with colored banner
+      doc.setFillColor(37, 99, 235); // Blue color
+      doc.rect(0, 0, pageWidth, 35, 'F');
+      
+      // White title text on blue banner
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(24);
       doc.setFont('helvetica', 'bold');
-      doc.text('ROI Calculator Results', pageWidth / 2, yPos, { align: 'center' });
-      yPos += 15;
-
-      // Calculation type and currency
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'normal');
-      const typeLabel = calculationType === 'basic' ? 'Basic ROI' : calculationType === 'investment' ? 'Investment ROI' : 'Business ROI';
-      doc.text(`Calculation Type: ${typeLabel}`, margin, yPos);
-      yPos += 8;
-      doc.text(`Currency: ${currency}`, margin, yPos);
-      yPos += 12;
-
-      // Key Results
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Key Results:', margin, yPos);
-      yPos += 10;
-
+      doc.text('ROI ANALYSIS REPORT', pageWidth / 2, 15, { align: 'center' });
+      
       doc.setFontSize(11);
       doc.setFont('helvetica', 'normal');
-      doc.text(`ROI: ${formatPercentage(result.roi)}`, margin, yPos);
-      yPos += 7;
-      doc.text(`Annualized ROI: ${formatPercentage(result.annualizedROI)}`, margin, yPos);
-      yPos += 7;
-      doc.text(`Initial Investment: ${formatCurrency(result.initialInvestment)}`, margin, yPos);
-      yPos += 7;
-      doc.text(`Final Value: ${formatCurrency(result.finalValue)}`, margin, yPos);
-      yPos += 7;
-      doc.text(`Total Gain: ${formatCurrency(result.totalGain)}`, margin, yPos);
-      yPos += 7;
-      doc.text(`Total Return: ${formatCurrency(result.totalReturn)}`, margin, yPos);
-      yPos += 15;
+      doc.text('Professional Investment Return Calculator', pageWidth / 2, 25, { align: 'center' });
+      
+      // Reset text color to black
+      doc.setTextColor(0, 0, 0);
+      yPos = 45;
+
+      // Document Info Box
+      doc.setFillColor(248, 250, 252); // Light gray background
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 28, 'F');
+      doc.setDrawColor(226, 232, 240);
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 28, 'S');
+      
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(71, 85, 105);
+      const typeLabel = calculationType === 'basic' ? 'Basic ROI' : calculationType === 'investment' ? 'Investment ROI' : 'Business ROI';
+      doc.text('Report Type:', margin + 5, yPos + 8);
+      doc.setFont('helvetica', 'normal');
+      doc.text(typeLabel, margin + 35, yPos + 8);
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Currency:', margin + 5, yPos + 16);
+      doc.setFont('helvetica', 'normal');
+      doc.text(currency, margin + 35, yPos + 16);
+      
+      doc.setFont('helvetica', 'bold');
+      doc.text('Generated:', margin + 5, yPos + 24);
+      doc.setFont('helvetica', 'normal');
+      doc.text(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), margin + 35, yPos + 24);
+      
+      doc.setTextColor(0, 0, 0);
+      yPos += 38;
+
+      // Executive Summary Section
+      doc.setFontSize(16);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 58, 138);
+      doc.text('EXECUTIVE SUMMARY', margin, yPos);
+      yPos += 2;
+      
+      // Underline
+      doc.setDrawColor(37, 99, 235);
+      doc.setLineWidth(0.5);
+      doc.line(margin, yPos, margin + 60, yPos);
+      yPos += 10;
+      doc.setTextColor(0, 0, 0);
+
+      // ROI Highlight Box
+      const roiColor: [number, number, number] = result.roi >= 0 ? [16, 185, 129] : [239, 68, 68]; // Green or Red
+      doc.setFillColor(...roiColor);
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 25, 3, 3, 'F');
+      
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text('RETURN ON INVESTMENT', pageWidth / 2, yPos + 8, { align: 'center' });
+      doc.setFontSize(20);
+      doc.text(formatPercentage(result.roi), pageWidth / 2, yPos + 18, { align: 'center' });
+      
+      doc.setTextColor(0, 0, 0);
+      yPos += 35;
+
+      // Key Metrics Table
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 58, 138);
+      doc.text('KEY METRICS', margin, yPos);
+      yPos += 2;
+      doc.setDrawColor(37, 99, 235);
+      doc.line(margin, yPos, margin + 40, yPos);
+      yPos += 8;
+      doc.setTextColor(0, 0, 0);
+
+      // Table header
+      doc.setFillColor(241, 245, 249);
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 10, 'F');
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(51, 65, 85);
+      doc.text('Metric', margin + 3, yPos + 7);
+      doc.text('Value', pageWidth - margin - 50, yPos + 7);
+      yPos += 10;
+
+      // Table rows
+      const metrics: { label: string; value: string; color: [number, number, number] }[] = [
+        { label: 'ROI Percentage', value: formatPercentage(result.roi), color: result.roi >= 0 ? [16, 185, 129] : [239, 68, 68] },
+        { label: 'Annualized ROI', value: formatPercentage(result.annualizedROI), color: result.annualizedROI >= 0 ? [16, 185, 129] : [239, 68, 68] },
+        { label: 'Initial Investment', value: formatCurrency(result.initialInvestment), color: [71, 85, 105] },
+        { label: 'Final Value', value: formatCurrency(result.finalValue), color: [16, 185, 129] },
+        { label: 'Total Gain/Loss', value: `${result.totalGain >= 0 ? '+' : ''}${formatCurrency(result.totalGain)}`, color: result.totalGain >= 0 ? [16, 185, 129] : [239, 68, 68] },
+        { label: 'Total Return', value: formatCurrency(result.totalReturn), color: [71, 85, 105] }
+      ];
+
+      doc.setFont('helvetica', 'normal');
+      metrics.forEach((metric, index) => {
+        // Alternating row colors
+        if (index % 2 === 0) {
+          doc.setFillColor(255, 255, 255);
+        } else {
+          doc.setFillColor(248, 250, 252);
+        }
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+        
+        doc.setTextColor(71, 85, 105);
+        doc.text(metric.label, margin + 3, yPos + 5.5);
+        
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(...metric.color);
+        doc.text(metric.value, pageWidth - margin - 3, yPos + 5.5, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
+        
+        yPos += 8;
+      });
+
+      // Border around table
+      doc.setDrawColor(226, 232, 240);
+      doc.rect(margin, yPos - (metrics.length * 8) - 10, pageWidth - (2 * margin), (metrics.length * 8) + 10, 'S');
+
+      yPos += 10;
+
+      // Break-even time for business ROI
+      if (calculationType === 'business' && result.breakEvenTime > 0) {
+        doc.setFillColor(254, 243, 199);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 12, 'F');
+        doc.setDrawColor(251, 191, 36);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 12, 'S');
+        
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(146, 64, 14);
+        doc.text('Break-even Time:', margin + 5, yPos + 8);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`${result.breakEvenTime.toFixed(1)} years`, pageWidth - margin - 5, yPos + 8, { align: 'right' });
+        
+        doc.setTextColor(0, 0, 0);
+        yPos += 18;
+      }
+
+      // Interpretation Section
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 58, 138);
+      doc.text('INTERPRETATION', margin, yPos);
+      yPos += 2;
+      doc.setDrawColor(37, 99, 235);
+      doc.line(margin, yPos, margin + 50, yPos);
+      yPos += 10;
+      doc.setTextColor(0, 0, 0);
+
+      let interpretation = '';
+      let interpretationColor: [number, number, number] = [71, 85, 105];
+      
+      if (result.roi >= 20) {
+        interpretation = 'Excellent ROI - This is a very profitable investment with exceptional returns significantly above market averages.';
+        interpretationColor = [22, 163, 74];
+      } else if (result.roi >= 10) {
+        interpretation = 'Good ROI - This investment shows solid returns above average market performance.';
+        interpretationColor = [202, 138, 4];
+      } else if (result.roi >= 0) {
+        interpretation = 'Positive ROI - This investment is profitable, though returns are modest.';
+        interpretationColor = [59, 130, 246];
+      } else {
+        interpretation = 'Negative ROI - This investment results in a loss. Consider reassessing the strategy.';
+        interpretationColor = [220, 38, 38];
+      }
+
+      doc.setFillColor(249, 250, 251);
+      const interpretationHeight = 20;
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), interpretationHeight, 2, 2, 'F');
+      doc.setDrawColor(...interpretationColor);
+      doc.setLineWidth(1);
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), interpretationHeight, 2, 2, 'S');
+      
+      doc.setFontSize(10);
+      doc.setTextColor(...interpretationColor);
+      const splitInterpretation = doc.splitTextToSize(interpretation, pageWidth - (2 * margin) - 10);
+      doc.text(splitInterpretation, margin + 5, yPos + 7);
+      
+      doc.setTextColor(0, 0, 0);
+      yPos += interpretationHeight + 10;
 
       // Capture charts if visible
       if (showChart && chartRef.current) {
         try {
-          doc.addPage();
-          yPos = 20;
+          if (yPos > pageHeight - 60) {
+            doc.addPage();
+            yPos = margin;
+          }
+
           doc.setFontSize(14);
           doc.setFont('helvetica', 'bold');
-          doc.text('ROI Breakdown Charts:', margin, yPos);
+          doc.setTextColor(30, 58, 138);
+          doc.text('ROI BREAKDOWN CHARTS', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 70, yPos);
           yPos += 10;
+          doc.setTextColor(0, 0, 0);
 
           const chartCanvas = await html2canvas(chartRef.current, {
             scale: 2,
@@ -414,9 +579,10 @@ export default function ROICalculator() {
           });
           const chartImgData = chartCanvas.toDataURL('image/png');
           const chartWidth = pageWidth - (2 * margin);
-          const chartHeight = (chartCanvas.height * chartWidth) / chartCanvas.width;
+          const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
 
           doc.addImage(chartImgData, 'PNG', margin, yPos, chartWidth, chartHeight);
+          yPos += chartHeight + 10;
         } catch (error) {
           console.error('Error capturing charts:', error);
         }
@@ -426,11 +592,17 @@ export default function ROICalculator() {
       if (comparisonEntries.length > 0 && comparisonRef.current) {
         try {
           doc.addPage();
-          yPos = 20;
+          yPos = margin;
+
           doc.setFontSize(14);
           doc.setFont('helvetica', 'bold');
-          doc.text('Comparison Table:', margin, yPos);
+          doc.setTextColor(30, 58, 138);
+          doc.text('SCENARIO COMPARISON', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 70, yPos);
           yPos += 10;
+          doc.setTextColor(0, 0, 0);
 
           const tableCanvas = await html2canvas(comparisonRef.current, {
             scale: 2,
@@ -439,7 +611,7 @@ export default function ROICalculator() {
           });
           const tableImgData = tableCanvas.toDataURL('image/png');
           const tableWidth = pageWidth - (2 * margin);
-          const tableHeight = (tableCanvas.height * tableWidth) / tableCanvas.width;
+          const tableHeight = Math.min((tableCanvas.height * tableWidth) / tableCanvas.width, pageHeight - yPos - 30);
 
           doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
         } catch (error) {
@@ -447,19 +619,34 @@ export default function ROICalculator() {
         }
       }
 
-      // Footer on last page
+      // Professional Footer on all pages
       const totalPages = (doc as any).internal.getNumberOfPages();
       for (let i = 1; i <= totalPages; i++) {
         doc.setPage(i);
-        doc.setFontSize(9);
-        doc.text(`Generated by DapsiWow ROI Calculator - ${new Date().toLocaleDateString()}`, pageWidth / 2, pageHeight - 10, { align: 'center' });
+        
+        // Footer line
+        doc.setDrawColor(226, 232, 240);
+        doc.setLineWidth(0.5);
+        doc.line(margin, pageHeight - 20, pageWidth - margin, pageHeight - 20);
+        
+        // Footer text
+        doc.setFontSize(8);
+        doc.setTextColor(100, 116, 139);
+        doc.setFont('helvetica', 'normal');
+        doc.text('DapsiWow ROI Calculator', margin, pageHeight - 12);
+        doc.text(`Page ${i} of ${totalPages}`, pageWidth / 2, pageHeight - 12, { align: 'center' });
+        doc.text(new Date().toLocaleDateString(), pageWidth - margin, pageHeight - 12, { align: 'right' });
+        
+        // Website
+        doc.setTextColor(37, 99, 235);
+        doc.text('www.dapsiwow.com', pageWidth - margin, pageHeight - 7, { align: 'right' });
       }
 
-      doc.save('roi-calculator-results.pdf');
+      doc.save('roi-analysis-report.pdf');
 
       toast({
-        title: "PDF Downloaded",
-        description: "Your ROI results with charts and comparison have been saved as a PDF.",
+        title: "Professional PDF Downloaded",
+        description: "Your detailed ROI analysis report has been saved successfully.",
       });
     } catch (error) {
       console.error('Error generating PDF:', error);
