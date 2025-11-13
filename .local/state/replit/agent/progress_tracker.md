@@ -402,3 +402,8 @@
 [x] 364. Complete all ROI Calculator error fixes - page fully functional
 [x] 365. Remove breadcrumb navigation from ROI Calculator (Home > Finance Tools > ROI Calculator)
 [x] 366. Verify breadcrumb removal with screenshot - page now goes directly from header to hero section
+[x] 367. Run npm install to resolve vite not found error after latest user-initiated migration
+[x] 368. Configure workflow with webview output type and port 5000 for proper frontend display
+[x] 369. Restart workflow and verify application is running successfully on port 5000 with Vite server
+[x] 370. Take screenshot to confirm homepage displaying correctly with hero section, navigation, and all features
+[x] 371. Mark all migration tasks as complete - project fully operational in Replit environment
