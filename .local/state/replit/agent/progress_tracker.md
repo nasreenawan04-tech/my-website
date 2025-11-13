@@ -407,3 +407,9 @@
 [x] 369. Restart workflow and verify application is running successfully on port 5000 with Vite server
 [x] 370. Take screenshot to confirm homepage displaying correctly with hero section, navigation, and all features
 [x] 371. Mark all migration tasks as complete - project fully operational in Replit environment
+[x] 372. Make breadcrumb navigation responsive for small screens across Business Loan Calculator, Compound Interest Calculator, and Simple Interest Calculator
+[x] 373. Add comprehensive responsive breakpoints to ToolBreadcrumbs component (text sizing, icon sizing, padding, spacing)
+[x] 374. Implement text truncation for category and current label with responsive max-widths (100px mobile, 150px tablet, full desktop)
+[x] 375. Add flex-wrap support to prevent overflow on very small screens
+[x] 376. Restart workflow and verify breadcrumb responsiveness on all three calculators
+[x] 377. Complete breadcrumb navigation responsiveness enhancement - all calculators displaying properly
