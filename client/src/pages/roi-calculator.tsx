@@ -9,7 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Calculator, TrendingUp, DollarSign, PieChart, BarChart3, ChevronRight } from 'lucide-react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Info, Download, Share2, Calculator, TrendingUp, DollarSign, PieChart, BarChart3, ChevronRight, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, LineChart, Line } from 'recharts';
 import { RotateCcw } from 'lucide-react';
@@ -123,8 +124,8 @@ export default function ROICalculator() {
     if (isNaN(monthly) || monthly < 0) {
       newErrors.monthlyContribution = 'Please enter a valid monthly contribution (0 or higher)';
     }
-    if (isNaN(rate) || rate <= 0) {
-      newErrors.annualReturn = 'Please enter a valid annual return greater than 0';
+    if (isNaN(rate) || rate < 0) {
+      newErrors.annualReturn = 'Please enter a valid annual return (0 or higher)';
     }
     if (isNaN(years) || years <= 0) {
       newErrors.investmentYears = 'Please enter a valid investment period greater than 0';
@@ -140,7 +141,7 @@ export default function ROICalculator() {
     const rate = parseFloat(annualReturn) / 100;
     const years = parseFloat(investmentYears);
 
-    if (!validateInvestmentInputs(initial, monthly, rate, years)) return;
+    if (!validateInvestmentInputs(initial, monthly, rate * 100, years)) return;
 
     const monthlyRate = rate / 12;
     const months = years * 12;
@@ -149,13 +150,19 @@ export default function ROICalculator() {
     const futureValueInitial = initial * Math.pow(1 + rate, years);
 
     // Future value of monthly contributions (annuity)
-    const futureValueMonthly = monthly * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+    let futureValueMonthly;
+    if (monthlyRate === 0) {
+      // No compound interest, just sum the contributions
+      futureValueMonthly = monthly * months;
+    } else {
+      futureValueMonthly = monthly * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+    }
 
     const finalValue = futureValueInitial + futureValueMonthly;
     const totalInvested = initial + (monthly * months);
     const totalGain = finalValue - totalInvested;
     const roi = (totalGain / totalInvested) * 100;
-    const annualizedROI = (Math.pow(finalValue / totalInvested, 1 / years) - 1) * 100;
+    const annualizedROI = years > 0 ? (Math.pow(finalValue / totalInvested, 1 / years) - 1) * 100 : roi;
 
     setResult({
       roi,
