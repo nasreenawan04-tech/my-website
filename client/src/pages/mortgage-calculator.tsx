@@ -11,6 +11,7 @@ import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/comp
 import { Slider } from '@/components/ui/slider';
 import { Info, Calculator, Home, DollarSign, TrendingDown, Download, Share2, PieChart, Clock, RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -129,6 +130,9 @@ const MortgageCalculator = () => {
   const [result, setResult] = useState<MortgageResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
+  const amortizationRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -500,7 +504,7 @@ const MortgageCalculator = () => {
     return '0 months';
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     if (!result) return;
 
     try {
@@ -652,9 +656,25 @@ const MortgageCalculator = () => {
       yPos += 10;
 
       // Extra Payment Savings
-      if (result.extraPaymentSavings && parseFloat(extraPayment) > 0) {
+      if (result.extraPaymentSavings) {
         const paymentsPerYear = paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12;
-        const timeSavedText = formatTimeSaved(result.extraPaymentSavings.timeSaved, paymentsPerYear);
+        let totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
+        let yearsSaved = Math.floor(totalYearsSaved);
+        let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
+
+        if (monthsSaved === 12) {
+          yearsSaved += 1;
+          monthsSaved = 0;
+        }
+
+        let timeSavedText = '';
+        if (yearsSaved > 0 && monthsSaved > 0) {
+          timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
+        } else if (yearsSaved > 0) {
+          timeSavedText = `${yearsSaved} years`;
+        } else if (monthsSaved > 0) {
+          timeSavedText = `${monthsSaved} months`;
+        }
 
         doc.setFillColor(236, 253, 245);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 20, 'F');
@@ -717,6 +737,217 @@ const MortgageCalculator = () => {
       doc.text(splitInterpretation, margin + 5, yPos + 7);
       
       doc.setTextColor(0, 0, 0);
+      yPos += interpretationHeight + 10;
+
+      // Capture charts if visible
+      if (showChart && chartRef.current) {
+        try {
+          // Capture first, then add page only if successful
+          const chartCanvas = await html2canvas(chartRef.current, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          
+          if (chartCanvas && chartCanvas.height > 0) {
+            if (yPos > pageHeight - 60) {
+              doc.addPage();
+              yPos = margin;
+            }
+
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(30, 58, 138);
+            doc.text('MORTGAGE BREAKDOWN CHARTS', margin, yPos);
+            yPos += 2;
+            doc.setDrawColor(37, 99, 235);
+            doc.line(margin, yPos, margin + 80, yPos);
+            yPos += 10;
+            doc.setTextColor(0, 0, 0);
+
+            const chartImgData = chartCanvas.toDataURL('image/jpeg', 0.85);
+            const chartWidth = pageWidth - (2 * margin);
+            const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
+
+            doc.addImage(chartImgData, 'JPEG', margin, yPos, chartWidth, chartHeight);
+            yPos += chartHeight + 10;
+          }
+        } catch (error) {
+          console.error('Error capturing charts:', error);
+        }
+      }
+
+      // Capture comparison table if exists
+      if (comparisonMortgages.length > 0 && comparisonRef.current) {
+        try {
+          // Capture first, then add page only if successful
+          const tableCanvas = await html2canvas(comparisonRef.current, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          
+          if (tableCanvas && tableCanvas.height > 0) {
+            const bottomMargin = 30;
+            const tableWidth = pageWidth - (2 * margin);
+            const scale = tableWidth / tableCanvas.width;
+            
+            // Helper function to add header
+            const addComparisonHeader = (continued: boolean = false) => {
+              doc.setFontSize(14);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              const headerText = continued 
+                ? 'MORTGAGE SCENARIO COMPARISON - CONTINUED'
+                : 'MORTGAGE SCENARIO COMPARISON';
+              doc.text(headerText, margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              const lineWidth = continued ? 100 : 80;
+              doc.line(margin, yPos, margin + lineWidth, yPos);
+              yPos += 10;
+              doc.setTextColor(0, 0, 0);
+            };
+
+            // Start first page
+            doc.addPage();
+            yPos = margin;
+            addComparisonHeader(false);
+
+            // Split canvas across unlimited pages
+            let sourceYOffset = 0;
+            let pageIndex = 0;
+            
+            while (sourceYOffset < tableCanvas.height) {
+              // Calculate available height for current page
+              const availableHeight = pageHeight - yPos - bottomMargin;
+              const sourceHeightForPage = Math.min(
+                availableHeight / scale,
+                tableCanvas.height - sourceYOffset
+              );
+              
+              // Create off-screen canvas for this page slice
+              const pageCanvas = document.createElement('canvas');
+              pageCanvas.width = tableCanvas.width;
+              pageCanvas.height = sourceHeightForPage;
+              const pageCtx = pageCanvas.getContext('2d');
+              
+              if (pageCtx) {
+                // Draw slice
+                pageCtx.drawImage(
+                  tableCanvas,
+                  0, sourceYOffset, tableCanvas.width, sourceHeightForPage,
+                  0, 0, tableCanvas.width, sourceHeightForPage
+                );
+                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
+                const renderedHeight = sourceHeightForPage * scale;
+                doc.addImage(pageImgData, 'JPEG', margin, yPos, tableWidth, renderedHeight);
+                
+                // Move to next slice
+                sourceYOffset += sourceHeightForPage;
+                
+                // Add new page if more content remains
+                if (sourceYOffset < tableCanvas.height) {
+                  doc.addPage();
+                  yPos = margin;
+                  addComparisonHeader(true);
+                  pageIndex++;
+                }
+              } else {
+                break;
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error capturing comparison table:', error);
+        }
+      }
+
+      // Capture amortization schedule if visible
+      if (showAmortization && amortizationRef.current) {
+        try {
+          // Capture first, then add page only if successful
+          const amortizationCanvas = await html2canvas(amortizationRef.current, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          
+          if (amortizationCanvas && amortizationCanvas.height > 0) {
+            const bottomMargin = 30;
+            const amortizationWidth = pageWidth - (2 * margin);
+            const scale = amortizationWidth / amortizationCanvas.width;
+            
+            // Helper function to add header
+            const addAmortizationHeader = (continued: boolean = false) => {
+              doc.setFontSize(14);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              const headerText = continued 
+                ? 'AMORTIZATION SCHEDULE (FIRST 5 YEARS) - CONTINUED'
+                : 'AMORTIZATION SCHEDULE (FIRST 5 YEARS)';
+              doc.text(headerText, margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              const lineWidth = continued ? 110 : 90;
+              doc.line(margin, yPos, margin + lineWidth, yPos);
+              yPos += 10;
+              doc.setTextColor(0, 0, 0);
+            };
+
+            // Start first page
+            doc.addPage();
+            yPos = margin;
+            addAmortizationHeader(false);
+
+            // Split canvas across unlimited pages
+            let sourceYOffset = 0;
+            let pageIndex = 0;
+            
+            while (sourceYOffset < amortizationCanvas.height) {
+              // Calculate available height for current page
+              const availableHeight = pageHeight - yPos - bottomMargin;
+              const sourceHeightForPage = Math.min(
+                availableHeight / scale,
+                amortizationCanvas.height - sourceYOffset
+              );
+              
+              // Create off-screen canvas for this page slice
+              const pageCanvas = document.createElement('canvas');
+              pageCanvas.width = amortizationCanvas.width;
+              pageCanvas.height = sourceHeightForPage;
+              const pageCtx = pageCanvas.getContext('2d');
+              
+              if (pageCtx) {
+                // Draw slice
+                pageCtx.drawImage(
+                  amortizationCanvas,
+                  0, sourceYOffset, amortizationCanvas.width, sourceHeightForPage,
+                  0, 0, amortizationCanvas.width, sourceHeightForPage
+                );
+                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
+                const renderedHeight = sourceHeightForPage * scale;
+                doc.addImage(pageImgData, 'JPEG', margin, yPos, amortizationWidth, renderedHeight);
+                
+                // Move to next slice
+                sourceYOffset += sourceHeightForPage;
+                
+                // Add new page if more content remains
+                if (sourceYOffset < amortizationCanvas.height) {
+                  doc.addPage();
+                  yPos = margin;
+                  addAmortizationHeader(true);
+                  pageIndex++;
+                }
+              } else {
+                break;
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error capturing amortization schedule:', error);
+        }
+      }
 
       // Professional Footer
       const totalPages = (doc as any).internal.getNumberOfPages();
@@ -1932,7 +2163,7 @@ const MortgageCalculator = () => {
                       </div>
 
                       {showChart && (
-                        <div className="space-y-4 sm:space-y-6">
+                        <div ref={chartRef} className="space-y-4 sm:space-y-6">
                           <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
                             <h3 className="font-bold text-gray-900 mb-6 sm:mb-8 text-center text-lg sm:text-xl">Total Loan Breakdown</h3>
                             <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8">
@@ -2150,7 +2381,7 @@ const MortgageCalculator = () => {
 
                       {/* Amortization Schedule Section */}
                       {showAmortization && (
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
+                        <div ref={amortizationRef} className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
                               Amortization Schedule (First 5 Years)
@@ -2206,7 +2437,7 @@ const MortgageCalculator = () => {
 
                       {/* Mortgage Comparison Section */}
                       {showComparison && comparisonMortgages.length > 0 && (
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
+                        <div ref={comparisonRef} className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
                               Mortgage Comparison

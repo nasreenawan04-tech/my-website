@@ -499,3 +499,15 @@
 [x] 461. Verify no LSP errors after restructuring sections to be inside results container
 [x] 462. Restart workflow and verify application running successfully with hot module replacement
 [x] 463. Complete visual connection of Mortgage Comparison and Amortization Schedule sections with Your Mortgage Results section ✓
+[x] 464. Add html2canvas import to mortgage-calculator.tsx for chart/table/schedule capture (November 13, 2025)
+[x] 465. Add chartRef, comparisonRef, and amortizationRef refs to mortgage calculator component state
+[x] 466. Make handleDownloadPDF async in mortgage calculator to support html2canvas async operations
+[x] 467. Add chart capture with html2canvas to mortgage calculator PDF export (MORTGAGE BREAKDOWN CHARTS section)
+[x] 468. Add comparison table capture with canvas slicing for unlimited pages to mortgage calculator PDF export
+[x] 469. Add amortization schedule capture with canvas slicing for unlimited pages to mortgage calculator PDF export
+[x] 470. Attach chartRef to chart section container div in mortgage calculator JSX
+[x] 471. Attach comparisonRef to comparison table container div in mortgage calculator JSX
+[x] 472. Attach amortizationRef to amortization schedule container div in mortgage calculator JSX
+[x] 473. Verify no LSP errors after implementing PDF export feature parity
+[x] 474. Restart workflow and verify application running successfully with enhanced PDF export
+[x] 475. Complete PDF export feature parity between Loan and Mortgage calculators with chart, comparison table, and amortization schedule captures ✓
