@@ -443,3 +443,12 @@
 [x] 405. Restart workflow and verify application is running successfully on port 5000 with Vite server
 [x] 406. Take screenshot to confirm homepage displaying correctly with all features and navigation fully functional
 [x] 407. Mark all migration tasks as complete - project fully operational in Replit environment ✓
+[x] 408. Implement canvas-splitting approach to split Amortization Schedule across two pages in Loan Calculator PDF export (November 13, 2025)
+[x] 409. Add helper function addAmortizationHeader with "CONTINUED" support for second page header
+[x] 410. Implement intelligent page detection - if schedule fits on one page, use simple single-image approach
+[x] 411. Create off-screen canvas slicing for first page portion (availableHeightFirstPage / scale)
+[x] 412. Create off-screen canvas slicing for second page portion with remaining source height
+[x] 413. Use drawImage to extract page-sized slices from full amortization canvas without quality loss
+[x] 414. Verify no LSP errors after implementing canvas-splitting logic
+[x] 415. Restart workflow and verify application running successfully with hot module replacement
+[x] 416. Complete Amortization Schedule two-page split implementation - production-ready ✓

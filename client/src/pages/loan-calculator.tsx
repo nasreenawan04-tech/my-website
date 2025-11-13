@@ -808,24 +808,88 @@ export default function LoanCalculator() {
           });
           
           if (amortizationCanvas && amortizationCanvas.height > 0) {
+            const bottomMargin = 30;
+            const amortizationWidth = pageWidth - (2 * margin);
+            const scaledHeight = (amortizationCanvas.height * amortizationWidth) / amortizationCanvas.width;
+            
+            // Helper function to add header
+            const addAmortizationHeader = (continued: boolean = false) => {
+              doc.setFontSize(14);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              const headerText = continued 
+                ? 'AMORTIZATION SCHEDULE (FIRST 5 YEARS) - CONTINUED'
+                : 'AMORTIZATION SCHEDULE (FIRST 5 YEARS)';
+              doc.text(headerText, margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              const lineWidth = continued ? 110 : 90;
+              doc.line(margin, yPos, margin + lineWidth, yPos);
+              yPos += 10;
+              doc.setTextColor(0, 0, 0);
+            };
+
+            // Start first page
             doc.addPage();
             yPos = margin;
+            addAmortizationHeader(false);
 
-            doc.setFontSize(14);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor(30, 58, 138);
-            doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
-            yPos += 2;
-            doc.setDrawColor(37, 99, 235);
-            doc.line(margin, yPos, margin + 90, yPos);
-            yPos += 10;
-            doc.setTextColor(0, 0, 0);
-
-            const amortizationImgData = amortizationCanvas.toDataURL('image/png');
-            const amortizationWidth = pageWidth - (2 * margin);
-            const amortizationHeight = Math.min((amortizationCanvas.height * amortizationWidth) / amortizationCanvas.width, pageHeight - yPos - 30);
-
-            doc.addImage(amortizationImgData, 'PNG', margin, yPos, amortizationWidth, amortizationHeight);
+            // Calculate available height per page
+            const availableHeightFirstPage = pageHeight - yPos - bottomMargin;
+            
+            // If it fits on one page, use simple approach
+            if (scaledHeight <= availableHeightFirstPage) {
+              const amortizationImgData = amortizationCanvas.toDataURL('image/png');
+              doc.addImage(amortizationImgData, 'PNG', margin, yPos, amortizationWidth, scaledHeight);
+            } else {
+              // Split across two pages
+              const scale = amortizationWidth / amortizationCanvas.width;
+              const sourceHeightFirstPage = availableHeightFirstPage / scale;
+              const sourceHeightSecondPage = amortizationCanvas.height - sourceHeightFirstPage;
+              
+              // Create off-screen canvas for first page slice
+              const firstPageCanvas = document.createElement('canvas');
+              firstPageCanvas.width = amortizationCanvas.width;
+              firstPageCanvas.height = sourceHeightFirstPage;
+              const firstPageCtx = firstPageCanvas.getContext('2d');
+              
+              if (firstPageCtx) {
+                // Draw first slice
+                firstPageCtx.drawImage(
+                  amortizationCanvas,
+                  0, 0, amortizationCanvas.width, sourceHeightFirstPage,
+                  0, 0, amortizationCanvas.width, sourceHeightFirstPage
+                );
+                const firstPageImgData = firstPageCanvas.toDataURL('image/png');
+                doc.addImage(firstPageImgData, 'PNG', margin, yPos, amortizationWidth, availableHeightFirstPage);
+              }
+              
+              // Add second page
+              doc.addPage();
+              yPos = margin;
+              addAmortizationHeader(true);
+              
+              // Calculate available height for second page
+              const availableHeightSecondPage = pageHeight - yPos - bottomMargin;
+              const scaledHeightSecondPage = sourceHeightSecondPage * scale;
+              
+              // Create off-screen canvas for second page slice
+              const secondPageCanvas = document.createElement('canvas');
+              secondPageCanvas.width = amortizationCanvas.width;
+              secondPageCanvas.height = sourceHeightSecondPage;
+              const secondPageCtx = secondPageCanvas.getContext('2d');
+              
+              if (secondPageCtx) {
+                // Draw second slice
+                secondPageCtx.drawImage(
+                  amortizationCanvas,
+                  0, sourceHeightFirstPage, amortizationCanvas.width, sourceHeightSecondPage,
+                  0, 0, amortizationCanvas.width, sourceHeightSecondPage
+                );
+                const secondPageImgData = secondPageCanvas.toDataURL('image/png');
+                doc.addImage(secondPageImgData, 'PNG', margin, yPos, amortizationWidth, Math.min(scaledHeightSecondPage, availableHeightSecondPage));
+              }
+            }
           }
         } catch (error) {
           console.error('Error capturing amortization schedule:', error);
