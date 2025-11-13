@@ -1337,20 +1337,14 @@ export default function ROICalculator() {
                     </div>
                   )}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
 
-        {/* ROI Breakdown Chart */}
-        {result && showChart && (
-          <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-6 sm:mt-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6" data-testid="heading-breakdown-chart">
-                  ROI Breakdown
-                </h3>
-                <div className="grid md:grid-cols-2 gap-6" ref={chartRef}>
+                {/* ROI Breakdown Chart */}
+                {result && showChart && (
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left" data-testid="heading-breakdown-chart">
+                      ROI Breakdown
+                    </h3>
+                    <div className="grid md:grid-cols-2 gap-6" ref={chartRef}>
                   {/* Donut Chart - Investment vs Gain */}
                   <div className="bg-white rounded-lg p-4 border border-gray-100">
                     <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">Investment vs Gain</h4>
@@ -1401,20 +1395,16 @@ export default function ROICalculator() {
                     </ResponsiveContainer>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+                  </div>
+                )}
 
-        {/* Comparison Table */}
-        {showComparison && comparisonEntries.length > 0 && (
-          <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-6 sm:mt-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900" data-testid="heading-comparison-table">
-                    ROI Comparison
-                  </h3>
+                {/* Comparison Table */}
+                {showComparison && comparisonEntries.length > 0 && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
+                        ROI Comparison
+                      </h3>
                   <Button
                     onClick={() => setComparisonEntries([])}
                     variant="outline"
@@ -1461,10 +1451,12 @@ export default function ROICalculator() {
                     </tbody>
                   </table>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* SEO Content Sections */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16 md:py-20 space-y-12 sm:space-y-16">
