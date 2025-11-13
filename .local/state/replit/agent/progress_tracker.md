@@ -439,3 +439,7 @@
 [x] 401. Restart workflow and verify application running successfully with hot module replacement
 [x] 402. Architect pass: "Loan calculator amortization and comparison PDF exports were removed cleanly without impacting the primary report download" - No orphaned imports, TypeScript errors, or broken references
 [x] 403. Complete removal of Export PDF buttons from Amortization Schedule and Loan Comparison sections - production-ready ✓
+[x] 404. Run npm install to resolve vite not found error after latest user-initiated migration (November 13, 2025)
+[x] 405. Restart workflow and verify application is running successfully on port 5000 with Vite server
+[x] 406. Take screenshot to confirm homepage displaying correctly with all features and navigation fully functional
+[x] 407. Mark all migration tasks as complete - project fully operational in Replit environment ✓
