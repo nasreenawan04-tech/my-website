@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
 import { RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import ShareResultsButton from '@/components/ShareResultsButton';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
@@ -89,6 +90,8 @@ export default function LoanCalculator() {
   const [isCalculating, setIsCalculating] = useState(false); // Added for loading state
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -490,7 +493,7 @@ export default function LoanCalculator() {
     }
   };
 
-  const handleDownloadPDF = () => {
+  const handleDownloadPDF = async () => {
     if (!result) return;
 
     try {
@@ -719,6 +722,72 @@ export default function LoanCalculator() {
       doc.text(splitInterpretation, margin + 5, yPos + 7);
       
       doc.setTextColor(0, 0, 0);
+      yPos += interpretationHeight + 10;
+
+      // Capture charts if visible
+      if (showChart && chartRef.current) {
+        try {
+          if (yPos > pageHeight - 60) {
+            doc.addPage();
+            yPos = margin;
+          }
+
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('LOAN BREAKDOWN CHARTS', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 70, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+
+          const chartCanvas = await html2canvas(chartRef.current, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          const chartImgData = chartCanvas.toDataURL('image/png');
+          const chartWidth = pageWidth - (2 * margin);
+          const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
+
+          doc.addImage(chartImgData, 'PNG', margin, yPos, chartWidth, chartHeight);
+          yPos += chartHeight + 10;
+        } catch (error) {
+          console.error('Error capturing charts:', error);
+        }
+      }
+
+      // Capture comparison table if exists
+      if (comparisonLoans.length > 0 && comparisonRef.current) {
+        try {
+          doc.addPage();
+          yPos = margin;
+
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 70, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+
+          const tableCanvas = await html2canvas(comparisonRef.current, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          const tableImgData = tableCanvas.toDataURL('image/png');
+          const tableWidth = pageWidth - (2 * margin);
+          const tableHeight = Math.min((tableCanvas.height * tableWidth) / tableCanvas.width, pageHeight - yPos - 30);
+
+          doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
+        } catch (error) {
+          console.error('Error capturing comparison table:', error);
+        }
+      }
 
       // Professional Footer
       const totalPages = (doc as any).internal.getNumberOfPages();
@@ -1836,7 +1905,7 @@ export default function LoanCalculator() {
                       </div>
 
                       {showChart && (
-                        <div className="space-y-4 sm:space-y-6">
+                        <div ref={chartRef} className="space-y-4 sm:space-y-6">
                           {/* Donut Chart - Total Loan Breakdown */}
                           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
                             <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Total Loan Breakdown</h3>
@@ -2135,7 +2204,7 @@ export default function LoanCalculator() {
                 <div className="flex flex-col">
                   {/* Loan Comparison Section */}
                   {showComparison && comparisonLoans.length > 0 && (
-                    <div className="p-4 sm:p-6 lg:p-8">
+                    <div ref={comparisonRef} className="p-4 sm:p-6 lg:p-8">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Loan Comparison</h3>
                         <Button
