@@ -634,12 +634,12 @@ export default function ROICalculator() {
         doc.setTextColor(100, 116, 139);
         doc.setFont('helvetica', 'normal');
         doc.text('DapsiWow ROI Calculator', margin, pageHeight - 12);
-        doc.text(`Page ${i} of ${totalPages}`, pageWidth / 2, pageHeight - 12, { align: 'center' });
-        doc.text(new Date().toLocaleDateString(), pageWidth - margin, pageHeight - 12, { align: 'right' });
+        doc.text(`Page ${i} of ${totalPages}`, pageWidth - margin, pageHeight - 12, { align: 'right' });
+        doc.text(new Date().toLocaleDateString(), margin, pageHeight - 7);
         
-        // Website
+        // Website centered
         doc.setTextColor(37, 99, 235);
-        doc.text('www.dapsiwow.com', pageWidth - margin, pageHeight - 7, { align: 'right' });
+        doc.text('www.dapsiwow.com', pageWidth / 2, pageHeight - 7, { align: 'center' });
       }
 
       doc.save('roi-analysis-report.pdf');
