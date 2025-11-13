@@ -775,7 +775,7 @@ export default function LoanCalculator() {
           if (tableCanvas && tableCanvas.height > 0) {
             const bottomMargin = 30;
             const tableWidth = pageWidth - (2 * margin);
-            const scaledHeight = (tableCanvas.height * tableWidth) / tableCanvas.width;
+            const scale = tableWidth / tableCanvas.width;
             
             // Helper function to add header
             const addComparisonHeader = (continued: boolean = false) => {
@@ -799,60 +799,47 @@ export default function LoanCalculator() {
             yPos = margin;
             addComparisonHeader(false);
 
-            // Calculate available height per page
-            const availableHeightFirstPage = pageHeight - yPos - bottomMargin;
+            // Split canvas across unlimited pages
+            let sourceYOffset = 0;
+            let pageIndex = 0;
             
-            // If it fits on one page, use simple approach
-            if (scaledHeight <= availableHeightFirstPage) {
-              const tableImgData = tableCanvas.toDataURL('image/png');
-              doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, scaledHeight);
-            } else {
-              // Split across two pages
-              const scale = tableWidth / tableCanvas.width;
-              const sourceHeightFirstPage = availableHeightFirstPage / scale;
-              const sourceHeightSecondPage = tableCanvas.height - sourceHeightFirstPage;
+            while (sourceYOffset < tableCanvas.height) {
+              // Calculate available height for current page
+              const availableHeight = pageHeight - yPos - bottomMargin;
+              const sourceHeightForPage = Math.min(
+                availableHeight / scale,
+                tableCanvas.height - sourceYOffset
+              );
               
-              // Create off-screen canvas for first page slice
-              const firstPageCanvas = document.createElement('canvas');
-              firstPageCanvas.width = tableCanvas.width;
-              firstPageCanvas.height = sourceHeightFirstPage;
-              const firstPageCtx = firstPageCanvas.getContext('2d');
+              // Create off-screen canvas for this page slice
+              const pageCanvas = document.createElement('canvas');
+              pageCanvas.width = tableCanvas.width;
+              pageCanvas.height = sourceHeightForPage;
+              const pageCtx = pageCanvas.getContext('2d');
               
-              if (firstPageCtx) {
-                // Draw first slice
-                firstPageCtx.drawImage(
+              if (pageCtx) {
+                // Draw slice
+                pageCtx.drawImage(
                   tableCanvas,
-                  0, 0, tableCanvas.width, sourceHeightFirstPage,
-                  0, 0, tableCanvas.width, sourceHeightFirstPage
+                  0, sourceYOffset, tableCanvas.width, sourceHeightForPage,
+                  0, 0, tableCanvas.width, sourceHeightForPage
                 );
-                const firstPageImgData = firstPageCanvas.toDataURL('image/png');
-                doc.addImage(firstPageImgData, 'PNG', margin, yPos, tableWidth, availableHeightFirstPage);
-              }
-              
-              // Add second page
-              doc.addPage();
-              yPos = margin;
-              addComparisonHeader(true);
-              
-              // Calculate available height for second page
-              const availableHeightSecondPage = pageHeight - yPos - bottomMargin;
-              const scaledHeightSecondPage = sourceHeightSecondPage * scale;
-              
-              // Create off-screen canvas for second page slice
-              const secondPageCanvas = document.createElement('canvas');
-              secondPageCanvas.width = tableCanvas.width;
-              secondPageCanvas.height = sourceHeightSecondPage;
-              const secondPageCtx = secondPageCanvas.getContext('2d');
-              
-              if (secondPageCtx) {
-                // Draw second slice
-                secondPageCtx.drawImage(
-                  tableCanvas,
-                  0, sourceHeightFirstPage, tableCanvas.width, sourceHeightSecondPage,
-                  0, 0, tableCanvas.width, sourceHeightSecondPage
-                );
-                const secondPageImgData = secondPageCanvas.toDataURL('image/png');
-                doc.addImage(secondPageImgData, 'PNG', margin, yPos, tableWidth, Math.min(scaledHeightSecondPage, availableHeightSecondPage));
+                const pageImgData = pageCanvas.toDataURL('image/png');
+                const renderedHeight = sourceHeightForPage * scale;
+                doc.addImage(pageImgData, 'PNG', margin, yPos, tableWidth, renderedHeight);
+                
+                // Move to next slice
+                sourceYOffset += sourceHeightForPage;
+                
+                // Add new page if more content remains
+                if (sourceYOffset < tableCanvas.height) {
+                  doc.addPage();
+                  yPos = margin;
+                  addComparisonHeader(true);
+                  pageIndex++;
+                }
+              } else {
+                break;
               }
             }
           }
@@ -874,7 +861,7 @@ export default function LoanCalculator() {
           if (amortizationCanvas && amortizationCanvas.height > 0) {
             const bottomMargin = 30;
             const amortizationWidth = pageWidth - (2 * margin);
-            const scaledHeight = (amortizationCanvas.height * amortizationWidth) / amortizationCanvas.width;
+            const scale = amortizationWidth / amortizationCanvas.width;
             
             // Helper function to add header
             const addAmortizationHeader = (continued: boolean = false) => {
@@ -898,60 +885,47 @@ export default function LoanCalculator() {
             yPos = margin;
             addAmortizationHeader(false);
 
-            // Calculate available height per page
-            const availableHeightFirstPage = pageHeight - yPos - bottomMargin;
+            // Split canvas across unlimited pages
+            let sourceYOffset = 0;
+            let pageIndex = 0;
             
-            // If it fits on one page, use simple approach
-            if (scaledHeight <= availableHeightFirstPage) {
-              const amortizationImgData = amortizationCanvas.toDataURL('image/png');
-              doc.addImage(amortizationImgData, 'PNG', margin, yPos, amortizationWidth, scaledHeight);
-            } else {
-              // Split across two pages
-              const scale = amortizationWidth / amortizationCanvas.width;
-              const sourceHeightFirstPage = availableHeightFirstPage / scale;
-              const sourceHeightSecondPage = amortizationCanvas.height - sourceHeightFirstPage;
+            while (sourceYOffset < amortizationCanvas.height) {
+              // Calculate available height for current page
+              const availableHeight = pageHeight - yPos - bottomMargin;
+              const sourceHeightForPage = Math.min(
+                availableHeight / scale,
+                amortizationCanvas.height - sourceYOffset
+              );
               
-              // Create off-screen canvas for first page slice
-              const firstPageCanvas = document.createElement('canvas');
-              firstPageCanvas.width = amortizationCanvas.width;
-              firstPageCanvas.height = sourceHeightFirstPage;
-              const firstPageCtx = firstPageCanvas.getContext('2d');
+              // Create off-screen canvas for this page slice
+              const pageCanvas = document.createElement('canvas');
+              pageCanvas.width = amortizationCanvas.width;
+              pageCanvas.height = sourceHeightForPage;
+              const pageCtx = pageCanvas.getContext('2d');
               
-              if (firstPageCtx) {
-                // Draw first slice
-                firstPageCtx.drawImage(
+              if (pageCtx) {
+                // Draw slice
+                pageCtx.drawImage(
                   amortizationCanvas,
-                  0, 0, amortizationCanvas.width, sourceHeightFirstPage,
-                  0, 0, amortizationCanvas.width, sourceHeightFirstPage
+                  0, sourceYOffset, amortizationCanvas.width, sourceHeightForPage,
+                  0, 0, amortizationCanvas.width, sourceHeightForPage
                 );
-                const firstPageImgData = firstPageCanvas.toDataURL('image/png');
-                doc.addImage(firstPageImgData, 'PNG', margin, yPos, amortizationWidth, availableHeightFirstPage);
-              }
-              
-              // Add second page
-              doc.addPage();
-              yPos = margin;
-              addAmortizationHeader(true);
-              
-              // Calculate available height for second page
-              const availableHeightSecondPage = pageHeight - yPos - bottomMargin;
-              const scaledHeightSecondPage = sourceHeightSecondPage * scale;
-              
-              // Create off-screen canvas for second page slice
-              const secondPageCanvas = document.createElement('canvas');
-              secondPageCanvas.width = amortizationCanvas.width;
-              secondPageCanvas.height = sourceHeightSecondPage;
-              const secondPageCtx = secondPageCanvas.getContext('2d');
-              
-              if (secondPageCtx) {
-                // Draw second slice
-                secondPageCtx.drawImage(
-                  amortizationCanvas,
-                  0, sourceHeightFirstPage, amortizationCanvas.width, sourceHeightSecondPage,
-                  0, 0, amortizationCanvas.width, sourceHeightSecondPage
-                );
-                const secondPageImgData = secondPageCanvas.toDataURL('image/png');
-                doc.addImage(secondPageImgData, 'PNG', margin, yPos, amortizationWidth, Math.min(scaledHeightSecondPage, availableHeightSecondPage));
+                const pageImgData = pageCanvas.toDataURL('image/png');
+                const renderedHeight = sourceHeightForPage * scale;
+                doc.addImage(pageImgData, 'PNG', margin, yPos, amortizationWidth, renderedHeight);
+                
+                // Move to next slice
+                sourceYOffset += sourceHeightForPage;
+                
+                // Add new page if more content remains
+                if (sourceYOffset < amortizationCanvas.height) {
+                  doc.addPage();
+                  yPos = margin;
+                  addAmortizationHeader(true);
+                  pageIndex++;
+                }
+              } else {
+                break;
               }
             }
           }

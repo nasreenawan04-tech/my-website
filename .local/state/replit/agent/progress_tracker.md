@@ -461,3 +461,16 @@
 [x] 423. Verify no LSP errors after implementing canvas-splitting logic for Loan Comparison
 [x] 424. Restart workflow and verify application running successfully with hot module replacement
 [x] 425. Complete Loan Comparison two-page split implementation - production-ready ✓
+[x] 426. Upgrade Loan Comparison PDF export to support unlimited pages (not just two) using while loop approach (November 13, 2025)
+[x] 427. Replace two-page logic with iterative canvas slicing that continues until all content is rendered
+[x] 428. Implement sourceYOffset tracking to progressively slice through the entire canvas height
+[x] 429. Calculate sourceHeightForPage dynamically for each iteration based on remaining content
+[x] 430. Add new page automatically when more content remains after each slice
+[x] 431. Verify "CONTINUED" header appears on all subsequent pages after the first
+[x] 432. Upgrade Amortization Schedule PDF export to support unlimited pages using while loop approach
+[x] 433. Replace two-page logic with iterative canvas slicing for amortization schedule
+[x] 434. Implement same sourceYOffset tracking and dynamic height calculation for schedule
+[x] 435. Ensure both sections can now handle any number of pages (3, 4, 5, 10, etc.)
+[x] 436. Verify no LSP errors after implementing unlimited pages logic
+[x] 437. Restart workflow and verify application running successfully with hot module replacement
+[x] 438. Complete unlimited pages implementation for both Loan Comparison and Amortization Schedule - production-ready ✓
