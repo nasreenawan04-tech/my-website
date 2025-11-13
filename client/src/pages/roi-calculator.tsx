@@ -1114,7 +1114,7 @@ export default function ROICalculator() {
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">ROI Analysis</h2>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">ROI Configuration</h2>
 
                   {result ? (
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="roi-results">
