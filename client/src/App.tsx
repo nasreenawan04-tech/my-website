@@ -47,6 +47,8 @@ const Login = lazy(() => import("@/pages/login"));
 const Signup = lazy(() => import("@/pages/signup"));
 const ForgotPassword = lazy(() => import("@/pages/forgot-password"));
 const Profile = lazy(() => import("@/pages/profile"));
+const Blog = lazy(() => import("@/pages/blog"));
+const BlogPost = lazy(() => import("@/pages/blog-post"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -93,6 +95,10 @@ function Router() {
           <Route path="/signup" component={Signup} />
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/profile" component={Profile} />
+
+          {/* Blog pages */}
+          <Route path="/blog" component={Blog} />
+          <Route path="/blog/:slug" component={BlogPost} />
 
           {/* Legacy route redirects to standardized URLs */}
           <Route path="/about" component={() => <Redirect to="/about-us" />} />
