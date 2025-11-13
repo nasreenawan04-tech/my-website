@@ -5,6 +5,33 @@ DapsiWow is a comprehensive web platform offering over 180 free online tools acr
 
 ## Recent Changes
 
+### Mortgage Calculator UI Unification - November 13, 2025
+Unified the Mortgage Calculator UI design with the Loan Calculator to ensure consistent user experience across financial tools:
+
+**Sections Updated:**
+- Amortization Schedule section (lines 2167-2220)
+- Mortgage Comparison section (lines 2222-2271)
+
+**Design Changes:**
+- **Gradient Wrappers**: Replaced Card components with gradient div structure (`bg-gradient-to-br from-gray-50 to-blue-50`) matching Loan Calculator pattern
+- **Button Consistency**: Updated action buttons to use RotateCcw icon, rounded-full styling, and consistent sizing
+  - Amortization: "Hide Schedule" button with data-testid="button-hide-amortization"
+  - Comparison: "Clear All" button with data-testid="button-clear-comparison"
+- **Table Styling**: Standardized table design across both calculators
+  - Minimum width: min-w-[600px] for proper display
+  - Headers: bg-gray-50 with uppercase tracking-wider text
+  - Rows: hover:bg-gray-50 with consistent padding and data-testid attributes
+- **Code Cleanup**: Removed unused `handleDownloadAmortizationPDF` function and Export PDF buttons from individual sections (main PDF export remains in header)
+
+**Technical Details:**
+- Added RotateCcw import from lucide-react
+- Maintained all existing data-testid attributes for testing compatibility
+- Preserved responsive design with progressive breakpoint classes
+- Zero LSP errors and browser console errors after implementation
+
+**Verification Status:**
+All changes architect-reviewed and approved. Application running successfully on port 5000 with unified UI design between Loan and Mortgage calculators.
+
 ### Professional PDF Export Format - November 13, 2025
 Implemented consistent professional PDF export format across all financial calculators:
 
