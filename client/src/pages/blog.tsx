@@ -5,16 +5,32 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Link } from "wouter";
-import { ArrowRight, TrendingUp, BookOpen } from "lucide-react";
+import { ArrowRight, TrendingUp, BookOpen, Search, X } from "lucide-react";
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const categories = getAllCategories();
   
-  const filteredPosts = selectedCategory
-    ? blogPosts.filter(post => post.category === selectedCategory)
-    : blogPosts;
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
+    
+    if (!searchQuery.trim()) {
+      return matchesCategory;
+    }
+    
+    const query = searchQuery.toLowerCase();
+    const matchesSearch = 
+      post.title.toLowerCase().includes(query) ||
+      post.excerpt.toLowerCase().includes(query) ||
+      post.category.toLowerCase().includes(query) ||
+      post.keywords.some(keyword => keyword.toLowerCase().includes(query)) ||
+      post.content.toLowerCase().includes(query);
+    
+    return matchesCategory && matchesSearch;
+  });
 
   const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
 
@@ -131,6 +147,33 @@ export default function BlogPage() {
           </Card>
         </div>
       )}
+
+      {/* Search Bar */}
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8">
+        <div className="max-w-2xl mx-auto">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search articles by title, keyword, or topic..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-10"
+              data-testid="input-search-blog"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="button-clear-search"
+                aria-label="Clear search"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
 
       {/* Category Filter */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
