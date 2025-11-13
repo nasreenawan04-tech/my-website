@@ -727,32 +727,36 @@ export default function LoanCalculator() {
       // Capture charts if visible
       if (showChart && chartRef.current) {
         try {
-          if (yPos > pageHeight - 60) {
-            doc.addPage();
-            yPos = margin;
-          }
-
-          doc.setFontSize(14);
-          doc.setFont('helvetica', 'bold');
-          doc.setTextColor(30, 58, 138);
-          doc.text('LOAN BREAKDOWN CHARTS', margin, yPos);
-          yPos += 2;
-          doc.setDrawColor(37, 99, 235);
-          doc.line(margin, yPos, margin + 70, yPos);
-          yPos += 10;
-          doc.setTextColor(0, 0, 0);
-
+          // Capture first, then add page only if successful
           const chartCanvas = await html2canvas(chartRef.current, {
             scale: 2,
             backgroundColor: '#ffffff',
             logging: false
           });
-          const chartImgData = chartCanvas.toDataURL('image/png');
-          const chartWidth = pageWidth - (2 * margin);
-          const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
+          
+          if (chartCanvas && chartCanvas.height > 0) {
+            if (yPos > pageHeight - 60) {
+              doc.addPage();
+              yPos = margin;
+            }
 
-          doc.addImage(chartImgData, 'PNG', margin, yPos, chartWidth, chartHeight);
-          yPos += chartHeight + 10;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(30, 58, 138);
+            doc.text('LOAN BREAKDOWN CHARTS', margin, yPos);
+            yPos += 2;
+            doc.setDrawColor(37, 99, 235);
+            doc.line(margin, yPos, margin + 70, yPos);
+            yPos += 10;
+            doc.setTextColor(0, 0, 0);
+
+            const chartImgData = chartCanvas.toDataURL('image/png');
+            const chartWidth = pageWidth - (2 * margin);
+            const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
+
+            doc.addImage(chartImgData, 'PNG', margin, yPos, chartWidth, chartHeight);
+            yPos += chartHeight + 10;
+          }
         } catch (error) {
           console.error('Error capturing charts:', error);
         }
@@ -761,29 +765,33 @@ export default function LoanCalculator() {
       // Capture comparison table if exists
       if (comparisonLoans.length > 0 && comparisonRef.current) {
         try {
-          doc.addPage();
-          yPos = margin;
-
-          doc.setFontSize(14);
-          doc.setFont('helvetica', 'bold');
-          doc.setTextColor(30, 58, 138);
-          doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
-          yPos += 2;
-          doc.setDrawColor(37, 99, 235);
-          doc.line(margin, yPos, margin + 70, yPos);
-          yPos += 10;
-          doc.setTextColor(0, 0, 0);
-
+          // Capture first, then add page only if successful
           const tableCanvas = await html2canvas(comparisonRef.current, {
             scale: 2,
             backgroundColor: '#ffffff',
             logging: false
           });
-          const tableImgData = tableCanvas.toDataURL('image/png');
-          const tableWidth = pageWidth - (2 * margin);
-          const tableHeight = Math.min((tableCanvas.height * tableWidth) / tableCanvas.width, pageHeight - yPos - 30);
+          
+          if (tableCanvas && tableCanvas.height > 0) {
+            doc.addPage();
+            yPos = margin;
 
-          doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(30, 58, 138);
+            doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
+            yPos += 2;
+            doc.setDrawColor(37, 99, 235);
+            doc.line(margin, yPos, margin + 70, yPos);
+            yPos += 10;
+            doc.setTextColor(0, 0, 0);
+
+            const tableImgData = tableCanvas.toDataURL('image/png');
+            const tableWidth = pageWidth - (2 * margin);
+            const tableHeight = Math.min((tableCanvas.height * tableWidth) / tableCanvas.width, pageHeight - yPos - 30);
+
+            doc.addImage(tableImgData, 'PNG', margin, yPos, tableWidth, tableHeight);
+          }
         } catch (error) {
           console.error('Error capturing comparison table:', error);
         }
@@ -792,29 +800,33 @@ export default function LoanCalculator() {
       // Capture amortization schedule if visible
       if (showAmortization && amortizationRef.current) {
         try {
-          doc.addPage();
-          yPos = margin;
-
-          doc.setFontSize(14);
-          doc.setFont('helvetica', 'bold');
-          doc.setTextColor(30, 58, 138);
-          doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
-          yPos += 2;
-          doc.setDrawColor(37, 99, 235);
-          doc.line(margin, yPos, margin + 90, yPos);
-          yPos += 10;
-          doc.setTextColor(0, 0, 0);
-
+          // Capture first, then add page only if successful
           const amortizationCanvas = await html2canvas(amortizationRef.current, {
             scale: 2,
             backgroundColor: '#ffffff',
             logging: false
           });
-          const amortizationImgData = amortizationCanvas.toDataURL('image/png');
-          const amortizationWidth = pageWidth - (2 * margin);
-          const amortizationHeight = Math.min((amortizationCanvas.height * amortizationWidth) / amortizationCanvas.width, pageHeight - yPos - 30);
+          
+          if (amortizationCanvas && amortizationCanvas.height > 0) {
+            doc.addPage();
+            yPos = margin;
 
-          doc.addImage(amortizationImgData, 'PNG', margin, yPos, amortizationWidth, amortizationHeight);
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(30, 58, 138);
+            doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
+            yPos += 2;
+            doc.setDrawColor(37, 99, 235);
+            doc.line(margin, yPos, margin + 90, yPos);
+            yPos += 10;
+            doc.setTextColor(0, 0, 0);
+
+            const amortizationImgData = amortizationCanvas.toDataURL('image/png');
+            const amortizationWidth = pageWidth - (2 * margin);
+            const amortizationHeight = Math.min((amortizationCanvas.height * amortizationWidth) / amortizationCanvas.width, pageHeight - yPos - 30);
+
+            doc.addImage(amortizationImgData, 'PNG', margin, yPos, amortizationWidth, amortizationHeight);
+          }
         } catch (error) {
           console.error('Error capturing amortization schedule:', error);
         }
