@@ -2147,6 +2147,114 @@ const MortgageCalculator = () => {
                           </div>
                         </div>
                       )}
+
+                      {/* Amortization Schedule Section */}
+                      {showAmortization && (
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
+                              Amortization Schedule (First 5 Years)
+                            </h3>
+                            <Button
+                              onClick={() => setShowAmortization(false)}
+                              variant="outline"
+                              size="sm"
+                              className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                              data-testid="button-hide-amortization"
+                            >
+                              <RotateCcw className="w-4 h-4 mr-1.5" />
+                              Hide Schedule
+                            </Button>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
+                          <div
+                            ref={tableScrollRef}
+                            className={`overflow-x-auto -mx-4 sm:mx-0 touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                            onMouseDown={handleMouseDown}
+                            onMouseLeave={handleMouseLeave}
+                            onMouseUp={handleMouseUp}
+                            onMouseMove={handleMouseMove}
+                            onTouchStart={handleTouchStart}
+                            onTouchEnd={handleTouchEnd}
+                            onTouchMove={handleTouchMove}
+                          >
+                            <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
+                              <thead className="bg-gray-50">
+                                <tr>
+                                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment #</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Principal</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Interest</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Balance</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-200 bg-white">
+                                {result.amortizationSchedule.map((payment, index) => (
+                                  <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`amortization-row-${index}`}>
+                                    <td className="px-4 py-3 text-sm text-gray-900 font-medium">{payment.month}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(payment.payment)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(payment.principal)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(payment.interest)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-gray-900">{formatCurrency(payment.balance)}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Mortgage Comparison Section */}
+                      {showComparison && comparisonMortgages.length > 0 && (
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
+                              Mortgage Comparison
+                            </h3>
+                            <Button
+                              onClick={() => setComparisonMortgages([])}
+                              variant="outline"
+                              size="sm"
+                              className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                              data-testid="button-clear-comparison"
+                            >
+                              <RotateCcw className="w-4 h-4 mr-1.5" />
+                              Clear All
+                            </Button>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">Compare different mortgage scenarios side-by-side to find the best option.</p>
+                          <div className="overflow-x-auto -mx-4 sm:mx-0">
+                            <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                              <thead className="bg-gray-50">
+                                <tr>
+                                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Scenario</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Home Price</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Down Payment</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan Amount</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Term</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly Payment</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-200 bg-white">
+                                {comparisonMortgages.map((mortgage, index) => (
+                                  <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
+                                    <td className="px-4 py-3 text-sm text-gray-900 font-medium">{mortgage.name}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.homePrice)}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.downPayment)}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.loanAmount)}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{mortgage.rate}%</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{mortgage.term} years</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(mortgage.monthlyPayment)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(mortgage.totalInterest)}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -2163,112 +2271,6 @@ const MortgageCalculator = () => {
               </div>
             </CardContent>
           </Card>
-
-          {result && showAmortization && (
-            <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
-                  Amortization Schedule (First 5 Years)
-                </h3>
-                <Button
-                  onClick={() => setShowAmortization(false)}
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
-                  data-testid="button-hide-amortization"
-                >
-                  <RotateCcw className="w-4 h-4 mr-1.5" />
-                  Hide Schedule
-                </Button>
-              </div>
-              <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-              <div
-                ref={tableScrollRef}
-                className={`overflow-x-auto -mx-4 sm:mx-0 touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                onMouseDown={handleMouseDown}
-                onMouseLeave={handleMouseLeave}
-                onMouseUp={handleMouseUp}
-                onMouseMove={handleMouseMove}
-                onTouchStart={handleTouchStart}
-                onTouchEnd={handleTouchEnd}
-                onTouchMove={handleTouchMove}
-              >
-                <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment #</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Principal</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Interest</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Balance</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white">
-                    {result.amortizationSchedule.map((payment, index) => (
-                      <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`amortization-row-${index}`}>
-                        <td className="px-4 py-3 text-sm text-gray-900 font-medium">{payment.month}</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(payment.payment)}</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(payment.principal)}</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(payment.interest)}</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-gray-900">{formatCurrency(payment.balance)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-
-          {showComparison && comparisonMortgages.length > 0 && (
-            <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
-                  Mortgage Comparison
-                </h3>
-                <Button
-                  onClick={() => setComparisonMortgages([])}
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
-                  data-testid="button-clear-comparison"
-                >
-                  <RotateCcw className="w-4 h-4 mr-1.5" />
-                  Clear All
-                </Button>
-              </div>
-              <p className="text-sm text-gray-600 mb-4">Compare different mortgage scenarios side-by-side to find the best option.</p>
-              <div className="overflow-x-auto -mx-4 sm:mx-0">
-                <table className="w-full min-w-[600px]" data-testid="comparison-table">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Scenario</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Home Price</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Down Payment</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan Amount</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Term</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly Payment</th>
-                      <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200 bg-white">
-                    {comparisonMortgages.map((mortgage, index) => (
-                      <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
-                        <td className="px-4 py-3 text-sm text-gray-900 font-medium">{mortgage.name}</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.homePrice)}</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.downPayment)}</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(mortgage.loanAmount)}</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">{mortgage.rate}%</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">{mortgage.term} years</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(mortgage.monthlyPayment)}</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(mortgage.totalInterest)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
 
           {/* SEO Content Sections */}
           <div className="mt-8 sm:mt-12 space-y-6 sm:space-y-8 lg:space-y-10">

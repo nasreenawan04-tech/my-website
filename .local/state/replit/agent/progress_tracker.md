@@ -492,3 +492,10 @@
 [x] 454. Restart workflow and verify application is running successfully on port 5000 with Vite server
 [x] 455. Take screenshot to confirm homepage displaying correctly with hero section, navigation, search bar, and all features fully functional
 [x] 456. Mark all migration tasks as complete - project fully operational in Replit environment ✓
+[x] 457. Move Amortization Schedule section inside "Your Mortgage Results" gradient container to visually connect with results (November 13, 2025)
+[x] 458. Move Mortgage Comparison section inside "Your Mortgage Results" gradient container to visually connect with results
+[x] 459. Style both sections with white cards, shadow-sm, and blue top border (border-t-4 border-t-blue-200) for visual consistency
+[x] 460. Remove duplicate Amortization Schedule and Mortgage Comparison sections that were outside the Card component
+[x] 461. Verify no LSP errors after restructuring sections to be inside results container
+[x] 462. Restart workflow and verify application running successfully with hot module replacement
+[x] 463. Complete visual connection of Mortgage Comparison and Amortization Schedule sections with Your Mortgage Results section ✓
