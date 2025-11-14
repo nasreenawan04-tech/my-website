@@ -511,3 +511,8 @@
 [x] 473. Verify no LSP errors after implementing PDF export feature parity
 [x] 474. Restart workflow and verify application running successfully with enhanced PDF export
 [x] 475. Complete PDF export feature parity between Loan and Mortgage calculators with chart, comparison table, and amortization schedule captures ✓
+[x] 476. Run npm install to resolve vite not found error after latest user-initiated migration (November 14, 2025)
+[x] 477. Configure workflow with webview output type and port 5000 for proper frontend display
+[x] 478. Restart workflow and verify application is running successfully on port 5000 with Vite server
+[x] 479. Take screenshot to confirm homepage displaying correctly with hero section, navigation, search bar, and all statistics
+[x] 480. Mark all migration tasks as complete - project fully operational in Replit environment ✓
