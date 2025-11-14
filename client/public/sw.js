@@ -19,18 +19,57 @@ const STATIC_ASSETS = [
   '/sitemap-text.xml'
 ];
 
-// Cache strategies
-const CACHE_STRATEGIES = {
-  static: 'cache-first',
-  api: 'network-first',
-  images: 'cache-first'
-};
+// External domains to SKIP (do not intercept or cache)
+const EXTERNAL_DOMAINS = [
+  'googlesyndication.com',
+  'doubleclick.net',
+  'googleadservices.com',
+  'google.com',
+  'gstatic.com',
+  'googleapis.com',
+  'firebaseio.com',
+  'firebaseapp.com',
+  'firebase.com',
+  'vercel.com',
+  'vercel.app',
+  'googletagmanager.com',
+  'google-analytics.com',
+  'recaptcha.net'
+];
+
+// Helper function to check if URL is external
+function isExternalDomain(url) {
+  try {
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname;
+    
+    // Check if hostname matches any external domain
+    return EXTERNAL_DOMAINS.some(domain => hostname.includes(domain));
+  } catch (e) {
+    return false;
+  }
+}
+
+// Helper function to check if request is same-origin
+function isSameOrigin(url) {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.origin === self.location.origin;
+  } catch (e) {
+    return false;
+  }
+}
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
-      .then((cache) => cache.addAll(STATIC_ASSETS))
+      .then((cache) => {
+        return cache.addAll(STATIC_ASSETS).catch((error) => {
+          console.warn('Failed to cache some assets during install:', error);
+          // Continue anyway
+        });
+      })
       .then(() => self.skipWaiting())
   );
 });
@@ -55,13 +94,30 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event - implement caching strategies
+// Fetch event - implement caching strategies with proper error handling
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // CRITICAL: Skip ALL external domains (Google Ads, Firebase, reCaptcha, etc.)
+  if (isExternalDomain(request.url)) {
+    // Let browser handle external requests directly - DO NOT INTERCEPT
+    return;
+  }
+
+  // CRITICAL: Only handle same-origin requests
+  if (!isSameOrigin(request.url)) {
+    // Let browser handle cross-origin requests - DO NOT INTERCEPT
+    return;
+  }
+
   // Skip non-GET requests
   if (request.method !== 'GET') {
+    return;
+  }
+
+  // Skip Chrome extension requests
+  if (request.url.startsWith('chrome-extension://')) {
     return;
   }
 
@@ -75,12 +131,14 @@ self.addEventListener('fetch', (event) => {
           // Only cache successful responses
           if (response.ok && response.status === 200) {
             caches.open(API_CACHE).then((cache) => {
-              cache.put(request, clonedResponse);
+              cache.put(request, clonedResponse).catch(() => {
+                // Silently fail cache write
+              });
             });
           }
           return response;
         })
-        .catch(() => {
+        .catch((error) => {
           // Fallback to cache if network fails
           return caches.open(API_CACHE).then((cache) => {
             return cache.match(request);
@@ -91,6 +149,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   // Font assets - long-term cache first (fonts rarely change)
+  // Only cache same-origin fonts
   if (url.pathname.match(/\.(woff2?|otf|ttf)$/)) {
     event.respondWith(
       caches.open(FONT_CACHE)
@@ -105,9 +164,15 @@ self.addEventListener('fetch', (event) => {
                   // Clone response before any use
                   const clonedResponse = response.clone();
                   if (response.ok && response.status === 200) {
-                    cache.put(request, clonedResponse);
+                    cache.put(request, clonedResponse).catch(() => {
+                      // Silently fail cache write
+                    });
                   }
                   return response;
+                })
+                .catch((error) => {
+                  // Return nothing if fetch fails
+                  return new Response('Font load failed', { status: 404 });
                 });
             });
         })
@@ -127,9 +192,15 @@ self.addEventListener('fetch', (event) => {
                   // Clone response before any use
                   const clonedResponse = response.clone();
                   if (response.ok && response.status === 200) {
-                    cache.put(request, clonedResponse);
+                    cache.put(request, clonedResponse).catch(() => {
+                      // Silently fail cache write
+                    });
                   }
                   return response;
+                })
+                .catch((error) => {
+                  // Return cached version if available, otherwise fail gracefully
+                  return cachedResponse || new Response('Asset not available', { status: 404 });
                 });
 
               // Return cached version immediately, but update cache in background
@@ -150,11 +221,14 @@ self.addEventListener('fetch', (event) => {
           // Cache successful HTML responses
           if (response.ok && response.status === 200) {
             caches.open(CACHE_NAME)
-              .then((cache) => cache.put(request, clonedResponse));
+              .then((cache) => cache.put(request, clonedResponse))
+              .catch(() => {
+                // Silently fail cache write
+              });
           }
           return response;
         })
-        .catch(() => {
+        .catch((error) => {
           // Fallback to cache or offline page
           return caches.match(request)
             .then((cachedResponse) => {
