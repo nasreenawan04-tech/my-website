@@ -1638,15 +1638,6 @@ export default function CompoundInterestCalculator() {
                           {showChart ? 'Hide' : 'Show'} Chart
                         </Button>
                         <Button
-                          onClick={handleDownloadPDF}
-                          variant="outline"
-                          size="sm"
-                          data-testid="button-export-pdf"
-                        >
-                          <Download className="w-4 h-4 mr-1.5" />
-                          Export PDF
-                        </Button>
-                        <Button
                           onClick={() => setShowRealValue(!showRealValue)}
                           variant="outline"
                           size="sm"
@@ -1927,19 +1918,8 @@ export default function CompoundInterestCalculator() {
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">Track your investment growth year by year with detailed breakdown of principal, interest, and contributions.</p>
-                          <div 
-                            ref={tableScrollRef}
-                            className="overflow-x-auto -mx-4 sm:mx-0"
-                            onMouseDown={handleMouseDown}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseUp={handleMouseUp}
-                            onMouseMove={handleMouseMove}
-                            onTouchStart={handleTouchStart}
-                            onTouchMove={handleTouchMove}
-                            onTouchEnd={handleTouchEnd}
-                            data-testid="table-yearly-breakdown"
-                          >
-                            <table className="w-full min-w-[600px]">
+                          <div className="overflow-x-auto -mx-4 sm:mx-0" ref={tableScrollRef}>
+                            <table className="w-full min-w-[600px]" data-testid="table-yearly-breakdown">
                               <thead className="bg-gray-50">
                                 <tr>
                                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Year</th>
@@ -1951,7 +1931,7 @@ export default function CompoundInterestCalculator() {
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-gray-200 bg-white">
-                                {result.yearlyBreakdown.slice(0, 10).map((year, index) => (
+                                {result.yearlyBreakdown.map((year, index) => (
                                   <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`breakdown-row-${index}`}>
                                     <td className="px-4 py-3 text-sm text-gray-900 font-medium">{year.year}</td>
                                     <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(year.amount)}</td>
