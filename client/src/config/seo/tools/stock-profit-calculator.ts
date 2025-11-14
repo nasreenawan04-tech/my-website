@@ -21,7 +21,7 @@ export const stockProfitCalculatorSEO: ToolSEOConfig = {
       "Free Stock Profit Calculator"
 ],
     description: 'Calculate profit/loss on stock investments. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Stock Profit Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const stockProfitCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "car-loan-calculator",
-    "compound-interest-calculator",
-    "roi-calculator",
+    "sip-calculator",
     "education-loan-calculator",
-    "discount-calculator",
-    "credit-card-interest-calculator"
+    "debt-consolidation-calculator",
+    "roi-calculator",
+    "loan-comparison-calculator",
+    "simple-interest-calculator"
 ],
   
   content: {

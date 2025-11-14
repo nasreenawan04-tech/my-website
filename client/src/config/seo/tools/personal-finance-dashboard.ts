@@ -21,7 +21,7 @@ export const personalFinanceDashboardSEO: ToolSEOConfig = {
       "Free Personal Finance Dashboard"
 ],
     description: 'Comprehensive financial overview with income, expenses, savings, and investment tracking. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Personal Finance Dashboard',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const personalFinanceDashboardSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "discount-calculator",
-    "paypal-fee-calculator",
+    "dti-ratio-calculator",
+    "emi-calculator",
+    "debt-consolidation-calculator",
+    "mortgage-calculator",
     "net-worth-calculator",
-    "lease-calculator",
-    "tip-calculator",
-    "loan-comparison-calculator"
+    "home-loan-calculator"
 ],
   
   content: {

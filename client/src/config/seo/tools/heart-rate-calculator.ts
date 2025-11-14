@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const heartRateCalculatorSEO: ToolSEOConfig = {
   slug: 'heart-rate-calculator',
   category: 'health',
-  title: 'Heart Rate Calculator - health metrics Calculator | DapsiWow',
+  title: 'Heart Rate Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "heart rate calculator",
@@ -21,7 +21,7 @@ export const heartRateCalculatorSEO: ToolSEOConfig = {
       "Free Heart Rate Calculator"
 ],
     description: 'Calculate target heart rate zones for optimal training and fitness. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Heart Rate Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const heartRateCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "blood-pressure-tracker",
+    "pregnancy-due-date-calculator",
+    "max-heart-rate-calculator",
     "ovulation-calculator",
-    "bmi-calculator",
-    "meal-calorie-tracker",
-    "keto-macro-calculator",
-    "metabolic-age-calculator"
+    "body-composition-analyzer",
+    "baby-growth-chart",
+    "meal-calorie-tracker"
 ],
   
   content: {

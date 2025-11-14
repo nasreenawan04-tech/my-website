@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const waistToHeightRatioCalculatorSEO: ToolSEOConfig = {
   slug: 'waist-to-height-ratio-calculator',
   category: 'health',
-  title: 'Waist-to-Height Ratio Calculator - health metrics Calculator | DapsiWow',
+  title: 'Waist-to-Height Ratio Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "waist-to-height ratio calculator",
@@ -21,7 +21,7 @@ export const waistToHeightRatioCalculatorSEO: ToolSEOConfig = {
       "Free Waist-to-Height Ratio Calculator"
 ],
     description: 'Calculate waist-to-height ratio. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Waist-to-Height Ratio Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const waistToHeightRatioCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "water-intake-calculator",
+    "bmr-calculator",
+    "carb-calculator",
+    "lean-body-mass-calculator",
+    "heart-rate-calculator",
     "bmi-calculator",
-    "life-expectancy-calculator",
-    "running-pace-calculator",
-    "ideal-weight-calculator",
-    "bmr-calculator"
+    "daily-step-calorie-converter"
 ],
   
   content: {

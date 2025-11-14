@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { investmentReturnCalculatorSEO } from '@/config/seo/tools/investment-return-calculator';
 
 interface InvestmentResult {
   finalValue: number;
@@ -140,6 +142,7 @@ export default function InvestmentReturnCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={investmentReturnCalculatorSEO} />
       <Helmet>
         <title>Investment Return Calculator - Calculate Investment Growth & Returns | DapsiWow</title>
         <meta name="description" content="Free investment return calculator to calculate compound interest, investment growth, and portfolio returns. Support for multiple currencies, monthly contributions, and inflation adjustment." />

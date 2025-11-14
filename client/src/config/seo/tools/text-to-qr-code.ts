@@ -82,12 +82,12 @@ export const textToQrCodeSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "word-counter",
-    "markdown-to-pdf",
-    "text-pattern-generator",
+    "paragraph-counter",
+    "text-diff-checker",
+    "markdown-to-html",
+    "text-to-decimal-converter",
     "base64-encoder-decoder",
-    "binary-to-text-converter",
-    "text-to-hex-converter"
+    "fake-address-generator"
 ],
   
   content: {

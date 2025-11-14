@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { dtiRatioCalculatorSEO } from '@/config/seo/tools/dti-ratio-calculator';
 
 interface DebtItem {
   id: string;
@@ -209,6 +211,7 @@ export default function DTIRatioCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={dtiRatioCalculatorSEO} />
       <Helmet>
         <title>DTI Ratio Calculator - Free Debt-to-Income Ratio Calculator | DapsiWow</title>
         <meta name="description" content="Free DTI ratio calculator to calculate your debt-to-income ratio instantly. Get loan eligibility insights, financial health assessment, and personalized recommendations. Perfect for mortgage and loan applications with multiple currency support." />

@@ -13,6 +13,8 @@ import { useToast } from '@/hooks/use-toast';
 import { marked } from 'marked';
 import jsPDF from 'jspdf';
 import { FileDown, FileText, Trash2 } from 'lucide-react';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { markdownToPdfSEO } from '@/config/seo/tools/markdown-to-pdf';
 
 interface PDFOptions {
   paperSize: 'a4' | 'letter' | 'legal';
@@ -417,6 +419,7 @@ Visit [DapsiWow](https://dapsiwow.com) for more tools!
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={markdownToPdfSEO} />
       <Helmet>
         <title>Markdown to PDF Converter - Convert MD to PDF Online Free | DapsiWow</title>
         <meta name="description" content="Free Markdown to PDF converter tool. Transform Markdown files to professional PDF documents instantly with customizable page settings, fonts, and formatting options." />

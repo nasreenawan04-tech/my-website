@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { alcoholCalorieCalculatorSEO } from '@/config/seo/tools/alcohol-calorie-calculator';
 
 interface DrinkPreset {
   name: string;
@@ -170,6 +172,7 @@ const AlcoholCalorieCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={alcoholCalorieCalculatorSEO} />
       <Helmet>
         <title>Alcohol Calorie Calculator - Calculate Drink Calories Accurately | DapsiWow</title>
         <meta name="description" content="Free alcohol calorie calculator to accurately calculate calories in beer, wine, spirits, and cocktails. Track your alcohol intake for better health and weight management with our comprehensive drink calorie tool." />

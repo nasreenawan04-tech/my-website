@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const babyGrowthChartSEO: ToolSEOConfig = {
   slug: 'baby-growth-chart',
   category: 'health',
-  title: 'Baby Growth Chart - health metrics Calculator | DapsiWow',
+  title: 'Baby Growth Chart - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "baby growth chart",
@@ -21,7 +21,7 @@ export const babyGrowthChartSEO: ToolSEOConfig = {
       "Free Baby Growth Chart"
 ],
     description: 'Track baby growth and development using WHO standards. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Baby Growth Chart',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const babyGrowthChartSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "tdee-calculator",
     "calorie-calculator",
-    "body-fat-calculator",
-    "heart-rate-calculator",
-    "cholesterol-risk-calculator",
-    "alcohol-calorie-calculator"
+    "sleep-quality-calculator",
+    "bmr-calculator",
+    "intermittent-fasting-timer",
+    "sleep-calculator",
+    "max-heart-rate-calculator"
 ],
   
   content: {

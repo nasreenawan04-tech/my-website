@@ -21,7 +21,7 @@ export const educationLoanCalculatorSEO: ToolSEOConfig = {
       "Free Education Loan Calculator"
 ],
     description: 'Calculate education loan payments with moratorium period support. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Education Loan Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const educationLoanCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "stock-profit-calculator",
-    "dti-ratio-calculator",
-    "budget-calculator",
-    "net-worth-calculator",
+    "loan-comparison-calculator",
+    "roi-calculator",
     "percentage-calculator",
-    "lease-calculator"
+    "personal-finance-dashboard",
+    "currency-percentage-change-calculator",
+    "salary-to-hourly-calculator"
 ],
   
   content: {

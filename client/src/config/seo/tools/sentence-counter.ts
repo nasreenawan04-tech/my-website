@@ -82,12 +82,12 @@ export const sentenceCounterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "fake-name-generator",
+    "text-to-hex-converter",
+    "markdown-to-html",
     "case-converter",
-    "url-extractor",
-    "username-generator",
-    "hex-to-text-converter",
-    "word-counter",
-    "reverse-text-tool"
+    "reverse-text-tool",
+    "markdown-to-pdf"
 ],
   
   content: {

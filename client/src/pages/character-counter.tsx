@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { characterCounterSEO } from '@/config/seo/tools/character-counter';
 
 interface CharacterCountResult {
   totalCharacters: number;
@@ -144,6 +146,7 @@ This tool provides detailed analysis of your text content for social media optim
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={characterCounterSEO} />
       <Helmet>
         <title>Character Counter - Count Characters, Letters & Text Analysis | DapsiWow</title>
         <meta name="description" content="Free online character counter tool with real-time text analysis. Count characters with/without spaces, letters, numbers, punctuation for social media optimization and content planning." />

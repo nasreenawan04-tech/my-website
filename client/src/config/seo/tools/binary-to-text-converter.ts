@@ -82,12 +82,12 @@ export const binaryToTextConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "case-converter",
+    "text-statistics-analyzer",
+    "hex-to-text-converter",
+    "password-strength-checker",
     "fake-address-generator",
-    "character-counter",
-    "qr-code-scanner",
-    "unit-converter",
-    "markdown-to-pdf"
+    "text-scrambler",
+    "sentence-counter"
 ],
   
   content: {

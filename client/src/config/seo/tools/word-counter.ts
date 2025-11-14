@@ -82,12 +82,12 @@ export const wordCounterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "fake-name-generator",
-    "url-extractor",
-    "markdown-to-pdf",
-    "fake-address-generator",
-    "text-to-qr-code",
-    "base64-encoder-decoder"
+    "password-generator",
+    "case-converter",
+    "duplicate-line-remover",
+    "text-cleaner-formatter",
+    "text-diff-checker",
+    "qr-code-scanner"
 ],
   
   content: {

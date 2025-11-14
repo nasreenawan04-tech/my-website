@@ -82,11 +82,11 @@ export const decimalToTextConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "reverse-text-tool",
     "paragraph-counter",
-    "text-to-hex-converter",
-    "username-generator",
-    "password-strength-checker",
-    "unit-converter",
+    "binary-to-text-converter",
+    "fake-name-generator",
+    "sentence-counter",
     "fake-address-generator"
 ],
   

@@ -82,12 +82,12 @@ export const fakeNameGeneratorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "markdown-to-pdf",
     "fake-address-generator",
-    "text-to-hex-converter",
-    "decimal-to-text-converter",
-    "text-pattern-generator",
-    "url-extractor"
+    "lorem-ipsum-generator",
+    "markdown-to-pdf",
+    "password-strength-checker",
+    "sentence-counter",
+    "username-generator"
 ],
   
   content: {

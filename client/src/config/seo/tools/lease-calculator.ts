@@ -21,7 +21,7 @@ export const leaseCalculatorSEO: ToolSEOConfig = {
       "Free Lease Calculator"
 ],
     description: 'Calculate lease payments for vehicles and assets. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Lease Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const leaseCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "savings-goal-calculator",
+    "debt-payoff-calculator",
+    "budget-calculator",
+    "business-loan-calculator",
     "currency-percentage-change-calculator",
-    "paypal-fee-calculator",
-    "credit-card-interest-calculator",
-    "dti-ratio-calculator",
-    "retirement-calculator"
+    "net-worth-calculator",
+    "break-even-calculator"
 ],
   
   content: {

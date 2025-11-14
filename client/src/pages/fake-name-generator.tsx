@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { fakeNameGeneratorSEO } from '@/config/seo/tools/fake-name-generator';
 
 interface NameOptions {
   gender: 'male' | 'female' | 'both';
@@ -162,6 +164,7 @@ const FakeNameGenerator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={fakeNameGeneratorSEO} />
       <Helmet>
         <title>Fake Name Generator - Create Realistic Test Names | DapsiWow</title>
         <meta name="description" content="Generate realistic fake names for testing, development, and privacy purposes. Support for multiple nationalities with customizable options and instant generation." />

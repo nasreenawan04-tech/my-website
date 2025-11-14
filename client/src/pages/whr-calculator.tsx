@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { whrCalculatorSEO } from '@/config/seo/tools/whr-calculator';
 
 interface WHRResult {
   ratio: number;
@@ -175,6 +177,7 @@ export default function WHRCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={whrCalculatorSEO} />
       <Helmet>
         <title>WHR Calculator - Free Waist-to-Hip Ratio Calculator | DapsiWow</title>
         <meta name="description" content="Free WHR calculator to measure waist-to-hip ratio and assess cardiovascular health risks. Get instant WHR calculations with personalized health recommendations based on WHO standards." />

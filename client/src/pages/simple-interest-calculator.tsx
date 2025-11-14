@@ -15,6 +15,8 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import ShareResultsButton from '@/components/ShareResultsButton';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { simpleInterestCalculatorSEO } from '@/config/seo/tools/simple-interest-calculator';
 
 interface SimpleInterestResult {
   simpleInterest: number;
@@ -954,6 +956,7 @@ export default function SimpleInterestCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={simpleInterestCalculatorSEO} />
       <Helmet>
         <title>Simple Interest Calculator - Free SI Tool | DapsiWow</title>
         <meta name="description" content="Calculate simple interest fast with our free SI calculator. Get yearly breakdowns, charts & PDF reports. Supports 10 currencies. Start now, no signup needed." />

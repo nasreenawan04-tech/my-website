@@ -12,6 +12,8 @@ import { Slider } from '@/components/ui/slider';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
 import ShareResultsButton from '@/components/ShareResultsButton';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { stressLevelCalculatorSEO } from '@/config/seo/tools/stress-level-calculator';
 
 interface StressResult {
   overallScore: number;
@@ -376,6 +378,7 @@ const StressLevelCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={stressLevelCalculatorSEO} />
       <Helmet>
         <title>Stress Level Calculator - Free Comprehensive Stress Assessment Tool | DapsiWow</title>
         <meta name="description" content="Comprehensive stress level assessment calculator with personalized recommendations. Analyze work stress, sleep quality, social support, and lifestyle factors for complete mental health evaluation and stress management guidance." />

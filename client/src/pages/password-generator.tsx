@@ -13,6 +13,8 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { Copy, Eye, EyeOff, RefreshCw, Trash2, Download, CheckCircle, FileDown } from 'lucide-react';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { passwordGeneratorSEO } from '@/config/seo/tools/password-generator';
 
 interface PasswordOptions {
   length: number;
@@ -276,6 +278,7 @@ export default function PasswordGenerator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={passwordGeneratorSEO} />
       <Helmet>
         <title>Random Password Generator - Create Secure Passwords Online | DapsiWow</title>
         <meta name="description" content="Generate cryptographically secure passwords with our free online password generator. Customize length, character types, and advanced security settings to protect your accounts." />

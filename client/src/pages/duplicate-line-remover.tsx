@@ -10,6 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { duplicateLineRemoverSEO } from '@/config/seo/tools/duplicate-line-remover';
 
 interface DuplicationOptions {
   caseSensitive: boolean;
@@ -144,6 +146,7 @@ About our company`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={duplicateLineRemoverSEO} />
       <Helmet>
         <title>Duplicate Line Remover - Remove Duplicate Lines from Text Instantly | DapsiWow</title>
         <meta name="description" content="Free online duplicate line remover tool to clean up text by removing duplicate lines while preserving original order. Advanced options for case sensitivity, whitespace handling, and multiple output formats." />

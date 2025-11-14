@@ -21,7 +21,7 @@ export const debtConsolidationCalculatorSEO: ToolSEOConfig = {
       "Free Debt Consolidation Calculator"
 ],
     description: 'Calculate potential savings from consolidating multiple debts into a single loan. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Debt Consolidation Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const debtConsolidationCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "emi-calculator",
-    "mortgage-calculator",
-    "compound-interest-calculator",
+    "simple-interest-calculator",
+    "retirement-calculator",
+    "net-worth-calculator",
     "roi-calculator",
-    "paypal-fee-calculator",
-    "salary-to-hourly-calculator"
+    "business-loan-calculator",
+    "lease-calculator"
 ],
   
   content: {

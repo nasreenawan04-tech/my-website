@@ -82,12 +82,12 @@ export const textStatisticsAnalyzerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "word-counter",
-    "character-counter",
-    "text-to-qr-code",
-    "username-generator",
+    "text-to-binary-converter",
+    "url-extractor",
+    "unit-converter",
+    "text-diff-checker",
     "lorem-ipsum-generator",
-    "fake-address-generator"
+    "duplicate-line-remover"
 ],
   
   content: {

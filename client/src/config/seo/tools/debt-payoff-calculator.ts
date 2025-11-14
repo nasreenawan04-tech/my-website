@@ -21,7 +21,7 @@ export const debtPayoffCalculatorSEO: ToolSEOConfig = {
       "Free Debt Payoff Calculator"
 ],
     description: 'Calculate time to pay off debts. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Debt Payoff Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const debtPayoffCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "simple-interest-calculator",
-    "loan-calculator",
-    "dti-ratio-calculator",
-    "inflation-calculator",
+    "tax-calculator",
     "personal-finance-dashboard",
-    "net-worth-calculator"
+    "savings-goal-calculator",
+    "percentage-calculator",
+    "currency-percentage-change-calculator",
+    "vat-gst-calculator"
 ],
   
   content: {

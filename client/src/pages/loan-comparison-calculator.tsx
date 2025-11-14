@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { loanComparisonCalculatorSEO } from '@/config/seo/tools/loan-comparison-calculator';
 
 interface LoanOption {
   amount: number;
@@ -182,6 +184,7 @@ const LoanComparisonCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={loanComparisonCalculatorSEO} />
       <Helmet>
         <title>Loan Comparison Calculator - Compare Multiple Loan Offers Side-by-Side | DapsiWow</title>
         <meta name="description" content="Free loan comparison calculator to compare up to 3 loan offers simultaneously. Calculate EMI, total interest, and savings to find the best loan deal with detailed analysis and recommendations." />

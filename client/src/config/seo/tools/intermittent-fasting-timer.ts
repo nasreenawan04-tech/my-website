@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const intermittentFastingTimerSEO: ToolSEOConfig = {
   slug: 'intermittent-fasting-timer',
   category: 'health',
-  title: 'Intermittent Fasting Timer - health metrics Calculator | DapsiWow',
+  title: 'Intermittent Fasting Timer - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "intermittent fasting timer",
@@ -21,7 +21,7 @@ export const intermittentFastingTimerSEO: ToolSEOConfig = {
       "Free Intermittent Fasting Timer"
 ],
     description: 'Track intermittent fasting periods and eating windows. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Intermittent Fasting Timer',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const intermittentFastingTimerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "carb-calculator",
-    "life-expectancy-calculator",
-    "cholesterol-risk-calculator",
-    "body-fat-calculator",
-    "whr-calculator",
-    "ideal-weight-calculator"
+    "smoking-cost-calculator",
+    "body-water-percentage-calculator",
+    "ovulation-calculator",
+    "hydration-calculator",
+    "bmi-calculator",
+    "protein-intake-calculator"
 ],
   
   content: {

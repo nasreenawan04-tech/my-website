@@ -11,6 +11,8 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textStatisticsAnalyzerSEO } from '@/config/seo/tools/text-statistics-analyzer';
 
 interface TextStatistics {
   characters: number;
@@ -232,6 +234,7 @@ Remember that writing is a process, not a product. The first draft is rarely per
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textStatisticsAnalyzerSEO} />
       <Helmet>
         <title>Text Statistics Analyzer - Comprehensive Text Analysis Tool | DapsiWow</title>
         <meta name="description" content="Advanced text statistics analyzer with readability scores, keyword density analysis, and comprehensive text metrics. Analyze reading time, sentence structure, and writing complexity instantly." />

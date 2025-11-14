@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { ketoMacroCalculatorSEO } from '@/config/seo/tools/keto-macro-calculator';
 
 interface KetoMacroResult {
   dailyCalories: number;
@@ -249,6 +251,7 @@ export default function KetoMacroCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={ketoMacroCalculatorSEO} />
       <Helmet>
         <title>Keto Macro Calculator - Calculate Your Ketogenic Diet Macros | DapsiWow</title>
         <meta name="description" content="Free keto macro calculator to calculate personalized ketogenic diet macronutrient ratios. Get precise fat, protein, and carb targets for optimal ketosis and weight loss. Support for all fitness levels and keto goals." />

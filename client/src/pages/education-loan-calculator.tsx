@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { educationLoanCalculatorSEO } from '@/config/seo/tools/education-loan-calculator';
 
 interface EducationLoanResult {
   emi: number;
@@ -139,6 +141,7 @@ export default function EducationLoanCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={educationLoanCalculatorSEO} />
       <Helmet>
         <title>Education Loan Calculator - Student Loan EMI Calculator | DapsiWow</title>
         <meta name="description" content="Free education loan calculator with grace period and course duration support. Calculate student loan EMI, total interest, and repayment schedule for education financing. Support for multiple currencies worldwide." />

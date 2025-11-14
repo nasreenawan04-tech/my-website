@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const bmiCalculatorSEO: ToolSEOConfig = {
   slug: 'bmi-calculator',
   category: 'health',
-  title: 'BMI Calculator - BMI Calculator | DapsiWow',
+  title: 'BMI Calculator - Track Your BMI | DapsiWow',
   metaDescription: 'Calculate your BMI with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "bmi calculator",
@@ -21,7 +21,7 @@ export const bmiCalculatorSEO: ToolSEOConfig = {
       "Free BMI Calculator"
 ],
     description: 'Calculate your Body Mass Index and get health insights. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'BMI Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const bmiCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "keto-macro-calculator",
-    "smoking-cost-calculator",
-    "sleep-calculator",
-    "ovulation-calculator",
-    "max-heart-rate-calculator",
-    "body-fat-calculator"
+    "intermittent-fasting-timer",
+    "protein-intake-calculator",
+    "meal-calorie-tracker",
+    "bmr-calculator",
+    "calorie-calculator",
+    "metabolic-age-calculator"
 ],
   
   content: {

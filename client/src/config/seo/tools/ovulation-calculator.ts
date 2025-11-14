@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const ovulationCalculatorSEO: ToolSEOConfig = {
   slug: 'ovulation-calculator',
   category: 'health',
-  title: 'Ovulation Calculator - health metrics Calculator | DapsiWow',
+  title: 'Ovulation Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "ovulation calculator",
@@ -21,7 +21,7 @@ export const ovulationCalculatorSEO: ToolSEOConfig = {
       "Free Ovulation Calculator"
 ],
     description: 'Track fertile days and ovulation date for conception planning. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Ovulation Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const ovulationCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "max-heart-rate-calculator",
-    "meal-calorie-tracker",
-    "body-water-percentage-calculator",
-    "sleep-quality-calculator",
-    "hydration-calculator",
-    "bmi-calculator"
+    "running-pace-calculator",
+    "ideal-weight-calculator",
+    "protein-intake-calculator",
+    "sleep-calculator",
+    "stress-level-calculator",
+    "max-heart-rate-calculator"
 ],
   
   content: {

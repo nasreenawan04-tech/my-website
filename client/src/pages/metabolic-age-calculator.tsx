@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { metabolicAgeCalculatorSEO } from '@/config/seo/tools/metabolic-age-calculator';
 
 interface MetabolicAgeResult {
   metabolicAge: number;
@@ -478,6 +480,7 @@ const MetabolicAgeCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
+      <ToolSEOHead config={metabolicAgeCalculatorSEO} />
       <Helmet>
         <title>Metabolic Age Calculator - Free Health & Longevity Assessment Tool | DapsiWow</title>
         <meta name="description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health and longevity with our comprehensive analysis tool." />

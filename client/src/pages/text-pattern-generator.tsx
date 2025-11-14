@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textPatternGeneratorSEO } from '@/config/seo/tools/text-pattern-generator';
 
 interface PatternOptions {
   baseText: string;
@@ -221,6 +223,7 @@ export default function TextPatternGenerator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textPatternGeneratorSEO} />
       <Helmet>
         <title>Text Pattern Generator - Create Repeating Text Patterns & Sequences | DapsiWow</title>
         <meta name="description" content="Free online text pattern generator tool to create repeating text sequences with customizable separators, numbering, and formatting. Perfect for creating lists, test data, and structured content." />

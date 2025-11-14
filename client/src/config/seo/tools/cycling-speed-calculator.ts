@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const cyclingSpeedCalculatorSEO: ToolSEOConfig = {
   slug: 'cycling-speed-calculator',
   category: 'health',
-  title: 'Cycling Speed Calculator - health metrics Calculator | DapsiWow',
+  title: 'Cycling Speed Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "cycling speed calculator",
@@ -21,7 +21,7 @@ export const cyclingSpeedCalculatorSEO: ToolSEOConfig = {
       "Free Cycling Speed Calculator"
 ],
     description: 'Calculate cycling speed and distance. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Cycling Speed Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const cyclingSpeedCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "protein-intake-calculator",
+    "body-fat-calculator",
+    "stress-level-calculator",
+    "keto-macro-calculator",
     "water-intake-calculator",
-    "bmi-calculator",
-    "alcohol-calorie-calculator",
-    "max-heart-rate-calculator",
-    "lean-body-mass-calculator",
-    "carb-calculator"
+    "pregnancy-due-date-calculator"
 ],
   
   content: {

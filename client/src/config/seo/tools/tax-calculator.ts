@@ -21,7 +21,7 @@ export const taxCalculatorSEO: ToolSEOConfig = {
       "Free Tax Calculator"
 ],
     description: 'Calculate income tax based on your salary. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Tax Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const taxCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "business-loan-calculator",
+    "emi-calculator",
+    "sip-calculator",
+    "net-worth-calculator",
     "debt-consolidation-calculator",
-    "break-even-calculator",
-    "salary-to-hourly-calculator",
-    "inflation-calculator",
-    "home-loan-calculator",
-    "percentage-calculator"
+    "investment-return-calculator"
 ],
   
   content: {

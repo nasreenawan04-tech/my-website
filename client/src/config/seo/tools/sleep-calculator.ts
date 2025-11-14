@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const sleepCalculatorSEO: ToolSEOConfig = {
   slug: 'sleep-calculator',
   category: 'health',
-  title: 'Sleep Calculator - health metrics Calculator | DapsiWow',
+  title: 'Sleep Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "sleep calculator",
@@ -21,7 +21,7 @@ export const sleepCalculatorSEO: ToolSEOConfig = {
       "Free Sleep Calculator"
 ],
     description: 'Calculate optimal sleep and wake times based on natural sleep cycles. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Sleep Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const sleepCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "stress-level-calculator",
-    "pregnancy-due-date-calculator",
-    "alcohol-calorie-calculator",
+    "life-expectancy-calculator",
     "bmi-calculator",
-    "max-heart-rate-calculator",
-    "daily-step-calorie-converter"
+    "body-composition-analyzer",
+    "blood-pressure-tracker",
+    "ovulation-calculator",
+    "stress-level-calculator"
 ],
   
   content: {

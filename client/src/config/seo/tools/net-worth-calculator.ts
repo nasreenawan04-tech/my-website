@@ -21,7 +21,7 @@ export const netWorthCalculatorSEO: ToolSEOConfig = {
       "Free Net Worth Calculator"
 ],
     description: 'Calculate your total net worth. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Net Worth Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const netWorthCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "future-value-investment-calculator",
-    "tax-calculator",
-    "budget-calculator",
-    "roi-calculator",
-    "savings-goal-calculator",
-    "personal-finance-dashboard"
+    "business-loan-calculator",
+    "loan-calculator",
+    "home-loan-calculator",
+    "investment-return-calculator",
+    "mortgage-calculator",
+    "debt-payoff-calculator"
 ],
   
   content: {

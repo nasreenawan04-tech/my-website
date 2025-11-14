@@ -21,7 +21,7 @@ export const tipCalculatorSEO: ToolSEOConfig = {
       "Free Tip Calculator"
 ],
     description: 'Calculate tip amount and split bills. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Tip Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const tipCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "loan-calculator",
+    "debt-consolidation-calculator",
     "loan-comparison-calculator",
-    "budget-calculator",
-    "retirement-calculator",
-    "compound-interest-calculator",
-    "emi-calculator",
-    "savings-goal-calculator"
+    "mortgage-calculator",
+    "sip-calculator",
+    "simple-interest-calculator"
 ],
   
   content: {

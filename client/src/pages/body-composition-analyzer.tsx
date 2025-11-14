@@ -10,6 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { bodyCompositionAnalyzerSEO } from '@/config/seo/tools/body-composition-analyzer';
 
 interface BodyCompositionResult {
   bodyFatPercentage: number;
@@ -271,6 +273,7 @@ const BodyCompositionAnalyzer = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50">
+      <ToolSEOHead config={bodyCompositionAnalyzerSEO} />
       <Helmet>
         <title>Body Composition Analyzer - Free Body Fat & Muscle Mass Calculator | DapsiWow</title>
         <meta name="description" content="Free body composition analyzer to calculate body fat percentage, muscle mass, and lean body mass. Get personalized fitness recommendations with our comprehensive body composition calculator." />

@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const idealWeightCalculatorSEO: ToolSEOConfig = {
   slug: 'ideal-weight-calculator',
   category: 'health',
-  title: 'Ideal Weight Calculator - health metrics Calculator | DapsiWow',
+  title: 'Ideal Weight Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "ideal weight calculator",
@@ -21,7 +21,7 @@ export const idealWeightCalculatorSEO: ToolSEOConfig = {
       "Free Ideal Weight Calculator"
 ],
     description: 'Calculate ideal body weight using multiple proven formulas. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Ideal Weight Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const idealWeightCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "cholesterol-risk-calculator",
-    "stress-level-calculator",
-    "alcohol-calorie-calculator",
-    "blood-pressure-tracker",
-    "intermittent-fasting-timer",
-    "water-intake-calculator"
+    "cycling-speed-calculator",
+    "running-pace-calculator",
+    "body-fat-calculator",
+    "baby-growth-chart",
+    "smoking-cost-calculator",
+    "sleep-calculator"
 ],
   
   content: {

@@ -21,7 +21,7 @@ export const mortgageCalculatorSEO: ToolSEOConfig = {
       "Free Mortgage Calculator"
 ],
     description: 'Calculate mortgage payments and compare rates. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Mortgage Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const mortgageCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "retirement-calculator",
-    "debt-payoff-calculator",
-    "roi-calculator",
-    "debt-consolidation-calculator",
+    "dti-ratio-calculator",
     "simple-interest-calculator",
-    "budget-calculator"
+    "percentage-calculator",
+    "salary-to-hourly-calculator",
+    "personal-finance-dashboard",
+    "debt-payoff-calculator"
 ],
   
   content: {

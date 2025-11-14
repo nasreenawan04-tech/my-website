@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const calorieCalculatorSEO: ToolSEOConfig = {
   slug: 'calorie-calculator',
   category: 'health',
-  title: 'Calorie Calculator - calorie needs Calculator | DapsiWow',
+  title: 'Calorie Calculator - Track Your calorie needs | DapsiWow',
   metaDescription: 'Calculate your calorie needs with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "calorie calculator",
@@ -21,7 +21,7 @@ export const calorieCalculatorSEO: ToolSEOConfig = {
       "Free Calorie Calculator"
 ],
     description: 'Calculate daily calorie needs and macronutrient breakdown. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Calorie Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const calorieCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "body-composition-analyzer",
     "bmi-calculator",
-    "intermittent-fasting-timer",
-    "hydration-calculator",
+    "max-heart-rate-calculator",
     "sleep-calculator",
-    "running-pace-calculator",
-    "baby-growth-chart"
+    "protein-intake-calculator",
+    "ovulation-calculator"
 ],
   
   content: {

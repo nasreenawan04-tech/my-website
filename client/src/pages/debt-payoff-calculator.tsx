@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { debtPayoffCalculatorSEO } from '@/config/seo/tools/debt-payoff-calculator';
 
 interface DebtPayoffResult {
   currentBalance: number;
@@ -311,6 +313,7 @@ export default function DebtPayoffCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={debtPayoffCalculatorSEO} />
       <Helmet>
         <title>Debt Payoff Calculator - Plan Your Debt Freedom Strategy | DapsiWow</title>
         <meta name="description" content="Free debt payoff calculator to compare snowball vs avalanche strategies. Calculate payoff time, interest savings, and create your debt elimination plan with multiple payment methods." />

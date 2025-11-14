@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const dailyStepCalorieConverterSEO: ToolSEOConfig = {
   slug: 'daily-step-calorie-converter',
   category: 'health',
-  title: 'Daily Steps to Calories Converter - calorie needs Calculator | DapsiWow',
+  title: 'Daily Steps to Calories Converter - Track Your calorie needs | DapsiWow',
   metaDescription: 'Calculate your calorie needs with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "daily steps to calories converter",
@@ -21,7 +21,7 @@ export const dailyStepCalorieConverterSEO: ToolSEOConfig = {
       "Free Daily Steps to Calories Converter"
 ],
     description: 'Convert steps walked to calories burned with personal factors. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Daily Steps to Calories Converter',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const dailyStepCalorieConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "calorie-calculator",
+    "pregnancy-due-date-calculator",
+    "water-intake-calculator",
+    "sleep-calculator",
+    "carb-calculator",
     "running-pace-calculator",
-    "stress-level-calculator",
-    "alcohol-calorie-calculator",
-    "blood-pressure-tracker",
-    "body-fat-calculator"
+    "keto-macro-calculator"
 ],
   
   content: {

@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { vatGstCalculatorSEO } from '@/config/seo/tools/vat-gst-calculator';
 
 interface VATResult {
   baseAmount: number;
@@ -110,6 +112,7 @@ export default function VATGSTCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={vatGstCalculatorSEO} />
       <Helmet>
         <title>VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | DapsiWow</title>
         <meta name="description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />

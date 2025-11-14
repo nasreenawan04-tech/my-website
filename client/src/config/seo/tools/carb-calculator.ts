@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const carbCalculatorSEO: ToolSEOConfig = {
   slug: 'carb-calculator',
   category: 'health',
-  title: 'Carb Calculator - health metrics Calculator | DapsiWow',
+  title: 'Carb Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "carb calculator",
@@ -21,7 +21,7 @@ export const carbCalculatorSEO: ToolSEOConfig = {
       "Free Carb Calculator"
 ],
     description: 'Calculate daily carbohydrate needs. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Carb Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const carbCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "ovulation-calculator",
-    "pregnancy-due-date-calculator",
-    "smoking-cost-calculator",
-    "whr-calculator",
-    "heart-rate-calculator",
-    "metabolic-age-calculator"
+    "body-water-percentage-calculator",
+    "stress-level-calculator",
+    "swimming-calorie-calculator",
+    "bmi-calculator",
+    "hydration-calculator",
+    "max-heart-rate-calculator"
 ],
   
   content: {

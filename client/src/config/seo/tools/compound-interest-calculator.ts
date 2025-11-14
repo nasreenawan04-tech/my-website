@@ -21,7 +21,7 @@ export const compoundInterestCalculatorSEO: ToolSEOConfig = {
       "Free Compound Interest Calculator"
 ],
     description: 'Calculate compound interest on investments. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Compound Interest Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const compoundInterestCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "paypal-fee-calculator",
-    "education-loan-calculator",
-    "tip-calculator",
-    "stock-profit-calculator",
-    "debt-payoff-calculator",
-    "loan-comparison-calculator"
+    "inflation-calculator",
+    "home-loan-calculator",
+    "sip-calculator",
+    "break-even-calculator",
+    "mortgage-calculator",
+    "credit-card-interest-calculator"
 ],
   
   content: {

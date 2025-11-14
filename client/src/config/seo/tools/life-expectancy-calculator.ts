@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const lifeExpectancyCalculatorSEO: ToolSEOConfig = {
   slug: 'life-expectancy-calculator',
   category: 'health',
-  title: 'Life Expectancy Calculator - health metrics Calculator | DapsiWow',
+  title: 'Life Expectancy Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "life expectancy calculator",
@@ -21,7 +21,7 @@ export const lifeExpectancyCalculatorSEO: ToolSEOConfig = {
       "Free Life Expectancy Calculator"
 ],
     description: 'Estimate life expectancy based on lifestyle. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Life Expectancy Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const lifeExpectancyCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "hydration-calculator",
     "stress-level-calculator",
-    "water-intake-calculator",
-    "bmr-calculator",
-    "waist-to-height-ratio-calculator",
-    "cholesterol-risk-calculator"
+    "body-fat-calculator",
+    "calorie-calculator",
+    "running-pace-calculator",
+    "sleep-calculator",
+    "heart-rate-calculator"
 ],
   
   content: {

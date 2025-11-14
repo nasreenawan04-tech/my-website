@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { paypalFeeCalculatorSEO } from '@/config/seo/tools/paypal-fee-calculator';
 
 interface PayPalFeeResult {
   originalAmount: number;
@@ -175,6 +177,7 @@ const PayPalFeeCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={paypalFeeCalculatorSEO} />
       <Helmet>
         <title>PayPal Fee Calculator - Calculate PayPal Transaction Fees | DapsiWow</title>
         <meta name="description" content="Free PayPal fee calculator to calculate transaction fees for receiving money, sending payments, and international transfers. Supports 12+ currencies, personal & business accounts. Perfect for freelancers, online sellers, and businesses." />

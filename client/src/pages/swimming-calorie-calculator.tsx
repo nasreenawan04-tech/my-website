@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { swimmingCalorieCalculatorSEO } from '@/config/seo/tools/swimming-calorie-calculator';
 
 interface SwimmingResult {
   caloriesBurned: number;
@@ -137,6 +139,7 @@ const SwimmingCalorieCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={swimmingCalorieCalculatorSEO} />
       <Helmet>
         <title>Swimming Calorie Calculator - Calculate Calories Burned Swimming | DapsiWow</title>
         <meta name="description" content="Free swimming calorie calculator to determine calories burned during swimming workouts. Supports all stroke types and intensity levels with accurate MET-based calculations for fitness tracking." />

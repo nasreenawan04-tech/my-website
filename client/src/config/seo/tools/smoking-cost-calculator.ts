@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const smokingCostCalculatorSEO: ToolSEOConfig = {
   slug: 'smoking-cost-calculator',
   category: 'health',
-  title: 'Smoking Cost Calculator - health metrics Calculator | DapsiWow',
+  title: 'Smoking Cost Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "smoking cost calculator",
@@ -21,7 +21,7 @@ export const smokingCostCalculatorSEO: ToolSEOConfig = {
       "Free Smoking Cost Calculator"
 ],
     description: 'Calculate the cost of smoking habits. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Smoking Cost Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const smokingCostCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "stress-level-calculator",
-    "water-intake-calculator",
-    "waist-to-height-ratio-calculator",
-    "sleep-calculator",
-    "swimming-calorie-calculator",
-    "body-composition-analyzer"
+    "alcohol-calorie-calculator",
+    "cholesterol-risk-calculator",
+    "max-heart-rate-calculator",
+    "lean-body-mass-calculator",
+    "body-water-percentage-calculator",
+    "sleep-quality-calculator"
 ],
   
   content: {

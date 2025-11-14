@@ -14,6 +14,8 @@ import html2canvas from 'html2canvas';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { emiCalculatorSEO } from '@/config/seo/tools/emi-calculator';
 
 interface EMIResult {
   emi: number;
@@ -1023,6 +1025,7 @@ export default function EMICalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={emiCalculatorSEO} />
       <Helmet>
         <title>EMI Calculator 2025: Free Monthly Payment Calculator with Prepayment & Step-Up | Home, Car, Personal Loans</title>
         <meta name="description" content="Calculate EMI instantly with our FREE EMI calculator featuring prepayment analysis & step-up EMI. Get monthly payment breakdowns, amortization schedules & total interest for home loans, car loans, personal loans. Compare terms, see prepayment savings & save thousands! No registration required. 3.4M+ calculations trusted by borrowers." />

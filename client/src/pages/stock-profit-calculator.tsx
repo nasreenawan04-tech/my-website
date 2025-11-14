@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { stockProfitCalculatorSEO } from '@/config/seo/tools/stock-profit-calculator';
 
 interface StockResult {
   buyPrice: number;
@@ -289,6 +291,7 @@ export default function StockProfitCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={stockProfitCalculatorSEO} />
       <Helmet>
         <title>Stock Profit Calculator - Calculate Stock Investment Returns | DapsiWow</title>
         <meta name="description" content="Free stock profit calculator with tax optimization, fee analysis, and multi-currency support. Calculate investment returns, set target prices, and analyze portfolio performance for stocks worldwide." />

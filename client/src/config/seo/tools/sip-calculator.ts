@@ -21,7 +21,7 @@ export const sipCalculatorSEO: ToolSEOConfig = {
       "Free SIP Calculator"
 ],
     description: 'Calculate Systematic Investment Plan returns. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'SIP Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const sipCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "simple-interest-calculator",
-    "discount-calculator",
-    "personal-finance-dashboard",
-    "percentage-calculator",
-    "break-even-calculator",
-    "debt-payoff-calculator"
+    "stock-profit-calculator",
+    "vat-gst-calculator",
+    "car-loan-calculator",
+    "retirement-calculator",
+    "credit-card-interest-calculator",
+    "debt-consolidation-calculator"
 ],
   
   content: {

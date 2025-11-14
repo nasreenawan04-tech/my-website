@@ -11,6 +11,8 @@ import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { reverseTextToolSEO } from '@/config/seo/tools/reverse-text-tool';
 
 interface ReverseOptions {
   method: 'characters' | 'words' | 'lines';
@@ -169,6 +171,7 @@ const ReverseTextTool = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={reverseTextToolSEO} />
       <Helmet>
         <title>Reverse Text Tool - Flip Text Backwards by Characters, Words & Lines | DapsiWow</title>
         <meta name="description" content="Free online reverse text tool to flip text backwards by characters, words, or lines. Create mirror text, upside down text, and reversed text effects instantly for puzzles, social media, and creative projects." />

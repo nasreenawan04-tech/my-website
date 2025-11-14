@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { leanBodyMassCalculatorSEO } from '@/config/seo/tools/lean-body-mass-calculator';
 
 interface LBMResult {
   boer: number;
@@ -169,6 +171,7 @@ const LeanBodyMassCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={leanBodyMassCalculatorSEO} />
       <Helmet>
         <title>Lean Body Mass Calculator - Calculate LBM with Multiple Formulas | DapsiWow</title>
         <meta name="description" content="Free lean body mass calculator using Boer, James, and Hume formulas. Get accurate LBM calculations, body composition analysis, and personalized fitness recommendations with metric and imperial unit support." />

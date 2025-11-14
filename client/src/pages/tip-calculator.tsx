@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { tipCalculatorSEO } from '@/config/seo/tools/tip-calculator';
 
 interface TipResult {
   billAmount: number;
@@ -145,6 +147,7 @@ export default function TipCalculator() {
 
   return (
     <>
+      <ToolSEOHead config={tipCalculatorSEO} />
       <Helmet>
         <title>Free Tip Calculator - Calculate Tips & Split Bills Worldwide | Global Tipping Standards</title>
         <meta name="description" content="Advanced tip calculator with global tipping standards for 15+ countries. Calculate restaurant tips, split bills among groups, and learn cultural tipping etiquette. Free online tool with currency conversion and service quality assessment." />

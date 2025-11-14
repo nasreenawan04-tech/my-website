@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const cholesterolRiskCalculatorSEO: ToolSEOConfig = {
   slug: 'cholesterol-risk-calculator',
   category: 'health',
-  title: 'Cholesterol Risk Calculator - health metrics Calculator | DapsiWow',
+  title: 'Cholesterol Risk Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "cholesterol risk calculator",
@@ -21,7 +21,7 @@ export const cholesterolRiskCalculatorSEO: ToolSEOConfig = {
       "Free Cholesterol Risk Calculator"
 ],
     description: 'Assess cholesterol-related health risks. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Cholesterol Risk Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const cholesterolRiskCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "body-water-percentage-calculator",
-    "protein-intake-calculator",
-    "ovulation-calculator",
-    "max-heart-rate-calculator",
-    "alcohol-calorie-calculator",
-    "smoking-cost-calculator"
+    "hydration-calculator",
+    "stress-level-calculator",
+    "bmi-calculator",
+    "waist-to-height-ratio-calculator",
+    "cycling-speed-calculator",
+    "protein-intake-calculator"
 ],
   
   content: {

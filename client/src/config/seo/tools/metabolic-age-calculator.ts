@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const metabolicAgeCalculatorSEO: ToolSEOConfig = {
   slug: 'metabolic-age-calculator',
   category: 'health',
-  title: 'Metabolic Age Calculator - health metrics Calculator | DapsiWow',
+  title: 'Metabolic Age Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "metabolic age calculator",
@@ -21,7 +21,7 @@ export const metabolicAgeCalculatorSEO: ToolSEOConfig = {
       "Free Metabolic Age Calculator"
 ],
     description: 'Calculate your metabolic age based on lifestyle factors and health metrics with personalized longevity recommendations. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Metabolic Age Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const metabolicAgeCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "life-expectancy-calculator",
-    "blood-pressure-tracker",
-    "stress-level-calculator",
-    "heart-rate-calculator",
-    "alcohol-calorie-calculator",
-    "waist-to-height-ratio-calculator"
+    "smoking-cost-calculator",
+    "bmi-calculator",
+    "ideal-weight-calculator",
+    "hydration-calculator",
+    "cycling-speed-calculator",
+    "life-expectancy-calculator"
 ],
   
   content: {

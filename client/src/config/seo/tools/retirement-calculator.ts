@@ -21,7 +21,7 @@ export const retirementCalculatorSEO: ToolSEOConfig = {
       "Free Retirement Calculator"
 ],
     description: 'Plan your retirement savings. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Retirement Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const retirementCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "loan-comparison-calculator",
-    "compound-interest-calculator",
-    "business-loan-calculator",
-    "future-value-investment-calculator",
-    "vat-gst-calculator",
-    "education-loan-calculator"
+    "sip-calculator",
+    "loan-calculator",
+    "personal-finance-dashboard",
+    "savings-goal-calculator",
+    "investment-return-calculator",
+    "debt-consolidation-calculator"
 ],
   
   content: {

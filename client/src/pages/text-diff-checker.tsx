@@ -8,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textDiffCheckerSEO } from '@/config/seo/tools/text-diff-checker';
 
 interface DiffResult {
   added: string[];
@@ -241,6 +243,7 @@ Final line in updated document.`);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textDiffCheckerSEO} />
       <Helmet>
         <title>Text Diff Checker - Compare Two Texts & Highlight Differences | DapsiWow</title>
         <meta name="description" content="Free online text diff checker tool to compare two texts side-by-side and highlight differences. Perfect for content comparison, document versioning, and change tracking with detailed statistics." />

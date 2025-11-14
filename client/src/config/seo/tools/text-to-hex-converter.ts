@@ -82,12 +82,12 @@ export const textToHexConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "paragraph-counter",
-    "character-counter",
-    "markdown-to-html",
-    "font-style-changer",
-    "username-generator",
-    "decimal-to-text-converter"
+    "unit-converter",
+    "text-to-decimal-converter",
+    "sentence-counter",
+    "fake-name-generator",
+    "case-converter",
+    "font-style-changer"
 ],
   
   content: {

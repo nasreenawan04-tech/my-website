@@ -82,12 +82,12 @@ export const characterCounterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "duplicate-line-remover",
+    "text-scrambler",
+    "paragraph-counter",
     "word-counter",
-    "text-to-decimal-converter",
-    "text-to-hex-converter",
-    "password-generator",
-    "binary-to-text-converter",
-    "text-diff-checker"
+    "font-style-changer",
+    "password-strength-checker"
 ],
   
   content: {

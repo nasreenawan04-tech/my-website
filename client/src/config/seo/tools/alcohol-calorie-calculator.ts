@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const alcoholCalorieCalculatorSEO: ToolSEOConfig = {
   slug: 'alcohol-calorie-calculator',
   category: 'health',
-  title: 'Alcohol Calorie Calculator - calorie needs Calculator | DapsiWow',
+  title: 'Alcohol Calorie Calculator - Track Your calorie needs | DapsiWow',
   metaDescription: 'Calculate your calorie needs with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "alcohol calorie calculator",
@@ -21,7 +21,7 @@ export const alcoholCalorieCalculatorSEO: ToolSEOConfig = {
       "Free Alcohol Calorie Calculator"
 ],
     description: 'Calculate calories in alcoholic drinks. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Alcohol Calorie Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const alcoholCalorieCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "sleep-calculator",
-    "cholesterol-risk-calculator",
     "bmi-calculator",
-    "baby-growth-chart",
-    "stress-level-calculator",
-    "daily-step-calorie-converter"
+    "bmr-calculator",
+    "cholesterol-risk-calculator",
+    "tdee-calculator",
+    "sleep-calculator",
+    "heart-rate-calculator"
 ],
   
   content: {

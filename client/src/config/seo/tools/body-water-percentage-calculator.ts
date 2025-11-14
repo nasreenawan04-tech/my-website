@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const bodyWaterPercentageCalculatorSEO: ToolSEOConfig = {
   slug: 'body-water-percentage-calculator',
   category: 'health',
-  title: 'Body Water Percentage Calculator - water intake Calculator | DapsiWow',
+  title: 'Body Water Percentage Calculator - Track Your water intake | DapsiWow',
   metaDescription: 'Calculate your water intake with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "body water percentage calculator",
@@ -21,7 +21,7 @@ export const bodyWaterPercentageCalculatorSEO: ToolSEOConfig = {
       "Free Body Water Percentage Calculator"
 ],
     description: 'Calculate your total body water percentage and get personalized hydration recommendations. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Body Water Percentage Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const bodyWaterPercentageCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "cycling-speed-calculator",
-    "body-fat-calculator",
+    "bmi-calculator",
+    "swimming-calorie-calculator",
     "waist-to-height-ratio-calculator",
-    "body-composition-analyzer",
-    "stress-level-calculator",
-    "carb-calculator"
+    "sleep-calculator",
+    "pregnancy-due-date-calculator",
+    "bmr-calculator"
 ],
   
   content: {

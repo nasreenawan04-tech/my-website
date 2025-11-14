@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const proteinIntakeCalculatorSEO: ToolSEOConfig = {
   slug: 'protein-intake-calculator',
   category: 'health',
-  title: 'Protein Intake Calculator - protein needs Calculator | DapsiWow',
+  title: 'Protein Intake Calculator - Track Your protein needs | DapsiWow',
   metaDescription: 'Calculate your protein needs with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "protein intake calculator",
@@ -21,7 +21,7 @@ export const proteinIntakeCalculatorSEO: ToolSEOConfig = {
       "Free Protein Intake Calculator"
 ],
     description: 'Calculate daily protein requirements. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Protein Intake Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const proteinIntakeCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "meal-calorie-tracker",
-    "stress-level-calculator",
     "bmi-calculator",
     "ideal-weight-calculator",
-    "intermittent-fasting-timer",
-    "cycling-speed-calculator"
+    "keto-macro-calculator",
+    "hydration-calculator",
+    "sleep-calculator",
+    "swimming-calorie-calculator"
 ],
   
   content: {

@@ -82,12 +82,12 @@ export const textScramblerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "character-counter",
-    "decimal-to-text-converter",
-    "word-counter",
-    "duplicate-line-remover",
-    "fake-name-generator",
-    "unit-converter"
+    "password-generator",
+    "markdown-to-html",
+    "base64-encoder-decoder",
+    "text-cleaner-formatter",
+    "case-converter",
+    "text-to-qr-code"
 ],
   
   content: {

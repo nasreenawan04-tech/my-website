@@ -82,12 +82,12 @@ export const markdownToHtmlSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "markdown-to-pdf",
-    "text-to-binary-converter",
+    "duplicate-line-remover",
     "binary-to-text-converter",
-    "text-pattern-generator",
-    "password-strength-checker",
-    "word-counter"
+    "text-cleaner-formatter",
+    "text-scrambler",
+    "text-to-decimal-converter",
+    "text-to-qr-code"
 ],
   
   content: {

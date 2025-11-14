@@ -82,12 +82,12 @@ export const caseConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "unit-converter",
-    "text-statistics-analyzer",
-    "password-generator",
-    "text-to-hex-converter",
+    "lorem-ipsum-generator",
     "text-to-qr-code",
-    "paragraph-counter"
+    "url-extractor",
+    "username-generator",
+    "text-scrambler",
+    "qr-code-scanner"
 ],
   
   content: {

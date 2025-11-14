@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { paragraphCounterSEO } from '@/config/seo/tools/paragraph-counter';
 
 interface ParagraphCountResult {
   totalParagraphs: number;
@@ -161,6 +163,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={paragraphCounterSEO} />
       <Helmet>
         <title>Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow</title>
         <meta name="description" content="Free online paragraph counter tool to analyze text structure, count paragraphs, and get detailed paragraph statistics for better writing and content organization." />

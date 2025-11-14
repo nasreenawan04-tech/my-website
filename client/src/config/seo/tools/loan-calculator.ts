@@ -21,7 +21,7 @@ export const loanCalculatorSEO: ToolSEOConfig = {
       "Free Loan Calculator"
 ],
     description: 'Calculate monthly payments and total interest for any loan. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Loan Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const loanCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "savings-goal-calculator",
-    "retirement-calculator",
-    "dti-ratio-calculator",
+    "compound-interest-calculator",
+    "salary-to-hourly-calculator",
     "home-loan-calculator",
-    "investment-return-calculator",
-    "mortgage-calculator"
+    "break-even-calculator",
+    "lease-calculator",
+    "investment-return-calculator"
 ],
   
   content: {

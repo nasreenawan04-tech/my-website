@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { caseConverterSEO } from '@/config/seo/tools/case-converter';
 
 interface CaseConversionResult {
   original: string;
@@ -291,6 +293,7 @@ const CaseConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={caseConverterSEO} />
       <Helmet>
         <title>Case Converter - Convert Text to UPPER, lower, Title, camelCase | DapsiWow</title>
         <meta name="description" content="Free online case converter tool to text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case and more. Instant text case conversion with advanced customization options." />

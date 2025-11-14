@@ -82,12 +82,12 @@ export const loremIpsumGeneratorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "password-strength-checker",
+    "font-style-changer",
+    "password-generator",
     "text-scrambler",
     "unit-converter",
-    "text-to-qr-code",
-    "word-counter",
-    "character-counter"
+    "text-formatter-beautifier",
+    "word-counter"
 ],
   
   content: {

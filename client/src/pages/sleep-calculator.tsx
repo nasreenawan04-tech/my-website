@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { sleepCalculatorSEO } from '@/config/seo/tools/sleep-calculator';
 
 interface SleepResult {
   targetSleepHours: number;
@@ -213,6 +215,7 @@ export default function SleepCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={sleepCalculatorSEO} />
       <Helmet>
         <title>Sleep Calculator - Optimize Sleep Schedule & Calculate Sleep Cycles | DapsiWow</title>
         <meta name="description" content="Free sleep calculator to optimize your sleep schedule based on natural sleep cycles. Calculate ideal bedtime and wake-up times, analyze sleep quality, and get personalized recommendations for better rest." />

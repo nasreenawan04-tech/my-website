@@ -21,6 +21,8 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveCalculation } from '@/lib/calculationHistory';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { roiCalculatorSEO } from '@/config/seo/tools/roi-calculator';
 
 interface ROIResult {
   roi: number;
@@ -660,6 +662,7 @@ export default function ROICalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={roiCalculatorSEO} />
       <Helmet>
         <title>ROI Calculator - Calculate Returns in Seconds | DapsiWow</title>
         <meta name="description" content="Calculate ROI instantly with our free calculator. Compare investments, track performance, and make data-driven decisions. Used by 2,500+ investors." />

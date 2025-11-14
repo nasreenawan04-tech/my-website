@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { waistToHeightRatioCalculatorSEO } from '@/config/seo/tools/waist-to-height-ratio-calculator';
 
 interface WaistHeightResult {
   ratio: number;
@@ -136,6 +138,7 @@ export default function WaistToHeightRatioCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={waistToHeightRatioCalculatorSEO} />
       <Helmet>
         <title>Waist-to-Height Ratio Calculator - Health Risk Assessment Tool | DapsiWow</title>
         <meta name="description" content="Free waist-to-height ratio calculator to assess cardiovascular health risks and metabolic syndrome. Get instant WHtR calculations with personalized health recommendations and ideal waist measurements." />

@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { bodyFatCalculatorSEO } from '@/config/seo/tools/body-fat-calculator';
 
 interface BodyFatResult {
   bodyFatPercentage: number;
@@ -179,6 +181,7 @@ const BodyFatCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={bodyFatCalculatorSEO} />
       <Helmet>
         <title>Body Fat Calculator - Calculate Body Fat Percentage | US Navy Method | DapsiWow</title>
         <meta name="description" content="Free body fat calculator using the US Navy method. Calculate your body fat percentage, lean body mass, and body composition with accurate circumference measurements. Support for metric and imperial units." />

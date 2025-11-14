@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { netWorthCalculatorSEO } from '@/config/seo/tools/net-worth-calculator';
 
 interface NetWorthResult {
   totalAssets: number;
@@ -214,6 +216,7 @@ export default function NetWorthCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={netWorthCalculatorSEO} />
       <Helmet>
         <title>Net Worth Calculator - Calculate Your Financial Net Worth | DapsiWow</title>
         <meta name="description" content="Free net worth calculator to track your assets and liabilities. Calculate your total financial worth with worldwide currency support. Perfect for financial planning and wealth tracking." />

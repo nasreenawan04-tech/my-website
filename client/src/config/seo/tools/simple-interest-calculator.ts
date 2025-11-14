@@ -21,7 +21,7 @@ export const simpleInterestCalculatorSEO: ToolSEOConfig = {
       "Free Simple Interest Calculator"
 ],
     description: 'Calculate simple interest on principal amount. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Simple Interest Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const simpleInterestCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "personal-finance-dashboard",
+    "loan-calculator",
+    "loan-comparison-calculator",
+    "compound-interest-calculator",
+    "education-loan-calculator",
     "business-loan-calculator",
-    "budget-calculator",
-    "retirement-calculator",
-    "net-worth-calculator",
-    "education-loan-calculator"
+    "mortgage-calculator"
 ],
   
   content: {

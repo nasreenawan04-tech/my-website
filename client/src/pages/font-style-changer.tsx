@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { fontStyleChangerSEO } from '@/config/seo/tools/font-style-changer';
 
 interface FontStyle {
   name: string;
@@ -481,6 +483,7 @@ const FontStyleChanger = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={fontStyleChangerSEO} />
       <Helmet>
         <title>Font Style Changer - Transform Text with Stylish Fonts | DapsiWow</title>
         <meta name="description" content="Free font style changer and text generator. Transform text into stylish Unicode fonts including bold, italic, script, and fraktur. Perfect for social media, content creators, and messaging." />

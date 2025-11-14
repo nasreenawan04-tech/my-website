@@ -82,12 +82,12 @@ export const unitConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-to-binary-converter",
-    "case-converter",
-    "paragraph-counter",
-    "markdown-to-html",
+    "username-generator",
+    "text-to-qr-code",
+    "lorem-ipsum-generator",
     "decimal-to-text-converter",
-    "duplicate-line-remover"
+    "text-pattern-generator",
+    "markdown-to-html"
 ],
   
   content: {

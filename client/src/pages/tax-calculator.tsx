@@ -14,6 +14,8 @@ import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { Link } from 'wouter';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { taxCalculatorSEO } from '@/config/seo/tools/tax-calculator';
 
 interface TaxResult {
   grossIncome: number;
@@ -492,6 +494,7 @@ export default function TaxCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={taxCalculatorSEO} />
       <Helmet>
         <title>2025 Tax Calculator - Free Income Tax Estimator | Calculate Federal Taxes</title>
         <meta name="description" content="Free 2025 income tax calculator for USA, UK, Canada, Australia & India. Calculate federal taxes, effective tax rate, marginal tax bracket, and net income instantly. 100% free, accurate tax estimates with detailed breakdown." />

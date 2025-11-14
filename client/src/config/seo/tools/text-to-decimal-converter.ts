@@ -82,12 +82,12 @@ export const textToDecimalConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "username-generator",
-    "text-to-qr-code",
-    "text-diff-checker",
-    "hex-to-text-converter",
-    "base64-encoder-decoder",
-    "fake-name-generator"
+    "paragraph-counter",
+    "sentence-counter",
+    "qr-code-scanner",
+    "binary-to-text-converter",
+    "fake-name-generator",
+    "character-counter"
 ],
   
   content: {

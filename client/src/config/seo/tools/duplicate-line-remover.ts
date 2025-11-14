@@ -82,12 +82,12 @@ export const duplicateLineRemoverSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-formatter-beautifier",
     "base64-encoder-decoder",
-    "word-counter",
-    "font-style-changer",
-    "fake-name-generator",
-    "qr-code-scanner"
+    "reverse-text-tool",
+    "lorem-ipsum-generator",
+    "url-extractor",
+    "markdown-to-pdf",
+    "text-scrambler"
 ],
   
   content: {

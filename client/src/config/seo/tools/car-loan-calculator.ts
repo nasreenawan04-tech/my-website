@@ -21,7 +21,7 @@ export const carLoanCalculatorSEO: ToolSEOConfig = {
       "Free Car Loan Calculator"
 ],
     description: 'Calculate car loan payments and interest. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Car Loan Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const carLoanCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "mortgage-calculator",
-    "vat-gst-calculator",
-    "dti-ratio-calculator",
-    "personal-finance-dashboard",
-    "lease-calculator",
-    "education-loan-calculator"
+    "home-loan-calculator",
+    "retirement-calculator",
+    "debt-payoff-calculator",
+    "investment-return-calculator",
+    "emi-calculator",
+    "loan-calculator"
 ],
   
   content: {

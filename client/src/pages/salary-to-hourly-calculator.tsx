@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { salaryToHourlyCalculatorSEO } from '@/config/seo/tools/salary-to-hourly-calculator';
 
 interface SalaryResult {
   annualSalary: number;
@@ -177,6 +179,7 @@ export default function SalaryToHourlyCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={salaryToHourlyCalculatorSEO} />
       <Helmet>
         <title>Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage | DapsiWow</title>
         <meta name="description" content="Free salary to hourly calculator. Convert annual salary to hourly wage or hourly rate to yearly salary. Supports 12+ countries, multiple currencies, and includes vacation time calculations. Get instant results with detailed pay period breakdowns." />

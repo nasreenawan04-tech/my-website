@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { debtConsolidationCalculatorSEO } from '@/config/seo/tools/debt-consolidation-calculator';
 
 interface Debt {
   id: string;
@@ -211,6 +213,7 @@ export default function DebtConsolidationCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={debtConsolidationCalculatorSEO} />
       <Helmet>
         <title>Debt Consolidation Calculator - Calculate Loan Savings | DapsiWow</title>
         <meta name="description" content="Free debt consolidation calculator to compare multiple debts vs. a single consolidated loan. Calculate potential monthly savings, total interest savings, and payoff timelines with multiple currency support." />

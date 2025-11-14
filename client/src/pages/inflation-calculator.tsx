@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { inflationCalculatorSEO } from '@/config/seo/tools/inflation-calculator';
 
 interface InflationResult {
   originalAmount: number;
@@ -232,6 +234,7 @@ export default function InflationCalculator() {
 
   return (
     <>
+      <ToolSEOHead config={inflationCalculatorSEO} />
       <Helmet>
         <title>Inflation Calculator - Calculate Money Value Over Time | DapsiWow</title>
         <meta name="description" content="Free inflation calculator to analyze purchasing power changes over time. Calculate future value, past value equivalents, and inflation impact with global economic data for 20+ countries." />

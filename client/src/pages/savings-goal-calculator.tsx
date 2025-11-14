@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PiggyBank, TrendingUp, Clock, Target } from 'lucide-react';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { savingsGoalCalculatorSEO } from '@/config/seo/tools/savings-goal-calculator';
 
 interface SavingsResult {
   goalAmount: number;
@@ -227,6 +229,7 @@ export default function SavingsGoalCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={savingsGoalCalculatorSEO} />
       <Helmet>
         <title>Savings Goal Calculator - Calculate Time to Reach Financial Goals | DapsiWow</title>
         <meta name="description" content="Free savings goal calculator to plan your financial future. Calculate time to save, monthly payments required, and target amounts with compound interest projections. Support for multiple currencies and savings strategies." />

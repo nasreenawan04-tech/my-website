@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const bloodPressureTrackerSEO: ToolSEOConfig = {
   slug: 'blood-pressure-tracker',
   category: 'health',
-  title: 'Blood Pressure Tracker - health metrics Calculator | DapsiWow',
+  title: 'Blood Pressure Tracker - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "blood pressure tracker",
@@ -21,7 +21,7 @@ export const bloodPressureTrackerSEO: ToolSEOConfig = {
       "Free Blood Pressure Tracker"
 ],
     description: 'Track and monitor blood pressure readings with instant classification. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Blood Pressure Tracker',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const bloodPressureTrackerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "cholesterol-risk-calculator",
     "sleep-quality-calculator",
-    "keto-macro-calculator",
-    "ovulation-calculator",
+    "protein-intake-calculator",
+    "cycling-speed-calculator",
     "hydration-calculator",
-    "max-heart-rate-calculator",
-    "lean-body-mass-calculator"
+    "baby-growth-chart"
 ],
   
   content: {

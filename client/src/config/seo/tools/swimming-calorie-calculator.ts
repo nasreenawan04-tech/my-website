@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const swimmingCalorieCalculatorSEO: ToolSEOConfig = {
   slug: 'swimming-calorie-calculator',
   category: 'health',
-  title: 'Swimming Calorie Calculator - calorie needs Calculator | DapsiWow',
+  title: 'Swimming Calorie Calculator - Track Your calorie needs | DapsiWow',
   metaDescription: 'Calculate your calorie needs with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "swimming calorie calculator",
@@ -21,7 +21,7 @@ export const swimmingCalorieCalculatorSEO: ToolSEOConfig = {
       "Free Swimming Calorie Calculator"
 ],
     description: 'Calculate calories burned while swimming. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Swimming Calorie Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const swimmingCalorieCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "body-fat-calculator",
-    "alcohol-calorie-calculator",
-    "bmr-calculator",
-    "whr-calculator",
-    "carb-calculator",
-    "keto-macro-calculator"
+    "pregnancy-due-date-calculator",
+    "sleep-calculator",
+    "heart-rate-calculator",
+    "body-composition-analyzer",
+    "sleep-quality-calculator",
+    "whr-calculator"
 ],
   
   content: {

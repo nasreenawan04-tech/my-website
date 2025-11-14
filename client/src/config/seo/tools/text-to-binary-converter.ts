@@ -83,11 +83,11 @@ export const textToBinaryConverterSEO: ToolSEOConfig = {
   
   relatedTools: [
     "word-counter",
-    "character-counter",
-    "text-to-hex-converter",
-    "sentence-counter",
-    "text-pattern-generator",
-    "fake-address-generator"
+    "lorem-ipsum-generator",
+    "username-generator",
+    "binary-to-text-converter",
+    "qr-code-scanner",
+    "character-counter"
 ],
   
   content: {

@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { lifeExpectancyCalculatorSEO } from '@/config/seo/tools/life-expectancy-calculator';
 
 interface LifeExpectancyResult {
   currentLifeExpectancy: number;
@@ -246,6 +248,7 @@ export default function LifeExpectancyCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={lifeExpectancyCalculatorSEO} />
       <Helmet>
         <title>Life Expectancy Calculator - Estimate Your Lifespan Based on Lifestyle | DapsiWow</title>
         <meta name="description" content="Free life expectancy calculator to estimate your lifespan based on lifestyle factors including diet, exercise, smoking, and health habits. Get personalized longevity recommendations and health insights." />

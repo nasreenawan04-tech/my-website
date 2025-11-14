@@ -10,6 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { mealCalorieTrackerSEO } from '@/config/seo/tools/meal-calorie-tracker';
 
 interface Meal {
   id: string;
@@ -197,6 +199,7 @@ const MealCalorieTracker = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={mealCalorieTrackerSEO} />
       <Helmet>
         <title>Meal Calorie Tracker - Daily Food Intake & Nutrition Tracker | DapsiWow</title>
         <meta name="description" content="Free meal calorie tracker to monitor daily food intake, track macronutrients, and achieve nutrition goals. Professional food diary with calorie counting and macro tracking capabilities." />

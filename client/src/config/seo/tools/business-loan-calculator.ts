@@ -21,7 +21,7 @@ export const businessLoanCalculatorSEO: ToolSEOConfig = {
       "Free Business Loan Calculator"
 ],
     description: 'Calculate business loan payments and metrics. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Business Loan Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const businessLoanCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "paypal-fee-calculator",
+    "loan-calculator",
+    "stock-profit-calculator",
     "salary-to-hourly-calculator",
-    "debt-payoff-calculator",
-    "simple-interest-calculator",
-    "compound-interest-calculator",
-    "roi-calculator"
+    "investment-return-calculator",
+    "home-loan-calculator",
+    "retirement-calculator"
 ],
   
   content: {

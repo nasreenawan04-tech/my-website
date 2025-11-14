@@ -82,12 +82,12 @@ export const hexToTextConverterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "unit-converter",
-    "lorem-ipsum-generator",
-    "text-statistics-analyzer",
+    "paragraph-counter",
     "decimal-to-text-converter",
+    "duplicate-line-remover",
+    "text-to-decimal-converter",
     "reverse-text-tool",
-    "password-strength-checker"
+    "fake-address-generator"
 ],
   
   content: {

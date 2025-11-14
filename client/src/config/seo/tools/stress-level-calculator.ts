@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const stressLevelCalculatorSEO: ToolSEOConfig = {
   slug: 'stress-level-calculator',
   category: 'health',
-  title: 'Stress Level Calculator - health metrics Calculator | DapsiWow',
+  title: 'Stress Level Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "stress level calculator",
@@ -21,7 +21,7 @@ export const stressLevelCalculatorSEO: ToolSEOConfig = {
       "Free Stress Level Calculator"
 ],
     description: 'Comprehensive stress assessment with personalized recommendations based on lifestyle factors. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Stress Level Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const stressLevelCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "cholesterol-risk-calculator",
-    "carb-calculator",
-    "calorie-calculator",
-    "baby-growth-chart",
-    "swimming-calorie-calculator",
-    "hydration-calculator"
+    "bmi-calculator",
+    "smoking-cost-calculator",
+    "heart-rate-calculator",
+    "lean-body-mass-calculator",
+    "running-pace-calculator",
+    "pregnancy-due-date-calculator"
 ],
   
   content: {

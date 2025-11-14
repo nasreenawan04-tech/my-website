@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textToDecimalConverterSEO } from '@/config/seo/tools/text-to-decimal-converter';
 
 interface ConversionOptions {
   encoding: 'utf8' | 'ascii';
@@ -189,6 +191,7 @@ const TextToDecimalConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textToDecimalConverterSEO} />
       <Helmet>
         <title>Text to Decimal Converter - Convert Text to Unicode Code Points | DapsiWow</title>
         <meta name="description" content="Free text to decimal converter tool. Transform any text to decimal Unicode code points instantly with Unicode and ASCII support. Essential for developers, students, and programmers learning computer science." />

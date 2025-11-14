@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { unitConverterSEO } from '@/config/seo/tools/unit-converter';
 
 interface ConversionUnit {
   name: string;
@@ -276,6 +278,7 @@ const UnitConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={unitConverterSEO} />
       <Helmet>
         <title>Unit Converter - Convert Length, Weight, Temperature & More Instantly | DapsiWow</title>
         <meta name="description" content="Free professional unit converter for length, weight, temperature, volume, area, and speed. Convert between metric and imperial units instantly with precise accuracy and detailed conversion analysis." />

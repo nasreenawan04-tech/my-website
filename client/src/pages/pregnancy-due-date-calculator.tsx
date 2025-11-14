@@ -10,6 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { format, addDays, differenceInWeeks, differenceInDays, isValid, parseISO } from 'date-fns';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { pregnancyDueDateCalculatorSEO } from '@/config/seo/tools/pregnancy-due-date-calculator';
 
 interface PregnancyResult {
   dueDate: Date;
@@ -141,6 +143,7 @@ export default function PregnancyDueDateCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={pregnancyDueDateCalculatorSEO} />
       <Helmet>
         <title>Pregnancy Due Date Calculator - Calculate Your Baby's Due Date | DapsiWow</title>
         <meta name="description" content="Free pregnancy due date calculator to calculate your baby's due date using last menstrual period, conception date, or ultrasound results. Get pregnancy milestones, trimester information, and week-by-week progress tracking." />

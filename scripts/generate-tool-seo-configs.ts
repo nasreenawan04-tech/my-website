@@ -151,9 +151,9 @@ const TEXT_LIBRARY: ContentLibrary = {
 
 const HEALTH_LIBRARY: ContentLibrary = {
   titles: [
-    '{name} - {metric} Calculator | DapsiWow',
-    '{name} - Calculate Your {metric} | DapsiWow',
-    'Free {name} - {metric} Tool | DapsiWow',
+    '{name} - Track Your {metric} | DapsiWow',
+    '{name} - Calculate {metric} | DapsiWow',
+    'Free {name} - {metric} Analysis | DapsiWow',
   ],
   metaHooks: [
     'Calculate your {metric} with our free, science-based {toolType}.',
@@ -323,6 +323,10 @@ function generateSEOConfig(tool: Tool, allTools: Tool[]): string {
   
   const features = library.features.slice(0, 10);
   
+  const appCategory = tool.category === 'finance' ? 'FinanceApplication' 
+    : tool.category === 'health' ? 'HealthApplication' 
+    : 'UtilitiesApplication';
+  
   return `import { ToolSEOConfig } from '../types';
 
 export const ${toCamelCase(tool.id)}SEO: ToolSEOConfig = {
@@ -336,7 +340,7 @@ export const ${toCamelCase(tool.id)}SEO: ToolSEOConfig = {
     name: '${escapeQuotes(tool.name)}',
     alternateName: ${JSON.stringify([tool.name, `Online ${tool.name}`, `Free ${tool.name}`], null, 6)},
     description: '${escapeQuotes(tool.description)}. Free online ${toolType} with instant results.',
-    applicationCategory: '${library.titles[0].includes('Finance') ? 'FinanceApplication' : library.titles[0].includes('Health') ? 'HealthApplication' : 'UtilitiesApplication'}',
+    applicationCategory: '${appCategory}',
     applicationSubCategory: '${tool.name}',
     featureList: ${JSON.stringify(features, null, 6)}
   },

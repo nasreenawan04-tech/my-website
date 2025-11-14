@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const waterIntakeCalculatorSEO: ToolSEOConfig = {
   slug: 'water-intake-calculator',
   category: 'health',
-  title: 'Water Intake Calculator - water intake Calculator | DapsiWow',
+  title: 'Water Intake Calculator - Track Your water intake | DapsiWow',
   metaDescription: 'Calculate your water intake with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "water intake calculator",
@@ -21,7 +21,7 @@ export const waterIntakeCalculatorSEO: ToolSEOConfig = {
       "Free Water Intake Calculator"
 ],
     description: 'Calculate daily water requirements. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Water Intake Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const waterIntakeCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "alcohol-calorie-calculator",
-    "lean-body-mass-calculator",
-    "heart-rate-calculator",
-    "swimming-calorie-calculator",
+    "bmi-calculator",
+    "bmr-calculator",
+    "meal-calorie-tracker",
+    "body-composition-analyzer",
     "keto-macro-calculator",
-    "tdee-calculator"
+    "carb-calculator"
 ],
   
   content: {

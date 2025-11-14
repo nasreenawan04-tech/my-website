@@ -21,7 +21,7 @@ export const futureValueInvestmentCalculatorSEO: ToolSEOConfig = {
       "Free Future Value Investment Calculator"
 ],
     description: 'Project investment growth over time with compound interest. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Future Value Investment Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const futureValueInvestmentCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "percentage-calculator",
-    "lease-calculator",
-    "tax-calculator",
+    "simple-interest-calculator",
+    "stock-profit-calculator",
     "budget-calculator",
-    "break-even-calculator",
-    "mortgage-calculator"
+    "percentage-calculator",
+    "net-worth-calculator",
+    "salary-to-hourly-calculator"
 ],
   
   content: {

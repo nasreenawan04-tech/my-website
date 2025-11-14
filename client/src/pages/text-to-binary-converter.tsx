@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textToBinaryConverterSEO } from '@/config/seo/tools/text-to-binary-converter';
 
 interface ConversionOptions {
   encoding: 'utf8' | 'ascii';
@@ -166,6 +168,7 @@ const TextToBinaryConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textToBinaryConverterSEO} />
       <Helmet>
         <title>Text to Binary Converter - Convert Text to Binary Code | DapsiWow</title>
         <meta name="description" content="Free text to binary converter tool. Transform any text to binary code instantly with UTF-8 and ASCII encoding support. Essential for developers, students, and programmers learning computer science." />

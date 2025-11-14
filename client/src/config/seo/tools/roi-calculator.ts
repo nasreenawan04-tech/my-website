@@ -21,7 +21,7 @@ export const roiCalculatorSEO: ToolSEOConfig = {
       "Free ROI Calculator"
 ],
     description: 'Calculate return on investment percentage. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'ROI Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const roiCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "simple-interest-calculator",
-    "emi-calculator",
-    "lease-calculator",
+    "salary-to-hourly-calculator",
+    "currency-percentage-change-calculator",
+    "dti-ratio-calculator",
     "inflation-calculator",
-    "net-worth-calculator",
-    "home-loan-calculator"
+    "debt-payoff-calculator",
+    "break-even-calculator"
 ],
   
   content: {

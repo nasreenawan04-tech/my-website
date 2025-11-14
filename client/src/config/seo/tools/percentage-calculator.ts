@@ -21,7 +21,7 @@ export const percentageCalculatorSEO: ToolSEOConfig = {
       "Free Percentage Calculator"
 ],
     description: 'Calculate percentages and percentage changes. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Percentage Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const percentageCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "dti-ratio-calculator",
     "compound-interest-calculator",
-    "budget-calculator",
-    "retirement-calculator",
-    "personal-finance-dashboard",
-    "break-even-calculator"
+    "inflation-calculator",
+    "dti-ratio-calculator",
+    "net-worth-calculator",
+    "debt-payoff-calculator",
+    "loan-comparison-calculator"
 ],
   
   content: {

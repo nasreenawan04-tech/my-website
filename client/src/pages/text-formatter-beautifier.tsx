@@ -8,6 +8,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textFormatterBeautifierSEO } from '@/config/seo/tools/text-formatter-beautifier';
 
 interface FormatterOptions {
   formatType: 'auto' | 'json' | 'xml' | 'html' | 'css' | 'javascript' | 'text';
@@ -376,6 +378,7 @@ export default function TextFormatterBeautifier() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textFormatterBeautifierSEO} />
       <Helmet>
         <title>Text Formatter & Beautifier - Format Code, JSON, XML, HTML & CSS | DapsiWow</title>
         <meta name="description" content="Free online text formatter and beautifier tool to format and beautify code, JSON, XML, HTML, CSS, JavaScript with proper indentation and structure. Professional code formatting with customizable options." />

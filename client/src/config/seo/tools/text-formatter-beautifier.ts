@@ -82,12 +82,12 @@ export const textFormatterBeautifierSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "word-counter",
-    "text-to-decimal-converter",
-    "case-converter",
     "url-extractor",
+    "username-generator",
     "fake-name-generator",
-    "paragraph-counter"
+    "font-style-changer",
+    "decimal-to-text-converter",
+    "password-generator"
 ],
   
   content: {

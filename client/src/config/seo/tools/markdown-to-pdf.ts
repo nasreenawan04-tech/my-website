@@ -82,12 +82,12 @@ export const markdownToPdfSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "binary-to-text-converter",
-    "duplicate-line-remover",
-    "username-generator",
-    "text-to-binary-converter",
-    "decimal-to-text-converter",
-    "password-generator"
+    "url-extractor",
+    "text-to-qr-code",
+    "case-converter",
+    "text-scrambler",
+    "markdown-to-html",
+    "text-to-decimal-converter"
 ],
   
   content: {

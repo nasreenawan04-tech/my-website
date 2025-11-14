@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { idealWeightCalculatorSEO } from '@/config/seo/tools/ideal-weight-calculator';
 
 interface IdealWeightResult {
   devine: number;
@@ -125,6 +127,7 @@ const IdealWeightCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={idealWeightCalculatorSEO} />
       <Helmet>
         <title>Ideal Weight Calculator - Calculate Your Ideal Body Weight | DapsiWow</title>
         <meta name="description" content="Calculate your ideal body weight using proven medical formulas (Devine, Robinson, Miller, Hamwi). Get personalized weight recommendations based on height and gender with our advanced ideal weight calculator." />

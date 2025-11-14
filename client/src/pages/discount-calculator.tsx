@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { discountCalculatorSEO } from '@/config/seo/tools/discount-calculator';
 
 interface DiscountResult {
   originalPrice: number;
@@ -107,6 +109,7 @@ export default function DiscountCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={discountCalculatorSEO} />
       <Helmet>
         <title>Discount Calculator - Calculate Sale Prices & Savings Instantly | DapsiWow</title>
         <meta name="description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for percentage and fixed amount discounts with multiple currencies. Perfect for shopping, business sales, and price comparisons." />

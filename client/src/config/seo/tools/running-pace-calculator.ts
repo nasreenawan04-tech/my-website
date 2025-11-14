@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const runningPaceCalculatorSEO: ToolSEOConfig = {
   slug: 'running-pace-calculator',
   category: 'health',
-  title: 'Running Pace Calculator - health metrics Calculator | DapsiWow',
+  title: 'Running Pace Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "running pace calculator",
@@ -21,7 +21,7 @@ export const runningPaceCalculatorSEO: ToolSEOConfig = {
       "Free Running Pace Calculator"
 ],
     description: 'Calculate running pace and times. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Running Pace Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const runningPaceCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "cycling-speed-calculator",
-    "swimming-calorie-calculator",
-    "whr-calculator",
-    "hydration-calculator",
-    "body-fat-calculator",
-    "stress-level-calculator"
+    "sleep-calculator",
+    "body-water-percentage-calculator",
+    "life-expectancy-calculator",
+    "pregnancy-due-date-calculator",
+    "smoking-cost-calculator",
+    "bmi-calculator"
 ],
   
   content: {

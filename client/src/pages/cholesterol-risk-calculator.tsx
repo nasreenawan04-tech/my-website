@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { cholesterolRiskCalculatorSEO } from '@/config/seo/tools/cholesterol-risk-calculator';
 
 interface CholesterolResult {
   totalCholesterol: number;
@@ -304,6 +306,7 @@ export default function CholesterolRiskCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={cholesterolRiskCalculatorSEO} />
       <Helmet>
         <title>Cholesterol Risk Calculator - Free Cardiovascular Risk Assessment | DapsiWow</title>
         <meta name="description" content="Free cholesterol risk calculator to assess your cardiovascular disease risk. Calculate HDL, LDL cholesterol levels and get personalized heart health recommendations with Framingham Risk Score." />

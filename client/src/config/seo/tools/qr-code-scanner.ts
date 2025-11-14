@@ -82,12 +82,12 @@ export const qrCodeScannerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-statistics-analyzer",
-    "hex-to-text-converter",
-    "decimal-to-text-converter",
-    "text-to-qr-code",
-    "markdown-to-pdf",
-    "text-diff-checker"
+    "fake-name-generator",
+    "text-formatter-beautifier",
+    "text-cleaner-formatter",
+    "font-style-changer",
+    "sentence-counter",
+    "text-scrambler"
 ],
   
   content: {

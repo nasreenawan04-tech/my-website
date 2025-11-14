@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { sipCalculatorSEO } from '@/config/seo/tools/sip-calculator';
 
 interface SIPResult {
   maturityAmount: number;
@@ -105,6 +107,7 @@ export default function SIPCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={sipCalculatorSEO} />
       <Helmet>
         <title>SIP Calculator - Systematic Investment Plan Calculator | DapsiWow</title>
         <meta name="description" content="Free SIP calculator to calculate returns on Systematic Investment Plan. Plan your mutual fund investments with step-up SIP options and see how your regular investments can grow into substantial wealth. Support for multiple currencies worldwide." />

@@ -21,7 +21,7 @@ export const budgetCalculatorSEO: ToolSEOConfig = {
       "Free Budget Calculator"
 ],
     description: 'Track income, expenses, and savings goals with interactive charts and analysis. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Budget Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const budgetCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "simple-interest-calculator",
-    "lease-calculator",
-    "compound-interest-calculator",
-    "debt-consolidation-calculator",
-    "savings-goal-calculator",
-    "emi-calculator"
+    "mortgage-calculator",
+    "tax-calculator",
+    "tip-calculator",
+    "retirement-calculator",
+    "loan-calculator",
+    "car-loan-calculator"
 ],
   
   content: {

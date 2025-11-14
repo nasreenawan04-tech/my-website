@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { fakeAddressGeneratorSEO } from '@/config/seo/tools/fake-address-generator';
 
 interface AddressOptions {
   country: 'US' | 'UK' | 'Canada';
@@ -269,6 +271,7 @@ const FakeAddressGenerator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={fakeAddressGeneratorSEO} />
       <Helmet>
         <title>Fake Address Generator - Create Realistic Test Addresses | DapsiWow</title>
         <meta name="description" content="Generate realistic fake addresses for testing, development, and privacy purposes. Support for US, UK, and Canada with customizable formatting options and instant generation." />

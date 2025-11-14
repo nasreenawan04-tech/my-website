@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const hydrationCalculatorSEO: ToolSEOConfig = {
   slug: 'hydration-calculator',
   category: 'health',
-  title: 'Hydration Calculator - health metrics Calculator | DapsiWow',
+  title: 'Hydration Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "hydration calculator",
@@ -21,7 +21,7 @@ export const hydrationCalculatorSEO: ToolSEOConfig = {
       "Free Hydration Calculator"
 ],
     description: 'Calculate your optimal daily water intake based on weight, activity level, climate, and health factors for proper hydration. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Hydration Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const hydrationCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "water-intake-calculator",
-    "daily-step-calorie-converter",
-    "metabolic-age-calculator",
-    "carb-calculator",
-    "ovulation-calculator",
-    "body-fat-calculator"
+    "swimming-calorie-calculator",
+    "calorie-calculator",
+    "whr-calculator",
+    "stress-level-calculator",
+    "bmr-calculator",
+    "life-expectancy-calculator"
 ],
   
   content: {

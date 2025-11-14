@@ -18,6 +18,8 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveCalculation } from '@/lib/calculationHistory';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { mortgageCalculatorSEO } from '@/config/seo/tools/mortgage-calculator';
 
 const mortgageInputSchema = z.object({
   homePrice: z.number({
@@ -1122,6 +1124,7 @@ const MortgageCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={mortgageCalculatorSEO} />
       <Helmet>
         <title>Mortgage Calculator - Monthly Payments Instantly | DapsiWow</title>
         <meta name="description" content="Calculate mortgage payments instantly with our free tool. Get detailed breakdowns of PMI, taxes, and insurance. Plan your home loan with confidence." />

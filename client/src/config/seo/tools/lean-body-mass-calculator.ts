@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const leanBodyMassCalculatorSEO: ToolSEOConfig = {
   slug: 'lean-body-mass-calculator',
   category: 'health',
-  title: 'Lean Body Mass Calculator - health metrics Calculator | DapsiWow',
+  title: 'Lean Body Mass Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "lean body mass calculator",
@@ -21,7 +21,7 @@ export const leanBodyMassCalculatorSEO: ToolSEOConfig = {
       "Free Lean Body Mass Calculator"
 ],
     description: 'Calculate lean body mass. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Lean Body Mass Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const leanBodyMassCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "hydration-calculator",
-    "heart-rate-calculator",
-    "meal-calorie-tracker",
-    "water-intake-calculator",
+    "sleep-quality-calculator",
+    "body-water-percentage-calculator",
+    "sleep-calculator",
     "calorie-calculator",
-    "cholesterol-risk-calculator"
+    "keto-macro-calculator",
+    "blood-pressure-tracker"
 ],
   
   content: {

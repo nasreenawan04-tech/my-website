@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { maxHeartRateCalculatorSEO } from '@/config/seo/tools/max-heart-rate-calculator';
 
 interface MaxHeartRateResult {
   traditional: number;
@@ -112,6 +114,7 @@ export default function MaxHeartRateCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={maxHeartRateCalculatorSEO} />
       <Helmet>
         <title>Max Heart Rate Calculator - Calculate Maximum Heart Rate | DapsiWow</title>
         <meta name="description" content="Free maximum heart rate calculator using multiple scientifically-proven formulas. Calculate your max heart rate for optimal training zones, cardio fitness, and exercise planning with age-specific, gender-specific calculations." />

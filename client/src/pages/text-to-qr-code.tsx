@@ -13,6 +13,8 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import QRCode from 'qrcode';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textToQrCodeSEO } from '@/config/seo/tools/text-to-qr-code';
 
 interface QROptions {
   size: number;
@@ -238,6 +240,7 @@ const TextToQRCode = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textToQrCodeSEO} />
       <Helmet>
         <title>Text to QR Code Converter - Generate QR Codes from Text | DapsiWow</title>
         <meta name="description" content="Free text to QR code generator. Convert text, URLs, and email addresses to scannable QR codes instantly. Smart content extraction with customizable QR code options for business, marketing, and personal use." />

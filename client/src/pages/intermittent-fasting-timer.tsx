@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { intermittentFastingTimerSEO } from '@/config/seo/tools/intermittent-fasting-timer';
 
 interface FastingSchedule {
   id: string;
@@ -370,6 +372,7 @@ const IntermittentFastingTimer = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={intermittentFastingTimerSEO} />
       <Helmet>
         <title>Intermittent Fasting Timer - Track Your Fasting Schedule | DapsiWow</title>
         <meta name="description" content="Free intermittent fasting timer to track your fasting and eating windows. Supports 16:8, 18:6, 20:4, OMAD and custom schedules with progress tracking and notifications." />

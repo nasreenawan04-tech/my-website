@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const whrCalculatorSEO: ToolSEOConfig = {
   slug: 'whr-calculator',
   category: 'health',
-  title: 'WHR Calculator (Waist-Hip Ratio) - health metrics Calculator | DapsiWow',
+  title: 'WHR Calculator (Waist-Hip Ratio) - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "whr calculator (waist-hip ratio)",
@@ -21,7 +21,7 @@ export const whrCalculatorSEO: ToolSEOConfig = {
       "Free WHR Calculator (Waist-Hip Ratio)"
 ],
     description: 'Calculate waist-to-hip ratio. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'WHR Calculator (Waist-Hip Ratio)',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const whrCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "ovulation-calculator",
     "ideal-weight-calculator",
+    "swimming-calorie-calculator",
     "calorie-calculator",
-    "daily-step-calorie-converter",
-    "bmr-calculator",
-    "bmi-calculator",
-    "blood-pressure-tracker"
+    "intermittent-fasting-timer",
+    "running-pace-calculator"
 ],
   
   content: {

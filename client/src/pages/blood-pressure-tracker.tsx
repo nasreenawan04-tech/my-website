@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { bloodPressureTrackerSEO } from '@/config/seo/tools/blood-pressure-tracker';
 
 interface BloodPressureReading {
   systolic: number;
@@ -187,6 +189,7 @@ const BloodPressureTracker = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={bloodPressureTrackerSEO} />
       <Helmet>
         <title>Blood Pressure Tracker - Monitor & Track Blood Pressure | DapsiWow</title>
         <meta name="description" content="Free blood pressure tracker to monitor and track your blood pressure readings. Get instant blood pressure classification, health recommendations, and track your readings over time. Professional blood pressure monitoring tool with AHA guidelines." />

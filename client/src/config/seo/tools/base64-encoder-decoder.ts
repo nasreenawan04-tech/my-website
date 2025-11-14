@@ -83,11 +83,11 @@ export const base64EncoderDecoderSEO: ToolSEOConfig = {
   
   relatedTools: [
     "paragraph-counter",
+    "decimal-to-text-converter",
+    "word-counter",
     "lorem-ipsum-generator",
-    "text-diff-checker",
-    "case-converter",
-    "sentence-counter",
-    "text-to-hex-converter"
+    "password-strength-checker",
+    "username-generator"
 ],
   
   content: {

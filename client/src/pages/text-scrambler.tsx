@@ -13,6 +13,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useToast } from '@/hooks/use-toast';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textScramblerSEO } from '@/config/seo/tools/text-scrambler';
 
 interface ScrambleOptions {
   mode: 'characters' | 'words' | 'lines' | 'smart';
@@ -256,6 +258,7 @@ const TextScrambler = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textScramblerSEO} />
       <Helmet>
         <title>Text Scrambler - Scramble Text with Multiple Algorithms | DapsiWow</title>
         <meta name="description" content="Professional text scrambler tool with multiple scrambling algorithms: character shuffling, word mixing, line reordering, and smart scrambling. Perfect for creating puzzles, testing readability, and text manipulation." />

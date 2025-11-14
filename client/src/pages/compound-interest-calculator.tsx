@@ -15,6 +15,8 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { compoundInterestCalculatorSEO } from '@/config/seo/tools/compound-interest-calculator';
 
 interface CompoundInterestResult {
   finalAmount: number;
@@ -1020,6 +1022,7 @@ export default function CompoundInterestCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={compoundInterestCalculatorSEO} />
       <Helmet>
         <html lang="en" />
         <title>Compound Interest Calculator - Investment Growth | DapsiWow</title>

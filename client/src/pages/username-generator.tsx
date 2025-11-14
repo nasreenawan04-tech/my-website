@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { usernameGeneratorSEO } from '@/config/seo/tools/username-generator';
 
 interface UsernameOptions {
   style: 'random' | 'adjective-noun' | 'name-based' | 'gaming' | 'professional';
@@ -235,6 +237,7 @@ const UsernameGenerator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={usernameGeneratorSEO} />
       <Helmet>
         <title>Random Username Generator - Create Unique Usernames | DapsiWow</title>
         <meta name="description" content="Free username generator to create unique, creative usernames for gaming, social media, and online accounts. Customize style, length, and format to create the perfect username." />

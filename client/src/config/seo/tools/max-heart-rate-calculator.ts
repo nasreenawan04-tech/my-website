@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const maxHeartRateCalculatorSEO: ToolSEOConfig = {
   slug: 'max-heart-rate-calculator',
   category: 'health',
-  title: 'Max Heart Rate Calculator - health metrics Calculator | DapsiWow',
+  title: 'Max Heart Rate Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "max heart rate calculator",
@@ -21,7 +21,7 @@ export const maxHeartRateCalculatorSEO: ToolSEOConfig = {
       "Free Max Heart Rate Calculator"
 ],
     description: 'Calculate maximum heart rate using multiple scientific formulas. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Max Heart Rate Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const maxHeartRateCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "cholesterol-risk-calculator",
-    "tdee-calculator",
-    "keto-macro-calculator",
+    "cycling-speed-calculator",
+    "calorie-calculator",
+    "bmr-calculator",
     "waist-to-height-ratio-calculator",
-    "pregnancy-due-date-calculator",
-    "daily-step-calorie-converter"
+    "tdee-calculator",
+    "protein-intake-calculator"
 ],
   
   content: {

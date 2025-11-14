@@ -10,6 +10,8 @@ import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import jsQR from 'jsqr';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { qrCodeScannerSEO } from '@/config/seo/tools/qr-code-scanner';
 
 interface QROptions {
   extractUrls: boolean;
@@ -301,6 +303,7 @@ const QRCodeScanner = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
+      <ToolSEOHead config={qrCodeScannerSEO} />
       <Helmet>
         <title>QR Code Scanner - Scan QR Codes to Extract Text | DapsiWow</title>
         <meta name="description" content="Free QR code scanner tool. Upload QR code images to extract text, URLs, emails, and phone numbers instantly. Professional scanner with smart content detection for business and personal use." />

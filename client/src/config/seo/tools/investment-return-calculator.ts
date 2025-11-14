@@ -21,7 +21,7 @@ export const investmentReturnCalculatorSEO: ToolSEOConfig = {
       "Free Investment Return Calculator"
 ],
     description: 'Calculate returns on various investments. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Investment Return Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const investmentReturnCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "home-loan-calculator",
-    "net-worth-calculator",
-    "dti-ratio-calculator",
     "loan-calculator",
-    "mortgage-calculator",
-    "savings-goal-calculator"
+    "stock-profit-calculator",
+    "debt-payoff-calculator",
+    "credit-card-interest-calculator",
+    "simple-interest-calculator",
+    "tax-calculator"
 ],
   
   content: {

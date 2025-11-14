@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const bodyCompositionAnalyzerSEO: ToolSEOConfig = {
   slug: 'body-composition-analyzer',
   category: 'health',
-  title: 'Body Composition Analyzer - health metrics Calculator | DapsiWow',
+  title: 'Body Composition Analyzer - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "body composition analyzer",
@@ -21,7 +21,7 @@ export const bodyCompositionAnalyzerSEO: ToolSEOConfig = {
       "Free Body Composition Analyzer"
 ],
     description: 'Analyze your body composition with accurate body fat percentage, muscle mass, and personalized fitness recommendations. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Body Composition Analyzer',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const bodyCompositionAnalyzerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "running-pace-calculator",
-    "blood-pressure-tracker",
-    "swimming-calorie-calculator",
-    "heart-rate-calculator",
-    "metabolic-age-calculator",
-    "sleep-calculator"
+    "daily-step-calorie-converter",
+    "ideal-weight-calculator",
+    "bmr-calculator",
+    "smoking-cost-calculator",
+    "intermittent-fasting-timer",
+    "lean-body-mass-calculator"
 ],
   
   content: {

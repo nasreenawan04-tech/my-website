@@ -21,7 +21,7 @@ export const creditCardInterestCalculatorSEO: ToolSEOConfig = {
       "Free Credit Card Interest Calculator"
 ],
     description: 'Calculate credit card interest and payment schedules. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Credit Card Interest Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const creditCardInterestCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "currency-percentage-change-calculator",
-    "debt-consolidation-calculator",
+    "retirement-calculator",
     "tax-calculator",
-    "net-worth-calculator",
+    "stock-profit-calculator",
+    "sip-calculator",
     "business-loan-calculator",
-    "discount-calculator"
+    "emi-calculator"
 ],
   
   content: {

@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { breakEvenCalculatorSEO } from '@/config/seo/tools/break-even-calculator';
 
 interface BreakEvenResult {
   breakEvenUnits: number;
@@ -105,6 +107,7 @@ const BreakEvenCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={breakEvenCalculatorSEO} />
       <Helmet>
         <title>Break-Even Calculator - Calculate Break-Even Point for Business | DapsiWow</title>
         <meta name="description" content="Free break-even calculator to calculate break-even point for your business. Determine units and revenue needed to cover costs with contribution margin analysis. Support for multiple currencies worldwide." />

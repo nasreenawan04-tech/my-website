@@ -82,12 +82,12 @@ export const textDiffCheckerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "hex-to-text-converter",
+    "text-statistics-analyzer",
+    "username-generator",
+    "lorem-ipsum-generator",
+    "fake-address-generator",
     "decimal-to-text-converter",
-    "binary-to-text-converter",
-    "word-counter",
-    "markdown-to-html",
-    "case-converter"
+    "text-to-hex-converter"
 ],
   
   content: {

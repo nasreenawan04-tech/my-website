@@ -82,12 +82,12 @@ export const passwordStrengthCheckerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-statistics-analyzer",
-    "username-generator",
-    "text-to-decimal-converter",
+    "case-converter",
+    "duplicate-line-remover",
+    "url-extractor",
+    "paragraph-counter",
     "markdown-to-pdf",
-    "fake-address-generator",
-    "markdown-to-html"
+    "text-diff-checker"
 ],
   
   content: {

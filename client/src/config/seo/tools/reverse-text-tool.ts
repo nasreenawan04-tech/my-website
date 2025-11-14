@@ -82,12 +82,12 @@ export const reverseTextToolSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-diff-checker",
-    "hex-to-text-converter",
-    "word-counter",
+    "password-strength-checker",
+    "sentence-counter",
+    "qr-code-scanner",
+    "binary-to-text-converter",
     "character-counter",
-    "duplicate-line-remover",
-    "text-formatter-beautifier"
+    "text-diff-checker"
 ],
   
   content: {

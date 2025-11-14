@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const bodyFatCalculatorSEO: ToolSEOConfig = {
   slug: 'body-fat-calculator',
   category: 'health',
-  title: 'Body Fat Calculator - body fat percentage Calculator | DapsiWow',
+  title: 'Body Fat Calculator - Track Your body fat percentage | DapsiWow',
   metaDescription: 'Calculate your body fat percentage with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "body fat calculator",
@@ -21,7 +21,7 @@ export const bodyFatCalculatorSEO: ToolSEOConfig = {
       "Free Body Fat Calculator"
 ],
     description: 'Calculate body fat percentage using US Navy method. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Body Fat Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const bodyFatCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "cholesterol-risk-calculator",
-    "sleep-quality-calculator",
-    "pregnancy-due-date-calculator",
-    "lean-body-mass-calculator",
-    "stress-level-calculator",
-    "max-heart-rate-calculator"
+    "water-intake-calculator",
+    "running-pace-calculator",
+    "body-water-percentage-calculator",
+    "ideal-weight-calculator",
+    "sleep-calculator",
+    "carb-calculator"
 ],
   
   content: {

@@ -82,12 +82,12 @@ export const textCleanerFormatterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "password-generator",
-    "username-generator",
-    "binary-to-text-converter",
-    "case-converter",
-    "reverse-text-tool",
-    "paragraph-counter"
+    "text-to-qr-code",
+    "text-scrambler",
+    "text-to-hex-converter",
+    "decimal-to-text-converter",
+    "fake-address-generator",
+    "character-counter"
 ],
   
   content: {

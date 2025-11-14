@@ -21,7 +21,7 @@ export const currencyPercentageChangeCalculatorSEO: ToolSEOConfig = {
       "Free Currency Percentage Change Calculator"
 ],
     description: 'Calculate how much a value increased or decreased in percentage. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Currency Percentage Change Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const currencyPercentageChangeCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "loan-calculator",
+    "roi-calculator",
+    "tip-calculator",
+    "percentage-calculator",
     "tax-calculator",
-    "vat-gst-calculator",
-    "budget-calculator",
-    "mortgage-calculator",
-    "future-value-investment-calculator"
+    "business-loan-calculator",
+    "discount-calculator"
 ],
   
   content: {

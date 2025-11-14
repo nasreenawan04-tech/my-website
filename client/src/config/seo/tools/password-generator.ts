@@ -82,12 +82,12 @@ export const passwordGeneratorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "username-generator",
-    "paragraph-counter",
-    "decimal-to-text-converter",
+    "fake-name-generator",
+    "base64-encoder-decoder",
+    "character-counter",
+    "word-counter",
     "unit-converter",
-    "text-to-hex-converter",
-    "font-style-changer"
+    "decimal-to-text-converter"
 ],
   
   content: {

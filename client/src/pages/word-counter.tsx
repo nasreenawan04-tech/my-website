@@ -7,6 +7,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { wordCounterSEO } from '@/config/seo/tools/word-counter';
 
 interface WordCountResult {
   characters: number;
@@ -139,6 +141,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={wordCounterSEO} />
       <Helmet>
         {/* Primary Meta Tags */}
         <title>Word Counter - Free Text Analysis Tool | DapsiWow</title>

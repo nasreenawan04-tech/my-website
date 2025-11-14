@@ -82,12 +82,12 @@ export const fakeAddressGeneratorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "hex-to-text-converter",
-    "binary-to-text-converter",
-    "paragraph-counter",
-    "sentence-counter",
-    "text-scrambler",
-    "username-generator"
+    "username-generator",
+    "fake-name-generator",
+    "reverse-text-tool",
+    "character-counter",
+    "url-extractor",
+    "text-diff-checker"
 ],
   
   content: {

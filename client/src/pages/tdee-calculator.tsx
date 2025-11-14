@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { tdeeCalculatorSEO } from '@/config/seo/tools/tdee-calculator';
 
 interface TDEEResult {
   bmr: number;
@@ -140,6 +142,7 @@ const TDEECalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={tdeeCalculatorSEO} />
       <Helmet>
         <title>TDEE Calculator - Calculate Total Daily Energy Expenditure | DapsiWow</title>
         <meta name="description" content="Free TDEE calculator to calculate your Total Daily Energy Expenditure and daily calorie needs. Get personalized calorie targets for weight loss, maintenance, and gain with macro breakdown. Support for metric and imperial units." />

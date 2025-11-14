@@ -21,7 +21,7 @@ export const vatGstCalculatorSEO: ToolSEOConfig = {
       "Free VAT/GST Calculator"
 ],
     description: 'Calculate VAT and GST on products. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'VAT/GST Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,11 +82,11 @@ export const vatGstCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "percentage-calculator",
-    "loan-calculator",
-    "dti-ratio-calculator",
-    "personal-finance-dashboard",
-    "simple-interest-calculator",
+    "paypal-fee-calculator",
+    "debt-payoff-calculator",
+    "salary-to-hourly-calculator",
+    "emi-calculator",
+    "business-loan-calculator",
     "stock-profit-calculator"
 ],
   

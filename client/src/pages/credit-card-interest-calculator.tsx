@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { creditCardInterestCalculatorSEO } from '@/config/seo/tools/credit-card-interest-calculator';
 
 interface CreditCardResult {
   monthlyPayment: number;
@@ -185,6 +187,7 @@ export default function CreditCardInterestCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={creditCardInterestCalculatorSEO} />
       <Helmet>
         <title>Credit Card Interest Calculator - Calculate Payoff Time & Interest Costs | DapsiWow</title>
         <meta name="description" content="Free credit card interest calculator to calculate payoff time, total interest costs, and monthly payments. Compare payment strategies and find the best way to become debt-free. Support for multiple currencies worldwide." />

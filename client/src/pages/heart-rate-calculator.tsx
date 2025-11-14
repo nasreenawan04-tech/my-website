@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { heartRateCalculatorSEO } from '@/config/seo/tools/heart-rate-calculator';
 
 interface HeartRateResult {
   maxHeartRate: number;
@@ -150,6 +152,7 @@ export default function HeartRateCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={heartRateCalculatorSEO} />
       <Helmet>
         <title>Heart Rate Calculator - Target Heart Rate Zones & Training | DapsiWow</title>
         <meta name="description" content="Free heart rate calculator to determine target heart rate zones for optimal training, fat burning, and cardiovascular fitness. Calculate maximum heart rate using multiple scientific formulas." />

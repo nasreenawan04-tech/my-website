@@ -21,7 +21,7 @@ export const emiCalculatorSEO: ToolSEOConfig = {
       "Free EMI Calculator"
 ],
     description: 'Calculate Equated Monthly Installments for loans. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'EMI Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const emiCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
+    "dti-ratio-calculator",
+    "debt-payoff-calculator",
+    "loan-calculator",
     "salary-to-hourly-calculator",
-    "sip-calculator",
-    "personal-finance-dashboard",
-    "stock-profit-calculator",
-    "loan-comparison-calculator",
-    "car-loan-calculator"
+    "tax-calculator",
+    "loan-comparison-calculator"
 ],
   
   content: {

@@ -10,6 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { hydrationCalculatorSEO } from '@/config/seo/tools/hydration-calculator';
 
 interface HydrationResult {
   baseWater: number;
@@ -166,6 +168,7 @@ const HydrationCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={hydrationCalculatorSEO} />
       <Helmet>
         <title>Hydration Calculator - Free Daily Water Intake Calculator | DapsiWow</title>
         <meta name="description" content="Free hydration calculator to calculate your optimal daily water intake. Get personalized recommendations based on weight, activity level, climate, and health factors with instant results." />

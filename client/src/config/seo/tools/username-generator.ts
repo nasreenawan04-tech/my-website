@@ -82,12 +82,12 @@ export const usernameGeneratorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "qr-code-scanner",
-    "hex-to-text-converter",
-    "text-formatter-beautifier",
     "text-to-hex-converter",
-    "url-extractor",
-    "reverse-text-tool"
+    "paragraph-counter",
+    "lorem-ipsum-generator",
+    "fake-name-generator",
+    "decimal-to-text-converter",
+    "word-counter"
 ],
   
   content: {

@@ -21,7 +21,7 @@ export const breakEvenCalculatorSEO: ToolSEOConfig = {
       "Free Break-Even Calculator"
 ],
     description: 'Calculate business break-even point. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Break-Even Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const breakEvenCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "currency-percentage-change-calculator",
-    "tax-calculator",
-    "vat-gst-calculator",
-    "credit-card-interest-calculator",
-    "retirement-calculator",
-    "loan-calculator"
+    "paypal-fee-calculator",
+    "inflation-calculator",
+    "roi-calculator",
+    "loan-calculator",
+    "dti-ratio-calculator",
+    "discount-calculator"
 ],
   
   content: {

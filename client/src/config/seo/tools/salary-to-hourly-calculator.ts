@@ -21,7 +21,7 @@ export const salaryToHourlyCalculatorSEO: ToolSEOConfig = {
       "Free Salary to Hourly Calculator"
 ],
     description: 'Convert annual salary to hourly wage. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Salary to Hourly Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const salaryToHourlyCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "compound-interest-calculator",
-    "business-loan-calculator",
-    "tax-calculator",
-    "future-value-investment-calculator",
-    "tip-calculator",
-    "lease-calculator"
+    "discount-calculator",
+    "loan-comparison-calculator",
+    "debt-consolidation-calculator",
+    "home-loan-calculator",
+    "emi-calculator",
+    "tax-calculator"
 ],
   
   content: {

@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { cyclingSpeedCalculatorSEO } from '@/config/seo/tools/cycling-speed-calculator';
 
 interface CyclingResult {
   speed: number;
@@ -213,6 +215,7 @@ export default function CyclingSpeedCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={cyclingSpeedCalculatorSEO} />
       <Helmet>
         <title>Cycling Speed Calculator - Calculate Speed, Distance & Time | DapsiWow</title>
         <meta name="description" content="Professional cycling speed calculator for calculating cycling speed, distance, and ride time. Perfect for training, commuting, fitness tracking, and performance analysis with detailed results." />

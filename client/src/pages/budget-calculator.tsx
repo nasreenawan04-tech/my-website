@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { budgetCalculatorSEO } from '@/config/seo/tools/budget-calculator';
 
 interface ExpenseCategory {
   id: string;
@@ -162,6 +164,7 @@ const BudgetCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={budgetCalculatorSEO} />
       <Helmet>
         <title>Budget Calculator - Personal Finance Planning Tool | DapsiWow</title>
         <meta name="description" content="Free budget calculator to track income, expenses, and savings. Plan your personal finances with interactive charts and detailed budget analysis. No sign-up required." />

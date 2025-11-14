@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const pregnancyDueDateCalculatorSEO: ToolSEOConfig = {
   slug: 'pregnancy-due-date-calculator',
   category: 'health',
-  title: 'Pregnancy Due Date Calculator - health metrics Calculator | DapsiWow',
+  title: 'Pregnancy Due Date Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "pregnancy due date calculator",
@@ -21,7 +21,7 @@ export const pregnancyDueDateCalculatorSEO: ToolSEOConfig = {
       "Free Pregnancy Due Date Calculator"
 ],
     description: 'Calculate expected delivery date and pregnancy milestones. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Pregnancy Due Date Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const pregnancyDueDateCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "calorie-calculator",
+    "sleep-calculator",
+    "bmi-calculator",
     "baby-growth-chart",
-    "keto-macro-calculator",
-    "hydration-calculator",
-    "metabolic-age-calculator",
-    "body-fat-calculator"
+    "waist-to-height-ratio-calculator",
+    "water-intake-calculator",
+    "body-water-percentage-calculator"
 ],
   
   content: {

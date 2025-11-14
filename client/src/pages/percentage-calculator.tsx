@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { percentageCalculatorSEO } from '@/config/seo/tools/percentage-calculator';
 
 interface PercentageResult {
   result: number;
@@ -123,6 +125,7 @@ export default function PercentageCalculator() {
       case 'basic':
         return (
           <>
+      <ToolSEOHead config={percentageCalculatorSEO} />
             <div className="space-y-2 sm:space-y-3">
               <Label htmlFor="percentage" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Percentage (%)

@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { hexToTextConverterSEO } from '@/config/seo/tools/hex-to-text-converter';
 
 interface ConversionOptions {
   encoding: 'utf8' | 'ascii';
@@ -252,6 +254,7 @@ const HexToTextConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={hexToTextConverterSEO} />
       <Helmet>
         <title>Hexadecimal to Text Converter - Convert Hex to Readable Text | DapsiWow</title>
         <meta name="description" content="Free hexadecimal to text converter tool. Convert hex values to readable text instantly. Supports UTF-8 and ASCII encoding, multiple input formats for developers and students." />

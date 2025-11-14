@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { retirementCalculatorSEO } from '@/config/seo/tools/retirement-calculator';
 
 interface RetirementResult {
   totalSavings: number;
@@ -154,6 +156,7 @@ export default function RetirementCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={retirementCalculatorSEO} />
       <Helmet>
         <title>Retirement Calculator - Calculate Retirement Savings & Income | DapsiWow</title>
         <meta name="description" content="Free retirement calculator with 4% withdrawal rule, compound interest projections, and multi-currency support. Calculate 401k, IRA, and pension savings for secure retirement planning worldwide." />

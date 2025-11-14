@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { bodyWaterPercentageCalculatorSEO } from '@/config/seo/tools/body-water-percentage-calculator';
 
 interface BodyWaterResult {
   tbwPercentage: number;
@@ -162,6 +164,7 @@ const BodyWaterPercentageCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={bodyWaterPercentageCalculatorSEO} />
       <Helmet>
         <title>Body Water Percentage Calculator - Free Total Body Water Calculator | DapsiWow</title>
         <meta name="description" content="Calculate your total body water percentage with our free Watson formula calculator. Monitor hydration levels, get personalized recommendations, and optimize your health with accurate TBW calculations." />

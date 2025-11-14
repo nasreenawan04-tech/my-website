@@ -21,7 +21,7 @@ export const loanComparisonCalculatorSEO: ToolSEOConfig = {
       "Free Loan Comparison Calculator"
 ],
     description: 'Compare different loan offers side-by-side with EMI, interest rates, and total cost analysis. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Loan Comparison Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const loanComparisonCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "stock-profit-calculator",
-    "tax-calculator",
-    "roi-calculator",
-    "emi-calculator",
-    "loan-calculator",
-    "paypal-fee-calculator"
+    "compound-interest-calculator",
+    "mortgage-calculator",
+    "debt-payoff-calculator",
+    "dti-ratio-calculator",
+    "future-value-investment-calculator",
+    "home-loan-calculator"
 ],
   
   content: {

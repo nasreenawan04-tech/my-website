@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { markdownToHtmlSEO } from '@/config/seo/tools/markdown-to-html';
 
 interface ConversionOptions {
   lineBreaks: 'standard' | 'github';
@@ -217,6 +219,7 @@ const MarkdownToHTMLConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={markdownToHtmlSEO} />
       <Helmet>
         <title>Markdown to HTML Converter - Convert MD to HTML Online Free | DapsiWow</title>
         <meta name="description" content="Convert Markdown to HTML instantly with our free online tool. Support for headers, lists, links, code blocks, tables, and more. Professional MD to HTML converter for developers and writers." />

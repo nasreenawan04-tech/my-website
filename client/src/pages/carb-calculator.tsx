@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { carbCalculatorSEO } from '@/config/seo/tools/carb-calculator';
 
 interface CarbIntakeResult {
   dailyCarbIntake: number;
@@ -214,6 +216,7 @@ const CarbCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-green-50">
+      <ToolSEOHead config={carbCalculatorSEO} />
       <Helmet>
         <title>Carb Calculator - Calculate Your Daily Carbohydrate Intake | DapsiWow</title>
         <meta name="description" content="Free carbohydrate calculator to determine your daily carb intake needs based on weight, activity level, fitness goals, and diet type. Get personalized carb recommendations with meal planning suggestions." />

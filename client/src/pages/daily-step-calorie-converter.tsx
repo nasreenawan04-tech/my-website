@@ -9,6 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { dailyStepCalorieConverterSEO } from '@/config/seo/tools/daily-step-calorie-converter';
 
 interface CalorieResult {
   caloriesBurned: number;
@@ -165,6 +167,7 @@ const DailyStepCalorieConverter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={dailyStepCalorieConverterSEO} />
       <Helmet>
         <title>Step to Calorie Converter - Calculate Calories Burned Walking | DapsiWow</title>
         <meta name="description" content="Free step to calorie converter to calculate calories burned from daily walking. Track your fitness progress with personalized step counting and distance calculations worldwide." />

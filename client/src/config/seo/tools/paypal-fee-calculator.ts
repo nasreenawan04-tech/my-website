@@ -21,7 +21,7 @@ export const paypalFeeCalculatorSEO: ToolSEOConfig = {
       "Free PayPal Fee Calculator"
 ],
     description: 'Calculate PayPal transaction fees. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'PayPal Fee Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const paypalFeeCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "loan-calculator",
-    "tip-calculator",
-    "education-loan-calculator",
+    "vat-gst-calculator",
+    "emi-calculator",
     "net-worth-calculator",
-    "credit-card-interest-calculator",
-    "discount-calculator"
+    "personal-finance-dashboard",
+    "education-loan-calculator",
+    "mortgage-calculator"
 ],
   
   content: {

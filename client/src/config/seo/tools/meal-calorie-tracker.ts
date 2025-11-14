@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const mealCalorieTrackerSEO: ToolSEOConfig = {
   slug: 'meal-calorie-tracker',
   category: 'health',
-  title: 'Meal Calorie Tracker - calorie needs Calculator | DapsiWow',
+  title: 'Meal Calorie Tracker - Track Your calorie needs | DapsiWow',
   metaDescription: 'Calculate your calorie needs with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "meal calorie tracker",
@@ -21,7 +21,7 @@ export const mealCalorieTrackerSEO: ToolSEOConfig = {
       "Free Meal Calorie Tracker"
 ],
     description: 'Track your daily calorie intake by adding meals with detailed nutritional information and progress monitoring. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Meal Calorie Tracker',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const mealCalorieTrackerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "baby-growth-chart",
-    "sleep-calculator",
-    "ovulation-calculator",
-    "calorie-calculator",
-    "carb-calculator",
-    "waist-to-height-ratio-calculator"
+    "bmi-calculator",
+    "life-expectancy-calculator",
+    "waist-to-height-ratio-calculator",
+    "cholesterol-risk-calculator",
+    "metabolic-age-calculator",
+    "sleep-quality-calculator"
 ],
   
   content: {

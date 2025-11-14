@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { sleepQualityCalculatorSEO } from '@/config/seo/tools/sleep-quality-calculator';
 
 interface SleepData {
   bedtime: string;
@@ -222,6 +224,7 @@ const SleepQualityCalculator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={sleepQualityCalculatorSEO} />
       <Helmet>
         <title>Sleep Quality Calculator - Assess Sleep Health & Get Personalized Tips | DapsiWow</title>
         <meta name="description" content="Free sleep quality calculator to assess your sleep health, efficiency, and get personalized recommendations for better rest. Track sleep duration, quality, and improve your sleep hygiene with scientific analysis." />

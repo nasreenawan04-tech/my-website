@@ -82,12 +82,12 @@ export const fontStyleChangerSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-scrambler",
-    "base64-encoder-decoder",
-    "markdown-to-pdf",
+    "binary-to-text-converter",
+    "text-to-decimal-converter",
+    "url-extractor",
+    "password-strength-checker",
     "word-counter",
-    "text-formatter-beautifier",
-    "password-strength-checker"
+    "text-formatter-beautifier"
 ],
   
   content: {

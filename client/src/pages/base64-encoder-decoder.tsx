@@ -13,6 +13,8 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useToast } from '@/hooks/use-toast';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { base64EncoderDecoderSEO } from '@/config/seo/tools/base64-encoder-decoder';
 
 interface ConversionOptions {
   mode: 'encode' | 'decode';
@@ -309,6 +311,7 @@ const Base64EncoderDecoder = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={base64EncoderDecoderSEO} />
       <Helmet>
         <title>Base64 Encoder/Decoder - Convert Text to Base64 Online | DapsiWow</title>
         <meta name="description" content="Free Base64 encoder and decoder tool. Convert text to Base64 and decode Base64 to text with advanced options including URL-safe encoding, line breaks, and validation. Professional tool for developers and data processing." />

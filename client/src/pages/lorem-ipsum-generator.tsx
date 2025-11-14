@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { loremIpsumGeneratorSEO } from '@/config/seo/tools/lorem-ipsum-generator';
 
 interface LoremOptions {
   type: 'paragraphs' | 'words' | 'sentences';
@@ -139,6 +141,7 @@ export default function LoremIpsumGenerator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={loremIpsumGeneratorSEO} />
       <Helmet>
         <title>Lorem Ipsum Generator - Create Professional Placeholder Text | DapsiWow</title>
         <meta name="description" content="Generate Lorem ipsum placeholder text for web design, print layouts, and content mockups. Professional dummy text generator with customizable paragraphs, sentences, and word counts." />

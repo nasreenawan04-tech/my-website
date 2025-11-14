@@ -21,7 +21,7 @@ export const homeLoanCalculatorSEO: ToolSEOConfig = {
       "Free Home Loan Calculator"
 ],
     description: 'Calculate home loan EMI and interest. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Home Loan Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const homeLoanCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "compound-interest-calculator",
-    "retirement-calculator",
-    "debt-consolidation-calculator",
-    "net-worth-calculator",
+    "tax-calculator",
+    "car-loan-calculator",
     "roi-calculator",
-    "savings-goal-calculator"
+    "break-even-calculator",
+    "simple-interest-calculator",
+    "vat-gst-calculator"
 ],
   
   content: {

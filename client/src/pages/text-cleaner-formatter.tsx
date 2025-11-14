@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { textCleanerFormatterSEO } from '@/config/seo/tools/text-cleaner-formatter';
 
 interface CleaningOptions {
   removeExtraSpaces: boolean;
@@ -240,6 +242,7 @@ const TextCleanerFormatter = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={textCleanerFormatterSEO} />
       <Helmet>
         <title>Text Cleaner & Formatter - Remove Extra Spaces, Line Breaks & Format Text | DapsiWow</title>
         <meta name="description" content="Professional text cleaner and formatter tool to remove extra spaces, line breaks, special characters, and format messy text. Clean up copied text, remove formatting issues, and optimize content instantly." />

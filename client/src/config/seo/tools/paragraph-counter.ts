@@ -82,12 +82,12 @@ export const paragraphCounterSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "decimal-to-text-converter",
-    "url-extractor",
+    "base64-encoder-decoder",
     "text-to-hex-converter",
-    "reverse-text-tool",
     "sentence-counter",
-    "binary-to-text-converter"
+    "unit-converter",
+    "character-counter",
+    "duplicate-line-remover"
 ],
   
   content: {

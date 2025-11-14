@@ -21,7 +21,7 @@ export const savingsGoalCalculatorSEO: ToolSEOConfig = {
       "Free Savings Goal Calculator"
 ],
     description: 'Plan and track your savings goals. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Savings Goal Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const savingsGoalCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "business-loan-calculator",
-    "net-worth-calculator",
+    "mortgage-calculator",
+    "emi-calculator",
     "stock-profit-calculator",
-    "investment-return-calculator",
-    "roi-calculator",
-    "loan-calculator"
+    "car-loan-calculator",
+    "sip-calculator",
+    "vat-gst-calculator"
 ],
   
   content: {

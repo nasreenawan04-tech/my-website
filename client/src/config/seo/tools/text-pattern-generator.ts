@@ -82,12 +82,12 @@ export const textPatternGeneratorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "text-statistics-analyzer",
+    "sentence-counter",
     "password-generator",
-    "lorem-ipsum-generator",
-    "paragraph-counter",
+    "fake-name-generator",
     "fake-address-generator",
-    "text-to-binary-converter"
+    "username-generator",
+    "qr-code-scanner"
 ],
   
   content: {

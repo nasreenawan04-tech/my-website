@@ -10,6 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { passwordStrengthCheckerSEO } from '@/config/seo/tools/password-strength-checker';
 
 interface PasswordAnalysis {
   score: number;
@@ -220,6 +222,7 @@ export default function PasswordStrengthChecker() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={passwordStrengthCheckerSEO} />
       <Helmet>
         <title>Password Strength Checker - Test Password Security Online | DapsiWow</title>
         <meta name="description" content="Check password strength and security with our free online password analyzer. Get instant feedback on password quality, entropy, and time-to-crack estimates." />

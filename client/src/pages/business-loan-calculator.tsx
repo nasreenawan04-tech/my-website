@@ -14,6 +14,8 @@ import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, B
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { businessLoanCalculatorSEO } from '@/config/seo/tools/business-loan-calculator';
 
 interface BusinessLoanResult {
   monthlyPayment: number;
@@ -1040,6 +1042,7 @@ export default function BusinessLoanCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={businessLoanCalculatorSEO} />
       <Helmet>
         <html lang="en" />
         <title>Business Loan Calculator - Monthly Payments | DapsiWow</title>

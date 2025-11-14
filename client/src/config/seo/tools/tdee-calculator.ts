@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const tdeeCalculatorSEO: ToolSEOConfig = {
   slug: 'tdee-calculator',
   category: 'health',
-  title: 'TDEE Calculator - TDEE Calculator | DapsiWow',
+  title: 'TDEE Calculator - Track Your TDEE | DapsiWow',
   metaDescription: 'Calculate your TDEE with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "tdee calculator",
@@ -21,7 +21,7 @@ export const tdeeCalculatorSEO: ToolSEOConfig = {
       "Free TDEE Calculator"
 ],
     description: 'Calculate Total Daily Energy Expenditure. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'TDEE Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const tdeeCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "baby-growth-chart",
-    "pregnancy-due-date-calculator",
-    "body-water-percentage-calculator",
+    "body-fat-calculator",
+    "water-intake-calculator",
+    "max-heart-rate-calculator",
+    "sleep-calculator",
     "waist-to-height-ratio-calculator",
-    "metabolic-age-calculator",
-    "heart-rate-calculator"
+    "hydration-calculator"
 ],
   
   content: {

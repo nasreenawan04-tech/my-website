@@ -10,6 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { urlExtractorSEO } from '@/config/seo/tools/url-extractor';
 
 interface ExtractedURL {
   id: number;
@@ -193,6 +195,7 @@ http://legacy-system.internal.company.com:8080/admin`);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={urlExtractorSEO} />
       <Helmet>
         <title>URL Extractor Tool - Extract URLs from Text | DapsiWow</title>
         <meta name="description" content="Advanced URL extractor tool to find and extract HTTP, HTTPS, FTP, and email links from any text content. Filter, analyze, and export URLs with comprehensive statistics." />

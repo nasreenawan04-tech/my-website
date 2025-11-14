@@ -21,7 +21,7 @@ export const discountCalculatorSEO: ToolSEOConfig = {
       "Free Discount Calculator"
 ],
     description: 'Calculate discounts and final prices. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Discount Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const discountCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "salary-to-hourly-calculator",
+    "break-even-calculator",
     "future-value-investment-calculator",
+    "loan-calculator",
     "credit-card-interest-calculator",
-    "car-loan-calculator",
-    "business-loan-calculator",
-    "roi-calculator"
+    "mortgage-calculator",
+    "loan-comparison-calculator"
 ],
   
   content: {

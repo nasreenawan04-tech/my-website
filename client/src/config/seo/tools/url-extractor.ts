@@ -82,12 +82,12 @@ export const urlExtractorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "case-converter",
     "paragraph-counter",
-    "password-strength-checker",
-    "markdown-to-pdf",
     "text-cleaner-formatter",
-    "lorem-ipsum-generator"
+    "decimal-to-text-converter",
+    "text-to-hex-converter",
+    "qr-code-scanner",
+    "markdown-to-pdf"
 ],
   
   content: {

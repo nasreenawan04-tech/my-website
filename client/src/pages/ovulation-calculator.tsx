@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { ovulationCalculatorSEO } from '@/config/seo/tools/ovulation-calculator';
 
 interface OvulationResult {
   ovulationDate: string;
@@ -172,6 +174,7 @@ export default function OvulationCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={ovulationCalculatorSEO} />
       <Helmet>
         <title>Ovulation Calculator - Track Fertile Days & Predict Ovulation Date | DapsiWow</title>
         <meta name="description" content="Free ovulation calculator to predict fertile days, ovulation date, and menstrual cycle phases. Calculate your best conception timing with accurate fertility tracking tools." />

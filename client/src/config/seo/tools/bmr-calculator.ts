@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const bmrCalculatorSEO: ToolSEOConfig = {
   slug: 'bmr-calculator',
   category: 'health',
-  title: 'BMR Calculator - BMR Calculator | DapsiWow',
+  title: 'BMR Calculator - Track Your BMR | DapsiWow',
   metaDescription: 'Calculate your BMR with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "bmr calculator",
@@ -21,7 +21,7 @@ export const bmrCalculatorSEO: ToolSEOConfig = {
       "Free BMR Calculator"
 ],
     description: 'Calculate Basal Metabolic Rate and daily calorie needs. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'BMR Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const bmrCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "running-pace-calculator",
-    "pregnancy-due-date-calculator",
-    "ideal-weight-calculator",
-    "meal-calorie-tracker",
-    "life-expectancy-calculator",
-    "water-intake-calculator"
+    "sleep-calculator",
+    "bmi-calculator",
+    "smoking-cost-calculator",
+    "waist-to-height-ratio-calculator",
+    "calorie-calculator",
+    "tdee-calculator"
 ],
   
   content: {

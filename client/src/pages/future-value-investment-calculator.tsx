@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { futureValueInvestmentCalculatorSEO } from '@/config/seo/tools/future-value-investment-calculator';
 
 interface InvestmentResult {
   futureValue: number;
@@ -175,6 +177,7 @@ export default function FutureValueInvestmentCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={futureValueInvestmentCalculatorSEO} />
       <Helmet>
         <title>Future Value Investment Calculator - Calculate Investment Growth | DapsiWow</title>
         <meta name="description" content="Free future value investment calculator to project investment growth over time. Calculate compound returns, monthly contributions, and retirement planning with inflation adjustments. Supports multiple currencies and compound frequencies." />

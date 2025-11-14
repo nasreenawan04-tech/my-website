@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { leaseCalculatorSEO } from '@/config/seo/tools/lease-calculator';
 
 interface LeaseResult {
   monthlyPayment: number;
@@ -102,6 +104,7 @@ export default function LeaseCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={leaseCalculatorSEO} />
       <Helmet>
         <title>Lease Calculator - Calculate Vehicle Lease Payments | DapsiWow</title>
         <meta name="description" content="Free lease calculator to calculate monthly lease payments for cars, trucks, and SUVs. Compare lease vs buy options with residual value estimation and money factor calculations. Support for multiple currencies worldwide." />

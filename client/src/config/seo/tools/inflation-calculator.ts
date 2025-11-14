@@ -21,7 +21,7 @@ export const inflationCalculatorSEO: ToolSEOConfig = {
       "Free Inflation Calculator"
 ],
     description: 'Calculate inflation impact over time. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'Inflation Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const inflationCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "tip-calculator",
-    "salary-to-hourly-calculator",
-    "break-even-calculator",
-    "net-worth-calculator",
-    "business-loan-calculator",
-    "emi-calculator"
+    "loan-comparison-calculator",
+    "loan-calculator",
+    "discount-calculator",
+    "tax-calculator",
+    "home-loan-calculator",
+    "compound-interest-calculator"
 ],
   
   content: {

@@ -18,6 +18,8 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveCalculation } from '@/lib/calculationHistory';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { loanCalculatorSEO } from '@/config/seo/tools/loan-calculator';
 
 interface LoanResult {
   monthlyPayment: number;
@@ -1074,6 +1076,7 @@ export default function LoanCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={loanCalculatorSEO} />
       <Helmet>
         <title>Loan Calculator - Monthly Payments Instantly | DapsiWow</title>
         <meta name="description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />

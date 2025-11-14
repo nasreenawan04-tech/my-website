@@ -3,7 +3,7 @@ import { ToolSEOConfig } from '../types';
 export const ketoMacroCalculatorSEO: ToolSEOConfig = {
   slug: 'keto-macro-calculator',
   category: 'health',
-  title: 'Keto Macro Calculator - health metrics Calculator | DapsiWow',
+  title: 'Keto Macro Calculator - Track Your health metrics | DapsiWow',
   metaDescription: 'Calculate your health metrics with our free, science-based calculator. Get instant results, detailed insights, and professional-grade accuracy. No registration required. Try now!',
   keywords: [
     "keto macro calculator",
@@ -21,7 +21,7 @@ export const ketoMacroCalculatorSEO: ToolSEOConfig = {
       "Free Keto Macro Calculator"
 ],
     description: 'Calculate macros for ketogenic diet. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'HealthApplication',
     applicationSubCategory: 'Keto Macro Calculator',
     featureList: [
       "Science-based calculations",
@@ -82,12 +82,12 @@ export const ketoMacroCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "intermittent-fasting-timer",
-    "body-water-percentage-calculator",
-    "protein-intake-calculator",
-    "bmi-calculator",
-    "sleep-calculator",
-    "sleep-quality-calculator"
+    "alcohol-calorie-calculator",
+    "baby-growth-chart",
+    "water-intake-calculator",
+    "ideal-weight-calculator",
+    "calorie-calculator",
+    "lean-body-mass-calculator"
 ],
   
   content: {

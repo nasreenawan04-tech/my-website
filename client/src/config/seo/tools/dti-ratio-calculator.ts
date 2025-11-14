@@ -21,7 +21,7 @@ export const dtiRatioCalculatorSEO: ToolSEOConfig = {
       "Free DTI Ratio Calculator"
 ],
     description: 'Calculate your debt-to-income ratio for loan qualification and financial health assessment. Free online calculator with instant results.',
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: 'FinanceApplication',
     applicationSubCategory: 'DTI Ratio Calculator',
     featureList: [
       "Instant calculations with real-time results",
@@ -82,12 +82,12 @@ export const dtiRatioCalculatorSEO: ToolSEOConfig = {
 ],
   
   relatedTools: [
-    "education-loan-calculator",
-    "percentage-calculator",
-    "roi-calculator",
-    "business-loan-calculator",
-    "investment-return-calculator",
-    "debt-payoff-calculator"
+    "break-even-calculator",
+    "discount-calculator",
+    "compound-interest-calculator",
+    "loan-calculator",
+    "tax-calculator",
+    "budget-calculator"
 ],
   
   content: {

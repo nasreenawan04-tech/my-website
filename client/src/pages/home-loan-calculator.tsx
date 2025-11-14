@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { homeLoanCalculatorSEO } from '@/config/seo/tools/home-loan-calculator';
 
 interface HomeLoanResult {
   emi: number;
@@ -142,6 +144,7 @@ export default function HomeLoanCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={homeLoanCalculatorSEO} />
       <Helmet>
         <title>Home Loan Calculator - Calculate Home Loan EMI & Mortgage Payments | DapsiWow</title>
         <meta name="description" content="Free home loan EMI calculator to calculate monthly mortgage payments, total interest, and loan costs. Plan your home purchase with accurate home loan estimates and payment schedules." />

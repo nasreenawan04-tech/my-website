@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { ToolSEOHead } from '@/components/seo/ToolSEOHead';
+import { sentenceCounterSEO } from '@/config/seo/tools/sentence-counter';
 
 interface SentenceCountResult {
   totalSentences: number;
@@ -125,6 +127,7 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <ToolSEOHead config={sentenceCounterSEO} />
       <Helmet>
         <title>Sentence Counter - Count Sentences & Analyze Text Structure | DapsiWow</title>
         <meta name="description" content="Free online sentence counter tool to count sentences, analyze sentence types (declarative, interrogative, exclamatory), and get detailed text structure statistics. Perfect for writers, students, and content creators to improve writing quality." />
