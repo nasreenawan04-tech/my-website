@@ -25,10 +25,10 @@ app.use((req, res, next) => {
   // HSTS (HTTP Strict Transport Security)
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
-  // Content Security Policy - REPORT-ONLY MODE for testing Vercel Live integration
+  // Content Security Policy - ENFORCED MODE (tested in report-only with zero violations)
   // Includes: Google Fonts, Ads, Firebase, reCAPTCHA, Vercel Live, and Pusher (for real-time)
   // CANONICAL CSP - Must match vercel.json and client/index.html exactly
-  res.setHeader('Content-Security-Policy-Report-Only', 
+  res.setHeader('Content-Security-Policy', 
     "default-src 'self'; " +
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel.live https://vercel.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://apis.google.com https://recaptcha.google.com https://www.recaptcha.net https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://*.adtrafficquality.google; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://vercel.com https://vercel.live/fonts; " +
