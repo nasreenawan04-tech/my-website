@@ -59,11 +59,8 @@ export default function BusinessLoanCalculator() {
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonBusinessLoan[]>([]);
   const [result, setResult] = useState<BusinessLoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
-  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const amortizationRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
 
   // Load parameters from URL on mount (for shared links)
@@ -99,29 +96,6 @@ export default function BusinessLoanCalculator() {
       }, 200);
     }
   }, []);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!tableScrollRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - tableScrollRef.current.offsetLeft);
-    setScrollLeft(tableScrollRef.current.scrollLeft);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !tableScrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - tableScrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    tableScrollRef.current.scrollLeft = scrollLeft - walk;
-  };
 
   const calculateBusinessLoan = () => {
     const principal = parseFloat(loanAmount);
@@ -1831,26 +1805,19 @@ export default function BusinessLoanCalculator() {
                               Amortization Schedule (First 5 Years)
                             </h3>
                             <Button
-                              onClick={handleDownloadAmortizationPDF}
+                              onClick={() => setShowAmortization(false)}
                               variant="outline"
                               size="sm"
                               className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
-                              data-testid="button-export-amortization-pdf"
+                              data-testid="button-hide-amortization"
                             >
-                              <Download className="w-4 h-4 mr-1.5" />
-                              Export PDF
+                              <RotateCcw className="w-4 h-4 mr-1.5" />
+                              Hide Schedule
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                          <div 
-                            ref={tableScrollRef}
-                            className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                            onMouseDown={handleMouseDown}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseUp={handleMouseUp}
-                            onMouseMove={handleMouseMove}
-                          >
-                            <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
+                          <div className="overflow-x-auto -mx-4 sm:mx-0" ref={amortizationRef}>
+                            <table className="w-full min-w-[600px]" data-testid="amortization-table">
                               <thead className="bg-gray-50">
                                 <tr>
                                   <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment #</th>
@@ -1862,20 +1829,12 @@ export default function BusinessLoanCalculator() {
                               </thead>
                               <tbody className="divide-y divide-gray-200 bg-white">
                                 {result.amortizationSchedule.map((payment, index) => (
-                                  <tr key={index} className="hover:bg-gray-50 transition-colors">
+                                  <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`amortization-row-${index}`}>
                                     <td className="px-4 py-3 text-sm text-gray-900 font-medium">{payment.month}</td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900">
-                                      {formatCurrency(payment.payment)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-green-600 font-semibold">
-                                      {formatCurrency(payment.principal)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-orange-600 font-semibold">
-                                      {formatCurrency(payment.interest)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900 font-semibold">
-                                      {formatCurrency(payment.balance)}
-                                    </td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(payment.payment)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(payment.principal)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(payment.interest)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-gray-900">{formatCurrency(payment.balance)}</td>
                                   </tr>
                                 ))}
                               </tbody>

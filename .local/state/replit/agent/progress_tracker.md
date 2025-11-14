@@ -273,6 +273,16 @@
 [x] 292. Verify application is running successfully on port 5000 with screenshot
 [x] 293. Confirm all features are functional - homepage displays correctly
 [x] 294. Mark all current migration tasks as complete - project fully operational
+[x] 295. Update Business Loan Calculator Amortization Schedule section to match Loan Calculator design
+[x] 296. Remove Export PDF button and replace with Hide Schedule button using RotateCcw icon
+[x] 297. Remove mouse drag functionality (isDragging state, startX, scrollLeft, handleMouseDown, handleMouseLeave, handleMouseUp, handleMouseMove)
+[x] 298. Replace tableScrollRef with amortizationRef to match Loan Calculator implementation
+[x] 299. Simplify overflow-x-auto container by removing cursor-grab/cursor-grabbing classes and mouse event handlers
+[x] 300. Remove select-none class from table to allow text selection
+[x] 301. Add data-testid attributes to table rows (amortization-row-${index})
+[x] 302. Verify no LSP errors after Business Loan Calculator amortization section updates
+[x] 303. Restart workflow and verify application is running successfully on port 5000
+[x] 304. Verify Business Loan Calculator page loads correctly with updated UI design
 [x] 325. Restart workflow and verify application is running successfully on port 5000
 [x] 326. Take screenshot to confirm homepage and all features are fully functional
 [x] 327. Mark all migration tasks as complete - project fully operational in Replit environment
