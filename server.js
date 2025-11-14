@@ -25,17 +25,17 @@ app.use((req, res, next) => {
   // HSTS (HTTP Strict Transport Security)
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
-  // Content Security Policy - optimized for Google Fonts & Ads
+  // Content Security Policy - optimized for Google Fonts, Ads, Firebase, reCAPTCHA, and Vercel
   res.setHeader('Content-Security-Policy', 
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-hashes' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://tpc.googlesyndication.com; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://pagead2.googlesyndication.com https://partner.googleadservices.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://apis.google.com https://recaptcha.google.com https://www.recaptcha.net https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://*.adtrafficquality.google https://tpc.googlesyndication.com https://www.google-analytics.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com data:; " +
-    "img-src 'self' data: blob: https:; " +
-    "connect-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.google-analytics.com https://fonts.googleapis.com https://fonts.gstatic.com; " +
-    "frame-src https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net; " +
-    "worker-src 'self'; " +
-    "frame-ancestors 'none'; " +
+    "img-src 'self' data: blob: https://*.google.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https:; " +
+    "connect-src 'self' https://firebaseinstallations.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://oauth2.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.firebaseio.com https://www.googleapis.com https://accounts.google.com https://www.google.com https://www.gstatic.com https://*.adtrafficquality.google wss://*.firebaseio.com https://fonts.googleapis.com https://fonts.gstatic.com; " +
+    "frame-src 'self' https://googleads.g.doubleclick.net https://www.google.com https://recaptcha.google.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://dapsiwow.firebaseapp.com https://accounts.google.com https://www.recaptcha.net https://*.adtrafficquality.google; " +
+    "worker-src 'self' blob:; " +
+    "frame-ancestors 'self'; " +
     "base-uri 'self'; " +
     "form-action 'self'; " +
     "upgrade-insecure-requests"
