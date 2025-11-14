@@ -60,6 +60,7 @@ export default function BusinessLoanCalculator() {
   const [result, setResult] = useState<BusinessLoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const amortizationRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -1848,7 +1849,7 @@ export default function BusinessLoanCalculator() {
                         <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
-                              Business Loan Comparison
+                              Loan Comparison
                             </h3>
                             <Button
                               onClick={() => setComparisonLoans([])}
@@ -1861,50 +1862,28 @@ export default function BusinessLoanCalculator() {
                               Clear All
                             </Button>
                           </div>
-                          <p className="text-sm text-gray-600 mb-4">Compare different business loan scenarios side-by-side to find the best option.</p>
-                          <div className="overflow-x-auto -mx-4 sm:mx-0">
-                            <table className="w-full min-w-[900px]" data-testid="comparison-table">
+                          <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
+                          <div className="overflow-x-auto -mx-4 sm:mx-0" ref={comparisonRef}>
+                            <table className="w-full min-w-[600px]" data-testid="comparison-table">
                               <thead className="bg-gray-50">
                                 <tr>
-                                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Scenario</th>
+                                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan</th>
                                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Amount</th>
                                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
                                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Term</th>
-                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Type</th>
                                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly Payment</th>
-                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Yearly Payment</th>
                                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
-                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">DSCR</th>
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-gray-200 bg-white">
                                 {comparisonLoans.map((loan, index) => (
                                   <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
                                     <td className="px-4 py-3 text-sm text-gray-900 font-medium">{loan.name}</td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900">
-                                      {formatCurrency(loan.amount)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900">
-                                      {loan.rate}%
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900">
-                                      {loan.term} {loan.termUnit}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900">
-                                      {loan.type === 'term-loan' ? 'Term Loan' : loan.type === 'sba-7a' ? 'SBA 7(a)' : loan.type === 'sba-504' ? 'SBA 504' : loan.type === 'equipment' ? 'Equipment' : 'Line of Credit'}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-blue-600 font-semibold">
-                                      {formatCurrency(loan.monthlyPayment)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-indigo-600 font-semibold">
-                                      {formatCurrency(loan.yearlyPayment)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-orange-600 font-semibold">
-                                      {formatCurrency(loan.totalInterest)}
-                                    </td>
-                                    <td className="px-4 py-3 text-sm text-right text-green-600 font-semibold">
-                                      {loan.debtServiceCoverage > 0 ? loan.debtServiceCoverage.toFixed(2) : 'N/A'}
-                                    </td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(loan.amount)}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.rate}%</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.term} {loan.termUnit}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(loan.monthlyPayment)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(loan.totalInterest)}</td>
                                   </tr>
                                 ))}
                               </tbody>

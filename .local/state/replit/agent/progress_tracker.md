@@ -283,6 +283,18 @@
 [x] 302. Verify no LSP errors after Business Loan Calculator amortization section updates
 [x] 303. Restart workflow and verify application is running successfully on port 5000
 [x] 304. Verify Business Loan Calculator page loads correctly with updated UI design
+[x] 305. Update Business Loan Comparison section to match Loan Comparison section from Loan Calculator
+[x] 306. Add comparisonRef to Business Loan Calculator refs for PDF generation consistency
+[x] 307. Change section title from "Business Loan Comparison" to "Loan Comparison" for consistency
+[x] 308. Update table min-width from 900px to 600px to match Loan Calculator design
+[x] 309. Add ref={comparisonRef} to overflow-x-auto container for proper reference handling
+[x] 310. Change column header from "Scenario" to "Loan" for consistency
+[x] 311. Remove Type, Yearly Payment, and DSCR columns to simplify comparison table
+[x] 312. Keep only 6 core columns: Loan, Amount, Rate, Term, Monthly Payment, Total Interest
+[x] 313. Update table body to match simplified structure without Type/Yearly Payment/DSCR cells
+[x] 314. Maintain color coding: blue for Monthly Payment, orange for Total Interest
+[x] 315. Verify no LSP errors after Business Loan Comparison section updates
+[x] 316. Restart workflow and verify application is running successfully on port 5000
 [x] 325. Restart workflow and verify application is running successfully on port 5000
 [x] 326. Take screenshot to confirm homepage and all features are fully functional
 [x] 327. Mark all migration tasks as complete - project fully operational in Replit environment
