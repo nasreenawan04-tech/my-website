@@ -1919,23 +1919,24 @@ export default function CompoundInterestCalculator() {
 
                       {/* Yearly Investment Breakdown */}
                       {result && showBreakdown && (
-                        <div className="pt-6 sm:pt-8 border-t border-gray-200">
-                          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4 md:mb-6">
-                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Yearly Investment Breakdown</h3>
+                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left">Yearly Investment Breakdown</h3>
                             <Button
                               onClick={handleDownloadYearlyBreakdownPDF}
                               variant="outline"
                               size="sm"
-                              className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                              className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
                               data-testid="button-export-yearly-breakdown-pdf"
                             >
-                              <Download className="w-4 h-4" />
+                              <Download className="w-4 h-4 mr-1.5" />
                               Export PDF
                             </Button>
                           </div>
+                          <p className="text-sm text-gray-600 mb-4">Track your investment growth year by year with detailed breakdown of principal, interest, and contributions.</p>
                           <div 
                             ref={tableScrollRef}
-                            className="overflow-x-auto cursor-grab active:cursor-grabbing select-none"
+                            className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none"
                             onMouseDown={handleMouseDown}
                             onMouseLeave={handleMouseLeave}
                             onMouseUp={handleMouseUp}
@@ -1946,35 +1947,35 @@ export default function CompoundInterestCalculator() {
                             data-testid="table-yearly-breakdown"
                           >
                             <table className="w-full min-w-[600px]">
-                              <thead>
-                                <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Year</th>
-                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Amount</th>
-                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Interest Earned</th>
-                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">SIP Contribution</th>
-                                  {showRealValue && <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Real Value</th>}
-                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Total Interest</th>
+                              <thead className="bg-gray-50">
+                                <tr>
+                                  <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Year</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Amount</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Interest Earned</th>
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">SIP Contribution</th>
+                                  {showRealValue && <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Real Value</th>}
+                                  <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
                                 </tr>
                               </thead>
-                              <tbody className="divide-y divide-gray-100">
+                              <tbody className="divide-y divide-gray-200 bg-white">
                                 {result.yearlyBreakdown.slice(0, 10).map((year, index) => (
-                                  <tr key={index} className="hover:bg-blue-50 transition-colors">
-                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{year.year}</td>
-                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
+                                  <tr key={index} className="hover:bg-gray-50 transition-colors">
+                                    <td className="px-4 py-3 font-medium text-gray-900">{year.year}</td>
+                                    <td className="px-4 py-3 text-right text-gray-900 font-bold">
                                       {formatCurrency(year.amount)}
                                     </td>
-                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-green-600 font-medium text-xs sm:text-sm md:text-base">
+                                    <td className="px-4 py-3 text-right text-green-600 font-medium">
                                       {formatCurrency(year.interestEarned)}
                                     </td>
-                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base">
+                                    <td className="px-4 py-3 text-right text-blue-600 font-medium">
                                       {formatCurrency(year.sipContribution)}
                                     </td>
                                     {showRealValue && (
-                                      <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-purple-600 font-medium text-xs sm:text-sm md:text-base">
+                                      <td className="px-4 py-3 text-right text-purple-600 font-medium">
                                         {formatCurrency(year.realValue)}
                                       </td>
                                     )}
-                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm md:text-base">
+                                    <td className="px-4 py-3 text-right text-orange-600 font-bold">
                                       {formatCurrency(year.totalInterest)}
                                     </td>
                                   </tr>
