@@ -1642,61 +1642,53 @@ export default function EMICalculator() {
             </Card>
           )}
 
+          {/* EMI Comparison Section */}
           {showComparison && comparisonEMIs.length > 0 && (
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">EMI Comparison</h3>
-                  <Button
-                    onClick={() => setComparisonEMIs([])}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
-                    data-testid="button-clear-comparison"
-                  >
-                    Clear Comparison
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">Compare different EMI scenarios side-by-side to find the best option for your financial goals.</p>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[800px]" data-testid="comparison-table">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-gray-50 to-purple-50 rounded-lg">
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Scenario</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Tenure</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly EMI</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Total Interest</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {comparisonEMIs.map((emi, index) => (
-                        <tr key={index} className="hover:bg-purple-50 transition-colors">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{emi.name}</td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(emi.principal)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {emi.rate}%
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {emi.tenure} {emi.tenureType}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(emi.emi)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(emi.totalInterest)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-purple-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(emi.totalAmount)}
-                          </td>
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
+                      EMI Comparison
+                    </h3>
+                    <Button
+                      onClick={() => setComparisonEMIs([])}
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                      data-testid="button-clear-comparison"
+                    >
+                      <RotateCcw className="w-4 h-4 mr-1.5" />
+                      Clear All
+                    </Button>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4">Compare different EMI scenarios side-by-side to find the best option.</p>
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Scenario</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Principal</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Tenure</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly EMI</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200 bg-white">
+                        {comparisonEMIs.map((emi, index) => (
+                          <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
+                            <td className="px-4 py-3 text-sm text-gray-900 font-medium">{emi.name}</td>
+                            <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(emi.principal)}</td>
+                            <td className="px-4 py-3 text-sm text-right text-gray-900">{emi.rate}%</td>
+                            <td className="px-4 py-3 text-sm text-right text-gray-900">{emi.tenure} {emi.tenureType}</td>
+                            <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(emi.emi)}</td>
+                            <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(emi.totalInterest)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </CardContent>
             </Card>
