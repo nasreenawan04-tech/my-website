@@ -2381,7 +2381,7 @@ const MortgageCalculator = () => {
 
                       {/* Amortization Schedule Section */}
                       {showAmortization && (
-                        <div ref={amortizationRef} className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 border-t-4 border-t-blue-200">
+                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
                               Amortization Schedule (First 5 Years)
@@ -2398,17 +2398,7 @@ const MortgageCalculator = () => {
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                          <div
-                            ref={tableScrollRef}
-                            className={`overflow-x-auto -mx-4 sm:mx-0 touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                            onMouseDown={handleMouseDown}
-                            onMouseLeave={handleMouseLeave}
-                            onMouseUp={handleMouseUp}
-                            onMouseMove={handleMouseMove}
-                            onTouchStart={handleTouchStart}
-                            onTouchEnd={handleTouchEnd}
-                            onTouchMove={handleTouchMove}
-                          >
+                          <div className="overflow-x-auto -mx-4 sm:mx-0" ref={amortizationRef}>
                             <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
                               <thead className="bg-gray-50">
                                 <tr>
