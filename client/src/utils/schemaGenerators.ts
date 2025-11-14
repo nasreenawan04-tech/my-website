@@ -2,7 +2,7 @@ import { ToolSEOConfig, CategoryDefaults } from '@/config/seo/types';
 
 export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefaults: CategoryDefaults) {
   const currentDate = new Date().toISOString().split('T')[0];
-  const publishDate = config.datePublished || '2024-01-15';
+  const publishDate = config.datePublished || currentDate;
   
   return {
     '@context': 'https://schema.org',
