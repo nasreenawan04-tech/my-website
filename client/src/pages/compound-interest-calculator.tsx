@@ -11,6 +11,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 
@@ -540,9 +542,8 @@ export default function CompoundInterestCalculator() {
   const handleDownloadYearlyBreakdownPDF = async () => {
     if (!result || !result.yearlyBreakdown) return;
 
-    // Lazy load jsPDF to reduce initial bundle size
-    const { jsPDF } = await import('jspdf');
-    const doc = new jsPDF();
+    try {
+      const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 15;
@@ -703,19 +704,26 @@ export default function CompoundInterestCalculator() {
     doc.setTextColor(100, 100, 100);
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
-    doc.save(`DapsiWow-Yearly-Breakdown-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your yearly investment breakdown has been saved." 
-    });
+      doc.save(`DapsiWow-Yearly-Breakdown-${new Date().getTime()}.pdf`);
+      toast({ 
+        title: "PDF Downloaded!", 
+        description: "Your yearly investment breakdown has been saved." 
+      });
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast({ 
+        title: "Error", 
+        description: "Failed to generate PDF. Please try again.", 
+        variant: "destructive" 
+      });
+    }
   };
 
   const handleDownloadPDF = async () => {
     if (!result) return;
 
-    // Lazy load jsPDF to reduce initial bundle size
-    const { jsPDF } = await import('jspdf');
-    const doc = new jsPDF();
+    try {
+      const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 15;
@@ -986,11 +994,19 @@ export default function CompoundInterestCalculator() {
     doc.setTextColor(100, 100, 100);
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
-    doc.save(`DapsiWow-Compound-Interest-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your professional investment calculation report has been saved." 
-    });
+      doc.save(`DapsiWow-Compound-Interest-${new Date().getTime()}.pdf`);
+      toast({ 
+        title: "PDF Downloaded!", 
+        description: "Your professional investment calculation report has been saved." 
+      });
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast({ 
+        title: "Error", 
+        description: "Failed to generate PDF. Please try again.", 
+        variant: "destructive" 
+      });
+    }
   };
 
   // Memoize currency formatter to prevent recreation on every render
