@@ -7,6 +7,7 @@ interface LazyImageProps {
   placeholder?: string;
   width?: number;
   height?: number;
+  'data-testid'?: string;
 }
 
 const LazyImage = ({ 
@@ -16,6 +17,7 @@ const LazyImage = ({
   placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5Mb2FkaW5nLi4uPC90ZXh0Pgo8L3N2Zz4K',
   width,
   height,
+  'data-testid': testId,
 }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -59,6 +61,7 @@ const LazyImage = ({
       decoding="async"
       role={alt ? "img" : "presentation"}
       aria-label={!isInView ? `Loading image: ${alt}` : undefined}
+      data-testid={testId}
     />
   );
 };

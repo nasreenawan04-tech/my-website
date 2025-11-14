@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
+import LazyImage from "@/components/LazyImage";
 import type { BlogPost } from "@/data/blogData";
 
 interface BlogCardProps {
@@ -15,10 +16,12 @@ export function BlogCard({ post }: BlogCardProps) {
     <Card className="hover-elevate active-elevate-2 h-full flex flex-col overflow-hidden transition-all duration-300 group border shadow-sm hover:shadow-lg">
       <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
         <div className="relative h-48 sm:h-52 md:h-56 lg:h-60 overflow-hidden bg-muted">
-          <img
+          <LazyImage
             src={post.image}
             alt={post.title}
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+            width={800}
+            height={600}
             data-testid={`img-blog-${post.id}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
