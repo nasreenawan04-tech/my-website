@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, TrendingDown, DollarSign, Info } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, TrendingDown, DollarSign, Info, RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
@@ -804,134 +804,6 @@ export default function EMICalculator() {
     }
   };
 
-  const handleDownloadAmortizationPDF = () => {
-    if (!result || !result.amortizationSchedule) return;
-
-    const doc = new jsPDF();
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const margin = 15;
-    let yPos = 12;
-
-    doc.setFillColor(59, 130, 246);
-    doc.rect(0, 0, pageWidth, 38, 'F');
-
-    doc.setFontSize(26);
-    doc.setTextColor(255, 255, 255);
-    doc.setFont('helvetica', 'bold');
-    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-
-    yPos += 14;
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'normal');
-    doc.text('Amortization Schedule Report', pageWidth / 2, yPos, { align: 'center' });
-
-    yPos += 6;
-    doc.setFontSize(8);
-    doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
-
-    yPos = 48;
-
-    doc.setFillColor(59, 130, 246);
-    doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-
-    doc.setFontSize(8);
-    doc.setTextColor(255, 255, 255);
-    doc.setFont('helvetica', 'bold');
-
-    const colWidths = [20, 35, 35, 35, 35];
-    const colX = [margin + 2, margin + 22, margin + 57, margin + 92, margin + 127];
-
-    doc.text('#', colX[0], yPos + 5);
-    doc.text('Payment', colX[1], yPos + 5);
-    doc.text('Principal', colX[2], yPos + 5);
-    doc.text('Interest', colX[3], yPos + 5);
-    doc.text('Balance', colX[4], yPos + 5);
-
-    yPos += 8;
-
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(7);
-
-    result.amortizationSchedule.forEach((payment, index) => {
-      if (yPos > pageHeight - 30) {
-        doc.addPage();
-        yPos = 20;
-
-        doc.setFillColor(59, 130, 246);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-
-        doc.setFontSize(8);
-        doc.setTextColor(255, 255, 255);
-        doc.setFont('helvetica', 'bold');
-
-        doc.text('#', colX[0], yPos + 5);
-        doc.text('Payment', colX[1], yPos + 5);
-        doc.text('Principal', colX[2], yPos + 5);
-        doc.text('Interest', colX[3], yPos + 5);
-        doc.text('Balance', colX[4], yPos + 5);
-
-        yPos += 8;
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(7);
-      }
-
-      if (index % 2 === 0) {
-        doc.setFillColor(248, 250, 252);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
-      }
-
-      doc.setTextColor(0, 0, 0);
-      doc.text(payment.month.toString(), colX[0], yPos + 4);
-      doc.text(formatCurrency(payment.emi), colX[1], yPos + 4);
-
-      doc.setTextColor(34, 197, 94);
-      doc.text(formatCurrency(payment.principal), colX[2], yPos + 4);
-
-      doc.setTextColor(249, 115, 22);
-      doc.text(formatCurrency(payment.interest), colX[3], yPos + 4);
-
-      doc.setTextColor(0, 0, 0);
-      doc.text(formatCurrency(payment.balance), colX[4], yPos + 4);
-
-      yPos += 6;
-    });
-
-    yPos = pageHeight - 22;
-    doc.setDrawColor(220, 220, 220);
-    doc.setLineWidth(0.2);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-
-    yPos += 4;
-    doc.setFontSize(7);
-    doc.setTextColor(120, 120, 120);
-    doc.setFont('helvetica', 'italic');
-    doc.text('This schedule shows how your payments are split between principal and interest over the first 5 years.', pageWidth / 2, yPos, { align: 'center' });
-
-    yPos += 6;
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(59, 130, 246);
-    doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-
-    yPos += 3;
-    doc.setFontSize(7);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(100, 100, 100);
-    doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
-
-    doc.save(`DapsiWow-Amortization-Schedule-${new Date().getTime()}.pdf`);
-    toast({
-      title: "PDF Downloaded!",
-      description: "Your amortization schedule has been saved."
-    });
-  };
 
   const formatCurrency = (amount: number) => {
     const currencyMap: { [key: string]: { locale: string; currency: string } } = {
@@ -1720,68 +1592,51 @@ export default function EMICalculator() {
             </CardContent>
           </Card>
 
-          {/* Payment Schedule */}
+          {/* Amortization Schedule Section */}
           {result && showSchedule && (
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3
-                    className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
-                    onClick={() => setShowSchedule(false)}
-                    title="Click to hide schedule"
-                  >
-                    Amortization Schedule (First 5 Years)
-                  </h3>
-                  <Button
-                    onClick={handleDownloadAmortizationPDF}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
-                    data-testid="button-export-amortization-pdf"
-                  >
-                    <Download className="w-4 h-4" />
-                    Export PDF
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                <div
-                  ref={tableScrollRef}
-                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                  onMouseDown={handleMouseDown}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseUp={handleMouseUp}
-                  onMouseMove={handleMouseMove}
-                >
-                  <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
-                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {result.amortizationSchedule.map((payment, index) => (
-                        <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {formatCurrency(payment.emi)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
-                            {formatCurrency(payment.principal)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
-                            {formatCurrency(payment.interest)}
-                          </td>
-                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
-                            {formatCurrency(payment.balance)}
-                          </td>
+              <CardContent className="p-0">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
+                      Amortization Schedule (First 5 Years)
+                    </h3>
+                    <Button
+                      onClick={() => setShowSchedule(false)}
+                      variant="outline"
+                      size="sm"
+                      className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
+                      data-testid="button-hide-amortization"
+                    >
+                      <RotateCcw className="w-4 h-4 mr-1.5" />
+                      Hide Schedule
+                    </Button>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
+                  <div className="overflow-x-auto -mx-4 sm:mx-0" ref={tableScrollRef}>
+                    <table className="w-full min-w-[600px]" data-testid="amortization-table">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment #</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Principal</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Interest</th>
+                          <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Balance</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200 bg-white">
+                        {result.amortizationSchedule.map((payment, index) => (
+                          <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`amortization-row-${index}`}>
+                            <td className="px-4 py-3 text-sm text-gray-900 font-medium">{payment.month}</td>
+                            <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(payment.emi)}</td>
+                            <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(payment.principal)}</td>
+                            <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(payment.interest)}</td>
+                            <td className="px-4 py-3 text-sm text-right font-semibold text-gray-900">{formatCurrency(payment.balance)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </CardContent>
             </Card>
