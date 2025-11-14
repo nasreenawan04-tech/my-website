@@ -49,6 +49,17 @@ class CompleteSitemapGenerator:
         # Blog pages - medium priority
         pages.append(("/blog", "weekly", "0.8"))
         
+        # Blog posts - high priority for content freshness
+        blog_posts = [
+            "what-is-geo-generative-engine-optimization-future-seo-2025",
+            "how-to-improve-your-website-seo-with-ai",
+            "10-essential-financial-calculators-every-business-owner-needs",
+            "ultimate-guide-text-formatting-tools-content-creators"
+        ]
+        
+        for post_slug in blog_posts:
+            pages.append((f"/blog/{post_slug}", "weekly", "0.8"))
+        
         # All Finance Tools (34 tools)
         finance_tools = [
             "loan-calculator", "mortgage-calculator", "emi-calculator", 
@@ -146,10 +157,10 @@ class CompleteSitemapGenerator:
         print(f"📁 Location: {output_file}")
         print(f"\nBreakdown:")
         print(f"  - Core pages: 14")
-        print(f"  - Finance tools: 34")
-        print(f"  - Text tools: 29")
-        print(f"  - Health tools: 36")
-        print(f"  - Other: 1 (unit converter)")
+        print(f"  - Blog posts: 5 (blog index + 4 articles)")
+        print(f"  - Finance tools: 35")
+        print(f"  - Text tools: 32")
+        print(f"  - Health tools: 37")
         print(f"  - Total: {len(pages)} URLs")
 
 def main():

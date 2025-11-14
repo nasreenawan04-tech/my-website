@@ -1,7 +1,7 @@
 # DapsiWow Sitemap Summary
 
 ## Overview
-**Total Pages: 122 URLs**  
+**Total Pages: 126 URLs**  
 **Last Updated:** November 14, 2025  
 **Sitemap Location:** `client/public/sitemap.xml`  
 **Referenced in:** `client/public/robots.txt`
@@ -29,6 +29,16 @@
 16. Forgot Password - `/forgot-password` (Priority: 0.3)
 17. Profile - `/profile` (Priority: 0.4)
 18. Blog - `/blog` (Priority: 0.8)
+
+---
+
+### 📰 Blog Posts (4 URLs)
+All at Priority: 0.8, Weekly updates
+
+1. `/blog/what-is-geo-generative-engine-optimization-future-seo-2025` - What is GEO? The Future of SEO in 2025
+2. `/blog/how-to-improve-your-website-seo-with-ai` - How to Improve Your Website SEO with AI
+3. `/blog/10-essential-financial-calculators-every-business-owner-needs` - 10 Essential Financial Calculators Every Business Owner Needs
+4. `/blog/ultimate-guide-text-formatting-tools-content-creators` - Ultimate Guide to Text Formatting Tools for Content Creators
 
 ---
 
