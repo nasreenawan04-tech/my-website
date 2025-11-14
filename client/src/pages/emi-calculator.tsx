@@ -70,14 +70,10 @@ export default function EMICalculator() {
   const [showComparison, setShowComparison] = useState(false);
   const [comparisonEMIs, setComparisonEMIs] = useState<ComparisonEMI[]>([]);
   const [result, setResult] = useState<EMIResult | null>(null);
-  const tableScrollRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
   const amortizationRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
 
   const faqSchema = {
@@ -339,28 +335,6 @@ export default function EMICalculator() {
     setResult(null);
   };
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!tableScrollRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - tableScrollRef.current.offsetLeft);
-    setScrollLeft(tableScrollRef.current.scrollLeft);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !tableScrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - tableScrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    tableScrollRef.current.scrollLeft = scrollLeft - walk;
-  };
 
   const handleShare = async () => {
     if (!result) return;
@@ -1854,7 +1828,7 @@ export default function EMICalculator() {
 
                 {/* Amortization Schedule Section */}
                 {result && showSchedule && (
-                  <div ref={amortizationRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
                         Amortization Schedule (First 5 Years)
@@ -1871,7 +1845,7 @@ export default function EMICalculator() {
                       </Button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={tableScrollRef}>
+                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={amortizationRef}>
                       <table className="w-full min-w-[600px]" data-testid="amortization-table">
                         <thead className="bg-gray-50">
                           <tr>
