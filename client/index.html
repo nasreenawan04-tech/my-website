@@ -108,12 +108,24 @@
     }]
     </script>
     
-    <!-- Performance Hints -->
+    <!-- Performance Hints - OPTIMIZED -->
     <link rel="dns-prefetch" href="//dapsiwow.com" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="//www.google.com" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Load Inter font optimized -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Preload critical fonts for instant render - PERFORMANCE OPTIMIZATION -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- Preload critical JavaScript chunks -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+    
     <!-- Prefetch important pages -->
     <link rel="prefetch" href="/tools" />
     <link rel="prefetch" href="/finance-tools" />
@@ -121,11 +133,11 @@
     <link rel="prefetch" href="/text-tools" />
     
     
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7737906044797602"
+    <!-- Google AdSense - DEFERRED for better LCP -->
+    <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7737906044797602"
      crossorigin="anonymous"></script>
     
-    <!-- Google reCAPTCHA Enterprise -->
+    <!-- Google reCAPTCHA Enterprise - DEFERRED for better LCP -->
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lc2Me4rAAAAACqhw6CK736uMJcQgYfGdbF_5or5" async defer></script>
   </head>
   <body>

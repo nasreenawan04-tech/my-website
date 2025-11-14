@@ -10,12 +10,17 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable compression for better performance and crawl budget
+// Enable Gzip compression for better performance and crawl budget
+// PERFORMANCE OPTIMIZATION: Maximum gzip compression level 9
+// Note: Brotli compression can be added in production with nginx/cloudflare
 app.use(compression({
+  level: 9, // Maximum gzip compression for production
+  threshold: 1024, // Only compress responses > 1KB
   filter: (req, res) => {
     if (req.headers['x-no-compression']) {
       return false;
     }
+    // Compress all text-based responses
     return compression.filter(req, res);
   }
 }));
