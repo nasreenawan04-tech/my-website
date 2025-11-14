@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle, Check } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle, Check, RotateCcw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 import { jsPDF } from 'jspdf';
@@ -1912,22 +1912,24 @@ export default function CompoundInterestCalculator() {
                       {result && showBreakdown && (
                         <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left">Yearly Investment Breakdown</h3>
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-yearly-breakdown">
+                              Yearly Investment Breakdown
+                            </h3>
                             <Button
-                              onClick={handleDownloadYearlyBreakdownPDF}
+                              onClick={() => setShowBreakdown(false)}
                               variant="outline"
                               size="sm"
                               className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
-                              data-testid="button-export-yearly-breakdown-pdf"
+                              data-testid="button-hide-breakdown"
                             >
-                              <Download className="w-4 h-4 mr-1.5" />
-                              Export PDF
+                              <RotateCcw className="w-4 h-4 mr-1.5" />
+                              Hide Breakdown
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">Track your investment growth year by year with detailed breakdown of principal, interest, and contributions.</p>
                           <div 
                             ref={tableScrollRef}
-                            className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none"
+                            className="overflow-x-auto -mx-4 sm:mx-0"
                             onMouseDown={handleMouseDown}
                             onMouseLeave={handleMouseLeave}
                             onMouseUp={handleMouseUp}
@@ -1950,25 +1952,15 @@ export default function CompoundInterestCalculator() {
                               </thead>
                               <tbody className="divide-y divide-gray-200 bg-white">
                                 {result.yearlyBreakdown.slice(0, 10).map((year, index) => (
-                                  <tr key={index} className="hover:bg-gray-50 transition-colors">
-                                    <td className="px-4 py-3 font-medium text-gray-900">{year.year}</td>
-                                    <td className="px-4 py-3 text-right text-gray-900 font-bold">
-                                      {formatCurrency(year.amount)}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-green-600 font-medium">
-                                      {formatCurrency(year.interestEarned)}
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-blue-600 font-medium">
-                                      {formatCurrency(year.sipContribution)}
-                                    </td>
+                                  <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`breakdown-row-${index}`}>
+                                    <td className="px-4 py-3 text-sm text-gray-900 font-medium">{year.year}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(year.amount)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(year.interestEarned)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(year.sipContribution)}</td>
                                     {showRealValue && (
-                                      <td className="px-4 py-3 text-right text-purple-600 font-medium">
-                                        {formatCurrency(year.realValue)}
-                                      </td>
+                                      <td className="px-4 py-3 text-sm text-right font-semibold text-purple-600">{formatCurrency(year.realValue)}</td>
                                     )}
-                                    <td className="px-4 py-3 text-right text-orange-600 font-bold">
-                                      {formatCurrency(year.totalInterest)}
-                                    </td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(year.totalInterest)}</td>
                                   </tr>
                                 ))}
                               </tbody>
