@@ -26,7 +26,7 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-14T00:00:00Z",
     dateModified: "2025-11-14T00:00:00Z",
     category: "Web Tools",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    image: "/images/blog/financial-calculator-2025.png",
     excerpt: "Discover which financial calculator fits your needs. From loans to investments, learn how to choose the right tool for smarter money decisions.",
     metaDescription: "Discover which financial calculator fits your needs. From loans to investments, learn how to choose the right tool to make smarter money decisions in 2025.",
     keywords: ["financial calculator", "loan calculator", "mortgage calculator", "investment calculator", "ROI calculator", "retirement planning"],
