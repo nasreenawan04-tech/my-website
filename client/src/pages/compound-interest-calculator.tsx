@@ -1916,6 +1916,74 @@ export default function CompoundInterestCalculator() {
                           </span>
                         </div>
                       </div>
+
+                      {/* Yearly Investment Breakdown */}
+                      {result && showBreakdown && (
+                        <div className="pt-6 sm:pt-8 border-t border-gray-200">
+                          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4 md:mb-6">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Yearly Investment Breakdown</h3>
+                            <Button
+                              onClick={handleDownloadYearlyBreakdownPDF}
+                              variant="outline"
+                              size="sm"
+                              className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                              data-testid="button-export-yearly-breakdown-pdf"
+                            >
+                              <Download className="w-4 h-4" />
+                              Export PDF
+                            </Button>
+                          </div>
+                          <div 
+                            ref={tableScrollRef}
+                            className="overflow-x-auto cursor-grab active:cursor-grabbing select-none"
+                            onMouseDown={handleMouseDown}
+                            onMouseLeave={handleMouseLeave}
+                            onMouseUp={handleMouseUp}
+                            onMouseMove={handleMouseMove}
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                            data-testid="table-yearly-breakdown"
+                          >
+                            <table className="w-full min-w-[600px]">
+                              <thead>
+                                <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Year</th>
+                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Amount</th>
+                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Interest Earned</th>
+                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">SIP Contribution</th>
+                                  {showRealValue && <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Real Value</th>}
+                                  <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Total Interest</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-100">
+                                {result.yearlyBreakdown.slice(0, 10).map((year, index) => (
+                                  <tr key={index} className="hover:bg-blue-50 transition-colors">
+                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{year.year}</td>
+                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
+                                      {formatCurrency(year.amount)}
+                                    </td>
+                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-green-600 font-medium text-xs sm:text-sm md:text-base">
+                                      {formatCurrency(year.interestEarned)}
+                                    </td>
+                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base">
+                                      {formatCurrency(year.sipContribution)}
+                                    </td>
+                                    {showRealValue && (
+                                      <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-purple-600 font-medium text-xs sm:text-sm md:text-base">
+                                        {formatCurrency(year.realValue)}
+                                      </td>
+                                    )}
+                                    <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm md:text-base">
+                                      {formatCurrency(year.totalInterest)}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
@@ -1929,76 +1997,6 @@ export default function CompoundInterestCalculator() {
               </div>
             </CardContent>
           </Card>
-
-          {/* Yearly Breakdown */}
-          {result && showBreakdown && (
-            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
-              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4 md:mb-6">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Yearly Investment Breakdown</h3>
-                  <Button
-                    onClick={handleDownloadYearlyBreakdownPDF}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
-                    data-testid="button-export-yearly-breakdown-pdf"
-                  >
-                    <Download className="w-4 h-4" />
-                    Export PDF
-                  </Button>
-                </div>
-                <div 
-                  ref={tableScrollRef}
-                  className="overflow-x-auto cursor-grab active:cursor-grabbing select-none"
-                  onMouseDown={handleMouseDown}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseUp={handleMouseUp}
-                  onMouseMove={handleMouseMove}
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                  data-testid="table-yearly-breakdown"
-                >
-                  <table className="w-full min-w-[600px]">
-                    <thead>
-                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Year</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Amount</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Interest Earned</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">SIP Contribution</th>
-                        {showRealValue && <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Real Value</th>}
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Total Interest</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                      {result.yearlyBreakdown.slice(0, 10).map((year, index) => (
-                        <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{year.year}</td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
-                            {formatCurrency(year.amount)}
-                          </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-green-600 font-medium text-xs sm:text-sm md:text-base">
-                            {formatCurrency(year.interestEarned)}
-                          </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base">
-                            {formatCurrency(year.sipContribution)}
-                          </td>
-                          {showRealValue && (
-                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-purple-600 font-medium text-xs sm:text-sm md:text-base">
-                              {formatCurrency(year.realValue)}
-                            </td>
-                          )}
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm md:text-base">
-                            {formatCurrency(year.totalInterest)}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </CardContent>
-            </Card>
-          )}
 
           {/* SEO Content Sections */}
           <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 space-y-8 sm:space-y-12 md:space-y-16">
