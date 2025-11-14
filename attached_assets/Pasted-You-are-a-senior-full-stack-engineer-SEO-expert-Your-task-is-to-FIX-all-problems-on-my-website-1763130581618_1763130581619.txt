@@ -1,0 +1,124 @@
+You are a senior full-stack engineer + SEO expert.
+
+Your task is to FIX all problems on my website https://dapsiwow.com and make the entire site:
+- SEO-optimized
+- Fast (LCP < 2s)
+- Secure
+- Error-free
+- Structurally consistent
+- Schema-optimized
+- Mobile-friendly
+- Fully indexable
+
+DO THE FOLLOWING:
+
+──────────────────────────
+1) FIX SECURITY & CSP ERRORS
+──────────────────────────
+• Fix the Vercel CSP error: “Refused to load the script https://vercel.live/_next-live/feedback/feedback.js”
+• Update Content-Security-Policy correctly.
+• Add https://vercel.live to script-src and connect-src.
+• First apply CSP in Report-Only mode, then enforce.
+
+Deliver:
+- Correct headers
+- next.config.js or vercel.json with fixed CSP
+
+──────────────────────────
+2) FIX SEO FOR ALL TOOL PAGES
+──────────────────────────
+For every tool page (150+):
+• Generate unique <title>, meta descriptions, and canonical URLs
+• Add Open Graph + Twitter tags
+• Generate SoftwareApplication JSON-LD schema
+• Add optional FAQ schema
+• Fix missing H1, heading order, alt tags
+• Add 2 internal links to related tools per page
+• Optimize content length and structure
+
+Deliver:
+- Automated script or instructions to generate metadata for all tools.
+
+──────────────────────────
+3) FIX SPEED & PERFORMANCE
+──────────────────────────
+• Run Lighthouse on Homepage + 5 tool pages
+• Reduce unused JavaScript
+• Add async/defer to non-critical scripts
+• Convert images to WebP / AVIF
+• Add lazy-loading to all below-the-fold images
+• Preload critical fonts
+• Remove render-blocking scripts
+• Optimize CSS & enable code-splitting
+• Add caching headers and Brotli compression
+
+Deliver:
+- Before/after Lighthouse scores
+- Updated HTML/JS/CSS code
+
+──────────────────────────
+4) FIX INDEXING / SITEMAP / ROBOTS
+──────────────────────────
+• Create a fully complete sitemap.xml including all tools.
+• Add sitemap link to robots.txt
+• Check indexability and fix canonical conflicts
+• Identify broken or orphan pages
+• Ensure no-index is used only where needed.
+
+Deliver:
+- robots.txt
+- sitemap.xml
+- Indexability report
+
+──────────────────────────
+5) FIX ACCESSIBILITY
+──────────────────────────
+• Run axe-core audit
+• Fix all critical/high issues:
+  - Missing labels
+  - Poor contrast
+  - Missing alt attributes
+  - ARIA roles
+  - Keyboard navigation
+
+Deliver:
+- List of fixes + updated code
+
+──────────────────────────
+6) FIX SECURITY HEADERS
+──────────────────────────
+Add these:
+• HSTS (Strict-Transport-Security)
+• X-Frame-Options: DENY
+• X-Content-Type-Options: nosniff
+• Referrer-Policy: strict-origin-when-cross-origin
+• Permissions-Policy
+
+Deliver:
+- Updated header configuration
+
+──────────────────────────
+7) FULL CODE REVIEW
+──────────────────────────
+• Clean unnecessary files
+• Fix console errors
+• Fix layout shifts (CLS)
+• Fix mobile UI inconsistencies
+• Clean URL structure
+
+Deliver:
+- Summary of issues + all code updates
+
+──────────────────────────
+FINAL OUTPUT:
+Deliver a ZIP or repo-ready structure containing:
+• Updated CSP
+• Updated headers
+• Updated metadata generator
+• Updated schema generator
+• Updated sitemap.xml + robots.txt
+• Updated performance-optimized code
+• All accessibility fixes
+• Full change log
+
+Begin now.
