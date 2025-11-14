@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -259,44 +258,6 @@ const TextScrambler = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textScramblerSEO} />
-      <Helmet>
-        <title>Text Scrambler - Scramble Text with Multiple Algorithms | DapsiWow</title>
-        <meta name="description" content="Professional text scrambler tool with multiple scrambling algorithms: character shuffling, word mixing, line reordering, and smart scrambling. Perfect for creating puzzles, testing readability, and text manipulation." />
-        <meta name="keywords" content="text scrambler, text shuffler, word scrambler, character scrambler, text mixer, scramble generator, text puzzle maker, word puzzle, text manipulation tool, anagram generator" />
-        <meta property="og:title" content="Text Scrambler - Professional Text Scrambling Tool | DapsiWow" />
-        <meta property="og:description" content="Scramble text using various advanced algorithms: character shuffling, word scrambling, line mixing, and smart scrambling. Free and instant with multiple customization options." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-scrambler" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text Scrambler",
-            "description": "Professional text scrambler tool with multiple algorithms for creating puzzles, testing text readability, and creative text manipulation.",
-            "url": "https://dapsiwow.com/tools/text-scrambler",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multiple scrambling algorithms",
-              "Character-level scrambling",
-              "Word shuffling with boundaries",
-              "Line reordering",
-              "Smart scrambling with readability",
-              "Real-time processing",
-              "Customizable intensity levels",
-              "Copy to clipboard functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

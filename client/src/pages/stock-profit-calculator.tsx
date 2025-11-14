@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -292,42 +291,6 @@ export default function StockProfitCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={stockProfitCalculatorSEO} />
-      <Helmet>
-        <title>Stock Profit Calculator - Calculate Stock Investment Returns | DapsiWow</title>
-        <meta name="description" content="Free stock profit calculator with tax optimization, fee analysis, and multi-currency support. Calculate investment returns, set target prices, and analyze portfolio performance for stocks worldwide." />
-        <meta name="keywords" content="stock profit calculator, stock return calculator, investment profit calculator, capital gains calculator, stock trading calculator, portfolio calculator, dividend calculator, stock market calculator, investment returns, trading profit calculator" />
-        <meta property="og:title" content="Stock Profit Calculator - Calculate Stock Investment Returns | DapsiWow" />
-        <meta property="og:description" content="Free stock profit calculator for analyzing investment returns with tax optimization and fee calculations. Support for multiple currencies and calculation types." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/stock-profit-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Stock Profit Calculator",
-            "description": "Free online stock profit calculator to analyze investment returns, calculate target prices, and assess portfolio performance with tax and fee considerations.",
-            "url": "https://dapsiwow.com/tools/stock-profit-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Stock profit/loss calculations",
-              "Target price determination",
-              "Portfolio value assessment",
-              "Tax and fee optimization",
-              "Multi-currency support",
-              "Annualized return analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

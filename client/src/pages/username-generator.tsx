@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -238,42 +237,6 @@ const UsernameGenerator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={usernameGeneratorSEO} />
-      <Helmet>
-        <title>Random Username Generator - Create Unique Usernames | DapsiWow</title>
-        <meta name="description" content="Free username generator to create unique, creative usernames for gaming, social media, and online accounts. Customize style, length, and format to create the perfect username." />
-        <meta name="keywords" content="username generator, random username, unique username, gaming username, social media username, account name generator, username creator, handle generator, online username, creative username" />
-        <meta property="og:title" content="Random Username Generator - Create Unique Usernames | DapsiWow" />
-        <meta property="og:description" content="Generate creative usernames with customizable options for gaming, social media, and professional accounts. Free online username generator with instant results." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/username-generator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Random Username Generator",
-            "description": "Free online username generator to create unique, memorable usernames for gaming, social media, and online accounts with customizable options.",
-            "url": "https://dapsiwow.com/tools/username-generator",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Generate unique usernames instantly",
-              "Multiple username styles available",
-              "Customizable length and format options",
-              "Gaming and professional username options",
-              "Username variations generator",
-              "Copy usernames with one click"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

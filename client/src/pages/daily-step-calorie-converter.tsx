@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -168,42 +167,6 @@ const DailyStepCalorieConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={dailyStepCalorieConverterSEO} />
-      <Helmet>
-        <title>Step to Calorie Converter - Calculate Calories Burned Walking | DapsiWow</title>
-        <meta name="description" content="Free step to calorie converter to calculate calories burned from daily walking. Track your fitness progress with personalized step counting and distance calculations worldwide." />
-        <meta name="keywords" content="step calorie calculator, steps to calories converter, walking calorie calculator, daily steps tracker, calories burned walking, step counter, walking distance calculator, fitness tracker, health calculator" />
-        <meta property="og:title" content="Step to Calorie Converter - Calculate Calories Burned Walking | DapsiWow" />
-        <meta property="og:description" content="Convert your daily steps to calories burned with personalized calculations. Track walking distance, weight loss potential, and fitness progress." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/daily-step-calorie-converter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Step to Calorie Converter",
-            "description": "Free online step to calorie converter that calculates calories burned from daily walking based on personal factors like weight, height, age, and walking intensity.",
-            "url": "https://dapsiwow.com/tools/daily-step-calorie-converter",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate calories burned from steps",
-              "Track walking distance",
-              "Multiple unit system support",
-              "Personalized calculations",
-              "Weekly and monthly projections",
-              "Weight loss estimation"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

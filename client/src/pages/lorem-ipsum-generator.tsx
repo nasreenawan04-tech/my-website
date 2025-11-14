@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -142,41 +141,6 @@ export default function LoremIpsumGenerator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={loremIpsumGeneratorSEO} />
-      <Helmet>
-        <title>Lorem Ipsum Generator - Create Professional Placeholder Text | DapsiWow</title>
-        <meta name="description" content="Generate Lorem ipsum placeholder text for web design, print layouts, and content mockups. Professional dummy text generator with customizable paragraphs, sentences, and word counts." />
-        <meta name="keywords" content="lorem ipsum generator, placeholder text generator, dummy text, filler text, design placeholder, web design text, mockup text, latin text generator, content placeholder" />
-        <meta property="og:title" content="Lorem Ipsum Generator - Create Professional Placeholder Text | DapsiWow" />
-        <meta property="og:description" content="Free Lorem ipsum generator for designers and developers. Create customizable placeholder text for websites, print designs, and content layouts instantly." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/lorem-ipsum-generator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Lorem Ipsum Generator",
-            "description": "Professional Lorem ipsum text generator for creating placeholder content in web design, print layouts, and content mockups with customizable output options.",
-            "url": "https://dapsiwow.com/tools/lorem-ipsum-generator",
-            "applicationCategory": "DesignApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Generate paragraphs, sentences, or words",
-              "Customizable text length",
-              "Traditional Lorem ipsum start option",
-              "Instant text generation",
-              "Copy to clipboard functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

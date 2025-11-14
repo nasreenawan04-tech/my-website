@@ -1,6 +1,5 @@
 
 import { useState, useEffect, useContext } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { ToolPageContext } from '@/contexts/ToolPageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -271,42 +270,6 @@ const BinaryToTextConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={binaryToTextConverterSEO} />
-      <Helmet>
-        <title>Binary to Text Converter - Decode Binary Code to Text | DapsiWow</title>
-        <meta name="description" content="Free binary to text converter tool. Decode binary code, decimal values, and hexadecimal to readable text instantly. Supports UTF-8 and ASCII encoding for students, developers, and professionals." />
-        <meta name="keywords" content="binary to text converter, binary decoder, ASCII to text, UTF-8 converter, hex to text, decimal to text, binary code converter, programming tools, computer science, data encoding, text decoding, online binary converter" />
-        <meta property="og:title" content="Binary to Text Converter - Decode Binary Code to Text | DapsiWow" />
-        <meta property="og:description" content="Free online binary to text converter. Decode binary, decimal, and hex codes to readable text. Perfect for students, developers, and cybersecurity professionals." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href={canonicalOverride || "https://dapsiwow.com/tools/binary-to-text-converter"} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Binary to Text Converter",
-            "description": "Professional binary to text converter for decoding binary code, decimal values, and hexadecimal to readable text with UTF-8 and ASCII encoding support.",
-            "url": "https://dapsiwow.com/tools/binary-to-text-converter",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Binary to text conversion",
-              "Decimal to text conversion",
-              "Hexadecimal to text conversion",
-              "UTF-8 and ASCII encoding support",
-              "Real-time conversion",
-              "Copy to clipboard functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

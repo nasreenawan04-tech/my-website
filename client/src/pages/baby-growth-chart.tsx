@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -306,42 +305,6 @@ export default function BabyGrowthChart() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={babyGrowthChartSEO} />
-      <Helmet>
-        <title>Baby Growth Chart Calculator - Track Your Baby's Development | DapsiWow</title>
-        <meta name="description" content="Free baby growth chart calculator using WHO growth standards. Track your baby's weight, height percentiles, and developmental milestones. Get personalized growth assessments and recommendations." />
-        <meta name="keywords" content="baby growth chart, infant development tracker, WHO growth standards, baby weight percentile, baby height percentile, child growth calculator, pediatric growth chart, baby milestone tracker, infant growth assessment, newborn growth calculator" />
-        <meta property="og:title" content="Baby Growth Chart Calculator - Track Your Baby's Development | DapsiWow" />
-        <meta property="og:description" content="Professional baby growth tracking tool using WHO standards. Monitor healthy development with personalized assessments and milestone tracking." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/baby-growth-chart" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Baby Growth Chart Calculator",
-            "description": "Free online baby growth chart calculator using WHO growth standards to track infant development, weight and height percentiles, and developmental milestones.",
-            "url": "https://dapsiwow.com/tools/baby-growth-chart",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "WHO Growth Standards tracking",
-              "Weight and height percentiles",
-              "Developmental milestone tracking",
-              "Personalized growth assessments",
-              "Premature baby adjustments",
-              "Multiple measurement units"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

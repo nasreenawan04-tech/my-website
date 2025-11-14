@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -373,42 +372,6 @@ const IntermittentFastingTimer = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={intermittentFastingTimerSEO} />
-      <Helmet>
-        <title>Intermittent Fasting Timer - Track Your Fasting Schedule | DapsiWow</title>
-        <meta name="description" content="Free intermittent fasting timer to track your fasting and eating windows. Supports 16:8, 18:6, 20:4, OMAD and custom schedules with progress tracking and notifications." />
-        <meta name="keywords" content="intermittent fasting timer, fasting tracker, 16:8 timer, eating window timer, OMAD timer, fasting schedule, autophagy timer, weight loss timer, health tracker, fasting app" />
-        <meta property="og:title" content="Intermittent Fasting Timer - Track Your Fasting Schedule | DapsiWow" />
-        <meta property="og:description" content="Free intermittent fasting timer with progress tracking, notifications, and support for all popular fasting schedules." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/intermittent-fasting-timer" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Intermittent Fasting Timer",
-            "description": "Free online intermittent fasting timer to track your fasting and eating windows with popular schedules like 16:8, 18:6, 20:4, and OMAD.",
-            "url": "https://dapsiwow.com/tools/intermittent-fasting-timer",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multiple fasting schedules",
-              "Progress tracking",
-              "Notification alerts",
-              "Custom fasting windows",
-              "Water intake tracking",
-              "Fasting history"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

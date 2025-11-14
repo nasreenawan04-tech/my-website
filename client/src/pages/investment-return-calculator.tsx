@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -143,42 +142,6 @@ export default function InvestmentReturnCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={investmentReturnCalculatorSEO} />
-      <Helmet>
-        <title>Investment Return Calculator - Calculate Investment Growth & Returns | DapsiWow</title>
-        <meta name="description" content="Free investment return calculator to calculate compound interest, investment growth, and portfolio returns. Support for multiple currencies, monthly contributions, and inflation adjustment." />
-        <meta name="keywords" content="investment return calculator, compound interest calculator, investment growth calculator, portfolio return calculator, ROI calculator, financial planning calculator, retirement investment calculator, SIP return calculator, mutual fund calculator" />
-        <meta property="og:title" content="Investment Return Calculator - Calculate Investment Growth & Returns | DapsiWow" />
-        <meta property="og:description" content="Free investment return calculator with compound interest, monthly contributions, and inflation adjustment. Plan your financial future with accurate calculations." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/investment-return-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Investment Return Calculator",
-            "description": "Free online investment return calculator to calculate compound interest, investment growth, and portfolio returns with support for multiple currencies and inflation adjustment.",
-            "url": "https://dapsiwow.com/tools/investment-return-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate investment returns with compound interest",
-              "Support for multiple currencies",
-              "Monthly contribution planning",
-              "Inflation adjustment calculations",
-              "Investment growth breakdown",
-              "Portfolio return analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

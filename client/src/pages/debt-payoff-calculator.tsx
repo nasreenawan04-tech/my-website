@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -314,42 +313,6 @@ export default function DebtPayoffCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={debtPayoffCalculatorSEO} />
-      <Helmet>
-        <title>Debt Payoff Calculator - Plan Your Debt Freedom Strategy | DapsiWow</title>
-        <meta name="description" content="Free debt payoff calculator to compare snowball vs avalanche strategies. Calculate payoff time, interest savings, and create your debt elimination plan with multiple payment methods." />
-        <meta name="keywords" content="debt payoff calculator, debt snowball, debt avalanche, debt elimination, credit card payoff, debt consolidation, debt freedom, debt reduction strategy, debt payoff plan, debt management calculator" />
-        <meta property="og:title" content="Debt Payoff Calculator - Plan Your Debt Freedom Strategy | DapsiWow" />
-        <meta property="og:description" content="Free debt payoff calculator to compare snowball vs avalanche strategies. Calculate payoff time, interest savings, and create your debt elimination plan." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/debt-payoff-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Debt Payoff Calculator",
-            "description": "Free online debt payoff calculator to compare debt elimination strategies including debt snowball and debt avalanche methods. Calculate payoff time, interest savings, and create your debt freedom plan.",
-            "url": "https://dapsiwow.com/tools/debt-payoff-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Debt snowball calculator",
-              "Debt avalanche calculator",
-              "Multiple debt payoff planning",
-              "Interest savings calculator",
-              "Payoff time estimation",
-              "Support for multiple currencies"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

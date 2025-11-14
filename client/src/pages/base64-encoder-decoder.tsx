@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -312,43 +311,6 @@ const Base64EncoderDecoder = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={base64EncoderDecoderSEO} />
-      <Helmet>
-        <title>Base64 Encoder/Decoder - Convert Text to Base64 Online | DapsiWow</title>
-        <meta name="description" content="Free Base64 encoder and decoder tool. Convert text to Base64 and decode Base64 to text with advanced options including URL-safe encoding, line breaks, and validation. Professional tool for developers and data processing." />
-        <meta name="keywords" content="base64 encoder, base64 decoder, base64 converter, encode decode, url safe base64, text converter, developer tools, data encoding, base64 online, binary to text, text encoding" />
-        <meta property="og:title" content="Base64 Encoder/Decoder - Convert Text to Base64 Online | DapsiWow" />
-        <meta property="og:description" content="Professional Base64 encoder and decoder with advanced features. Convert text to Base64 and decode Base64 strings with URL-safe options, line breaks, and custom formatting." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/base64-encoder-decoder" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Base64 Encoder/Decoder",
-            "description": "Professional Base64 encoder and decoder for converting text to Base64 format and decoding Base64 strings back to readable text with advanced encoding options and validation.",
-            "url": "https://dapsiwow.com/tools/base64-encoder-decoder",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Text to Base64 encoding",
-              "Base64 to text decoding",
-              "URL-safe Base64 support",
-              "Custom line break formatting",
-              "Input validation and error handling",
-              "Real-time conversion",
-              "One-click copy functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

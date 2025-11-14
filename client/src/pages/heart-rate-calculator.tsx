@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -153,42 +152,6 @@ export default function HeartRateCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={heartRateCalculatorSEO} />
-      <Helmet>
-        <title>Heart Rate Calculator - Target Heart Rate Zones & Training | DapsiWow</title>
-        <meta name="description" content="Free heart rate calculator to determine target heart rate zones for optimal training, fat burning, and cardiovascular fitness. Calculate maximum heart rate using multiple scientific formulas." />
-        <meta name="keywords" content="heart rate calculator, target heart rate zones, maximum heart rate calculator, cardio training zones, fat burning heart rate, fitness heart rate, training heart rate calculator, Karvonen formula, heart rate training" />
-        <meta property="og:title" content="Heart Rate Calculator - Target Heart Rate Zones & Training | DapsiWow" />
-        <meta property="og:description" content="Calculate your target heart rate zones for optimal training, fat burning, and cardiovascular fitness. Free heart rate calculator with multiple scientific formulas." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/heart-rate-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Heart Rate Calculator",
-            "description": "Free online heart rate calculator to determine target heart rate zones for optimal training, fat burning, and cardiovascular fitness. Calculate maximum heart rate using multiple scientific formulas including Tanaka, Gulati, and Nes formulas.",
-            "url": "https://dapsiwow.com/tools/heart-rate-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate maximum heart rate",
-              "Determine training heart rate zones",
-              "Multiple scientific formulas",
-              "Karvonen method calculations",
-              "Fat burning zone calculator",
-              "Cardio fitness zone analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

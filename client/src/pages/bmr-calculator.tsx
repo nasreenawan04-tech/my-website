@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -176,42 +175,6 @@ export default function BMRCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={bmrCalculatorSEO} />
-      <Helmet>
-        <title>BMR Calculator - Calculate Basal Metabolic Rate | DapsiWow</title>
-        <meta name="description" content="Free BMR calculator to calculate your Basal Metabolic Rate and daily calorie needs. Get accurate BMR calculations using Mifflin-St Jeor and Harris-Benedict equations with activity level adjustments." />
-        <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, daily calorie calculator, metabolism calculator, TDEE calculator, calorie needs calculator, BMR formula, metabolic rate" />
-        <meta property="og:title" content="BMR Calculator - Calculate Basal Metabolic Rate | DapsiWow" />
-        <meta property="og:description" content="Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) with our accurate BMR calculator." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/bmr-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "BMR Calculator",
-            "description": "Free online BMR calculator to calculate Basal Metabolic Rate and daily calorie needs using scientifically proven equations.",
-            "url": "https://dapsiwow.com/tools/bmr-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate BMR using multiple equations",
-              "Support for metric and imperial units",
-              "Activity level adjustments",
-              "TDEE calculations",
-              "Weight loss and gain calorie targets",
-              "Macronutrient breakdown"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

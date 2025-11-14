@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -217,42 +216,6 @@ const CarbCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-green-50">
       <ToolSEOHead config={carbCalculatorSEO} />
-      <Helmet>
-        <title>Carb Calculator - Calculate Your Daily Carbohydrate Intake | DapsiWow</title>
-        <meta name="description" content="Free carbohydrate calculator to determine your daily carb intake needs based on weight, activity level, fitness goals, and diet type. Get personalized carb recommendations with meal planning suggestions." />
-        <meta name="keywords" content="carb calculator, carbohydrate calculator, daily carb intake, carb requirements, macronutrient calculator, diet carbs, carbohydrate needs, carb intake calculator, nutrition calculator, meal planning carbs" />
-        <meta property="og:title" content="Carb Calculator - Calculate Your Daily Carbohydrate Intake | DapsiWow" />
-        <meta property="og:description" content="Free carbohydrate calculator for determining optimal daily carb intake based on your personal goals and activity level." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/carb-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Carb Calculator",
-            "description": "Free online carbohydrate calculator to determine daily carb intake needs based on personal metrics, activity level, and fitness goals. Features personalized recommendations for different diet types.",
-            "url": "https://dapsiwow.com/tools/carb-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate daily carbohydrate needs",
-              "Support for different diet types",
-              "Activity level adjustments",
-              "Health condition considerations",
-              "Meal timing recommendations",
-              "Food source suggestions"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

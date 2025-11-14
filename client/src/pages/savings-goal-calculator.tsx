@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -230,42 +229,6 @@ export default function SavingsGoalCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={savingsGoalCalculatorSEO} />
-      <Helmet>
-        <title>Savings Goal Calculator - Calculate Time to Reach Financial Goals | DapsiWow</title>
-        <meta name="description" content="Free savings goal calculator to plan your financial future. Calculate time to save, monthly payments required, and target amounts with compound interest projections. Support for multiple currencies and savings strategies." />
-        <meta name="keywords" content="savings goal calculator, financial planning calculator, savings planner, compound interest calculator, emergency fund calculator, retirement savings calculator, vacation fund planner, down payment calculator, savings strategy tool, financial goal planner" />
-        <meta property="og:title" content="Savings Goal Calculator - Calculate Time to Reach Financial Goals | DapsiWow" />
-        <meta property="og:description" content="Plan and achieve your savings goals with our free calculator. Get compound interest projections and flexible savings strategies for any financial target." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/savings-goal-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Savings Goal Calculator",
-            "description": "Free online savings goal calculator to plan and track financial goals with compound interest calculations and flexible timeframes.",
-            "url": "https://dapsiwow.com/tools/savings-goal-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate time to reach savings goals",
-              "Determine monthly payment requirements",
-              "Project target amounts with compound interest",
-              "Multiple currency support",
-              "Emergency fund planning",
-              "Retirement savings calculations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

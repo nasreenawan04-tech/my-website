@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -190,42 +189,6 @@ const BloodPressureTracker = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={bloodPressureTrackerSEO} />
-      <Helmet>
-        <title>Blood Pressure Tracker - Monitor & Track Blood Pressure | DapsiWow</title>
-        <meta name="description" content="Free blood pressure tracker to monitor and track your blood pressure readings. Get instant blood pressure classification, health recommendations, and track your readings over time. Professional blood pressure monitoring tool with AHA guidelines." />
-        <meta name="keywords" content="blood pressure tracker, blood pressure monitor, hypertension calculator, blood pressure classification, systolic diastolic, blood pressure chart, BP monitor, heart health tracker, AHA guidelines" />
-        <meta property="og:title" content="Blood Pressure Tracker - Monitor & Track Blood Pressure | DapsiWow" />
-        <meta property="og:description" content="Professional blood pressure tracking tool with instant classification and health recommendations based on AHA guidelines." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/blood-pressure-tracker" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Blood Pressure Tracker",
-            "description": "Free online blood pressure tracker to monitor and track blood pressure readings with instant classification based on AHA guidelines. Get health recommendations and track your readings over time.",
-            "url": "https://dapsiwow.com/tools/blood-pressure-tracker",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Blood pressure classification",
-              "AHA guideline compliance",
-              "Reading history tracking",
-              "Health recommendations",
-              "Risk assessment",
-              "Target range calculations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -142,42 +141,6 @@ export default function EducationLoanCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={educationLoanCalculatorSEO} />
-      <Helmet>
-        <title>Education Loan Calculator - Student Loan EMI Calculator | DapsiWow</title>
-        <meta name="description" content="Free education loan calculator with grace period and course duration support. Calculate student loan EMI, total interest, and repayment schedule for education financing. Support for multiple currencies worldwide." />
-        <meta name="keywords" content="education loan calculator, student loan calculator, education loan EMI, student loan EMI, college loan calculator, university loan calculator, student finance calculator, education financing tool, study abroad loan calculator, academic loan EMI" />
-        <meta property="og:title" content="Education Loan Calculator - Student Loan EMI Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate education loan EMI with grace period support for students. Free online student loan calculator for domestic and international education financing." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/education-loan-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Education Loan Calculator",
-            "description": "Free online education loan calculator to calculate student loan EMI with grace period and course duration support for education financing planning.",
-            "url": "https://dapsiwow.com/tools/education-loan-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate education loan EMI",
-              "Grace period support",
-              "Course duration consideration",
-              "Multiple currency support",
-              "Repayment schedule generation",
-              "Interest accumulation during studies"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

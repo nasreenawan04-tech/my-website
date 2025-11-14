@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -172,42 +171,6 @@ const LeanBodyMassCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={leanBodyMassCalculatorSEO} />
-      <Helmet>
-        <title>Lean Body Mass Calculator - Calculate LBM with Multiple Formulas | DapsiWow</title>
-        <meta name="description" content="Free lean body mass calculator using Boer, James, and Hume formulas. Get accurate LBM calculations, body composition analysis, and personalized fitness recommendations with metric and imperial unit support." />
-        <meta name="keywords" content="lean body mass calculator, LBM calculator, body composition calculator, muscle mass calculator, lean mass formula, Boer formula, James formula, Hume formula, body fat calculator, fitness calculator, lean body weight calculator" />
-        <meta property="og:title" content="Lean Body Mass Calculator - Calculate LBM with Multiple Formulas | DapsiWow" />
-        <meta property="og:description" content="Calculate your lean body mass using multiple scientific formulas and get personalized fitness recommendations with detailed body composition analysis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/lean-body-mass-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Lean Body Mass Calculator",
-            "description": "Free online lean body mass calculator using multiple scientific formulas including Boer, James, and Hume methods. Features body composition analysis and personalized fitness recommendations.",
-            "url": "https://dapsiwow.com/tools/lean-body-mass-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate LBM using multiple scientific formulas",
-              "Boer, James, and Hume formula calculations",
-              "Body composition analysis",
-              "Personalized fitness recommendations",
-              "Protein intake calculations",
-              "Support for metric and imperial units"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

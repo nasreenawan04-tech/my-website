@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -212,42 +211,6 @@ export default function DTIRatioCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={dtiRatioCalculatorSEO} />
-      <Helmet>
-        <title>DTI Ratio Calculator - Free Debt-to-Income Ratio Calculator | DapsiWow</title>
-        <meta name="description" content="Free DTI ratio calculator to calculate your debt-to-income ratio instantly. Get loan eligibility insights, financial health assessment, and personalized recommendations. Perfect for mortgage and loan applications with multiple currency support." />
-        <meta name="keywords" content="DTI calculator, debt to income ratio calculator, DTI ratio calculator, mortgage qualification calculator, loan eligibility calculator, financial health calculator, debt ratio calculator, home loan DTI, car loan DTI, personal loan DTI" />
-        <meta property="og:title" content="DTI Ratio Calculator - Free Debt-to-Income Ratio Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your DTI ratio instantly with our free debt-to-income calculator. Get detailed analysis for loan eligibility and financial planning." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/dti-ratio-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "DTI Ratio Calculator",
-            "description": "Free online debt-to-income ratio calculator to assess financial health and loan eligibility. Calculate DTI ratio with comprehensive analysis and recommendations.",
-            "url": "https://dapsiwow.com/tools/dti-ratio-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate DTI ratio for any income and debt amount",
-              "Support for multiple currencies",
-              "Loan eligibility assessment",
-              "Financial health recommendations",
-              "Mortgage qualification analysis",
-              "Front-end and back-end ratio calculations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

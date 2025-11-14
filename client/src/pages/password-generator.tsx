@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -279,42 +278,6 @@ export default function PasswordGenerator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={passwordGeneratorSEO} />
-      <Helmet>
-        <title>Random Password Generator - Create Secure Passwords Online | DapsiWow</title>
-        <meta name="description" content="Generate cryptographically secure passwords with our free online password generator. Customize length, character types, and advanced security settings to protect your accounts." />
-        <meta name="keywords" content="password generator, random password, secure password, strong password, password creator, password maker, cybersecurity, online security, cryptographic password generator, password strength checker" />
-        <meta property="og:title" content="Random Password Generator - Create Secure Passwords Online | DapsiWow" />
-        <meta property="og:description" content="Free online password generator with advanced customization options. Create cryptographically secure passwords to protect your digital accounts." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/password-generator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Random Password Generator",
-            "description": "Free online password generator that creates cryptographically secure passwords with customizable options including length, character types, and advanced security settings.",
-            "url": "https://dapsiwow.com/tools/password-generator",
-            "applicationCategory": "SecurityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Cryptographically secure password generation",
-              "Customizable password length (4-128 characters)",
-              "Multiple character type options",
-              "Password strength analysis",
-              "Privacy-focused local generation",
-              "One-click copy functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

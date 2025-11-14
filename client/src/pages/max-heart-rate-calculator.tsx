@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -115,42 +114,6 @@ export default function MaxHeartRateCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={maxHeartRateCalculatorSEO} />
-      <Helmet>
-        <title>Max Heart Rate Calculator - Calculate Maximum Heart Rate | DapsiWow</title>
-        <meta name="description" content="Free maximum heart rate calculator using multiple scientifically-proven formulas. Calculate your max heart rate for optimal training zones, cardio fitness, and exercise planning with age-specific, gender-specific calculations." />
-        <meta name="keywords" content="max heart rate calculator, maximum heart rate formula, heart rate training zones, cardio fitness calculator, age-predicted heart rate, HRmax calculator, training heart rate, fitness heart rate zones, exercise heart rate calculator" />
-        <meta property="og:title" content="Max Heart Rate Calculator - Calculate Maximum Heart Rate | DapsiWow" />
-        <meta property="og:description" content="Calculate your maximum heart rate using multiple scientific formulas including Tanaka, Gulati, and Nes formulas. Get accurate max heart rate for optimal training." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/max-heart-rate-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Max Heart Rate Calculator",
-            "description": "Free online maximum heart rate calculator using multiple scientific formulas including Traditional, Tanaka, Gulati, and Nes formulas for accurate heart rate training zone calculations.",
-            "url": "https://dapsiwow.com/tools/max-heart-rate-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multiple scientific formulas for accuracy",
-              "Gender-specific calculations",
-              "Age group recommendations",
-              "Training zone percentages",
-              "Fitness level considerations",
-              "Instant calculations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

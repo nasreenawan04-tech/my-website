@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -294,42 +293,6 @@ const CaseConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={caseConverterSEO} />
-      <Helmet>
-        <title>Case Converter - Convert Text to UPPER, lower, Title, camelCase | DapsiWow</title>
-        <meta name="description" content="Free online case converter tool to text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case and more. Instant text case conversion with advanced customization options." />
-        <meta name="keywords" content="case converter, text converter, uppercase, lowercase, title case, camelCase, PascalCase, snake_case, kebab-case, text transformation, programming naming conventions, variable name converter" />
-        <meta property="og:title" content="Case Converter - Convert Text to UPPER, lower, Title, camelCase" />
-        <meta property="og:description" content="Free online case converter for all text transformation needs. Convert between uppercase, lowercase, camelCase and more instantly with advanced customization features." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/case-converter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Case Converter Tool",
-            "description": "Free online case converter to text between various case formats including UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, and kebab-case.",
-            "url": "https://dapsiwow.com/tools/case-converter",
-            "applicationCategory": "ProductivityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Convert to 12+ different case formats",
-              "Real-time text conversion",
-              "Advanced customization options",
-              "Programming naming conventions",
-              "Copy to clipboard functionality",
-              "Prefix and suffix support"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

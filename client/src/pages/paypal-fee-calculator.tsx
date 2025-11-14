@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -178,42 +177,6 @@ const PayPalFeeCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={paypalFeeCalculatorSEO} />
-      <Helmet>
-        <title>PayPal Fee Calculator - Calculate PayPal Transaction Fees | DapsiWow</title>
-        <meta name="description" content="Free PayPal fee calculator to calculate transaction fees for receiving money, sending payments, and international transfers. Supports 12+ currencies, personal & business accounts. Perfect for freelancers, online sellers, and businesses." />
-        <meta name="keywords" content="paypal fee calculator, paypal transaction fees, paypal fees, online payment calculator, paypal cost calculator, paypal business fees, international paypal fees, paypal merchant fees, freelancer paypal calculator, paypal selling fees, paypal invoice fees, paypal cross border fees, paypal fee structure, paypal rates, payment processing fees" />
-        <meta property="og:title" content="PayPal Fee Calculator - Calculate PayPal Transaction Fees | DapsiWow" />
-        <meta property="og:description" content="Free PayPal fee calculator to calculate transaction fees for receiving money, sending payments, and international transfers. Supports 12+ currencies, personal & business accounts. Perfect for freelancers, online sellers, and businesses." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/paypal-fee-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "PayPal Fee Calculator",
-            "description": "Free online PayPal fee calculator to calculate transaction fees for domestic and international payments across multiple currencies. Supports personal and business accounts with accurate fee calculations.",
-            "url": "https://dapsiwow.com/tools/paypal-fee-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate PayPal transaction fees",
-              "Support for 12+ currencies",
-              "Personal and business account types",
-              "Domestic and international transactions",
-              "Real-time fee calculations",
-              "Net amount calculations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

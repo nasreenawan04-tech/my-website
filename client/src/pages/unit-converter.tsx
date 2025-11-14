@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -279,42 +278,6 @@ const UnitConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={unitConverterSEO} />
-      <Helmet>
-        <title>Unit Converter - Convert Length, Weight, Temperature & More Instantly | DapsiWow</title>
-        <meta name="description" content="Free professional unit converter for length, weight, temperature, volume, area, and speed. Convert between metric and imperial units instantly with precise accuracy and detailed conversion analysis." />
-        <meta name="keywords" content="unit converter, metric conversion, imperial conversion, length converter, weight converter, temperature converter, volume converter, area converter, speed converter, measurement tool, conversion calculator, unit conversion tool" />
-        <meta property="og:title" content="Unit Converter - Convert Length, Weight, Temperature & More Instantly | DapsiWow" />
-        <meta property="og:description" content="Professional unit converter with support for 6 measurement categories and 50+ units. Get instant, accurate conversions between metric and imperial systems with detailed analysis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/unit-converter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Unit Converter",
-            "description": "Professional unit converter supporting length, weight, temperature, volume, area, and speed conversions with instant results and high precision calculations for metric and imperial systems.",
-            "url": "https://dapsiwow.com/tools/unit-converter",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "6 measurement categories with 50+ units",
-              "Instant real-time conversions",
-              "Metric and imperial system support",
-              "Temperature conversion formulas",
-              "High precision calculations",
-              "Unit swapping functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

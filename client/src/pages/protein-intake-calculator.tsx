@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -187,42 +186,6 @@ const ProteinIntakeCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-red-50">
       <ToolSEOHead config={proteinIntakeCalculatorSEO} />
-      <Helmet>
-        <title>Protein Intake Calculator - Calculate Daily Protein Requirements | DapsiWow</title>
-        <meta name="description" content="Free protein intake calculator to determine your daily protein needs based on weight, activity level, fitness goals, and health conditions. Get personalized protein recommendations and meal planning guidance." />
-        <meta name="keywords" content="protein intake calculator, daily protein needs, protein requirement calculator, muscle building protein, weight loss protein, protein sources, protein calculator online, daily protein intake, protein planning tool" />
-        <meta property="og:title" content="Protein Intake Calculator - Calculate Daily Protein Requirements | DapsiWow" />
-        <meta property="og:description" content="Calculate your personalized daily protein requirements with our free protein intake calculator. Get instant recommendations for optimal health and fitness goals." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/protein-intake-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Protein Intake Calculator",
-            "description": "Free online protein intake calculator to determine daily protein requirements based on personal factors, activity level, and fitness goals. Get personalized protein recommendations.",
-            "url": "https://dapsiwow.com/tools/protein-intake-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate daily protein needs",
-              "Support for metric and imperial units",
-              "Activity level adjustments",
-              "Fitness goal customization",
-              "Health condition considerations",
-              "Protein source recommendations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

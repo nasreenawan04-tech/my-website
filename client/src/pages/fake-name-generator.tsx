@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -165,42 +164,6 @@ const FakeNameGenerator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={fakeNameGeneratorSEO} />
-      <Helmet>
-        <title>Fake Name Generator - Create Realistic Test Names | DapsiWow</title>
-        <meta name="description" content="Generate realistic fake names for testing, development, and privacy purposes. Support for multiple nationalities with customizable options and instant generation." />
-        <meta name="keywords" content="fake name generator, random name generator, test name generator, dummy name generator, mock name, name generator tool, testing names, realistic names, privacy protection" />
-        <meta property="og:title" content="Fake Name Generator - Create Realistic Test Names | DapsiWow" />
-        <meta property="og:description" content="Free fake name generator for developers and testers. Create realistic test names for multiple nationalities with customizable options instantly." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/fake-name-generator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Fake Name Generator",
-            "description": "Professional fake name generator for creating realistic test names for development, testing, and privacy purposes with support for multiple nationalities and cultures.",
-            "url": "https://dapsiwow.com/tools/fake-name-generator",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Generate names for American, British, and International cultures",
-              "Gender selection with male, female, and random options",
-              "Customizable name components: titles, middle names",
-              "Instant name generation and copying",
-              "Realistic test data for developers and testers",
-              "Enhances privacy and security in testing"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

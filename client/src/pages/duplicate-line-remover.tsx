@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -147,43 +146,6 @@ About our company`;
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={duplicateLineRemoverSEO} />
-      <Helmet>
-        <title>Duplicate Line Remover - Remove Duplicate Lines from Text Instantly | DapsiWow</title>
-        <meta name="description" content="Free online duplicate line remover tool to clean up text by removing duplicate lines while preserving original order. Advanced options for case sensitivity, whitespace handling, and multiple output formats." />
-        <meta name="keywords" content="duplicate line remover, remove duplicate lines, text cleaning tool, duplicate text remover, line deduplication, text processing, remove repeated lines, text cleaner, duplicate finder" />
-        <meta property="og:title" content="Duplicate Line Remover - Remove Duplicate Lines from Text Instantly | DapsiWow" />
-        <meta property="og:description" content="Professional duplicate line remover for cleaning text data. Remove duplicate lines instantly with advanced filtering options including case sensitivity and whitespace handling." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/duplicate-line-remover" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Duplicate Line Remover",
-            "description": "Professional duplicate line remover tool for cleaning text data by removing duplicate lines while preserving original order with advanced filtering options.",
-            "url": "https://dapsiwow.com/tools/duplicate-line-remover",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Real-time duplicate line removal",
-              "Case sensitivity options",
-              "Whitespace trimming",
-              "Preserve original order",
-              "Multiple output formats",
-              "Copy to clipboard functionality",
-              "Batch text processing"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

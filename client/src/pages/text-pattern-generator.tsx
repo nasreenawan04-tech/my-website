@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -224,44 +223,6 @@ export default function TextPatternGenerator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textPatternGeneratorSEO} />
-      <Helmet>
-        <title>Text Pattern Generator - Create Repeating Text Patterns & Sequences | DapsiWow</title>
-        <meta name="description" content="Free online text pattern generator tool to create repeating text sequences with customizable separators, numbering, and formatting. Perfect for creating lists, test data, and structured content." />
-        <meta name="keywords" content="text pattern generator, repeating text, sequence generator, list generator, pattern maker, text automation, bulk text creation, numbered lists, pattern sequences, template generator" />
-        <meta property="og:title" content="Text Pattern Generator - Create Repeating Text Patterns & Sequences" />
-        <meta property="og:description" content="Professional text pattern generator for creating customized repeating text sequences with advanced formatting options and automation features." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-pattern-generator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text Pattern Generator",
-            "description": "Free online tool to generate repeating text patterns with customizable sequences, numbering, separators, and formatting options for lists and structured content.",
-            "url": "https://dapsiwow.com/tools/text-pattern-generator",
-            "applicationCategory": "ProductivityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Customizable text repetition",
-              "Multiple separator options",
-              "Auto-numbering sequences",
-              "Case transformation options",
-              "Prefix and suffix support",
-              "Reverse order generation",
-              "Preset templates",
-              "Copy to clipboard"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -182,42 +181,6 @@ const BodyFatCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={bodyFatCalculatorSEO} />
-      <Helmet>
-        <title>Body Fat Calculator - Calculate Body Fat Percentage | US Navy Method | DapsiWow</title>
-        <meta name="description" content="Free body fat calculator using the US Navy method. Calculate your body fat percentage, lean body mass, and body composition with accurate circumference measurements. Support for metric and imperial units." />
-        <meta name="keywords" content="body fat calculator, body fat percentage calculator, US Navy body fat method, body composition calculator, lean body mass calculator, circumference body fat, fat percentage formula, body fat measurement, fitness calculator, weight loss calculator, muscle mass calculator, health assessment tool" />
-        <meta property="og:title" content="Body Fat Calculator - Calculate Body Fat Percentage | US Navy Method | DapsiWow" />
-        <meta property="og:description" content="Calculate your body fat percentage using the proven US Navy method. Free, accurate body composition analysis with worldwide unit support." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/body-fat-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Body Fat Calculator",
-            "description": "Free online body fat calculator using the US Navy method to calculate body fat percentage, lean body mass, and body composition analysis.",
-            "url": "https://dapsiwow.com/tools/body-fat-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate body fat percentage using US Navy method",
-              "Support for metric and imperial units",
-              "Body composition analysis",
-              "Lean body mass calculation",
-              "Health classification system",
-              "Accurate circumference-based measurements"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -226,42 +225,6 @@ const DecimalToTextConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={decimalToTextConverterSEO} />
-      <Helmet>
-        <title>Decimal to Text Converter - Convert Unicode Code Points to Text | DapsiWow</title>
-        <meta name="description" content="Free decimal to text converter tool. Transform decimal Unicode code points to readable text instantly with Unicode and ASCII support. Essential for developers, students, and programmers." />
-        <meta name="keywords" content="decimal to text converter, decimal decoder, Unicode code points to text, ASCII codes to text, character codes to text, decimal to ASCII, programming tools, computer science, text encoding, online decimal converter" />
-        <meta property="og:title" content="Decimal to Text Converter - Convert Unicode Code Points to Text | DapsiWow" />
-        <meta property="og:description" content="Free online decimal to text converter. Convert decimal Unicode code points to readable text with Unicode and ASCII support. Perfect for students, developers, and programming education." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/decimal-to-text-converter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Decimal to Text Converter",
-            "description": "Professional decimal to text converter for transforming decimal Unicode code points into readable text with Unicode and ASCII support for programming and educational purposes.",
-            "url": "https://dapsiwow.com/tools/decimal-to-text-converter",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Decimal to text conversion",
-              "Unicode and ASCII support",
-              "Multiple input formats (space, comma, newline separated)",
-              "Real-time conversion",
-              "Binary and hexadecimal output options",
-              "Copy to clipboard functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

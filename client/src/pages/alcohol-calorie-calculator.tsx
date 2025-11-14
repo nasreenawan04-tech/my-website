@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -173,41 +172,6 @@ const AlcoholCalorieCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={alcoholCalorieCalculatorSEO} />
-      <Helmet>
-        <title>Alcohol Calorie Calculator - Calculate Drink Calories Accurately | DapsiWow</title>
-        <meta name="description" content="Free alcohol calorie calculator to accurately calculate calories in beer, wine, spirits, and cocktails. Track your alcohol intake for better health and weight management with our comprehensive drink calorie tool." />
-        <meta name="keywords" content="alcohol calorie calculator, drink calories, beer calories, wine calories, cocktail calories, alcohol nutrition facts, drink calorie counter, alcoholic beverage calories" />
-        <meta property="og:title" content="Alcohol Calorie Calculator - Calculate Drink Calories Accurately | DapsiWow" />
-        <meta property="og:description" content="Calculate calories in alcoholic beverages with precision. Free tool for tracking drink calories including beer, wine, spirits, and cocktails for health-conscious individuals." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/alcohol-calorie-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Alcohol Calorie Calculator",
-            "description": "Professional alcohol calorie calculator for accurately determining calories in beer, wine, spirits, and cocktails. Essential tool for health-conscious drinking and weight management.",
-            "url": "https://dapsiwow.com/alcohol-calorie-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate calories in all types of alcoholic beverages",
-              "Preset values for common drinks",
-              "Custom drink calorie calculation",
-              "Alcohol vs non-alcohol calorie breakdown",
-              "Multiple serving size units supported"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

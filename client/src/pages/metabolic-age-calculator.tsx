@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -481,41 +480,6 @@ const MetabolicAgeCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
       <ToolSEOHead config={metabolicAgeCalculatorSEO} />
-      <Helmet>
-        <title>Metabolic Age Calculator - Free Health & Longevity Assessment Tool | DapsiWow</title>
-        <meta name="description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health and longevity with our comprehensive analysis tool." />
-        <meta name="keywords" content="metabolic age calculator, biological age calculator, health assessment, longevity calculator, metabolic health, fitness age, wellness assessment, anti-aging tool, health metrics, lifestyle assessment" />
-        <meta property="og:title" content="Metabolic Age Calculator - Free Health & Longevity Assessment Tool | DapsiWow" />
-        <meta property="og:description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health and longevity." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/metabolic-age-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Metabolic Age Calculator",
-            "description": "Professional metabolic age calculator for assessing biological age based on lifestyle factors, health metrics, and fitness level with personalized improvement recommendations.",
-            "url": "https://dapsiwow.com/tools/metabolic-age-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate metabolic age vs chronological age",
-              "Comprehensive lifestyle assessment",
-              "Health score analysis",
-              "Personalized improvement recommendations",
-              "Multiple health metric inputs"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

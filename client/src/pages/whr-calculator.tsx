@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -178,42 +177,6 @@ export default function WHRCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={whrCalculatorSEO} />
-      <Helmet>
-        <title>WHR Calculator - Free Waist-to-Hip Ratio Calculator | DapsiWow</title>
-        <meta name="description" content="Free WHR calculator to measure waist-to-hip ratio and assess cardiovascular health risks. Get instant WHR calculations with personalized health recommendations based on WHO standards." />
-        <meta name="keywords" content="WHR calculator, waist to hip ratio calculator, waist hip ratio, cardiovascular health calculator, body shape calculator, apple pear body shape, health risk assessment, WHR formula, body fat distribution" />
-        <meta property="og:title" content="WHR Calculator - Free Waist-to-Hip Ratio Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your waist-to-hip ratio (WHR) and assess health risks with our free calculator. Get personalized recommendations based on WHO standards." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/whr-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "WHR Calculator",
-            "description": "Free online waist-to-hip ratio calculator for health risk assessment. Calculate WHR to evaluate cardiovascular health and body fat distribution with personalized recommendations based on WHO standards.",
-            "url": "https://dapsiwow.com/tools/whr-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate waist-to-hip ratio",
-              "Health risk assessment",
-              "Personalized recommendations",
-              "WHO standard classifications",
-              "Gender-specific analysis",
-              "Cardiovascular health insights"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

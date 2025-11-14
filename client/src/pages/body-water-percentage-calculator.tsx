@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -165,43 +164,6 @@ const BodyWaterPercentageCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={bodyWaterPercentageCalculatorSEO} />
-      <Helmet>
-        <title>Body Water Percentage Calculator - Free Total Body Water Calculator | DapsiWow</title>
-        <meta name="description" content="Calculate your total body water percentage with our free Watson formula calculator. Monitor hydration levels, get personalized recommendations, and optimize your health with accurate TBW calculations." />
-        <meta name="keywords" content="body water percentage calculator, total body water calculator, TBW calculator, hydration calculator, Watson formula, body water composition, hydration status, water intake calculator, health assessment tool" />
-        <meta property="og:title" content="Body Water Percentage Calculator - Free Total Body Water Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your total body water percentage and get personalized hydration recommendations for optimal health and wellness." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/body-water-percentage-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Body Water Percentage Calculator",
-            "description": "Free online body water percentage calculator using Watson formula to calculate Total Body Water (TBW) for health assessment and hydration monitoring. Features metric and imperial units with personalized recommendations.",
-            "url": "https://dapsiwow.com/tools/body-water-percentage-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate total body water percentage",
-              "Watson formula calculations",
-              "Metric and imperial units",
-              "Hydration status assessment",
-              "Daily water intake recommendations",
-              "Activity level adjustments",
-              "Age and gender considerations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

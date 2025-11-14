@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -217,42 +216,6 @@ export default function NetWorthCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={netWorthCalculatorSEO} />
-      <Helmet>
-        <title>Net Worth Calculator - Calculate Your Financial Net Worth | DapsiWow</title>
-        <meta name="description" content="Free net worth calculator to track your assets and liabilities. Calculate your total financial worth with worldwide currency support. Perfect for financial planning and wealth tracking." />
-        <meta name="keywords" content="net worth calculator, personal finance calculator, asset calculator, liability calculator, wealth tracker, financial planning calculator, net worth tracker, personal net worth, financial health calculator" />
-        <meta property="og:title" content="Net Worth Calculator - Calculate Your Financial Net Worth | DapsiWow" />
-        <meta property="og:description" content="Free net worth calculator for tracking assets and liabilities. Calculate your financial position with support for multiple currencies worldwide." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/net-worth-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Net Worth Calculator",
-            "description": "Free online net worth calculator to track assets and liabilities, calculate total financial worth with worldwide currency support for comprehensive financial planning.",
-            "url": "https://dapsiwow.com/tools/net-worth-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate total net worth",
-              "Track multiple asset categories",
-              "Monitor all liability types",
-              "Support for 16+ currencies",
-              "Detailed financial breakdown",
-              "Asset and liability categorization"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

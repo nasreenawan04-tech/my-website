@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -244,43 +243,6 @@ Final line in updated document.`);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textDiffCheckerSEO} />
-      <Helmet>
-        <title>Text Diff Checker - Compare Two Texts & Highlight Differences | DapsiWow</title>
-        <meta name="description" content="Free online text diff checker tool to compare two texts side-by-side and highlight differences. Perfect for content comparison, document versioning, and change tracking with detailed statistics." />
-        <meta name="keywords" content="text diff checker, text comparison tool, compare texts, text differences, document comparison, version control, change tracking, text analyzer, side-by-side comparison, content diff" />
-        <meta property="og:title" content="Text Diff Checker - Compare Two Texts & Highlight Differences" />
-        <meta property="og:description" content="Professional text diff checker tool for comparing documents and tracking changes. Features side-by-side comparison with detailed statistics and highlighting." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-diff-checker" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text Diff Checker",
-            "description": "Free online tool to compare two texts and highlight differences with side-by-side comparison, change statistics, and advanced filtering options.",
-            "url": "https://dapsiwow.com/tools/text-diff-checker",
-            "applicationCategory": "ProductivityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Side-by-side text comparison",
-              "Highlight added and removed content",
-              "Detailed change statistics",
-              "Case-insensitive comparison option",
-              "Whitespace ignoring option",
-              "Word-level comparison mode",
-              "Copy diff report functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

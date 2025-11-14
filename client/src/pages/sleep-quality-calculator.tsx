@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -225,42 +224,6 @@ const SleepQualityCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={sleepQualityCalculatorSEO} />
-      <Helmet>
-        <title>Sleep Quality Calculator - Assess Sleep Health & Get Personalized Tips | DapsiWow</title>
-        <meta name="description" content="Free sleep quality calculator to assess your sleep health, efficiency, and get personalized recommendations for better rest. Track sleep duration, quality, and improve your sleep hygiene with scientific analysis." />
-        <meta name="keywords" content="sleep quality calculator, sleep assessment, sleep efficiency, sleep health, sleep duration calculator, sleep recommendations, better sleep tips, sleep hygiene analyzer, sleep score calculator, sleep tracking tool" />
-        <meta property="og:title" content="Sleep Quality Calculator - Assess Sleep Health & Get Personalized Tips | DapsiWow" />
-        <meta property="og:description" content="Calculate your sleep quality score and get personalized recommendations for better rest and sleep hygiene with our comprehensive sleep analysis tool." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/sleep-quality-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Sleep Quality Calculator",
-            "description": "Free online sleep quality calculator to assess sleep health, efficiency, and get personalized recommendations for better rest and optimal sleep hygiene.",
-            "url": "https://dapsiwow.com/tools/sleep-quality-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate sleep quality score",
-              "Assess sleep efficiency",
-              "Personalized sleep recommendations",
-              "Sleep duration analysis",
-              "Lifestyle factor assessment",
-              "Age-specific sleep guidelines"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

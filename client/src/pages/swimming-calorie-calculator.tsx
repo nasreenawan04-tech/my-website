@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -140,42 +139,6 @@ const SwimmingCalorieCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={swimmingCalorieCalculatorSEO} />
-      <Helmet>
-        <title>Swimming Calorie Calculator - Calculate Calories Burned Swimming | DapsiWow</title>
-        <meta name="description" content="Free swimming calorie calculator to determine calories burned during swimming workouts. Supports all stroke types and intensity levels with accurate MET-based calculations for fitness tracking." />
-        <meta name="keywords" content="swimming calorie calculator, calories burned swimming, swimming workout calculator, swimming fitness tracker, swimming MET calculator, pool workout calories, swimming exercise calculator" />
-        <meta property="og:title" content="Swimming Calorie Calculator - Calculate Calories Burned Swimming | DapsiWow" />
-        <meta property="og:description" content="Calculate calories burned during your swimming workouts with our free swimming calorie calculator supporting all stroke types and intensity levels." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/swimming-calorie-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Swimming Calorie Calculator",
-            "description": "Professional swimming calorie calculator for determining calories burned during swimming workouts with support for all stroke types and intensity levels using accurate MET values.",
-            "url": "https://dapsiwow.com/tools/swimming-calorie-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate calories for all swimming strokes",
-              "Multiple intensity level support",
-              "Accurate MET-based calculations",
-              "Weight unit conversion",
-              "Detailed workout statistics",
-              "Real-time calculation results"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

@@ -1,6 +1,5 @@
 
 import { useState, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -304,41 +303,6 @@ const QRCodeScanner = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
       <ToolSEOHead config={qrCodeScannerSEO} />
-      <Helmet>
-        <title>QR Code Scanner - Scan QR Codes to Extract Text | DapsiWow</title>
-        <meta name="description" content="Free QR code scanner tool. Upload QR code images to extract text, URLs, emails, and phone numbers instantly. Professional scanner with smart content detection for business and personal use." />
-        <meta name="keywords" content="QR code scanner, QR reader, scan QR code, QR code decoder, extract text from QR, QR to text converter, barcode scanner, QR code reader online, mobile QR scanner, business QR scanner" />
-        <meta property="og:title" content="QR Code Scanner - Scan QR Codes to Extract Text | DapsiWow" />
-        <meta property="og:description" content="Free online QR code scanner. Upload images to extract text, URLs, emails, and contact information. Professional tool for business and personal QR code scanning." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/qr-code-scanner" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "QR Code Scanner",
-            "description": "Professional QR code scanner for extracting text, URLs, emails, and contact information from QR code images with smart content detection and formatting options.",
-            "url": "https://dapsiwow.com/tools/qr-code-scanner",
-            "applicationCategory": "BusinessApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multiple image format support",
-              "Smart content extraction",
-              "URL and email detection",
-              "Contact information parsing",
-              "Batch scanning history"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

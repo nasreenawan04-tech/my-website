@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -105,42 +104,6 @@ export default function LeaseCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={leaseCalculatorSEO} />
-      <Helmet>
-        <title>Lease Calculator - Calculate Vehicle Lease Payments | DapsiWow</title>
-        <meta name="description" content="Free lease calculator to calculate monthly lease payments for cars, trucks, and SUVs. Compare lease vs buy options with residual value estimation and money factor calculations. Support for multiple currencies worldwide." />
-        <meta name="keywords" content="lease calculator, car lease calculator, vehicle lease calculator, monthly lease payment calculator, auto lease calculator, lease vs buy calculator, residual value calculator, money factor calculator, lease payment estimator, car leasing calculator" />
-        <meta property="og:title" content="Lease Calculator - Calculate Vehicle Lease Payments | DapsiWow" />
-        <meta property="og:description" content="Free lease calculator for cars, trucks, and SUVs with residual value and money factor calculations. Calculate accurate monthly lease payments instantly." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/lease-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Lease Calculator",
-            "description": "Free online lease calculator to calculate monthly lease payments and total lease costs for vehicles including cars, trucks, and SUVs. Features residual value calculations and lease vs buy analysis.",
-            "url": "https://dapsiwow.com/tools/lease-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate lease payments for any vehicle",
-              "Support for multiple currencies",
-              "Residual value calculations",
-              "Money factor conversions",
-              "Lease vs buy comparison",
-              "Depreciation cost analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -243,43 +242,6 @@ const TextCleanerFormatter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textCleanerFormatterSEO} />
-      <Helmet>
-        <title>Text Cleaner & Formatter - Remove Extra Spaces, Line Breaks & Format Text | DapsiWow</title>
-        <meta name="description" content="Professional text cleaner and formatter tool to remove extra spaces, line breaks, special characters, and format messy text. Clean up copied text, remove formatting issues, and optimize content instantly." />
-        <meta name="keywords" content="text cleaner, text formatter, remove extra spaces, clean text online, text cleanup tool, format text, remove line breaks, text processing, clean copied text, text optimization" />
-        <meta property="og:title" content="Text Cleaner & Formatter - Professional Text Cleanup Tool | DapsiWow" />
-        <meta property="og:description" content="Advanced text cleaning tool to remove extra spaces, line breaks, and formatting issues. Perfect for cleaning copied text and optimizing content." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-cleaner-formatter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text Cleaner & Formatter",
-            "description": "Professional text cleaning and formatting tool to remove extra spaces, line breaks, special characters, and optimize text content with advanced cleaning options.",
-            "url": "https://dapsiwow.com/tools/text-cleaner-formatter",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Remove extra spaces and tabs",
-              "Clean up line breaks and empty lines",
-              "Remove special characters and punctuation",
-              "Case conversion options",
-              "Multiple cleaning presets",
-              "Real-time statistics",
-              "One-click copy functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

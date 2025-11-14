@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -202,42 +201,6 @@ export default function CalorieCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={calorieCalculatorSEO} />
-      <Helmet>
-        <title>Calorie Calculator - Calculate Daily Calorie Needs | DapsiWow</title>
-        <meta name="description" content="Free calorie calculator to determine your daily calorie needs for weight loss, maintenance, or gain. Get personalized calorie targets based on BMR, activity level, and fitness goals with macronutrient breakdown." />
-        <meta name="keywords" content="calorie calculator, daily calorie needs, calorie counter, weight loss calculator, maintenance calories, BMR calculator, TDEE calculator, macro calculator, calorie deficit calculator, calorie surplus calculator" />
-        <meta property="og:title" content="Calorie Calculator - Calculate Daily Calorie Needs | DapsiWow" />
-        <meta property="og:description" content="Calculate your daily calorie needs for weight management with our accurate calorie calculator. Get personalized targets and macro breakdowns." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/calorie-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Calorie Calculator",
-            "description": "Free online calorie calculator to determine daily calorie needs for weight management, including BMR, TDEE, and macronutrient calculations.",
-            "url": "https://dapsiwow.com/tools/calorie-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate daily calorie needs",
-              "BMR and TDEE calculations",
-              "Weight loss and gain targets",
-              "Macronutrient breakdown",
-              "Multiple calculation methods",
-              "Activity level adjustments"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

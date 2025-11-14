@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -200,41 +199,6 @@ const MealCalorieTracker = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={mealCalorieTrackerSEO} />
-      <Helmet>
-        <title>Meal Calorie Tracker - Daily Food Intake & Nutrition Tracker | DapsiWow</title>
-        <meta name="description" content="Free meal calorie tracker to monitor daily food intake, track macronutrients, and achieve nutrition goals. Professional food diary with calorie counting and macro tracking capabilities." />
-        <meta name="keywords" content="meal calorie tracker, food diary, nutrition tracker, daily calories, macro tracking, calorie counter, food log, meal planner, diet tracker, nutrition calculator, daily intake tracker" />
-        <meta property="og:title" content="Meal Calorie Tracker - Daily Food Intake & Nutrition Tracker | DapsiWow" />
-        <meta property="og:description" content="Professional meal calorie tracker for monitoring daily food intake, tracking macronutrients, and achieving nutrition goals with comprehensive food logging capabilities." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/meal-calorie-tracker" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Meal Calorie Tracker",
-            "description": "Professional meal calorie tracker for monitoring daily food intake, tracking macronutrients, and achieving nutrition goals with comprehensive food logging and analysis capabilities.",
-            "url": "https://dapsiwow.com/tools/meal-calorie-tracker",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Daily calorie and macronutrient tracking",
-              "Comprehensive food database",
-              "Nutrition goal setting and monitoring",
-              "Meal timing and portion tracking",
-              "Progress visualization and analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

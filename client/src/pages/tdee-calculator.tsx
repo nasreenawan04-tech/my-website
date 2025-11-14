@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -143,42 +142,6 @@ const TDEECalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={tdeeCalculatorSEO} />
-      <Helmet>
-        <title>TDEE Calculator - Calculate Total Daily Energy Expenditure | DapsiWow</title>
-        <meta name="description" content="Free TDEE calculator to calculate your Total Daily Energy Expenditure and daily calorie needs. Get personalized calorie targets for weight loss, maintenance, and gain with macro breakdown. Support for metric and imperial units." />
-        <meta name="keywords" content="TDEE calculator, total daily energy expenditure, calorie calculator, BMR calculator, daily calorie needs, metabolism calculator, calorie targets, weight management calculator, macro calculator, energy expenditure calculator" />
-        <meta property="og:title" content="TDEE Calculator - Calculate Total Daily Energy Expenditure | DapsiWow" />
-        <meta property="og:description" content="Calculate your TDEE and get personalized calorie targets for optimal weight management with detailed macro breakdown." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/tdee-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "TDEE Calculator",
-            "description": "Free online TDEE calculator to calculate Total Daily Energy Expenditure and personalized calorie targets for weight management. Features BMR calculation, activity levels, and macro breakdown.",
-            "url": "https://dapsiwow.com/tools/tdee-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate TDEE for any activity level",
-              "BMR calculation using Mifflin-St Jeor equation",
-              "Personalized calorie targets for weight goals",
-              "Detailed macro breakdown",
-              "Support for metric and imperial units",
-              "Weight loss and gain planning"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

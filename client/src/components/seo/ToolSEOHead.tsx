@@ -19,8 +19,15 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
     : `${baseUrl}/${config.slug}`;
   const categoryDefaults = CATEGORY_DEFAULTS[config.category];
   
-  const ogImage = `${baseUrl}/images/tools/${config.slug}-og.jpg`;
-  const twitterImage = `${baseUrl}/images/tools/${config.slug}-twitter.jpg`;
+  const defaultOgImage = `${baseUrl}/og-default.jpg`;
+  const defaultTwitterImage = `${baseUrl}/twitter-default.jpg`;
+  
+  const ogImage = config.customOgImage 
+    ? `${baseUrl}${config.customOgImage}` 
+    : defaultOgImage;
+  const twitterImage = config.customTwitterImage 
+    ? `${baseUrl}${config.customTwitterImage}` 
+    : defaultTwitterImage;
   
   return (
     <Helmet>

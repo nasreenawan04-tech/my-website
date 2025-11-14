@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -178,43 +177,6 @@ export default function FutureValueInvestmentCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={futureValueInvestmentCalculatorSEO} />
-      <Helmet>
-        <title>Future Value Investment Calculator - Calculate Investment Growth | DapsiWow</title>
-        <meta name="description" content="Free future value investment calculator to project investment growth over time. Calculate compound returns, monthly contributions, and retirement planning with inflation adjustments. Supports multiple currencies and compound frequencies." />
-        <meta name="keywords" content="future value calculator, investment calculator, compound interest calculator, retirement calculator, investment growth calculator, wealth calculator, financial planning calculator, compound returns calculator, investment projector, future value formula" />
-        <meta property="og:title" content="Future Value Investment Calculator - Calculate Investment Growth | DapsiWow" />
-        <meta property="og:description" content="Calculate how your investments will grow over time with compound interest, monthly contributions, and inflation adjustments. Free online tool with detailed yearly breakdowns." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/future-value-investment-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Future Value Investment Calculator",
-            "description": "Free online future value investment calculator to project investment growth over time with compound interest, monthly contributions, and inflation adjustments.",
-            "url": "https://dapsiwow.com/tools/future-value-investment-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Future value calculations",
-              "Compound interest projections",
-              "Monthly contribution planning",
-              "Inflation adjustments",
-              "Yearly breakdown analysis",
-              "Multi-currency support",
-              "Retirement planning"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

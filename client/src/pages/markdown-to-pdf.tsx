@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -420,43 +419,6 @@ Visit [DapsiWow](https://dapsiwow.com) for more tools!
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={markdownToPdfSEO} />
-      <Helmet>
-        <title>Markdown to PDF Converter - Convert MD to PDF Online Free | DapsiWow</title>
-        <meta name="description" content="Free Markdown to PDF converter tool. Transform Markdown files to professional PDF documents instantly with customizable page settings, fonts, and formatting options." />
-        <meta name="keywords" content="markdown to pdf converter, md to pdf, markdown converter, pdf generator, convert markdown, markdown pdf export, online markdown tool, text to pdf, document converter, free pdf maker" />
-        <meta property="og:title" content="Markdown to PDF Converter - Convert MD to PDF Online Free | DapsiWow" />
-        <meta property="og:description" content="Transform Markdown documents to professional PDFs with our free online converter. Customizable settings, real-time preview, and instant download." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/markdown-to-pdf" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Markdown to PDF Converter",
-            "description": "Professional online tool for converting Markdown documents to PDF format with customizable page settings, fonts, margins, and formatting options for creating professional documents.",
-            "url": "https://dapsiwow.com/tools/markdown-to-pdf",
-            "applicationCategory": "BusinessApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Convert Markdown to PDF instantly",
-              "Real-time HTML preview",
-              "Customizable page size and orientation",
-              "Adjustable fonts and margins",
-              "GitHub Flavored Markdown support",
-              "Download PDF files directly",
-              "Page numbering options"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

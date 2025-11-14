@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -93,42 +92,6 @@ export default function CurrencyPercentageChangeCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={currencyPercentageChangeCalculatorSEO} />
-      <Helmet>
-        <title>Currency Percentage Change Calculator - Track Investment Returns & Price Changes | DapsiWow</title>
-        <meta name="description" content="Free currency percentage change calculator to calculate value increases, decreases, and investment returns. Track price changes, portfolio performance, and financial growth with multi-currency support and detailed analysis." />
-        <meta name="keywords" content="percentage change calculator, currency percentage calculator, investment return calculator, price change calculator, value change calculator, portfolio tracking, financial analysis, currency converter, percentage increase decrease calculator" />
-        <meta property="og:title" content="Currency Percentage Change Calculator - Track Investment Returns & Price Changes | DapsiWow" />
-        <meta property="og:description" content="Calculate percentage changes in currency values, investments, and prices. Free tool with multi-currency support for comprehensive financial analysis and tracking." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/currency-percentage-change-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Currency Percentage Change Calculator",
-            "description": "Free online currency percentage change calculator to calculate how much a value increased or decreased in percentage terms with multi-currency support.",
-            "url": "https://dapsiwow.com/tools/currency-percentage-change-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate percentage changes",
-              "Multi-currency support",
-              "Investment return analysis",
-              "Price change tracking",
-              "Increase/decrease calculation",
-              "Portfolio performance tracking"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

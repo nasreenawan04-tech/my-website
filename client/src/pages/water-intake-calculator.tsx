@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -204,42 +203,6 @@ const WaterIntakeCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={waterIntakeCalculatorSEO} />
-      <Helmet>
-        <title>Water Intake Calculator - Daily Water Needs Calculator | DapsiWow</title>
-        <meta name="description" content="Free water intake calculator to calculate your daily water requirements based on weight, age, activity level, climate, and health conditions. Get personalized hydration recommendations with metric and imperial unit support." />
-        <meta name="keywords" content="water intake calculator, daily water needs, hydration calculator, water requirement calculator, daily fluid intake, dehydration prevention, water consumption calculator, hydration needs, water intake formula, daily water recommendation" />
-        <meta property="og:title" content="Water Intake Calculator - Daily Water Needs Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your personalized daily water intake requirements with our free calculator. Get instant hydration recommendations based on your lifestyle and health factors." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/water-intake-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Water Intake Calculator",
-            "description": "Free online water intake calculator to determine daily water requirements based on personal factors including weight, activity level, climate, and health conditions.",
-            "url": "https://dapsiwow.com/tools/water-intake-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate daily water intake needs",
-              "Personal factor adjustments",
-              "Activity level considerations",
-              "Climate impact analysis",
-              "Health condition adjustments",
-              "Pregnancy and breastfeeding support"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

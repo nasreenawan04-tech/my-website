@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -169,48 +168,6 @@ const HydrationCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={hydrationCalculatorSEO} />
-      <Helmet>
-        <title>Hydration Calculator - Free Daily Water Intake Calculator | DapsiWow</title>
-        <meta name="description" content="Free hydration calculator to calculate your optimal daily water intake. Get personalized recommendations based on weight, activity level, climate, and health factors with instant results." />
-        <meta name="keywords" content="hydration calculator, water intake calculator, daily water needs, hydration requirements, water consumption calculator, dehydration prevention, optimal hydration, water calculator" />
-        <meta property="og:title" content="Hydration Calculator - Free Daily Water Intake Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your optimal daily water intake with our free hydration calculator. Get personalized recommendations based on your lifestyle and health factors." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/tools/hydration-calculator" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/hydration-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Hydration Calculator",
-            "description": "Free online hydration calculator to determine optimal daily water intake based on weight, activity level, climate, and health factors.",
-            "url": "https://dapsiwow.com/tools/hydration-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "permissions": "browser",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate daily water intake needs",
-              "Activity level adjustments",
-              "Climate-based recommendations",
-              "Health factor considerations",
-              "Age and gender-specific calculations"
-            ],
-            "provider": {
-              "@type": "Organization",
-              "name": "DapsiWow",
-              "url": "https://dapsiwow.com"
-            }
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

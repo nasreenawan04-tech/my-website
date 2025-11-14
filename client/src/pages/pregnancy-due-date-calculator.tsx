@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -144,42 +143,6 @@ export default function PregnancyDueDateCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={pregnancyDueDateCalculatorSEO} />
-      <Helmet>
-        <title>Pregnancy Due Date Calculator - Calculate Your Baby's Due Date | DapsiWow</title>
-        <meta name="description" content="Free pregnancy due date calculator to calculate your baby's due date using last menstrual period, conception date, or ultrasound results. Get pregnancy milestones, trimester information, and week-by-week progress tracking." />
-        <meta name="keywords" content="pregnancy due date calculator, baby due date calculator, pregnancy calculator, gestational age calculator, pregnancy weeks calculator, trimester calculator, conception date calculator, pregnancy milestone tracker, due date estimator" />
-        <meta property="og:title" content="Pregnancy Due Date Calculator - Calculate Your Baby's Due Date | DapsiWow" />
-        <meta property="og:description" content="Calculate your baby's due date and track pregnancy progress with our comprehensive pregnancy calculator. Multiple calculation methods available including LMP and ultrasound dating." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/pregnancy-due-date-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Pregnancy Due Date Calculator",
-            "description": "Free online pregnancy due date calculator to estimate your baby's due date using last menstrual period, conception date, or ultrasound measurements. Track pregnancy milestones and trimester progression.",
-            "url": "https://dapsiwow.com/tools/pregnancy-due-date-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate due date from last menstrual period",
-              "Conception date calculator",
-              "Ultrasound-based dating",
-              "Pregnancy milestone tracking",
-              "Trimester progression",
-              "Gestational age calculator"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

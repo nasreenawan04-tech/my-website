@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -212,42 +211,6 @@ const PersonalFinanceDashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={personalFinanceDashboardSEO} />
-      <Helmet>
-        <title>Personal Finance Dashboard - Complete Financial Overview & Planning Tool | DapsiWow</title>
-        <meta name="description" content="Free comprehensive personal finance dashboard for tracking income, expenses, debts, and savings goals. Get complete financial overview with interactive charts, detailed analysis, and personalized recommendations for better money management." />
-        <meta name="keywords" content="personal finance dashboard, financial tracker, budget tracker, income expense tracker, debt tracker, savings goals, financial planning, money management, financial overview, budget planner, expense analyzer, debt payoff tracker, savings calculator" />
-        <meta property="og:title" content="Personal Finance Dashboard - Complete Financial Overview & Planning Tool | DapsiWow" />
-        <meta property="og:description" content="Comprehensive personal finance dashboard for complete financial management. Track all aspects of your finances with detailed analytics and strategic planning tools." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/personal-finance-dashboard" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Personal Finance Dashboard",
-            "description": "Comprehensive personal finance tracking dashboard with income, expense, debt, and savings goal management for complete financial planning and analysis",
-            "url": "https://dapsiwow.com/tools/personal-finance-dashboard",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Complete financial overview dashboard",
-              "Income and expense tracking",
-              "Debt management and analysis",
-              "Savings goal tracking",
-              "Interactive financial charts",
-              "Multi-currency support"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

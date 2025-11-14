@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -274,41 +273,6 @@ const BodyCompositionAnalyzer = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50">
       <ToolSEOHead config={bodyCompositionAnalyzerSEO} />
-      <Helmet>
-        <title>Body Composition Analyzer - Free Body Fat & Muscle Mass Calculator | DapsiWow</title>
-        <meta name="description" content="Free body composition analyzer to calculate body fat percentage, muscle mass, and lean body mass. Get personalized fitness recommendations with our comprehensive body composition calculator." />
-        <meta name="keywords" content="body composition analyzer, body fat calculator, muscle mass calculator, lean body mass, fitness assessment, body fat percentage, health calculator, nutrition planning" />
-        <meta property="og:title" content="Body Composition Analyzer - Free Body Fat & Muscle Mass Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate your body composition with our free analyzer. Get accurate body fat percentage, muscle mass, and personalized fitness recommendations." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/body-composition-analyzer" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Body Composition Analyzer",
-            "description": "Professional body composition analyzer for calculating body fat percentage, muscle mass, and lean body mass with personalized fitness recommendations.",
-            "url": "https://dapsiwow.com/tools/body-composition-analyzer",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate body fat percentage using US Navy method",
-              "Determine lean body mass and muscle mass",
-              "Generate personalized macro targets",
-              "Create custom workout plans",
-              "Multiple unit system support"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -255,42 +254,6 @@ const HexToTextConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={hexToTextConverterSEO} />
-      <Helmet>
-        <title>Hexadecimal to Text Converter - Convert Hex to Readable Text | DapsiWow</title>
-        <meta name="description" content="Free hexadecimal to text converter tool. Convert hex values to readable text instantly. Supports UTF-8 and ASCII encoding, multiple input formats for developers and students." />
-        <meta name="keywords" content="hexadecimal to text converter, hex to text, hex decoder, ASCII converter, UTF-8 converter, programming tools, web development, hex string decoder, online hex converter, data encoding" />
-        <meta property="og:title" content="Hexadecimal to Text Converter - Convert Hex to Readable Text | DapsiWow" />
-        <meta property="og:description" content="Free online hexadecimal to text converter. Convert hex values to readable text with support for multiple input formats and encodings." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/hex-to-text-converter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Hexadecimal to Text Converter",
-            "description": "Professional hexadecimal to text converter for decoding hex values to readable text with UTF-8 and ASCII encoding support.",
-            "url": "https://dapsiwow.com/tools/hex-to-text-converter",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Hexadecimal to text conversion",
-              "Multiple input formats support",
-              "UTF-8 and ASCII encoding support",
-              "Real-time conversion",
-              "Copy to clipboard functionality",
-              "Conversion history tracking"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

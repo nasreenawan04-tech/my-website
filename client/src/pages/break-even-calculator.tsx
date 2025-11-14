@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -108,42 +107,6 @@ const BreakEvenCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={breakEvenCalculatorSEO} />
-      <Helmet>
-        <title>Break-Even Calculator - Calculate Break-Even Point for Business | DapsiWow</title>
-        <meta name="description" content="Free break-even calculator to calculate break-even point for your business. Determine units and revenue needed to cover costs with contribution margin analysis. Support for multiple currencies worldwide." />
-        <meta name="keywords" content="break-even calculator, break even point calculator, business break even analysis, contribution margin calculator, fixed costs calculator, variable costs calculator, break even units, break even revenue, margin of safety calculator" />
-        <meta property="og:title" content="Break-Even Calculator - Calculate Break-Even Point for Business | DapsiWow" />
-        <meta property="og:description" content="Free break-even calculator for business analysis. Calculate break-even point in units and revenue with comprehensive contribution margin analysis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/break-even-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Break-Even Calculator",
-            "description": "Free online break-even calculator to determine the break-even point for business operations. Calculate units and revenue needed to cover fixed and variable costs with detailed contribution margin analysis.",
-            "url": "https://dapsiwow.com/tools/break-even-calculator",
-            "applicationCategory": "BusinessApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate break-even point in units",
-              "Calculate break-even point in revenue",
-              "Contribution margin analysis",
-              "Margin of safety calculation",
-              "Support for multiple currencies",
-              "Fixed and variable cost analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

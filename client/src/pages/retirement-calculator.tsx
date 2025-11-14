@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -157,42 +156,6 @@ export default function RetirementCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={retirementCalculatorSEO} />
-      <Helmet>
-        <title>Retirement Calculator - Calculate Retirement Savings & Income | DapsiWow</title>
-        <meta name="description" content="Free retirement calculator with 4% withdrawal rule, compound interest projections, and multi-currency support. Calculate 401k, IRA, and pension savings for secure retirement planning worldwide." />
-        <meta name="keywords" content="retirement calculator, retirement planning calculator, 401k calculator, IRA calculator, pension calculator, retirement savings calculator, compound interest retirement, 4% withdrawal rule, retirement income calculator, financial independence calculator, early retirement calculator, retirement planning tool, retirement projections, retirement fund calculator, FIRE calculator, retirement age calculator, withdrawal rate calculator, retirement savings goals, retirement planning guide" />
-        <meta property="og:title" content="Retirement Calculator - Calculate Retirement Savings & Income | DapsiWow" />
-        <meta property="og:description" content="Free retirement planning calculator with 4% rule, compound interest calculations, and support for 401k, IRA & pension planning worldwide." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/retirement-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Retirement Calculator",
-            "description": "Free retirement planning calculator with 4% withdrawal rule, compound interest calculations, and multi-currency support for 401k, IRA, and pension planning.",
-            "url": "https://dapsiwow.com/tools/retirement-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "4% withdrawal rule calculations",
-              "Compound interest projections",
-              "Multi-currency support",
-              "401k and IRA planning",
-              "Retirement income projections",
-              "Financial independence planning"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

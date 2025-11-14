@@ -1,6 +1,5 @@
 
 import { useState, useEffect, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -235,42 +234,6 @@ Remember that writing is a process, not a product. The first draft is rarely per
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textStatisticsAnalyzerSEO} />
-      <Helmet>
-        <title>Text Statistics Analyzer - Comprehensive Text Analysis Tool | DapsiWow</title>
-        <meta name="description" content="Advanced text statistics analyzer with readability scores, keyword density analysis, and comprehensive text metrics. Analyze reading time, sentence structure, and writing complexity instantly." />
-        <meta name="keywords" content="text statistics, text analyzer, readability score, keyword density, flesch reading ease, text metrics, writing analysis, content analysis, text complexity" />
-        <meta property="og:title" content="Text Statistics Analyzer - Comprehensive Text Analysis Tool | DapsiWow" />
-        <meta property="og:description" content="Professional text analysis tool with readability scores, keyword density, and detailed text statistics for writers and content creators." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-statistics-analyzer" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text Statistics Analyzer",
-            "description": "Comprehensive text analysis tool that provides detailed statistics, readability scores, keyword density analysis, and writing metrics for content optimization and analysis.",
-            "url": "https://dapsiwow.com/tools/text-statistics-analyzer",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Comprehensive text statistics",
-              "Readability score analysis",
-              "Keyword density calculation",
-              "Reading and speaking time estimation",
-              "Sentence and paragraph analysis",
-              "Writing complexity assessment"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

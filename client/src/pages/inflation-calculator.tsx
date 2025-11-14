@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -235,42 +234,6 @@ export default function InflationCalculator() {
   return (
     <>
       <ToolSEOHead config={inflationCalculatorSEO} />
-      <Helmet>
-        <title>Inflation Calculator - Calculate Money Value Over Time | DapsiWow</title>
-        <meta name="description" content="Free inflation calculator to analyze purchasing power changes over time. Calculate future value, past value equivalents, and inflation impact with global economic data for 20+ countries." />
-        <meta name="keywords" content="inflation calculator, purchasing power calculator, money value calculator, future value inflation, cost of living calculator, historical inflation calculator, inflation rate calculator, purchasing power analysis" />
-        <meta property="og:title" content="Inflation Calculator - Calculate Money Value Over Time | DapsiWow" />
-        <meta property="og:description" content="Free inflation calculator with global data to analyze money value changes, purchasing power erosion, and inflation impact across 20+ countries." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/inflation-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Inflation Calculator",
-            "description": "Free online inflation calculator to analyze purchasing power changes and money value over time with historical data from 20+ countries.",
-            "url": "https://dapsiwow.com/inflation-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate future value with inflation",
-              "Analyze past value equivalents",
-              "Purchasing power comparison",
-              "Multi-country inflation data",
-              "Historical inflation analysis",
-              "Global currency support"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-inflation-calculator">
         <Header />
 

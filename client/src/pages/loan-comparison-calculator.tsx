@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -185,41 +184,6 @@ const LoanComparisonCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={loanComparisonCalculatorSEO} />
-      <Helmet>
-        <title>Loan Comparison Calculator - Compare Multiple Loan Offers Side-by-Side | DapsiWow</title>
-        <meta name="description" content="Free loan comparison calculator to compare up to 3 loan offers simultaneously. Calculate EMI, total interest, and savings to find the best loan deal with detailed analysis and recommendations." />
-        <meta name="keywords" content="loan comparison calculator, compare loans, EMI comparison, best loan rates, loan analysis tool, personal loan comparison, home loan comparison, car loan comparison, loan offer analyzer, loan calculator comparison" />
-        <meta property="og:title" content="Loan Comparison Calculator - Compare Multiple Loan Offers Side-by-Side | DapsiWow" />
-        <meta property="og:description" content="Professional loan comparison calculator for analyzing multiple loan offers with detailed EMI calculations, interest comparisons, and savings analysis to find the best deal." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/loan-comparison-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Loan Comparison Calculator",
-            "description": "Professional loan comparison calculator for analyzing multiple loan offers with detailed EMI calculations, interest comparisons, and savings analysis to help borrowers find the best loan deal.",
-            "url": "https://dapsiwow.com/tools/loan-comparison-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Compare up to 3 loans simultaneously",
-              "Detailed EMI and interest calculations",
-              "Savings analysis and recommendations",
-              "Multiple currency support",
-              "Real-time comparison results"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

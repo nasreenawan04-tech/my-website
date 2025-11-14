@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -139,42 +138,6 @@ export default function WaistToHeightRatioCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={waistToHeightRatioCalculatorSEO} />
-      <Helmet>
-        <title>Waist-to-Height Ratio Calculator - Health Risk Assessment Tool | DapsiWow</title>
-        <meta name="description" content="Free waist-to-height ratio calculator to assess cardiovascular health risks and metabolic syndrome. Get instant WHtR calculations with personalized health recommendations and ideal waist measurements." />
-        <meta name="keywords" content="waist to height ratio calculator, WHtR calculator, waist height ratio, cardiovascular health calculator, metabolic syndrome assessment, abdominal obesity calculator, health risk calculator, waist circumference calculator" />
-        <meta property="og:title" content="Waist-to-Height Ratio Calculator - Health Risk Assessment Tool | DapsiWow" />
-        <meta property="og:description" content="Calculate your waist-to-height ratio and assess health risks with personalized recommendations for better cardiovascular health." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/waist-to-height-ratio-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Waist-to-Height Ratio Calculator",
-            "description": "Free online waist-to-height ratio calculator for health risk assessment. Calculate WHtR to evaluate cardiovascular health and metabolic syndrome risks with personalized recommendations.",
-            "url": "https://dapsiwow.com/tools/waist-to-height-ratio-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate waist-to-height ratio",
-              "Health risk assessment",
-              "Personalized recommendations",
-              "Metric and imperial units",
-              "Ideal waist range calculation",
-              "Cardiovascular health insights"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

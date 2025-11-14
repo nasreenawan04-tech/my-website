@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -136,41 +135,6 @@ const SmokingCostCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50">
       <ToolSEOHead config={smokingCostCalculatorSEO} />
-      <Helmet>
-        <title>Smoking Cost Calculator - Calculate True Financial Cost of Smoking | DapsiWow</title>
-        <meta name="description" content="Free smoking cost calculator to calculate how much money you spend on cigarettes daily, monthly, and yearly. Discover potential savings from quitting smoking with our comprehensive financial analysis tool." />
-        <meta name="keywords" content="smoking cost calculator, cigarette cost calculator, smoking expenses, quit smoking savings, tobacco cost, smoking financial impact, cigarette price calculator, smoking budget calculator" />
-        <meta property="og:title" content="Smoking Cost Calculator - Calculate True Financial Cost of Smoking | DapsiWow" />
-        <meta property="og:description" content="Calculate the true financial cost of smoking with our comprehensive smoking cost calculator. See daily, monthly, and yearly expenses plus potential savings from quitting." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/smoking-cost-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Smoking Cost Calculator",
-            "description": "Professional smoking cost calculator for calculating the true financial impact of smoking habits including daily, monthly, and yearly expenses with potential savings analysis.",
-            "url": "https://dapsiwow.com/tools/smoking-cost-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate daily, monthly, and yearly smoking costs",
-              "Multiple currency support",
-              "Include additional smoking-related expenses",
-              "Potential savings analysis",
-              "Long-term financial projections"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

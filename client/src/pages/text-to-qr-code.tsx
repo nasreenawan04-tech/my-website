@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -241,41 +240,6 @@ const TextToQRCode = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textToQrCodeSEO} />
-      <Helmet>
-        <title>Text to QR Code Converter - Generate QR Codes from Text | DapsiWow</title>
-        <meta name="description" content="Free text to QR code generator. Convert text, URLs, and email addresses to scannable QR codes instantly. Smart content extraction with customizable QR code options for business, marketing, and personal use." />
-        <meta name="keywords" content="text to QR code generator, QR code maker, text to QR converter, URL to QR code, email to QR code, QR code creator, online QR generator, business QR codes, marketing tools, contact QR codes" />
-        <meta property="og:title" content="Text to QR Code Converter - Generate QR Codes from Text | DapsiWow" />
-        <meta property="og:description" content="Free online text to QR code generator. Convert any text, URL, or email to scannable QR codes with smart content extraction and customizable styling options." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-to-qr-code" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text to QR Code Converter",
-            "description": "Professional text to QR code generator with smart content extraction for converting text, URLs, and email addresses into scannable QR codes with customizable styling options.",
-            "url": "https://dapsiwow.com/tools/text-to-qr-code",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Smart content extraction",
-              "URL and email detection",
-              "Customizable QR code styling",
-              "Multiple error correction levels",
-              "Real-time QR generation"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

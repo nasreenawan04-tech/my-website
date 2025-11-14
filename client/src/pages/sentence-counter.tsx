@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -128,42 +127,6 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={sentenceCounterSEO} />
-      <Helmet>
-        <title>Sentence Counter - Count Sentences & Analyze Text Structure | DapsiWow</title>
-        <meta name="description" content="Free online sentence counter tool to count sentences, analyze sentence types (declarative, interrogative, exclamatory), and get detailed text structure statistics. Perfect for writers, students, and content creators to improve writing quality." />
-        <meta name="keywords" content="sentence counter, sentence analyzer, text analysis, sentence types, writing tool, grammar checker, text statistics, declarative sentences, interrogative sentences, exclamatory sentences, readability analysis, writing improvement" />
-        <meta property="og:title" content="Sentence Counter - Count Sentences & Analyze Text Structure | DapsiWow" />
-        <meta property="og:description" content="Free online sentence counter with detailed analysis of sentence types and structure. Perfect for improving your writing quality and readability." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/sentence-counter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Sentence Counter",
-            "description": "Free online sentence counter tool to analyze text structure, count sentences by type, and get detailed writing statistics for improved content quality.",
-            "url": "https://dapsiwow.com/tools/sentence-counter",
-            "applicationCategory": "EducationApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Count total sentences",
-              "Analyze sentence types",
-              "Calculate reading time",
-              "Average sentence length analysis",
-              "Real-time text analysis",
-              "Writing improvement insights"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

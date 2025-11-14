@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -252,42 +251,6 @@ export default function KetoMacroCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={ketoMacroCalculatorSEO} />
-      <Helmet>
-        <title>Keto Macro Calculator - Calculate Your Ketogenic Diet Macros | DapsiWow</title>
-        <meta name="description" content="Free keto macro calculator to calculate personalized ketogenic diet macronutrient ratios. Get precise fat, protein, and carb targets for optimal ketosis and weight loss. Support for all fitness levels and keto goals." />
-        <meta name="keywords" content="keto macro calculator, ketogenic diet calculator, keto macros, low carb calculator, ketosis calculator, keto diet planner, macronutrient calculator, keto weight loss calculator, ketogenic macros, keto nutrition calculator" />
-        <meta property="og:title" content="Keto Macro Calculator - Calculate Your Ketogenic Diet Macros | DapsiWow" />
-        <meta property="og:description" content="Free keto macro calculator for personalized ketogenic diet planning. Calculate optimal fat, protein, and carb ratios for successful ketosis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/keto-macro-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Keto Macro Calculator",
-            "description": "Free online keto macro calculator to calculate personalized ketogenic diet macronutrient ratios for optimal ketosis, weight loss, and muscle gain. Features advanced calculations for all keto experience levels.",
-            "url": "https://dapsiwow.com/tools/keto-macro-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate personalized keto macros",
-              "Support for all activity levels",
-              "Weight loss and muscle gain goals",
-              "Beginner to advanced keto experience",
-              "Detailed meal planning recommendations",
-              "Keto food suggestions"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

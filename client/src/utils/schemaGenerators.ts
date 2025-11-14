@@ -1,6 +1,9 @@
 import { ToolSEOConfig, CategoryDefaults } from '@/config/seo/types';
 
 export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefaults: CategoryDefaults) {
+  const currentDate = new Date().toISOString().split('T')[0];
+  const publishDate = config.datePublished || '2024-01-15';
+  
   return {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
@@ -13,26 +16,28 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     operatingSystem: categoryDefaults.schemaDefaults.operatingSystem,
     browserRequirements: categoryDefaults.schemaDefaults.browserRequirements,
     softwareVersion: '2.0.0',
-    datePublished: '2024-01-15',
-    dateModified: new Date().toISOString().split('T')[0],
+    datePublished: publishDate,
+    dateModified: currentDate,
     
     offers: {
       '@type': 'Offer',
       price: categoryDefaults.schemaDefaults.offers.price,
       priceCurrency: categoryDefaults.schemaDefaults.offers.priceCurrency,
       availability: 'https://schema.org/InStock',
-      validFrom: '2024-01-15'
+      validFrom: publishDate
     },
     
     featureList: config.schema.featureList,
     
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '2547',
-      bestRating: '5',
-      worstRating: '1'
-    },
+    ...(config.aggregateRating && {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: config.aggregateRating.ratingValue,
+        ratingCount: config.aggregateRating.ratingCount,
+        bestRating: '5',
+        worstRating: '1'
+      }
+    }),
     
     creator: {
       '@type': 'Organization',

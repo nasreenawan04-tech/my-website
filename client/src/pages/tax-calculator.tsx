@@ -1,6 +1,5 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -495,51 +494,6 @@ export default function TaxCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={taxCalculatorSEO} />
-      <Helmet>
-        <title>2025 Tax Calculator - Free Income Tax Estimator | Calculate Federal Taxes</title>
-        <meta name="description" content="Free 2025 income tax calculator for USA, UK, Canada, Australia & India. Calculate federal taxes, effective tax rate, marginal tax bracket, and net income instantly. 100% free, accurate tax estimates with detailed breakdown." />
-        <meta name="keywords" content="2025 tax calculator, income tax calculator 2025, tax refund calculator 2025, federal tax calculator, tax estimator 2025, tax bracket calculator, free tax calculator, online tax calculator, how to calculate income tax, effective tax rate calculator, marginal tax rate, take home pay calculator, tax planning calculator 2025" />
-        <meta property="og:title" content="2025 Tax Calculator - Free Income Tax Estimator | DapsiWow" />
-        <meta property="og:description" content="Calculate your 2025 income tax instantly with our free online calculator. Get accurate federal tax estimates, effective rates, and detailed breakdowns for smart tax planning." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/tools/tax-calculator" />
-        <meta property="og:image" content="https://dapsiwow.com/og-tax-calculator.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="2025 Tax Calculator - Free Income Tax Estimator" />
-        <meta name="twitter:description" content="Calculate income tax for 2025 with detailed breakdowns, effective rates, and tax planning insights. Free tool supporting USA, UK, Canada, Australia & India." />
-        <meta name="twitter:image" content="https://dapsiwow.com/og-tax-calculator.png" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/tax-calculator" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "2025 Tax Calculator",
-            "url": "https://dapsiwow.com/tools/tax-calculator",
-            "description": "Free online income tax calculator for 2025. Calculate federal taxes, effective tax rate, and net income for USA, UK, Canada, Australia, and India.",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multi-country tax calculations",
-              "Real-time tax estimates",
-              "Effective and marginal tax rates",
-              "Tax bracket breakdown",
-              "PDF export functionality",
-              "No registration required"
-            ]
-          })}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

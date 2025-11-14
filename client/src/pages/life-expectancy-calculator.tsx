@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -249,42 +248,6 @@ export default function LifeExpectancyCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={lifeExpectancyCalculatorSEO} />
-      <Helmet>
-        <title>Life Expectancy Calculator - Estimate Your Lifespan Based on Lifestyle | DapsiWow</title>
-        <meta name="description" content="Free life expectancy calculator to estimate your lifespan based on lifestyle factors including diet, exercise, smoking, and health habits. Get personalized longevity recommendations and health insights." />
-        <meta name="keywords" content="life expectancy calculator, lifespan calculator, longevity calculator, health assessment, mortality calculator, lifestyle health, age calculator, health score, longevity prediction, life span estimator" />
-        <meta property="og:title" content="Life Expectancy Calculator - Estimate Your Lifespan Based on Lifestyle | DapsiWow" />
-        <meta property="og:description" content="Calculate your life expectancy based on lifestyle factors and get personalized recommendations for longevity and healthy living." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/life-expectancy-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Life Expectancy Calculator",
-            "description": "Free online life expectancy calculator to estimate lifespan based on lifestyle factors including diet, exercise, smoking habits, and health indicators. Get personalized recommendations for longevity.",
-            "url": "https://dapsiwow.com/tools/life-expectancy-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Life expectancy estimation",
-              "Health score calculation",
-              "Lifestyle impact analysis",
-              "Personalized longevity recommendations",
-              "Risk factor identification",
-              "BMI integration"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

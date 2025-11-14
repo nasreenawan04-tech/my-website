@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -307,42 +306,6 @@ export default function CholesterolRiskCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={cholesterolRiskCalculatorSEO} />
-      <Helmet>
-        <title>Cholesterol Risk Calculator - Free Cardiovascular Risk Assessment | DapsiWow</title>
-        <meta name="description" content="Free cholesterol risk calculator to assess your cardiovascular disease risk. Calculate HDL, LDL cholesterol levels and get personalized heart health recommendations with Framingham Risk Score." />
-        <meta name="keywords" content="cholesterol calculator, cardiovascular risk assessment, heart disease risk, lipid profile calculator, HDL LDL calculator, cholesterol levels, framingham risk score, heart health assessment, cholesterol screening tool" />
-        <meta property="og:title" content="Cholesterol Risk Calculator - Free Cardiovascular Risk Assessment | DapsiWow" />
-        <meta property="og:description" content="Calculate your cholesterol levels and cardiovascular disease risk with personalized recommendations. Free online tool with HDL, LDL analysis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/cholesterol-risk-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Cholesterol Risk Calculator",
-            "description": "Free online cholesterol risk calculator to assess cardiovascular disease risk using lipid profile and personal risk factors. Calculate HDL, LDL cholesterol levels with personalized recommendations.",
-            "url": "https://dapsiwow.com/tools/cholesterol-risk-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate cardiovascular risk percentage",
-              "HDL and LDL cholesterol analysis",
-              "Support for mg/dL and mmol/L units",
-              "Framingham Risk Score calculation",
-              "Personalized health recommendations",
-              "Risk factor assessment"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

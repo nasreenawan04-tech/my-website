@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -220,42 +219,6 @@ const MarkdownToHTMLConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={markdownToHtmlSEO} />
-      <Helmet>
-        <title>Markdown to HTML Converter - Convert MD to HTML Online Free | DapsiWow</title>
-        <meta name="description" content="Convert Markdown to HTML instantly with our free online tool. Support for headers, lists, links, code blocks, tables, and more. Professional MD to HTML converter for developers and writers." />
-        <meta name="keywords" content="markdown to html converter, md to html, markdown parser, markdown converter online, free markdown to html, convert markdown, html generator, markdown processor, text converter" />
-        <meta property="og:title" content="Markdown to HTML Converter - Convert MD to HTML Online Free | DapsiWow" />
-        <meta property="og:description" content="Free Markdown to HTML converter with advanced formatting support. Convert MD files to clean HTML code instantly with custom options and download functionality." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/markdown-to-html" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Markdown to HTML Converter",
-            "description": "Professional online tool for converting Markdown text to HTML format with support for headers, lists, links, code blocks, tables, and advanced formatting options.",
-            "url": "https://dapsiwow.com/tools/markdown-to-html",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Convert Markdown to HTML instantly",
-              "Support for headers, lists, and links",
-              "Code block and table conversion",
-              "Custom formatting options",
-              "Download HTML files",
-              "Copy to clipboard functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

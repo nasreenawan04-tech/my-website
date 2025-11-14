@@ -1,6 +1,5 @@
 
 import { useState, useEffect, useContext } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { ToolPageContext } from '@/contexts/ToolPageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -272,42 +271,6 @@ const FakeAddressGenerator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={fakeAddressGeneratorSEO} />
-      <Helmet>
-        <title>Fake Address Generator - Create Realistic Test Addresses | DapsiWow</title>
-        <meta name="description" content="Generate realistic fake addresses for testing, development, and privacy purposes. Support for US, UK, and Canada with customizable formatting options and instant generation." />
-        <meta name="keywords" content="fake address generator, random address generator, test address generator, dummy address generator, mock address, address generator tool, testing addresses, realistic addresses, privacy protection" />
-        <meta property="og:title" content="Fake Address Generator - Create Realistic Test Addresses | DapsiWow" />
-        <meta property="og:description" content="Free fake address generator for developers and testers. Create realistic test addresses for multiple countries with customizable options instantly." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href={canonicalOverride || "https://dapsiwow.com/tools/fake-address-generator"} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Fake Address Generator",
-            "description": "Professional fake address generator for creating realistic test addresses for development, testing, and privacy purposes with support for multiple countries and formats.",
-            "url": "https://dapsiwow.com/tools/fake-address-generator",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Generate addresses for US, UK, and Canada",
-              "Multiple address formats (standard, single-line, mailing)",
-              "Customizable options: apartment, secondary address, ZIP+4",
-              "Instant address generation and copying",
-              "Realistic test data for developers and testers",
-              "Enhances privacy and security in testing"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

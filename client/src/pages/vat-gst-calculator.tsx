@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -113,42 +112,6 @@ export default function VATGSTCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={vatGstCalculatorSEO} />
-      <Helmet>
-        <title>VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | DapsiWow</title>
-        <meta name="description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />
-        <meta name="keywords" content="VAT calculator, GST calculator, value added tax calculator, goods services tax calculator, tax calculator, business tax calculator, VAT calculation, GST calculation, tax rate calculator, EU VAT calculator, UK VAT calculator, Australia GST calculator, India GST calculator, international tax calculator, sales tax calculator, consumption tax calculator" />
-        <meta property="og:title" content="VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | DapsiWow" />
-        <meta property="og:description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/vat-gst-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "VAT/GST Calculator",
-            "description": "Free online VAT/GST calculator for calculating value added tax and goods & services tax across multiple countries. Supports adding or removing VAT/GST from prices with instant calculations.",
-            "url": "https://dapsiwow.com/tools/vat-gst-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate VAT/GST for 15+ countries",
-              "Add or remove VAT from prices",
-              "Support for 16+ currencies",
-              "Instant tax calculations",
-              "Business-friendly interface",
-              "Accurate tax breakdown"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

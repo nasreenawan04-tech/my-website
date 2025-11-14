@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -108,42 +107,6 @@ export default function CarLoanCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={carLoanCalculatorSEO} />
-      <Helmet>
-        <title>Car Loan Calculator - Auto Loan Payment Calculator | DapsiWow</title>
-        <meta name="description" content="Free car loan calculator to calculate monthly auto loan payments, total interest, and loan costs. Compare different loan terms and down payment scenarios for new and used vehicles with multiple currency support." />
-        <meta name="keywords" content="car loan calculator, auto loan calculator, vehicle loan calculator, car payment calculator, auto financing calculator, monthly car payment, car loan EMI calculator, vehicle financing, auto loan EMI, car loan interest calculator" />
-        <meta property="og:title" content="Car Loan Calculator - Auto Loan Payment Calculator | DapsiWow" />
-        <meta property="og:description" content="Calculate monthly car loan payments, total interest, and loan costs for new and used vehicles. Free auto loan calculator with down payment analysis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/car-loan-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Car Loan Calculator",
-            "description": "Free online car loan calculator to calculate monthly auto loan payments, total interest cost, and loan affordability for new and used vehicles.",
-            "url": "https://dapsiwow.com/tools/car-loan-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Monthly car payment calculations",
-              "Total interest cost analysis",
-              "Down payment optimization",
-              "Multiple currency support",
-              "New and used vehicle financing",
-              "Loan term comparison"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

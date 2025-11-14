@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -110,42 +109,6 @@ export default function DiscountCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={discountCalculatorSEO} />
-      <Helmet>
-        <title>Discount Calculator - Calculate Sale Prices & Savings Instantly | DapsiWow</title>
-        <meta name="description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for percentage and fixed amount discounts with multiple currencies. Perfect for shopping, business sales, and price comparisons." />
-        <meta name="keywords" content="discount calculator, sale price calculator, percentage discount calculator, savings calculator, price reduction calculator, shopping calculator, retail discount calculator, business discount tool, markdown calculator" />
-        <meta property="og:title" content="Discount Calculator - Calculate Sale Prices & Savings Instantly | DapsiWow" />
-        <meta property="og:description" content="Free discount calculator for calculating sale prices, discount amounts, and savings. Support for percentage and fixed amount discounts with multiple currencies worldwide." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/discount-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Discount Calculator",
-            "description": "Free online discount calculator to calculate sale prices, discount amounts, and savings for shopping, business sales, and price comparisons. Features percentage and fixed amount discounts with multiple currency support.",
-            "url": "https://dapsiwow.com/tools/discount-calculator",
-            "applicationCategory": "CalculatorApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Percentage discount calculations",
-              "Fixed amount discount calculations",
-              "Multiple currency support",
-              "Instant savings calculations",
-              "Price comparison tools",
-              "Business discount planning"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

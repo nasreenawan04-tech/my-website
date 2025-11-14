@@ -1,6 +1,5 @@
 
 import { useState, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -196,42 +195,6 @@ http://legacy-system.internal.company.com:8080/admin`);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={urlExtractorSEO} />
-      <Helmet>
-        <title>URL Extractor Tool - Extract URLs from Text | DapsiWow</title>
-        <meta name="description" content="Advanced URL extractor tool to find and extract HTTP, HTTPS, FTP, and email links from any text content. Filter, analyze, and export URLs with comprehensive statistics." />
-        <meta name="keywords" content="url extractor, extract urls from text, link finder, url parser, link extractor tool, http finder, email extractor, web scraping, url analysis" />
-        <meta property="og:title" content="URL Extractor Tool - Extract URLs from Text | DapsiWow" />
-        <meta property="og:description" content="Professional URL extraction tool with advanced filtering, statistics, and export options for content analysis and link management." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/url-extractor" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "URL Extractor Tool",
-            "description": "Advanced URL extraction tool that finds and analyzes HTTP, HTTPS, FTP, and email links from any text content with comprehensive filtering and export options.",
-            "url": "https://dapsiwow.com/tools/url-extractor",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multi-protocol URL extraction",
-              "Advanced filtering options",
-              "URL validation and statistics",
-              "Export and download functionality",
-              "Duplicate removal",
-              "Domain analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

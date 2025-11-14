@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -379,44 +378,6 @@ export default function TextFormatterBeautifier() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={textFormatterBeautifierSEO} />
-      <Helmet>
-        <title>Text Formatter & Beautifier - Format Code, JSON, XML, HTML & CSS | DapsiWow</title>
-        <meta name="description" content="Free online text formatter and beautifier tool to format and beautify code, JSON, XML, HTML, CSS, JavaScript with proper indentation and structure. Professional code formatting with customizable options." />
-        <meta name="keywords" content="text formatter, code beautifier, JSON formatter, XML formatter, HTML formatter, CSS formatter, JavaScript formatter, code indentation, text beautify, format code online, pretty print" />
-        <meta property="og:title" content="Text Formatter & Beautifier - Format Code, JSON, XML, HTML & CSS" />
-        <meta property="og:description" content="Professional text formatter and code beautifier with support for JSON, XML, HTML, CSS, JavaScript and customizable formatting options." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/text-formatter-beautifier" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Text Formatter & Beautifier",
-            "description": "Free online tool to format and beautify code, JSON, XML, HTML, CSS, and JavaScript with customizable indentation and structure options.",
-            "url": "https://dapsiwow.com/tools/text-formatter-beautifier",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Auto-detect format type",
-              "JSON formatting and validation",
-              "XML and HTML beautification",
-              "CSS formatting with proper indentation",
-              "JavaScript code formatting",
-              "Customizable indentation options",
-              "Remove extra spaces and empty lines",
-              "Line wrapping for long text"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

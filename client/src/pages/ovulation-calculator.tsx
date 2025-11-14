@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -175,41 +174,6 @@ export default function OvulationCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={ovulationCalculatorSEO} />
-      <Helmet>
-        <title>Ovulation Calculator - Track Fertile Days & Predict Ovulation Date | DapsiWow</title>
-        <meta name="description" content="Free ovulation calculator to predict fertile days, ovulation date, and menstrual cycle phases. Calculate your best conception timing with accurate fertility tracking tools." />
-        <meta name="keywords" content="ovulation calculator, fertile days calculator, menstrual cycle tracker, fertility calculator, conception calculator, ovulation predictor, fertile window calculator, pregnancy planning tool" />
-        <meta property="og:title" content="Ovulation Calculator - Track Fertile Days & Predict Ovulation Date | DapsiWow" />
-        <meta property="og:description" content="Free ovulation calculator for tracking fertile days and optimizing conception timing. Get accurate fertility predictions based on your menstrual cycle." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/ovulation-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Ovulation Calculator",
-            "description": "Free online ovulation calculator to predict fertile days, track menstrual cycles, and optimize conception timing for family planning.",
-            "url": "https://dapsiwow.com/tools/ovulation-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate ovulation date",
-              "Predict fertile window",
-              "Track menstrual cycle phases",
-              "Conception probability analysis",
-              "Personalized fertility tips"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

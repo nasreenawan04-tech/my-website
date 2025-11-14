@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -284,42 +283,6 @@ export default function PercentageCalculator() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <Helmet>
-        <title>Percentage Calculator - Calculate Percentages, Changes & Ratios | DapsiWow</title>
-        <meta name="description" content="Free percentage calculator for calculating percentages, percentage changes, increases, decreases, and ratios. Perfect for students, professionals, and business calculations with step-by-step solutions." />
-        <meta name="keywords" content="percentage calculator, percent calculator, percentage change calculator, calculate percentage, percentage formula, percentage increase calculator, percentage decrease calculator, ratio calculator, math calculator, business calculator" />
-        <meta property="og:title" content="Percentage Calculator - Calculate Percentages, Changes & Ratios | DapsiWow" />
-        <meta property="og:description" content="Free percentage calculator for calculating percentages, percentage changes, increases, decreases, and ratios. Perfect for students, professionals, and business calculations with step-by-step solutions." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/percentage-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Percentage Calculator",
-            "description": "Free online percentage calculator for calculating percentages, percentage changes, increases, decreases, and ratios. Features step-by-step solutions and detailed explanations for educational and professional use.",
-            "url": "https://dapsiwow.com/tools/percentage-calculator",
-            "applicationCategory": "CalculatorApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Basic percentage calculations",
-              "Percentage change calculations",
-              "Percentage increase and decrease",
-              "Ratio to percentage conversion",
-              "Step-by-step solutions",
-              "Educational explanations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

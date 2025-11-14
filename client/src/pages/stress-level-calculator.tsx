@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -379,43 +378,6 @@ const StressLevelCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={stressLevelCalculatorSEO} />
-      <Helmet>
-        <title>Stress Level Calculator - Free Comprehensive Stress Assessment Tool | DapsiWow</title>
-        <meta name="description" content="Comprehensive stress level assessment calculator with personalized recommendations. Analyze work stress, sleep quality, social support, and lifestyle factors for complete mental health evaluation and stress management guidance." />
-        <meta name="keywords" content="stress calculator, stress assessment, stress level test, mental health calculator, work stress, anxiety assessment, stress management, wellness tool, psychological stress, burnout assessment, stress analysis, mental health evaluation" />
-        <meta property="og:title" content="Stress Level Calculator - Free Comprehensive Stress Assessment Tool | DapsiWow" />
-        <meta property="og:description" content="Professional stress level assessment with personalized recommendations. Analyze multiple stress factors and get actionable insights for better mental health and wellbeing management." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/tools/stress-level-calculator" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/stress-level-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Stress Level Calculator",
-            "description": "Professional stress level assessment calculator with comprehensive analysis of work stress, sleep quality, social support, and lifestyle factors for mental health evaluation and stress management guidance.",
-            "url": "https://dapsiwow.com/tools/stress-level-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Comprehensive stress assessment across multiple factors",
-              "Personalized stress management recommendations",
-              "Work-life balance evaluation and analysis",
-              "Sleep quality impact on stress levels",
-              "Social support system assessment",
-              "Physical health and exercise impact analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

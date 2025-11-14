@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -165,42 +164,6 @@ const BudgetCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={budgetCalculatorSEO} />
-      <Helmet>
-        <title>Budget Calculator - Personal Finance Planning Tool | DapsiWow</title>
-        <meta name="description" content="Free budget calculator to track income, expenses, and savings. Plan your personal finances with interactive charts and detailed budget analysis. No sign-up required." />
-        <meta name="keywords" content="budget calculator, personal finance, expense tracker, income tracker, savings calculator, financial planning, budget planner, monthly budget, family budget calculator, household budget planner" />
-        <meta property="og:title" content="Budget Calculator - Personal Finance Planning Tool | DapsiWow" />
-        <meta property="og:description" content="Track your income, expenses, and savings with our free budget calculator. Interactive charts and detailed financial analysis." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/budget-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Budget Calculator",
-            "description": "Free online budget calculator to track income, expenses, and savings goals. Features interactive charts and comprehensive financial analysis for personal budget planning.",
-            "url": "https://dapsiwow.com/tools/budget-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Track multiple income sources",
-              "Categorize expenses",
-              "Set savings goals",
-              "Interactive budget charts",
-              "Financial status analysis",
-              "Budget recommendations"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

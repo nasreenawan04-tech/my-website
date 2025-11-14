@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -172,41 +171,6 @@ const ReverseTextTool = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={reverseTextToolSEO} />
-      <Helmet>
-        <title>Reverse Text Tool - Flip Text Backwards by Characters, Words & Lines | DapsiWow</title>
-        <meta name="description" content="Free online reverse text tool to flip text backwards by characters, words, or lines. Create mirror text, upside down text, and reversed text effects instantly for puzzles, social media, and creative projects." />
-        <meta name="keywords" content="reverse text tool, backward text generator, flip text online, mirror text creator, upside down text, text reverser, character reversal, word reversal, line reversal, reversed text effects" />
-        <meta property="og:title" content="Reverse Text Tool - Flip Text Backwards by Characters, Words & Lines | DapsiWow" />
-        <meta property="og:description" content="Professional reverse text tool for flipping text backwards with multiple reversal methods. Create interesting text effects, puzzles, and reversed content instantly." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/reverse-text-tool" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Reverse Text Tool",
-            "description": "Professional reverse text tool for flipping text backwards by characters, words, or lines with advanced customization options for creating text effects, puzzles, and creative content.",
-            "url": "https://dapsiwow.com/tools/reverse-text-tool",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Character, word, and line reversal",
-              "Upside-down character flipping",
-              "Real-time text transformation",
-              "Advanced customization options",
-              "One-click copy functionality"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

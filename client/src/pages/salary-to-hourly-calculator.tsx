@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -180,16 +179,6 @@ export default function SalaryToHourlyCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={salaryToHourlyCalculatorSEO} />
-      <Helmet>
-        <title>Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage | DapsiWow</title>
-        <meta name="description" content="Free salary to hourly calculator. Convert annual salary to hourly wage or hourly rate to yearly salary. Supports 12+ countries, multiple currencies, and includes vacation time calculations. Get instant results with detailed pay period breakdowns." />
-        <meta name="keywords" content="salary to hourly calculator, hourly to salary converter, annual salary calculator, hourly wage calculator, salary converter, wage calculator, pay calculator, income converter, salary breakdown, hourly rate calculator" />
-        <meta property="og:title" content="Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage | DapsiWow" />
-        <meta property="og:description" content="Free salary to hourly calculator with support for multiple currencies and country-specific working hour standards." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/salary-to-hourly-calculator" />
-      </Helmet>
-      
       <Header />
       
       <main>

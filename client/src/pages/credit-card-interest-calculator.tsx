@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -188,42 +187,6 @@ export default function CreditCardInterestCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={creditCardInterestCalculatorSEO} />
-      <Helmet>
-        <title>Credit Card Interest Calculator - Calculate Payoff Time & Interest Costs | DapsiWow</title>
-        <meta name="description" content="Free credit card interest calculator to calculate payoff time, total interest costs, and monthly payments. Compare payment strategies and find the best way to become debt-free. Support for multiple currencies worldwide." />
-        <meta name="keywords" content="credit card interest calculator, credit card payoff calculator, debt payoff calculator, minimum payment calculator, credit card debt calculator, interest calculator, monthly payment calculator, debt consolidation calculator, credit card balance calculator" />
-        <meta property="og:title" content="Credit Card Interest Calculator - Calculate Payoff Time & Interest Costs | DapsiWow" />
-        <meta property="og:description" content="Free credit card interest calculator for calculating payoff time, total interest costs, and optimal payment strategies. Get debt-free faster with smart payment planning." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/credit-card-interest-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Credit Card Interest Calculator",
-            "description": "Free online credit card interest calculator to calculate payoff time, total interest costs, and monthly payments. Compare different payment strategies to become debt-free faster.",
-            "url": "https://dapsiwow.com/tools/credit-card-interest-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate credit card payoff time",
-              "Compare payment strategies",
-              "Interest cost analysis",
-              "Debt elimination planning",
-              "Multiple currency support",
-              "Payment schedule breakdown"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

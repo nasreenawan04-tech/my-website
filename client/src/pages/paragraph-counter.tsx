@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -164,42 +163,6 @@ Finally, this last paragraph completes our sample text, giving you four distinct
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={paragraphCounterSEO} />
-      <Helmet>
-        <title>Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow</title>
-        <meta name="description" content="Free online paragraph counter tool to analyze text structure, count paragraphs, and get detailed paragraph statistics for better writing and content organization." />
-        <meta name="keywords" content="paragraph counter, text structure analysis, paragraph count tool, writing analysis, paragraph statistics, content structure, document analysis, text organization" />
-        <meta property="og:title" content="Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow" />
-        <meta property="og:description" content="Free paragraph counter with detailed text structure analysis. Count paragraphs and analyze text composition instantly with our professional tool." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/paragraph-counter" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Paragraph Counter",
-            "description": "Free online paragraph counter tool to analyze text structure, count paragraphs, and get detailed paragraph statistics for better writing and content organization.",
-            "url": "https://dapsiwow.com/tools/paragraph-counter",
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Real-time paragraph counting",
-              "Paragraph length categorization",
-              "Text structure analysis",
-              "Reading time estimation",
-              "Detailed paragraph statistics",
-              "Writing insights and metrics"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>

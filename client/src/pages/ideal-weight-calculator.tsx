@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -128,42 +127,6 @@ const IdealWeightCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={idealWeightCalculatorSEO} />
-      <Helmet>
-        <title>Ideal Weight Calculator - Calculate Your Ideal Body Weight | DapsiWow</title>
-        <meta name="description" content="Calculate your ideal body weight using proven medical formulas (Devine, Robinson, Miller, Hamwi). Get personalized weight recommendations based on height and gender with our advanced ideal weight calculator." />
-        <meta name="keywords" content="ideal weight calculator, ideal body weight calculator, perfect weight calculator, healthy weight calculator, target weight calculator, weight goals calculator, medical weight formulas, Devine formula, Robinson formula" />
-        <meta property="og:title" content="Ideal Weight Calculator - Calculate Your Ideal Body Weight | DapsiWow" />
-        <meta property="og:description" content="Calculate your ideal body weight using multiple proven medical formulas. Get personalized weight recommendations and healthy weight ranges instantly." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/ideal-weight-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Ideal Weight Calculator",
-            "description": "Calculate your ideal body weight using multiple proven medical formulas including Devine, Robinson, Miller, and Hamwi formulas. Get personalized weight recommendations based on height and gender.",
-            "url": "https://dapsiwow.com/tools/ideal-weight-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Multiple medical weight formulas",
-              "Metric and Imperial units",
-              "Healthy weight range calculation",
-              "Gender-specific calculations",
-              "Instant results",
-              "Scientific accuracy"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

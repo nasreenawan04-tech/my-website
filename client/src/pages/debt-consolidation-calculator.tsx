@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -214,42 +213,6 @@ export default function DebtConsolidationCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={debtConsolidationCalculatorSEO} />
-      <Helmet>
-        <title>Debt Consolidation Calculator - Calculate Loan Savings | DapsiWow</title>
-        <meta name="description" content="Free debt consolidation calculator to compare multiple debts vs. a single consolidated loan. Calculate potential monthly savings, total interest savings, and payoff timelines with multiple currency support." />
-        <meta name="keywords" content="debt consolidation calculator, loan consolidation, debt payoff calculator, credit card consolidation, personal loan calculator, debt management, financial planning, loan comparison, debt consolidation loan, debt relief calculator" />
-        <meta property="og:title" content="Debt Consolidation Calculator - Calculate Loan Savings | DapsiWow" />
-        <meta property="og:description" content="Calculate potential savings from consolidating multiple debts into a single loan. Compare payments, interest rates, and payoff timelines with our free debt consolidation calculator." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/debt-consolidation-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Debt Consolidation Calculator",
-            "description": "Free online debt consolidation calculator to analyze potential savings from consolidating multiple debts into a single loan. Compare monthly payments, interest costs, and payoff timelines.",
-            "url": "https://dapsiwow.com/tools/debt-consolidation-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate debt consolidation savings",
-              "Compare multiple debt scenarios",
-              "Support for multiple currencies",
-              "Monthly payment analysis",
-              "Interest savings calculator",
-              "Payoff timeline comparison"
-            ]
-          })}
-        </script>
-      </Helmet>
-      
       <Header />
       
       <main>

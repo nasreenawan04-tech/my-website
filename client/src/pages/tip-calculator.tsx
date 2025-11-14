@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -148,46 +147,6 @@ export default function TipCalculator() {
   return (
     <>
       <ToolSEOHead config={tipCalculatorSEO} />
-      <Helmet>
-        <title>Free Tip Calculator - Calculate Tips & Split Bills Worldwide | Global Tipping Standards</title>
-        <meta name="description" content="Advanced tip calculator with global tipping standards for 15+ countries. Calculate restaurant tips, split bills among groups, and learn cultural tipping etiquette. Free online tool with currency conversion and service quality assessment." />
-        <meta name="keywords" content="tip calculator, gratuity calculator, bill splitter, tipping guide, restaurant tip calculator, worldwide tipping, tip percentage calculator, bill splitting calculator, tipping etiquette, service gratuity, cultural tipping standards, international tipping, group bill splitter, restaurant bill calculator, dining tip calculator" />
-        <meta property="og:title" content="Free Tip Calculator - Calculate Tips & Split Bills Worldwide" />
-        <meta property="og:description" content="Advanced tip calculator with global tipping standards, bill splitting, currency conversion, and service quality assessment. Perfect for travelers, students, and business professionals." />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DapsiWow" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free Tip Calculator - Global Tipping Standards & Bill Splitting" />
-        <meta name="twitter:description" content="Calculate tips accurately with cultural intelligence. Supports 15+ countries, multiple currencies, and advanced bill splitting for any dining scenario." />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tip-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Tip Calculator",
-            "description": "Advanced online tip calculator with global tipping standards, bill splitting, and currency conversion for restaurants and services worldwide.",
-            "url": "https://toolshub.com/tools/tip-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Web Browser",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Global tipping standards for 15+ countries",
-              "Multi-currency support",
-              "Advanced bill splitting for groups",
-              "Service quality assessment",
-              "Cultural tipping guidelines",
-              "Expense reporting features"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-tip-calculator">
         <Header />
         

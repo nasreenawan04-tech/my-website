@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -196,42 +195,6 @@ const RunningPaceCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <ToolSEOHead config={runningPaceCalculatorSEO} />
-      <Helmet>
-        <title>Running Pace Calculator - Calculate Pace, Speed & Race Times | DapsiWow</title>
-        <meta name="description" content="Free running pace calculator for runners and athletes. Calculate running pace per mile/km, speed, and race finish times with professional accuracy for training and race planning." />
-        <meta name="keywords" content="running pace calculator, pace per mile, pace per km, running speed calculator, race time calculator, marathon pace, 5k pace, training pace, running calculator" />
-        <meta property="og:title" content="Running Pace Calculator - Calculate Pace, Speed & Race Times | DapsiWow" />
-        <meta property="og:description" content="Professional running pace calculator for training and race planning. Calculate pace, speed, and finish times for any distance with instant, accurate results." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/running-pace-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Running Pace Calculator",
-            "description": "Professional running pace calculator for athletes and fitness enthusiasts to calculate running pace, speed, and race finish times with detailed analysis and training insights.",
-            "url": "https://dapsiwow.com/tools/running-pace-calculator",
-            "applicationCategory": "HealthApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate running pace per mile and kilometer",
-              "Determine running speed in mph and km/h",
-              "Predict race finish times",
-              "Support for multiple distance units",
-              "Common race distance presets",
-              "Training pace analysis"
-            ]
-          })}
-        </script>
-      </Helmet>
-
       <Header />
 
       <main>
