@@ -10,17 +10,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable Gzip compression for better performance and crawl budget
-// PERFORMANCE OPTIMIZATION: Maximum gzip compression level 9
-// Note: Brotli compression can be added in production with nginx/cloudflare
+// Enable compression for better performance and crawl budget
 app.use(compression({
-  level: 9, // Maximum gzip compression for production
-  threshold: 1024, // Only compress responses > 1KB
   filter: (req, res) => {
     if (req.headers['x-no-compression']) {
       return false;
     }
-    // Compress all text-based responses
     return compression.filter(req, res);
   }
 }));
@@ -30,22 +25,19 @@ app.use((req, res, next) => {
   // HSTS (HTTP Strict Transport Security)
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
-  // Content Security Policy - ENFORCED MODE (tested in report-only with zero violations)
-  // Includes: Google Fonts, Ads, Firebase, reCAPTCHA, Vercel Live, and Pusher (for real-time)
-  // CANONICAL CSP - Must match vercel.json and client/index.html exactly
+  // Content Security Policy - optimized for Google Fonts, Ads, Firebase, reCAPTCHA, and Vercel
   res.setHeader('Content-Security-Policy', 
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel.live https://vercel.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://apis.google.com https://recaptcha.google.com https://www.recaptcha.net https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://*.adtrafficquality.google; " +
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://vercel.com https://vercel.live/fonts; " +
-    "font-src 'self' https://fonts.gstatic.com https://vercel.live/ https://assets.vercel.com data:; " +
-    "img-src 'self' data: blob: https://*.google.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://vercel.com https:; " +
-    "connect-src 'self' https://vercel.live https://*.vercel.live https://*.pusher.com wss://*.pusher.com https://vitals.vercel-insights.com https://firebaseinstallations.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://oauth2.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.firebaseio.com https://www.googleapis.com https://accounts.google.com https://www.google.com https://www.gstatic.com https://*.adtrafficquality.google wss://*.firebaseio.com wss://*.replit.dev ws://localhost:*; " +
-    "frame-src 'self' https://vercel.live/ https://googleads.g.doubleclick.net https://www.google.com https://recaptcha.google.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://dapsiwow.firebaseapp.com https://accounts.google.com https://www.recaptcha.net https://*.adtrafficquality.google; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://pagead2.googlesyndication.com https://partner.googleadservices.com https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://apis.google.com https://recaptcha.google.com https://www.recaptcha.net https://www.gstatic.com https://fonts.googleapis.com https://fonts.gstatic.com https://*.adtrafficquality.google https://tpc.googlesyndication.com https://www.google-analytics.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "font-src 'self' https://fonts.gstatic.com data:; " +
+    "img-src 'self' data: blob: https://*.google.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https:; " +
+    "connect-src 'self' https://firebaseinstallations.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://oauth2.googleapis.com https://www.google-analytics.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.firebaseio.com https://www.googleapis.com https://accounts.google.com https://www.google.com https://www.gstatic.com https://*.adtrafficquality.google wss://*.firebaseio.com https://fonts.googleapis.com https://fonts.gstatic.com; " +
+    "frame-src 'self' https://googleads.g.doubleclick.net https://www.google.com https://recaptcha.google.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://dapsiwow.firebaseapp.com https://accounts.google.com https://www.recaptcha.net https://*.adtrafficquality.google; " +
     "worker-src 'self' blob:; " +
-    "object-src 'none'; " +
+    "frame-ancestors 'self'; " +
     "base-uri 'self'; " +
     "form-action 'self'; " +
-    "frame-ancestors 'none'; " +
     "upgrade-insecure-requests"
   );
   

@@ -45,62 +45,27 @@ export default defineConfig({
     cssMinify: "lightningcss",
     sourcemap: false,
     cssCodeSplit: true,
-    assetsInlineLimit: 4096, // Reduced for better caching/CDN efficiency
+    assetsInlineLimit: 8192, // Increased for better caching
     rollupOptions: {
       output: {
-        // PERFORMANCE OPTIMIZATION: Aggressive code-splitting for better caching
-        manualChunks: (id) => {
-          // Core React libraries - changes rarely
-          if (id.includes('react-dom')) return 'react-dom';
-          if (id.includes('react') && !id.includes('react-dom')) return 'react';
-          
-          // Router - changes rarely
-          if (id.includes('wouter')) return 'router';
-          
-          // React Query - changes rarely
-          if (id.includes('@tanstack/react-query')) return 'query';
-          
-          // UI components by category - better granularity
-          if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-alert-dialog')) return 'ui-dialog';
-          if (id.includes('@radix-ui/react-dropdown-menu') || id.includes('@radix-ui/react-menubar')) return 'ui-menu';
-          if (id.includes('@radix-ui/react-tabs') || id.includes('@radix-ui/react-accordion')) return 'ui-tabs';
-          if (id.includes('@radix-ui/react-select')) return 'ui-select';
-          if (id.includes('@radix-ui/react-slider') || id.includes('@radix-ui/react-progress')) return 'ui-slider';
-          if (id.includes('@radix-ui')) return 'ui-misc';
-          
-          // Form libraries - used on many tool pages
-          if (id.includes('react-hook-form') || id.includes('@hookform/resolvers')) return 'form';
-          if (id.includes('zod')) return 'zod';
-          
-          // Heavy libraries - separate for better caching
-          if (id.includes('recharts')) return 'charts';
-          if (id.includes('jspdf')) return 'pdf';
-          if (id.includes('html2canvas')) return 'canvas';
-          if (id.includes('qrcode') || id.includes('jsqr')) return 'qr';
-          if (id.includes('firebase')) return 'firebase';
-          if (id.includes('marked')) return 'markdown';
-          
-          // Icons - used everywhere
-          if (id.includes('lucide-react')) return 'icons';
-          
-          // Utilities - small, frequently used
-          if (id.includes('clsx') || id.includes('tailwind-merge')) return 'utils-style';
-          if (id.includes('framer-motion')) return 'utils-motion';
-          if (id.includes('date-fns')) return 'utils-date';
-          
-          // SEO/Meta
-          if (id.includes('react-helmet-async')) return 'helmet';
-          
-          // Vendor fallback for other node_modules
-          if (id.includes('node_modules')) return 'vendor';
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          router: ["wouter"],
+          query: ["@tanstack/react-query"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tabs", "@radix-ui/react-select", "@radix-ui/react-slider"],
+          form: ["react-hook-form", "@hookform/resolvers", "zod"],
+          charts: ["recharts"],
+          icons: ["lucide-react"],
+          utils: ["clsx", "tailwind-merge", "framer-motion", "date-fns"],
+          helmet: ["react-helmet-async"]
         },
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
-        assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+        chunkFileNames: "assets/[name]-[hash].js",
+        entryFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]"
       }
     },
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 500 // Reduced for better bundle size awareness
+    chunkSizeWarningLimit: 1000
   },
   server: {
     host: "0.0.0.0",
