@@ -887,7 +887,7 @@ export default function CompoundInterestCalculator() {
         doc.text('GOAL PLANNING ANALYSIS', margin + 5, yPos + 7);
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(9);
-        
+
         if (result.goalAnalysis.isGoalAchievable) {
           doc.text(`Time to Reach Goal: ${result.goalAnalysis.timeToReachGoal} years`, margin + 5, yPos + 14);
         } else {
@@ -937,7 +937,7 @@ export default function CompoundInterestCalculator() {
       doc.setFontSize(10);
       doc.setTextColor(...interpretationColor);
       doc.setFont('helvetica', 'bold');
-      
+
       // Split text into lines
       const lines = doc.splitTextToSize(interpretation, pageWidth - (2 * margin) - 10);
       let textY = yPos + 6;
@@ -958,7 +958,7 @@ export default function CompoundInterestCalculator() {
             backgroundColor: '#ffffff',
             logging: false
           });
-          
+
           if (chartCanvas && chartCanvas.height > 0) {
             if (yPos > pageHeight - 60) {
               doc.addPage();
@@ -996,12 +996,12 @@ export default function CompoundInterestCalculator() {
             backgroundColor: '#ffffff',
             logging: false
           });
-          
+
           if (breakdownCanvas && breakdownCanvas.height > 0) {
             const bottomMargin = 30;
             const breakdownWidth = pageWidth - (2 * margin);
             const scale = breakdownWidth / breakdownCanvas.width;
-            
+
             // Helper function to add header
             const addBreakdownHeader = (continued: boolean = false) => {
               doc.setFontSize(14);
@@ -1027,7 +1027,7 @@ export default function CompoundInterestCalculator() {
             // Split canvas across unlimited pages
             let sourceYOffset = 0;
             let pageIndex = 0;
-            
+
             while (sourceYOffset < breakdownCanvas.height) {
               // Calculate available height for current page
               const availableHeight = pageHeight - yPos - bottomMargin;
@@ -1035,13 +1035,13 @@ export default function CompoundInterestCalculator() {
                 availableHeight / scale,
                 breakdownCanvas.height - sourceYOffset
               );
-              
+
               // Create off-screen canvas for this page slice
               const pageCanvas = document.createElement('canvas');
               pageCanvas.width = breakdownCanvas.width;
               pageCanvas.height = sourceHeightForPage;
               const pageCtx = pageCanvas.getContext('2d');
-              
+
               if (pageCtx) {
                 // Draw slice
                 pageCtx.drawImage(
@@ -1052,10 +1052,10 @@ export default function CompoundInterestCalculator() {
                 const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
                 const renderedHeight = sourceHeightForPage * scale;
                 doc.addImage(pageImgData, 'JPEG', margin, yPos, breakdownWidth, renderedHeight);
-                
+
                 // Move to next slice
                 sourceYOffset += sourceHeightForPage;
-                
+
                 // Add new page if more content remains
                 if (sourceYOffset < breakdownCanvas.height) {
                   doc.addPage();
@@ -1325,7 +1325,7 @@ export default function CompoundInterestCalculator() {
                   "name": "How accurate is the compound interest calculator?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Our calculator uses precise mathematical formulas for compound interest calculations. Results are accurate for planning purposes, but actual investment returns may vary based on market conditions and fees."
+                    "text": "Our calculator uses precise mathematical formulas. Results are accurate for planning purposes, but actual investment returns may vary based on market conditions and fees."
                   }
                 }
               ]
@@ -1724,12 +1724,12 @@ export default function CompoundInterestCalculator() {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
+                      ref={calculateButtonRef}
                       onClick={calculateCompoundInterest}
                       size="lg"
                       className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg"
                       data-testid="button-calculate"
                     >
-                      <Calculator className="w-5 h-5 mr-2" />
                       Calculate Compound Interest
                     </Button>
                     <Button
@@ -2106,17 +2106,17 @@ export default function CompoundInterestCalculator() {
 
           {/* SEO Content Sections */}
           <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 space-y-8 sm:space-y-12 md:space-y-16">
-            
+
             {/* Introduction Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">What is Compound Interest Calculator?</h2>
-              
+
               <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
                 The Compound Interest Calculator is a free online tool that helps you determine how your investments grow over time through the power of compounding. Whether you're planning for retirement with a 401k or IRA, saving for a child's college education, or building long-term wealth, this calculator provides instant, accurate projections of your investment growth.
               </p>
 
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Why Use Our Compound Interest Calculator?</h3>
-              
+
               <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                 <li className="flex items-start gap-2 sm:gap-3">
                   <Check className="w-5 h-5 text-blue-600 font-bold flex-shrink-0" />
@@ -2141,7 +2141,7 @@ export default function CompoundInterestCalculator() {
               </ul>
 
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Who Benefits from Compound Interest Calculator?</h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="bg-blue-50 rounded-lg p-4 sm:p-5">
                   <h4 className="font-bold text-gray-900 mb-2">Retirement Planners</h4>
@@ -2165,7 +2165,7 @@ export default function CompoundInterestCalculator() {
             {/* How to Use Section */}
             <section className="bg-gradient-to-br from-white to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">How to Use the Compound Interest Calculator</h2>
-              
+
               <div className="space-y-4 sm:space-y-6">
                 <div className="flex gap-3 sm:gap-4">
                   <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">1</div>
@@ -2254,13 +2254,13 @@ export default function CompoundInterestCalculator() {
             {/* Real-World Examples Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Compound Interest Calculator Examples</h2>
-              
+
               {/* Example 1 */}
               <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Example 1: Retirement Planning with 401k</h3>
-                
+
                 <p className="text-sm sm:text-base text-gray-700 mb-4"><strong>Scenario:</strong> Sarah is 30 years old and wants to plan for retirement at 65. She has $25,000 in her 401k and contributes $500 monthly with her employer match.</p>
-                
+
                 <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
                   <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Input Values:</h4>
                   <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
@@ -2283,16 +2283,16 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Interpretation:</strong> Sarah's $25,000 initial investment combined with consistent monthly contributions grows to over $1.2 million by retirement. The power of compound interest generates nearly $924,000 in returns - almost 3x her total contributions!</p>
-                
+
                 <p className="text-sm sm:text-base text-gray-700"><strong>Action Steps:</strong> Maximize 401k contributions to get full employer match, increase contributions when you receive raises, and maintain a diversified portfolio for consistent 8% returns.</p>
               </div>
 
               {/* Example 2 */}
               <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Example 2: College Savings Fund (529 Plan)</h3>
-                
+
                 <p className="text-sm sm:text-base text-gray-700 mb-4"><strong>Scenario:</strong> John and Mary have a newborn and want to save for their child's college education starting in 18 years. They open a 529 plan with $10,000 and contribute $200 monthly.</p>
-                
+
                 <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
                   <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Input Values:</h4>
                   <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
@@ -2316,16 +2316,16 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Interpretation:</strong> The family's $53,200 in contributions grows to $104,467 - nearly doubling their money. After accounting for 3% inflation, they'll have $61,453 in today's purchasing power, covering a significant portion of college expenses.</p>
-                
+
                 <p className="text-sm sm:text-base text-gray-700"><strong>Action Steps:</strong> Start saving early to maximize compound growth, use tax-advantaged 529 plans, adjust contributions as income increases, and consider more conservative allocations as college approaches.</p>
               </div>
 
               {/* Example 3 */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Example 3: Wealth Building with Lump Sum Investment</h3>
-                
+
                 <p className="text-sm sm:text-base text-gray-700 mb-4"><strong>Scenario:</strong> Michael receives a $100,000 inheritance at age 40 and invests it in a diversified index fund portfolio, making no additional contributions.</p>
-                
+
                 <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
                   <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Input Values:</h4>
                   <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
@@ -2347,7 +2347,7 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Interpretation:</strong> Even without adding a single dollar, Michael's $100,000 grows to over $860,000 in 25 years. The 9% annual return generated $762,308 in compound interest - 7.6x the initial investment!</p>
-                
+
                 <p className="text-sm sm:text-base text-gray-700"><strong>Action Steps:</strong> Invest lump sums immediately rather than timing the market, maintain a long-term perspective through market volatility, rebalance annually to maintain target allocations, and avoid withdrawing funds to maximize compounding.</p>
               </div>
             </section>
@@ -2355,7 +2355,7 @@ export default function CompoundInterestCalculator() {
             {/* Understanding Results Section */}
             <section className="bg-gradient-to-br from-white to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Understanding Your Compound Interest Results</h2>
-              
+
               <p className="text-base sm:text-lg text-gray-700 mb-6">The calculator provides comprehensive analysis of your investment growth. Here's how to interpret each metric:</p>
 
               <div className="space-y-6 sm:space-y-8">
@@ -2415,9 +2415,9 @@ export default function CompoundInterestCalculator() {
             {/* Formula Explained Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Compound Interest Formula Explained</h2>
-              
+
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">The Standard Compound Interest Formula</h3>
-              
+
               <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-6 overflow-x-auto">
                 <p className="font-mono text-sm sm:text-base md:text-lg text-center mb-4 font-bold text-gray-900">
                   A = P(1 + r/n)^(nt)
@@ -2432,7 +2432,7 @@ export default function CompoundInterestCalculator() {
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Step-by-Step Calculation Example</h3>
-              
+
               <p className="text-sm sm:text-base text-gray-700 mb-4">Let's calculate compound interest for $10,000 invested at 8% annual rate for 5 years with monthly compounding:</p>
 
               <div className="bg-blue-50 rounded-lg p-4 sm:p-6 mb-6 space-y-3 text-sm sm:text-base">
@@ -2471,7 +2471,7 @@ export default function CompoundInterestCalculator() {
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Formula with Regular Contributions (SIP)</h3>
-              
+
               <p className="text-sm sm:text-base text-gray-700 mb-4">When making regular contributions, we add the future value of an annuity formula:</p>
 
               <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-6 overflow-x-auto">
@@ -2494,7 +2494,7 @@ export default function CompoundInterestCalculator() {
             {/* Comparison Section */}
             <section className="bg-gradient-to-br from-white to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Simple Interest vs Compound Interest</h2>
-              
+
               <p className="text-base sm:text-lg text-gray-700 mb-6">Understanding the difference between simple and compound interest is crucial for maximizing investment returns. Let's compare:</p>
 
               <div className="overflow-x-auto mb-6">
@@ -2537,7 +2537,7 @@ export default function CompoundInterestCalculator() {
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Comparison Example: $10,000 at 6% for 20 Years</h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
                 <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 sm:p-6">
                   <h4 className="font-bold text-gray-900 mb-3 text-center text-lg">Simple Interest</h4>
@@ -2567,7 +2567,7 @@ export default function CompoundInterestCalculator() {
               </div>
 
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 mt-6 sm:mt-8">When to Use Each Type</h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="bg-white border-2 border-gray-200 rounded-lg p-4 sm:p-5">
                   <h4 className="font-bold text-gray-900 mb-2">Use Simple Interest For:</h4>
@@ -2593,7 +2593,7 @@ export default function CompoundInterestCalculator() {
             {/* FAQ Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Frequently Asked Questions (FAQ)</h2>
-              
+
               <div className="space-y-6 sm:space-y-8">
                 {/* Question 1 */}
                 <div className="border-b border-gray-200 pb-6 sm:pb-8">
@@ -2705,7 +2705,7 @@ export default function CompoundInterestCalculator() {
             {/* Related Calculators Section */}
             <section className="bg-gradient-to-br from-white to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Related Financial Calculators</h2>
-              
+
               <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">Explore these powerful financial tools to make informed decisions about your money:</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -2786,7 +2786,7 @@ export default function CompoundInterestCalculator() {
             {/* Final CTA Section */}
             <section className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl text-white text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Ready to Watch Your Wealth Grow?</h2>
-              
+
               <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto">
                 Start calculating your investment growth today with our free compound interest calculator. No registration, no hidden fees - just powerful financial insights at your fingertips.
               </p>
