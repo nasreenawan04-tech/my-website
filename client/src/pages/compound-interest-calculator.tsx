@@ -1775,6 +1775,20 @@ export default function CompoundInterestCalculator() {
                         </Button>
                       </div>
 
+                      {/* Export PDF Button */}
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1.5" />
+                          Export PDF
+                        </Button>
+                      </div>
+
                       {/* Social Share Section */}
                       <div className="border-t pt-3 sm:pt-4">
                         <p className="text-center text-xs sm:text-sm md:text-base font-medium text-gray-700 mb-2 sm:mb-3 px-2">Share your results:</p>
