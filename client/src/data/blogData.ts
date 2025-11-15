@@ -26,7 +26,7 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-15T00:00:00Z",
     dateModified: "2025-11-15T00:00:00Z",
     category: "Web Tools",
-    image: "/images/blog/online-calculators-2025.jpg",
+    image: "/images/blog/online-calculators-2025.png",
     excerpt: "Discover 10 essential free online calculators for finance, health, and productivity that save time and help you make better decisions.",
     metaDescription: "Discover 10 essential free online calculators for finance, health, and productivity. Save time and make better decisions with these must-have tools in 2025.",
     keywords: ["free online calculators", "online calculator tools", "financial calculator", "health calculator", "productivity tools", "calculator website", "BMI calculator", "mortgage calculator"],
