@@ -146,7 +146,7 @@ const HelpCenter = () => {
         <meta property="og:title" content="Help Center - DapsiWow Support & FAQ" />
         <meta property="og:description" content="Get comprehensive support for DapsiWow's free online tools and find answers to all your questions." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/help" />
+        <link rel="canonical" href="https://dapsiwow.com/help-center" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-help-center">

@@ -100,7 +100,7 @@ const AllTools = () => {
         <meta name="description" content="Browse all 150+ professional-grade free online tools including Finance Calculators, Text Analyzers, Health Trackers, and Productivity Tools. No registration required." />
         <meta name="keywords" content="online tools directory, free tools, calculator tools, text tools, finance tools, health tools" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="/tools" />
+        <link rel="canonical" href="https://dapsiwow.com/tools" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-all-tools">

@@ -15,7 +15,7 @@ const AboutUs = () => {
         <meta property="og:description" content="Learn about DapsiWow's mission to provide free, accessible online tools for everyone." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="/about-us" />
+        <link rel="canonical" href="https://dapsiwow.com/about-us" />
       </Helmet>
 
       <div className="min-h-screen bg-white">

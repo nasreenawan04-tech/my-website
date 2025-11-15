@@ -13,7 +13,7 @@ export default function TermsOfService() {
         <meta property="og:title" content="Terms of Service - DapsiWow Online Tools | User Agreement & Guidelines" />
         <meta property="og:description" content="Complete terms and conditions for using DapsiWow's free online tools safely and responsibly." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/terms" />
+        <link rel="canonical" href="https://dapsiwow.com/terms-of-service" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
       </Helmet>

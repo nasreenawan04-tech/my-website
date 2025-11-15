@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
         <meta property="og:title" content="Privacy Policy - DapsiWow Online Tools | Data Protection & Security" />
         <meta property="og:description" content="Comprehensive privacy policy covering data protection, user rights, and security measures for DapsiWow's free online tools." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/privacy" />
+        <link rel="canonical" href="https://dapsiwow.com/privacy-policy" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
       </Helmet>
