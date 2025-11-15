@@ -96,6 +96,10 @@ export default function CompoundInterestCalculator() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
+  // Refs for PDF export (charts and tables)
+  const chartRef = useRef<HTMLDivElement>(null);
+  const yearlyBreakdownRef = useRef<HTMLDivElement>(null);
+
   // Helper function to clear specific validation error
   const clearError = (field: keyof ValidationErrors) => {
     if (validationErrors[field]) {
@@ -945,6 +949,130 @@ export default function CompoundInterestCalculator() {
       doc.setTextColor(0, 0, 0);
       yPos += interpretationHeight + 10;
 
+      // Capture charts if visible
+      if (showChart && chartRef.current) {
+        try {
+          // Capture first, then add page only if successful
+          const chartCanvas = await html2canvas(chartRef.current, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          
+          if (chartCanvas && chartCanvas.height > 0) {
+            if (yPos > pageHeight - 60) {
+              doc.addPage();
+              yPos = margin;
+            }
+
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(30, 58, 138);
+            doc.text('INVESTMENT BREAKDOWN CHARTS', margin, yPos);
+            yPos += 2;
+            doc.setDrawColor(37, 99, 235);
+            doc.line(margin, yPos, margin + 80, yPos);
+            yPos += 10;
+            doc.setTextColor(0, 0, 0);
+
+            const chartImgData = chartCanvas.toDataURL('image/jpeg', 0.85);
+            const chartWidth = pageWidth - (2 * margin);
+            const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
+
+            doc.addImage(chartImgData, 'JPEG', margin, yPos, chartWidth, chartHeight);
+            yPos += chartHeight + 10;
+          }
+        } catch (error) {
+          console.error('Error capturing charts:', error);
+        }
+      }
+
+      // Capture yearly breakdown if visible
+      if (showBreakdown && yearlyBreakdownRef.current) {
+        try {
+          // Capture first, then add page only if successful
+          const breakdownCanvas = await html2canvas(yearlyBreakdownRef.current, {
+            scale: 1.5,
+            backgroundColor: '#ffffff',
+            logging: false
+          });
+          
+          if (breakdownCanvas && breakdownCanvas.height > 0) {
+            const bottomMargin = 30;
+            const breakdownWidth = pageWidth - (2 * margin);
+            const scale = breakdownWidth / breakdownCanvas.width;
+            
+            // Helper function to add header
+            const addBreakdownHeader = (continued: boolean = false) => {
+              doc.setFontSize(14);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              const headerText = continued 
+                ? 'YEARLY INVESTMENT BREAKDOWN - CONTINUED'
+                : 'YEARLY INVESTMENT BREAKDOWN';
+              doc.text(headerText, margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              const lineWidth = continued ? 100 : 80;
+              doc.line(margin, yPos, margin + lineWidth, yPos);
+              yPos += 10;
+              doc.setTextColor(0, 0, 0);
+            };
+
+            // Start first page
+            doc.addPage();
+            yPos = margin;
+            addBreakdownHeader(false);
+
+            // Split canvas across unlimited pages
+            let sourceYOffset = 0;
+            let pageIndex = 0;
+            
+            while (sourceYOffset < breakdownCanvas.height) {
+              // Calculate available height for current page
+              const availableHeight = pageHeight - yPos - bottomMargin;
+              const sourceHeightForPage = Math.min(
+                availableHeight / scale,
+                breakdownCanvas.height - sourceYOffset
+              );
+              
+              // Create off-screen canvas for this page slice
+              const pageCanvas = document.createElement('canvas');
+              pageCanvas.width = breakdownCanvas.width;
+              pageCanvas.height = sourceHeightForPage;
+              const pageCtx = pageCanvas.getContext('2d');
+              
+              if (pageCtx) {
+                // Draw slice
+                pageCtx.drawImage(
+                  breakdownCanvas,
+                  0, sourceYOffset, breakdownCanvas.width, sourceHeightForPage,
+                  0, 0, breakdownCanvas.width, sourceHeightForPage
+                );
+                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
+                const renderedHeight = sourceHeightForPage * scale;
+                doc.addImage(pageImgData, 'JPEG', margin, yPos, breakdownWidth, renderedHeight);
+                
+                // Move to next slice
+                sourceYOffset += sourceHeightForPage;
+                
+                // Add new page if more content remains
+                if (sourceYOffset < breakdownCanvas.height) {
+                  doc.addPage();
+                  yPos = margin;
+                  addBreakdownHeader(true);
+                  pageIndex++;
+                }
+              } else {
+                break;
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Error capturing yearly breakdown:', error);
+        }
+      }
+
       // Professional Footer (matching loan calculator exactly)
       const totalPages = (doc as any).internal.getNumberOfPages();
       for (let i = 1; i <= totalPages; i++) {
@@ -1726,7 +1854,7 @@ export default function CompoundInterestCalculator() {
 
                       {/* Chart Section */}
                       {showChart && (
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                        <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
                           <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Investment Breakdown</h3>
                           <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
                             <div className="w-full max-w-[280px] sm:max-w-xs">
@@ -1901,7 +2029,7 @@ export default function CompoundInterestCalculator() {
 
                       {/* Yearly Investment Breakdown */}
                       {result && showBreakdown && (
-                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                        <div ref={yearlyBreakdownRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-yearly-breakdown">
                               Yearly Investment Breakdown
