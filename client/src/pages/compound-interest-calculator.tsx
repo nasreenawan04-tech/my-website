@@ -1727,7 +1727,8 @@ export default function CompoundInterestCalculator() {
                       ref={calculateButtonRef}
                       onClick={calculateCompoundInterest}
                       size="lg"
-                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg"
+                      className="w-full sm:w-auto text-white font-semibold shadow-lg"
+                      style={{ backgroundColor: '#2469f5' }}
                       data-testid="button-calculate"
                     >
                       Calculate Compound Interest
