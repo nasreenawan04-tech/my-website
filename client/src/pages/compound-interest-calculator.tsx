@@ -2043,7 +2043,7 @@ export default function CompoundInterestCalculator() {
 
                       {/* Yearly Investment Breakdown */}
                       {result && showBreakdown && (
-                        <div ref={yearlyBreakdownRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-yearly-breakdown">
                               Yearly Investment Breakdown
@@ -2060,7 +2060,7 @@ export default function CompoundInterestCalculator() {
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">Track your investment growth year by year with detailed breakdown of principal, interest, and contributions.</p>
-                          <div className="overflow-x-auto -mx-4 sm:mx-0" ref={tableScrollRef}>
+                          <div className="overflow-x-auto -mx-4 sm:mx-0" ref={yearlyBreakdownRef}>
                             <table className="w-full min-w-[600px]" data-testid="table-yearly-breakdown">
                               <thead className="bg-gray-50">
                                 <tr>
