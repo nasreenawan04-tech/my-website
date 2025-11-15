@@ -45,7 +45,7 @@
   --card-foreground: hsl(210, 25%, 7.84%);
   --popover: hsl(0, 0%, 100%);
   --popover-foreground: hsl(210, 25%, 7.84%);
-  --primary: #2469f5;
+  --primary: hsl(220, 91%, 60%);
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(210, 25%, 7.84%);
   --secondary-foreground: hsl(0, 0%, 100%);
@@ -113,7 +113,7 @@
   --card-foreground: hsl(0, 0%, 85%);
   --popover: hsl(0, 0%, 0%);
   --popover-foreground: hsl(200, 7%, 91%);
-  --primary: #2469f5;
+  --primary: hsl(204, 88%, 52%);
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(195, 15%, 95%);
   --secondary-foreground: hsl(210, 25%, 7.84%);
@@ -207,7 +207,7 @@
 }
 
 .gradient-hero {
-  background: #2469f5;
+  background: linear-gradient(135deg, hsl(220, 91%, 55%) 0%, hsl(220, 91%, 60%) 30%, hsl(271, 91%, 60%) 100%);
 }
 
 /* Custom scrollbar for search dropdown */
