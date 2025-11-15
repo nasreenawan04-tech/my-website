@@ -1,0 +1,99 @@
+You are a senior frontend security engineer.  
+Your task is to FIX ALL Content Security Policy (CSP) errors in my React website.
+
+My console shows these errors:
+
+- "Loading the script 'https://vercel.live/_next-live/feedback/feedback.js' violates the following Content Security Policy directive..."
+- Google Ads, Google Fonts, Google APIs being blocked by CSP
+- recaptcha scripts blocked
+- firebase scripts blocked
+- Service Worker (sw.js) failed fetch due to CSP
+
+IMPORTANT:
+1. Do NOT remove adsbygoogle or recaptcha – they must load correctly.
+2. The ERR_BLOCKED_BY_CLIENT error is caused by browser AdBlock. Do NOT try to fix it in code.
+
+Your tasks:
+
+===============================
+### TASK 1 — FIND WHERE CSP IS DEFINED
+Search the entire project for:
+- index.html <meta http-equiv="Content-Security-Policy">
+- public/_headers
+- public/headers.json
+- vercel.json "headers"
+- next.config.js (if exists)
+- service worker sw.js adding CSP
+- any HTML template injecting CSP
+
+Identify EXACT file and location.
+
+===============================
+### TASK 2 — UPDATE THE CSP TO ALLOW REQUIRED DOMAINS
+Update CSP so the following domains are allowed:
+
+script-src:
+  'self' 'unsafe-inline' 'unsafe-eval'
+  https://vercel.live
+  https://pagead2.googlesyndication.com
+  https://partner.googleadservices.com
+  https://www.googletagmanager.com
+  https://googleads.g.doubleclick.net
+  https://www.google.com
+  https://apis.google.com
+  https://recaptcha.google.com
+  https://www.recaptcha.net
+  https://www.gstatic.com
+  https://fonts.googleapis.com
+  https://fonts.gstatic.com
+  https://*.adtrafficquality.google
+
+style-src:
+  'self' 'unsafe-inline' https://fonts.googleapis.com
+
+font-src:
+  'self' https://fonts.gstatic.com data:
+
+connect-src:
+  'self'
+  https://firebaseinstallations.googleapis.com
+  https://identitytoolkit.googleapis.com
+  https://securetoken.googleapis.com
+  https://firestore.googleapis.com
+  https://oauth2.googleapis.com
+  https://www.google-analytics.com
+  https://www.googletagmanager.com
+
+img-src:
+  'self' data: blob:
+  https://*.google.com
+  https://*.g.doubleclick.net
+  https://pagead2.googlesyndication.com
+
+frame-src:
+  https://googleads.g.doubleclick.net
+  https://www.google.com
+  https://recaptcha.google.com
+
+worker-src:
+  'self' blob:
+
+===============================
+### TASK 3 — FIX SERVICE WORKER ERRORS
+If sw.js exists:
+- Wrap all external fetches in try/catch
+- Do not intercept Google Ads or Google APIs
+- Add `ignore` rules for adsbygoogle and recaptcha
+
+If service worker is not needed, remove it entirely.
+
+===============================
+### TASK 4 — OUTPUT
+Produce:
+
+1. Full updated CSP code  
+2. Exact file paths changed  
+3. Updated index.html, headers, or vercel.json  
+4. Updated sw.js (or delete it if better)
+
+Make sure the solution removes all CSP console errors except the AdBlocker error (ERR_BLOCKED_BY_CLIENT).
