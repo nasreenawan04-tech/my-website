@@ -2052,7 +2052,7 @@ export default function CompoundInterestCalculator() {
                               onClick={() => setShowBreakdown(false)}
                               variant="outline"
                               size="sm"
-                              className="text-xs sm:text-sm w-full sm:w-auto"
+                              className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
                               data-testid="button-hide-breakdown"
                             >
                               <RotateCcw className="w-4 h-4 mr-1.5" />
