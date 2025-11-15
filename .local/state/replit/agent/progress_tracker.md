@@ -616,3 +616,4 @@
 [x] 538. Take screenshot to confirm homepage displaying correctly with all features fully functional
 [x] 539. Mark all migration tasks as complete - project fully operational in Replit environment ✓
 [x] 540. Add Bing Webmaster Tools verification file (BingSiteAuth.xml) to public directory for site ownership verification (November 15, 2025)
+[x] 541. Fix BingSiteAuth.xml 404 error - moved file from project root public/ to client/public/ directory where Vite serves static files
