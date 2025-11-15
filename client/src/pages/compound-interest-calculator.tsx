@@ -1726,7 +1726,7 @@ export default function CompoundInterestCalculator() {
                     <Button
                       onClick={calculateCompoundInterest}
                       size="lg"
-                      className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg"
+                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg"
                       data-testid="button-calculate"
                     >
                       <Calculator className="w-5 h-5 mr-2" />
