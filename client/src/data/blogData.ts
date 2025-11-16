@@ -1325,6 +1325,14 @@ export const blogPosts: BlogPost[] = [
           These long-tail queries may have lower search volumes, but they convert at 2.5x higher rates than generic keywords because users are seeking specific solutions.
         </p>
 
+        <img 
+          src="/images/blog/calculator-seo-metrics-dashboard.png" 
+          alt="SEO analytics dashboard showing calculator performance metrics including organic traffic growth, engagement rates, keyword rankings, and backlink acquisition charts" 
+          class="rounded-lg w-full h-auto my-8"
+          width="1200"
+          height="675"
+        />
+
         <h2 class="text-2xl font-bold mt-8 mb-4">Lead Generation: Where Calculators Truly Shine</h2>
         <p class="mb-4">
           Beyond SEO benefits, interactive calculators are powerful lead generation engines. Here's why they outperform traditional forms:
@@ -1340,6 +1348,14 @@ export const blogPosts: BlogPost[] = [
           <li><strong>Better Quality Leads:</strong> Users who engage with calculators are actively researching solutions, making them warmer prospects</li>
           <li><strong>Valuable Data Collection:</strong> Calculator inputs reveal user needs, budgets, and pain points for targeted follow-up</li>
         </ul>
+
+        <img 
+          src="/images/blog/calculator-lead-generation-funnel.png" 
+          alt="Lead generation conversion funnel visualization showing how interactive calculators convert website visitors into qualified leads with higher conversion rates" 
+          class="rounded-lg w-full h-auto my-8"
+          width="1200"
+          height="675"
+        />
 
         <div class="bg-accent/50 border border-border rounded-lg p-6 my-8">
           <h3 class="text-xl font-semibold mb-3">Real-World Success Story</h3>
@@ -1381,6 +1397,14 @@ export const blogPosts: BlogPost[] = [
           <li>Optimized for thumb-friendly interactions</li>
         </ul>
 
+        <img 
+          src="/images/blog/calculator-mobile-responsive.png" 
+          alt="Mobile-first responsive calculator design showing seamless adaptation across smartphone, tablet, and desktop devices with optimized user experience" 
+          class="rounded-lg w-full h-auto my-8"
+          width="1200"
+          height="675"
+        />
+
         <h3 class="text-xl font-semibold mt-6 mb-3">2. Comprehensive Supporting Content</h3>
         <p class="mb-4">
           Don't just embed a calculator—surround it with valuable content:
@@ -1420,6 +1444,14 @@ export const blogPosts: BlogPost[] = [
 
         <h2 class="text-2xl font-bold mt-8 mb-4">Types of High-Performing Calculators for Different Niches</h2>
         
+        <img 
+          src="/images/blog/calculator-types-collection.png" 
+          alt="Collection of different calculator types including financial mortgage calculators, health BMI tools, business ROI calculators, and productivity utilities displayed on modern devices" 
+          class="rounded-lg w-full h-auto my-8"
+          width="1200"
+          height="675"
+        />
+
         <h3 class="text-xl font-semibold mt-6 mb-3">Financial Calculators (High Search Volume)</h3>
         <ul class="list-disc pl-6 mb-4 space-y-2">
           <li><a href="/mortgage-calculator" class="text-primary hover:underline font-medium">Mortgage Calculator</a> - Essential for real estate and finance sites</li>

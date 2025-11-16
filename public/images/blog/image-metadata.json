@@ -46,5 +46,33 @@
     "webpSize": 44032,
     "pngSize": 867328,
     "alt": "Interactive calculator tools displayed on laptop showing ROI calculations, engagement metrics, and SEO rankings improvement"
+  },
+  {
+    "slug": "calculator-seo-metrics-dashboard",
+    "width": 1200,
+    "height": 675,
+    "pngSize": 0,
+    "alt": "SEO analytics dashboard showing calculator performance metrics including organic traffic growth, engagement rates, keyword rankings, and backlink acquisition charts"
+  },
+  {
+    "slug": "calculator-lead-generation-funnel",
+    "width": 1200,
+    "height": 675,
+    "pngSize": 0,
+    "alt": "Lead generation conversion funnel visualization showing how interactive calculators convert website visitors into qualified leads with higher conversion rates"
+  },
+  {
+    "slug": "calculator-types-collection",
+    "width": 1200,
+    "height": 675,
+    "pngSize": 0,
+    "alt": "Collection of different calculator types including financial mortgage calculators, health BMI tools, business ROI calculators, and productivity utilities displayed on modern devices"
+  },
+  {
+    "slug": "calculator-mobile-responsive",
+    "width": 1200,
+    "height": 675,
+    "pngSize": 0,
+    "alt": "Mobile-first responsive calculator design showing seamless adaptation across smartphone, tablet, and desktop devices with optimized user experience"
   }
 ]
