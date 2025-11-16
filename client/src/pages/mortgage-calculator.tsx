@@ -864,89 +864,137 @@ const MortgageCalculator = () => {
         }
       }
 
-      // Capture amortization schedule if visible
-      if (showAmortization && amortizationRef.current) {
+      // Draw amortization schedule if visible
+      if (showAmortization && result?.amortizationSchedule) {
         try {
-          // Capture first, then add page only if successful
-          const amortizationCanvas = await html2canvas(amortizationRef.current, {
-            scale: 1.5,
-            backgroundColor: '#ffffff',
-            logging: false
-          });
+          doc.addPage();
+          yPos = margin;
           
-          if (amortizationCanvas && amortizationCanvas.height > 0) {
-            const bottomMargin = 30;
-            const amortizationWidth = pageWidth - (2 * margin);
-            const scale = amortizationWidth / amortizationCanvas.width;
-            
-            // Helper function to add header
-            const addAmortizationHeader = (continued: boolean = false) => {
-              doc.setFontSize(14);
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 85, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+          
+          // Optimized column widths for mobile (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            payment: 22,    // "Pay #"
+            amount: 37,     // "Payment"
+            principal: 37,  // "Principal"
+            interest: 37,   // "Interest"
+            balance: 53     // "Balance"
+          };
+          
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
+          
+          let xPos = margin;
+          doc.text('PAY #', xPos + 2, yPos + 6);
+          xPos += colWidths.payment;
+          doc.text('PAYMENT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.amount;
+          doc.text('PRINCIPAL', xPos + colWidths.principal - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.principal;
+          doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.interest;
+          doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
+          
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows
+          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          let rowCount = 0;
+          
+          result.amortizationSchedule.forEach((payment, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
+              doc.addPage();
+              yPos = margin;
+              
+              // Repeat header
+              doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(30, 58, 138);
-              const headerText = continued 
-                ? 'AMORTIZATION SCHEDULE (FIRST 5 YEARS) - CONTINUED'
-                : 'AMORTIZATION SCHEDULE (FIRST 5 YEARS)';
-              doc.text(headerText, margin, yPos);
+              doc.text('AMORTIZATION SCHEDULE - CONTINUED', margin, yPos);
               yPos += 2;
               doc.setDrawColor(37, 99, 235);
-              const lineWidth = continued ? 110 : 90;
-              doc.line(margin, yPos, margin + lineWidth, yPos);
+              doc.line(margin, yPos, margin + 85, yPos);
               yPos += 10;
-              doc.setTextColor(0, 0, 0);
-            };
-
-            // Start first page
-            doc.addPage();
-            yPos = margin;
-            addAmortizationHeader(false);
-
-            // Split canvas across unlimited pages
-            let sourceYOffset = 0;
-            let pageIndex = 0;
-            
-            while (sourceYOffset < amortizationCanvas.height) {
-              // Calculate available height for current page
-              const availableHeight = pageHeight - yPos - bottomMargin;
-              const sourceHeightForPage = Math.min(
-                availableHeight / scale,
-                amortizationCanvas.height - sourceYOffset
-              );
               
-              // Create off-screen canvas for this page slice
-              const pageCanvas = document.createElement('canvas');
-              pageCanvas.width = amortizationCanvas.width;
-              pageCanvas.height = sourceHeightForPage;
-              const pageCtx = pageCanvas.getContext('2d');
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
               
-              if (pageCtx) {
-                // Draw slice
-                pageCtx.drawImage(
-                  amortizationCanvas,
-                  0, sourceYOffset, amortizationCanvas.width, sourceHeightForPage,
-                  0, 0, amortizationCanvas.width, sourceHeightForPage
-                );
-                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
-                const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'JPEG', margin, yPos, amortizationWidth, renderedHeight);
-                
-                // Move to next slice
-                sourceYOffset += sourceHeightForPage;
-                
-                // Add new page if more content remains
-                if (sourceYOffset < amortizationCanvas.height) {
-                  doc.addPage();
-                  yPos = margin;
-                  addAmortizationHeader(true);
-                  pageIndex++;
-                }
-              } else {
-                break;
-              }
+              xPos = margin;
+              doc.text('PAY #', xPos + 2, yPos + 6);
+              xPos += colWidths.payment;
+              doc.text('PAYMENT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.amount;
+              doc.text('PRINCIPAL', xPos + colWidths.principal - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.principal;
+              doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.interest;
+              doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
             }
-          }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            doc.setTextColor(17, 24, 39);
+            doc.text(String(payment.month), xPos + 2, yPos + 5.5);
+            
+            xPos += colWidths.payment;
+            doc.text(formatCurrency(payment.payment), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.amount;
+            doc.setTextColor(22, 163, 74);
+            doc.text(formatCurrency(payment.principal), xPos + colWidths.principal - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.principal;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(payment.interest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.interest;
+            doc.setTextColor(17, 24, 39);
+            doc.text(formatCurrency(payment.balance), xPos + colWidths.balance - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
         } catch (error) {
-          console.error('Error capturing amortization schedule:', error);
+          console.error('Error generating amortization schedule:', error);
         }
       }
 
