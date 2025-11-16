@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { generateShareableLink, copyToClipboard } from '@/lib/userPreferences';
 import { useToast } from '@/hooks/use-toast';
+import { trackShareClicked } from '@/lib/analytics';
 
 interface ShareResultsButtonProps {
   toolId: string;
@@ -29,19 +30,27 @@ const ShareResultsButton = ({
     
     try {
       const shareableLink = generateShareableLink(toolId, results);
+      let shareMethod = 'clipboard';
       
       // Try to use native Web Share API first (mobile/modern browsers)
       if (navigator.share && /Mobi|Android/i.test(navigator.userAgent)) {
+        shareMethod = 'native';
         await navigator.share({
           title: 'Calculation Results - DapsiWow',
           text: 'Check out my calculation results',
           url: shareableLink,
         });
+        
+        // Track successful share via native API
+        trackShareClicked(toolId, shareMethod, { success: true });
       } else {
         // Fallback to clipboard
         const success = await copyToClipboard(shareableLink);
         
         if (success) {
+          // Track successful clipboard share
+          trackShareClicked(toolId, shareMethod, { success: true });
+          
           toast({
             title: "Link copied!",
             description: "The shareable link has been copied to your clipboard.",
@@ -52,6 +61,13 @@ const ShareResultsButton = ({
       }
     } catch (error) {
       console.error('Share failed:', error);
+      
+      // Track failed share attempt
+      trackShareClicked(toolId, 'failed', { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Unknown error'
+      });
+      
       toast({
         title: "Share failed",
         description: "Unable to share results. Please try again.",

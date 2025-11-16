@@ -62,6 +62,24 @@ function ScrollToTop() {
   return null;
 }
 
+// Track page views for analytics
+function PageViewTracker() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    // Wait for document.title to update after route change
+    // This ensures Helmet has updated the title before we track the page view
+    requestAnimationFrame(() => {
+      // Dynamically import analytics to avoid issues during SSR
+      import('@/lib/analytics').then(({ trackPageView }) => {
+        trackPageView(location, document.title);
+      });
+    });
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
     <ErrorBoundary onError={(error, errorInfo) => {
@@ -69,6 +87,7 @@ function Router() {
       // Log critical navigation errors
     }}>
       <ScrollToTop />
+      <PageViewTracker />
       <Suspense fallback={<PageLoadingSpinner />}>
         <Switch>
           {/* Core pages */}

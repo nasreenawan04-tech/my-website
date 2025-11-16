@@ -18,6 +18,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveCalculation } from '@/lib/calculationHistory';
+import { trackToolUsed } from '@/lib/analytics';
 
 interface LoanResult {
   monthlyPayment: number;
@@ -189,6 +190,15 @@ export default function LoanCalculator() {
       });
       return;
     }
+
+    // Track tool usage for analytics
+    trackToolUsed('Loan Calculator', 'Finance', {
+      loan_amount: principal,
+      interest_rate: annualRate,
+      term_months: termUnit === 'years' ? term * 12 : term,
+      payment_frequency: paymentFrequency,
+      has_extra_payment: extraPmt > 0
+    });
 
     const annualRateDecimal = annualRate / 100;
     const termMonths = termUnit === 'years' ? term * 12 : term;

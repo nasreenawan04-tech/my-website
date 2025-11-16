@@ -13,6 +13,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Separator } from '@/components/ui/separator';
 import { executeRecaptcha } from '@/lib/recaptcha';
 import Logo from '@/components/Logo';
+import { trackConversionSignup } from '@/lib/analytics';
 
 export default function Signup() {
   const [firstName, setFirstName] = useState('');
@@ -82,6 +83,13 @@ export default function Signup() {
       await executeRecaptcha('SIGNUP');
       const displayName = `${firstName.trim()} ${lastName.trim()}`.replace(/\s+/g, ' ');
       await signup(email, password, displayName);
+      
+      // Track successful signup conversion
+      trackConversionSignup('email', {
+        user_name: displayName,
+        user_email_domain: email.split('@')[1] // Track email provider without PII
+      });
+      
       toast({
         title: 'Welcome to DapsiWow!',
         description: 'Your account has been created successfully.'
@@ -103,6 +111,12 @@ export default function Signup() {
     try {
       await executeRecaptcha('SIGNUP');
       await loginWithGoogle();
+      
+      // Track successful Google signup conversion
+      trackConversionSignup('google', {
+        provider: 'Google OAuth'
+      });
+      
       toast({
         title: 'Welcome to DapsiWow!',
         description: 'Your account has been created successfully.'

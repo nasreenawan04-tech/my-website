@@ -1,12 +1,19 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { visualizer } from "rollup-plugin-visualizer";
+import { injectGTMPlugin } from "./client/vite-plugin-inject-gtm";
 
-export default defineConfig({
-  plugins: [
-    react(),
+export default defineConfig(({ mode }) => {
+  // Load env file from client directory (Vite's root directory)
+  // This ensures .env files are loaded from client/.env as per Vite conventions
+  const env = loadEnv(mode, path.resolve(__dirname, "client"), '');
+  
+  return {
+    plugins: [
+      react(),
+      injectGTMPlugin(env),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [runtimeErrorOverlay()]
@@ -96,5 +103,6 @@ export default defineConfig({
   },
   esbuild: {
     drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
-  }
+  },
+};
 });
