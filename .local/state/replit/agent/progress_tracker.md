@@ -355,6 +355,8 @@
 [x] 285. Restart workflow and verify application is running successfully on port 5000
 [x] 286. Take screenshot to confirm homepage and all features are fully functional
 [x] 287. Mark all migration tasks as complete - project fully operational in Replit environment
+[x] 288. Optimize Loan Calculator PDF for mobile: reduced margins (20→12), optimized font sizes (24→20, 11→10, 10→9, 8.5), tighter spacing, better chart quality (0.9), compact footer
+[x] 289. Optimize Mortgage Calculator PDF for mobile: applied same mobile-responsive improvements as Loan Calculator
 [x] 283. Complete EMI Calculator SEO content enhancement with 9 comprehensive sections following Complete SEO Mastery Course guidelines from attached_assets - ARCHITECT APPROVED
 [x] 284. Run npm install to resolve vite not found error after latest migration
 [x] 285. Restart workflow and verify application is running successfully on port 5000
