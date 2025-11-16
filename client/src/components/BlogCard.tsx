@@ -15,12 +15,22 @@ export function BlogCard({ post }: BlogCardProps) {
     <Card className="hover-elevate active-elevate-2 h-full flex flex-col overflow-hidden transition-all duration-300 group border shadow-sm hover:shadow-lg">
       <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
         <div className="relative h-48 sm:h-52 md:h-56 lg:h-60 overflow-hidden bg-muted">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-            data-testid={`img-blog-${post.id}`}
-          />
+          <picture>
+            <source srcSet={post.image} type="image/webp" />
+            {post.imageFallback && (
+              <source srcSet={post.imageFallback} type="image/png" />
+            )}
+            <img
+              src={post.imageFallback || post.image}
+              alt={post.imageAlt}
+              width={post.imageWidth}
+              height={post.imageHeight}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              data-testid={`img-blog-${post.id}`}
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
           <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
             <Badge 

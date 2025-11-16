@@ -7,6 +7,10 @@ export interface BlogPost {
   dateModified: string; // ISO-8601 format for schema.org
   category: string;
   image: string;
+  imageFallback?: string; // PNG fallback for browsers that don't support WebP
+  imageAlt: string; // Descriptive alt text for SEO and accessibility
+  imageWidth: number; // Image width in pixels for CLS prevention
+  imageHeight: number; // Image height in pixels for CLS prevention
   excerpt: string;
   content: string; // NOTE: HTML content should be sanitized if sourced externally to prevent XSS
   metaDescription: string;
@@ -26,7 +30,11 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-15T00:00:00Z",
     dateModified: "2025-11-15T00:00:00Z",
     category: "Web Tools",
-    image: "/images/blog/online-calculators-2025.png",
+    image: "/images/blog/online-calculators-2025.webp",
+    imageFallback: "/images/blog/online-calculators-2025.png",
+    imageAlt: "Essential free online calculators including mortgage, loan, BMI, and financial planning tools displayed on modern devices",
+    imageWidth: 1200,
+    imageHeight: 655,
     excerpt: "Discover 10 essential free online calculators for finance, health, and productivity that save time and help you make better decisions.",
     metaDescription: "Discover 10 essential free online calculators for finance, health, and productivity. Save time and make better decisions with these must-have tools in 2025.",
     keywords: ["free online calculators", "online calculator tools", "financial calculator", "health calculator", "productivity tools", "calculator website", "BMI calculator", "mortgage calculator"],
@@ -366,7 +374,11 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-14T00:00:00Z",
     dateModified: "2025-11-14T00:00:00Z",
     category: "Web Tools",
-    image: "/images/blog/financial-calculator-2025.png",
+    image: "/images/blog/financial-planning-guide.webp",
+    imageFallback: "/images/blog/financial-planning-guide.png",
+    imageAlt: "Financial planning workspace with calculator, charts, budget spreadsheets, and investment documents",
+    imageWidth: 800,
+    imageHeight: 533,
     excerpt: "Discover which financial calculator fits your needs. From loans to investments, learn how to choose the right tool for smarter money decisions.",
     metaDescription: "Discover which financial calculator fits your needs. From loans to investments, learn how to choose the right tool to make smarter money decisions in 2025.",
     keywords: ["financial calculator", "loan calculator", "mortgage calculator", "investment calculator", "ROI calculator", "retirement planning"],
@@ -668,7 +680,11 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-13T00:00:00Z",
     dateModified: "2025-11-13T00:00:00Z",
     category: "SEO",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=80",
+    image: "/images/blog/seo-guide-small-business.webp",
+    imageFallback: "/images/blog/seo-guide-small-business.png",
+    imageAlt: "Small business owner working on SEO strategy with laptop showing analytics dashboard and search rankings",
+    imageWidth: 800,
+    imageHeight: 450,
     excerpt: "Discover how GEO is revolutionizing SEO for AI search engines like ChatGPT, Perplexity, and Google AI Overviews in 2025.",
     metaDescription: "Learn how GEO (Generative Engine Optimization) helps your content rank in AI-powered search engines like ChatGPT, Perplexity, and Google AI Overviews.",
     keywords: ["GEO", "generative engine optimization", "AI search optimization", "ChatGPT SEO", "zero-click search"],
@@ -872,7 +888,11 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-13T00:00:00Z",
     dateModified: "2025-11-13T00:00:00Z",
     category: "SEO",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    image: "/images/blog/productivity-tools-2025.webp",
+    imageFallback: "/images/blog/productivity-tools-2025.png",
+    imageAlt: "Modern productivity tools and workspace setup with digital devices, planners, and organizational systems",
+    imageWidth: 800,
+    imageHeight: 570,
     excerpt: "AI is changing how websites get ranked — here's how to use it effectively for better search engine rankings.",
     metaDescription: "Discover how AI-powered SEO tools can optimize content, improve rankings, and drive organic traffic to your website in 2025.",
     keywords: ["AI SEO", "website optimization", "search engine ranking", "SEO tools"],
@@ -957,7 +977,11 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-12T00:00:00Z",
     dateModified: "2025-11-12T00:00:00Z",
     category: "Finance",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop&q=80",
+    image: "/images/blog/financial-planning-guide.webp",
+    imageFallback: "/images/blog/financial-planning-guide.png",
+    imageAlt: "Financial planning workspace with calculator, charts, budget spreadsheets, and investment documents",
+    imageWidth: 800,
+    imageHeight: 533,
     excerpt: "Discover the must-have financial calculators that help business owners make informed decisions and maximize profitability.",
     metaDescription: "Explore 10 essential financial calculators every business owner should use for budgeting, ROI analysis, loan calculations, and more.",
     keywords: ["financial calculators", "business tools", "ROI calculator", "loan calculator"],
@@ -1087,7 +1111,11 @@ export const blogPosts: BlogPost[] = [
     dateISO: "2025-11-10T00:00:00Z",
     dateModified: "2025-11-10T00:00:00Z",
     category: "Productivity",
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=80",
+    image: "/images/blog/web-development-trends.webp",
+    imageFallback: "/images/blog/web-development-trends.png",
+    imageAlt: "Web developer coding on laptop with multiple screens showing modern web development tools and frameworks",
+    imageWidth: 800,
+    imageHeight: 533,
     excerpt: "Save hours of manual work with these essential text formatting tools that every content creator should know about.",
     metaDescription: "Learn about powerful text formatting tools that help content creators save time, improve consistency, and produce professional content faster.",
     keywords: ["text tools", "content creation", "productivity", "formatting tools"],

@@ -96,12 +96,22 @@ export default function BlogPage() {
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative h-64 md:h-auto">
-                  <img
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    className="w-full h-full object-cover"
-                    data-testid="img-featured-post"
-                  />
+                  <picture>
+                    <source srcSet={featuredPost.image} type="image/webp" />
+                    {featuredPost.imageFallback && (
+                      <source srcSet={featuredPost.imageFallback} type="image/png" />
+                    )}
+                    <img
+                      src={featuredPost.imageFallback || featuredPost.image}
+                      alt={featuredPost.imageAlt}
+                      width={featuredPost.imageWidth}
+                      height={featuredPost.imageHeight}
+                      loading="eager"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                      data-testid="img-featured-post"
+                    />
+                  </picture>
                   <div className="absolute top-4 left-4">
                     <Badge className="bg-primary text-primary-foreground" data-testid="badge-featured">
                       <TrendingUp className="w-3 h-3 mr-1" />
