@@ -800,8 +800,8 @@ export default function EMICalculator() {
           yPos += 10;
           doc.setFont('helvetica', 'normal');
           
-          // Table rows
-          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          // Table rows - 30 rows per page
+          const rowsPerPage = 30;
           let rowCount = 0;
           
           comparisonEMIs.forEach((scenario, index) => {
@@ -945,8 +945,8 @@ export default function EMICalculator() {
           yPos += 10;
           doc.setFont('helvetica', 'normal');
           
-          // Table rows
-          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          // Table rows - 30 rows per page
+          const rowsPerPage = 30;
           let rowCount = 0;
           
           result.amortizationSchedule.forEach((payment, index) => {

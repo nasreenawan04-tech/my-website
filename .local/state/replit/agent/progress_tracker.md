@@ -328,3 +328,11 @@
 [x] 657. Update comparison mortgages table to show exactly 30 rows per page in PDF export
 [x] 658. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
 [x] 659. Restart workflow and verify PDF export functionality works correctly ✓
+[x] 660. Update EMI Calculator PDF to show exactly 30 rows per page in amortization schedule (November 17, 2025)
+[x] 661. Update comparison EMI scenarios table to show exactly 30 rows per page in PDF export
+[x] 662. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
+[x] 663. Restart workflow and verify PDF export functionality works correctly ✓
+[x] 664. Update Business Loan Calculator PDF to show exactly 30 rows per page in amortization schedule (November 17, 2025)
+[x] 665. Update comparison business loans table to show exactly 30 rows per page in PDF export
+[x] 666. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
+[x] 667. Restart workflow and verify PDF export functionality works correctly ✓
