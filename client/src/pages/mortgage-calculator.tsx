@@ -2303,9 +2303,8 @@ const MortgageCalculator = () => {
 
                       {/* Payment Charts */}
                       {showCharts && (
-                      <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                        {/* Pie Chart - Payment Composition */}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                        <div className="space-y-4">
+                        <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
                           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Total Payment Composition</h3>
                           <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
                             <RechartsPieChart>
@@ -2477,7 +2476,7 @@ const MortgageCalculator = () => {
                             </ResponsiveContainer>
                           </div>
                         </div>
-                      </div>
+                        </div>
                       )}
 
                       {/* Amortization Schedule Section */}

@@ -346,3 +346,12 @@
 [x] 675. Wrap both pie chart and area chart in single showCharts conditional block
 [x] 676. Fix JSX structure with proper closing braces and spacing
 [x] 677. Restart workflow and verify area chart displays correctly ✓
+[x] 678. Update Loan Calculator, Mortgage Calculator, and EMI Calculator chart layouts to match Business Loan Calculator (November 17, 2025)
+[x] 679. Change Loan Calculator chart layout from 2-column grid to vertical stack (space-y-4)
+[x] 680. Update Loan Calculator to show pie chart and area chart stacked vertically (full width each)
+[x] 681. Change Mortgage Calculator chart layout from 2-column grid to vertical stack (space-y-4)
+[x] 682. Update Mortgage Calculator to show pie chart and area chart stacked vertically (full width each)
+[x] 683. Change EMI Calculator chart layout from 2-column grid to vertical stack (space-y-4)
+[x] 684. Update EMI Calculator to show pie chart and area chart stacked vertically (full width each)
+[x] 685. Fix JSX structure with proper closing braces for all three calculators
+[x] 686. Restart workflow and verify all calculators display charts correctly ✓
