@@ -11,7 +11,6 @@ import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/comp
 import { Slider } from '@/components/ui/slider';
 import { Info, Calculator, Home, DollarSign, TrendingDown, Download, Share2, PieChart, Clock, RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -659,6 +658,7 @@ const MortgageCalculator = () => {
       // Extra Payment Savings
       if (result.extraPaymentSavings) {
         const paymentsPerYear = paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12;
+        const totalPayments = parseFloat(loanTerm) * 12;
         let totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
         let yearsSaved = Math.floor(totalYearsSaved);
         let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
@@ -677,12 +677,13 @@ const MortgageCalculator = () => {
           timeSavedText = `${monthsSaved} months`;
         }
 
+        const boxHeight = 30;
         doc.setFillColor(236, 253, 245);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 18, 'F');
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'F');
         doc.setDrawColor(34, 197, 94);
         doc.setLineWidth(0.8);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 18, 'S');
-        
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'S');
+
         doc.setFontSize(9);
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(22, 163, 74);
@@ -690,10 +691,14 @@ const MortgageCalculator = () => {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(8);
         doc.text(`Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}`, margin + 3, yPos + 12);
-        doc.text(`Time Saved: ${timeSavedText}`, pageWidth / 2 + 3, yPos + 12);
-        
+        doc.text(`Time Saved: ${timeSavedText}`, margin + 3, yPos + 18);
+        doc.text(`New Payoff Time: ${Math.round(result.extraPaymentSavings.newPayoffTime)} payments`, pageWidth / 2 + 3, yPos + 12);
+        doc.text(`Original Total: ${Math.round(totalPayments)} payments`, pageWidth / 2 + 3, yPos + 18);
+        doc.setFontSize(7);
+        doc.text(`(Paying off ${Math.round(result.extraPaymentSavings.timeSaved)} payments earlier!)`, pageWidth / 2 + 3, yPos + 24);
+
         doc.setTextColor(0, 0, 0);
-        yPos += 24;
+        yPos += boxHeight + 6;
       }
 
       // Interpretation Section
@@ -740,127 +745,150 @@ const MortgageCalculator = () => {
       doc.setTextColor(0, 0, 0);
       yPos += interpretationHeight + 8;
 
-      // Capture charts if visible
-      if (showChart && chartRef.current) {
+      // Draw comparison table if exists
+      if (comparisonMortgages.length > 0) {
         try {
-          // Capture first, then add page only if successful
-          const chartCanvas = await html2canvas(chartRef.current, {
-            scale: 1.5,
-            backgroundColor: '#ffffff',
-            logging: false
-          });
+          doc.addPage();
+          yPos = margin;
           
-          if (chartCanvas && chartCanvas.height > 0) {
-            if (yPos > pageHeight - 60) {
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('MORTGAGE SCENARIO COMPARISON', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 80, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+          
+          // Optimized column widths (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            loan: 20,           // "LOAN"
+            amount: 33,         // "AMOUNT"
+            rate: 18,           // "RATE"
+            term: 25,           // "TERM"
+            payment: 45,        // "MONTHLY PAYMENT"
+            interest: 45        // "TOTAL INTEREST"
+          };
+          
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
+          
+          let xPos = margin;
+          doc.text('LOAN', xPos + 2, yPos + 6);
+          xPos += colWidths.loan;
+          doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.amount;
+          doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.rate;
+          doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.term;
+          doc.text('MONTHLY PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.payment;
+          doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows
+          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          let rowCount = 0;
+          
+          comparisonMortgages.forEach((mortgage, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
               doc.addPage();
               yPos = margin;
-            }
-
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor(30, 58, 138);
-            doc.text('MORTGAGE BREAKDOWN CHARTS', margin, yPos);
-            yPos += 2;
-            doc.setDrawColor(37, 99, 235);
-            doc.line(margin, yPos, margin + 75, yPos);
-            yPos += 8;
-            doc.setTextColor(0, 0, 0);
-
-            const chartImgData = chartCanvas.toDataURL('image/jpeg', 0.9);
-            const chartWidth = pageWidth - (2 * margin);
-            const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 25);
-
-            doc.addImage(chartImgData, 'JPEG', margin, yPos, chartWidth, chartHeight);
-            yPos += chartHeight + 8;
-          }
-        } catch (error) {
-          console.error('Error capturing charts:', error);
-        }
-      }
-
-      // Capture comparison table if exists
-      if (comparisonMortgages.length > 0 && comparisonRef.current) {
-        try {
-          // Capture first, then add page only if successful
-          const tableCanvas = await html2canvas(comparisonRef.current, {
-            scale: 1.5,
-            backgroundColor: '#ffffff',
-            logging: false
-          });
-          
-          if (tableCanvas && tableCanvas.height > 0) {
-            const bottomMargin = 30;
-            const tableWidth = pageWidth - (2 * margin);
-            const scale = tableWidth / tableCanvas.width;
-            
-            // Helper function to add header
-            const addComparisonHeader = (continued: boolean = false) => {
-              doc.setFontSize(14);
+              
+              // Repeat header
+              doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(30, 58, 138);
-              const headerText = continued 
-                ? 'MORTGAGE SCENARIO COMPARISON - CONTINUED'
-                : 'MORTGAGE SCENARIO COMPARISON';
-              doc.text(headerText, margin, yPos);
+              doc.text('MORTGAGE SCENARIO COMPARISON - CONTINUED', margin, yPos);
               yPos += 2;
               doc.setDrawColor(37, 99, 235);
-              const lineWidth = continued ? 100 : 80;
-              doc.line(margin, yPos, margin + lineWidth, yPos);
+              doc.line(margin, yPos, margin + 100, yPos);
               yPos += 10;
-              doc.setTextColor(0, 0, 0);
-            };
-
-            // Start first page
-            doc.addPage();
-            yPos = margin;
-            addComparisonHeader(false);
-
-            // Split canvas across unlimited pages
-            let sourceYOffset = 0;
-            let pageIndex = 0;
-            
-            while (sourceYOffset < tableCanvas.height) {
-              // Calculate available height for current page
-              const availableHeight = pageHeight - yPos - bottomMargin;
-              const sourceHeightForPage = Math.min(
-                availableHeight / scale,
-                tableCanvas.height - sourceYOffset
-              );
               
-              // Create off-screen canvas for this page slice
-              const pageCanvas = document.createElement('canvas');
-              pageCanvas.width = tableCanvas.width;
-              pageCanvas.height = sourceHeightForPage;
-              const pageCtx = pageCanvas.getContext('2d');
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
               
-              if (pageCtx) {
-                // Draw slice
-                pageCtx.drawImage(
-                  tableCanvas,
-                  0, sourceYOffset, tableCanvas.width, sourceHeightForPage,
-                  0, 0, tableCanvas.width, sourceHeightForPage
-                );
-                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
-                const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'JPEG', margin, yPos, tableWidth, renderedHeight);
-                
-                // Move to next slice
-                sourceYOffset += sourceHeightForPage;
-                
-                // Add new page if more content remains
-                if (sourceYOffset < tableCanvas.height) {
-                  doc.addPage();
-                  yPos = margin;
-                  addComparisonHeader(true);
-                  pageIndex++;
-                }
-              } else {
-                break;
-              }
+              xPos = margin;
+              doc.text('LOAN', xPos + 2, yPos + 6);
+              xPos += colWidths.loan;
+              doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.amount;
+              doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.rate;
+              doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.term;
+              doc.text('MONTHLY PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.payment;
+              doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
             }
-          }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            // Loan name
+            doc.setTextColor(17, 24, 39);
+            doc.text(mortgage.name, xPos + 2, yPos + 5.5);
+            
+            // Loan Amount
+            xPos += colWidths.loan;
+            doc.text(formatCurrency(mortgage.loanAmount), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
+            
+            // Rate
+            xPos += colWidths.amount;
+            doc.text(`${mortgage.rate}%`, xPos + colWidths.rate - 2, yPos + 5.5, { align: 'right' });
+            
+            // Term
+            xPos += colWidths.rate;
+            doc.text(`${mortgage.term}y`, xPos + colWidths.term - 2, yPos + 5.5, { align: 'right' });
+            
+            // Monthly Payment
+            xPos += colWidths.term;
+            doc.setTextColor(37, 99, 235);
+            doc.text(formatCurrency(mortgage.monthlyPayment), xPos + colWidths.payment - 2, yPos + 5.5, { align: 'right' });
+            
+            // Total Interest
+            xPos += colWidths.payment;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(mortgage.totalInterest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
         } catch (error) {
-          console.error('Error capturing comparison table:', error);
+          console.error('Error generating comparison table:', error);
         }
       }
 
