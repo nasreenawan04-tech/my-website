@@ -1981,7 +1981,7 @@ export default function LoanCalculator() {
                           <ResponsiveContainer width="100%" height={300}>
                             <AreaChart
                               data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
-                              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
                             >
                               <defs>
                                 <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
