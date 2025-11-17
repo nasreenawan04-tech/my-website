@@ -2305,9 +2305,9 @@ const MortgageCalculator = () => {
                       {showCharts && (
                       <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                         {/* Pie Chart - Payment Composition */}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Total Payment Composition</h3>
-                          <ResponsiveContainer width="100%" height={300}>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Total Payment Composition</h3>
+                          <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
                             <RechartsPieChart>
                               <Pie
                                 data={[
@@ -2318,9 +2318,10 @@ const MortgageCalculator = () => {
                                 cy="50%"
                                 labelLine={false}
                                 label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
-                                outerRadius={80}
+                                outerRadius="70%"
                                 fill="#8884d8"
                                 dataKey="value"
+                                style={{ fontSize: '11px', fontWeight: '500' }}
                               >
                                 {[
                                   { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), color: '#10b981' },
@@ -2331,118 +2332,150 @@ const MortgageCalculator = () => {
                               </Pie>
                               <RechartsTooltip 
                                 formatter={(value: number) => formatCurrency(value)}
-                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                                contentStyle={{ 
+                                  backgroundColor: '#fff', 
+                                  border: '1px solid #e5e7eb', 
+                                  borderRadius: '8px',
+                                  fontSize: '12px',
+                                  padding: '8px'
+                                }}
                               />
-                              <Legend />
+                              <Legend 
+                                wrapperStyle={{ fontSize: '11px' }}
+                                iconType="circle"
+                              />
                             </RechartsPieChart>
                           </ResponsiveContainer>
-                          <div className="mt-4 grid grid-cols-2 gap-3 text-center">
-                            <div className="bg-green-50 rounded-lg p-3">
-                              <div className="text-xs text-green-700 font-medium">Principal</div>
-                              <div className="text-sm sm:text-base font-bold text-green-800">{formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}</div>
+                          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 text-center">
+                            <div className="bg-green-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-green-700 font-medium">Principal</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-green-800 break-all">{formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}</div>
                             </div>
-                            <div className="bg-orange-50 rounded-lg p-3">
-                              <div className="text-xs text-orange-700 font-medium">Interest</div>
-                              <div className="text-sm sm:text-base font-bold text-orange-800">{formatCurrency(result.totalInterest)}</div>
+                            <div className="bg-orange-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-orange-700 font-medium">Interest</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
                             </div>
                           </div>
                         </div>
 
                         {/* Area Chart - Payment Breakdown Over Time */}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Payment Breakdown Over Time</h3>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Payment Breakdown Over Time</h3>
                           
                           {/* Chart Filter Toggle */}
-                          <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
+                          <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 flex-wrap">
                             <Button
                               onClick={() => setChartFilter('principal')}
                               variant={chartFilter === 'principal' ? 'default' : 'outline'}
                               size="sm"
-                              className={`text-xs ${chartFilter === 'principal' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'principal' ? 'bg-green-600 hover:bg-green-700' : ''}`}
                               data-testid="button-filter-principal"
                             >
-                              <span className="flex items-center gap-1.5">
-                                <span className="w-3 h-3 rounded-full bg-green-500"></span>
-                                Principal
+                              <span className="flex items-center gap-1 sm:gap-1.5">
+                                <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></span>
+                                <span className="hidden xs:inline">Principal</span>
+                                <span className="xs:hidden">P</span>
                               </span>
                             </Button>
                             <Button
                               onClick={() => setChartFilter('interest')}
                               variant={chartFilter === 'interest' ? 'default' : 'outline'}
                               size="sm"
-                              className={`text-xs ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
                               data-testid="button-filter-interest"
                             >
-                              <span className="flex items-center gap-1.5">
-                                <span className="w-3 h-3 rounded-full bg-orange-500"></span>
-                                Interest
+                              <span className="flex items-center gap-1 sm:gap-1.5">
+                                <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-orange-500"></span>
+                                <span className="hidden xs:inline">Interest</span>
+                                <span className="xs:hidden">I</span>
                               </span>
                             </Button>
                             <Button
                               onClick={() => setChartFilter('both')}
                               variant={chartFilter === 'both' ? 'default' : 'outline'}
                               size="sm"
-                              className="text-xs"
+                              className="text-[10px] sm:text-xs px-2 sm:px-3"
                               data-testid="button-filter-both"
                             >
-                              Showing all payments
+                              <span className="hidden sm:inline">Showing all payments</span>
+                              <span className="sm:hidden">All</span>
                             </Button>
                           </div>
 
-                          <ResponsiveContainer width="100%" height={300}>
-                            <AreaChart
-                              data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
-                              margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
-                            >
-                              <defs>
-                                <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
-                                  <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
-                                </linearGradient>
-                                <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
-                                  <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
-                                  <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
-                                </linearGradient>
-                              </defs>
-                              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                              <XAxis 
-                                dataKey="month" 
-                                tick={{ fontSize: 12 }}
-                                label={{ value: 'Payment Number', position: 'insideBottom', offset: -5, fontSize: 12 }}
-                              />
-                              <YAxis 
-                                tick={{ fontSize: 12 }}
-                                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                              />
-                              <RechartsTooltip 
-                                formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
-                                labelFormatter={(label) => `Payment #${label}`}
-                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
-                              />
-                              {(chartFilter === 'both' || chartFilter === 'principal') && (
-                                <Area 
-                                  type="monotone" 
-                                  dataKey="principal" 
-                                  stackId={chartFilter === 'both' ? '1' : undefined}
-                                  stroke="#10b981" 
-                                  fillOpacity={1} 
-                                  fill="url(#colorPrincipal)"
-                                  name="Principal"
+                          <div className="w-full overflow-x-auto">
+                            <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
+                              <AreaChart
+                                data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
+                                margin={{ top: 5, right: 5, left: -10, bottom: 5 }}
+                              >
+                                <defs>
+                                  <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                                  </linearGradient>
+                                  <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
+                                    <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
+                                  </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis 
+                                  dataKey="month" 
+                                  tick={{ fontSize: 9 }}
+                                  tickMargin={5}
+                                  label={{ 
+                                    value: 'Payment Number', 
+                                    position: 'insideBottom', 
+                                    offset: -2, 
+                                    fontSize: 9,
+                                    style: { fill: '#6b7280' }
+                                  }}
+                                  interval="preserveStartEnd"
                                 />
-                              )}
-                              {(chartFilter === 'both' || chartFilter === 'interest') && (
-                                <Area 
-                                  type="monotone" 
-                                  dataKey="interest" 
-                                  stackId={chartFilter === 'both' ? '1' : undefined}
-                                  stroke="#f97316" 
-                                  fillOpacity={1} 
-                                  fill="url(#colorInterest)"
-                                  name="Interest"
+                                <YAxis 
+                                  tick={{ fontSize: 9 }}
+                                  tickMargin={5}
+                                  width={40}
+                                  tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                                 />
-                              )}
-                            </AreaChart>
-                          </ResponsiveContainer>
+                                <RechartsTooltip 
+                                  formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
+                                  labelFormatter={(label) => `Payment #${label}`}
+                                  contentStyle={{ 
+                                    backgroundColor: '#fff', 
+                                    border: '1px solid #e5e7eb', 
+                                    borderRadius: '8px',
+                                    fontSize: '12px',
+                                    padding: '8px'
+                                  }}
+                                />
+                                {(chartFilter === 'both' || chartFilter === 'principal') && (
+                                  <Area 
+                                    type="monotone" 
+                                    dataKey="principal" 
+                                    stackId={chartFilter === 'both' ? '1' : undefined}
+                                    stroke="#10b981" 
+                                    strokeWidth={2}
+                                    fillOpacity={1} 
+                                    fill="url(#colorPrincipal)"
+                                    name="Principal"
+                                  />
+                                )}
+                                {(chartFilter === 'both' || chartFilter === 'interest') && (
+                                  <Area 
+                                    type="monotone" 
+                                    dataKey="interest" 
+                                    stackId={chartFilter === 'both' ? '1' : undefined}
+                                    stroke="#f97316" 
+                                    strokeWidth={2}
+                                    fillOpacity={1} 
+                                    fill="url(#colorInterest)"
+                                    name="Interest"
+                                  />
+                                )}
+                              </AreaChart>
+                            </ResponsiveContainer>
+                          </div>
                         </div>
                       </div>
                       )}
