@@ -2368,7 +2368,7 @@ const MortgageCalculator = () => {
                           <ResponsiveContainer width="100%" height={300}>
                             <AreaChart
                               data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
-                              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
                             >
                               <defs>
                                 <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
@@ -2395,7 +2395,6 @@ const MortgageCalculator = () => {
                                 labelFormatter={(label) => `Payment #${label}`}
                                 contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
                               />
-                              <Legend />
                               {(chartFilter === 'both' || chartFilter === 'principal') && (
                                 <Area 
                                   type="monotone" 
@@ -2420,9 +2419,6 @@ const MortgageCalculator = () => {
                               )}
                             </AreaChart>
                           </ResponsiveContainer>
-                          <p className="text-xs text-gray-600 mt-3 text-center">
-                            {result.amortizationSchedule.length > 60 ? 'Showing first 5 years of payments' : 'Showing all payments'}
-                          </p>
                         </div>
                       </div>
 
