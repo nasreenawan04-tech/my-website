@@ -1,0 +1,449 @@
+Top queries	Clicks	Impressions	CTR	Position
+tdee calculator	2	393	0.51%	81.75
+find tdee	1	1	100%	175
+tdee	0	162	0%	90.21
+font style changer	0	42	0%	79.88
+salary to hourly calculator	0	38	0%	92.42
+td calculator	0	30	0%	94.03
+salary calculator to hourly	0	25	0%	81.04
+tdee cal	0	24	0%	83.54
+salary hourly calculator	0	24	0%	87.88
+salary per hour calculator	0	22	0%	83.68
+convert salary into hourly	0	20	0%	81.8
+calories burned swimming	0	19	0%	72.11
+salary calculator hourly rate	0	19	0%	89.79
+annual pay to hourly	0	18	0%	89.94
+tdee calorie calculator	0	18	0%	90.94
+annual salary calculator to hourly	0	17	0%	84.06
+tdee calculator free	0	17	0%	84.59
+tdee calc	0	15	0%	83.4
+per hour salary calculator	0	15	0%	91.33
+hourly rate salary calculator	0	15	0%	96.93
+fonts style changer	0	14	0%	65.86
+investment growth calculator	0	12	0%	94
+random username generator	0	11	0%	70.73
+heart rate zones calculator	0	11	0%	93.18
+calculate tdee	0	11	0%	95.09
+heart rate training calculator	0	10	0%	87
+training heart rate calculator	0	10	0%	89.6
+calculate heart rate	0	10	0%	94.5
+how to convert yearly salary to hourly rate	0	9	0%	76
+total daily energy expenditure	0	9	0%	85.22
+steps to calories converter	0	9	0%	85.89
+whr	0	8	0%	72.88
+annual salary to hourly	0	8	0%	76.25
+investment return calculator	0	8	0%	82.12
+text style changer	0	7	0%	57.57
+salary to hourly rate calculator	0	7	0%	83.57
+calculate max hr	0	7	0%	88.57
+how to calculate salary into hourly	0	7	0%	92.29
+hexadecimal to string	0	6	0%	68.17
+tdee calculator: total daily energy expenditure	0	6	0%	68.5
+lorem ipsum website template	0	6	0%	73
+nab business loan calculator	0	6	0%	74.17
+paypal fee calculator	0	6	0%	74.67
+steps calories converter	0	6	0%	79.5
+yearly salary to hourly	0	6	0%	79.67
+swimming calories burned	0	6	0%	83.67
+salary converted to hourly	0	6	0%	84.5
+tdd calculator	0	6	0%	84.83
+annual salary to hourly conversion	0	6	0%	85.5
+daily protein intake calculator	0	6	0%	86.17
+word changer style	0	6	0%	86.33
+calculate investment return	0	6	0%	86.83
+binary decode	0	6	0%	90.5
+steps to calories calculator	0	6	0%	92.17
+heart rate zone calculator	0	6	0%	92.67
+tdeecalculator	0	5	0%	51.8
+how much are paypal fees	0	5	0%	58.6
+max heart rate calculator	0	5	0%	67
+yearly to hourly	0	5	0%	71.6
+decode hex	0	5	0%	73.8
+hex decode	0	5	0%	77
+annual to hourly salary calculator	0	5	0%	79
+salary to hourly pay calculator	0	5	0%	86
+hour salary calculator	0	5	0%	89
+word count	0	5	0%	91.2
+change font style	0	5	0%	94.2
+protein needs calculator	0	5	0%	97.2
+tdee calculator for women	0	5	0%	99.2
+tax calculator	0	4	0%	4.5
+hexadecimal decoder	0	4	0%	73.25
+how to convert annual salary into hourly rate	0	4	0%	75.5
+yearly to hourly salary calculator	0	4	0%	76.75
+max hr calculator	0	4	0%	78
+salary to hourly	0	4	0%	80.25
+hex code decoder	0	4	0%	80.75
+convert annual to hourly wage	0	4	0%	81
+annual to hourly salary converter	0	4	0%	81.25
+monthly salary to hourly calculator	0	4	0%	83
+tdee calculator online	0	4	0%	83.75
+swimming calories	0	4	0%	85.75
+hr max calculator	0	4	0%	86
+convert salary into hourly rate	0	4	0%	86.25
+estimate investment growth	0	4	0%	87.75
+yearly salary calculator to hourly	0	4	0%	88.25
+salary to hourly wage conversion	0	4	0%	89.75
+annual income calculator hourly	0	4	0%	92.75
+calculate protein intake	0	4	0%	93.25
+zone 2 heart rate calculator	0	4	0%	94
+swimming calorie calculator	0	4	0%	94.75
+convert steps to calories	0	4	0%	99
+dapsi	0	3	0%	10.67
+style changer	0	3	0%	58.67
+convert annual salary into hourly rate	0	3	0%	63.33
+obesity life expectancy calculator	0	3	0%	63.67
+count characters	0	3	0%	66
+calculate investment growth	0	3	0%	69
+convert annual pay to hourly	0	3	0%	69
+convert yearly salary to hourly	0	3	0%	70.67
+yearly to hourly salary	0	3	0%	77
+annual salary to hourly calculator	0	3	0%	80.67
+17000 steps in calories	0	3	0%	81.33
+salary to hourly wage calculator	0	3	0%	85.33
+investment returns calculator	0	3	0%	86.33
+swim calories calculator	0	3	0%	88
+random username	0	3	0%	88.33
+maximum heart rate calculator	0	3	0%	88.67
+calculator for protein intake	0	3	0%	89.67
+protein daily calculator	0	3	0%	90
+lifespan calculator	0	3	0%	91.67
+protein requirements calculator	0	3	0%	92
+heart rate calculation	0	3	0%	92.33
+fonts changer	0	3	0%	93
+protein intake calculator	0	3	0%	95
+return calculator	0	3	0%	95.33
+convert salary to hourly contract rate	0	3	0%	96.67
+max hr estimate	0	3	0%	97
+hourly rate to salary calculator	0	3	0%	98
+calculator tdee	0	3	0%	98.67
+heart rate training zones calculator	0	3	0%	98.67
+free tdee calculator	0	3	0%	104.33
+tdee calculator.com	0	3	0%	109.33
+ettd calculator	0	2	0%	6.5
+cholesterol calculator	0	2	0%	36.5
+decimal cipher decoder	0	2	0%	51.5
+23000 steps in calories	0	2	0%	62.5
+paypal fees	0	2	0%	63
+style change	0	2	0%	63
+how to convert hexadecimal to text	0	2	0%	67
+16000 steps to calories	0	2	0%	69.5
+19000 steps in calories	0	2	0%	71
+hex decoder	0	2	0%	71
+prettify text	0	2	0%	71.5
+hr zone calculator	0	2	0%	73
+annual to hourly	0	2	0%	73.5
+random username maker	0	2	0%	75.5
+year salary to hourly calculator	0	2	0%	77
+decode binary	0	2	0%	78
+13000 steps to calories	0	2	0%	79.5
+salary vs hourly calculator	0	2	0%	79.5
+yearly to hourly pay calculator	0	2	0%	79.5
+annual to hourly converter	0	2	0%	80
+small business loan calculator	0	2	0%	80.5
+calculate investment returns	0	2	0%	81
+max heart rate calculator for athletes	0	2	0%	81
+paypal service fee calculator	0	2	0%	81
+6000 steps in calories	0	2	0%	81.5
+swimming calories burned per lap	0	2	0%	82.5
+13000 steps in calories	0	2	0%	84.5
+kalkulator tdee	0	2	0%	84.5
+heart rate max calculator	0	2	0%	86.5
+swim calculator calories	0	2	0%	87.5
+calories burnt swimming	0	2	0%	88.5
+max heart rate calculator by age	0	2	0%	89
+calculate maximum heart rate	0	2	0%	89.5
+convert monthly salary to hourly	0	2	0%	90
+random username gen	0	2	0%	90
+yearly salary to hourly salary	0	2	0%	90
+heart rate calculator	0	2	0%	91
+character count	0	2	0%	91.5
+hourly to salary converter	0	2	0%	91.5
+keto macros	0	2	0%	91.5
+heart zone calculator	0	2	0%	92
+calories burned swimming calculator	0	2	0%	93.5
+daily protein calculator	0	2	0%	93.5
+business acquisition loan calculator	0	2	0%	94
+calculating tdee	0	2	0%	94
+word count of text	0	2	0%	94.5
+salary into hourly	0	2	0%	95
+salary to wage calculator	0	2	0%	95
+tdee calculator.	0	2	0%	95
+zone heart rate calculator	0	2	0%	95.5
+compute max heart rate	0	2	0%	96
+tdee.calculator	0	2	0%	96
+tdee calories calculator	0	2	0%	97
+yearly salary to hourly rate	0	2	0%	97.5
+investment performance calculator	0	2	0%	98
+tdee calculator for men	0	2	0%	99
+hourly converter	0	2	0%	99.5
+advancedmortgage.com	0	2	0%	107
+change style	0	2	0%	107.5
+tax calculator solution	0	1	0%	1
+income tax return calculator	0	1	0%	4
+60000 cad to hourly	0	1	0%	10
+tddc calculator	0	1	0%	11
+60000 steps calories	0	1	0%	13
+how to calculate loan to value	0	1	0%	19
+intermittent fasting timer	0	1	0%	20
+truck lease calculator	0	1	0%	33
+steps per calorie	0	1	0%	34
+index fund calculator return	0	1	0%	36
+how to count paragraphs	0	1	0%	43
+startup business loan calculator	0	1	0%	44
+average cycling speed calculator	0	1	0%	49
+business loan calculator how much can i borrow	0	1	0%	49
+steps calories	0	1	0%	49
+gross pay to hourly calculator	0	1	0%	50
+paypal merchant fees calculator	0	1	0%	50
+talent hourly calculator	0	1	0%	50
+average speed cycling calculator	0	1	0%	52
+freestyle swimming calories burned	0	1	0%	52
+how much is paypals fee	0	1	0%	54
+life expectancy calculator based on weight	0	1	0%	54
+lease miles calculator	0	1	0%	56
+annual calculator to hourly	0	1	0%	60
+how many calories burned swimming 30 minutes	0	1	0%	61
+monthly payment for a 100k business loan	0	1	0%	61
+monthly payment on 500k business loan	0	1	0%	61
+paypal business fee calculator	0	1	0%	61
+residual value car calculator	0	1	0%	61
+27000 steps in calories	0	1	0%	62
+sentence analyzer	0	1	0%	62
+year salary to hourly	0	1	0%	62
+how many calories burned swimming for 30 minutes	0	1	0%	63
+realistic name	0	1	0%	64
+realistic name generator	0	1	0%	64
+text beautifier	0	1	0%	64
+30000 steps to calories	0	1	0%	65
+online usernames generator	0	1	0%	65
+compare text	0	1	0%	66
+cycling average speed calculator	0	1	0%	66
+pp fee	0	1	0%	66
+calories burned swimming freestyle	0	1	0%	68
+hexadecimal to text	0	1	0%	68
+wow font changer	0	1	0%	68
+20 minute swim calories	0	1	0%	69
+aerobic heart rate calculator	0	1	0%	69
+pp fees	0	1	0%	69
+18000 steps to calories	0	1	0%	70
+19000 steps to calories	0	1	0%	70
+annually to hourly	0	1	0%	70
+calories burned treading water calculator	0	1	0%	70
+how many calories burned in swimming 30 minutes	0	1	0%	70
+small business loan qualification calculator	0	1	0%	70
+36 month lease calculator	0	1	0%	71
+convert yearly salary to hourly rate	0	1	0%	71
+mileage lease calculator	0	1	0%	71
+calculate annual salary into hourly rate	0	1	0%	72
+hourly vs salary calculator	0	1	0%	72
+salary to hourly conversion calculator	0	1	0%	72
+words count	0	1	0%	72
+11000 steps to calories	0	1	0%	73
+calorie burn swimming	0	1	0%	73
+decode hexadecimal	0	1	0%	73
+salary to hourly converter	0	1	0%	73
+swimming calorie burn	0	1	0%	73
+3 year lease calculator	0	1	0%	74
+calculadora tdee	0	1	0%	74
+convert annual salary to hourly	0	1	0%	74
+high mileage lease calculator	0	1	0%	74
+step counter calories	0	1	0%	74
+word style changer	0	1	0%	74
+investment rate of return calculator	0	1	0%	75
+residual value calculator lease	0	1	0%	75
+hex decoder to text	0	1	0%	76
+salary calculator hour	0	1	0%	76
+talent salary converter	0	1	0%	76
+calorie burn calculator swimming	0	1	0%	77
+calorie counter swimming	0	1	0%	77
+essay words counter	0	1	0%	77
+hourly pay yearly calculator	0	1	0%	77
+indeed salary to hourly calculator	0	1	0%	77
+over mileage on lease calculator	0	1	0%	77
+compute maximum heart rate	0	1	0%	78
+convert hexadecimal to text	0	1	0%	78
+rbc small business loan calculator	0	1	0%	78
+salary into hourly calculator	0	1	0%	78
+translate salary to hourly	0	1	0%	78
+daily metabolism calculator	0	1	0%	79
+tdee calculator .com	0	1	0%	79
+yearly salary to hourly wage	0	1	0%	79
+17000 steps calories	0	1	0%	80
+calculator for salary to hourly	0	1	0%	80
+longevity calculator	0	1	0%	80
+writing style changer	0	1	0%	80
+credit card calculator interest	0	1	0%	81
+how many calories is 11000 steps	0	1	0%	81
+investment earnings calculator	0	1	0%	81
+small business loans calculator	0	1	0%	81
+annual salary calculator hourly	0	1	0%	82
+how to convert letters to binary	0	1	0%	82
+salary to hourly breakdown	0	1	0%	82
+vat to gst	0	1	0%	82
+yearly income to hourly calculator	0	1	0%	82
+annual to hourly pay	0	1	0%	83
+average bike speed calculator	0	1	0%	83
+calories burned swimming laps	0	1	0%	83
+t dee	0	1	0%	83
+13000 steps calories	0	1	0%	84
+30 000 steps to calories	0	1	0%	84
+average speed calculator cycling	0	1	0%	84
+calculate paypal charges	0	1	0%	84
+how to convert hex to text	0	1	0%	84
+lease equity calculator	0	1	0%	84
+step to calories	0	1	0%	84
+swimming calories burned 30 minutes	0	1	0%	84
+words style changer	0	1	0%	84
+calories when swimming	0	1	0%	85
+convert annual salary to hourly rate	0	1	0%	85
+exercising heart rate calculator	0	1	0%	85
+hourly calculator from salary	0	1	0%	85
+how is lease price calculated	0	1	0%	85
+max hr calc	0	1	0%	85
+salary yearly to hourly	0	1	0%	85
+sba guaranty fee calculator 2025	0	1	0%	85
+tdee estimate	0	1	0%	85
+calorie calculator for swimming	0	1	0%	86
+calories burned per lap swimming	0	1	0%	86
+car edge lease calculator	0	1	0%	86
+change style font	0	1	0%	86
+convert steps to calories burned	0	1	0%	86
+free business loan calculator	0	1	0%	86
+how many calories does swimming 20 laps burn	0	1	0%	86
+portfolio return calculator	0	1	0%	86
+tedd calculator	0	1	0%	86
+wage per hour calculator	0	1	0%	86
+water aerobics calories burned calculator	0	1	0%	86
+calculator cholesterol	0	1	0%	87
+calories burned while swimming	0	1	0%	87
+how many calories does 20 laps of swimming burn	0	1	0%	87
+hr zones calculator	0	1	0%	87
+monthly investment return calculator	0	1	0%	87
+swimming breaststroke calories	0	1	0%	87
+14000 steps to calories	0	1	0%	88
+17000 steps how many calories	0	1	0%	88
+heart rate exercise calculator	0	1	0%	88
+hiit heart rate calculator	0	1	0%	88
+hourly compensation calculator	0	1	0%	88
+pay calculator hourly rate	0	1	0%	88
+protein consumption calculator	0	1	0%	88
+step count converter	0	1	0%	88
+wage to hourly	0	1	0%	88
+yearly salary converted to hourly	0	1	0%	88
+reverse lease calculator	0	1	0%	89
+step kcal	0	1	0%	89
+calculate percentage rate	0	1	0%	90
+calculating salary to hourly	0	1	0%	90
+calorie calculator swimming	0	1	0%	90
+calorie step	0	1	0%	90
+calories burned swimming by distance	0	1	0%	90
+calories burned swimming calculator by distance	0	1	0%	90
+convert hex to text	0	1	0%	90
+hourly wage calculator salary	0	1	0%	90
+randomized username generator	0	1	0%	90
+swimming calculator calories	0	1	0%	90
+swimming calories burned by distance	0	1	0%	90
+tdaee	0	1	0%	90
+calculate annual salary to hourly rate	0	1	0%	91
+calculate max heart rate	0	1	0%	91
+credit card percentage calculator	0	1	0%	91
+daily energy expenditure calculator	0	1	0%	91
+eetd calculator	0	1	0%	91
+font style change	0	1	0%	91
+mileage calculator for lease	0	1	0%	91
+salary calculator monthly to hourly	0	1	0%	91
+steps kcal	0	1	0%	91
+steps to calories burned	0	1	0%	91
+swimming calorie calculator by distance	0	1	0%	91
+unicode to binary	0	1	0%	91
+annual salary to hourly rate converter	0	1	0%	92
+calculator salary to hourly	0	1	0%	92
+calories burn in swimming	0	1	0%	92
+change text style	0	1	0%	92
+char count	0	1	0%	92
+how many calories burned swimming laps	0	1	0%	92
+paypal fees calculator	0	1	0%	92
+protein calculator	0	1	0%	92
+protein intake calculation	0	1	0%	92
+residual value calculator	0	1	0%	92
+salary calculator annual hourly	0	1	0%	92
+swimming kcal burn	0	1	0%	92
+tdee kalkulator	0	1	0%	92
+count word count	0	1	0%	93
+how many calories do you burn swimming for 45 minutes	0	1	0%	93
+how many calories in 9000 steps	0	1	0%	93
+kcal swimming	0	1	0%	93
+keto diet carb calculator	0	1	0%	93
+lease trade in value calculator	0	1	0%	93
+paypal calculator for fees	0	1	0%	93
+protein goal calculator	0	1	0%	93
+protein per day calculator	0	1	0%	93
+salary hour calculator	0	1	0%	93
+yearly salary calculator hourly	0	1	0%	93
+8000 steps in calories	0	1	0%	94
+keto carb calculator	0	1	0%	94
+salary converter to hourly	0	1	0%	94
+swimming laps calories burned	0	1	0%	94
+3000 steps calories	0	1	0%	95
+font styles changer	0	1	0%	95
+heart rate threshold calculator	0	1	0%	95
+liss heart rate calculator	0	1	0%	95
+random usernames	0	1	0%	95
+salary calculator per hour	0	1	0%	95
+sba loan interest rate calculator	0	1	0%	95
+swim calorie calculator	0	1	0%	95
+tdee caculator	0	1	0%	95
+advanced bmr calculator	0	1	0%	96
+business finance calculator	0	1	0%	96
+hex to text converter	0	1	0%	96
+hourly from salary calculator	0	1	0%	96
+investment return & growth calculator	0	1	0%	96
+maximal heart rate calculator	0	1	0%	96
+measure protein intake	0	1	0%	96
+random username name generator	0	1	0%	96
+salary annual to hourly	0	1	0%	96
+salary to hourly pay	0	1	0%	96
+steps to calories conversion	0	1	0%	96
+total daily energy expenditure calculator	0	1	0%	96
+calories burned calculator swimming	0	1	0%	97
+count protein intake	0	1	0%	97
+hour of swimming calories	0	1	0%	97
+monthly return on investment calculator	0	1	0%	97
+steps in calories	0	1	0%	97
+steps vs calories	0	1	0%	97
+total daily expenditure	0	1	0%	97
+calculating lease payments	0	1	0%	98
+calculator investment growth	0	1	0%	98
+how many calories 3000 steps	0	1	0%	98
+monthly income to hourly	0	1	0%	98
+online protein calculator	0	1	0%	98
+proteins calculator	0	1	0%	98
+speed calculator cycling	0	1	0%	98
+stock calculator profit	0	1	0%	98
+treading water calories burned calculator	0	1	0%	98
+calculate your tdee	0	1	0%	99
+carbs calculator	0	1	0%	99
+extract url	0	1	0%	99
+heart rate calculator zones	0	1	0%	99
+how to calculate tdee	0	1	0%	99
+maximum predicted heart rate calculator	0	1	0%	99
+salary calculator from annual to hourly	0	1	0%	99
+tdeee	0	1	0%	99
+translate into binary	0	1	0%	99
+annual salary to hourly salary	0	1	0%	100
+bmr calculator to gain muscle	0	1	0%	100
+calories for swimming calculator	0	1	0%	100
+characters count	0	1	0%	100
+generate usernames	0	1	0%	100
+how many calories burned swimming for an hour	0	1	0%	100
+how to convert monthly salary to hourly	0	1	0%	100
+hrmax calculator	0	1	0%	100
+sba business loan calculator	0	1	0%	100
+sba micro loan calculator	0	1	0%	100
+steps calories calculator	0	1	0%	100
+steps to calories	0	1	0%	100
+tdee calculator weight loss	0	1	0%	104
+tdee calculator gratis	0	1	0%	111
+tdee formula	0	1	0%	112
+whats my tdee	0	1	0%	115
