@@ -608,17 +608,38 @@ export default function LoanCalculator() {
 
       // Table rows
       const interestPercent = ((result.totalInterest / result.totalAmount) * 100).toFixed(1);
+      
+      // Calculate additional values
+      const annualRateDecimal = parseFloat(interestRate) / 100;
+      const termMonths = termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm);
+      const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                             paymentFrequency === 'biweekly' ? 26 : 12;
+      const periodicRate = annualRateDecimal / paymentsPerYear;
+      const totalPayments = termMonths * (paymentsPerYear / 12);
+      const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
+      
       const metrics: { label: string; value: string; color: [number, number, number] }[] = [
         { label: 'Loan Amount', value: formatCurrency(parseFloat(loanAmount)), color: [71, 85, 105] },
-        { label: 'Interest Rate', value: `${interestRate}%`, color: [71, 85, 105] },
-        { label: 'Monthly Payment', value: formatCurrency(result.monthlyPayment), color: [37, 99, 235] },
+        { label: 'Interest Rate', value: `${interestRate}% per year`, color: [71, 85, 105] },
+        { label: 'Loan Term', value: termUnit === 'years' ? `${loanTerm} years (${Math.round(termMonths)} months)` : `${loanTerm} months`, color: [71, 85, 105] },
+        { label: 'Payment Frequency', value: freqDisplay, color: [71, 85, 105] },
+        { label: 'Total Number of Payments', value: Math.round(totalPayments).toString(), color: [71, 85, 105] },
+        { label: `${freqDisplay} Payment`, value: formatCurrency(actualPeriodicPayment), color: [37, 99, 235] },
+      ];
+
+      // Add monthly equivalent if not monthly frequency
+      if (paymentFrequency !== 'monthly') {
+        metrics.push({ label: 'Monthly Equivalent', value: formatCurrency(result.monthlyPayment), color: [37, 99, 235] });
+      }
+
+      metrics.push(
         { label: 'Total Amount Paid', value: formatCurrency(result.totalAmount), color: [71, 85, 105] },
         { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
         { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
-      ];
+      );
 
       if (parseFloat(extraPayment) > 0) {
-        metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
+        metrics.push({ label: 'Extra Payment (per period)', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
       }
 
       doc.setFont('helvetica', 'normal');
@@ -670,11 +691,12 @@ export default function LoanCalculator() {
           timeSavedText = `${monthsSaved} months`;
         }
 
+        const boxHeight = 30;
         doc.setFillColor(236, 253, 245);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 18, 'F');
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'F');
         doc.setDrawColor(34, 197, 94);
         doc.setLineWidth(0.8);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 18, 'S');
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'S');
 
         doc.setFontSize(9);
         doc.setFont('helvetica', 'bold');
@@ -683,10 +705,14 @@ export default function LoanCalculator() {
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(8);
         doc.text(`Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}`, margin + 3, yPos + 12);
-        doc.text(`Time Saved: ${timeSavedText}`, pageWidth / 2 + 3, yPos + 12);
+        doc.text(`Time Saved: ${timeSavedText}`, margin + 3, yPos + 18);
+        doc.text(`New Payoff Time: ${Math.round(result.extraPaymentSavings.newPayoffTime)} payments`, pageWidth / 2 + 3, yPos + 12);
+        doc.text(`Original Total: ${Math.round(totalPayments)} payments`, pageWidth / 2 + 3, yPos + 18);
+        doc.setFontSize(7);
+        doc.text(`(Paying off ${Math.round(result.extraPaymentSavings.timeSaved)} payments earlier!)`, pageWidth / 2 + 3, yPos + 24);
 
         doc.setTextColor(0, 0, 0);
-        yPos += 24;
+        yPos += boxHeight + 6;
       }
 
       // Interpretation Section
