@@ -2008,7 +2008,6 @@ export default function LoanCalculator() {
                                 labelFormatter={(label) => `Payment #${label}`}
                                 contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
                               />
-                              <Legend />
                               {(chartFilter === 'both' || chartFilter === 'principal') && (
                                 <Area 
                                   type="monotone" 
@@ -2033,9 +2032,6 @@ export default function LoanCalculator() {
                               )}
                             </AreaChart>
                           </ResponsiveContainer>
-                          <p className="text-xs text-gray-600 mt-3 text-center">
-                            {result.amortizationSchedule.length > 60 ? 'Showing first 5 years of payments' : 'Showing all payments'}
-                          </p>
                         </div>
                       </div>
                     </div>
