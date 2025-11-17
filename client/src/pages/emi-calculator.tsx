@@ -1653,133 +1653,27 @@ export default function EMICalculator() {
                         </div>
                       </div>
 
-                      <div ref={chartRef} className="space-y-4 sm:space-y-6">
-                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
-                            <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Total Loan Breakdown</h3>
-                            <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
-                              <div className="w-full max-w-[280px] sm:max-w-xs">
-                                <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : 280}>
-                                  <RechartsPieChart>
-                                    <Pie
-                                      data={[
-                                        { name: 'Principal', value: result.principalAmount, percentage: principalPercentage },
-                                        { name: 'Interest', value: result.totalInterest, percentage: interestPercentage }
-                                      ]}
-                                      cx="50%"
-                                      cy="50%"
-                                      innerRadius={window.innerWidth < 640 ? 45 : 60}
-                                      outerRadius={window.innerWidth < 640 ? 75 : 90}
-                                      paddingAngle={3}
-                                      dataKey="value"
-                                      label={window.innerWidth >= 640 ? ({ percentage }) => `${percentage.toFixed(1)}%` : false}
-                                      labelLine={window.innerWidth >= 640}
-                                    >
-                                      <Cell fill="url(#principalGradient)" />
-                                      <Cell fill="url(#interestGradient)" />
-                                    </Pie>
-                                    <RechartsTooltip
-                                      formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{
-                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                                        border: '1px solid #e5e7eb',
-                                        borderRadius: '8px',
-                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                                        fontSize: window.innerWidth < 640 ? '12px' : '14px'
-                                      }}
-                                    />
-                                    <defs>
-                                      <linearGradient id="principalGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#059669" stopOpacity={1} />
-                                      </linearGradient>
-                                      <linearGradient id="interestGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#d97706" stopOpacity={1} />
-                                      </linearGradient>
-                                    </defs>
-                                  </RechartsPieChart>
-                                </ResponsiveContainer>
-                              </div>
-                              <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 w-full lg:w-auto">
-                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-200">
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full"></div>
-                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm">Principal Amount</span>
-                                  </div>
-                                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-all">{formatCurrency(result.principalAmount)}</div>
-                                  <div className="text-xs sm:text-sm text-green-700 mt-1">{principalPercentage.toFixed(1)}% of total</div>
-                                </div>
-                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-orange-200">
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full"></div>
-                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm">Total Interest</span>
-                                  </div>
-                                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600 break-all">{formatCurrency(result.totalInterest)}</div>
-                                  <div className="text-xs sm:text-sm text-orange-700 mt-1">{interestPercentage.toFixed(1)}% of total</div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {result.amortizationSchedule.length > 0 && (
-                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
-                              <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-center text-base sm:text-lg">Payment Breakdown Over Time</h3>
-                              <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 250 : 320}>
-                                <AreaChart
-                                  data={result.amortizationSchedule.map(item => ({
-                                    month: `Month ${item.month}`,
-                                    Principal: item.principal,
-                                    Interest: item.interest,
-                                    balance: item.balance
-                                  }))}
-                                  margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-                                >
-                                  <defs>
-                                    <linearGradient id="principalAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
-                                    </linearGradient>
-                                    <linearGradient id="interestAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
-                                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.1} />
-                                    </linearGradient>
-                                  </defs>
-                                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                  <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-                                  <YAxis tick={{ fontSize: 12 }} />
-                                  <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
-                                  <Area type="monotone" dataKey="Principal" stackId="1" stroke="#10b981" fill="url(#principalAreaGradient)" />
-                                  <Area type="monotone" dataKey="Interest" stackId="1" stroke="#f59e0b" fill="url(#interestAreaGradient)" />
-                                  <Legend />
-                                </AreaChart>
-                              </ResponsiveContainer>
-                            </div>
-                          )}
-                        </div>
-
                       <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border border-gray-100">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
-                            <span className="font-bold text-gray-900 text-base sm:text-lg break-all" data-testid="text-principal-amount">
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-principal-amount">
                               {formatCurrency(result.principalAmount)}
                             </span>
                           </div>
                         </div>
-
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border border-gray-100">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest Paid</span>
-                            <span className="font-bold text-orange-600 text-base sm:text-lg break-all" data-testid="text-total-interest">
+                            <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-total-interest">
                               {formatCurrency(result.totalInterest)}
                             </span>
                           </div>
                         </div>
-
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border border-gray-100">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
-                            <span className="font-bold text-gray-900 text-base sm:text-lg break-all" data-testid="text-total-amount">
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-amount">
                               {formatCurrency(result.totalAmount)}
                             </span>
                           </div>
@@ -1787,25 +1681,113 @@ export default function EMICalculator() {
                       </div>
 
                       {result.prepaymentAnalysis && (
-                        <div className="bg-green-50 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border-l-4 border-green-400 shadow-sm">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                            <div>
-                              <div className="flex items-center gap-2 mb-2">
-                                <TrendingDown className="w-5 h-5 text-green-600" />
-                                <h3 className="font-bold text-green-800 text-base sm:text-lg">Prepayment Savings</h3>
-                              </div>
-                              <div className="space-y-2 text-sm sm:text-base">
-                                <p className="text-green-700">
-                                  <span className="font-semibold">Interest Saved:</span> {formatCurrency(result.prepaymentAnalysis.interestSaved)}
-                                </p>
-                                <p className="text-green-700">
-                                  <span className="font-semibold">Time Saved:</span> {Math.round(result.prepaymentAnalysis.timeReduction / 12)} years
-                                </p>
-                              </div>
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg flex items-center gap-2">
+                            <TrendingDown className="w-5 h-5" />
+                            Prepayment Benefits
+                          </h4>
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Interest Saved:</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg break-all">
+                                {formatCurrency(result.prepaymentAnalysis.interestSaved)}
+                              </span>
                             </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
+                                {Math.round(result.prepaymentAnalysis.timeReduction / 12)} years
+                              </span>
+                            </div>
+                            <p className="text-sm text-green-700 mt-3 italic">
+                              💰 By making prepayments, you'll save significantly on interest and become debt-free faster!
+                            </p>
                           </div>
                         </div>
                       )}
+
+                      {/* Professional Payment Charts */}
+                      <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                        {/* Pie Chart - Payment Composition */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Total Payment Composition</h3>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <RechartsPieChart>
+                              <Pie
+                                data={[
+                                  { name: 'Principal', value: result.principalAmount, color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ]}
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                                outerRadius={80}
+                                fill="#8884d8"
+                                dataKey="value"
+                              >
+                                {[
+                                  { name: 'Principal', value: result.principalAmount, color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ].map((entry, index) => (
+                                  <Cell key={`cell-${index}`} fill={entry.color} />
+                                ))}
+                              </Pie>
+                              <RechartsTooltip 
+                                formatter={(value: number) => formatCurrency(value)}
+                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                              />
+                              <Legend />
+                            </RechartsPieChart>
+                          </ResponsiveContainer>
+                          <div className="mt-4 grid grid-cols-2 gap-3 text-center">
+                            <div className="bg-green-50 rounded-lg p-3">
+                              <div className="text-xs text-green-700 font-medium">Principal</div>
+                              <div className="text-sm sm:text-base font-bold text-green-800">{formatCurrency(result.principalAmount)}</div>
+                            </div>
+                            <div className="bg-orange-50 rounded-lg p-3">
+                              <div className="text-xs text-orange-700 font-medium">Interest</div>
+                              <div className="text-sm sm:text-base font-bold text-orange-800">{formatCurrency(result.totalInterest)}</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Area Chart - Payment Breakdown Over Time */}
+                        {result.amortizationSchedule.length > 0 && (
+                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Payment Breakdown Over Time</h3>
+                            <ResponsiveContainer width="100%" height={300}>
+                              <AreaChart
+                                data={result.amortizationSchedule.map(item => ({
+                                  month: `Month ${item.month}`,
+                                  Principal: item.principal,
+                                  Interest: item.interest,
+                                  balance: item.balance
+                                }))}
+                                margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+                              >
+                                <defs>
+                                  <linearGradient id="principalAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
+                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
+                                  </linearGradient>
+                                  <linearGradient id="interestAreaGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
+                                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.1} />
+                                  </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                                <YAxis tick={{ fontSize: 12 }} />
+                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                                <Area type="monotone" dataKey="Principal" stackId="1" stroke="#10b981" fill="url(#principalAreaGradient)" />
+                                <Area type="monotone" dataKey="Interest" stackId="1" stroke="#f59e0b" fill="url(#interestAreaGradient)" />
+                                <Legend />
+                              </AreaChart>
+                            </ResponsiveContainer>
+                          </div>
+                        )}
+                      </div>
 
                       {result.stepUpAnalysis && (
                         <div className="bg-blue-50 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border-l-4 border-blue-400 shadow-sm">
