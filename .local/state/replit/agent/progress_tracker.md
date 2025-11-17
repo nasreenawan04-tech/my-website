@@ -673,3 +673,16 @@
 [x] 585. Apply same mobile responsive improvements to Loan Calculator for consistency
 [x] 586. Restart workflow and verify hot module replacement applied changes successfully
 [x] 587. Complete mobile responsive pie chart implementation - Total Payment Composition now fully optimized for all screen sizes ✓
+[x] 588. Add "Show Chart" button to "Your Loan Calculation Results" section (November 17, 2025)
+[x] 589. Position button after summary cards (Principal Amount, Total Interest Paid, Total Amount Paid)
+[x] 590. Implement smooth scroll functionality with chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+[x] 591. Add BarChart icon from lucide-react with responsive sizing (w-4 h-4)
+[x] 592. Style button with outline variant, blue color theme, hover effects (border-blue-300 to border-blue-500)
+[x] 593. Add responsive text sizing (text-xs sm:text-sm) and padding (px-4 sm:px-6 py-2 sm:py-2.5)
+[x] 594. Add data-testid="button-show-chart" for testing purposes
+[x] 595. Apply to EMI Calculator: Import BarChart icon and add button with chartRef scroll
+[x] 596. Apply to Loan Calculator: Import BarChart icon as BarChartIcon (avoid conflict with recharts BarChart)
+[x] 597. Add chartRef definition in Loan Calculator (const chartRef = useRef<HTMLDivElement>(null))
+[x] 598. Add chartRef to charts container in Loan Calculator (div ref={chartRef})
+[x] 599. Restart workflow and verify hot module replacement applied changes successfully
+[x] 600. Complete "Show Chart" button implementation - Both calculators now have smooth scroll navigation to charts ✓
