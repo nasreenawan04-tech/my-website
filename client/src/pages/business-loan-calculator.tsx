@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, Building2, RotateCcw } from 'lucide-react';
+import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, Building2, RotateCcw, BarChartIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { jsPDF } from 'jspdf';
@@ -54,7 +54,7 @@ export default function BusinessLoanCalculator() {
   const [businessRevenue, setBusinessRevenue] = useState('');
   const [collateralValue, setCollateralValue] = useState('');
   const [showAmortization, setShowAmortization] = useState(false);
-  const [showChart, setShowChart] = useState(false);
+  const [showCharts, setShowCharts] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonBusinessLoan[]>([]);
   const [result, setResult] = useState<BusinessLoanResult | null>(null);
@@ -171,7 +171,7 @@ export default function BusinessLoanCalculator() {
     setBusinessRevenue('');
     setCollateralValue('');
     setShowAmortization(false);
-    setShowChart(false);
+    setShowCharts(false);
     setShowComparison(false);
     setComparisonLoans([]);
     setResult(null);
@@ -1549,16 +1549,6 @@ export default function BusinessLoanCalculator() {
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
                         <Button
-                          onClick={() => setShowChart(!showChart)}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                          data-testid="button-show-chart"
-                        >
-                          <PieChart className="w-4 h-4 mr-1" />
-                          {showChart ? 'Hide' : 'Show'} Chart
-                        </Button>
-                        <Button
                           onClick={() => setShowComparison(!showComparison)}
                           variant="outline"
                           size="sm"
@@ -1664,128 +1654,6 @@ export default function BusinessLoanCalculator() {
                         </div>
                       </div>
 
-                      {showChart && (
-                        <div ref={chartRef} className="space-y-4 sm:space-y-6">
-                          {/* Donut Chart - Total Loan Breakdown */}
-                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-gray-100 transition-colors duration-300 hover:shadow-2xl">
-                            <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg md:text-xl">Total Loan Breakdown</h3>
-                            <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
-                              <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px] relative">
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 rounded-full blur-2xl opacity-60 animate-pulse"></div>
-                                <div className="relative">
-                                  <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : window.innerWidth < 768 ? 260 : 300}>
-                                    <RechartsPieChart>
-                                      <Pie
-                                        data={pieData}
-                                        cx="50%"
-                                        cy="50%"
-                                        innerRadius={window.innerWidth < 640 ? 50 : window.innerWidth < 768 ? 55 : 65}
-                                        outerRadius={window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 90 : 100}
-                                        paddingAngle={4}
-                                        dataKey="value"
-                                        animationBegin={0}
-                                        animationDuration={800}
-                                        animationEasing="ease-out"
-                                      >
-                                        <Cell fill="url(#principalGradient)" className="hover:opacity-90 transition-opacity duration-200" />
-                                        <Cell fill="url(#interestGradient)" className="hover:opacity-90 transition-opacity duration-200" />
-                                      </Pie>
-                                      <RechartsTooltip
-                                        formatter={(value: number) => formatCurrency(value)}
-                                        contentStyle={{
-                                          backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                                          border: '1px solid #e5e7eb',
-                                          borderRadius: '12px',
-                                          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
-                                          fontSize: window.innerWidth < 640 ? '12px' : '14px',
-                                          padding: '12px 16px'
-                                        }}
-                                      />
-                                      <defs>
-                                        <linearGradient id="principalGradient" x1="0" y1="0" x2="1" y2="1">
-                                          <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
-                                          <stop offset="50%" stopColor="#059669" stopOpacity={1} />
-                                          <stop offset="100%" stopColor="#047857" stopOpacity={1} />
-                                        </linearGradient>
-                                        <linearGradient id="interestGradient" x1="0" y1="0" x2="1" y2="1">
-                                          <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
-                                          <stop offset="50%" stopColor="#d97706" stopOpacity={1} />
-                                          <stop offset="100%" stopColor="#b45309" stopOpacity={1} />
-                                        </linearGradient>
-                                      </defs>
-                                    </RechartsPieChart>
-                                  </ResponsiveContainer>
-                                </div>
-                              </div>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-auto md:min-w-[280px] lg:min-w-[320px]">
-                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-200 shadow-md hover:shadow-lg transition-colors duration-300 hover:border-green-300">
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse"></div>
-                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Principal Amount</span>
-                                  </div>
-                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 break-all transition-colors duration-300">{formatCurrency(parseFloat(loanAmount))}</div>
-                                  <div className="text-xs sm:text-sm md:text-base text-green-700 mt-1">{principalPercentage.toFixed(1)}% of total</div>
-                                </div>
-                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-orange-200 shadow-md hover:shadow-lg transition-colors duration-300 hover:border-orange-300">
-                                  <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full animate-pulse"></div>
-                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
-                                  </div>
-                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 break-all transition-colors duration-300">{formatCurrency(result.totalInterest)}</div>
-                                  <div className="text-xs sm:text-sm md:text-base text-orange-700 mt-1">{interestPercentage.toFixed(1)}% of total</div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200">
-                              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center">
-                                <span className="text-xs sm:text-sm md:text-base text-gray-600">Total Amount to be Repaid:</span>
-                                <span className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.totalAmount)}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Loan Progress Indicator */}
-                          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-blue-200">
-                            <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-center text-base sm:text-lg">Understanding Your Business Loan</h3>
-                            <div className="space-y-3 sm:space-4">
-                              <div>
-                                <div className="flex flex-col xs:flex-row justify-between gap-1 xs:gap-2 text-xs sm:text-sm mb-2">
-                                  <span className="text-gray-700 font-medium">You're borrowing</span>
-                                  <span className="text-gray-900 font-bold break-all">{formatCurrency(parseFloat(loanAmount))}</span>
-                                </div>
-                                <div className="h-2.5 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
-                                  <div
-                                    className="h-full bg-gradient-to-r from-green-500 to-emerald-500 transition-colors duration-500"
-                                    style={{ width: `${principalPercentage}%` }}
-                                  ></div>
-                                </div>
-                              </div>
-                              <div>
-                                <div className="flex flex-col xs:flex-row justify-between gap-1 xs:gap-2 text-xs sm:text-sm mb-2">
-                                  <span className="text-gray-700 font-medium">You'll pay in interest</span>
-                                  <span className="text-orange-600 font-bold break-all">{formatCurrency(result.totalInterest)}</span>
-                                </div>
-                                <div className="h-2.5 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
-                                  <div
-                                    className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-colors duration-500"
-                                    style={{ width: `${interestPercentage}%` }}
-                                  ></div>
-                                </div>
-                              </div>
-                              <div className="pt-3 sm:pt-4 border-t border-blue-200">
-                                <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-1 xs:gap-2 mb-2">
-                                  <span className="text-gray-700 font-semibold text-sm sm:text-base">Total Repayment</span>
-                                  <span className="text-xl sm:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.totalAmount)}</span>
-                                </div>
-                                <p className="text-xs sm:text-sm text-gray-600 text-center px-2">
-                                  💡 For every {formatCurrency(1)} you borrow, you'll pay back ${(result.totalAmount / parseFloat(loanAmount)).toFixed(2)}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
                       <div className="space-y-3 sm:space-y-4">
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
@@ -1819,7 +1687,84 @@ export default function BusinessLoanCalculator() {
                             </span>
                           </div>
                         </div>
+
+                        {/* Show/Hide Chart Button */}
+                        <div className="flex justify-center pt-2">
+                          <Button
+                            onClick={() => {
+                              setShowCharts(!showCharts);
+                              if (!showCharts) {
+                                setTimeout(() => {
+                                  chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }, 100);
+                              }
+                            }}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-blue-700 hover:text-blue-800 transition-colors"
+                            data-testid="button-show-chart"
+                          >
+                            <BarChartIcon className="w-4 h-4 mr-1.5" />
+                            {showCharts ? 'Hide Chart' : 'Show Chart'}
+                          </Button>
+                        </div>
                       </div>
+
+                      {/* Professional Payment Chart */}
+                      {showCharts && (
+                        <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Total Payment Composition</h3>
+                          <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
+                            <RechartsPieChart>
+                              <Pie
+                                data={[
+                                  { name: 'Principal', value: parseFloat(loanAmount), color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ]}
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                                outerRadius="70%"
+                                fill="#8884d8"
+                                dataKey="value"
+                                style={{ fontSize: '11px', fontWeight: '500' }}
+                              >
+                                {[
+                                  { name: 'Principal', value: parseFloat(loanAmount), color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ].map((entry, index) => (
+                                  <Cell key={`cell-${index}`} fill={entry.color} />
+                                ))}
+                              </Pie>
+                              <RechartsTooltip 
+                                formatter={(value: number) => formatCurrency(value)}
+                                contentStyle={{ 
+                                  backgroundColor: '#fff', 
+                                  border: '1px solid #e5e7eb', 
+                                  borderRadius: '8px',
+                                  fontSize: '12px',
+                                  padding: '8px'
+                                }}
+                              />
+                              <Legend 
+                                wrapperStyle={{ fontSize: '11px' }}
+                                iconType="circle"
+                              />
+                            </RechartsPieChart>
+                          </ResponsiveContainer>
+                          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 text-center">
+                            <div className="bg-green-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-green-700 font-medium">Principal</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-green-800 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
+                            </div>
+                            <div className="bg-orange-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-orange-700 font-medium">Interest</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
 
                       {result.debtServiceCoverage > 0 && (
                         <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">

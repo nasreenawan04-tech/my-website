@@ -307,3 +307,12 @@
 [x] 636. Restart workflow and verify application is running successfully on port 5000
 [x] 637. Take screenshot to confirm homepage and all features are fully functional
 [x] 638. Mark all migration tasks as complete - project fully operational in Replit environment ✓
+[x] 639. Standardize Business Loan Calculator chart to match Loan Calculator design (November 17, 2025) ✓
+[x] 640. Replace complex donut chart with simple pie chart matching Loan Calculator
+[x] 641. Remove gradient-filled donut chart and fancy progress indicators
+[x] 642. Implement simple pie chart with clear labels showing Principal vs Interest percentages
+[x] 643. Add summary boxes below chart showing Principal and Interest totals
+[x] 644. Match ResponsiveContainer sizing and styling from Loan Calculator
+[x] 645. Verify no LSP errors after chart standardization
+[x] 646. Restart workflow and verify application is running successfully
+[x] 647. Take screenshot to confirm Business Loan Calculator loads correctly with new chart design ✓
