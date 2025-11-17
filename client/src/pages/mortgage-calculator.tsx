@@ -2395,6 +2395,7 @@ const MortgageCalculator = () => {
                                 labelFormatter={(label) => `Payment #${label}`}
                                 contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
                               />
+                              <Legend />
                               {(chartFilter === 'both' || chartFilter === 'principal') && (
                                 <Area 
                                   type="monotone" 
