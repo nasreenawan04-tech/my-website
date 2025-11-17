@@ -776,12 +776,31 @@ export default function LoanCalculator() {
       // Capture comparison table if exists
       if (comparisonLoans.length > 0 && comparisonRef.current) {
         try {
-          // Capture first, then add page only if successful
+          // Store original styles to restore later
+          const originalOverflow = comparisonRef.current.style.overflow;
+          const originalWidth = comparisonRef.current.style.width;
+          const originalMaxWidth = comparisonRef.current.style.maxWidth;
+          
+          // Temporarily adjust styles for full content capture
+          comparisonRef.current.style.overflow = 'visible';
+          comparisonRef.current.style.width = 'fit-content';
+          comparisonRef.current.style.maxWidth = 'none';
+          
+          // Wait for browser to render the style changes
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+          // Capture the full table with all content visible
           const tableCanvas = await html2canvas(comparisonRef.current, {
-            scale: 1.5,
+            scale: 2,
             backgroundColor: '#ffffff',
-            logging: false
+            logging: false,
+            windowWidth: 1200
           });
+          
+          // Restore original styles
+          comparisonRef.current.style.overflow = originalOverflow;
+          comparisonRef.current.style.width = originalWidth;
+          comparisonRef.current.style.maxWidth = originalMaxWidth;
           
           if (tableCanvas && tableCanvas.height > 0) {
             const bottomMargin = 30;
