@@ -65,7 +65,6 @@ export default function EMICalculator() {
   const [enableStepUp, setEnableStepUp] = useState(false);
   const [enablePrepayment, setEnablePrepayment] = useState(false);
   const [showSchedule, setShowSchedule] = useState(false);
-  const [showChart, setShowChart] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [comparisonEMIs, setComparisonEMIs] = useState<ComparisonEMI[]>([]);
   const [result, setResult] = useState<EMIResult | null>(null);
@@ -330,7 +329,6 @@ export default function EMICalculator() {
     setEnableStepUp(false);
     setEnablePrepayment(false);
     setShowSchedule(false);
-    setShowChart(false);
     setResult(null);
   };
 
@@ -1548,16 +1546,6 @@ export default function EMICalculator() {
                           {showSchedule ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
                         <Button
-                          onClick={() => setShowChart(!showChart)}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
-                          data-testid="button-show-chart"
-                        >
-                          <PieChart className="w-4 h-4 mr-1.5" />
-                          {showChart ? 'Hide' : 'Show'} Chart
-                        </Button>
-                        <Button
                           onClick={() => setShowComparison(!showComparison)}
                           variant="outline"
                           size="sm"
@@ -1652,21 +1640,20 @@ export default function EMICalculator() {
 
                 {result ? (
                   <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your EMI Calculation Results</h2>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your Loan Calculation Results</h2>
 
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="emi-results">
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 border border-blue-100 shadow-sm">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
                         <div className="text-center space-y-2 sm:space-y-3">
-                          <div className="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-wide">Estimated Monthly EMI</div>
-                          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 break-all" data-testid="text-monthly-emi">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Estimated Monthly EMI</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-emi">
                             {formatCurrency(result.emi)}
                           </div>
                           <p className="text-xs text-gray-500">Based on monthly payment frequency</p>
                         </div>
                       </div>
 
-                      {showChart && (
-                        <div ref={chartRef} className="space-y-4 sm:space-y-6">
+                      <div ref={chartRef} className="space-y-4 sm:space-y-6">
                           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
                             <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Total Loan Breakdown</h3>
                             <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
@@ -1769,7 +1756,6 @@ export default function EMICalculator() {
                             </div>
                           )}
                         </div>
-                      )}
 
                       <div className="space-y-3 sm:space-y-4">
                         <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border border-gray-100">
