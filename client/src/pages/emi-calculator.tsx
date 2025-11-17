@@ -1716,7 +1716,7 @@ export default function EMICalculator() {
                             <RechartsPieChart>
                               <Pie
                                 data={[
-                                  { name: 'Principal', value: result.principalAmount, color: '#10b981' },
+                                  { name: 'Principal', value: parseFloat(loanAmount), color: '#10b981' },
                                   { name: 'Interest', value: result.totalInterest, color: '#f97316' }
                                 ]}
                                 cx="50%"
@@ -1728,7 +1728,7 @@ export default function EMICalculator() {
                                 dataKey="value"
                               >
                                 {[
-                                  { name: 'Principal', value: result.principalAmount, color: '#10b981' },
+                                  { name: 'Principal', value: parseFloat(loanAmount), color: '#10b981' },
                                   { name: 'Interest', value: result.totalInterest, color: '#f97316' }
                                 ].map((entry, index) => (
                                   <Cell key={`cell-${index}`} fill={entry.color} />
@@ -1744,7 +1744,7 @@ export default function EMICalculator() {
                           <div className="mt-4 grid grid-cols-2 gap-3 text-center">
                             <div className="bg-green-50 rounded-lg p-3">
                               <div className="text-xs text-green-700 font-medium">Principal</div>
-                              <div className="text-sm sm:text-base font-bold text-green-800">{formatCurrency(result.principalAmount)}</div>
+                              <div className="text-sm sm:text-base font-bold text-green-800">{formatCurrency(parseFloat(loanAmount))}</div>
                             </div>
                             <div className="bg-orange-50 rounded-lg p-3">
                               <div className="text-xs text-orange-700 font-medium">Interest</div>
@@ -1846,7 +1846,6 @@ export default function EMICalculator() {
                                   name="Interest"
                                 />
                               )}
-                              <Legend />
                             </AreaChart>
                           </ResponsiveContainer>
                         </div>
