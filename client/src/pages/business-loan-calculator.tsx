@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, Building2, RotateCcw, BarChartIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, AreaChart, Area } from 'recharts';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -56,6 +56,7 @@ export default function BusinessLoanCalculator() {
   const [showAmortization, setShowAmortization] = useState(false);
   const [showCharts, setShowCharts] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
+  const [chartFilter, setChartFilter] = useState<'principal' | 'interest' | 'both'>('both');
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonBusinessLoan[]>([]);
   const [result, setResult] = useState<BusinessLoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -1712,6 +1713,7 @@ export default function BusinessLoanCalculator() {
 
                       {/* Professional Payment Chart */}
                       {showCharts && (
+                        <div className="space-y-4">
                         <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
                           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Total Payment Composition</h3>
                           <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
@@ -1763,6 +1765,127 @@ export default function BusinessLoanCalculator() {
                               <div className="text-xs sm:text-sm md:text-base font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
                             </div>
                           </div>
+                        </div>
+
+                        {/* Area Chart - Payment Breakdown Over Time */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm mt-4">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Payment Breakdown Over Time</h3>
+                          
+                          {/* Chart Filter Toggle */}
+                          <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 flex-wrap">
+                            <Button
+                              onClick={() => setChartFilter('principal')}
+                              variant={chartFilter === 'principal' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'principal' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                              data-testid="button-filter-principal"
+                            >
+                              <span className="flex items-center gap-1 sm:gap-1.5">
+                                <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></span>
+                                <span className="hidden xs:inline">Principal</span>
+                                <span className="xs:hidden">P</span>
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('interest')}
+                              variant={chartFilter === 'interest' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                              data-testid="button-filter-interest"
+                            >
+                              <span className="flex items-center gap-1 sm:gap-1.5">
+                                <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-orange-500"></span>
+                                <span className="hidden xs:inline">Interest</span>
+                                <span className="xs:hidden">I</span>
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('both')}
+                              variant={chartFilter === 'both' ? 'default' : 'outline'}
+                              size="sm"
+                              className="text-[10px] sm:text-xs px-2 sm:px-3"
+                              data-testid="button-filter-both"
+                            >
+                              <span className="hidden sm:inline">Showing all payments</span>
+                              <span className="sm:hidden">All</span>
+                            </Button>
+                          </div>
+
+                          <div className="w-full overflow-x-auto">
+                            <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
+                              <AreaChart
+                                data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
+                                margin={{ top: 5, right: 5, left: -10, bottom: 5 }}
+                              >
+                                <defs>
+                                  <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                                  </linearGradient>
+                                  <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
+                                    <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
+                                  </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis 
+                                  dataKey="month" 
+                                  tick={{ fontSize: 9 }}
+                                  tickMargin={5}
+                                  label={{ 
+                                    value: 'Payment Number', 
+                                    position: 'insideBottom', 
+                                    offset: -2, 
+                                    fontSize: 9,
+                                    style: { fill: '#6b7280' }
+                                  }}
+                                  interval="preserveStartEnd"
+                                />
+                                <YAxis 
+                                  tick={{ fontSize: 9 }}
+                                  tickMargin={5}
+                                  width={40}
+                                  tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                                />
+                                <RechartsTooltip 
+                                  formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
+                                  labelFormatter={(label) => `Payment #${label}`}
+                                  contentStyle={{ 
+                                    backgroundColor: '#fff', 
+                                    border: '1px solid #e5e7eb', 
+                                    borderRadius: '8px',
+                                    fontSize: '12px',
+                                    padding: '8px'
+                                  }}
+                                />
+                                {(chartFilter === 'both' || chartFilter === 'principal') && (
+                                  <Area 
+                                    type="monotone" 
+                                    dataKey="principal" 
+                                    stackId={chartFilter === 'both' ? '1' : undefined}
+                                    stroke="#10b981" 
+                                    strokeWidth={2}
+                                    fillOpacity={1} 
+                                    fill="url(#colorPrincipal)"
+                                    name="Principal"
+                                  />
+                                )}
+                                {(chartFilter === 'both' || chartFilter === 'interest') && (
+                                  <Area 
+                                    type="monotone" 
+                                    dataKey="interest" 
+                                    stackId={chartFilter === 'both' ? '1' : undefined}
+                                    stroke="#f97316" 
+                                    strokeWidth={2}
+                                    fillOpacity={1} 
+                                    fill="url(#colorInterest)"
+                                    name="Interest"
+                                  />
+                                )}
+                              </AreaChart>
+                            </ResponsiveContainer>
+                          </div>
+                        </div>
                         </div>
                       )}
 

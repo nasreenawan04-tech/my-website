@@ -336,3 +336,13 @@
 [x] 665. Update comparison business loans table to show exactly 30 rows per page in PDF export
 [x] 666. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
 [x] 667. Restart workflow and verify PDF export functionality works correctly ✓
+[x] 668. Add "Payment Breakdown Over Time" area chart to Business Loan Calculator (November 17, 2025)
+[x] 669. Import AreaChart and Area components from recharts library
+[x] 670. Add chartFilter state variable with 'principal', 'interest', 'both' options
+[x] 671. Create area chart section with interactive filter buttons (Principal, Interest, Both)
+[x] 672. Implement responsive area chart showing first 60 months of payment breakdown
+[x] 673. Add gradient fills for principal (green) and interest (orange) areas
+[x] 674. Configure chart axes, tooltips, and grid for professional visualization
+[x] 675. Wrap both pie chart and area chart in single showCharts conditional block
+[x] 676. Fix JSX structure with proper closing braces and spacing
+[x] 677. Restart workflow and verify area chart displays correctly ✓
