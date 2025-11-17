@@ -728,59 +728,59 @@ export default function CompoundInterestCalculator() {
       const doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
-      const margin = 20;
+      const margin = 12;
       let yPos = 0;
 
-      // Professional Header with colored banner (matching loan calculator exactly)
+      // Professional Header with colored banner
       doc.setFillColor(37, 99, 235); // Blue color
-      doc.rect(0, 0, pageWidth, 35, 'F');
+      doc.rect(0, 0, pageWidth, 30, 'F');
 
       // White title text on blue banner
       doc.setTextColor(255, 255, 255);
-      doc.setFontSize(24);
+      doc.setFontSize(20);
       doc.setFont('helvetica', 'bold');
-      doc.text('COMPOUND INTEREST REPORT', pageWidth / 2, 15, { align: 'center' });
+      doc.text('COMPOUND INTEREST REPORT', pageWidth / 2, 13, { align: 'center' });
 
-      doc.setFontSize(11);
+      doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
-      doc.text('Professional Compound Interest Calculator', pageWidth / 2, 25, { align: 'center' });
+      doc.text('Professional Compound Interest Calculator', pageWidth / 2, 22, { align: 'center' });
 
       // Reset text color to black
       doc.setTextColor(0, 0, 0);
-      yPos = 45;
+      yPos = 38;
 
       // Document Info Box
       doc.setFillColor(248, 250, 252); // Light gray background
-      doc.rect(margin, yPos, pageWidth - (2 * margin), 28, 'F');
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 24, 'F');
       doc.setDrawColor(226, 232, 240);
-      doc.rect(margin, yPos, pageWidth - (2 * margin), 28, 'S');
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 24, 'S');
 
-      doc.setFontSize(10);
+      doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(71, 85, 105);
       const timeDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
       const compoundDisplay = compoundFrequency === '1' ? 'Annually' : 
                               compoundFrequency === '4' ? 'Quarterly' : 
                               compoundFrequency === '12' ? 'Monthly' : 'Daily';
-      doc.text('Time Period:', margin + 5, yPos + 8);
+      doc.text('Time Period:', margin + 3, yPos + 7);
       doc.setFont('helvetica', 'normal');
-      doc.text(timeDisplay, margin + 35, yPos + 8);
+      doc.text(timeDisplay, margin + 28, yPos + 7);
 
       doc.setFont('helvetica', 'bold');
-      doc.text('Compounding:', margin + 5, yPos + 16);
+      doc.text('Compounding:', margin + 3, yPos + 14);
       doc.setFont('helvetica', 'normal');
-      doc.text(compoundDisplay, margin + 45, yPos + 16);
+      doc.text(compoundDisplay, margin + 32, yPos + 14);
 
       doc.setFont('helvetica', 'bold');
-      doc.text('Generated:', margin + 5, yPos + 24);
+      doc.text('Generated:', margin + 3, yPos + 21);
       doc.setFont('helvetica', 'normal');
-      doc.text(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), margin + 35, yPos + 24);
+      doc.text(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), margin + 28, yPos + 21);
 
       doc.setTextColor(0, 0, 0);
-      yPos += 38;
+      yPos += 32;
 
       // Executive Summary Section
-      doc.setFontSize(16);
+      doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(30, 58, 138);
       doc.text('EXECUTIVE SUMMARY', margin, yPos);
@@ -789,59 +789,61 @@ export default function CompoundInterestCalculator() {
       // Underline
       doc.setDrawColor(37, 99, 235);
       doc.setLineWidth(0.5);
-      doc.line(margin, yPos, margin + 60, yPos);
-      yPos += 10;
+      doc.line(margin, yPos, margin + 55, yPos);
+      yPos += 8;
       doc.setTextColor(0, 0, 0);
 
-      // Final Amount Highlight Box (matching Monthly Payment box exactly)
+      // Final Amount Highlight Box
       doc.setFillColor(37, 99, 235);
-      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 25, 3, 3, 'F');
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 22, 3, 3, 'F');
 
       doc.setTextColor(255, 255, 255);
-      doc.setFontSize(12);
+      doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
-      doc.text('FINAL AMOUNT', pageWidth / 2, yPos + 8, { align: 'center' });
-      doc.setFontSize(20);
-      doc.text(formatCurrency(result.finalAmount), pageWidth / 2, yPos + 18, { align: 'center' });
+      doc.text('FINAL AMOUNT', pageWidth / 2, yPos + 7, { align: 'center' });
+      doc.setFontSize(18);
+      doc.text(formatCurrency(result.finalAmount), pageWidth / 2, yPos + 16, { align: 'center' });
 
       doc.setTextColor(0, 0, 0);
-      yPos += 35;
+      yPos += 30;
 
       // Key Metrics Table
-      doc.setFontSize(14);
+      doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(30, 58, 138);
       doc.text('KEY METRICS', margin, yPos);
       yPos += 2;
       doc.setDrawColor(37, 99, 235);
-      doc.line(margin, yPos, margin + 40, yPos);
-      yPos += 8;
+      doc.line(margin, yPos, margin + 35, yPos);
+      yPos += 7;
       doc.setTextColor(0, 0, 0);
 
       // Table header
       doc.setFillColor(241, 245, 249);
-      doc.rect(margin, yPos, pageWidth - (2 * margin), 10, 'F');
-      doc.setFontSize(10);
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 9, 'F');
+      doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(51, 65, 85);
-      doc.text('Metric', margin + 3, yPos + 7);
-      doc.text('Value', pageWidth - margin - 50, yPos + 7);
-      yPos += 10;
+      doc.text('Metric', margin + 2, yPos + 6);
+      doc.text('Value', pageWidth - margin - 42, yPos + 6);
+      yPos += 9;
 
       // Table rows
       const interestPercent = ((result.totalInterest / result.finalAmount) * 100).toFixed(1);
       const metrics: { label: string; value: string; color: [number, number, number] }[] = [
         { label: 'Principal Amount', value: formatCurrency(parseFloat(principal)), color: [71, 85, 105] },
-        { label: 'Interest Rate', value: `${interestRate}%`, color: [71, 85, 105] },
+        { label: 'Interest Rate', value: `${interestRate}% per year`, color: [71, 85, 105] },
+        { label: 'Time Period', value: timeDisplay, color: [71, 85, 105] },
+        { label: 'Compounding Frequency', value: compoundDisplay, color: [71, 85, 105] },
         { label: 'Final Amount', value: formatCurrency(result.finalAmount), color: [37, 99, 235] },
         { label: 'Total Contributions', value: formatCurrency(result.totalContributions), color: [71, 85, 105] },
-        { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [22, 163, 74] },
-        { label: 'Interest Portion', value: `${interestPercent}%`, color: [22, 163, 74] }
+        { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
+        { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       ];
 
       if (enableSIP && parseFloat(sipAmount) > 0) {
         const sipFreqDisplay = sipFrequency === '12' ? 'Monthly' : 'Annual';
-        metrics.push({ label: `${sipFreqDisplay} Contribution`, value: formatCurrency(parseFloat(sipAmount)), color: [16, 185, 129] });
+        metrics.push({ label: `${sipFreqDisplay} SIP Amount`, value: formatCurrency(parseFloat(sipAmount)), color: [16, 185, 129] });
       }
 
       doc.setFont('helvetica', 'normal');
@@ -852,59 +854,63 @@ export default function CompoundInterestCalculator() {
         } else {
           doc.setFillColor(248, 250, 252);
         }
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 7, 'F');
 
+        doc.setFontSize(8.5);
         doc.setTextColor(71, 85, 105);
-        doc.text(metric.label, margin + 3, yPos + 5.5);
+        doc.text(metric.label, margin + 2, yPos + 4.8);
 
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(...metric.color);
-        doc.text(metric.value, pageWidth - margin - 3, yPos + 5.5, { align: 'right' });
+        doc.text(metric.value, pageWidth - margin - 2, yPos + 4.8, { align: 'right' });
         doc.setFont('helvetica', 'normal');
 
-        yPos += 8;
+        yPos += 7;
       });
 
       // Border around table
       doc.setDrawColor(226, 232, 240);
-      doc.rect(margin, yPos - (metrics.length * 8) - 10, pageWidth - (2 * margin), (metrics.length * 8) + 10, 'S');
+      doc.rect(margin, yPos - (metrics.length * 7) - 9, pageWidth - (2 * margin), (metrics.length * 7) + 9, 'S');
 
-      yPos += 10;
+      yPos += 8;
 
-      // Goal Analysis (conditional - matching Extra Payment Savings structure)
+      // Goal Analysis
       if (result.goalAnalysis && enableGoalPlanning) {
+        const boxHeight = 30;
         doc.setFillColor(236, 253, 245);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 20, 'F');
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'F');
         doc.setDrawColor(34, 197, 94);
-        doc.setLineWidth(1);
-        doc.rect(margin, yPos, pageWidth - (2 * margin), 20, 'S');
+        doc.setLineWidth(0.8);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'S');
 
-        doc.setFontSize(10);
+        doc.setFontSize(9);
         doc.setFont('helvetica', 'bold');
         doc.setTextColor(22, 163, 74);
-        doc.text('GOAL PLANNING ANALYSIS', margin + 5, yPos + 7);
+        doc.text('GOAL PLANNING ANALYSIS', margin + 3, yPos + 6);
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(9);
+        doc.setFontSize(8);
 
         if (result.goalAnalysis.isGoalAchievable) {
-          doc.text(`Time to Reach Goal: ${result.goalAnalysis.timeToReachGoal} years`, margin + 5, yPos + 14);
+          doc.text(`Time to Reach Goal: ${result.goalAnalysis.timeToReachGoal} years`, margin + 3, yPos + 12);
+          doc.text(`Goal Amount: ${formatCurrency(parseFloat(goalAmount))}`, margin + 3, yPos + 18);
         } else {
-          doc.text(`Required Monthly Contribution: ${formatCurrency(result.goalAnalysis.requiredMonthlyContribution)}`, margin + 5, yPos + 14);
+          doc.text(`Required Monthly SIP: ${formatCurrency(result.goalAnalysis.requiredMonthlyContribution)}`, margin + 3, yPos + 12);
+          doc.text(`Goal Amount: ${formatCurrency(parseFloat(goalAmount))}`, margin + 3, yPos + 18);
         }
 
         doc.setTextColor(0, 0, 0);
-        yPos += 28;
+        yPos += boxHeight + 6;
       }
 
       // Interpretation Section
-      doc.setFontSize(14);
+      doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(30, 58, 138);
       doc.text('INTERPRETATION', margin, yPos);
       yPos += 2;
       doc.setDrawColor(37, 99, 235);
-      doc.line(margin, yPos, margin + 50, yPos);
-      yPos += 10;
+      doc.line(margin, yPos, margin + 45, yPos);
+      yPos += 8;
       doc.setTextColor(0, 0, 0);
 
       let interpretation = '';
@@ -926,26 +932,19 @@ export default function CompoundInterestCalculator() {
       }
 
       doc.setFillColor(249, 250, 251);
-      const interpretationHeight = 20;
+      const interpretationHeight = 18;
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), interpretationHeight, 2, 2, 'F');
       doc.setDrawColor(...interpretationColor);
-      doc.setLineWidth(1);
+      doc.setLineWidth(0.8);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), interpretationHeight, 2, 2, 'S');
 
-      doc.setFontSize(10);
+      doc.setFontSize(8.5);
       doc.setTextColor(...interpretationColor);
-      doc.setFont('helvetica', 'bold');
-
-      // Split text into lines
-      const lines = doc.splitTextToSize(interpretation, pageWidth - (2 * margin) - 10);
-      let textY = yPos + 6;
-      lines.forEach((line: string) => {
-        doc.text(line, margin + 5, textY);
-        textY += 5;
-      });
+      const splitInterpretation = doc.splitTextToSize(interpretation, pageWidth - (2 * margin) - 8);
+      doc.text(splitInterpretation, margin + 4, yPos + 6);
 
       doc.setTextColor(0, 0, 0);
-      yPos += interpretationHeight + 10;
+      yPos += interpretationHeight + 8;
 
       // Capture charts
       if (chartRef.current) {
@@ -963,7 +962,7 @@ export default function CompoundInterestCalculator() {
               yPos = margin;
             }
 
-            doc.setFontSize(14);
+            doc.setFontSize(12);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(30, 58, 138);
             doc.text('INVESTMENT BREAKDOWN CHARTS', margin, yPos);
