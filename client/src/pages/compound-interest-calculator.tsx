@@ -82,7 +82,6 @@ export default function CompoundInterestCalculator() {
   const [goalAmount, setGoalAmount] = useState('100000');
   const [showRealValue, setShowRealValue] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
-  const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
 
@@ -315,7 +314,6 @@ export default function CompoundInterestCalculator() {
     setGoalAmount('100000');
     setShowRealValue(false);
     setShowBreakdown(false);
-    setShowChart(false);
     setResult(null);
   };
 
@@ -949,8 +947,8 @@ export default function CompoundInterestCalculator() {
       doc.setTextColor(0, 0, 0);
       yPos += interpretationHeight + 10;
 
-      // Capture charts if visible
-      if (showChart && chartRef.current) {
+      // Capture charts
+      if (chartRef.current) {
         try {
           // Capture first, then add page only if successful
           const chartCanvas = await html2canvas(chartRef.current, {
@@ -1758,15 +1756,6 @@ export default function CompoundInterestCalculator() {
                           {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
                         </Button>
                         <Button
-                          onClick={() => setShowChart(!showChart)}
-                          variant="outline"
-                          size="sm"
-                          data-testid="button-show-chart"
-                        >
-                          <PieChart className="w-4 h-4 mr-1.5" />
-                          {showChart ? 'Hide' : 'Show'} Chart
-                        </Button>
-                        <Button
                           onClick={() => setShowRealValue(!showRealValue)}
                           variant="outline"
                           size="sm"
@@ -1868,9 +1857,8 @@ export default function CompoundInterestCalculator() {
                       </div>
 
                       {/* Chart Section */}
-                      {showChart && (
-                        <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
-                          <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Investment Breakdown</h3>
+                      <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                        <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Investment Breakdown</h3>
                           <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
                             <div className="w-full max-w-[280px] sm:max-w-xs">
                               <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : 280}>
@@ -1948,8 +1936,7 @@ export default function CompoundInterestCalculator() {
                               <span className="text-lg sm:text-xl font-bold text-gray-900 break-all">{formatCurrency(result.finalAmount)}</span>
                             </div>
                           </div>
-                        </div>
-                      )}
+                      </div>
 
                       {/* Growth Breakdown */}
                       <div className="space-y-2 sm:space-y-3 md:space-y-4">
