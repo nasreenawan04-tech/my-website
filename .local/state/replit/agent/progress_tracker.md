@@ -320,3 +320,7 @@
 [x] 649. Restart workflow and verify application is running successfully on port 5000
 [x] 650. Take screenshot to confirm homepage and all features are fully functional
 [x] 651. Mark all migration tasks as complete - project fully operational in Replit environment ✓
+[x] 652. Update Loan Calculator PDF to show exactly 30 rows per page in amortization schedule (November 17, 2025)
+[x] 653. Update comparison loans table to show exactly 30 rows per page in PDF export
+[x] 654. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
+[x] 655. Restart workflow and verify PDF export functionality works correctly ✓
