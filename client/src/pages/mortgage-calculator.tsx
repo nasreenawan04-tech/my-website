@@ -2214,184 +2214,21 @@ const MortgageCalculator = () => {
 
                 {result ? (
                   <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-left">Your Mortgage Results</h2>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your Mortgage Results</h2>
 
                     <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                      <div className="bg-white rounded-lg sm:rounded-xl p-6 sm:p-8 border-2 border-blue-200 shadow-sm">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
                         <div className="text-center space-y-2 sm:space-y-3">
-                          <div className="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-wide">Estimated Monthly Payment</div>
-                          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Estimated Monthly Payment</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all">
                             {formatCurrency(result.monthlyPayment)}
                           </div>
-                          <p className="text-xs sm:text-sm text-gray-500">Based on monthly payment frequency</p>
+                          <p className="text-xs text-gray-500">Based on monthly payment frequency</p>
                         </div>
                       </div>
 
-                      <div className="space-y-4 sm:space-y-6">
-                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
-                            <h3 className="font-bold text-gray-900 mb-6 sm:mb-8 text-center text-lg sm:text-xl">Total Loan Breakdown</h3>
-                            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8">
-                              <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px]">
-                                <ResponsiveContainer width="100%" height={300}>
-                                  <RechartsPieChart>
-                                    <Pie
-                                      data={[
-                                        { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), percentage: principalPercentage },
-                                        { name: 'Interest', value: result.totalInterest, percentage: interestPercentage }
-                                      ]}
-                                      cx="50%"
-                                      cy="50%"
-                                      innerRadius="45%"
-                                      outerRadius="75%"
-                                      paddingAngle={5}
-                                      dataKey="value"
-                                      label={({ percentage }) => `${percentage.toFixed(1)}%`}
-                                      labelLine={true}
-                                    >
-                                      <Cell fill="url(#principalGradient)" stroke="#10b981" strokeWidth={2} />
-                                      <Cell fill="url(#interestGradient)" stroke="#f59e0b" strokeWidth={2} />
-                                    </Pie>
-                                    <RechartsTooltip
-                                      formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{
-                                        backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '12px',
-                                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
-                                        padding: '12px'
-                                      }}
-                                    />
-                                    <Legend
-                                      verticalAlign="bottom"
-                                      height={36}
-                                      iconType="circle"
-                                    />
-                                    <defs>
-                                      <linearGradient id="principalGradient" x1="0" y1="0" x2="1" y2="1">
-                                        <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#059669" stopOpacity={0.9} />
-                                      </linearGradient>
-                                      <linearGradient id="interestGradient" x1="0" y1="0" x2="1" y2="1">
-                                        <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#d97706" stopOpacity={0.9} />
-                                      </linearGradient>
-                                    </defs>
-                                  </RechartsPieChart>
-                                </ResponsiveContainer>
-                              </div>
-                              <div className="grid grid-cols-1 gap-4 w-full max-w-xs lg:max-w-sm">
-                                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 sm:p-4 border-l-4 border-green-500">
-                                  <div className="flex items-center justify-between">
-                                    <div className="min-w-0 flex-1">
-                                      <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Principal Amount</p>
-                                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-green-900 break-words">
-                                        {formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}
-                                      </p>
-                                    </div>
-                                    <div className="bg-green-500 rounded-full p-2 flex-shrink-0 ml-2">
-                                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </div>
-                                  </div>
-                                  <p className="text-xs text-green-600 mt-2">{principalPercentage.toFixed(1)}% of total</p>
-                                </div>
-                                <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-3 sm:p-4 border-l-4 border-orange-500">
-                                  <div className="flex items-center justify-between">
-                                    <div className="min-w-0 flex-1">
-                                      <p className="text-xs font-semibold text-orange-700 uppercase tracking-wide mb-1">Total Interest</p>
-                                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-orange-900 break-words">
-                                        {formatCurrency(result.totalInterest)}
-                                      </p>
-                                    </div>
-                                    <div className="bg-orange-500 rounded-full p-2 flex-shrink-0 ml-2">
-                                      <TrendingDown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </div>
-                                  </div>
-                                  <p className="text-xs text-orange-600 mt-2">{interestPercentage.toFixed(1)}% of total</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {result.amortizationSchedule.length > 0 && (
-                            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
-                              <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-lg sm:text-xl">Payment Breakdown Over Time</h3>
-                              <p className="text-center text-sm text-gray-600 mb-6">See how your payments shift from interest to principal</p>
-                              <div className="w-full">
-                                <ResponsiveContainer width="100%" height={360}>
-                                  <AreaChart
-                                    data={result.amortizationSchedule.map(item => ({
-                                      month: `Month ${item.month}`,
-                                      Principal: item.principal,
-                                      Interest: item.interest,
-                                      Balance: item.balance
-                                    }))}
-                                    margin={{ top: 10, right: 5, left: -10, bottom: 0 }}
-                                  >
-                                    <defs>
-                                      <linearGradient id="principalAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.9}/>
-                                        <stop offset="95%" stopColor="#10b981" stopOpacity={0.2}/>
-                                      </linearGradient>
-                                      <linearGradient id="interestAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.9}/>
-                                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.2}/>
-                                      </linearGradient>
-                                    </defs>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
-                                    <XAxis
-                                      dataKey="month"
-                                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                                      interval="preserveStartEnd"
-                                      angle={-45}
-                                      textAnchor="end"
-                                      height={60}
-                                    />
-                                    <YAxis
-                                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                                      tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                                      width={50}
-                                    />
-                                    <RechartsTooltip
-                                      formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{
-                                        backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '12px',
-                                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
-                                        padding: '8px 12px',
-                                        fontSize: '13px'
-                                      }}
-                                    />
-                                    <Area
-                                      type="monotone"
-                                      dataKey="Principal"
-                                      stackId="1"
-                                      stroke="#10b981"
-                                      strokeWidth={2}
-                                      fill="url(#principalAreaGradient)"
-                                    />
-                                    <Area
-                                      type="monotone"
-                                      dataKey="Interest"
-                                      stackId="1"
-                                      stroke="#f59e0b"
-                                      strokeWidth={2}
-                                      fill="url(#interestAreaGradient)"
-                                    />
-                                    <Legend
-                                      verticalAlign="top"
-                                      height={36}
-                                      iconType="line"
-                                    />
-                                  </AreaChart>
-                                </ResponsiveContainer>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-
                       <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
                             <span className="font-bold text-gray-900 text-sm sm:text-base break-all">
@@ -2399,8 +2236,7 @@ const MortgageCalculator = () => {
                             </span>
                           </div>
                         </div>
-
-                        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest Paid</span>
                             <span className="font-bold text-orange-600 text-sm sm:text-base break-all">
@@ -2408,8 +2244,7 @@ const MortgageCalculator = () => {
                             </span>
                           </div>
                         </div>
-
-                        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
                             <span className="font-bold text-gray-900 text-sm sm:text-base break-all">
@@ -2441,6 +2276,112 @@ const MortgageCalculator = () => {
                           </div>
                         </div>
                       )}
+
+                      {/* Payment Charts */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                        {/* Pie Chart - Payment Composition */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Total Payment Composition</h3>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <RechartsPieChart>
+                              <Pie
+                                data={[
+                                  { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ]}
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                                outerRadius={80}
+                                fill="#8884d8"
+                                dataKey="value"
+                              >
+                                {[
+                                  { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ].map((entry, index) => (
+                                  <Cell key={`cell-${index}`} fill={entry.color} />
+                                ))}
+                              </Pie>
+                              <RechartsTooltip 
+                                formatter={(value: number) => formatCurrency(value)}
+                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                              />
+                              <Legend />
+                            </RechartsPieChart>
+                          </ResponsiveContainer>
+                          <div className="mt-4 grid grid-cols-2 gap-3 text-center">
+                            <div className="bg-green-50 rounded-lg p-3">
+                              <div className="text-xs text-green-700 font-medium">Principal</div>
+                              <div className="text-sm sm:text-base font-bold text-green-800">{formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}</div>
+                            </div>
+                            <div className="bg-orange-50 rounded-lg p-3">
+                              <div className="text-xs text-orange-700 font-medium">Interest</div>
+                              <div className="text-sm sm:text-base font-bold text-orange-800">{formatCurrency(result.totalInterest)}</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Area Chart - Payment Breakdown Over Time */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Payment Breakdown Over Time</h3>
+                          <ResponsiveContainer width="100%" height={300}>
+                            <AreaChart
+                              data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+                            >
+                              <defs>
+                                <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                                </linearGradient>
+                                <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
+                                </linearGradient>
+                              </defs>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                              <XAxis 
+                                dataKey="month" 
+                                tick={{ fontSize: 12 }}
+                                label={{ value: 'Payment Number', position: 'insideBottom', offset: -5, fontSize: 12 }}
+                              />
+                              <YAxis 
+                                tick={{ fontSize: 12 }}
+                                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                              />
+                              <RechartsTooltip 
+                                formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
+                                labelFormatter={(label) => `Payment #${label}`}
+                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                              />
+                              <Legend />
+                              <Area 
+                                type="monotone" 
+                                dataKey="principal" 
+                                stackId="1"
+                                stroke="#10b981" 
+                                fillOpacity={1} 
+                                fill="url(#colorPrincipal)"
+                                name="Principal"
+                              />
+                              <Area 
+                                type="monotone" 
+                                dataKey="interest" 
+                                stackId="1"
+                                stroke="#f97316" 
+                                fillOpacity={1} 
+                                fill="url(#colorInterest)"
+                                name="Interest"
+                              />
+                            </AreaChart>
+                          </ResponsiveContainer>
+                          <p className="text-xs text-gray-600 mt-3 text-center">
+                            {result.amortizationSchedule.length > 60 ? 'Showing first 5 years of payments' : 'Showing all payments'}
+                          </p>
+                        </div>
+                      </div>
 
                       {/* Amortization Schedule Section */}
                       {showAmortization && (
