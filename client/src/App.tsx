@@ -42,7 +42,6 @@ const UnitConverter = lazy(() => import("@/pages/unit-converter"));
 const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
 const LeaseCalculator = lazy(() => import("@/pages/lease-calculator"));
 const ProteinIntakeCalculator = lazy(() => import("@/pages/protein-intake-calculator"));
-const MarkdownToPDFConverter = lazy(() => import("@/pages/markdown-to-pdf"));
 const Login = lazy(() => import("@/pages/login"));
 const Signup = lazy(() => import("@/pages/signup"));
 const ForgotPassword = lazy(() => import("@/pages/forgot-password"));
@@ -226,7 +225,6 @@ function Router() {
           <Route path="/tools/loan-calculator" component={LoanCalculator} />
           <Route path="/tools/lease-calculator" component={LeaseCalculator} />
           <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
-          <Route path="/tools/markdown-to-pdf" component={MarkdownToPDFConverter} />
           
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />

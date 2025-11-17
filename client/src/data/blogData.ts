@@ -1156,11 +1156,6 @@ export const blogPosts: BlogPost[] = [
           Remove unwanted characters, fix spacing, and standardize formatting in one click. The <a href="/tools/text-cleaner-formatter" class="text-primary hover:underline font-medium">Text Cleaner</a> handles content copied from PDFs, emails, or web pages.
         </p>
 
-        <h3 class="text-xl font-semibold mt-6 mb-3">Markdown to PDF Converter</h3>
-        <p class="mb-4">
-          Write in markdown and export polished PDFs instantly. Our <a href="/tools/markdown-to-pdf" class="text-primary hover:underline font-medium">Markdown to PDF Converter</a> preserves formatting, headers, lists, and code blocks perfectly.
-        </p>
-
         <div class="bg-accent/50 border border-border rounded-lg p-6 my-8">
           <h3 class="text-xl font-semibold mb-3">Content Creator Workflow Tip</h3>
           <p class="mb-3">
@@ -1171,7 +1166,6 @@ export const blogPosts: BlogPost[] = [
             <li>Check length (Word Counter)</li>
             <li>Fix formatting (Case Converter + Text Cleaner)</li>
             <li>Remove duplicates if needed</li>
-            <li>Export final version (Markdown to PDF)</li>
           </ul>
         </div>
 
@@ -1197,7 +1191,7 @@ export const blogPosts: BlogPost[] = [
         <div class="space-y-4 mb-6">
           <div class="border-l-4 border-primary pl-4">
             <h4 class="font-semibold mb-2">Blog Writers</h4>
-            <p class="mb-0">Use Word Counter to meet article length requirements, Case Converter for headlines, and Markdown to PDF for client deliverables.</p>
+            <p class="mb-0">Use Word Counter to meet article length requirements and Case Converter for headlines.</p>
           </div>
 
           <div class="border-l-4 border-primary pl-4">
@@ -1207,7 +1201,7 @@ export const blogPosts: BlogPost[] = [
 
           <div class="border-l-4 border-primary pl-4">
             <h4 class="font-semibold mb-2">Technical Writers</h4>
-            <p class="mb-0">Markdown to PDF creates documentation, URL Extractor audits links, and Text Statistics Analyzer ensures readability for target audiences.</p>
+            <p class="mb-0">URL Extractor audits links and Text Statistics Analyzer ensures readability for target audiences.</p>
           </div>
 
           <div class="border-l-4 border-primary pl-4">
