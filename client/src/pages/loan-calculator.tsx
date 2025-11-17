@@ -578,7 +578,7 @@ export default function LoanCalculator() {
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
-      doc.text('MONTHLY PAYMENT', pageWidth / 2, yPos + 7, { align: 'center' });
+      doc.text('ESTIMATED MONTHLY PAYMENT', pageWidth / 2, yPos + 7, { align: 'center' });
       doc.setFontSize(18);
       doc.text(formatCurrency(result.monthlyPayment), pageWidth / 2, yPos + 16, { align: 'center' });
 
@@ -619,7 +619,7 @@ export default function LoanCalculator() {
       const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
       
       const metrics: { label: string; value: string; color: [number, number, number] }[] = [
-        { label: 'Loan Amount', value: formatCurrency(parseFloat(loanAmount)), color: [71, 85, 105] },
+        { label: 'Principal Amount', value: formatCurrency(parseFloat(loanAmount)), color: [71, 85, 105] },
         { label: 'Interest Rate', value: `${interestRate}% per year`, color: [71, 85, 105] },
         { label: 'Loan Term', value: termUnit === 'years' ? `${loanTerm} years (${Math.round(termMonths)} months)` : `${loanTerm} months`, color: [71, 85, 105] },
         { label: 'Payment Frequency', value: freqDisplay, color: [71, 85, 105] },
@@ -634,7 +634,7 @@ export default function LoanCalculator() {
 
       metrics.push(
         { label: 'Total Amount Paid', value: formatCurrency(result.totalAmount), color: [71, 85, 105] },
-        { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
+        { label: 'Total Interest Paid', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
         { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       );
 
