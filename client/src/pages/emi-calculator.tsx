@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, TrendingDown, DollarSign, Info, RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -753,172 +752,282 @@ export default function EMICalculator() {
       // Draw comparison table if exists
       if (comparisonEMIs.length > 0) {
         try {
-          // Capture first, then add page only if successful
-          const tableCanvas = await html2canvas(comparisonRef.current, {
-            scale: 1.5,
-            backgroundColor: '#ffffff',
-            logging: false
-          });
+          doc.addPage();
+          yPos = margin;
           
-          if (tableCanvas && tableCanvas.height > 0) {
-            const bottomMargin = 30;
-            const tableWidth = pageWidth - (2 * margin);
-            const scale = tableWidth / tableCanvas.width;
-            
-            // Helper function to add header
-            const addComparisonHeader = (continued: boolean = false) => {
-              doc.setFontSize(14);
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('EMI SCENARIO COMPARISON', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 65, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+          
+          // Optimized column widths (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            scenario: 22,       // "SCENARIO"
+            amount: 33,         // "AMOUNT"
+            rate: 18,           // "RATE"
+            term: 25,           // "TERM"
+            emi: 45,            // "MONTHLY EMI"
+            interest: 43        // "TOTAL INTEREST"
+          };
+          
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
+          
+          let xPos = margin;
+          doc.text('SCENARIO', xPos + 2, yPos + 6);
+          xPos += colWidths.scenario;
+          doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.amount;
+          doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.rate;
+          doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.term;
+          doc.text('MONTHLY EMI', xPos + colWidths.emi - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.emi;
+          doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows
+          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          let rowCount = 0;
+          
+          comparisonEMIs.forEach((scenario, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
+              doc.addPage();
+              yPos = margin;
+              
+              // Repeat header
+              doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(30, 58, 138);
-              const headerText = continued 
-                ? 'EMI SCENARIO COMPARISON - CONTINUED'
-                : 'EMI SCENARIO COMPARISON';
-              doc.text(headerText, margin, yPos);
+              doc.text('EMI SCENARIO COMPARISON - CONTINUED', margin, yPos);
               yPos += 2;
               doc.setDrawColor(37, 99, 235);
-              const lineWidth = continued ? 90 : 70;
-              doc.line(margin, yPos, margin + lineWidth, yPos);
+              doc.line(margin, yPos, margin + 85, yPos);
               yPos += 10;
-              doc.setTextColor(0, 0, 0);
-            };
-
-            // Start first page
-            doc.addPage();
-            yPos = margin;
-            addComparisonHeader(false);
-
-            // Split canvas across unlimited pages
-            let sourceYOffset = 0;
-            let pageIndex = 0;
-            
-            while (sourceYOffset < tableCanvas.height) {
-              // Calculate available height for current page
-              const availableHeight = pageHeight - yPos - bottomMargin;
-              const sourceHeightForPage = Math.min(
-                availableHeight / scale,
-                tableCanvas.height - sourceYOffset
-              );
               
-              // Create off-screen canvas for this page slice
-              const pageCanvas = document.createElement('canvas');
-              pageCanvas.width = tableCanvas.width;
-              pageCanvas.height = sourceHeightForPage;
-              const pageCtx = pageCanvas.getContext('2d');
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
               
-              if (pageCtx) {
-                // Draw slice
-                pageCtx.drawImage(
-                  tableCanvas,
-                  0, sourceYOffset, tableCanvas.width, sourceHeightForPage,
-                  0, 0, tableCanvas.width, sourceHeightForPage
-                );
-                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
-                const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'JPEG', margin, yPos, tableWidth, renderedHeight);
-                
-                // Move to next slice
-                sourceYOffset += sourceHeightForPage;
-                
-                // Add new page if more content remains
-                if (sourceYOffset < tableCanvas.height) {
-                  doc.addPage();
-                  yPos = margin;
-                  addComparisonHeader(true);
-                  pageIndex++;
-                }
-              } else {
-                break;
-              }
+              xPos = margin;
+              doc.text('SCENARIO', xPos + 2, yPos + 6);
+              xPos += colWidths.scenario;
+              doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.amount;
+              doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.rate;
+              doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.term;
+              doc.text('MONTHLY EMI', xPos + colWidths.emi - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.emi;
+              doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
             }
-          }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            // Scenario name
+            doc.setTextColor(17, 24, 39);
+            doc.text(scenario.name, xPos + 2, yPos + 5.5);
+            
+            // Amount
+            xPos += colWidths.scenario;
+            doc.text(formatCurrency(scenario.principal), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
+            
+            // Rate
+            xPos += colWidths.amount;
+            doc.text(`${scenario.rate}%`, xPos + colWidths.rate - 2, yPos + 5.5, { align: 'right' });
+            
+            // Term
+            xPos += colWidths.rate;
+            const termDisplay = scenario.tenureType === 'years' ? `${scenario.tenure}y` : `${scenario.tenure}m`;
+            doc.text(termDisplay, xPos + colWidths.term - 2, yPos + 5.5, { align: 'right' });
+            
+            // Monthly EMI
+            xPos += colWidths.term;
+            doc.setTextColor(37, 99, 235);
+            doc.text(formatCurrency(scenario.emi), xPos + colWidths.emi - 2, yPos + 5.5, { align: 'right' });
+            
+            // Total Interest
+            xPos += colWidths.emi;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(scenario.totalInterest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
         } catch (error) {
-          console.error('Error capturing comparison table:', error);
+          console.error('Error generating comparison table:', error);
         }
       }
 
-      // Capture amortization schedule if visible
-      if (showSchedule && amortizationRef.current) {
+      // Draw amortization schedule if visible
+      if (showSchedule && result?.amortizationSchedule) {
         try {
-          // Capture first, then add page only if successful
-          const amortizationCanvas = await html2canvas(amortizationRef.current, {
-            scale: 1.5,
-            backgroundColor: '#ffffff',
-            logging: false
-          });
+          doc.addPage();
+          yPos = margin;
           
-          if (amortizationCanvas && amortizationCanvas.height > 0) {
-            const bottomMargin = 30;
-            const amortizationWidth = pageWidth - (2 * margin);
-            const scale = amortizationWidth / amortizationCanvas.width;
-            
-            // Helper function to add header
-            const addAmortizationHeader = (continued: boolean = false) => {
-              doc.setFontSize(14);
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 85, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+          
+          // Optimized column widths for mobile (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            month: 20,      // "MONTH"
+            emi: 37,        // "EMI"
+            principal: 37,  // "PRINCIPAL"
+            interest: 37,   // "INTEREST"
+            balance: 55     // "BALANCE"
+          };
+          
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
+          
+          let xPos = margin;
+          doc.text('MONTH', xPos + 2, yPos + 6);
+          xPos += colWidths.month;
+          doc.text('EMI', xPos + colWidths.emi - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.emi;
+          doc.text('PRINCIPAL', xPos + colWidths.principal - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.principal;
+          doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.interest;
+          doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
+          
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows
+          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          let rowCount = 0;
+          
+          result.amortizationSchedule.forEach((payment, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
+              doc.addPage();
+              yPos = margin;
+              
+              // Repeat header
+              doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(30, 58, 138);
-              const headerText = continued 
-                ? 'AMORTIZATION SCHEDULE (FIRST 5 YEARS) - CONTINUED'
-                : 'AMORTIZATION SCHEDULE (FIRST 5 YEARS)';
-              doc.text(headerText, margin, yPos);
+              doc.text('AMORTIZATION SCHEDULE - CONTINUED', margin, yPos);
               yPos += 2;
               doc.setDrawColor(37, 99, 235);
-              const lineWidth = continued ? 110 : 90;
-              doc.line(margin, yPos, margin + lineWidth, yPos);
+              doc.line(margin, yPos, margin + 85, yPos);
               yPos += 10;
-              doc.setTextColor(0, 0, 0);
-            };
-
-            // Start first page
-            doc.addPage();
-            yPos = margin;
-            addAmortizationHeader(false);
-
-            // Split canvas across unlimited pages
-            let sourceYOffset = 0;
-            let pageIndex = 0;
-            
-            while (sourceYOffset < amortizationCanvas.height) {
-              // Calculate available height for current page
-              const availableHeight = pageHeight - yPos - bottomMargin;
-              const sourceHeightForPage = Math.min(
-                availableHeight / scale,
-                amortizationCanvas.height - sourceYOffset
-              );
               
-              // Create off-screen canvas for this page slice
-              const pageCanvas = document.createElement('canvas');
-              pageCanvas.width = amortizationCanvas.width;
-              pageCanvas.height = sourceHeightForPage;
-              const pageCtx = pageCanvas.getContext('2d');
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
               
-              if (pageCtx) {
-                // Draw slice
-                pageCtx.drawImage(
-                  amortizationCanvas,
-                  0, sourceYOffset, amortizationCanvas.width, sourceHeightForPage,
-                  0, 0, amortizationCanvas.width, sourceHeightForPage
-                );
-                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
-                const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'JPEG', margin, yPos, amortizationWidth, renderedHeight);
-                
-                // Move to next slice
-                sourceYOffset += sourceHeightForPage;
-                
-                // Add new page if more content remains
-                if (sourceYOffset < amortizationCanvas.height) {
-                  doc.addPage();
-                  yPos = margin;
-                  addAmortizationHeader(true);
-                  pageIndex++;
-                }
-              } else {
-                break;
-              }
+              xPos = margin;
+              doc.text('MONTH', xPos + 2, yPos + 6);
+              xPos += colWidths.month;
+              doc.text('EMI', xPos + colWidths.emi - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.emi;
+              doc.text('PRINCIPAL', xPos + colWidths.principal - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.principal;
+              doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.interest;
+              doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
             }
-          }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            doc.setTextColor(17, 24, 39);
+            doc.text(String(payment.month), xPos + 2, yPos + 5.5);
+            
+            xPos += colWidths.month;
+            doc.text(formatCurrency(payment.emi), xPos + colWidths.emi - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.emi;
+            doc.setTextColor(22, 163, 74);
+            doc.text(formatCurrency(payment.principal), xPos + colWidths.principal - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.principal;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(payment.interest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.interest;
+            doc.setTextColor(17, 24, 39);
+            doc.text(formatCurrency(payment.balance), xPos + colWidths.balance - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
         } catch (error) {
-          console.error('Error capturing amortization schedule:', error);
+          console.error('Error generating amortization schedule:', error);
         }
       }
 
@@ -926,23 +1035,23 @@ export default function EMICalculator() {
       const totalPages = (doc as any).internal.getNumberOfPages();
       for (let i = 1; i <= totalPages; i++) {
         doc.setPage(i);
-        
+
         // Footer line
         doc.setDrawColor(226, 232, 240);
-        doc.setLineWidth(0.5);
-        doc.line(margin, pageHeight - 20, pageWidth - margin, pageHeight - 20);
-        
+        doc.setLineWidth(0.3);
+        doc.line(margin, pageHeight - 18, pageWidth - margin, pageHeight - 18);
+
         // Footer text
-        doc.setFontSize(8);
+        doc.setFontSize(7);
         doc.setTextColor(100, 116, 139);
         doc.setFont('helvetica', 'normal');
-        doc.text('DapsiWow EMI Calculator', margin, pageHeight - 12);
-        doc.text(`Page ${i} of ${totalPages}`, pageWidth / 2, pageHeight - 12, { align: 'center' });
-        doc.text(new Date().toLocaleDateString(), pageWidth - margin, pageHeight - 12, { align: 'right' });
-        
+        doc.text('DapsiWow EMI Calculator', margin, pageHeight - 10);
+        doc.text(`Page ${i} of ${totalPages}`, pageWidth / 2, pageHeight - 10, { align: 'center' });
+        doc.text(new Date().toLocaleDateString(), pageWidth - margin, pageHeight - 10, { align: 'right' });
+
         // Website
         doc.setTextColor(37, 99, 235);
-        doc.text('www.dapsiwow.com', pageWidth - margin, pageHeight - 7, { align: 'right' });
+        doc.text('www.dapsiwow.com', pageWidth - margin, pageHeight - 5, { align: 'right' });
       }
 
       doc.save('emi-analysis-report.pdf');
