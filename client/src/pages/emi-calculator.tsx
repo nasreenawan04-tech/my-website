@@ -1710,9 +1710,9 @@ export default function EMICalculator() {
                       {/* Professional Payment Charts */}
                       <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                         {/* Pie Chart - Payment Composition */}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Total Payment Composition</h3>
-                          <ResponsiveContainer width="100%" height={300}>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Total Payment Composition</h3>
+                          <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
                             <RechartsPieChart>
                               <Pie
                                 data={[
@@ -1723,9 +1723,10 @@ export default function EMICalculator() {
                                 cy="50%"
                                 labelLine={false}
                                 label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
-                                outerRadius={80}
+                                outerRadius="70%"
                                 fill="#8884d8"
                                 dataKey="value"
+                                style={{ fontSize: '11px', fontWeight: '500' }}
                               >
                                 {[
                                   { name: 'Principal', value: parseFloat(loanAmount), color: '#10b981' },
@@ -1736,19 +1737,28 @@ export default function EMICalculator() {
                               </Pie>
                               <RechartsTooltip 
                                 formatter={(value: number) => formatCurrency(value)}
-                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                                contentStyle={{ 
+                                  backgroundColor: '#fff', 
+                                  border: '1px solid #e5e7eb', 
+                                  borderRadius: '8px',
+                                  fontSize: '12px',
+                                  padding: '8px'
+                                }}
                               />
-                              <Legend />
+                              <Legend 
+                                wrapperStyle={{ fontSize: '11px' }}
+                                iconType="circle"
+                              />
                             </RechartsPieChart>
                           </ResponsiveContainer>
-                          <div className="mt-4 grid grid-cols-2 gap-3 text-center">
-                            <div className="bg-green-50 rounded-lg p-3">
-                              <div className="text-xs text-green-700 font-medium">Principal</div>
-                              <div className="text-sm sm:text-base font-bold text-green-800">{formatCurrency(parseFloat(loanAmount))}</div>
+                          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 text-center">
+                            <div className="bg-green-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-green-700 font-medium">Principal</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-green-800 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
                             </div>
-                            <div className="bg-orange-50 rounded-lg p-3">
-                              <div className="text-xs text-orange-700 font-medium">Interest</div>
-                              <div className="text-sm sm:text-base font-bold text-orange-800">{formatCurrency(result.totalInterest)}</div>
+                            <div className="bg-orange-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-orange-700 font-medium">Interest</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
                             </div>
                           </div>
                         </div>
