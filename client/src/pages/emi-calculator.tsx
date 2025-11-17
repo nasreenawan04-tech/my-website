@@ -66,6 +66,7 @@ export default function EMICalculator() {
   const [enablePrepayment, setEnablePrepayment] = useState(false);
   const [showSchedule, setShowSchedule] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
+  const [showCharts, setShowCharts] = useState(false);
   const [comparisonEMIs, setComparisonEMIs] = useState<ComparisonEMI[]>([]);
   const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<EMIResult | null>(null);
@@ -1680,17 +1681,24 @@ export default function EMICalculator() {
                           </div>
                         </div>
 
-                        {/* Show Chart Button */}
+                        {/* Show/Hide Chart Button */}
                         <div className="flex justify-center pt-2">
                           <Button
-                            onClick={() => chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                            onClick={() => {
+                              setShowCharts(!showCharts);
+                              if (!showCharts) {
+                                setTimeout(() => {
+                                  chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }, 100);
+                              }
+                            }}
                             variant="outline"
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-blue-700 hover:text-blue-800 transition-colors"
                             data-testid="button-show-chart"
                           >
                             <BarChart className="w-4 h-4 mr-1.5" />
-                            Show Chart
+                            {showCharts ? 'Hide Chart' : 'Show Chart'}
                           </Button>
                         </div>
                       </div>
@@ -1722,6 +1730,7 @@ export default function EMICalculator() {
                       )}
 
                       {/* Professional Payment Charts */}
+                      {showCharts && (
                       <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                         {/* Pie Chart - Payment Composition */}
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
@@ -1897,6 +1906,7 @@ export default function EMICalculator() {
                           </div>
                         </div>
                       </div>
+                      )}
 
                       {result.stepUpAnalysis && (
                         <div className="bg-blue-50 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border-l-4 border-blue-400 shadow-sm">

@@ -124,6 +124,7 @@ const MortgageCalculator = () => {
   const [extraPayment, setExtraPayment] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
+  const [showCharts, setShowCharts] = useState(false);
   const [comparisonMortgages, setComparisonMortgages] = useState<ComparisonMortgage[]>([]);
   const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<MortgageResult | null>(null);
@@ -131,6 +132,7 @@ const MortgageCalculator = () => {
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
   const amortizationRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -2253,6 +2255,27 @@ const MortgageCalculator = () => {
                             </span>
                           </div>
                         </div>
+
+                        {/* Show/Hide Chart Button */}
+                        <div className="flex justify-center pt-2">
+                          <Button
+                            onClick={() => {
+                              setShowCharts(!showCharts);
+                              if (!showCharts) {
+                                setTimeout(() => {
+                                  chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }, 100);
+                              }
+                            }}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-blue-700 hover:text-blue-800 transition-colors"
+                            data-testid="button-show-chart"
+                          >
+                            <PieChart className="w-4 h-4 mr-1.5" />
+                            {showCharts ? 'Hide Chart' : 'Show Chart'}
+                          </Button>
+                        </div>
                       </div>
 
                       {result.extraPaymentSavings && (
@@ -2279,7 +2302,8 @@ const MortgageCalculator = () => {
                       )}
 
                       {/* Payment Charts */}
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                      {showCharts && (
+                      <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                         {/* Pie Chart - Payment Composition */}
                         <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
                           <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Total Payment Composition</h3>
@@ -2421,6 +2445,7 @@ const MortgageCalculator = () => {
                           </ResponsiveContainer>
                         </div>
                       </div>
+                      )}
 
                       {/* Amortization Schedule Section */}
                       {showAmortization && (

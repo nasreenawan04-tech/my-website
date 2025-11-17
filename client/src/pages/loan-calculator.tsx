@@ -84,6 +84,7 @@ export default function LoanCalculator() {
   const [extraPayment, setExtraPayment] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
+  const [showCharts, setShowCharts] = useState(false);
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
   const [result, setResult] = useState<LoanResult | null>(null);
   const [isCalculating, setIsCalculating] = useState(false); // Added for loading state
@@ -1865,17 +1866,24 @@ export default function LoanCalculator() {
                           </div>
                         </div>
 
-                        {/* Show Chart Button */}
+                        {/* Show/Hide Chart Button */}
                         <div className="flex justify-center pt-2">
                           <Button
-                            onClick={() => chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                            onClick={() => {
+                              setShowCharts(!showCharts);
+                              if (!showCharts) {
+                                setTimeout(() => {
+                                  chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }, 100);
+                              }
+                            }}
                             variant="outline"
                             size="sm"
                             className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-blue-700 hover:text-blue-800 transition-colors"
                             data-testid="button-show-chart"
                           >
                             <BarChartIcon className="w-4 h-4 mr-1.5" />
-                            Show Chart
+                            {showCharts ? 'Hide Chart' : 'Show Chart'}
                           </Button>
                         </div>
                       </div>
@@ -1907,6 +1915,7 @@ export default function LoanCalculator() {
                       )}
 
                       {/* Professional Payment Charts */}
+                      {showCharts && (
                       <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                         {/* Pie Chart - Payment Composition */}
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
@@ -2082,6 +2091,7 @@ export default function LoanCalculator() {
                           </div>
                         </div>
                       </div>
+                      )}
                     </div>
                   </div>
                 ) : (
