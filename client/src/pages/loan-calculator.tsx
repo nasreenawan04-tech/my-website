@@ -773,108 +773,151 @@ export default function LoanCalculator() {
         }
       }
 
-      // Capture comparison table if exists
-      if (comparisonLoans.length > 0 && comparisonRef.current) {
+      // Draw comparison table if exists
+      if (comparisonLoans.length > 0) {
         try {
-          // Store original styles to restore later
-          const originalOverflow = comparisonRef.current.style.overflow;
-          const originalWidth = comparisonRef.current.style.width;
-          const originalMaxWidth = comparisonRef.current.style.maxWidth;
+          doc.addPage();
+          yPos = margin;
           
-          // Temporarily adjust styles for full content capture
-          comparisonRef.current.style.overflow = 'visible';
-          comparisonRef.current.style.width = 'fit-content';
-          comparisonRef.current.style.maxWidth = 'none';
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 65, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
           
-          // Wait for browser to render the style changes
-          await new Promise(resolve => setTimeout(resolve, 100));
+          // Optimized column widths (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            loan: 20,           // "LOAN"
+            amount: 33,         // "AMOUNT"
+            rate: 18,           // "RATE"
+            term: 25,           // "TERM"
+            payment: 45,        // "MONTHLY PAYMENT"
+            interest: 45        // "TOTAL INTEREST"
+          };
           
-          // Capture the full table with all content visible
-          const tableCanvas = await html2canvas(comparisonRef.current, {
-            scale: 2,
-            backgroundColor: '#ffffff',
-            logging: false,
-            windowWidth: 1200
-          });
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
           
-          // Restore original styles
-          comparisonRef.current.style.overflow = originalOverflow;
-          comparisonRef.current.style.width = originalWidth;
-          comparisonRef.current.style.maxWidth = originalMaxWidth;
+          let xPos = margin;
+          doc.text('LOAN', xPos + 2, yPos + 6);
+          xPos += colWidths.loan;
+          doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.amount;
+          doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.rate;
+          doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.term;
+          doc.text('MONTHLY PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.payment;
+          doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
           
-          if (tableCanvas && tableCanvas.height > 0) {
-            const bottomMargin = 30;
-            const tableWidth = pageWidth - (2 * margin);
-            const scale = tableWidth / tableCanvas.width;
-            
-            // Helper function to add header
-            const addComparisonHeader = (continued: boolean = false) => {
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows
+          const rowsPerPage = Math.floor((pageHeight - yPos - 25) / 8);
+          let rowCount = 0;
+          
+          comparisonLoans.forEach((loan, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
+              doc.addPage();
+              yPos = margin;
+              
+              // Repeat header
               doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(30, 58, 138);
-              const headerText = continued 
-                ? 'LOAN SCENARIO COMPARISON - CONTINUED'
-                : 'LOAN SCENARIO COMPARISON';
-              doc.text(headerText, margin, yPos);
+              doc.text('LOAN SCENARIO COMPARISON - CONTINUED', margin, yPos);
               yPos += 2;
               doc.setDrawColor(37, 99, 235);
-              const lineWidth = continued ? 85 : 65;
-              doc.line(margin, yPos, margin + lineWidth, yPos);
-              yPos += 8;
-              doc.setTextColor(0, 0, 0);
-            };
-
-            // Start first page
-            doc.addPage();
-            yPos = margin;
-            addComparisonHeader(false);
-
-            // Split canvas across unlimited pages
-            let sourceYOffset = 0;
-            let pageIndex = 0;
-            
-            while (sourceYOffset < tableCanvas.height) {
-              // Calculate available height for current page
-              const availableHeight = pageHeight - yPos - bottomMargin;
-              const sourceHeightForPage = Math.min(
-                availableHeight / scale,
-                tableCanvas.height - sourceYOffset
-              );
+              doc.line(margin, yPos, margin + 85, yPos);
+              yPos += 10;
               
-              // Create off-screen canvas for this page slice
-              const pageCanvas = document.createElement('canvas');
-              pageCanvas.width = tableCanvas.width;
-              pageCanvas.height = sourceHeightForPage;
-              const pageCtx = pageCanvas.getContext('2d');
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
               
-              if (pageCtx) {
-                // Draw slice
-                pageCtx.drawImage(
-                  tableCanvas,
-                  0, sourceYOffset, tableCanvas.width, sourceHeightForPage,
-                  0, 0, tableCanvas.width, sourceHeightForPage
-                );
-                const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.85);
-                const renderedHeight = sourceHeightForPage * scale;
-                doc.addImage(pageImgData, 'JPEG', margin, yPos, tableWidth, renderedHeight);
-                
-                // Move to next slice
-                sourceYOffset += sourceHeightForPage;
-                
-                // Add new page if more content remains
-                if (sourceYOffset < tableCanvas.height) {
-                  doc.addPage();
-                  yPos = margin;
-                  addComparisonHeader(true);
-                  pageIndex++;
-                }
-              } else {
-                break;
-              }
+              xPos = margin;
+              doc.text('LOAN', xPos + 2, yPos + 6);
+              xPos += colWidths.loan;
+              doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.amount;
+              doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.rate;
+              doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.term;
+              doc.text('MONTHLY PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.payment;
+              doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
             }
-          }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            // Loan name
+            doc.setTextColor(17, 24, 39);
+            doc.text(loan.name, xPos + 2, yPos + 5.5);
+            
+            // Amount
+            xPos += colWidths.loan;
+            doc.text(formatCurrency(loan.amount), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
+            
+            // Rate
+            xPos += colWidths.amount;
+            doc.text(`${loan.rate}%`, xPos + colWidths.rate - 2, yPos + 5.5, { align: 'right' });
+            
+            // Term
+            xPos += colWidths.rate;
+            const termDisplay = loan.termUnit === 'years' ? `${loan.term}y` : `${loan.term}m`;
+            doc.text(termDisplay, xPos + colWidths.term - 2, yPos + 5.5, { align: 'right' });
+            
+            // Monthly Payment
+            xPos += colWidths.term;
+            doc.setTextColor(37, 99, 235);
+            doc.text(formatCurrency(loan.monthlyPayment), xPos + colWidths.payment - 2, yPos + 5.5, { align: 'right' });
+            
+            // Total Interest
+            xPos += colWidths.payment;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(loan.totalInterest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
         } catch (error) {
-          console.error('Error capturing comparison table:', error);
+          console.error('Error generating comparison table:', error);
         }
       }
 
