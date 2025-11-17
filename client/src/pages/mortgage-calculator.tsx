@@ -125,6 +125,7 @@ const MortgageCalculator = () => {
   const [showAmortization, setShowAmortization] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [comparisonMortgages, setComparisonMortgages] = useState<ComparisonMortgage[]>([]);
+  const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<MortgageResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
@@ -2326,6 +2327,44 @@ const MortgageCalculator = () => {
                         {/* Area Chart - Payment Breakdown Over Time */}
                         <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
                           <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Payment Breakdown Over Time</h3>
+                          
+                          {/* Chart Filter Toggle */}
+                          <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
+                            <Button
+                              onClick={() => setChartFilter('principal')}
+                              variant={chartFilter === 'principal' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-xs ${chartFilter === 'principal' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                              data-testid="button-filter-principal"
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                                Principal
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('interest')}
+                              variant={chartFilter === 'interest' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-xs ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                              data-testid="button-filter-interest"
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <span className="w-3 h-3 rounded-full bg-orange-500"></span>
+                                Interest
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('both')}
+                              variant={chartFilter === 'both' ? 'default' : 'outline'}
+                              size="sm"
+                              className="text-xs"
+                              data-testid="button-filter-both"
+                            >
+                              Showing all payments
+                            </Button>
+                          </div>
+
                           <ResponsiveContainer width="100%" height={300}>
                             <AreaChart
                               data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
@@ -2357,24 +2396,28 @@ const MortgageCalculator = () => {
                                 contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
                               />
                               <Legend />
-                              <Area 
-                                type="monotone" 
-                                dataKey="principal" 
-                                stackId="1"
-                                stroke="#10b981" 
-                                fillOpacity={1} 
-                                fill="url(#colorPrincipal)"
-                                name="Principal"
-                              />
-                              <Area 
-                                type="monotone" 
-                                dataKey="interest" 
-                                stackId="1"
-                                stroke="#f97316" 
-                                fillOpacity={1} 
-                                fill="url(#colorInterest)"
-                                name="Interest"
-                              />
+                              {(chartFilter === 'both' || chartFilter === 'principal') && (
+                                <Area 
+                                  type="monotone" 
+                                  dataKey="principal" 
+                                  stackId={chartFilter === 'both' ? '1' : undefined}
+                                  stroke="#10b981" 
+                                  fillOpacity={1} 
+                                  fill="url(#colorPrincipal)"
+                                  name="Principal"
+                                />
+                              )}
+                              {(chartFilter === 'both' || chartFilter === 'interest') && (
+                                <Area 
+                                  type="monotone" 
+                                  dataKey="interest" 
+                                  stackId={chartFilter === 'both' ? '1' : undefined}
+                                  stroke="#f97316" 
+                                  fillOpacity={1} 
+                                  fill="url(#colorInterest)"
+                                  name="Interest"
+                                />
+                              )}
                             </AreaChart>
                           </ResponsiveContainer>
                           <p className="text-xs text-gray-600 mt-3 text-center">
