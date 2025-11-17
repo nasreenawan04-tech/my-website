@@ -67,6 +67,7 @@ export default function EMICalculator() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [comparisonEMIs, setComparisonEMIs] = useState<ComparisonEMI[]>([]);
+  const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<EMIResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
@@ -1753,40 +1754,102 @@ export default function EMICalculator() {
                         </div>
 
                         {/* Area Chart - Payment Breakdown Over Time */}
-                        {result.amortizationSchedule.length > 0 && (
-                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Payment Breakdown Over Time</h3>
-                            <ResponsiveContainer width="100%" height={300}>
-                              <AreaChart
-                                data={result.amortizationSchedule.map(item => ({
-                                  month: `Month ${item.month}`,
-                                  Principal: item.principal,
-                                  Interest: item.interest,
-                                  balance: item.balance
-                                }))}
-                                margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
-                              >
-                                <defs>
-                                  <linearGradient id="principalAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                                    <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
-                                  </linearGradient>
-                                  <linearGradient id="interestAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
-                                    <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.1} />
-                                  </linearGradient>
-                                </defs>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-                                <YAxis tick={{ fontSize: 12 }} />
-                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
-                                <Area type="monotone" dataKey="Principal" stackId="1" stroke="#10b981" fill="url(#principalAreaGradient)" />
-                                <Area type="monotone" dataKey="Interest" stackId="1" stroke="#f59e0b" fill="url(#interestAreaGradient)" />
-                                <Legend />
-                              </AreaChart>
-                            </ResponsiveContainer>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 text-center">Payment Breakdown Over Time</h3>
+                          
+                          {/* Chart Filter Toggle */}
+                          <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
+                            <Button
+                              onClick={() => setChartFilter('principal')}
+                              variant={chartFilter === 'principal' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-xs ${chartFilter === 'principal' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                              data-testid="button-filter-principal"
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                                Principal
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('interest')}
+                              variant={chartFilter === 'interest' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-xs ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                              data-testid="button-filter-interest"
+                            >
+                              <span className="flex items-center gap-1.5">
+                                <span className="w-3 h-3 rounded-full bg-orange-500"></span>
+                                Interest
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('both')}
+                              variant={chartFilter === 'both' ? 'default' : 'outline'}
+                              size="sm"
+                              className="text-xs"
+                              data-testid="button-filter-both"
+                            >
+                              Showing all payments
+                            </Button>
                           </div>
-                        )}
+
+                          <ResponsiveContainer width="100%" height={300}>
+                            <AreaChart
+                              data={result.amortizationSchedule.slice(0, Math.min(60, result.amortizationSchedule.length))}
+                              margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
+                            >
+                              <defs>
+                                <linearGradient id="colorPrincipal" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+                                </linearGradient>
+                                <linearGradient id="colorInterest" x1="0" y1="0" x2="0" y2="1">
+                                  <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
+                                  <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
+                                </linearGradient>
+                              </defs>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                              <XAxis 
+                                dataKey="month" 
+                                tick={{ fontSize: 12 }}
+                                label={{ value: 'Payment Number', position: 'insideBottom', offset: -5, fontSize: 12 }}
+                              />
+                              <YAxis 
+                                tick={{ fontSize: 12 }}
+                                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                              />
+                              <RechartsTooltip 
+                                formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
+                                labelFormatter={(label) => `Payment #${label}`}
+                                contentStyle={{ backgroundColor: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                              />
+                              {(chartFilter === 'both' || chartFilter === 'principal') && (
+                                <Area 
+                                  type="monotone" 
+                                  dataKey="principal" 
+                                  stackId={chartFilter === 'both' ? '1' : undefined}
+                                  stroke="#10b981" 
+                                  fillOpacity={1} 
+                                  fill="url(#colorPrincipal)" 
+                                  name="Principal"
+                                />
+                              )}
+                              {(chartFilter === 'both' || chartFilter === 'interest') && (
+                                <Area 
+                                  type="monotone" 
+                                  dataKey="interest" 
+                                  stackId={chartFilter === 'both' ? '1' : undefined}
+                                  stroke="#f97316" 
+                                  fillOpacity={1} 
+                                  fill="url(#colorInterest)" 
+                                  name="Interest"
+                                />
+                              )}
+                              <Legend />
+                            </AreaChart>
+                          </ResponsiveContainer>
+                        </div>
                       </div>
 
                       {result.stepUpAnalysis && (
