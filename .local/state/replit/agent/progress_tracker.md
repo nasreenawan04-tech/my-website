@@ -324,3 +324,7 @@
 [x] 653. Update comparison loans table to show exactly 30 rows per page in PDF export
 [x] 654. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
 [x] 655. Restart workflow and verify PDF export functionality works correctly ✓
+[x] 656. Update Mortgage Calculator PDF to show exactly 30 rows per page in amortization schedule (November 17, 2025)
+[x] 657. Update comparison mortgages table to show exactly 30 rows per page in PDF export
+[x] 658. Change rowsPerPage from dynamic calculation to fixed value of 30 for both tables
+[x] 659. Restart workflow and verify PDF export functionality works correctly ✓
