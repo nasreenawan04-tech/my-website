@@ -123,13 +123,11 @@ const MortgageCalculator = () => {
   const [paymentFrequency, setPaymentFrequency] = useState('monthly');
   const [extraPayment, setExtraPayment] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
-  const [showChart, setShowChart] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [comparisonMortgages, setComparisonMortgages] = useState<ComparisonMortgage[]>([]);
   const [result, setResult] = useState<MortgageResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<HTMLDivElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
   const amortizationRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -437,7 +435,6 @@ const MortgageCalculator = () => {
     setPaymentFrequency('monthly');
     setExtraPayment('0');
     setShowAmortization(false);
-    setShowChart(false);
     setShowComparison(false);
     setComparisonMortgages([]);
     setResult(null);
@@ -2129,15 +2126,6 @@ const MortgageCalculator = () => {
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
                         <Button
-                          onClick={() => setShowChart(!showChart)}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
-                        >
-                          <PieChart className="w-4 h-4 mr-1.5" />
-                          {showChart ? 'Hide' : 'Show'} Chart
-                        </Button>
-                        <Button
                           onClick={() => setShowComparison(!showComparison)}
                           variant="outline"
                           size="sm"
@@ -2239,8 +2227,7 @@ const MortgageCalculator = () => {
                         </div>
                       </div>
 
-                      {showChart && (
-                        <div ref={chartRef} className="space-y-4 sm:space-y-6">
+                      <div className="space-y-4 sm:space-y-6">
                           <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
                             <h3 className="font-bold text-gray-900 mb-6 sm:mb-8 text-center text-lg sm:text-xl">Total Loan Breakdown</h3>
                             <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8">
@@ -2402,7 +2389,6 @@ const MortgageCalculator = () => {
                             </div>
                           )}
                         </div>
-                      )}
 
                       <div className="space-y-3 sm:space-y-4">
                         <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
