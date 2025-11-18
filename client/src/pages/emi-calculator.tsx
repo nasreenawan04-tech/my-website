@@ -1621,7 +1621,6 @@ export default function EMICalculator() {
                             size="sm"
                             className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
-                            data-testid="button-share-facebook"
                           >
                             <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">Facebook</span>
@@ -1631,7 +1630,6 @@ export default function EMICalculator() {
                             size="sm"
                             className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
-                            data-testid="button-share-twitter"
                           >
                             <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">Twitter</span>
@@ -1641,7 +1639,6 @@ export default function EMICalculator() {
                             size="sm"
                             className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
-                            data-testid="button-share-linkedin"
                           >
                             <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">LinkedIn</span>
@@ -1651,7 +1648,6 @@ export default function EMICalculator() {
                             size="sm"
                             className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
-                            data-testid="button-share-whatsapp"
                           >
                             <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">WhatsApp</span>
@@ -1662,7 +1658,6 @@ export default function EMICalculator() {
                             size="sm"
                             className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
-                            data-testid="button-share-generic"
                           >
                             <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
                             <span className="hidden sm:inline">More</span>
