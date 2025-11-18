@@ -1750,6 +1750,7 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowBreakdown(!showBreakdown)}
                           variant="outline"
                           size="sm"
+                          className="rounded-full text-xs sm:text-sm"
                           data-testid="button-show-breakdown"
                         >
                           {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
@@ -1758,14 +1759,11 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowRealValue(!showRealValue)}
                           variant="outline"
                           size="sm"
+                          className="rounded-full text-xs sm:text-sm"
                           data-testid="button-show-real-value"
                         >
                           {showRealValue ? 'Hide' : 'Show'} Inflation Adjusted
                         </Button>
-                      </div>
-
-                      {/* Export PDF Button */}
-                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                         <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
