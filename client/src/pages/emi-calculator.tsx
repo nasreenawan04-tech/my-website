@@ -503,9 +503,20 @@ export default function EMICalculator() {
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = tenureType === 'years' ? `${loanTenure} years` : `${loanTenure} months`;
     const whatsappText = `💰 EMI Calculator Results:\n\nLoan: ${formatCurrency(parseFloat(loanAmount))}\nRate: ${interestRate}%\nTerm: ${termDisplay}\nMonthly EMI: ${formatCurrency(result.emi)}\n\nCalculate yours: ${shareableUrl}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
-    window.open(whatsappUrl, '_blank');
-    toast({ title: "Opening WhatsApp share..." });
+
+    // Use api.whatsapp.com which works better across all devices
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
+
+    const opened = window.open(whatsappUrl, '_blank');
+    if (opened) {
+      toast({ title: "Opening WhatsApp..." });
+    } else {
+      toast({
+        title: "Popup blocked",
+        description: "Please allow popups to share on WhatsApp",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDownloadPDF = async () => {
@@ -1608,7 +1619,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
                             data-testid="button-share-facebook"
                           >
@@ -1618,7 +1629,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
                             data-testid="button-share-twitter"
                           >
@@ -1628,7 +1639,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
                             data-testid="button-share-linkedin"
                           >
@@ -1638,7 +1649,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
                             data-testid="button-share-whatsapp"
                           >
@@ -1649,7 +1660,7 @@ export default function EMICalculator() {
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
                             data-testid="button-share-generic"
                           >
