@@ -2061,11 +2061,12 @@ export default function EMICalculator() {
           </Card>
 
           {/* SEO Content Sections */}
-          <div className="mt-8 sm:mt-12 lg:mt-16 space-y-8 sm:space-y-12 lg:space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mt-8 sm:mt-12 md:mt-16 space-y-8 sm:space-y-12 md:space-y-16">
 
             {/* Introduction Section */}
-            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">What is an EMI Calculator?</h2>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">What is an EMI Calculator?</h2>
               <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4">
                 <p>
                   An <strong>EMI (Equated Monthly Installment) Calculator</strong> is a free online financial tool that helps you calculate the monthly payment you need to make on a loan. Whether you're planning to buy a home, car, or need a personal loan, this calculator provides instant, accurate EMI calculations along with a complete breakdown of principal and interest payments over the loan tenure.
@@ -2129,11 +2130,13 @@ export default function EMICalculator() {
                   </div>
                 </div>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* How to Use Section */}
-            <section className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">How to Use the EMI Calculator</h2>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Use the EMI Calculator</h2>
 
               <div className="space-y-6 mb-8">
                 <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-blue-500">
@@ -2239,11 +2242,13 @@ export default function EMICalculator() {
                   </li>
                 </ul>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* Real-World Examples Section */}
-            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Calculator Examples: Real-World Scenarios</h2>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">EMI Calculator Examples: Real-World Scenarios</h2>
 
               {/* Example 1 */}
               <div className="mb-8 sm:mb-10 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-green-200">
@@ -2404,11 +2409,13 @@ export default function EMICalculator() {
                   </div>
                 </div>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* Understanding Results Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-blue-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Understanding Your EMI Results</h2>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Understanding Your EMI Results</h2>
               
               <div className="space-y-6">
                 <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
@@ -2467,11 +2474,13 @@ export default function EMICalculator() {
                   </ul>
                 </div>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* EMI Formula Section */}
-            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Formula Explained</h2>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">EMI Formula Explained</h2>
               
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
@@ -2553,11 +2562,13 @@ export default function EMICalculator() {
                   </ul>
                 </div>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* FAQ Section */}
-            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions (FAQ)</h2>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions (FAQ)</h2>
               
               <div className="space-y-6">
                 <div className="border-b border-gray-200 pb-6">
@@ -2610,14 +2621,14 @@ export default function EMICalculator() {
                   <p className="text-gray-700 text-sm sm:text-base">Missing EMI payments has serious consequences: Late fees typically 2-3% of EMI amount, credit score drops 50-100 points after 30 days and 100-150 points after 60-90 days, higher interest rates on future loans due to lower credit score, legal action after 3-6 missed payments, and asset seizure for secured loans after 90-180 days of default. If facing payment difficulties, contact your lender immediately to discuss restructuring options like tenure extension, EMI reduction, or temporary moratorium.</p>
                 </div>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* Related Calculators Section */}
-            <section className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-md border border-purple-100">
-              <div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Related Financial Calculators</h2>
-                <p className="text-gray-700 mb-6 sm:mb-8">Explore more financial tools to plan your finances comprehensively</p>
-              </div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Related Financial Calculators</h2>
+                <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">Explore more financial tools to plan your finances comprehensively</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <a href="/tools/loan-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
@@ -2704,58 +2715,91 @@ export default function EMICalculator() {
                   </p>
                 </a>
               </div>
-            </section>
+              </CardContent>
+            </Card>
 
             {/* Final Call-to-Action */}
-            <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl text-white">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center">Ready to Calculate Your EMI?</h2>
-              <p className="text-center text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-center text-gray-900">Ready to Calculate Your EMI?</h2>
+              <p className="text-center text-base sm:text-lg text-gray-700 mb-6 max-w-3xl mx-auto leading-relaxed">
                 Start using our free EMI calculator now to plan your loan repayments, compare scenarios, and make informed financial decisions. No registration required!
               </p>
 
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
-                <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center">Start Calculating Now:</h3>
-                <ul className="space-y-3 max-w-2xl mx-auto">
-                  <li className="flex items-start gap-3">
-                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
-                    <span className="text-sm sm:text-base"><strong>100% Free:</strong> No hidden charges, no registration, unlimited calculations</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
-                    <span className="text-sm sm:text-base"><strong>Instant Results:</strong> Get detailed EMI breakdowns in seconds</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
-                    <span className="text-sm sm:text-base"><strong>Advanced Features:</strong> Prepayment analysis, step-up EMI, and currency support</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
-                    <span className="text-sm sm:text-base"><strong>Export & Share:</strong> Download PDF reports or share results with advisors</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
-                    <span className="text-sm sm:text-base"><strong>Privacy Protected:</strong> Your financial data stays private—we don't store anything</span>
-                  </li>
-                </ul>
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 sm:p-8 mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center">Start Calculating Now:</h3>
+                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">100% Free Forever</h4>
+                      <p className="text-sm text-gray-600">No hidden fees, subscriptions, or registration required</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Instant Results</h4>
+                      <p className="text-sm text-gray-600">Get detailed EMI breakdowns in seconds</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Advanced Features</h4>
+                      <p className="text-sm text-gray-600">Prepayment analysis, step-up EMI, and currency support</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Export & Share</h4>
+                      <p className="text-sm text-gray-600">Download PDF reports or share results with advisors</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Privacy Protected</h4>
+                      <p className="text-sm text-gray-600">Your financial data stays private—we don't store anything</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="text-center">
                 <Button
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   size="lg"
-                  className="bg-white text-blue-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 lg:px-12 py-4 sm:py-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-blue-600 text-white hover:bg-blue-700 font-bold text-base sm:text-lg px-8 sm:px-12 rounded-lg"
                   data-testid="button-scroll-to-calculator"
                 >
                   Calculate Your EMI Now
                 </Button>
-                <p className="mt-4 text-sm sm:text-base opacity-75">Scroll to top to use the calculator</p>
+                <p className="mt-4 text-sm sm:text-base text-gray-600">Scroll to top to use the calculator</p>
               </div>
-
-              <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/20 text-center">
-                <p className="text-sm sm:text-base mb-3 sm:mb-4 opacity-90">Need help or have questions?</p>
-                <p className="text-xs sm:text-sm opacity-75">Our EMI calculator is trusted by thousands of users worldwide for accurate loan planning.</p>
-              </div>
-            </section>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
