@@ -2706,6 +2706,574 @@ export default function EMICalculator() {
               </div>
             </section>
 
+            {/* Loan Types and EMI Variations Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI for Different Loan Types</h2>
+              
+              <div className="space-y-8">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-blue-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🏠</span>
+                    Home Loan EMI Calculator
+                  </h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-4">
+                    Home loans typically have the longest tenures (15-30 years) and lowest interest rates (6.5-9% in most markets). Calculate your home loan EMI to understand monthly mortgage payments, total interest burden, and how prepayments can save lakhs in interest costs.
+                  </p>
+                  <div className="bg-white rounded-lg p-4 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Home Loan EMI Example:</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="text-gray-600 mb-1">Loan Amount: $300,000</p>
+                        <p className="text-gray-600 mb-1">Interest Rate: 7.5% per annum</p>
+                        <p className="text-gray-600">Tenure: 25 years</p>
+                      </div>
+                      <div className="bg-blue-50 rounded p-3">
+                        <p className="text-blue-900 font-semibold mb-1">Monthly EMI: $2,216.71</p>
+                        <p className="text-blue-800 text-xs">Total Interest: $365,013</p>
+                        <p className="text-blue-800 text-xs">Total Payment: $665,013</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                    <p className="text-sm text-gray-700"><strong className="text-green-800">Tip:</strong> Making just one extra EMI payment per year can reduce your loan tenure by 3-5 years and save $50,000+ in interest on a $300,000 home loan.</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-green-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🚗</span>
+                    Car Loan EMI Calculator
+                  </h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-4">
+                    Auto loans typically range from 1-7 years with interest rates between 7-12%. Our EMI calculator helps you determine affordable monthly payments for your dream vehicle, compare dealer financing vs bank loans, and understand the true cost of your car purchase.
+                  </p>
+                  <div className="bg-white rounded-lg p-4 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Car Loan EMI Comparison:</h4>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead className="bg-gray-100">
+                          <tr>
+                            <th className="px-3 py-2 text-left">Tenure</th>
+                            <th className="px-3 py-2 text-right">Monthly EMI</th>
+                            <th className="px-3 py-2 text-right">Total Interest</th>
+                            <th className="px-3 py-2 text-right">Total Cost</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y">
+                          <tr>
+                            <td className="px-3 py-2">3 years @ 9%</td>
+                            <td className="px-3 py-2 text-right font-semibold">$1,113.27</td>
+                            <td className="px-3 py-2 text-right text-orange-600">$5,077.72</td>
+                            <td className="px-3 py-2 text-right">$40,077.72</td>
+                          </tr>
+                          <tr className="bg-gray-50">
+                            <td className="px-3 py-2">5 years @ 9%</td>
+                            <td className="px-3 py-2 text-right font-semibold">$726.67</td>
+                            <td className="px-3 py-2 text-right text-orange-600">$8,600.20</td>
+                            <td className="px-3 py-2 text-right">$43,600.20</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p className="text-xs text-green-700 mt-2 italic">*Based on $35,000 loan amount</p>
+                  </div>
+                  <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                    <p className="text-sm text-gray-700"><strong className="text-yellow-800">Smart Choice:</strong> Shorter loan tenures (3-4 years) save thousands in interest even though monthly EMIs are higher. Calculate both options to make an informed decision.</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-purple-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">💼</span>
+                    Personal Loan EMI Calculator
+                  </h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-4">
+                    Personal loans offer quick funding for various needs with tenures of 1-5 years and interest rates of 10-24% depending on your credit score. Use our EMI calculator to evaluate loan affordability, compare offers from different lenders, and plan strategic prepayments to minimize interest costs.
+                  </p>
+                  <div className="bg-white rounded-lg p-4 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Personal Loan EMI Impact of Credit Score:</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between items-center p-2 bg-green-50 rounded">
+                        <span className="font-medium">Excellent (750+): 10-12% rate</span>
+                        <span className="text-green-700 font-bold">EMI: $265/month on $10k</span>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-yellow-50 rounded">
+                        <span className="font-medium">Good (700-749): 14-16% rate</span>
+                        <span className="text-yellow-700 font-bold">EMI: $283/month on $10k</span>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-orange-50 rounded">
+                        <span className="font-medium">Fair (650-699): 18-20% rate</span>
+                        <span className="text-orange-700 font-bold">EMI: $301/month on $10k</span>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-red-50 rounded">
+                        <span className="font-medium">Poor (&lt;650): 22-24% rate</span>
+                        <span className="text-red-700 font-bold">EMI: $319/month on $10k</span>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2 italic">*Based on 3-year tenure</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-orange-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🎓</span>
+                    Education Loan EMI Calculator
+                  </h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-4">
+                    Education loans often include moratorium periods (no payments during study + 6-12 months after). Calculate your future EMI obligations considering the moratorium, understand how interest compounds during the study period, and plan your post-graduation finances effectively.
+                  </p>
+                  <div className="bg-white rounded-lg p-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Education Loan Scenario:</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li>• Loan Amount: $50,000 for 4-year degree</li>
+                      <li>• Interest Rate: 8% per annum</li>
+                      <li>• Moratorium: 4 years study + 1 year grace = 5 years</li>
+                      <li>• Repayment Tenure: 10 years after moratorium</li>
+                      <li className="pt-2 font-semibold text-blue-600">→ Interest during moratorium: ~$21,600</li>
+                      <li className="font-semibold text-blue-600">→ Outstanding after moratorium: $71,600</li>
+                      <li className="font-semibold text-orange-600">→ Monthly EMI: $869/month for 10 years</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-red-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🏢</span>
+                    Business Loan EMI Calculator
+                  </h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-4">
+                    Business loans help entrepreneurs expand operations, purchase equipment, or manage cash flow. With rates from 8-15% and flexible tenures, our EMI calculator helps business owners evaluate loan affordability against projected revenue, plan working capital, and make data-driven borrowing decisions.
+                  </p>
+                  <div className="bg-white rounded-lg p-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Business Loan Affordability Guide:</h4>
+                    <div className="space-y-3 text-sm">
+                      <div className="p-3 bg-blue-50 rounded">
+                        <p className="font-semibold text-gray-900 mb-1">Conservative Approach (Low Risk)</p>
+                        <p className="text-gray-700">Keep monthly EMI below 20% of average monthly revenue. Ensures business can handle payments even during slow months.</p>
+                      </div>
+                      <div className="p-3 bg-yellow-50 rounded">
+                        <p className="font-semibold text-gray-900 mb-1">Moderate Approach (Balanced)</p>
+                        <p className="text-gray-700">EMI up to 30% of monthly revenue is manageable if business has stable cash flow and good profit margins.</p>
+                      </div>
+                      <div className="p-3 bg-red-50 rounded">
+                        <p className="font-semibold text-gray-900 mb-1">Aggressive Approach (High Risk)</p>
+                        <p className="text-gray-700">EMI exceeding 30% of revenue is risky and may strain operations during seasonal downturns or market challenges.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* EMI Reduction Strategies Section */}
+            <section className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-green-200">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Proven Strategies to Reduce Your EMI Burden</h2>
+              
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-2xl">💰</span>
+                    1. Make Regular Prepayments
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    Even small prepayments can dramatically reduce your total interest and loan tenure. Every dollar paid toward principal saves you multiple dollars in interest over the loan life.
+                  </p>
+                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                    <h4 className="font-bold text-gray-900 mb-3">Prepayment Impact Example ($200,000 home loan @ 7% for 20 years):</h4>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead className="bg-gray-100">
+                          <tr>
+                            <th className="px-3 py-2 text-left">Strategy</th>
+                            <th className="px-3 py-2 text-right">Interest Saved</th>
+                            <th className="px-3 py-2 text-right">Time Saved</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y">
+                          <tr>
+                            <td className="px-3 py-2">$100/month extra</td>
+                            <td className="px-3 py-2 text-right font-semibold text-green-600">$32,400</td>
+                            <td className="px-3 py-2 text-right">4.5 years</td>
+                          </tr>
+                          <tr className="bg-gray-50">
+                            <td className="px-3 py-2">$5,000 annual lump sum</td>
+                            <td className="px-3 py-2 text-right font-semibold text-green-600">$41,200</td>
+                            <td className="px-3 py-2 text-right">5.8 years</td>
+                          </tr>
+                          <tr>
+                            <td className="px-3 py-2">One extra EMI/year</td>
+                            <td className="px-3 py-2 text-right font-semibold text-green-600">$28,600</td>
+                            <td className="px-3 py-2 text-right">4.2 years</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-2xl">📊</span>
+                    2. Refinance to Lower Interest Rates
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    If market rates have dropped or your credit score has improved since taking the loan, refinancing can significantly reduce your EMI and total interest paid.
+                  </p>
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <h4 className="font-bold text-gray-900 mb-3">When Refinancing Makes Sense:</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">✓</span>
+                        <span>Interest rates have dropped by at least 0.5-1% since your original loan</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">✓</span>
+                        <span>Your credit score has improved by 50+ points (qualifies for better rates)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">✓</span>
+                        <span>You have 10+ years remaining on your loan (more savings potential)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-blue-600 font-bold">✓</span>
+                        <span>Refinancing costs are less than 2-3% of outstanding principal</span>
+                      </li>
+                    </ul>
+                    <div className="mt-4 p-3 bg-white rounded">
+                      <p className="text-sm"><strong>Example:</strong> Refinancing a $150,000 balance from 8% to 6.5% saves $180/month and $32,000 over 15 years.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-2xl">⏱️</span>
+                    3. Extend Loan Tenure for Lower EMI (Carefully)
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    If facing financial difficulties, extending your loan tenure reduces monthly EMI but increases total interest. Use this option strategically and resume higher payments when finances improve.
+                  </p>
+                  <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                    <h4 className="font-bold text-gray-900 mb-3">Tenure Extension Trade-off ($100,000 @ 8%):</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                      <div className="bg-white p-3 rounded">
+                        <p className="font-semibold text-gray-900 mb-2">10-Year Tenure</p>
+                        <p className="text-blue-600 font-bold mb-1">EMI: $1,213/mo</p>
+                        <p className="text-orange-600">Interest: $45,560</p>
+                      </div>
+                      <div className="bg-white p-3 rounded">
+                        <p className="font-semibold text-gray-900 mb-2">15-Year Tenure</p>
+                        <p className="text-blue-600 font-bold mb-1">EMI: $955/mo</p>
+                        <p className="text-orange-600">Interest: $71,900</p>
+                      </div>
+                      <div className="bg-white p-3 rounded">
+                        <p className="font-semibold text-gray-900 mb-2">20-Year Tenure</p>
+                        <p className="text-blue-600 font-bold mb-1">EMI: $836/mo</p>
+                        <p className="text-orange-600">Interest: $100,640</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-yellow-800 mt-3 italic">⚠️ Longer tenure = Lower EMI but 2-3x more interest paid</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-2xl">🎯</span>
+                    4. Opt for Step-Up EMI
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    Step-up EMI schemes allow you to start with lower payments that increase annually (typically 5-10%), perfect for young professionals expecting salary growth. You can afford a larger loan today while planning for future income increases.
+                  </p>
+                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                    <h4 className="font-bold text-gray-900 mb-3">Step-Up EMI Advantage:</h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between p-2 bg-white rounded">
+                        <span>Year 1 EMI:</span>
+                        <span className="font-bold text-purple-600">$800/month</span>
+                      </div>
+                      <div className="flex justify-between p-2 bg-white rounded">
+                        <span>Year 2 EMI (+5%):</span>
+                        <span className="font-bold text-purple-600">$840/month</span>
+                      </div>
+                      <div className="flex justify-between p-2 bg-white rounded">
+                        <span>Year 3 EMI (+5%):</span>
+                        <span className="font-bold text-purple-600">$882/month</span>
+                      </div>
+                      <div className="flex justify-between p-2 bg-white rounded">
+                        <span>Year 4 EMI (+5%):</span>
+                        <span className="font-bold text-purple-600">$926/month</span>
+                      </div>
+                      <div className="flex justify-between p-2 bg-white rounded">
+                        <span>Year 5 EMI (+5%):</span>
+                        <span className="font-bold text-purple-600">$972/month</span>
+                      </div>
+                    </div>
+                    <p className="text-xs text-purple-800 mt-3">Perfect for ages 25-35 with expected 8-12% annual salary growth</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-2xl">🔄</span>
+                    5. Balance Transfer to Better Terms
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    Transfer your existing loan to another lender offering lower interest rates or better terms. Many banks offer attractive balance transfer rates to acquire customers with good repayment history.
+                  </p>
+                  <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                    <h4 className="font-bold text-gray-900 mb-3">Balance Transfer Checklist:</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <span className="text-indigo-600 font-bold">□</span>
+                        <span>Compare interest rates from at least 3-4 lenders</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-indigo-600 font-bold">□</span>
+                        <span>Factor in processing fees (typically 0.5-2% of loan amount)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-indigo-600 font-bold">□</span>
+                        <span>Check for foreclosure charges from current lender (can be 2-5%)</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-indigo-600 font-bold">□</span>
+                        <span>Ensure overall savings exceed transfer costs</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-indigo-600 font-bold">□</span>
+                        <span>Verify new loan terms match your financial goals</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* EMI vs Credit Score Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">How EMI Management Affects Your Credit Score</h2>
+              
+              <div className="space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Your EMI payment behavior is one of the most critical factors affecting your credit score (35% weightage in FICO score). Understanding this relationship helps you build excellent credit while managing debt responsibly.
+                </p>
+
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 sm:p-6 border border-green-200">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">✅ Positive Impact on Credit Score</h3>
+                  <div className="space-y-3">
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">On-Time EMI Payments (+35% weightage)</h4>
+                      <p className="text-sm text-gray-700">Every on-time EMI payment is reported to credit bureaus, building positive payment history. 12 consecutive on-time payments can boost your score by 20-40 points.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Early Loan Closure (+10-15 points)</h4>
+                      <p className="text-sm text-gray-700">Closing a loan ahead of schedule through prepayments demonstrates financial discipline and can improve your credit mix, adding 10-15 points to your score.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">Lower Credit Utilization (+15% weightage)</h4>
+                      <p className="text-sm text-gray-700">As you pay down principal through EMIs, your debt-to-credit ratio improves, positively impacting 15% of your credit score calculation.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-lg p-5 sm:p-6 border border-red-200">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">❌ Negative Impact on Credit Score</h3>
+                  <div className="space-y-3">
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">30-Day Late Payment (-50 to -100 points)</h4>
+                      <p className="text-sm text-gray-700">Missing EMI by 30+ days triggers negative reporting. First offense drops score 50-80 points, multiple late payments can drop it 100+ points and stay on record for 7 years.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">60-90 Day Delinquency (-100 to -150 points)</h4>
+                      <p className="text-sm text-gray-700">Missing 2-3 consecutive EMIs severely damages credit, dropping scores 100-150 points. Lenders may mark account as delinquent, making future loans extremely difficult.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">Loan Default/Settlement (-200+ points)</h4>
+                      <p className="text-sm text-gray-700">Defaulting or settling for less than owed devastates credit scores (drops 200+ points), remains on record for 7-10 years, and can lead to asset seizure for secured loans.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">High Debt-to-Income Ratio (-20 to -50 points)</h4>
+                      <p className="text-sm text-gray-700">EMIs exceeding 50% of monthly income signal financial stress. New loan applications may be rejected, and existing credit limits reduced, further hurting credit scores.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-5 sm:p-6 border border-blue-200">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">🎯 Best Practices for EMI & Credit Score Management</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div className="bg-white rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">✓ Set up auto-pay for EMIs</p>
+                      <p className="text-gray-700">Never miss a payment. Most banks offer 0.25-0.50% rate reduction for auto-debit.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">✓ Keep EMI below 40% of income</p>
+                      <p className="text-gray-700">Ensures manageable debt load and maintains healthy debt-to-income ratio for future loans.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">✓ Pay more than minimum when possible</p>
+                      <p className="text-gray-700">Extra payments reduce principal faster, save interest, and demonstrate financial strength.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">✓ Maintain emergency fund (6 months)</p>
+                      <p className="text-gray-700">Cover 6 months of EMIs in savings to protect against income disruptions and late payments.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">✓ Monitor credit report quarterly</p>
+                      <p className="text-gray-700">Check for errors in EMI reporting, dispute inaccuracies immediately to protect your score.</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-4">
+                      <p className="font-semibold text-blue-900 mb-2">✓ Diversify credit types responsibly</p>
+                      <p className="text-gray-700">Mix of EMI loans (installment) and credit cards (revolving) improves credit mix (10% of score).</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Common EMI Mistakes Section */}
+            <section className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-red-200">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">10 Common EMI Mistakes That Cost You Thousands</h2>
+              
+              <div className="space-y-5">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">1. Not Calculating Total Interest Before Borrowing</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Focusing only on monthly EMI without calculating total interest over loan life.
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Always use an EMI calculator to see total amount payable. A $200,000 loan at 7% for 30 years costs $279,000 in interest—nearly 1.5x the principal!
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $50,000-$100,000+ over loan life</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">2. Choosing Longer Tenure Just for Lower EMI</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Extending loan to 30 years instead of 15 years only because EMI is lower, without considering doubled interest costs.
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Choose the shortest tenure you can comfortably afford. A $250,000 loan at 6.5%: 15 years = $2,176 EMI ($141,680 interest) vs 30 years = $1,580 EMI ($318,800 interest). You save $177,120!
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $100,000-$200,000 in extra interest</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">3. Ignoring Prepayment Opportunities</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Having extra cash but not making prepayments because "it's only $100-$200 more per month."
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Even small prepayments compound massively. Adding $200/month to a $300,000, 7%, 30-year loan saves $93,000 in interest and closes the loan 8 years early!
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $30,000-$100,000 in lost interest savings</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">4. Not Shopping Around for Best Interest Rate</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Taking the first loan offer without comparing rates from multiple lenders (banks, credit unions, online lenders).
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Get quotes from at least 3-5 lenders. Even 0.5% difference matters enormously: On $200,000 for 25 years, 7% vs 6.5% = $23,400 savings!
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $20,000-$50,000 in avoidable interest</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">5. Borrowing Maximum Amount Approved</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Banks approve you for $400,000, so you borrow the full amount even though you only need $300,000.
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Borrow only what you need. The extra $100,000 at 7% over 25 years costs $62,400 in interest. That's money wasted on unnecessary debt.
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $40,000-$80,000+ in unnecessary interest</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">6. Missing EMI Due Dates (Even by 1 Day)</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Paying EMI a few days late, thinking "it's no big deal."
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Late payments trigger: (1) $25-$50 late fees, (2) Additional interest on outstanding amount, (3) Negative credit score impact after 30 days, (4) Higher rates on future loans due to damaged credit.
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $500-$2,000/year + 50-100 credit score points</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">7. Not Understanding Fixed vs Floating Rate Impact</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Choosing fixed-rate loans when rates are high, or floating-rate when rates are rising, without understanding long-term implications.
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Fixed rate = Predictable payments, better when rates are low or expected to rise. Floating rate = Lower initial rate, better when rates are high or falling. In stable economies, floating saves 10-15% interest over 20+ years.
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $15,000-$40,000 in extra interest</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">8. Paying EMI Without Emergency Fund</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Using all savings as down payment, leaving no emergency fund, then struggling with unexpected expenses and missing EMIs.
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Maintain 6 months of EMI + living expenses in emergency fund BEFORE taking loan. This protects you from job loss, medical emergencies, or major repairs without defaulting on EMI.
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: Potential default, asset loss, credit destruction</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">9. Not Reading Fine Print (Prepayment Penalties)</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Signing loan agreement without checking prepayment penalty clauses (often 2-5% of outstanding principal).
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> ALWAYS read prepayment terms. Many lenders allow partial prepayments (10-25% annually) for free, while others charge hefty penalties. Negotiate penalty-free prepayments before signing.
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: $5,000-$15,000 in unexpected penalties</p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">10. Taking Multiple Loans Without Calculating Aggregate EMI</h3>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-red-600">Mistake:</strong> Taking home loan, then car loan, then personal loan without realizing total EMI burden now consumes 60-70% of income.
+                  </p>
+                  <p className="text-gray-700 text-sm sm:text-base mb-3">
+                    <strong className="text-green-600">Solution:</strong> Keep total EMI (all loans combined) below 40% of gross income. Use our EMI calculator to model each new loan's impact on overall debt burden before committing.
+                  </p>
+                  <div className="bg-yellow-50 rounded p-3 text-sm">
+                    <p className="font-semibold">Cost of this mistake: Financial stress, potential defaults, ruined credit</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg p-5 text-white">
+                <h3 className="text-xl font-bold mb-3">💡 Smart EMI Management = $100,000+ Saved</h3>
+                <p className="text-sm">
+                  Avoiding these mistakes through proper planning, calculation, and discipline can save you $100,000-$300,000 over your lifetime in loan repayments. Use our free EMI calculator to make informed decisions and take control of your financial future.
+                </p>
+              </div>
+            </section>
+
             {/* Final Call-to-Action */}
             <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl text-white">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center">Ready to Calculate Your EMI?</h2>
