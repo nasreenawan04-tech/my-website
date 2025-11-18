@@ -441,10 +441,7 @@ export default function CompoundInterestCalculator() {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    toast({
-      title: "Copied to clipboard!",
-      description: "Share these results with others",
-    });
+    toast({ title: "Copied to clipboard!" });
   };
 
   const shareOnFacebook = () => {
@@ -466,7 +463,7 @@ export default function CompoundInterestCalculator() {
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareableUrl)}`;
-    window.open(facebookUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    window.open(facebookUrl, '_blank', 'width=600,height=400');
     toast({ title: "Opening Facebook share..." });
   };
 
@@ -488,9 +485,10 @@ export default function CompoundInterestCalculator() {
       goalAmount: goalAmount
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    const tweetText = `My compound interest: ${formatCurrency(result.finalAmount)} from ${formatCurrency(parseFloat(principal))} at ${interestRate}% - Calculate yours free!`;
+    const timeDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
+    const tweetText = `💰 My compound interest: ${formatCurrency(result.finalAmount)} from ${formatCurrency(parseFloat(principal))} at ${interestRate}% - Calculate yours free!`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareableUrl)}`;
-    window.open(twitterUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    window.open(twitterUrl, '_blank', 'width=600,height=400');
     toast({ title: "Opening Twitter share..." });
   };
 
@@ -513,7 +511,7 @@ export default function CompoundInterestCalculator() {
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`;
-    window.open(linkedInUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    window.open(linkedInUrl, '_blank', 'width=600,height=400');
     toast({ title: "Opening LinkedIn share..." });
   };
 
@@ -535,10 +533,22 @@ export default function CompoundInterestCalculator() {
       goalAmount: goalAmount
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    const whatsappText = `Compound Interest Calculator Results:\n\nPrincipal: ${formatCurrency(parseFloat(principal))}\nRate: ${interestRate}%\nFinal Amount: ${formatCurrency(result.finalAmount)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\n\nCalculate yours: ${shareableUrl}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    toast({ title: "Opening WhatsApp share..." });
+    const timeDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
+    const whatsappText = `💰 Compound Interest Calculator Results:\n\nPrincipal: ${formatCurrency(parseFloat(principal))}\nRate: ${interestRate}%\nTime: ${timeDisplay}\nFinal Amount: ${formatCurrency(result.finalAmount)}\n\nCalculate yours: ${shareableUrl}`;
+
+    // Use api.whatsapp.com which works better across all devices
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
+
+    const opened = window.open(whatsappUrl, '_blank');
+    if (opened) {
+      toast({ title: "Opening WhatsApp..." });
+    } else {
+      toast({
+        title: "Popup blocked",
+        description: "Please allow popups to share on WhatsApp",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDownloadYearlyBreakdownPDF = async () => {
