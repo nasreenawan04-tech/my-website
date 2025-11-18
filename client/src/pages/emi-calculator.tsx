@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -70,6 +70,7 @@ export default function EMICalculator() {
   const [comparisonEMIs, setComparisonEMIs] = useState<ComparisonEMI[]>([]);
   const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<EMIResult | null>(null);
+  const [shouldAutoCalculate, setShouldAutoCalculate] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
@@ -206,6 +207,49 @@ export default function EMICalculator() {
       }
     ]
   };
+
+  // Load parameters from URL on mount (for shared links)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('amount');
+    const rate = params.get('rate');
+    const term = params.get('term');
+    const unit = params.get('unit');
+    const curr = params.get('currency');
+    const prepayment = params.get('prepayment');
+    const prepaymentAfter = params.get('prepaymentAfter');
+    const stepUp = params.get('stepUp');
+
+    if (amount || rate || term) {
+      if (amount) setLoanAmount(amount);
+      if (rate) setInterestRate(rate);
+      if (term) setLoanTenure(term);
+      if (unit) setTenureType(unit);
+      if (curr) setCurrency(curr);
+      if (prepayment) {
+        setPrepaymentAmount(prepayment);
+        if (parseFloat(prepayment) > 0) setEnablePrepayment(true);
+      }
+      if (prepaymentAfter) setPrepaymentAfterMonths(prepaymentAfter);
+      if (stepUp) {
+        setStepUpPercentage(stepUp);
+        if (parseFloat(stepUp) > 0) setEnableStepUp(true);
+      }
+      setShouldAutoCalculate(true);
+    }
+  }, []);
+
+  // Auto-calculate when URL parameters are loaded
+  useEffect(() => {
+    if (shouldAutoCalculate) {
+      calculateEMI();
+      toast({
+        title: "Shared calculation loaded!",
+        description: "Results from the shared link have been calculated."
+      });
+      setShouldAutoCalculate(false);
+    }
+  }, [shouldAutoCalculate]);
 
   const calculateEMI = () => {
     const principal = parseFloat(loanAmount);
