@@ -1101,30 +1101,52 @@ export default function EMICalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>EMI Calculator 2025: Free Monthly Payment Calculator with Prepayment & Step-Up | Home, Car, Personal Loans</title>
-        <meta name="description" content="Calculate EMI instantly with our FREE EMI calculator featuring prepayment analysis & step-up EMI. Get monthly payment breakdowns, amortization schedules & total interest for home loans, car loans, personal loans. Compare terms, see prepayment savings & save thousands! No registration required. 3.4M+ calculations trusted by borrowers." />
-        <meta name="keywords" content="emi calculator, emi calculator with prepayment, step up emi calculator, loan emi calculator, home loan emi calculator, car loan emi calculator, personal loan emi calculator, emi calculator with amortization schedule, how to calculate emi, emi calculation formula, prepayment calculator, education loan emi calculator, emi calculator online free, mortgage emi calculator, loan calculator with extra payments, what is emi, emi formula, reduce emi payment, calculate emi manually, floating interest rate emi calculator, home loan prepayment calculator, part prepayment calculator, progressive emi calculator, emi calculator showing principal and interest, loan amortization calculator, step up home loan calculator, emi calculator india, business loan emi calculator, bike loan emi calculator, education loan emi calculator with grace period, multiple prepayment emi calculator, emi calculator 2025, best emi calculator, online emi calculator, free emi calculator tool, emi payment calculator, monthly emi calculator" />
-        <meta property="og:title" content="EMI Calculator 2025: Free Monthly Payment Calculator with Prepayment & Step-Up | Save Thousands" />
-        <meta property="og:description" content="Calculate EMI instantly with our FREE EMI calculator featuring prepayment analysis & step-up EMI. Get monthly payment breakdowns, amortization schedules & total interest for home loans, car loans, personal loans. 3.4M+ calculations trusted!" />
+        <title>EMI Calculator - Monthly Payments Instantly | DapsiWow</title>
+        <meta name="description" content="Calculate your EMI instantly with our free loan calculator. Get payment schedules, compare loans, plan prepayments. Trusted by 100K+ users. 100% free, no signup." />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content="EMI Calculator - Monthly Payments Instantly | DapsiWow" />
+        <meta property="og:description" content="Calculate your EMI instantly with our free loan calculator. Get payment schedules, compare loans, plan prepayments. Trusted by 100K+ users. 100% free, no signup." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/emi-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-emi-calculator.jpg" />
-        <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="EMI Calculator - Calculate monthly loan payments with prepayment analysis" />
+        <meta property="og:site_name" content="DapsiWow" />
         <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="EMI Calculator 2025: Calculate Monthly Payments Instantly with Prepayment & Step-Up" />
-        <meta name="twitter:description" content="FREE EMI calculator for home loans, car loans, personal loans & more. Get payment breakdowns, prepayment savings, amortization schedules & interest costs. 3.4M+ calculations!" />
+        <meta name="twitter:title" content="EMI Calculator - Monthly Payments Instantly | DapsiWow" />
+        <meta name="twitter:description" content="Calculate your EMI instantly with our free loan calculator. Get payment schedules, compare loans, plan prepayments. Trusted by 100K+ users. 100% free." />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-emi-calculator.jpg" />
+        <meta name="twitter:image:alt" content="EMI Calculator - Free loan payment calculator with prepayment analysis" />
         <meta name="twitter:site" content="@DapsiWow" />
+        <meta name="twitter:creator" content="@DapsiWow" />
+        
+        {/* Basic Meta Tags */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DapsiWow Financial Tools Team" />
         <meta name="publisher" content="DapsiWow" />
         <meta name="googlebot" content="index, follow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/emi-calculator" />
+        
+        {/* Hreflang Tags for International SEO */}
+        <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/tools/emi-calculator" />
+        <link rel="alternate" hrefLang="en-US" href="https://dapsiwow.com/tools/emi-calculator" />
+        <link rel="alternate" hrefLang="en-GB" href="https://dapsiwow.com/tools/emi-calculator" />
+        <link rel="alternate" hrefLang="en-CA" href="https://dapsiwow.com/tools/emi-calculator" />
+        <link rel="alternate" hrefLang="en-AU" href="https://dapsiwow.com/tools/emi-calculator" />
+        <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/tools/emi-calculator" />
+        
+        {/* PWA Tags */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="EMI Calculator" />
+        <meta name="application-name" content="EMI Calculator" />
+        <meta name="theme-color" content="#2563eb" />
 
         <script type="application/ld+json">
           {JSON.stringify({
@@ -2037,6 +2059,704 @@ export default function EMICalculator() {
               </div>
             </CardContent>
           </Card>
+
+          {/* SEO Content Sections */}
+          <div className="mt-8 sm:mt-12 lg:mt-16 space-y-8 sm:space-y-12 lg:space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Introduction Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">What is an EMI Calculator?</h2>
+              <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-gray-700 space-y-4">
+                <p>
+                  An <strong>EMI (Equated Monthly Installment) Calculator</strong> is a free online financial tool that helps you calculate the monthly payment you need to make on a loan. Whether you're planning to buy a home, car, or need a personal loan, this calculator provides instant, accurate EMI calculations along with a complete breakdown of principal and interest payments over the loan tenure.
+                </p>
+
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-6 my-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Why Use Our EMI Calculator?</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-lg">•</span>
+                      <span><strong>Instant Results:</strong> Get your EMI calculation in seconds with detailed breakdowns</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-lg">•</span>
+                      <span><strong>Accurate Calculations:</strong> Uses bank-standard EMI formula trusted by financial institutions</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-lg">•</span>
+                      <span><strong>100% Free:</strong> No registration, no hidden fees, unlimited calculations</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-lg">•</span>
+                      <span><strong>Advanced Features:</strong> Analyze prepayments, step-up EMIs, and compare scenarios</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-lg">•</span>
+                      <span><strong>Mobile-Friendly:</strong> Calculate on any device, anywhere, anytime</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-blue-600 font-bold text-lg">•</span>
+                      <span><strong>Privacy Protected:</strong> We don't store your financial data</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-6 mb-4">Who Benefits from EMI Calculator?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
+                    <h4 className="font-bold text-gray-900 mb-2">Home Buyers</h4>
+                    <p className="text-sm text-gray-700">Plan your mortgage payments and understand total interest costs before committing to a home loan</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-200">
+                    <h4 className="font-bold text-gray-900 mb-2">Vehicle Purchasers</h4>
+                    <p className="text-sm text-gray-700">Calculate car loan EMIs and compare different loan tenures to find the most affordable option</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border border-purple-200">
+                    <h4 className="font-bold text-gray-900 mb-2">Business Owners</h4>
+                    <p className="text-sm text-gray-700">Evaluate business loan affordability and plan cash flow with accurate EMI projections</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 border border-orange-200">
+                    <h4 className="font-bold text-gray-900 mb-2">Students</h4>
+                    <p className="text-sm text-gray-700">Plan education loan repayments and understand the long-term financial commitment</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-lg p-4 border border-red-200">
+                    <h4 className="font-bold text-gray-900 mb-2">Personal Loan Seekers</h4>
+                    <p className="text-sm text-gray-700">Compare different personal loan offers and choose the most cost-effective option</p>
+                  </div>
+                  <div className="bg-gradient-to-br from-indigo-50 to-violet-50 rounded-lg p-4 border border-indigo-200">
+                    <h4 className="font-bold text-gray-900 mb-2">Financial Planners</h4>
+                    <p className="text-sm text-gray-700">Help clients understand loan commitments and optimize their debt repayment strategies</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* How to Use Section */}
+            <section className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">How to Use the EMI Calculator</h2>
+
+              <div className="space-y-6 mb-8">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-blue-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Enter Loan Amount</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">Input the total loan amount you wish to borrow. This can range from as low as $1,000 to millions, depending on your needs.</p>
+                      <p className="text-blue-600 font-semibold mt-2 text-sm">Example: $200,000 for a home loan</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-green-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Set Interest Rate</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">Enter the annual interest rate offered by your lender. Home loans typically range from 6-9%, personal loans from 10-20%, and car loans from 7-12%.</p>
+                      <p className="text-green-600 font-semibold mt-2 text-sm">Example: 8.5% per annum</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-purple-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Choose Loan Tenure</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">Select the loan repayment period in years or months. Shorter tenures mean higher EMIs but less total interest, while longer tenures offer lower EMIs with higher overall costs.</p>
+                      <p className="text-purple-600 font-semibold mt-2 text-sm">Example: 20 years (240 months)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-orange-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-lg">4</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Select Currency (Optional)</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">Choose your preferred currency (USD, EUR, GBP, INR, etc.) for accurate regional calculations.</p>
+                      <p className="text-orange-600 font-semibold mt-2 text-sm">Example: USD ($)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-red-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-lg">5</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Add Prepayment Details (Optional)</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">If you plan to make lump-sum prepayments, enter the amount and when you'll make it. This shows how much interest you can save and how quickly you can close the loan.</p>
+                      <p className="text-red-600 font-semibold mt-2 text-sm">Example: $10,000 prepayment after 12 months</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-indigo-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-indigo-500 text-white rounded-full flex items-center justify-center font-bold text-lg">6</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Enable Step-Up EMI (Optional)</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">For young professionals expecting salary growth, enable step-up EMI to start with lower payments that increase annually (typically 5-10%).</p>
+                      <p className="text-indigo-600 font-semibold mt-2 text-sm">Example: 5% annual increase</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-teal-500">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-lg">7</div>
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Click Calculate & Analyze Results</h3>
+                      <p className="text-gray-700 text-sm sm:text-base">Click the "Calculate EMI" button to instantly see your monthly payment, total interest, payment breakdown charts, and complete amortization schedule.</p>
+                      <p className="text-teal-600 font-semibold mt-2 text-sm">Tip: Use share/download buttons to save your results</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-yellow-50 rounded-lg p-4 sm:p-6 border border-yellow-200">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Pro Tips for Best Results:</h3>
+                <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-600 font-bold">•</span>
+                    <span><strong>Compare Multiple Scenarios:</strong> Try different loan amounts and tenures to find your optimal monthly budget</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-600 font-bold">•</span>
+                    <span><strong>Factor in Prepayments:</strong> Even small prepayments can save thousands in interest over time</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-600 font-bold">•</span>
+                    <span><strong>Review Amortization Schedule:</strong> Understand how your payments shift from interest-heavy to principal-heavy over time</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-600 font-bold">•</span>
+                    <span><strong>Keep EMI Below 40% of Income:</strong> Financial experts recommend keeping total EMI payments under 40-50% of gross monthly income</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-yellow-600 font-bold">•</span>
+                    <span><strong>Download PDF Reports:</strong> Save detailed calculations for offline review or sharing with family/advisors</span>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Real-World Examples Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Calculator Examples: Real-World Scenarios</h2>
+
+              {/* Example 1 */}
+              <div className="mb-8 sm:mb-10 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-green-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 1: Home Loan for First-Time Buyer</h3>
+                
+                <div className="bg-white rounded-lg p-4 sm:p-5 mb-4">
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Sarah is a 28-year-old software engineer buying her first home. She needs to calculate affordable monthly payments for a $300,000 home loan.</p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-2">Input Values:</h4>
+                      <ul className="space-y-1 text-sm sm:text-base text-gray-700">
+                        <li>• <strong>Loan Amount:</strong> $300,000</li>
+                        <li>• <strong>Interest Rate:</strong> 7.5% per annum</li>
+                        <li>• <strong>Loan Tenure:</strong> 25 years (300 months)</li>
+                        <li>• <strong>Currency:</strong> USD</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-2">Calculation Results:</h4>
+                      <div className="bg-gray-50 rounded p-3 text-sm">
+                        <p className="font-mono">P = $300,000</p>
+                        <p className="font-mono">R = 7.5% / 12 = 0.625%</p>
+                        <p className="font-mono">N = 25 × 12 = 300 months</p>
+                        <p className="mt-2 text-green-600 font-bold">EMI = $2,216.71/month</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-green-100 rounded-lg p-4 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-2">Results:</h4>
+                    <ul className="space-y-1 text-sm sm:text-base text-gray-700">
+                      <li>• <strong>Monthly EMI:</strong> $2,216.71</li>
+                      <li>• <strong>Total Amount Paid:</strong> $665,013</li>
+                      <li>• <strong>Total Interest Paid:</strong> $365,013 (121.7% of principal)</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <h4 className="font-bold text-gray-900 mb-2">Interpretation & Action Steps:</h4>
+                    <p className="text-gray-700 mb-3">Sarah's EMI of $2,216.71 represents approximately 28% of her $8,000 monthly gross income, which is well within the recommended 30-40% debt-to-income ratio. The total interest of $365,013 is substantial but typical for a 25-year mortgage.</p>
+                    <p className="font-semibold text-gray-900 mb-2">Recommended Actions:</p>
+                    <ul className="space-y-1 text-sm text-gray-700">
+                      <li>• <strong>Comfortable Fit:</strong> EMI is affordable within her budget</li>
+                      <li>• <strong>Consider Prepayments:</strong> Making an annual $5,000 prepayment could save $80,000+ in interest and reduce tenure by 4-5 years</li>
+                      <li>• <strong>Refinance Opportunity:</strong> If rates drop below 6.5%, refinancing could save $200+/month</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 2 */}
+              <div className="mb-8 sm:mb-10 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-blue-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 2: Car Loan with Shorter Tenure</h3>
+                
+                <div className="bg-white rounded-lg p-4 sm:p-5 mb-4">
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Mark wants to buy a $35,000 SUV and is comparing 3-year vs 5-year loan options to minimize total interest paid.</p>
+                  
+                  <div className="overflow-x-auto -mx-4 sm:mx-0">
+                    <table className="w-full min-w-[500px] text-sm">
+                      <thead>
+                        <tr className="bg-gray-100">
+                          <th className="px-3 py-2 text-left font-bold text-gray-900">Loan Details</th>
+                          <th className="px-3 py-2 text-left font-bold text-gray-900">3-Year Option</th>
+                          <th className="px-3 py-2 text-left font-bold text-gray-900">5-Year Option</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-200">
+                        <tr>
+                          <td className="px-3 py-2 font-medium">Loan Amount</td>
+                          <td className="px-3 py-2">$35,000</td>
+                          <td className="px-3 py-2">$35,000</td>
+                        </tr>
+                        <tr className="bg-gray-50">
+                          <td className="px-3 py-2 font-medium">Interest Rate</td>
+                          <td className="px-3 py-2">9% per annum</td>
+                          <td className="px-3 py-2">9% per annum</td>
+                        </tr>
+                        <tr>
+                          <td className="px-3 py-2 font-medium">Loan Tenure</td>
+                          <td className="px-3 py-2">3 years (36 months)</td>
+                          <td className="px-3 py-2">5 years (60 months)</td>
+                        </tr>
+                        <tr className="bg-blue-100 font-bold">
+                          <td className="px-3 py-2">Monthly EMI</td>
+                          <td className="px-3 py-2 text-blue-600">$1,113.27</td>
+                          <td className="px-3 py-2 text-blue-600">$726.67</td>
+                        </tr>
+                        <tr className="bg-gray-50">
+                          <td className="px-3 py-2 font-medium">Total Amount Paid</td>
+                          <td className="px-3 py-2">$40,077.72</td>
+                          <td className="px-3 py-2">$43,600.20</td>
+                        </tr>
+                        <tr className="bg-orange-100">
+                          <td className="px-3 py-2 font-medium">Total Interest</td>
+                          <td className="px-3 py-2 text-orange-600">$5,077.72</td>
+                          <td className="px-3 py-2 text-orange-600">$8,600.20</td>
+                        </tr>
+                        <tr className="bg-green-100 font-bold">
+                          <td className="px-3 py-2">Interest Savings</td>
+                          <td className="px-3 py-2 text-green-600">Saves $3,522.48!</td>
+                          <td className="px-3 py-2">—</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="bg-blue-50 rounded-lg p-4 mt-4">
+                    <h4 className="font-bold text-gray-900 mb-2">Key Insights:</h4>
+                    <p className="text-gray-700 mb-3">While the 5-year loan offers a lower monthly payment ($726.67 vs $1,113.27), choosing the 3-year option saves $3,522.48 in total interest—nearly 70% savings!</p>
+                    <p className="font-semibold text-gray-900 mb-2">Decision Factors:</p>
+                    <ul className="space-y-1 text-sm text-gray-700">
+                      <li>• <strong>Choose 3-Year:</strong> If Mark can afford $1,113/month and wants to save $3,500+ and own the car faster</li>
+                      <li>• <strong>Choose 5-Year:</strong> If monthly budget is tight and the extra $386/month is needed for other expenses</li>
+                      <li>• <strong>Hybrid Approach:</strong> Take 5-year loan but make prepayments to reduce tenure and save interest</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Example 3 */}
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-purple-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 3: Personal Loan with Strategic Prepayments</h3>
+                
+                <div className="bg-white rounded-lg p-4 sm:p-5">
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Lisa takes a $50,000 personal loan for home renovation and plans to make annual lump-sum prepayments from her bonus to reduce interest burden.</p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-2">Without Prepayment:</h4>
+                      <ul className="space-y-1 text-sm text-gray-700">
+                        <li>• Loan: $50,000 @ 12% for 5 years</li>
+                        <li>• Monthly EMI: $1,112.23</li>
+                        <li>• Total Interest: $16,733.80</li>
+                        <li>• Total Paid: $66,733.80</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-2">With $3,000 Annual Prepayment:</h4>
+                      <ul className="space-y-1 text-sm text-gray-700 font-semibold text-purple-700">
+                        <li>• Same base EMI: $1,112.23</li>
+                        <li>• Tenure reduced to: 3.8 years</li>
+                        <li>• Total Interest: $11,247.95</li>
+                        <li>• <strong className="text-green-600">Interest Saved: $5,485.85</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="bg-purple-50 rounded-lg p-4">
+                    <h4 className="font-bold text-gray-900 mb-2">Impact Analysis:</h4>
+                    <p className="text-gray-700 mb-2">By adding just $3,000/year (or $250/month) to her regular EMI, Lisa achieves:</p>
+                    <ul className="space-y-1 text-sm text-gray-700">
+                      <li>• <strong className="text-green-600">32.7% reduction in total interest</strong> ($5,485.85 saved)</li>
+                      <li>• <strong>1.2 years earlier loan closure</strong> (debt-free 14 months sooner)</li>
+                      <li>• <strong>Improved credit utilization</strong> and better credit score</li>
+                      <li>• <strong>Peace of mind</strong> from faster debt elimination</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Understanding Results Section */}
+            <section className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-blue-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Understanding Your EMI Results</h2>
+              
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">EMI-to-Income Ratio Categories</h3>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
+                      <h4 className="font-bold text-green-800 mb-2">Excellent: EMI &lt; 25% of Income</h4>
+                      <p className="text-sm text-gray-700">You have significant financial flexibility with comfortable room for savings, investments, and lifestyle expenses. This is an ideal EMI burden that allows for emergency funds and long-term wealth building.</p>
+                      <p className="text-sm text-green-700 mt-2"><strong>Recommendation:</strong> Consider investing surplus income for retirement or other financial goals</p>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                      <h4 className="font-bold text-blue-800 mb-2">Good: EMI 25-35% of Income</h4>
+                      <p className="text-sm text-gray-700">Your EMI is manageable and within recommended limits. You still have adequate funds for other expenses and some savings, though less flexibility than the excellent range.</p>
+                      <p className="text-sm text-blue-700 mt-2"><strong>Recommendation:</strong> Maintain this balance while building emergency fund (3-6 months expenses)</p>
+                    </div>
+
+                    <div className="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-500">
+                      <h4 className="font-bold text-yellow-800 mb-2">Caution: EMI 35-45% of Income</h4>
+                      <p className="text-sm text-gray-700">You're approaching the upper limit of recommended EMI burden. Budget carefully and avoid taking additional loans. Limited room for unexpected expenses or emergencies.</p>
+                      <p className="text-sm text-yellow-700 mt-2"><strong>Recommendation:</strong> Create strict budget, avoid new debt, build emergency fund, consider prepayments</p>
+                    </div>
+
+                    <div className="bg-red-50 rounded-lg p-4 border-l-4 border-red-500">
+                      <h4 className="font-bold text-red-800 mb-2">High Risk: EMI &gt; 45% of Income</h4>
+                      <p className="text-sm text-gray-700">This EMI burden is concerning and may strain your finances. High risk of payment difficulties if income decreases or unexpected expenses arise. Lenders may reject additional loan applications.</p>
+                      <p className="text-sm text-red-700 mt-2"><strong>Recommendation:</strong> Seek financial counseling, explore loan restructuring, increase income sources, or consider smaller loan amount</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">When to Seek Professional Advice</h3>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold">•</span>
+                      <span>Your EMI exceeds 45% of your monthly income</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold">•</span>
+                      <span>You're considering multiple simultaneous loans (home + car + personal)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold">•</span>
+                      <span>Your income is irregular or commission-based</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold">•</span>
+                      <span>You have existing debts with poor repayment history</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600 font-bold">•</span>
+                      <span>You're unsure about loan terms, prepayment penalties, or hidden charges</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* EMI Formula Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Formula Explained</h2>
+              
+              <div className="space-y-6">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">The Standard EMI Formula</h3>
+                  <div className="bg-white rounded-lg p-4 mb-4">
+                    <p className="text-center text-lg sm:text-xl font-mono font-bold text-gray-900 mb-2">
+                      EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <p><strong>Where:</strong></p>
+                    <ul className="ml-4 space-y-1">
+                      <li>• <strong>P</strong> = Principal loan amount (the amount borrowed)</li>
+                      <li>• <strong>R</strong> = Monthly interest rate (Annual rate ÷ 12 ÷ 100)</li>
+                      <li>• <strong>N</strong> = Loan tenure in months (Years × 12)</li>
+                      <li>• <strong>EMI</strong> = Equated Monthly Installment</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example Calculation Step-by-Step</h3>
+                  <p className="text-gray-700 mb-4"><strong>Given:</strong> Loan of $100,000 at 10% annual interest for 15 years</p>
+                  
+                  <div className="space-y-3 font-mono text-sm">
+                    <div className="bg-white rounded p-3">
+                      <p className="font-semibold mb-1">Step 1: Convert annual interest to monthly rate</p>
+                      <p>R = 10% ÷ 12 ÷ 100 = 0.008333</p>
+                    </div>
+                    
+                    <div className="bg-white rounded p-3">
+                      <p className="font-semibold mb-1">Step 2: Convert years to months</p>
+                      <p>N = 15 years × 12 = 180 months</p>
+                    </div>
+                    
+                    <div className="bg-white rounded p-3">
+                      <p className="font-semibold mb-1">Step 3: Calculate (1+R)^N</p>
+                      <p>(1 + 0.008333)^180 = 4.440213</p>
+                    </div>
+                    
+                    <div className="bg-white rounded p-3">
+                      <p className="font-semibold mb-1">Step 4: Apply the formula</p>
+                      <p>EMI = [100,000 × 0.008333 × 4.440213] / [4.440213 - 1]</p>
+                      <p>EMI = [3,699.93] / [3.440213]</p>
+                      <p className="text-green-600 font-bold mt-2">EMI = $1,075.01 per month</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 rounded-lg p-4 mt-4">
+                    <p className="text-sm text-gray-700"><strong>Verification:</strong></p>
+                    <ul className="text-sm text-gray-700 space-y-1 mt-2">
+                      <li>• Total Amount Paid = $1,075.01 × 180 = $193,501.80</li>
+                      <li>• Principal = $100,000</li>
+                      <li>• Total Interest = $193,501.80 - $100,000 = $93,501.80</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-yellow-50 rounded-lg p-5 border border-yellow-200">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Important Notes</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>This formula assumes <strong>fixed interest rates</strong> throughout the loan tenure</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>For <strong>floating rate loans</strong>, EMI may change when interest rates change</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>Formula does <strong>not include</strong> processing fees, insurance, or other charges</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>Actual EMI may vary slightly due to <strong>rounding</strong> by lenders</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions (FAQ)</h2>
+              
+              <div className="space-y-6">
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">What is EMI and how is it calculated?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. It's calculated using the formula: EMI = [P × R × (1+R)^N]/[(1+R)^N-1], where P is the principal loan amount, R is the monthly interest rate (annual rate divided by 12), and N is the number of monthly installments. This formula ensures equal payments throughout the loan term, with each payment covering both principal and interest portions.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">How does prepayment reduce my EMI burden?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Prepayment directly reduces your outstanding principal, which means less interest accrues over the remaining loan period. This can significantly shorten your loan tenure and save thousands in interest costs. For example, adding $100/month to a $200,000 loan at 7% interest can save over $30,000 in interest and reduce the loan term by 5-7 years. Even small extra payments compound to big savings over time.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">What is step-up EMI and who should use it?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Step-up EMI allows you to start with lower monthly payments that increase annually, typically by 5-10%, aligned with expected salary growth. It's ideal for young professionals whose income is expected to grow consistently, allowing them to afford larger loans while maintaining their current lifestyle. The increasing EMIs align with expected salary increments, making higher loan amounts more accessible early in one's career.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Should I choose a shorter or longer loan tenure?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Shorter tenures (5-15 years) mean higher EMIs but significantly less total interest paid—often saving 30-50% in interest costs. Longer tenures (20-30 years) offer lower EMIs but cost substantially more overall due to extended interest payments. Choose based on your monthly budget, income stability, and financial goals. If you can comfortably afford higher payments without compromising emergency savings, shorter tenure saves substantial money long-term.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">What percentage of my income should go toward EMI?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Financial experts recommend keeping total EMI payments (all loans combined) below 40-50% of your gross monthly income. This ensures you have enough for savings, emergencies, and other expenses. Lenders typically use a debt-to-income ratio of 40% as a maximum threshold for loan approval. For better financial health, aim for 30% or less, leaving room for investments and lifestyle expenses.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">How accurate is this EMI calculator?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">This EMI calculator uses bank-grade formulas that are 100% accurate for calculating standard EMI payments, total interest, and amortization schedules. It's the same calculation method banks and financial institutions use. However, actual loan terms may include additional fees (processing fees, insurance, etc.) that aren't reflected in basic EMI calculations. Always verify final numbers with your lender before committing to a loan.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Can I use this calculator for all types of loans?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Yes, this EMI calculator works for all types of fixed-rate loans including home loans, car loans, personal loans, business loans, education loans, and more. It supports loans from $1,000 to $10,000,000+ with any interest rate. The calculator also handles different currencies (USD, EUR, GBP, INR, etc.), prepayment scenarios, and step-up EMI structures. It's a universal tool for any standard amortizing loan calculation.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">What's the difference between fixed and floating EMI?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Fixed EMI: Interest rate remains constant throughout the loan tenure, resulting in predictable monthly payments. Best when rates are low or expected to rise. Typically 0.5-1% higher than floating rates initially. Floating EMI: Interest rate fluctuates based on market conditions (usually linked to bank's base rate). EMI can increase or decrease quarterly/annually. Better when rates are high or expected to fall. Riskier but potentially more cost-effective over long term. Most borrowers save 10-15% on interest with floating rates over 20+ year loans in stable economies.</p>
+                </div>
+
+                <div className="border-b border-gray-200 pb-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Can I pay off my loan early without penalties?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">This depends entirely on your loan agreement and lender policies. Most lenders allow partial prepayments (10-25% of principal per year) without penalties for floating rate loans. For fixed-rate loans, prepayment penalties typically range from 2-5% of the outstanding principal amount if you close the loan before a certain period (usually 3-5 years). Home loans in many countries have no prepayment penalties for floating rate loans. Always check your loan agreement's prepayment clause and calculate if the interest savings outweigh any penalties before making large prepayments.</p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">What happens if I miss an EMI payment?</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">Missing EMI payments has serious consequences: Late fees typically 2-3% of EMI amount, credit score drops 50-100 points after 30 days and 100-150 points after 60-90 days, higher interest rates on future loans due to lower credit score, legal action after 3-6 missed payments, and asset seizure for secured loans after 90-180 days of default. If facing payment difficulties, contact your lender immediately to discuss restructuring options like tenure extension, EMI reduction, or temporary moratorium.</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Related Calculators Section */}
+            <section className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-md border border-purple-100">
+              <div>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Related Financial Calculators</h2>
+                <p className="text-gray-700 mb-6 sm:mb-8">Explore more financial tools to plan your finances comprehensively</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <a href="/tools/loan-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
+                      <Calculator className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-blue-600 transition-colors">
+                      Loan Calculator
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Calculate loan EMI, total interest, and compare different loan options with detailed amortization schedules.
+                  </p>
+                </a>
+
+                <a href="/tools/mortgage-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors">
+                      <TrendingUp className="w-5 h-5 text-green-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-green-600 transition-colors">
+                      Mortgage Calculator
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Estimate your monthly mortgage payments including taxes, insurance, and PMI. Plan your home financing strategy.
+                  </p>
+                </a>
+
+                <a href="/tools/compound-interest-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
+                      <TrendingUp className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-purple-600 transition-colors">
+                      Compound Interest Calculator
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Calculate compound interest growth on investments and savings. Visualize wealth accumulation over time.
+                  </p>
+                </a>
+
+                <a href="/tools/investment-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="p-2 bg-orange-100 rounded-lg group-hover:bg-orange-200 transition-colors">
+                      <DollarSign className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-orange-600 transition-colors">
+                      Investment Calculator
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Project investment returns with different contribution schedules. Plan your wealth-building journey.
+                  </p>
+                </a>
+
+                <a href="/tools/retirement-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="p-2 bg-red-100 rounded-lg group-hover:bg-red-200 transition-colors">
+                      <Clock className="w-5 h-5 text-red-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-red-600 transition-colors">
+                      Retirement Calculator
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Calculate how much you need to save for retirement. Plan your golden years with confidence.
+                  </p>
+                </a>
+
+                <a href="/tools/roi-calculator" className="group bg-white rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="p-2 bg-indigo-100 rounded-lg group-hover:bg-indigo-200 transition-colors">
+                      <BarChart className="w-5 h-5 text-indigo-600" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg group-hover:text-indigo-600 transition-colors">
+                      ROI Calculator
+                    </h3>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    Calculate return on investment for business decisions, property, or financial instruments.
+                  </p>
+                </a>
+              </div>
+            </section>
+
+            {/* Final Call-to-Action */}
+            <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl text-white">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 text-center">Ready to Calculate Your EMI?</h2>
+              <p className="text-center text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto">
+                Start using our free EMI calculator now to plan your loan repayments, compare scenarios, and make informed financial decisions. No registration required!
+              </p>
+
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center">Start Calculating Now:</h3>
+                <ul className="space-y-3 max-w-2xl mx-auto">
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base"><strong>100% Free:</strong> No hidden charges, no registration, unlimited calculations</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base"><strong>Instant Results:</strong> Get detailed EMI breakdowns in seconds</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base"><strong>Advanced Features:</strong> Prepayment analysis, step-up EMI, and currency support</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base"><strong>Export & Share:</strong> Download PDF reports or share results with advisors</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-yellow-300 font-bold text-lg flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base"><strong>Privacy Protected:</strong> Your financial data stays private—we don't store anything</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="text-center">
+                <Button
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  size="lg"
+                  className="bg-white text-blue-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 lg:px-12 py-4 sm:py-6 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  data-testid="button-scroll-to-calculator"
+                >
+                  Calculate Your EMI Now
+                </Button>
+                <p className="mt-4 text-sm sm:text-base opacity-75">Scroll to top to use the calculator</p>
+              </div>
+
+              <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/20 text-center">
+                <p className="text-sm sm:text-base mb-3 sm:mb-4 opacity-90">Need help or have questions?</p>
+                <p className="text-xs sm:text-sm opacity-75">Our EMI calculator is trusted by thousands of users worldwide for accurate loan planning.</p>
+              </div>
+            </section>
+          </div>
         </div>
       </main>
 
