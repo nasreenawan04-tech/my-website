@@ -2104,7 +2104,7 @@ export default function CompoundInterestCalculator() {
                         )}
                       </div>
 
-                      {/* Growth Breakdown */}
+                      {/* Growth Breakdown - Moved Up */}
                       <div className="space-y-2 sm:space-y-3 md:space-y-4">
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
@@ -2114,17 +2114,6 @@ export default function CompoundInterestCalculator() {
                             </span>
                           </div>
                         </div>
-
-                        {enableSIP && result.sipAnalysis && (
-                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                            <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total SIP Contributions</span>
-                              <span className="font-bold text-blue-600 text-xs sm:text-sm md:text-base" data-testid="text-sip-contributions">
-                                {formatCurrency(result.sipAnalysis.totalSIPContributions)}
-                              </span>
-                            </div>
-                          </div>
-                        )}
 
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
@@ -2143,6 +2132,17 @@ export default function CompoundInterestCalculator() {
                             </span>
                           </div>
                         </div>
+
+                        {enableSIP && result.sipAnalysis && (
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total SIP Contributions</span>
+                              <span className="font-bold text-blue-600 text-xs sm:text-sm md:text-base" data-testid="text-sip-contributions">
+                                {formatCurrency(result.sipAnalysis.totalSIPContributions)}
+                              </span>
+                            </div>
+                          </div>
+                        )}
 
                         {result.sipAnalysis && (
                           <div className="bg-white rounded-xl p-4 shadow-sm">
