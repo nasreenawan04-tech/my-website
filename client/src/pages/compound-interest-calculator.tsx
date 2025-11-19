@@ -2214,7 +2214,7 @@ export default function CompoundInterestCalculator() {
                               <AreaChart data={result.yearlyBreakdown}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                <YAxis label={{ value: 'Amount ($)', angle: -90, position: 'insideLeft' }} />
+                                <YAxis />
                                 <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
                                 <Legend />
                                 <Area type="monotone" dataKey="amount" stackId="1" stroke="#10b981" fill="#10b981" name="Total Value" />
@@ -2225,7 +2225,7 @@ export default function CompoundInterestCalculator() {
                               <LineChart data={result.yearlyBreakdown}>
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                <YAxis label={{ value: 'Amount ($)', angle: -90, position: 'insideLeft' }} />
+                                <YAxis />
                                 <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
                                 <Legend />
                                 <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2} name="Total Value" />
