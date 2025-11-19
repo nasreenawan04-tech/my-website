@@ -1350,6 +1350,7 @@ export default function LoanCalculator() {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
+            "@id": "https://dapsiwow.com/tools/loan-calculator#breadcrumb",
             "itemListElement": [
               {
                 "@type": "ListItem",
