@@ -2144,6 +2144,15 @@ export default function CompoundInterestCalculator() {
                           </div>
                         </div>
 
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Interest Rate</span>
+                            <span className="font-bold text-blue-600 text-xs sm:text-sm md:text-base">
+                              {interestRate}% per year
+                            </span>
+                          </div>
+                        </div>
+
                         {result.sipAnalysis && (
                           <div className="bg-white rounded-xl p-4 shadow-sm">
                             <div className="flex justify-between items-center">
@@ -2353,15 +2362,7 @@ export default function CompoundInterestCalculator() {
                         </div>
                       )}
 
-                      {/* Investment Summary */}
-                      <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium text-gray-700">Interest Rate</span>
-                          <span className="font-bold text-blue-600">
-                            {interestRate}% per year
-                          </span>
-                        </div>
-                      </div>
+                      
 
                       {/* Phase 1: Growth Chart */}
                       {showChart && result.yearlyBreakdown && result.yearlyBreakdown.length > 0 && (
