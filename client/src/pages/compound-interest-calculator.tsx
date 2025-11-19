@@ -2185,58 +2185,6 @@ export default function CompoundInterestCalculator() {
                         </div>
                       </div>
 
-                      {/* Phase 1: Growth Chart */}
-                      {showChart && result.yearlyBreakdown && result.yearlyBreakdown.length > 0 && (
-                        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200" data-testid="growth-chart-container">
-                          <div className="flex items-center justify-between mb-4">
-                            <h3 className="font-bold text-gray-900 text-lg">Investment Growth Over Time</h3>
-                            <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                variant={chartType === 'area' ? 'default' : 'outline'}
-                                onClick={() => setChartType('area')}
-                                data-testid="button-chart-area"
-                              >
-                                <BarChart3 className="w-4 h-4" />
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant={chartType === 'line' ? 'default' : 'outline'}
-                                onClick={() => setChartType('line')}
-                                data-testid="button-chart-line"
-                              >
-                                <PieChart className="w-4 h-4" />
-                              </Button>
-                            </div>
-                          </div>
-                          <ResponsiveContainer width="100%" height={300}>
-                            {chartType === 'area' ? (
-                              <AreaChart data={result.yearlyBreakdown}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                <YAxis />
-                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
-                                <Legend />
-                                <Area type="monotone" dataKey="amount" stackId="1" stroke="#10b981" fill="#10b981" name="Total Value" />
-                                <Area type="monotone" dataKey="principal" stackId="2" stroke="#3b82f6" fill="#3b82f6" name="Principal" />
-                                <Area type="monotone" dataKey="totalContributionsAtYear" stackId="2" stroke="#8b5cf6" fill="#8b5cf6" name="Contributions" />
-                              </AreaChart>
-                            ) : (
-                              <LineChart data={result.yearlyBreakdown}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                <YAxis />
-                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
-                                <Legend />
-                                <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2} name="Total Value" />
-                                <Line type="monotone" dataKey="principal" stroke="#3b82f6" strokeWidth={2} name="Principal" />
-                                <Line type="monotone" dataKey="totalContributionsAtYear" stroke="#8b5cf6" strokeWidth={2} name="Contributions" />
-                              </LineChart>
-                            )}
-                          </ResponsiveContainer>
-                        </div>
-                      )}
-
                       {/* Phase 1: Milestone Tracker */}
                       {showMilestones && (result.milestones.double || result.milestones.triple || result.milestones.fivex || result.milestones.tenx) && (
                         <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 sm:p-6 shadow-sm border border-purple-200" data-testid="milestone-tracker">
@@ -2414,6 +2362,58 @@ export default function CompoundInterestCalculator() {
                           </span>
                         </div>
                       </div>
+
+                      {/* Phase 1: Growth Chart */}
+                      {showChart && result.yearlyBreakdown && result.yearlyBreakdown.length > 0 && (
+                        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200" data-testid="growth-chart-container">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-gray-900 text-lg">Investment Growth Over Time</h3>
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                variant={chartType === 'area' ? 'default' : 'outline'}
+                                onClick={() => setChartType('area')}
+                                data-testid="button-chart-area"
+                              >
+                                <BarChart3 className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant={chartType === 'line' ? 'default' : 'outline'}
+                                onClick={() => setChartType('line')}
+                                data-testid="button-chart-line"
+                              >
+                                <PieChart className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                          <ResponsiveContainer width="100%" height={300}>
+                            {chartType === 'area' ? (
+                              <AreaChart data={result.yearlyBreakdown}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
+                                <YAxis />
+                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                                <Legend />
+                                <Area type="monotone" dataKey="amount" stackId="1" stroke="#10b981" fill="#10b981" name="Total Value" />
+                                <Area type="monotone" dataKey="principal" stackId="2" stroke="#3b82f6" fill="#3b82f6" name="Principal" />
+                                <Area type="monotone" dataKey="totalContributionsAtYear" stackId="2" stroke="#8b5cf6" fill="#8b5cf6" name="Contributions" />
+                              </AreaChart>
+                            ) : (
+                              <LineChart data={result.yearlyBreakdown}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
+                                <YAxis />
+                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                                <Legend />
+                                <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2} name="Total Value" />
+                                <Line type="monotone" dataKey="principal" stroke="#3b82f6" strokeWidth={2} name="Principal" />
+                                <Line type="monotone" dataKey="totalContributionsAtYear" stroke="#8b5cf6" strokeWidth={2} name="Contributions" />
+                              </LineChart>
+                            )}
+                          </ResponsiveContainer>
+                        </div>
+                      )}
 
                       {/* Yearly Investment Breakdown */}
                       {result && showBreakdown && (
