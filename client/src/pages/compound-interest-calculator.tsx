@@ -1392,73 +1392,12 @@ export default function CompoundInterestCalculator() {
                 {/* Input Section */}
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Calculate Your Investment Growth - Simple Compound Interest Calculator</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to see how compound interest with monthly contributions accelerates your wealth growth and retirement savings</p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Investment Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to calculate compound interest growth</p>
                   </div>
 
                   <TooltipProvider>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                      {/* Currency Selection */}
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Currency
-                          </Label>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs text-sm">Select your preferred currency for calculations</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
-                        <Select value={currency} onValueChange={setCurrency}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="USD">USD - US Dollar</SelectItem>
-                            <SelectItem value="EUR">EUR - Euro</SelectItem>
-                            <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                            <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                            <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
-                            <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
-                            <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
-                            <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
-                            <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
-                            <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Compound Frequency */}
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs text-sm">How often interest is calculated and added to principal</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
-                        <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-compound-frequency">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="1">Annually</SelectItem>
-                            <SelectItem value="2">Semi-annually</SelectItem>
-                            <SelectItem value="4">Quarterly</SelectItem>
-                            <SelectItem value="12">Monthly</SelectItem>
-                            <SelectItem value="365">Daily</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                       {/* Principal Amount */}
                       <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center gap-2">
@@ -1475,22 +1414,24 @@ export default function CompoundInterestCalculator() {
                           </Tooltip>
                         </div>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                           <Input
                             id="principal"
                             type="number"
                             value={principal}
                             onChange={(e) => { setPrincipal(e.target.value); clearError('principal'); }}
-                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.principal ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                            className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.principal ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="10,000"
+                            min="0"
+                            max="1000000000"
+                            step="100"
                             data-testid="input-principal"
+                            aria-label="Principal amount in dollars"
+                            required
                           />
                         </div>
                         {validationErrors.principal && (
-                          <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-principal">
-                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                            <span>{validationErrors.principal}</span>
-                          </div>
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-principal">{validationErrors.principal}</p>
                         )}
                       </div>
 
@@ -1515,18 +1456,19 @@ export default function CompoundInterestCalculator() {
                             type="number"
                             value={interestRate}
                             onChange={(e) => { setInterestRate(e.target.value); clearError('interestRate'); }}
-                            className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.interestRate ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                            className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="8.00"
+                            min="0"
+                            max="100"
                             step="0.01"
                             data-testid="input-interest-rate"
+                            aria-label="Annual interest rate percentage"
+                            required
                           />
-                          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
                         {validationErrors.interestRate && (
-                          <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-interest-rate">
-                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                            <span>{validationErrors.interestRate}</span>
-                          </div>
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-interest-rate">{validationErrors.interestRate}</p>
                         )}
                       </div>
 
@@ -1548,10 +1490,13 @@ export default function CompoundInterestCalculator() {
                             type="number"
                             value={timePeriod}
                             onChange={(e) => { setTimePeriod(e.target.value); clearError('timePeriod'); }}
-                            className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 ${validationErrors.timePeriod ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                            className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.timePeriod ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="10"
                             min="1"
+                            max="100"
                             data-testid="input-time-period"
+                            aria-label="Investment period duration"
+                            required
                           />
                           <Select value={timeUnit} onValueChange={setTimeUnit}>
                             <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-time-unit">
@@ -1564,12 +1509,9 @@ export default function CompoundInterestCalculator() {
                           </Select>
                         </div>
                         {validationErrors.timePeriod && (
-                          <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-time-period">
-                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                            <span>{validationErrors.timePeriod}</span>
-                          </div>
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-time-period">{validationErrors.timePeriod}</p>
                         )}
-                        <p className="text-xs sm:text-sm text-gray-500">Pro Tip: Time is the most powerful factor in compound interest!</p>
+                        <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Time is the most powerful factor in compound interest!</p>
                       </div>
                     </div>
                   </TooltipProvider>
@@ -1593,28 +1535,28 @@ export default function CompoundInterestCalculator() {
                     </div>
 
                     {enableSIP && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pl-4 sm:pl-6 md:pl-8 border-l-4 border-blue-200 bg-blue-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 pl-4 sm:pl-6 md:pl-8 border-l-4 border-blue-200 bg-blue-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
                         <div className="space-y-2 sm:space-y-3">
                           <Label htmlFor="sip-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             SIP Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                             <Input
                               id="sip-amount"
                               type="number"
                               value={sipAmount}
                               onChange={(e) => { setSipAmount(e.target.value); clearError('sipAmount'); }}
-                              className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.sipAmount ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                              className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.sipAmount ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                               placeholder="1,000"
+                              min="0"
+                              step="10"
                               data-testid="input-sip-amount"
+                              aria-label="SIP amount per period"
                             />
                           </div>
                           {validationErrors.sipAmount && (
-                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-sip-amount">
-                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                              <span>{validationErrors.sipAmount}</span>
-                            </div>
+                            <p className="text-xs text-red-600 mt-1" data-testid="error-sip-amount">{validationErrors.sipAmount}</p>
                           )}
                         </div>
 
@@ -1643,18 +1585,18 @@ export default function CompoundInterestCalculator() {
                               type="number"
                               value={stepUpPercentage}
                               onChange={(e) => { setStepUpPercentage(e.target.value); clearError('stepUpPercentage'); }}
-                              className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.stepUpPercentage ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                              className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.stepUpPercentage ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                               placeholder="5"
+                              min="0"
+                              max="100"
                               step="0.01"
                               data-testid="input-step-up"
+                              aria-label="Annual step-up percentage"
                             />
-                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                           </div>
                           {validationErrors.stepUpPercentage && (
-                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-step-up">
-                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                              <span>{validationErrors.stepUpPercentage}</span>
-                            </div>
+                            <p className="text-xs text-red-600 mt-1" data-testid="error-step-up">{validationErrors.stepUpPercentage}</p>
                           )}
                         </div>
 
@@ -1668,18 +1610,18 @@ export default function CompoundInterestCalculator() {
                               type="number"
                               value={inflationRate}
                               onChange={(e) => { setInflationRate(e.target.value); clearError('inflationRate'); }}
-                              className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.inflationRate ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                              className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.inflationRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                               placeholder="3"
+                              min="0"
+                              max="50"
                               step="0.01"
                               data-testid="input-inflation-rate"
+                              aria-label="Annual inflation rate percentage"
                             />
-                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                           </div>
                           {validationErrors.inflationRate && (
-                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-inflation-rate">
-                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                              <span>{validationErrors.inflationRate}</span>
-                            </div>
+                            <p className="text-xs text-red-600 mt-1" data-testid="error-inflation-rate">{validationErrors.inflationRate}</p>
                           )}
                         </div>
                       </div>
@@ -1706,22 +1648,22 @@ export default function CompoundInterestCalculator() {
                             Target Goal Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                             <Input
                               id="goal-amount"
                               type="number"
                               value={goalAmount}
                               onChange={(e) => { setGoalAmount(e.target.value); clearError('goalAmount'); }}
-                              className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 ${validationErrors.goalAmount ? 'border-red-500' : 'border-gray-200'} rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full`}
+                              className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.goalAmount ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                               placeholder="100,000"
+                              min="0"
+                              step="100"
                               data-testid="input-goal-amount"
+                              aria-label="Target goal amount in dollars"
                             />
                           </div>
                           {validationErrors.goalAmount && (
-                            <div className="flex items-center gap-2 text-red-600 text-xs sm:text-sm" data-testid="error-goal-amount">
-                              <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                              <span>{validationErrors.goalAmount}</span>
-                            </div>
+                            <p className="text-xs text-red-600 mt-1" data-testid="error-goal-amount">{validationErrors.goalAmount}</p>
                           )}
                         </div>
                       </div>
@@ -1734,19 +1676,20 @@ export default function CompoundInterestCalculator() {
                       ref={calculateButtonRef}
                       onClick={calculateCompoundInterest}
                       size="lg"
-                      className="w-full sm:w-auto text-white font-semibold shadow-lg"
-                      style={{ backgroundColor: '#2469f5' }}
+                      className="w-full sm:w-auto text-white font-semibold shadow-lg transition-colors"
                       data-testid="button-calculate"
                     >
+                      <Calculator className="w-5 h-5 mr-2" />
                       Calculate Compound Interest
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
                       size="lg"
-                      className="w-full sm:w-auto font-semibold"
+                      className="w-full sm:w-auto font-semibold transition-colors"
                       data-testid="button-reset"
                     >
+                      <RotateCcw className="w-4 h-4 mr-2" />
                       Reset Calculator
                     </Button>
                   </div>
