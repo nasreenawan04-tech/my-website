@@ -8,9 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart, AlertCircle, Check, RotateCcw } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, AlertCircle, Check, RotateCcw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
@@ -95,8 +94,7 @@ export default function CompoundInterestCalculator() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  // Refs for PDF export (charts and tables)
-  const chartRef = useRef<HTMLDivElement>(null);
+  // Refs for PDF export (tables)
   const yearlyBreakdownRef = useRef<HTMLDivElement>(null);
 
   // Helper function to clear specific validation error
@@ -956,44 +954,6 @@ export default function CompoundInterestCalculator() {
       doc.setTextColor(0, 0, 0);
       yPos += interpretationHeight + 8;
 
-      // Capture charts
-      if (chartRef.current) {
-        try {
-          // Capture first, then add page only if successful
-          const chartCanvas = await html2canvas(chartRef.current, {
-            scale: 1.5,
-            backgroundColor: '#ffffff',
-            logging: false
-          });
-
-          if (chartCanvas && chartCanvas.height > 0) {
-            if (yPos > pageHeight - 60) {
-              doc.addPage();
-              yPos = margin;
-            }
-
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor(30, 58, 138);
-            doc.text('INVESTMENT BREAKDOWN CHARTS', margin, yPos);
-            yPos += 2;
-            doc.setDrawColor(37, 99, 235);
-            doc.line(margin, yPos, margin + 80, yPos);
-            yPos += 10;
-            doc.setTextColor(0, 0, 0);
-
-            const chartImgData = chartCanvas.toDataURL('image/jpeg', 0.85);
-            const chartWidth = pageWidth - (2 * margin);
-            const chartHeight = Math.min((chartCanvas.height * chartWidth) / chartCanvas.width, pageHeight - yPos - 30);
-
-            doc.addImage(chartImgData, 'JPEG', margin, yPos, chartWidth, chartHeight);
-            yPos += chartHeight + 10;
-          }
-        } catch (error) {
-          console.error('Error capturing charts:', error);
-        }
-      }
-
       // Capture yearly breakdown if visible
       if (showBreakdown && yearlyBreakdownRef.current) {
         try {
@@ -1804,88 +1764,6 @@ export default function CompoundInterestCalculator() {
                             Real Value: {formatCurrency(result.realValue)}
                           </div>
                         )}
-                      </div>
-
-                      {/* Chart Section */}
-                      <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
-                        <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Investment Breakdown</h3>
-                          <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
-                            <div className="w-full max-w-[280px] sm:max-w-xs">
-                              <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : 280}>
-                                <RechartsPieChart>
-                                  <Pie
-                                    data={[
-                                      { 
-                                        name: 'Principal', 
-                                        value: result.principalAmount,
-                                        percentage: (result.principalAmount / result.finalAmount) * 100
-                                      },
-                                      { 
-                                        name: 'Interest', 
-                                        value: result.totalInterest,
-                                        percentage: (result.totalInterest / result.finalAmount) * 100
-                                      }
-                                    ]}
-                                    cx="50%"
-                                    cy="50%"
-                                    innerRadius={window.innerWidth < 640 ? 45 : 60}
-                                    outerRadius={window.innerWidth < 640 ? 75 : 90}
-                                    paddingAngle={3}
-                                    dataKey="value"
-                                    label={window.innerWidth >= 640 ? ({ percentage }) => `${percentage.toFixed(1)}%` : false}
-                                    labelLine={window.innerWidth >= 640}
-                                  >
-                                    <Cell fill="url(#principalGradient)" />
-                                    <Cell fill="url(#interestGradient)" />
-                                  </Pie>
-                                  <RechartsTooltip
-                                    formatter={(value: number) => formatCurrency(value)}
-                                    contentStyle={{
-                                      backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                                      border: '1px solid #e5e7eb',
-                                      borderRadius: '8px',
-                                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                                      fontSize: window.innerWidth < 640 ? '12px' : '14px'
-                                    }}
-                                  />
-                                  <defs>
-                                    <linearGradient id="principalGradient" x1="0" y1="0" x2="0" y2="1">
-                                      <stop offset="0%" stopColor="#3b82f6" stopOpacity={1} />
-                                      <stop offset="100%" stopColor="#2563eb" stopOpacity={1} />
-                                    </linearGradient>
-                                    <linearGradient id="interestGradient" x1="0" y1="0" x2="0" y2="1">
-                                      <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
-                                      <stop offset="100%" stopColor="#059669" stopOpacity={1} />
-                                    </linearGradient>
-                                  </defs>
-                                </RechartsPieChart>
-                              </ResponsiveContainer>
-                            </div>
-                            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 w-full lg:w-auto">
-                              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-200">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full"></div>
-                                  <span className="font-semibold text-gray-700 text-xs sm:text-sm">Principal Amount</span>
-                                </div>
-                                <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600 break-all">{formatCurrency(result.principalAmount)}</div>
-                                <div className="text-xs sm:text-sm text-blue-700 mt-1">{((result.principalAmount / result.finalAmount) * 100).toFixed(1)}% of total</div>
-                              </div>
-                              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-200">
-                                <div className="flex items-center gap-2 mb-2">
-                                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full"></div>
-                                  <span className="font-semibold text-gray-700 text-xs sm:text-sm">Total Interest</span>
-                                </div>
-                                <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-all">{formatCurrency(result.totalInterest)}</div>
-                                <div className="text-xs sm:text-sm text-green-700 mt-1">{((result.totalInterest / result.finalAmount) * 100).toFixed(1)}% of total</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200">
-                            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center">
-                              <span className="text-xs sm:text-sm text-gray-600">Total Final Amount:</span>
-                              <span className="text-lg sm:text-xl font-bold text-gray-900 break-all">{formatCurrency(result.finalAmount)}</span>
-                            </div>
-                          </div>
                       </div>
 
                       {/* Growth Breakdown */}
