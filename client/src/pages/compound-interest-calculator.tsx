@@ -8,12 +8,18 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, AlertCircle, Check, RotateCcw } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, AlertCircle, Check, RotateCcw, Target, Zap, BarChart3, PieChart, Plus } from 'lucide-react';
+import { AreaChart, Area, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
+
+interface LumpSumContribution {
+  year: number;
+  amount: number;
+}
 
 interface CompoundInterestResult {
   finalAmount: number;
@@ -22,6 +28,24 @@ interface CompoundInterestResult {
   totalContributions: number;
   realValue: number;
   inflationAdjustedGains: number;
+  cagr: number;
+  totalTaxPaid: number;
+  postTaxReturns: number;
+  totalFeesPaid: number;
+  netReturnsAfterFees: number;
+  doublingTime: number;
+  milestones: {
+    double: number | null;
+    triple: number | null;
+    fivex: number | null;
+    tenx: number | null;
+  };
+  whatIfAnalysis: Array<{
+    rateChange: string;
+    rate: number;
+    finalAmount: number;
+    difference: number;
+  }>;
   goalAnalysis?: {
     timeToReachGoal: number;
     requiredMonthlyContribution: number;
@@ -40,6 +64,8 @@ interface CompoundInterestResult {
     sipContribution: number;
     cumulativeContributions: number;
     realValue: number;
+    principal: number;
+    totalContributionsAtYear: number;
   }>;
 }
 
@@ -52,6 +78,8 @@ const compoundInterestSchema = z.object({
   stepUpPercentage: z.number().min(0, "Step-up percentage cannot be negative").max(100, "Step-up percentage cannot exceed 100%"),
   inflationRate: z.number().min(0, "Inflation rate cannot be negative").max(50, "Inflation rate is too high"),
   goalAmount: z.number().min(0, "Goal amount cannot be negative").max(10000000000, "Goal amount is too large"),
+  taxRate: z.number().min(0, "Tax rate cannot be negative").max(100, "Tax rate cannot exceed 100%"),
+  expenseRatio: z.number().min(0, "Expense ratio cannot be negative").max(10, "Expense ratio is too high (max 10%)"),
 });
 
 type ValidationErrors = {
@@ -62,6 +90,8 @@ type ValidationErrors = {
   stepUpPercentage?: string;
   inflationRate?: string;
   goalAmount?: string;
+  taxRate?: string;
+  expenseRatio?: string;
 };
 
 export default function CompoundInterestCalculator() {
@@ -83,6 +113,18 @@ export default function CompoundInterestCalculator() {
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  
+  // Phase 1 Core Analytics Features
+  const [enableTax, setEnableTax] = useState(false);
+  const [taxRate, setTaxRate] = useState('15');
+  const [enableFees, setEnableFees] = useState(false);
+  const [expenseRatio, setExpenseRatio] = useState('0.5');
+  const [enableLumpSum, setEnableLumpSum] = useState(false);
+  const [lumpSumContributions, setLumpSumContributions] = useState<LumpSumContribution[]>([]);
+  const [showChart, setShowChart] = useState(true);
+  const [chartType, setChartType] = useState<'area' | 'line'>('area');
+  const [showMilestones, setShowMilestones] = useState(true);
+  const [showWhatIf, setShowWhatIf] = useState(false);
 
   // Refs for auto-calculation after URL params load
   const calculateButtonRef = useRef<HTMLButtonElement>(null);
@@ -164,6 +206,8 @@ export default function CompoundInterestCalculator() {
       stepUpPercentage: parseFloat(stepUpPercentage),
       inflationRate: parseFloat(inflationRate),
       goalAmount: parseFloat(goalAmount),
+      taxRate: parseFloat(taxRate),
+      expenseRatio: parseFloat(expenseRatio),
     });
 
     if (!validationResult.success) {
@@ -197,14 +241,20 @@ export default function CompoundInterestCalculator() {
     let currentAmount = p;
     let totalContributions = p;
     let totalSIPContributions = 0;
+    let totalFeesPaid = 0;
     const yearlyBreakdown = [];
+    const expenseRatioDecimal = enableFees ? parseFloat(expenseRatio) / 100 : 0;
 
     for (let year = 1; year <= years; year++) {
       const isPartialYear = year > t;
       const yearDuration = isPartialYear ? t - (year - 1) : 1;
 
       const growthFactor = Math.pow((1 + r / n), n * yearDuration);
+      const previousAmount = currentAmount;
       currentAmount *= growthFactor;
+
+      // Track contributions made in THIS year specifically
+      let yearlyContributions = 0;
 
       if (enableSIP && sip > 0) {
         const periodsInYear = sipFreq * yearDuration;
@@ -220,11 +270,28 @@ export default function CompoundInterestCalculator() {
           currentAmount += currentSIP * contributionGrowth;
           totalSIPContributions += currentSIP;
           totalContributions += currentSIP;
+          yearlyContributions += currentSIP;
         }
       }
 
-      const previousAmount: number = year === 1 ? p : yearlyBreakdown[year - 2].amount;
-      const interestEarned: number = currentAmount - previousAmount - (enableSIP ? totalSIPContributions - (year > 1 ? yearlyBreakdown[year - 2].cumulativeContributions - p : 0) : 0);
+      // Check for lump sum contributions
+      const lumpSumForYear = enableLumpSum ? lumpSumContributions.find(ls => ls.year === year) : null;
+      if (lumpSumForYear) {
+        currentAmount += lumpSumForYear.amount;
+        totalContributions += lumpSumForYear.amount;
+        yearlyContributions += lumpSumForYear.amount;
+      }
+
+      // Phase 1 Feature: Deduct expense ratio/fees from balance each year (prorated for partial years)
+      let yearlyFee = 0;
+      if (enableFees && expenseRatioDecimal > 0) {
+        yearlyFee = currentAmount * expenseRatioDecimal * yearDuration;
+        currentAmount -= yearlyFee;
+        totalFeesPaid += yearlyFee;
+      }
+
+      // Calculate interest earned: currentAmount - previousAmount - yearlyContributions + yearlyFee
+      const interestEarned: number = Math.max(0, currentAmount - previousAmount - yearlyContributions + yearlyFee);
       const realValue = currentAmount / Math.pow(1 + inflation, year);
 
       yearlyBreakdown.push({
@@ -234,7 +301,9 @@ export default function CompoundInterestCalculator() {
         totalInterest: currentAmount - totalContributions,
         sipContribution: enableSIP && sip > 0 ? (stepUp > 0 ? sip * Math.pow(1 + stepUp, year - 1) : sip) * sipFreq * yearDuration : 0,
         cumulativeContributions: totalContributions,
-        realValue
+        realValue,
+        principal: p,
+        totalContributionsAtYear: totalContributions
       });
     }
 
@@ -242,6 +311,179 @@ export default function CompoundInterestCalculator() {
     const totalInterest = finalAmount - totalContributions;
     const realValue = finalAmount / Math.pow(1 + inflation, t);
     const inflationAdjustedGains = realValue - totalContributions;
+
+    // Phase 1 Feature: CAGR Calculation using IRR (accounts for timing of cash flows)
+    let cagr = 0;
+    if (t > 0) {
+      // Build cash flow array: negative for investments, positive for final value
+      const cashFlows: Array<{amount: number, time: number}> = [];
+      cashFlows.push({amount: -p, time: 0}); // Initial investment at time 0
+      
+      // Add SIP contributions at their respective times
+      if (enableSIP && sip > 0) {
+        for (let year = 1; year <= years; year++) {
+          const yearDuration = year > t ? t - (year - 1) : 1;
+          const periodsInYear = sipFreq * yearDuration;
+          let currentSIP = sip;
+          if (stepUp > 0 && year > 1) {
+            currentSIP = sip * Math.pow(1 + stepUp, year - 1);
+          }
+          for (let period = 1; period <= periodsInYear; period++) {
+            const timeOfContribution = (year - 1) + (period / sipFreq);
+            cashFlows.push({amount: -currentSIP, time: timeOfContribution});
+          }
+        }
+      }
+      
+      // Add lump sum contributions at their respective years (clamped to investment horizon)
+      if (enableLumpSum && lumpSumContributions.length > 0) {
+        lumpSumContributions.forEach(ls => {
+          if (ls.year <= years) {
+            // Clamp time to [0, t] to handle partial-year scenarios
+            const lumpSumTime = Math.min(ls.year, t);
+            cashFlows.push({amount: -ls.amount, time: lumpSumTime});
+          }
+        });
+      }
+      
+      // Final value is positive cash flow
+      cashFlows.push({amount: finalAmount, time: t});
+      
+      // Use Newton-Raphson method to find IRR
+      const calculateNPV = (rate: number) => {
+        return cashFlows.reduce((npv, cf) => {
+          return npv + (cf.amount / Math.pow(1 + rate, cf.time));
+        }, 0);
+      };
+      
+      const calculateDerivative = (rate: number) => {
+        return cashFlows.reduce((deriv, cf) => {
+          return deriv - (cf.amount * cf.time / Math.pow(1 + rate, cf.time + 1));
+        }, 0);
+      };
+      
+      // Newton-Raphson iteration
+      let irrGuess = r; // Start with the interest rate as initial guess
+      const maxIterations = 100;
+      const tolerance = 0.000001;
+      let converged = false;
+      
+      for (let i = 0; i < maxIterations; i++) {
+        const npv = calculateNPV(irrGuess);
+        if (Math.abs(npv) < tolerance) {
+          converged = true;
+          break;
+        }
+        
+        const derivative = calculateDerivative(irrGuess);
+        // If derivative is too small, try different approach
+        if (Math.abs(derivative) < tolerance) {
+          // Fall back to bisection method for robustness
+          let low = -0.99;
+          let high = 10;
+          for (let j = 0; j < 50; j++) {
+            irrGuess = (low + high) / 2;
+            const npvMid = calculateNPV(irrGuess);
+            if (Math.abs(npvMid) < tolerance) {
+              converged = true;
+              break;
+            }
+            if (npvMid < 0) {
+              low = irrGuess;
+            } else {
+              high = irrGuess;
+            }
+          }
+          break;
+        }
+        
+        irrGuess = irrGuess - npv / derivative;
+        
+        // Clamp to reasonable bounds
+        irrGuess = Math.max(-0.99, Math.min(10, irrGuess));
+      }
+      
+      // Verify final convergence
+      const finalNPV = calculateNPV(irrGuess);
+      if (!converged || Math.abs(finalNPV) > 0.01) {
+        // Fall back to simple approximation if IRR failed to converge
+        cagr = t > 0 && totalContributions > 0 ? ((Math.pow(finalAmount / totalContributions, 1 / t) - 1) * 100) : 0;
+      } else {
+        cagr = irrGuess * 100;
+      }
+    }
+
+    // Phase 1 Feature: Tax Calculations
+    const taxRateDecimal = enableTax ? parseFloat(taxRate) / 100 : 0;
+    const taxableGains = totalInterest;
+    const totalTaxPaid = taxRateDecimal * taxableGains;
+    const postTaxReturns = finalAmount - totalTaxPaid;
+
+    // Phase 1 Feature: Net Returns After Fees (fees already deducted in loop)
+    const netReturnsAfterFees = finalAmount;
+
+    // Phase 1 Feature: Investment Doubling Time (Rule of 72)
+    const doublingTime = r > 0 ? 72 / (r * 100) : 0;
+
+    // Phase 1 Feature: Milestone Tracker (when investment reaches 2x, 3x, 5x, 10x)
+    const milestones = {
+      double: null as number | null,
+      triple: null as number | null,
+      fivex: null as number | null,
+      tenx: null as number | null
+    };
+
+    yearlyBreakdown.forEach((year) => {
+      const multiple = year.amount / p;
+      if (milestones.double === null && multiple >= 2) milestones.double = year.year;
+      if (milestones.triple === null && multiple >= 3) milestones.triple = year.year;
+      if (milestones.fivex === null && multiple >= 5) milestones.fivex = year.year;
+      if (milestones.tenx === null && multiple >= 10) milestones.tenx = year.year;
+    });
+
+    // Phase 1 Feature: What-If Analysis (sensitivity to rate changes)
+    const whatIfAnalysis = [-3, -2, -1, 1, 2, 3].map(change => {
+      const adjustedRate = r + (change / 100);
+      if (adjustedRate <= 0) return null;
+
+      let whatIfAmount = p;
+      let whatIfContributions = p;
+
+      for (let year = 1; year <= years; year++) {
+        const isPartialYear = year > t;
+        const yearDuration = isPartialYear ? t - (year - 1) : 1;
+        const growthFactor = Math.pow((1 + adjustedRate / n), n * yearDuration);
+        whatIfAmount *= growthFactor;
+
+        if (enableSIP && sip > 0) {
+          const periodsInYear = sipFreq * yearDuration;
+          let currentSIP = sip;
+          if (stepUp > 0 && year > 1) {
+            currentSIP = sip * Math.pow(1 + stepUp, year - 1);
+          }
+          for (let period = 1; period <= periodsInYear; period++) {
+            const remainingTime = yearDuration - (period / sipFreq);
+            const contributionGrowth = remainingTime > 0 ? Math.pow((1 + adjustedRate / n), n * remainingTime) : 1;
+            whatIfAmount += currentSIP * contributionGrowth;
+            whatIfContributions += currentSIP;
+          }
+        }
+
+        // Add lump sums
+        const lumpSumForYear = enableLumpSum ? lumpSumContributions.find(ls => ls.year === year) : null;
+        if (lumpSumForYear) {
+          whatIfAmount += lumpSumForYear.amount;
+          whatIfContributions += lumpSumForYear.amount;
+        }
+      }
+
+      return {
+        rateChange: change > 0 ? `+${change}%` : `${change}%`,
+        rate: adjustedRate * 100,
+        finalAmount: whatIfAmount,
+        difference: whatIfAmount - finalAmount
+      };
+    }).filter((item): item is NonNullable<typeof item> => item !== null);
 
     let goalAnalysis;
     if (enableGoalPlanning && target > 0) {
@@ -290,6 +532,14 @@ export default function CompoundInterestCalculator() {
       totalContributions,
       realValue,
       inflationAdjustedGains,
+      cagr,
+      totalTaxPaid,
+      postTaxReturns,
+      totalFeesPaid,
+      netReturnsAfterFees,
+      doublingTime,
+      milestones,
+      whatIfAnalysis,
       goalAnalysis,
       sipAnalysis,
       yearlyBreakdown
@@ -1628,6 +1878,94 @@ export default function CompoundInterestCalculator() {
                         </div>
                       </div>
                     )}
+
+                    {/* Tax Calculations Toggle */}
+                    <div className="flex items-center space-x-2 sm:space-x-3">
+                      <input
+                        type="checkbox"
+                        checked={enableTax}
+                        onChange={(e) => setEnableTax(e.target.checked)}
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                        data-testid="checkbox-enable-tax"
+                      />
+                      <label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Enable Tax Calculations
+                      </label>
+                    </div>
+
+                    {enableTax && (
+                      <div className="pl-4 sm:pl-6 md:pl-8 border-l-4 border-orange-200 bg-orange-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="tax-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Capital Gains Tax Rate (%)
+                          </Label>
+                          <div className="relative">
+                            <Input
+                              id="tax-rate"
+                              type="number"
+                              value={taxRate}
+                              onChange={(e) => { setTaxRate(e.target.value); clearError('taxRate'); }}
+                              className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.taxRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                              placeholder="15"
+                              min="0"
+                              max="100"
+                              step="0.1"
+                              data-testid="input-tax-rate"
+                              aria-label="Capital gains tax rate percentage"
+                            />
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
+                          </div>
+                          {validationErrors.taxRate && (
+                            <p className="text-xs text-red-600 mt-1" data-testid="error-tax-rate">{validationErrors.taxRate}</p>
+                          )}
+                          <p className="text-xs text-gray-600">Typical long-term capital gains rates: 0%, 15%, or 20%</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Expense Ratio/Fees Toggle */}
+                    <div className="flex items-center space-x-2 sm:space-x-3">
+                      <input
+                        type="checkbox"
+                        checked={enableFees}
+                        onChange={(e) => setEnableFees(e.target.checked)}
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                        data-testid="checkbox-enable-fees"
+                      />
+                      <label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Enable Investment Fees
+                      </label>
+                    </div>
+
+                    {enableFees && (
+                      <div className="pl-4 sm:pl-6 md:pl-8 border-l-4 border-purple-200 bg-purple-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="expense-ratio" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Annual Expense Ratio (%)
+                          </Label>
+                          <div className="relative">
+                            <Input
+                              id="expense-ratio"
+                              type="number"
+                              value={expenseRatio}
+                              onChange={(e) => { setExpenseRatio(e.target.value); clearError('expenseRatio'); }}
+                              className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.expenseRatio ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                              placeholder="0.5"
+                              min="0"
+                              max="10"
+                              step="0.01"
+                              data-testid="input-expense-ratio"
+                              aria-label="Annual expense ratio percentage"
+                            />
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
+                          </div>
+                          {validationErrors.expenseRatio && (
+                            <p className="text-xs text-red-600 mt-1" data-testid="error-expense-ratio">{validationErrors.expenseRatio}</p>
+                          )}
+                          <p className="text-xs text-gray-600">Average mutual fund expense ratio: 0.5-1.0%. Index funds: 0.05-0.20%</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Action Buttons */}
@@ -1816,7 +2154,227 @@ export default function CompoundInterestCalculator() {
                             </div>
                           </div>
                         )}
+
+                        {/* Phase 1: CAGR and Doubling Time */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-blue-200">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="text-xs font-medium text-gray-600 uppercase">CAGR</div>
+                                <div className="text-xl sm:text-2xl font-bold text-blue-600" data-testid="text-cagr">
+                                  {result.cagr.toFixed(2)}%
+                                </div>
+                              </div>
+                              <TrendingUp className="w-8 h-8 text-blue-600" />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Compound Annual Growth Rate</p>
+                          </div>
+
+                          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-green-200">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="text-xs font-medium text-gray-600 uppercase">Doubling Time</div>
+                                <div className="text-xl sm:text-2xl font-bold text-green-600" data-testid="text-doubling-time">
+                                  {result.doublingTime.toFixed(1)} yrs
+                                </div>
+                              </div>
+                              <Target className="w-8 h-8 text-green-600" />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1">Rule of 72 projection</p>
+                          </div>
+                        </div>
                       </div>
+
+                      {/* Phase 1: Growth Chart */}
+                      {showChart && result.yearlyBreakdown && result.yearlyBreakdown.length > 0 && (
+                        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200" data-testid="growth-chart-container">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-gray-900 text-lg">Investment Growth Over Time</h3>
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                variant={chartType === 'area' ? 'default' : 'outline'}
+                                onClick={() => setChartType('area')}
+                                data-testid="button-chart-area"
+                              >
+                                <BarChart3 className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant={chartType === 'line' ? 'default' : 'outline'}
+                                onClick={() => setChartType('line')}
+                                data-testid="button-chart-line"
+                              >
+                                <PieChart className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                          <ResponsiveContainer width="100%" height={300}>
+                            {chartType === 'area' ? (
+                              <AreaChart data={result.yearlyBreakdown}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
+                                <YAxis label={{ value: 'Amount ($)', angle: -90, position: 'insideLeft' }} />
+                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                                <Legend />
+                                <Area type="monotone" dataKey="amount" stackId="1" stroke="#10b981" fill="#10b981" name="Total Value" />
+                                <Area type="monotone" dataKey="principal" stackId="2" stroke="#3b82f6" fill="#3b82f6" name="Principal" />
+                                <Area type="monotone" dataKey="totalContributionsAtYear" stackId="2" stroke="#8b5cf6" fill="#8b5cf6" name="Contributions" />
+                              </AreaChart>
+                            ) : (
+                              <LineChart data={result.yearlyBreakdown}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
+                                <YAxis label={{ value: 'Amount ($)', angle: -90, position: 'insideLeft' }} />
+                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                                <Legend />
+                                <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2} name="Total Value" />
+                                <Line type="monotone" dataKey="principal" stroke="#3b82f6" strokeWidth={2} name="Principal" />
+                                <Line type="monotone" dataKey="totalContributionsAtYear" stroke="#8b5cf6" strokeWidth={2} name="Contributions" />
+                              </LineChart>
+                            )}
+                          </ResponsiveContainer>
+                        </div>
+                      )}
+
+                      {/* Phase 1: Milestone Tracker */}
+                      {showMilestones && (result.milestones.double || result.milestones.triple || result.milestones.fivex || result.milestones.tenx) && (
+                        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 sm:p-6 shadow-sm border border-purple-200" data-testid="milestone-tracker">
+                          <h3 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                            <Zap className="w-5 h-5 text-purple-600" />
+                            Investment Milestones
+                          </h3>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            {result.milestones.double && (
+                              <div className="bg-white rounded-lg p-3 text-center">
+                                <div className="text-2xl font-bold text-purple-600">2x</div>
+                                <div className="text-xs text-gray-600 mt-1">Year {result.milestones.double}</div>
+                              </div>
+                            )}
+                            {result.milestones.triple && (
+                              <div className="bg-white rounded-lg p-3 text-center">
+                                <div className="text-2xl font-bold text-blue-600">3x</div>
+                                <div className="text-xs text-gray-600 mt-1">Year {result.milestones.triple}</div>
+                              </div>
+                            )}
+                            {result.milestones.fivex && (
+                              <div className="bg-white rounded-lg p-3 text-center">
+                                <div className="text-2xl font-bold text-green-600">5x</div>
+                                <div className="text-xs text-gray-600 mt-1">Year {result.milestones.fivex}</div>
+                              </div>
+                            )}
+                            {result.milestones.tenx && (
+                              <div className="bg-white rounded-lg p-3 text-center">
+                                <div className="text-2xl font-bold text-orange-600">10x</div>
+                                <div className="text-xs text-gray-600 mt-1">Year {result.milestones.tenx}</div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Phase 1: Tax Summary */}
+                      {enableTax && result.totalTaxPaid > 0 && (
+                        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-4 sm:p-6 shadow-sm border border-orange-200" data-testid="tax-summary">
+                          <h3 className="font-bold text-gray-900 text-lg mb-4">Tax Impact Analysis</h3>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Tax Rate Applied</span>
+                              <span className="font-bold text-orange-600">{taxRate}%</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Total Tax on Gains</span>
+                              <span className="font-bold text-red-600" data-testid="text-total-tax">
+                                {formatCurrency(result.totalTaxPaid)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center bg-white rounded-lg p-3">
+                              <span className="font-medium text-gray-700">After-Tax Returns</span>
+                              <span className="font-bold text-green-600" data-testid="text-post-tax-returns">
+                                {formatCurrency(result.postTaxReturns)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Phase 1: Fees Summary */}
+                      {enableFees && result.totalFeesPaid > 0 && (
+                        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 sm:p-6 shadow-sm border border-purple-200" data-testid="fees-summary">
+                          <h3 className="font-bold text-gray-900 text-lg mb-4">Investment Fees Impact</h3>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Expense Ratio</span>
+                              <span className="font-bold text-purple-600">{expenseRatio}%</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Total Fees Paid</span>
+                              <span className="font-bold text-red-600" data-testid="text-total-fees">
+                                {formatCurrency(result.totalFeesPaid)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center bg-white rounded-lg p-3">
+                              <span className="font-medium text-gray-700">Net After Fees</span>
+                              <span className="font-bold text-green-600" data-testid="text-net-after-fees">
+                                {formatCurrency(result.netReturnsAfterFees)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Phase 1: What-If Analysis */}
+                      {showWhatIf && result.whatIfAnalysis && result.whatIfAnalysis.length > 0 && (
+                        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200" data-testid="what-if-analysis">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-gray-900 text-lg">What-If Analysis</h3>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => setShowWhatIf(false)}
+                            >
+                              Hide
+                            </Button>
+                          </div>
+                          <div className="overflow-x-auto">
+                            <table className="w-full text-sm">
+                              <thead>
+                                <tr className="border-b-2 border-gray-200">
+                                  <th className="text-left py-2 px-3">Rate Change</th>
+                                  <th className="text-left py-2 px-3">New Rate</th>
+                                  <th className="text-right py-2 px-3">Final Amount</th>
+                                  <th className="text-right py-2 px-3">Difference</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {result.whatIfAnalysis.map((item, idx) => (
+                                  <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                                    <td className="py-2 px-3 font-medium">{item.rateChange}</td>
+                                    <td className="py-2 px-3">{item.rate.toFixed(2)}%</td>
+                                    <td className="py-2 px-3 text-right">{formatCurrency(item.finalAmount)}</td>
+                                    <td className={`py-2 px-3 text-right font-semibold ${item.difference >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                      {item.difference >= 0 ? '+' : ''}{formatCurrency(item.difference)}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-4">See how rate changes impact your final returns</p>
+                        </div>
+                      )}
+
+                      {!showWhatIf && (
+                        <Button
+                          onClick={() => setShowWhatIf(true)}
+                          variant="outline"
+                          className="w-full"
+                          data-testid="button-show-what-if"
+                        >
+                          <BarChart3 className="w-4 h-4 mr-2" />
+                          Show What-If Analysis
+                        </Button>
+                      )}
 
                       {/* Goal Analysis */}
                       {result.goalAnalysis && enableGoalPlanning && (
