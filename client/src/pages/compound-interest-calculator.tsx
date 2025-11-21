@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, AlertCircle, Check, RotateCcw, Target, Zap, BarChart3, PieChart, Plus } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, AlertCircle, Check, RotateCcw, Target, Zap, BarChart3, PieChart, Plus, ChevronDown } from 'lucide-react';
 import { AreaChart, Area, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
@@ -125,6 +125,7 @@ export default function CompoundInterestCalculator() {
   const [chartType, setChartType] = useState<'area' | 'line'>('area');
   const [showMilestones, setShowMilestones] = useState(true);
   const [showWhatIf, setShowWhatIf] = useState(false);
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
 
   // Refs for auto-calculation after URL params load
   const calculateButtonRef = useRef<HTMLButtonElement>(null);
@@ -1728,10 +1729,22 @@ export default function CompoundInterestCalculator() {
 
                   {/* Advanced Options */}
                   <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
+                    <button
+                      onClick={() => setShowAdvancedOptions(!showAdvancedOptions)}
+                      className="flex items-center justify-between w-full hover-elevate active-elevate-2 p-2 rounded-lg transition-colors"
+                      data-testid="button-toggle-advanced-options"
+                      type="button"
+                    >
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
+                      <ChevronDown 
+                        className={`w-5 h-5 sm:w-6 sm:h-6 text-gray-600 transition-transform duration-200 ${showAdvancedOptions ? 'rotate-180' : ''}`}
+                      />
+                    </button>
 
-                    {/* SIP Investment Toggle */}
-                    <div className="flex items-center space-x-2 sm:space-x-3">
+                    {showAdvancedOptions && (
+                      <div className="space-y-4 sm:space-y-6">
+                        {/* SIP Investment Toggle */}
+                        <div className="flex items-center space-x-2 sm:space-x-3">
                       <input
                         type="checkbox"
                         checked={enableSIP}
@@ -1964,6 +1977,8 @@ export default function CompoundInterestCalculator() {
                           )}
                           <p className="text-xs text-gray-600">Average mutual fund expense ratio: 0.5-1.0%. Index funds: 0.05-0.20%</p>
                         </div>
+                      </div>
+                    )}
                       </div>
                     )}
                   </div>
