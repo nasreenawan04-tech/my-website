@@ -493,8 +493,8 @@ export default function TaxCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>2025 Tax Calculator - Free Income Tax Estimator | Calculate Federal Taxes</title>
-        <meta name="description" content="Free 2025 income tax calculator for USA, UK, Canada, Australia & India. Calculate federal taxes, effective tax rate, marginal tax bracket, and net income instantly. 100% free, accurate tax estimates with detailed breakdown." />
+        <title>Tax Calculator 2025 - Income Tax Estimator | DapsiWow</title>
+        <meta name="description" content="Calculate 2025 income tax for USA, UK, Canada, Australia & India. Get federal taxes, effective rate, and net income instantly. Free accurate estimates!" />
         <meta name="keywords" content="2025 tax calculator, income tax calculator 2025, tax refund calculator 2025, federal tax calculator, tax estimator 2025, tax bracket calculator, free tax calculator, online tax calculator, how to calculate income tax, effective tax rate calculator, marginal tax rate, take home pay calculator, tax planning calculator 2025" />
         <meta property="og:title" content="2025 Tax Calculator - Free Income Tax Estimator | DapsiWow" />
         <meta property="og:description" content="Calculate your 2025 income tax instantly with our free online calculator. Get accurate federal tax estimates, effective rates, and detailed breakdowns for smart tax planning." />

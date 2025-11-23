@@ -221,7 +221,7 @@ export default function PasswordStrengthChecker() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Password Strength Checker - Test Password Security Online | DapsiWow</title>
+        <title>Password Strength Checker - Test Security | DapsiWow</title>
         <meta name="description" content="Check password strength and security with our free online password analyzer. Get instant feedback on password quality, entropy, and time-to-crack estimates." />
         <meta name="keywords" content="password strength checker, password security test, password analyzer, password quality checker, password entropy, cybersecurity, password validation, strong password checker" />
         <meta property="og:title" content="Password Strength Checker - Test Password Security Online | DapsiWow" />

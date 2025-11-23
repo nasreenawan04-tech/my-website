@@ -108,8 +108,8 @@ export default function DiscountCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Discount Calculator - Calculate Sale Prices & Savings Instantly | DapsiWow</title>
-        <meta name="description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for percentage and fixed amount discounts with multiple currencies. Perfect for shopping, business sales, and price comparisons." />
+        <title>Discount Calculator - Sale Prices Instantly | DapsiWow</title>
+        <meta name="description" content="Calculate discounts instantly. Get sale prices, savings, and percentage discounts for shopping and business. Multiple currencies supported. Start now!" />
         <meta name="keywords" content="discount calculator, sale price calculator, percentage discount calculator, savings calculator, price reduction calculator, shopping calculator, retail discount calculator, business discount tool, markdown calculator" />
         <meta property="og:title" content="Discount Calculator - Calculate Sale Prices & Savings Instantly | DapsiWow" />
         <meta property="og:description" content="Free discount calculator for calculating sale prices, discount amounts, and savings. Support for percentage and fixed amount discounts with multiple currencies worldwide." />

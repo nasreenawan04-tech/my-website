@@ -200,8 +200,8 @@ export default function CalorieCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Calorie Calculator - Calculate Daily Calorie Needs | DapsiWow</title>
-        <meta name="description" content="Free calorie calculator to determine your daily calorie needs for weight loss, maintenance, or gain. Get personalized calorie targets based on BMR, activity level, and fitness goals with macronutrient breakdown." />
+        <title>Calorie Calculator - Daily Calorie Needs | DapsiWow</title>
+        <meta name="description" content="Calculate daily calorie needs for weight loss, maintenance, or gain. Personalized targets based on BMR, activity level, and goals. Free calculator!" />
         <meta name="keywords" content="calorie calculator, daily calorie needs, calorie counter, weight loss calculator, maintenance calories, BMR calculator, TDEE calculator, macro calculator, calorie deficit calculator, calorie surplus calculator" />
         <meta property="og:title" content="Calorie Calculator - Calculate Daily Calorie Needs | DapsiWow" />
         <meta property="og:description" content="Calculate your daily calorie needs for weight management with our accurate calorie calculator. Get personalized targets and macro breakdowns." />

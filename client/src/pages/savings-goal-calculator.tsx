@@ -228,8 +228,8 @@ export default function SavingsGoalCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Savings Goal Calculator - Calculate Time to Reach Financial Goals | DapsiWow</title>
-        <meta name="description" content="Free savings goal calculator to plan your financial future. Calculate time to save, monthly payments required, and target amounts with compound interest projections. Support for multiple currencies and savings strategies." />
+        <title>Savings Goal Calculator - Financial Planning | DapsiWow</title>
+        <meta name="description" content="Plan your financial future. Calculate time to save, monthly payments, and target amounts with compound interest projections. Free savings tool!" />
         <meta name="keywords" content="savings goal calculator, financial planning calculator, savings planner, compound interest calculator, emergency fund calculator, retirement savings calculator, vacation fund planner, down payment calculator, savings strategy tool, financial goal planner" />
         <meta property="og:title" content="Savings Goal Calculator - Calculate Time to Reach Financial Goals | DapsiWow" />
         <meta property="og:description" content="Plan and achieve your savings goals with our free calculator. Get compound interest projections and flexible savings strategies for any financial target." />
