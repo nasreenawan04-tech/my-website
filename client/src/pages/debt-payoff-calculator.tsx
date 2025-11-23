@@ -313,7 +313,7 @@ export default function DebtPayoffCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Debt Payoff Calculator - Debt Freedom Plan | DapsiWow</title>
-        <meta name="description" content="Compare snowball vs avalanche debt strategies. Calculate payoff time, interest savings, and create your debt elimination plan. Free calculator!" />
+        <meta name="description" content="Compare debt snowball vs avalanche strategies effectively. Calculate payoff time, interest savings, and create your personalized debt elimination plan. Free!" />
         <meta name="keywords" content="debt payoff calculator, debt snowball, debt avalanche, debt elimination, credit card payoff, debt consolidation, debt freedom, debt reduction strategy, debt payoff plan, debt management calculator" />
         <meta property="og:title" content="Debt Payoff Calculator - Plan Your Debt Freedom Strategy | DapsiWow" />
         <meta property="og:description" content="Free debt payoff calculator to compare snowball vs avalanche strategies. Calculate payoff time, interest savings, and create your debt elimination plan." />

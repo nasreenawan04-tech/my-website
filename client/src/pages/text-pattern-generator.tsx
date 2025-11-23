@@ -222,8 +222,8 @@ export default function TextPatternGenerator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Text Pattern Generator - Create Repeating Text Patterns & Sequences | DapsiWow</title>
-        <meta name="description" content="Free online text pattern generator tool to create repeating text sequences with customizable separators, numbering, and formatting. Perfect for creating lists, test data, and structured content." />
+        <title>Text Pattern Generator - Repeating Sequences | DapsiWow</title>
+        <meta name="description" content="Create repeating text patterns with customizable separators, numbering, and formatting options. Perfect for lists, test data, and structured content. Free!" />
         <meta name="keywords" content="text pattern generator, repeating text, sequence generator, list generator, pattern maker, text automation, bulk text creation, numbered lists, pattern sequences, template generator" />
         <meta property="og:title" content="Text Pattern Generator - Create Repeating Text Patterns & Sequences" />
         <meta property="og:description" content="Professional text pattern generator for creating customized repeating text sequences with advanced formatting options and automation features." />

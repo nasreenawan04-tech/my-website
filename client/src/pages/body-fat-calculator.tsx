@@ -180,8 +180,8 @@ const BodyFatCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Body Fat Calculator - US Navy Method | DapsiWow</title>
-        <meta name="description" content="Calculate body fat percentage using the US Navy method. Get lean body mass and body composition with accurate measurements. Free tool!" />
+        <title>Body Fat Calculator - Calculate Body Fat % | DapsiWow</title>
+        <meta name="description" content="Calculate body fat percentage using the proven US Navy method. Get lean body mass and complete body composition analysis with accurate measurements. Free tool!" />
         <meta name="keywords" content="body fat calculator, body fat percentage calculator, US Navy body fat method, body composition calculator, lean body mass calculator, circumference body fat, fat percentage formula, body fat measurement, fitness calculator, weight loss calculator, muscle mass calculator, health assessment tool" />
         <meta property="og:title" content="Body Fat Calculator - Calculate Body Fat Percentage | US Navy Method | DapsiWow" />
         <meta property="og:description" content="Calculate your body fat percentage using the proven US Navy method. Free, accurate body composition analysis with worldwide unit support." />

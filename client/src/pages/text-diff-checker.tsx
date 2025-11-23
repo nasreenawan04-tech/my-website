@@ -242,8 +242,8 @@ Final line in updated document.`);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Text Diff Checker - Compare Two Texts & Highlight Differences | DapsiWow</title>
-        <meta name="description" content="Free online text diff checker tool to compare two texts side-by-side and highlight differences. Perfect for content comparison, document versioning, and change tracking with detailed statistics." />
+        <title>Text Diff Checker - Compare Text Changes | DapsiWow</title>
+        <meta name="description" content="Compare two texts side-by-side and highlight differences instantly online. Perfect for document comparison, version control, and change tracking. Free!" />
         <meta name="keywords" content="text diff checker, text comparison tool, compare texts, text differences, document comparison, version control, change tracking, text analyzer, side-by-side comparison, content diff" />
         <meta property="og:title" content="Text Diff Checker - Compare Two Texts & Highlight Differences" />
         <meta property="og:description" content="Professional text diff checker tool for comparing documents and tracking changes. Features side-by-side comparison with detailed statistics and highlighting." />

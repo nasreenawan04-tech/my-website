@@ -162,8 +162,8 @@ Finally, this last paragraph completes our sample text, giving you four distinct
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow</title>
-        <meta name="description" content="Free online paragraph counter tool to analyze text structure, count paragraphs, and get detailed paragraph statistics for better writing and content organization." />
+        <title>Paragraph Counter - Text Structure Analysis | DapsiWow</title>
+        <meta name="description" content="Free paragraph counter to analyze text structure and get detailed paragraph statistics for better writing and content organization. Real-time analysis!" />
         <meta name="keywords" content="paragraph counter, text structure analysis, paragraph count tool, writing analysis, paragraph statistics, content structure, document analysis, text organization" />
         <meta property="og:title" content="Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow" />
         <meta property="og:description" content="Free paragraph counter with detailed text structure analysis. Count paragraphs and analyze text composition instantly with our professional tool." />

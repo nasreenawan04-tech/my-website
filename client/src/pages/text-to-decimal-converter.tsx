@@ -190,8 +190,8 @@ const TextToDecimalConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Text to Decimal Converter - Convert Text to Unicode Code Points | DapsiWow</title>
-        <meta name="description" content="Free text to decimal converter tool. Transform any text to decimal Unicode code points instantly with Unicode and ASCII support. Essential for developers, students, and programmers learning computer science." />
+        <title>Text to Decimal Converter - Unicode Code Points | DapsiWow</title>
+        <meta name="description" content="Convert text to decimal Unicode code points instantly online. Transform any text to decimal values with full Unicode and ASCII support. Free conversion tool!" />
         <meta name="keywords" content="text to decimal converter, decimal encoder, text to Unicode code points, ASCII to decimal, Unicode decimal converter, text encoder, programming tools, computer science, decimal code generator, online text converter" />
         <meta property="og:title" content="Text to Decimal Converter - Convert Text to Unicode Code Points | DapsiWow" />
         <meta property="og:description" content="Free online text to decimal converter. Convert any text to decimal Unicode code points with Unicode and ASCII support. Essential tool for developers and computer science education." />

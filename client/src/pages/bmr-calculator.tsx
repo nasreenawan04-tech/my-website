@@ -175,7 +175,7 @@ export default function BMRCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>BMR Calculator - Calculate Basal Metabolic Rate | DapsiWow</title>
-        <meta name="description" content="Calculate Basal Metabolic Rate and daily calorie needs. Accurate BMR using Mifflin-St Jeor and Harris-Benedict equations. Free tool!" />
+        <meta name="description" content="Calculate your Basal Metabolic Rate and daily calorie needs accurately. Uses Mifflin-St Jeor and Harris-Benedict equations with activity adjustments. Free!" />
         <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, daily calorie calculator, metabolism calculator, TDEE calculator, calorie needs calculator, BMR formula, metabolic rate" />
         <meta property="og:title" content="BMR Calculator - Calculate Basal Metabolic Rate | DapsiWow" />
         <meta property="og:description" content="Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) with our accurate BMR calculator." />

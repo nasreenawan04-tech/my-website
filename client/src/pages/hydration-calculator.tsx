@@ -168,7 +168,7 @@ const HydrationCalculator = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Hydration Calculator - Daily Water Intake | DapsiWow</title>
-        <meta name="description" content="Calculate optimal daily water intake. Personalized recommendations based on weight, activity, climate, and health factors. Free hydration tool!" />
+        <meta name="description" content="Calculate your optimal daily water intake with personalized recommendations. Based on weight, activity level, climate, and individual health factors. Free!" />
         <meta name="keywords" content="hydration calculator, water intake calculator, daily water needs, hydration requirements, water consumption calculator, dehydration prevention, optimal hydration, water calculator" />
         <meta property="og:title" content="Hydration Calculator - Free Daily Water Intake Calculator | DapsiWow" />
         <meta property="og:description" content="Calculate your optimal daily water intake with our free hydration calculator. Get personalized recommendations based on your lifestyle and health factors." />

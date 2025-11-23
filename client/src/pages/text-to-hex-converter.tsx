@@ -293,8 +293,8 @@ const TextToHexConverter = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Text to Hexadecimal Converter - Convert Text to Hex Values | DapsiWow</title>
-        <meta name="description" content="Free text to hexadecimal converter tool. Convert any text to hex values instantly. Supports UTF-8 and ASCII encoding, multiple output formats for developers and students." />
+        <title>Text to Hex Converter - Encode to Hexadecimal | DapsiWow</title>
+        <meta name="description" content="Convert text to hexadecimal instantly online. Encode any text to hex values with UTF-8 and ASCII encoding support. Multiple output formats available. Free!" />
         <meta name="keywords" content="text to hexadecimal converter, text to hex, hex encoder, ASCII to hex, UTF-8 to hex, programming tools, web development, hex string encoder, online hex converter, data encoding" />
         <meta property="og:title" content="Text to Hexadecimal Converter - Convert Text to Hex Values | DapsiWow" />
         <meta property="og:description" content="Free online text to hexadecimal converter. Convert any text to hex values with support for multiple output formats and encodings." />

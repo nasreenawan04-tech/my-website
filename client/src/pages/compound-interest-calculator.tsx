@@ -1369,7 +1369,7 @@ export default function CompoundInterestCalculator() {
       <Helmet>
         <html lang="en" />
         <title>Compound Interest Calculator - Investment Growth | DapsiWow</title>
-        <meta name="description" content="Calculate compound interest and investment growth. See SIP returns and yearly breakdowns. Plan your financial future. Free tool!" />
+        <meta name="description" content="Calculate compound interest and investment growth with SIP returns. See detailed yearly breakdowns and plan your financial future effectively. Free calculator!" />
         <meta name="keywords" content="compound interest calculator, free compound interest calculator, compound interest calculator with monthly contributions, daily compound interest calculator, SIP calculator, systematic investment plan calculator, retirement compound interest calculator, investment growth calculator, 401k calculator, IRA calculator" />
 
         {/* Canonical */}

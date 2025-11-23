@@ -146,7 +146,7 @@ This tool provides detailed analysis of your text content for social media optim
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Character Counter - Real-Time Text Analysis | DapsiWow</title>
-        <meta name="description" content="Count characters, letters, words, and sentences in real-time. Perfect for social media limits and content planning. Free text analysis tool!" />
+        <meta name="description" content="Count characters, letters, words, and sentences in real-time instantly. Perfect for social media character limits and content planning. Free text analysis tool!" />
         <meta name="keywords" content="character counter, letter counter, text character count, character count tool, text analysis, character statistics, text length calculator, social media character limit, Twitter character counter, Instagram character limit, word counter, sentence counter" />
         <meta property="og:title" content="Character Counter - Count Characters, Letters & Text Analysis | DapsiWow" />
         <meta property="og:description" content="Professional character counter tool with detailed text analysis. Perfect for social media optimization and meeting platform character limits." />
