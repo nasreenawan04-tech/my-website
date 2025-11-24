@@ -199,7 +199,7 @@ export default function LoanCalculator() {
 
     window.addEventListener('keydown', handleKeyboard);
     return () => window.removeEventListener('keydown', handleKeyboard);
-  }, [result]);
+  }, [result, calculateLoan, handleDownloadPDF, handleShare]);
 
   // Drag scrolling handlers for amortization table
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -225,7 +225,7 @@ export default function LoanCalculator() {
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const calculateLoan = async () => {
+  const calculateLoan = useCallback(async () => {
     setIsCalculating(true); // Set loading state
     setValidationErrors({}); // Clear previous errors
 
@@ -366,7 +366,7 @@ export default function LoanCalculator() {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       setIsCalculating(false); // Reset loading state after results are set
     }, 100);
-  };
+  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, user, toast]);
 
   const resetCalculator = () => {
     setLoanAmount('100000');
@@ -455,7 +455,7 @@ export default function LoanCalculator() {
     }
   };
 
-  const handleShare = async () => {
+  const handleShare = useCallback(async () => {
     if (!result) return;
 
     // Create shareable URL with encoded parameters
@@ -541,7 +541,7 @@ export default function LoanCalculator() {
     } else {
       copyToClipboard(shareText);
     }
-  };
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, formatCurrency, toast]);
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -634,7 +634,7 @@ export default function LoanCalculator() {
     }
   };
 
-  const handleDownloadPDF = async () => {
+  const handleDownloadPDF = useCallback(async () => {
     if (!result) return;
 
     setIsGeneratingPDF(true); // Set loading state for PDF generation
@@ -1220,7 +1220,7 @@ export default function LoanCalculator() {
     } finally {
       setIsGeneratingPDF(false); // Reset loading state
     }
-  };
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, formatCurrency, toast]);
 
   const removeLoanFromComparison = (index: number) => {
     const updatedLoans = comparisonLoans.filter((_, i) => i !== index);
