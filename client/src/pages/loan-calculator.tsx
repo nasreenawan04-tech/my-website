@@ -71,7 +71,10 @@ const loanInputSchema = z.object({
   }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number"),
   processingFee: z.number({
     invalid_type_error: "Processing fee must be a valid number"
-  }).min(0, "Processing fee cannot be negative").finite("Processing fee must be a finite number")
+  }).min(0, "Processing fee cannot be negative").finite("Processing fee must be a finite number"),
+  balloonPayment: z.number({
+    invalid_type_error: "Balloon payment must be a valid number"
+  }).min(0, "Balloon payment cannot be negative").finite("Balloon payment must be a finite number")
 });
 
 interface ValidationErrors {
@@ -80,6 +83,7 @@ interface ValidationErrors {
   loanTerm?: string;
   extraPayment?: string;
   processingFee?: string;
+  balloonPayment?: string;
 }
 
 export default function LoanCalculator() {
@@ -90,6 +94,8 @@ export default function LoanCalculator() {
   const [paymentFrequency, setPaymentFrequency] = useState('monthly');
   const [extraPayment, setExtraPayment] = useState('0');
   const [processingFee, setProcessingFee] = useState('0'); // State for processing fee
+  const [balloonPayment, setBalloonPayment] = useState('0'); // Balloon payment at end
+  const [biweeklyMode, setBiweeklyMode] = useState<'standard' | 'accelerated'>('standard'); // Biweekly payment mode
   const [showAmortization, setShowAmortization] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [showCharts, setShowCharts] = useState(false);
@@ -132,12 +138,15 @@ export default function LoanCalculator() {
     const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
     const procFee = parseFloat(processingFee);
 
+    const balloonPmt = parseFloat(balloonPayment || '0');
+    
     const validation = loanInputSchema.safeParse({
       loanAmount: principal,
       interestRate: annualRate,
       loanTerm: term,
       extraPayment: extraPmt,
-      processingFee: procFee
+      processingFee: procFee,
+      balloonPayment: balloonPmt
     });
 
     if (!validation.success) {
@@ -162,21 +171,50 @@ export default function LoanCalculator() {
       term_months: termUnit === 'years' ? term * 12 : term,
       payment_frequency: paymentFrequency,
       has_extra_payment: extraPmt > 0,
-      processing_fee: procFee
+      processing_fee: procFee,
+      has_balloon_payment: balloonPmt > 0,
+      biweekly_mode: paymentFrequency === 'biweekly' ? biweeklyMode : null
     });
 
     const annualRateDecimal = annualRate / 100;
     const termMonths = termUnit === 'years' ? term * 12 : term;
 
-    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
-                           paymentFrequency === 'biweekly' ? 26 : 12;
+    // Handle biweekly payment modes
+    let paymentsPerYear: number;
+    if (paymentFrequency === 'weekly') {
+      paymentsPerYear = 52;
+    } else if (paymentFrequency === 'biweekly') {
+      paymentsPerYear = biweeklyMode === 'accelerated' ? 26 : 26; // Standard = 26, Accelerated effectively = 13 monthly
+    } else {
+      paymentsPerYear = 12;
+    }
+    
     const periodicRate = annualRateDecimal / paymentsPerYear;
     const totalPayments = termMonths * (paymentsPerYear / 12);
 
     const adjustedPrincipal = principal + procFee;
-
-    const regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-                          (Math.pow(1 + periodicRate, totalPayments) - 1);
+    
+    // Calculate regular payment (without balloon)
+    let regularPayment: number;
+    
+    if (balloonPmt > 0) {
+      // Loan with balloon payment: P = (L - B/(1+r)^n) * [r(1+r)^n] / [(1+r)^n - 1]
+      const discountedBalloon = balloonPmt / Math.pow(1 + periodicRate, totalPayments);
+      const principalMinusBalloon = adjustedPrincipal - discountedBalloon;
+      regularPayment = (principalMinusBalloon * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
+                      (Math.pow(1 + periodicRate, totalPayments) - 1);
+    } else {
+      // Standard amortization
+      regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
+                      (Math.pow(1 + periodicRate, totalPayments) - 1);
+    }
+    
+    // For accelerated biweekly, calculate based on monthly equivalent
+    if (paymentFrequency === 'biweekly' && biweeklyMode === 'accelerated') {
+      const monthlyPayment = (adjustedPrincipal * (annualRateDecimal / 12) * Math.pow(1 + annualRateDecimal / 12, termMonths)) /
+                            (Math.pow(1 + annualRateDecimal / 12, termMonths) - 1);
+      regularPayment = monthlyPayment / 2; // Half of monthly payment every 2 weeks
+    }
 
     const amortizationSchedule = [];
     let currentBalance = adjustedPrincipal;
@@ -186,8 +224,19 @@ export default function LoanCalculator() {
 
     for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
       const interestPayment = currentBalance * periodicRate;
-      const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
-      const actualPaymentAmount = principalPayment + interestPayment;
+      
+      // Check if this is the final payment with balloon
+      let principalPayment: number;
+      let actualPaymentAmount: number;
+      
+      if (payment === totalPayments && balloonPmt > 0) {
+        // Final payment includes balloon
+        principalPayment = currentBalance;
+        actualPaymentAmount = principalPayment + interestPayment;
+      } else {
+        principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
+        actualPaymentAmount = principalPayment + interestPayment;
+      }
 
       currentBalance -= principalPayment;
       totalInterestPaid += interestPayment;
@@ -199,8 +248,10 @@ export default function LoanCalculator() {
         payment: actualPaymentAmount,
         principal: principalPayment,
         interest: interestPayment,
-        balance: currentBalance
+        balance: Math.max(0, currentBalance)
       });
+      
+      if (currentBalance <= 0) break;
     }
 
     let extraPaymentSavings;
@@ -240,7 +291,9 @@ export default function LoanCalculator() {
           termUnit,
           paymentFrequency,
           extraPayment: extraPmt,
-          processingFee: procFee
+          processingFee: procFee,
+          balloonPayment: balloonPmt,
+          biweeklyMode: paymentFrequency === 'biweekly' ? biweeklyMode : undefined
         },
         {
           monthlyPayment: monthlyEquivalent,
@@ -269,8 +322,13 @@ export default function LoanCalculator() {
       unit: termUnit,
       freq: paymentFrequency,
       extra: extraPayment,
-      fee: processingFee
+      fee: processingFee,
+      balloon: balloonPayment
     });
+    
+    if (paymentFrequency === 'biweekly') {
+      params.append('biweeklyMode', biweeklyMode);
+    }
 
     const shareUrl = `${window.location.origin}/loan-calculator?${params.toString()}`;
 
@@ -881,6 +939,8 @@ export default function LoanCalculator() {
     const freq = params.get('freq');
     const extra = params.get('extra');
     const fee = params.get('fee');
+    const balloon = params.get('balloon');
+    const biweeklyModeParam = params.get('biweeklyMode');
 
     if (amount || rate || term) {
       // Validate URL parameters before setting state
@@ -911,6 +971,17 @@ export default function LoanCalculator() {
       }
       if (parsedFee !== null && !isNaN(parsedFee) && parsedFee >= 0) {
         setProcessingFee(fee || '0');
+      }
+      
+      // Parse balloon payment
+      const parsedBalloon = balloon ? parseFloat(balloon) : null;
+      if (parsedBalloon !== null && !isNaN(parsedBalloon) && parsedBalloon >= 0) {
+        setBalloonPayment(balloon || '0');
+      }
+      
+      // Parse biweekly mode
+      if (biweeklyModeParam && (biweeklyModeParam === 'standard' || biweeklyModeParam === 'accelerated')) {
+        setBiweeklyMode(biweeklyModeParam);
       }
 
       // Only auto-calculate if we have minimum required params
@@ -992,13 +1063,15 @@ export default function LoanCalculator() {
     setTermUnit('years');
     setPaymentFrequency('monthly');
     setExtraPayment('0');
-    setProcessingFee('0'); // Reset processing fee
+    setProcessingFee('0');
+    setBalloonPayment('0');
+    setBiweeklyMode('standard');
     setShowAmortization(false);
     setShowComparison(false);
     setComparisonLoans([]);
     setResult(null);
-    setValidationErrors({}); // Clear validation errors
-    setIsCalculating(false); // Reset loading state
+    setValidationErrors({});
+    setIsCalculating(false);
   };
 
   // Quick preset handlers for common loan scenarios
@@ -1872,6 +1945,69 @@ export default function LoanCalculator() {
                           ⚠️ Hidden fees banks don't always advertise upfront
                         </p>
                       </div>
+                      
+                      <div className="md:col-span-2 space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Label htmlFor="balloon-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Balloon Payment (Optional)
+                          </Label>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <Info className="w-4 h-4 text-gray-400" />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p className="max-w-xs text-sm">Large lump sum payment due at the end of the loan term</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </div>
+                        <div className="relative">
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                          <Input
+                            id="balloon-payment"
+                            type="number"
+                            value={balloonPayment}
+                            onChange={(e) => setBalloonPayment(e.target.value)}
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.balloonPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                            placeholder="0"
+                            min="0"
+                            step="1000"
+                            data-testid="input-balloon-payment"
+                          />
+                        </div>
+                        <p className="text-xs sm:text-sm text-gray-500">
+                          Lower monthly payments now, larger payment at the end
+                        </p>
+                      </div>
+                      
+                      {paymentFrequency === 'biweekly' && (
+                        <div className="md:col-span-2 space-y-2 sm:space-y-3">
+                          <div className="flex items-center gap-2">
+                            <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Biweekly Payment Mode
+                            </Label>
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <Info className="w-4 h-4 text-gray-400" />
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p className="max-w-xs text-sm">Standard: 26 payments/year. Accelerated: Half of monthly payment (13 months/year equivalent)</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </div>
+                          <Select value={biweeklyMode} onValueChange={(value: 'standard' | 'accelerated') => setBiweeklyMode(value)}>
+                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="standard">Standard (26 payments/year)</SelectItem>
+                              <SelectItem value="accelerated">Accelerated (pays off faster)</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <p className="text-xs sm:text-sm text-blue-600 font-medium">
+                            💡 Accelerated biweekly makes an extra month's payment each year
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </TooltipProvider>
 
@@ -1885,6 +2021,21 @@ export default function LoanCalculator() {
                     >
                       {isCalculating ? 'Calculating...' : 'Calculate Loan'}
                     </Button>
+                    {user && result && (
+                      <Button
+                        onClick={() => {
+                          toast({
+                            title: "Calculation saved!",
+                            description: "View in Profile → History"
+                          });
+                        }}
+                        variant="outline"
+                        className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-green-300 text-green-700 hover:bg-green-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      >
+                        <i className="fas fa-save mr-2"></i>
+                        Saved to Profile
+                      </Button>
+                    )}
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
