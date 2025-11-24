@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, RotateCcw, BarChart as BarChartIcon } from 'lucide-react';
+import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, RotateCcw, BarChart as BarChartIcon, Zap, Home, Car, User } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
 import { jsPDF } from 'jspdf';
@@ -171,6 +171,35 @@ export default function LoanCalculator() {
       setShouldAutoCalculate(false);
     }
   }, [shouldAutoCalculate]);
+
+  // Keyboard shortcuts for power users
+  useEffect(() => {
+    const handleKeyboard = (e: KeyboardEvent) => {
+      // Ctrl/Cmd + Enter to calculate
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        calculateLoan();
+      }
+      // Ctrl/Cmd + D to download PDF
+      if ((e.ctrlKey || e.metaKey) && e.key === 'd' && result) {
+        e.preventDefault();
+        handleDownloadPDF();
+      }
+      // Ctrl/Cmd + S to share
+      if ((e.ctrlKey || e.metaKey) && e.key === 's' && result) {
+        e.preventDefault();
+        handleShare();
+      }
+      // Press Enter in any input to calculate
+      if (e.key === 'Enter' && (e.target as HTMLElement).tagName === 'INPUT') {
+        e.preventDefault();
+        calculateLoan();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyboard);
+    return () => window.removeEventListener('keydown', handleKeyboard);
+  }, [result]);
 
   // Drag scrolling handlers for amortization table
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -354,6 +383,44 @@ export default function LoanCalculator() {
     setValidationErrors({}); // Clear validation errors
     setIsCalculating(false); // Reset loading state
   };
+
+  // Quick preset handlers for common loan scenarios
+  const applyPreset = useCallback((preset: 'auto' | 'home' | 'personal') => {
+    switch (preset) {
+      case 'auto':
+        setLoanAmount('25000');
+        setInterestRate('6.50');
+        setLoanTerm('5');
+        setTermUnit('years');
+        setPaymentFrequency('monthly');
+        setExtraPayment('0');
+        setProcessingFee('500');
+        break;
+      case 'home':
+        setLoanAmount('300000');
+        setInterestRate('7.00');
+        setLoanTerm('30');
+        setTermUnit('years');
+        setPaymentFrequency('monthly');
+        setExtraPayment('0');
+        setProcessingFee('2000');
+        break;
+      case 'personal':
+        setLoanAmount('10000');
+        setInterestRate('11.50');
+        setLoanTerm('3');
+        setTermUnit('years');
+        setPaymentFrequency('monthly');
+        setExtraPayment('0');
+        setProcessingFee('100');
+        break;
+    }
+    setValidationErrors({});
+    toast({
+      title: "Preset Applied!",
+      description: `${preset === 'auto' ? 'Auto' : preset === 'home' ? 'Home' : 'Personal'} loan example loaded. Click Calculate to see results.`,
+    });
+  }, [toast]);
 
   const addToComparison = () => {
     if (result) {
@@ -1186,14 +1253,16 @@ export default function LoanCalculator() {
     return bestIndex;
   };
 
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
+  // Memoized currency formatter for better performance
+  const formatCurrency = useMemo(() => {
+    const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    }).format(amount);
-  };
+    });
+    return (amount: number) => formatter.format(amount);
+  }, []);
 
   const principalPercentage = result ? (parseFloat(loanAmount) / result.totalAmount) * 100 : 0;
   const interestPercentage = result ? (result.totalInterest / result.totalAmount) * 100 : 0;
@@ -1630,6 +1699,53 @@ export default function LoanCalculator() {
                   <div className="text-center sm:text-left">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your loan details to get accurate payment calculations</p>
+                  </div>
+
+                  {/* Quick Loan Presets */}
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-100">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                      <h3 className="text-sm sm:text-base font-semibold text-gray-900">Quick Examples</h3>
+                      <span className="text-xs text-gray-500 ml-auto">Try a common scenario</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+                      <Button
+                        onClick={() => applyPreset('auto')}
+                        variant="outline"
+                        className="flex items-center justify-center gap-2 h-auto py-2 sm:py-3 transition-colors"
+                        data-testid="button-preset-auto"
+                      >
+                        <Car className="w-4 h-4" />
+                        <div className="text-left">
+                          <div className="font-semibold text-xs sm:text-sm">Auto Loan</div>
+                          <div className="text-xs text-gray-500">$25k / 5yr @ 6.5%</div>
+                        </div>
+                      </Button>
+                      <Button
+                        onClick={() => applyPreset('home')}
+                        variant="outline"
+                        className="flex items-center justify-center gap-2 h-auto py-2 sm:py-3 transition-colors"
+                        data-testid="button-preset-home"
+                      >
+                        <Home className="w-4 h-4" />
+                        <div className="text-left">
+                          <div className="font-semibold text-xs sm:text-sm">Home Loan</div>
+                          <div className="text-xs text-gray-500">$300k / 30yr @ 7%</div>
+                        </div>
+                      </Button>
+                      <Button
+                        onClick={() => applyPreset('personal')}
+                        variant="outline"
+                        className="flex items-center justify-center gap-2 h-auto py-2 sm:py-3 transition-colors"
+                        data-testid="button-preset-personal"
+                      >
+                        <User className="w-4 h-4" />
+                        <div className="text-left">
+                          <div className="font-semibold text-xs sm:text-sm">Personal Loan</div>
+                          <div className="text-xs text-gray-500">$10k / 3yr @ 11.5%</div>
+                        </div>
+                      </Button>
+                    </div>
                   </div>
 
                   <TooltipProvider>
