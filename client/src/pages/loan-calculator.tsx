@@ -18,6 +18,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveCalculation } from '@/lib/calculationHistory';
+import { isFirebaseConfigured } from '@/lib/firebase';
 import { trackToolUsed } from '@/lib/analytics';
 
 interface LoanResult {
@@ -114,6 +115,7 @@ export default function LoanCalculator() {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [shouldAutoCalculate, setShouldAutoCalculate] = useState(false);
   const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
+  const [isSaving, setIsSaving] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
 
@@ -279,11 +281,53 @@ export default function LoanCalculator() {
 
     setResult(calculationResult);
 
-    if (user) {
-      saveCalculation(
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setIsCalculating(false);
+    }, 100);
+  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, user, toast, formatCurrency]);
+
+  const handleSaveToProfile = useCallback(async () => {
+    if (!user) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to save calculations to your profile",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!isFirebaseConfigured) {
+      toast({
+        title: "Feature unavailable",
+        description: "Calculation history is not configured. Please contact support.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (!result) {
+      toast({
+        title: "No calculation to save",
+        description: "Please calculate a loan first",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      const principal = parseFloat(loanAmount);
+      const annualRate = parseFloat(interestRate);
+      const term = parseFloat(loanTerm);
+      const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
+      const procFee = parseFloat(processingFee);
+      const balloonPmt = parseFloat(balloonPayment || '0');
+
+      await saveCalculation(
         user.uid,
         'Loan Calculator',
-        '/loan-calculator',
+        '/tools/loan-calculator',
         {
           loanAmount: principal,
           interestRate: annualRate,
@@ -296,21 +340,28 @@ export default function LoanCalculator() {
           biweeklyMode: paymentFrequency === 'biweekly' ? biweeklyMode : undefined
         },
         {
-          monthlyPayment: monthlyEquivalent,
-          totalAmount: totalAmountPaid,
-          totalInterest: totalInterestPaid,
-          extraPaymentSavings
+          monthlyPayment: result.monthlyPayment,
+          totalAmount: result.totalAmount,
+          totalInterest: result.totalInterest,
+          extraPaymentSavings: result.extraPaymentSavings
         }
-      ).catch((error) => {
-        console.error('Failed to save calculation history:', error);
-      });
-    }
+      );
 
-    setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      setIsCalculating(false);
-    }, 100);
-  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, user, toast, formatCurrency]);
+      toast({
+        title: "Calculation saved!",
+        description: "View in Profile → History"
+      });
+    } catch (error) {
+      console.error('Failed to save calculation:', error);
+      toast({
+        title: "Save failed",
+        description: "Unable to save calculation. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  }, [user, isFirebaseConfigured, result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, toast]);
 
   const handleShare = useCallback(async () => {
     if (!result) return;
@@ -2023,17 +2074,14 @@ export default function LoanCalculator() {
                     </Button>
                     {user && result && (
                       <Button
-                        onClick={() => {
-                          toast({
-                            title: "Calculation saved!",
-                            description: "View in Profile → History"
-                          });
-                        }}
+                        onClick={handleSaveToProfile}
+                        disabled={isSaving}
                         variant="outline"
-                        className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-green-300 text-green-700 hover:bg-green-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                        className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-green-300 text-green-700 hover:bg-green-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                        data-testid="button-save-to-profile"
                       >
-                        <i className="fas fa-save mr-2"></i>
-                        Saved to Profile
+                        <i className={`fas ${isSaving ? 'fa-spinner fa-spin' : 'fa-save'} mr-2`}></i>
+                        {isSaving ? 'Saving...' : 'Save to Profile'}
                       </Button>
                     )}
                     <Button

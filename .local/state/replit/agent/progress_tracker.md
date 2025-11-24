@@ -438,3 +438,20 @@
 [x] 745. Restart workflow and verify application is running successfully on port 5000
 [x] 746. Take screenshot to confirm homepage and all features are fully functional
 [x] 747. Mark all migration tasks as complete - project fully operational in Replit environment ✓
+
+## Loan Calculator "Save to Profile" Fix (November 24, 2025)
+
+[x] 748. Diagnose "Save to Profile" issue: button shows success but doesn't actually save calculations
+[x] 749. Identify root causes: Firebase not configured + fake save button without actual save logic
+[x] 750. Import isFirebaseConfigured from firebase.ts to check configuration status
+[x] 751. Add isSaving state variable to track save operation status
+[x] 752. Create handleSaveToProfile function with proper error handling and user feedback
+[x] 753. Add validation checks: user authentication, Firebase configuration, and result existence
+[x] 754. Update "Save to Profile" button to use handleSaveToProfile handler instead of fake toast
+[x] 755. Add loading state to button: shows spinner and "Saving..." text during save operation
+[x] 756. Remove automatic silent save from calculateLoan function (replaced with explicit manual save)
+[x] 757. Add comprehensive error messages: authentication required, Firebase not configured, save failed
+[x] 758. Restart workflow to apply fixes
+[x] 759. Complete "Save to Profile" functionality fix - proper error handling and user feedback implemented ✓
+
+Note: Firebase configuration still required for full functionality (VITE_FIREBASE_* secrets needed)
