@@ -8,8 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, AlertCircle, Check, RotateCcw, Target, Zap, BarChart3, PieChart, Plus, ChevronDown } from 'lucide-react';
-import { AreaChart, Area, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, Check, RotateCcw, Target, Zap, BarChart3, Plus, ChevronDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -101,7 +100,6 @@ export default function CompoundInterestCalculator() {
   const [timePeriod, setTimePeriod] = useState('10');
   const [timeUnit, setTimeUnit] = useState('years');
   const [compoundFrequency, setCompoundFrequency] = useState('12');
-  const [currency, setCurrency] = useState('USD');
   const [enableSIP, setEnableSIP] = useState(false);
   const [sipAmount, setSipAmount] = useState('1000');
   const [sipFrequency, setSipFrequency] = useState('12');
@@ -121,8 +119,6 @@ export default function CompoundInterestCalculator() {
   const [expenseRatio, setExpenseRatio] = useState('0.5');
   const [enableLumpSum, setEnableLumpSum] = useState(false);
   const [lumpSumContributions, setLumpSumContributions] = useState<LumpSumContribution[]>([]);
-  const [showChart, setShowChart] = useState(true);
-  const [chartType, setChartType] = useState<'area' | 'line'>('area');
   const [showMilestones, setShowMilestones] = useState(true);
   const [showWhatIf, setShowWhatIf] = useState(false);
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
@@ -172,7 +168,6 @@ export default function CompoundInterestCalculator() {
       if (rateParam) setInterestRate(rateParam);
       if (timeParam) setTimePeriod(timeParam);
       if (unitParam) setTimeUnit(unitParam);
-      if (freqParam) setCompoundFrequency(freqParam);
       if (sipParam === 'true') setEnableSIP(true);
       if (sipAmountParam) setSipAmount(sipAmountParam);
       if (sipFreqParam) setSipFrequency(sipFreqParam);
@@ -552,8 +547,6 @@ export default function CompoundInterestCalculator() {
     setInterestRate('8');
     setTimePeriod('10');
     setTimeUnit('years');
-    setCompoundFrequency('12');
-    setCurrency('USD');
     setEnableSIP(false);
     setSipAmount('1000');
     setSipFrequency('12');
@@ -1332,30 +1325,15 @@ export default function CompoundInterestCalculator() {
 
   // Memoize currency formatter to prevent recreation on every render
   const formatCurrency = useMemo(() => {
-    const currencyMap: { [key: string]: { locale: string; currency: string } } = {
-      USD: { locale: 'en-US', currency: 'USD' },
-      EUR: { locale: 'de-DE', currency: 'EUR' },
-      GBP: { locale: 'en-GB', currency: 'GBP' },
-      INR: { locale: 'en-IN', currency: 'INR' },
-      JPY: { locale: 'ja-JP', currency: 'JPY' },
-      CAD: { locale: 'en-CA', currency: 'CAD' },
-      AUD: { locale: 'en-AU', currency: 'AUD' },
-      CNY: { locale: 'zh-CN', currency: 'CNY' },
-      BRL: { locale: 'pt-BR', currency: 'BRL' },
-      MXN: { locale: 'es-MX', currency: 'MXN' }
-    };
-
-    const config = currencyMap[currency] || currencyMap.USD;
-
-    const formatter = new Intl.NumberFormat(config.locale, {
+    const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: config.currency,
+      currency: 'USD',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
 
     return (amount: number) => formatter.format(amount);
-  }, [currency]);
+  }, []);
 
   const canonicalUrl = "https://dapsiwow.com/tools/compound-interest-calculator";
   const siteUrl = "https://dapsiwow.com";
@@ -2377,59 +2355,6 @@ export default function CompoundInterestCalculator() {
                         </div>
                       )}
 
-                      
-
-                      {/* Phase 1: Growth Chart */}
-                      {showChart && result.yearlyBreakdown && result.yearlyBreakdown.length > 0 && (
-                        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200" data-testid="growth-chart-container">
-                          <div className="flex items-center justify-between mb-4">
-                            <h3 className="font-bold text-gray-900 text-lg">Investment Growth Over Time</h3>
-                            <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                variant={chartType === 'area' ? 'default' : 'outline'}
-                                onClick={() => setChartType('area')}
-                                data-testid="button-chart-area"
-                              >
-                                <BarChart3 className="w-4 h-4" />
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant={chartType === 'line' ? 'default' : 'outline'}
-                                onClick={() => setChartType('line')}
-                                data-testid="button-chart-line"
-                              >
-                                <PieChart className="w-4 h-4" />
-                              </Button>
-                            </div>
-                          </div>
-                          <ResponsiveContainer width="100%" height={300}>
-                            {chartType === 'area' ? (
-                              <AreaChart data={result.yearlyBreakdown}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                <YAxis />
-                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
-                                <Legend />
-                                <Area type="monotone" dataKey="amount" stackId="1" stroke="#10b981" fill="#10b981" name="Total Value" />
-                                <Area type="monotone" dataKey="principal" stackId="2" stroke="#3b82f6" fill="#3b82f6" name="Principal" />
-                                <Area type="monotone" dataKey="totalContributionsAtYear" stackId="2" stroke="#8b5cf6" fill="#8b5cf6" name="Contributions" />
-                              </AreaChart>
-                            ) : (
-                              <LineChart data={result.yearlyBreakdown}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
-                                <YAxis />
-                                <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
-                                <Legend />
-                                <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2} name="Total Value" />
-                                <Line type="monotone" dataKey="principal" stroke="#3b82f6" strokeWidth={2} name="Principal" />
-                                <Line type="monotone" dataKey="totalContributionsAtYear" stroke="#8b5cf6" strokeWidth={2} name="Contributions" />
-                              </LineChart>
-                            )}
-                          </ResponsiveContainer>
-                        </div>
-                      )}
 
                       {/* Yearly Investment Breakdown */}
                       {result && showBreakdown && (
