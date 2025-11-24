@@ -2116,11 +2116,33 @@ export default function LoanCalculator() {
                                 cx="50%"
                                 cy="50%"
                                 labelLine={false}
-                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                                label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
+                                  const RADIAN = Math.PI / 180;
+                                  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                                  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                  
+                                  return (
+                                    <text
+                                      x={x}
+                                      y={y}
+                                      fill="white"
+                                      textAnchor={x > cx ? 'start' : 'end'}
+                                      dominantBaseline="central"
+                                      className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-semibold"
+                                      style={{ 
+                                        fontSize: window.innerWidth < 400 ? '9px' : window.innerWidth < 640 ? '11px' : window.innerWidth < 768 ? '12px' : '14px',
+                                        fontWeight: '600',
+                                        textShadow: '0px 1px 2px rgba(0,0,0,0.3)'
+                                      }}
+                                    >
+                                      {`${(percent * 100).toFixed(1)}%`}
+                                    </text>
+                                  );
+                                }}
                                 outerRadius="70%"
                                 fill="#8884d8"
                                 dataKey="value"
-                                style={{ fontSize: '11px', fontWeight: '500' }}
                               >
                                 {[
                                   { name: 'Principal', value: parseFloat(loanAmount), color: '#10b981' },
@@ -2140,19 +2162,29 @@ export default function LoanCalculator() {
                                 }}
                               />
                               <Legend
-                                wrapperStyle={{ fontSize: '11px' }}
+                                wrapperStyle={{ 
+                                  fontSize: window.innerWidth < 400 ? '10px' : window.innerWidth < 640 ? '11px' : '12px',
+                                  paddingTop: '8px'
+                                }}
                                 iconType="circle"
+                                iconSize={window.innerWidth < 400 ? 8 : 10}
                               />
                             </RechartsPieChart>
                           </ResponsiveContainer>
-                          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 text-center">
-                            <div className="bg-green-50 rounded-md sm:rounded-lg p-2 sm:p-3">
-                              <div className="text-[10px] sm:text-xs text-green-700 font-medium">Principal</div>
-                              <div className="text-xs sm:text-sm md:text-base font-bold text-green-800 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
+                          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 text-center">
+                            <div className="bg-green-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                              <div className="text-[10px] sm:text-xs md:text-sm text-green-700 font-medium mb-1">Principal</div>
+                              <div className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-green-800 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
+                              <div className="text-[9px] sm:text-[10px] md:text-xs text-green-600 mt-1">
+                                {((parseFloat(loanAmount) / result.totalAmount) * 100).toFixed(1)}%
+                              </div>
                             </div>
-                            <div className="bg-orange-50 rounded-md sm:rounded-lg p-2 sm:p-3">
-                              <div className="text-[10px] sm:text-xs text-orange-700 font-medium">Interest</div>
-                              <div className="text-xs sm:text-sm md:text-base font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
+                            <div className="bg-orange-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                              <div className="text-[10px] sm:text-xs md:text-sm text-orange-700 font-medium mb-1">Interest</div>
+                              <div className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
+                              <div className="text-[9px] sm:text-[10px] md:text-xs text-orange-600 mt-1">
+                                {((result.totalInterest / result.totalAmount) * 100).toFixed(1)}%
+                              </div>
                             </div>
                           </div>
                         </div>
