@@ -319,207 +319,535 @@ export default function LoanCalculator() {
     setIsGeneratingPDF(true);
     try {
       const doc = new jsPDF();
-      const pageWidth = doc.internal.pageSize.width;
-      const pageHeight = doc.internal.pageSize.height;
-      const margin = 20;
-      const contentWidth = pageWidth - 2 * margin;
-      let yPosition = margin;
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 12;
+      let yPos = 0;
 
+      // Professional Header with colored banner
+      doc.setFillColor(37, 99, 235); // Blue color
+      doc.rect(0, 0, pageWidth, 30, 'F');
+
+      // White title text on blue banner
+      doc.setTextColor(255, 255, 255);
       doc.setFontSize(20);
       doc.setFont('helvetica', 'bold');
-      doc.text('Loan Calculator Results', margin, yPosition);
+      doc.text('LOAN ANALYSIS REPORT', pageWidth / 2, 13, { align: 'center' });
 
-      yPosition += 15;
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
-      doc.setTextColor(100);
-      doc.text(`Generated on ${new Date().toLocaleString()}`, margin, yPosition);
+      doc.text('Professional Loan Payment Calculator', pageWidth / 2, 22, { align: 'center' });
+      
+      // Reset text color to black
+      doc.setTextColor(0, 0, 0);
+      yPos = 38;
 
-      yPosition += 15;
-      doc.setDrawColor(200);
-      doc.line(margin, yPosition, pageWidth - margin, yPosition);
+      // Document Info Box
+      doc.setFillColor(248, 250, 252); // Light gray background
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 24, 'F');
+      doc.setDrawColor(226, 232, 240);
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 24, 'S');
 
-      yPosition += 10;
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(71, 85, 105);
+      const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
+      doc.text('Loan Term:', margin + 3, yPos + 7);
+      doc.setFont('helvetica', 'normal');
+      doc.text(termDisplay, margin + 28, yPos + 7);
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Frequency:', margin + 3, yPos + 14);
+      doc.setFont('helvetica', 'normal');
+      doc.text(paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1), margin + 28, yPos + 14);
+
+      doc.setFont('helvetica', 'bold');
+      doc.text('Generated:', margin + 3, yPos + 21);
+      doc.setFont('helvetica', 'normal');
+      doc.text(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), margin + 28, yPos + 21);
+
+      doc.setTextColor(0, 0, 0);
+      yPos += 32;
+
+      // Executive Summary Section
       doc.setFontSize(14);
       doc.setFont('helvetica', 'bold');
-      doc.setTextColor(0);
-      doc.text('Loan Details', margin, yPosition);
+      doc.setTextColor(30, 58, 138);
+      doc.text('EXECUTIVE SUMMARY', margin, yPos);
+      yPos += 2;
 
-      yPosition += 8;
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
+      // Underline
+      doc.setDrawColor(37, 99, 235);
+      doc.setLineWidth(0.5);
+      doc.line(margin, yPos, margin + 55, yPos);
+      yPos += 8;
+      doc.setTextColor(0, 0, 0);
 
-      const loanDetails = [
-        ['Loan Amount:', formatCurrency(parseFloat(loanAmount))],
-        ['Interest Rate:', `${interestRate}% per year`],
-        ['Loan Term:', `${loanTerm} ${termUnit}`],
-        ['Payment Frequency:', paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1)],
-        ['Extra Payment:', formatCurrency(parseFloat(extraPayment))],
-        ['Processing Fee:', formatCurrency(parseFloat(processingFee))]
-      ];
+      // Monthly Payment Highlight Box
+      doc.setFillColor(37, 99, 235);
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 22, 3, 3, 'F');
 
-      loanDetails.forEach(([label, value]) => {
-        doc.setFont('helvetica', 'bold');
-        doc.text(label, margin, yPosition);
-        doc.setFont('helvetica', 'normal');
-        doc.text(value, margin + 60, yPosition);
-        yPosition += 7;
-      });
-
-      yPosition += 5;
-      doc.setDrawColor(200);
-      doc.line(margin, yPosition, pageWidth - margin, yPosition);
-
-      yPosition += 10;
-      doc.setFontSize(14);
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
-      doc.text('Payment Summary', margin, yPosition);
+      const paymentLabel = paymentFrequency === 'monthly' ? 'MONTHLY PAYMENT' : 
+                          paymentFrequency === 'biweekly' ? 'BI-WEEKLY PAYMENT' : 'WEEKLY PAYMENT';
+      doc.text(paymentLabel, pageWidth / 2, yPos + 7, { align: 'center' });
+      doc.setFontSize(18);
+      doc.text(formatCurrency(result.monthlyPayment), pageWidth / 2, yPos + 16, { align: 'center' });
 
-      yPosition += 8;
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(0, 0, 0);
+      yPos += 30;
 
-      const paymentSummary = [
-        ['Monthly Payment:', formatCurrency(result.monthlyPayment)],
-        ['Total Amount:', formatCurrency(result.totalAmount)],
-        ['Total Interest:', formatCurrency(result.totalInterest)]
+      // Key Metrics Table
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 58, 138);
+      doc.text('KEY METRICS', margin, yPos);
+      yPos += 2;
+      doc.setDrawColor(37, 99, 235);
+      doc.line(margin, yPos, margin + 35, yPos);
+      yPos += 7;
+      doc.setTextColor(0, 0, 0);
+
+      // Table header
+      doc.setFillColor(241, 245, 249);
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 9, 'F');
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(51, 65, 85);
+      doc.text('Metric', margin + 2, yPos + 6);
+      doc.text('Value', pageWidth - margin - 42, yPos + 6);
+      yPos += 9;
+
+      // Table rows
+      const interestPercent = ((result.totalInterest / result.totalAmount) * 100).toFixed(1);
+      const metrics: { label: string; value: string; color: [number, number, number] }[] = [
+        { label: 'Loan Amount', value: formatCurrency(parseFloat(loanAmount)), color: [71, 85, 105] },
+        { label: 'Interest Rate', value: `${interestRate}%`, color: [71, 85, 105] },
+        { label: paymentLabel.split(' ')[0] + ' Payment', value: formatCurrency(result.monthlyPayment), color: [37, 99, 235] },
+        { label: 'Total Amount Paid', value: formatCurrency(result.totalAmount), color: [71, 85, 105] },
+        { label: 'Principal Amount', value: formatCurrency(parseFloat(loanAmount)), color: [16, 185, 129] },
+        { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
+        { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       ];
 
-      paymentSummary.forEach(([label, value]) => {
-        doc.setFont('helvetica', 'bold');
-        doc.text(label, margin, yPosition);
-        doc.setFont('helvetica', 'normal');
-        doc.text(value, margin + 60, yPosition);
-        yPosition += 7;
-      });
-
-      if (result.extraPaymentSavings) {
-        yPosition += 5;
-        doc.setDrawColor(200);
-        doc.line(margin, yPosition, pageWidth - margin, yPosition);
-
-        yPosition += 10;
-        doc.setFontSize(14);
-        doc.setFont('helvetica', 'bold');
-        doc.text('Extra Payment Savings', margin, yPosition);
-
-        yPosition += 8;
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-
-        const savingsDetails = [
-          ['Time Saved:', `${result.extraPaymentSavings.timeSaved.toFixed(0)} payments`],
-          ['Interest Saved:', formatCurrency(result.extraPaymentSavings.interestSaved)],
-          ['New Total Interest:', formatCurrency(result.extraPaymentSavings.newTotalInterest)],
-          ['New Payoff Time:', `${result.extraPaymentSavings.newPayoffTime.toFixed(0)} payments`]
-        ];
-
-        savingsDetails.forEach(([label, value]) => {
-          doc.setFont('helvetica', 'bold');
-          doc.text(label, margin, yPosition);
-          doc.setFont('helvetica', 'normal');
-          doc.text(value, margin + 60, yPosition);
-          yPosition += 7;
-        });
+      if (parseFloat(extraPayment) > 0) {
+        metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
       }
 
-      if (result.amortizationSchedule && result.amortizationSchedule.length > 0) {
-        doc.addPage();
-        yPosition = margin;
+      if (parseFloat(processingFee) > 0) {
+        metrics.push({ label: 'Processing Fee', value: formatCurrency(parseFloat(processingFee)), color: [202, 138, 4] });
+      }
 
-        doc.setFontSize(14);
+      doc.setFont('helvetica', 'normal');
+      metrics.forEach((metric, index) => {
+        // Alternating row colors
+        if (index % 2 === 0) {
+          doc.setFillColor(255, 255, 255);
+        } else {
+          doc.setFillColor(248, 250, 252);
+        }
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 7, 'F');
+
+        doc.setFontSize(8.5);
+        doc.setTextColor(71, 85, 105);
+        doc.text(metric.label, margin + 2, yPos + 4.8);
+
         doc.setFont('helvetica', 'bold');
-        doc.text('Amortization Schedule', margin, yPosition);
+        doc.setTextColor(...metric.color);
+        doc.text(metric.value, pageWidth - margin - 2, yPos + 4.8, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
 
-        yPosition += 10;
+        yPos += 7;
+      });
 
-        const tableColumn = ['Payment', 'Amount', 'Principal', 'Interest', 'Balance'];
-        const tableRows: string[][] = [];
+      // Border around table
+      doc.setDrawColor(226, 232, 240);
+      doc.rect(margin, yPos - (metrics.length * 7) - 9, pageWidth - (2 * margin), (metrics.length * 7) + 9, 'S');
 
-        result.amortizationSchedule.forEach((payment) => {
-          const paymentData = [
-            payment.month.toString(),
-            formatCurrency(payment.payment),
-            formatCurrency(payment.principal),
-            formatCurrency(payment.interest),
-            formatCurrency(payment.balance)
-          ];
-          tableRows.push(paymentData);
-        });
+      yPos += 8;
 
-        const rowHeight = 7;
-        const colWidths = [20, 35, 35, 35, 35];
-        const tableWidth = colWidths.reduce((a, b) => a + b, 0);
+      // Extra Payment Analysis
+      if (result.extraPaymentSavings) {
+        const boxHeight = 30;
+        doc.setFillColor(236, 253, 245);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'F');
+        doc.setDrawColor(34, 197, 94);
+        doc.setLineWidth(0.8);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), boxHeight, 'S');
 
         doc.setFontSize(9);
         doc.setFont('helvetica', 'bold');
-        doc.setFillColor(240);
-        doc.rect(margin, yPosition, tableWidth, rowHeight, 'F');
-
-        let xPosition = margin;
-        tableColumn.forEach((header, i) => {
-          doc.text(header, xPosition + 2, yPosition + 5);
-          xPosition += colWidths[i];
-        });
-
-        yPosition += rowHeight;
-
+        doc.setTextColor(22, 163, 74);
+        doc.text('SAVINGS WITH EXTRA PAYMENTS', margin + 3, yPos + 6);
         doc.setFont('helvetica', 'normal');
-        tableRows.forEach((row, rowIndex) => {
-          if (yPosition + rowHeight > pageHeight - margin) {
-            doc.addPage();
-            yPosition = margin;
+        doc.setFontSize(8);
+        doc.text(`Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}`, margin + 3, yPos + 12);
+        doc.text(`Time Saved: ${result.extraPaymentSavings.timeSaved.toFixed(0)} payments`, margin + 3, yPos + 18);
+        doc.text(`New Total Interest: ${formatCurrency(result.extraPaymentSavings.newTotalInterest)}`, pageWidth / 2 + 3, yPos + 12);
+        doc.text(`New Payoff Time: ${result.extraPaymentSavings.newPayoffTime.toFixed(0)} payments`, pageWidth / 2 + 3, yPos + 18);
+        doc.setFontSize(7);
+        doc.text(`(Paying off ${result.extraPaymentSavings.timeSaved.toFixed(0)} payments earlier!)`, pageWidth / 2 + 3, yPos + 24);
 
-            doc.setFontSize(9);
-            doc.setFont('helvetica', 'bold');
-            doc.setFillColor(240);
-            doc.rect(margin, yPosition, tableWidth, rowHeight, 'F');
-
-            xPosition = margin;
-            tableColumn.forEach((header, i) => {
-              doc.text(header, xPosition + 2, yPosition + 5);
-              xPosition += colWidths[i];
-            });
-
-            yPosition += rowHeight;
-            doc.setFont('helvetica', 'normal');
-          }
-
-          if (rowIndex % 2 === 0) {
-            doc.setFillColor(250);
-            doc.rect(margin, yPosition, tableWidth, rowHeight, 'F');
-          }
-
-          xPosition = margin;
-          row.forEach((cell, i) => {
-            const cellText = doc.splitTextToSize(cell, colWidths[i] - 4);
-            doc.text(cellText, xPosition + 2, yPosition + 5);
-            xPosition += colWidths[i];
-          });
-
-          doc.setDrawColor(220);
-          doc.line(margin, yPosition, margin + tableWidth, yPosition);
-
-          yPosition += rowHeight;
-        });
-
-        doc.setDrawColor(220);
-        doc.line(margin, yPosition, margin + tableWidth, yPosition);
-
-        tableColumn.forEach((_, i) => {
-          const x = margin + colWidths.slice(0, i).reduce((a, b) => a + b, 0);
-          doc.line(x, yPosition - tableRows.length * rowHeight - rowHeight, x, yPosition);
-        });
-        const lastX = margin + tableWidth;
-        doc.line(lastX, yPosition - tableRows.length * rowHeight - rowHeight, lastX, yPosition);
+        doc.setTextColor(0, 0, 0);
+        yPos += boxHeight + 6;
       }
 
-      const fileName = `loan-calculation-${new Date().getTime()}.pdf`;
-      doc.save(fileName);
+      // Interpretation Section
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 58, 138);
+      doc.text('INTERPRETATION', margin, yPos);
+      yPos += 2;
+      doc.setDrawColor(37, 99, 235);
+      doc.line(margin, yPos, margin + 45, yPos);
+      yPos += 8;
+      doc.setTextColor(0, 0, 0);
+
+      let interpretation = '';
+      let interpretationColor: [number, number, number] = [71, 85, 105];
+
+      const interestPercentNum = parseFloat(interestPercent);
+      if (interestPercentNum < 20) {
+        interpretation = 'Excellent Loan Structure - Your interest payments are very low relative to the principal, indicating favorable loan terms and efficient debt repayment.';
+        interpretationColor = [22, 163, 74];
+      } else if (interestPercentNum < 40) {
+        interpretation = 'Good Loan Terms - Your interest-to-principal ratio shows reasonable borrowing costs. Consider extra payments to reduce total interest burden.';
+        interpretationColor = [202, 138, 4];
+      } else if (interestPercentNum < 60) {
+        interpretation = 'Moderate Interest Load - Interest comprises a significant portion of your payments. Extra payments could yield substantial savings.';
+        interpretationColor = [59, 130, 246];
+      } else {
+        interpretation = 'High Interest Burden - Interest payments are substantial. Strongly consider extra payments or accelerated payments to reduce total cost.';
+        interpretationColor = [220, 38, 38];
+      }
+
+      doc.setFillColor(249, 250, 251);
+      const interpretationHeight = 18;
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), interpretationHeight, 2, 2, 'F');
+      doc.setDrawColor(...interpretationColor);
+      doc.setLineWidth(0.8);
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), interpretationHeight, 2, 2, 'S');
+
+      doc.setFontSize(8.5);
+      doc.setTextColor(...interpretationColor);
+      const splitInterpretation = doc.splitTextToSize(interpretation, pageWidth - (2 * margin) - 8);
+      doc.text(splitInterpretation, margin + 4, yPos + 6);
+
+      doc.setTextColor(0, 0, 0);
+      yPos += interpretationHeight + 8;
+
+      // Draw comparison table if exists
+      if (comparisonLoans.length > 0 && showComparison) {
+        try {
+          doc.addPage();
+          yPos = margin;
+          
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 65, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+          
+          // Optimized column widths (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            scenario: 22,       // "SCENARIO"
+            amount: 33,         // "AMOUNT"
+            rate: 18,           // "RATE"
+            term: 25,           // "TERM"
+            payment: 45,        // "PAYMENT"
+            interest: 43        // "TOTAL INTEREST"
+          };
+          
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
+          
+          let xPos = margin;
+          doc.text('SCENARIO', xPos + 2, yPos + 6);
+          xPos += colWidths.scenario;
+          doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.amount;
+          doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.rate;
+          doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.term;
+          doc.text('PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.payment;
+          doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows - 30 rows per page
+          const rowsPerPage = 30;
+          let rowCount = 0;
+          
+          comparisonLoans.forEach((scenario, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
+              doc.addPage();
+              yPos = margin;
+              
+              // Repeat header
+              doc.setFontSize(12);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              doc.text('LOAN SCENARIO COMPARISON - CONTINUED', margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              doc.line(margin, yPos, margin + 85, yPos);
+              yPos += 10;
+              
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
+              
+              xPos = margin;
+              doc.text('SCENARIO', xPos + 2, yPos + 6);
+              xPos += colWidths.scenario;
+              doc.text('AMOUNT', xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.amount;
+              doc.text('RATE', xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.rate;
+              doc.text('TERM', xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.term;
+              doc.text('PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.payment;
+              doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
+            }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            // Scenario name
+            doc.setTextColor(17, 24, 39);
+            doc.text(scenario.name, xPos + 2, yPos + 5.5);
+            
+            // Amount
+            xPos += colWidths.scenario;
+            doc.text(formatCurrency(scenario.amount), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
+            
+            // Rate
+            xPos += colWidths.amount;
+            doc.text(`${scenario.rate}%`, xPos + colWidths.rate - 2, yPos + 5.5, { align: 'right' });
+            
+            // Term
+            xPos += colWidths.rate;
+            const termDisplay = scenario.termUnit === 'years' ? `${scenario.term}y` : `${scenario.term}m`;
+            doc.text(termDisplay, xPos + colWidths.term - 2, yPos + 5.5, { align: 'right' });
+            
+            // Monthly Payment
+            xPos += colWidths.term;
+            doc.setTextColor(37, 99, 235);
+            doc.text(formatCurrency(scenario.monthlyPayment), xPos + colWidths.payment - 2, yPos + 5.5, { align: 'right' });
+            
+            // Total Interest
+            xPos += colWidths.payment;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(scenario.totalInterest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
+        } catch (error) {
+          console.error('Error generating comparison table:', error);
+        }
+      }
+
+      // Draw amortization schedule if visible
+      if (showAmortization && result?.amortizationSchedule) {
+        try {
+          doc.addPage();
+          yPos = margin;
+          
+          // Section Header
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('AMORTIZATION SCHEDULE (FIRST 5 YEARS)', margin, yPos);
+          yPos += 2;
+          doc.setDrawColor(37, 99, 235);
+          doc.line(margin, yPos, margin + 85, yPos);
+          yPos += 10;
+          doc.setTextColor(0, 0, 0);
+          
+          // Optimized column widths for mobile (total: 186px)
+          const tableWidth = pageWidth - (2 * margin);
+          const colWidths = {
+            month: 20,      // "MONTH"
+            payment: 37,    // "PAYMENT"
+            principal: 37,  // "PRINCIPAL"
+            interest: 37,   // "INTEREST"
+            balance: 55     // "BALANCE"
+          };
+          
+          // Table header
+          doc.setFillColor(249, 250, 251);
+          doc.rect(margin, yPos, tableWidth, 10, 'F');
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(55, 65, 81);
+          
+          let xPos = margin;
+          doc.text('MONTH', xPos + 2, yPos + 6);
+          xPos += colWidths.month;
+          doc.text('PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.payment;
+          doc.text('PRINCIPAL', xPos + colWidths.principal - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.principal;
+          doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.interest;
+          doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
+          
+          yPos += 10;
+          doc.setFont('helvetica', 'normal');
+          
+          // Table rows - 30 rows per page
+          const rowsPerPage = 30;
+          let rowCount = 0;
+          
+          result.amortizationSchedule.forEach((payment, index) => {
+            if (rowCount >= rowsPerPage) {
+              // Add new page
+              doc.addPage();
+              yPos = margin;
+              
+              // Repeat header
+              doc.setFontSize(12);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(30, 58, 138);
+              doc.text('AMORTIZATION SCHEDULE - CONTINUED', margin, yPos);
+              yPos += 2;
+              doc.setDrawColor(37, 99, 235);
+              doc.line(margin, yPos, margin + 85, yPos);
+              yPos += 10;
+              
+              doc.setFillColor(249, 250, 251);
+              doc.rect(margin, yPos, tableWidth, 10, 'F');
+              doc.setFontSize(7);
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(55, 65, 81);
+              
+              xPos = margin;
+              doc.text('MONTH', xPos + 2, yPos + 6);
+              xPos += colWidths.month;
+              doc.text('PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.payment;
+              doc.text('PRINCIPAL', xPos + colWidths.principal - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.principal;
+              doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.interest;
+              doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
+              
+              yPos += 10;
+              doc.setFont('helvetica', 'normal');
+              rowCount = 0;
+            }
+            
+            // Alternating row colors
+            if (index % 2 === 0) {
+              doc.setFillColor(255, 255, 255);
+            } else {
+              doc.setFillColor(249, 250, 251);
+            }
+            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            
+            // Row data
+            doc.setFontSize(7);
+            xPos = margin;
+            
+            doc.setTextColor(17, 24, 39);
+            doc.text(String(payment.month), xPos + 2, yPos + 5.5);
+            
+            xPos += colWidths.month;
+            doc.text(formatCurrency(payment.payment), xPos + colWidths.payment - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.payment;
+            doc.setTextColor(22, 163, 74);
+            doc.text(formatCurrency(payment.principal), xPos + colWidths.principal - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.principal;
+            doc.setTextColor(234, 88, 12);
+            doc.text(formatCurrency(payment.interest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            
+            xPos += colWidths.interest;
+            doc.setTextColor(17, 24, 39);
+            doc.text(formatCurrency(payment.balance), xPos + colWidths.balance - 2, yPos + 5.5, { align: 'right' });
+            
+            // Row border
+            doc.setDrawColor(229, 231, 235);
+            doc.setLineWidth(0.1);
+            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            
+            yPos += 8;
+            rowCount++;
+          });
+          
+        } catch (error) {
+          console.error('Error generating amortization schedule:', error);
+        }
+      }
+
+      // Professional Footer
+      const totalPages = (doc as any).internal.getNumberOfPages();
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+
+        // Footer line
+        doc.setDrawColor(226, 232, 240);
+        doc.setLineWidth(0.3);
+        doc.line(margin, pageHeight - 18, pageWidth - margin, pageHeight - 18);
+
+        // Footer text
+        doc.setFontSize(7);
+        doc.setTextColor(100, 116, 139);
+        doc.setFont('helvetica', 'normal');
+        doc.text('DapsiWow Loan Calculator', margin, pageHeight - 10);
+        doc.text(`Page ${i} of ${totalPages}`, pageWidth / 2, pageHeight - 10, { align: 'center' });
+        doc.text(new Date().toLocaleDateString(), pageWidth - margin, pageHeight - 10, { align: 'right' });
+
+        // Website
+        doc.setTextColor(37, 99, 235);
+        doc.text('www.dapsiwow.com', pageWidth - margin, pageHeight - 5, { align: 'right' });
+      }
+
+      doc.save('loan-analysis-report.pdf');
 
       toast({
-        title: "PDF Downloaded",
-        description: `${fileName} has been saved to your downloads folder`
+        title: "Professional PDF Downloaded",
+        description: "Your loan analysis report is ready."
       });
 
       trackToolUsed('Loan Calculator', 'Finance', {
@@ -541,7 +869,7 @@ export default function LoanCalculator() {
     } finally {
       setIsGeneratingPDF(false);
     }
-  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, formatCurrency, toast]);
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, formatCurrency, toast, comparisonLoans, showAmortization, showComparison]);
 
   // Load parameters from URL on mount (for shared links) with validation
   useEffect(() => {
