@@ -111,6 +111,154 @@ export default function LoanCalculator() {
   const { toast } = useToast();
   const { user } = useAuth();
 
+  // Memoized currency formatter for better performance
+  const formatCurrency = useMemo(() => {
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    return (amount: number) => formatter.format(amount);
+  }, []);
+
+  const calculateLoan = useCallback(async () => {
+    setIsCalculating(true);
+    setValidationErrors({});
+
+    const principal = parseFloat(loanAmount);
+    const annualRate = parseFloat(interestRate);
+    const term = parseFloat(loanTerm);
+    const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
+    const procFee = parseFloat(processingFee);
+
+    const validation = loanInputSchema.safeParse({
+      loanAmount: principal,
+      interestRate: annualRate,
+      loanTerm: term,
+      extraPayment: extraPmt,
+      processingFee: procFee
+    });
+
+    if (!validation.success) {
+      const errors: ValidationErrors = {};
+      validation.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof ValidationErrors;
+        errors[field] = err.message;
+      });
+      setValidationErrors(errors);
+      setIsCalculating(false);
+      toast({
+        title: "Invalid Input",
+        description: "Please fix the errors in the form",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    trackToolUsed('Loan Calculator', 'Finance', {
+      loan_amount: principal,
+      interest_rate: annualRate,
+      term_months: termUnit === 'years' ? term * 12 : term,
+      payment_frequency: paymentFrequency,
+      has_extra_payment: extraPmt > 0,
+      processing_fee: procFee
+    });
+
+    const annualRateDecimal = annualRate / 100;
+    const termMonths = termUnit === 'years' ? term * 12 : term;
+
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                           paymentFrequency === 'biweekly' ? 26 : 12;
+    const periodicRate = annualRateDecimal / paymentsPerYear;
+    const totalPayments = termMonths * (paymentsPerYear / 12);
+
+    const adjustedPrincipal = principal + procFee;
+
+    const regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
+                          (Math.pow(1 + periodicRate, totalPayments) - 1);
+
+    const amortizationSchedule = [];
+    let currentBalance = adjustedPrincipal;
+    let totalInterestPaid = 0;
+    let totalAmountPaid = 0;
+    let actualPayments = 0;
+
+    for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
+      const interestPayment = currentBalance * periodicRate;
+      const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
+      const actualPaymentAmount = principalPayment + interestPayment;
+
+      currentBalance -= principalPayment;
+      totalInterestPaid += interestPayment;
+      totalAmountPaid += actualPaymentAmount;
+      actualPayments = payment;
+
+      amortizationSchedule.push({
+        month: payment,
+        payment: actualPaymentAmount,
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: currentBalance
+      });
+    }
+
+    let extraPaymentSavings;
+    if (extraPmt > 0) {
+      const regularTotalAmount = regularPayment * totalPayments;
+      const regularTotalInterest = regularTotalAmount - adjustedPrincipal;
+
+      extraPaymentSavings = {
+        timeSaved: Math.max(0, totalPayments - actualPayments),
+        interestSaved: Math.max(0, regularTotalInterest - totalInterestPaid),
+        newTotalInterest: totalInterestPaid,
+        newPayoffTime: actualPayments
+      };
+    }
+
+    const monthlyEquivalent = regularPayment * (paymentsPerYear / 12);
+
+    const calculationResult = {
+      monthlyPayment: monthlyEquivalent,
+      totalAmount: totalAmountPaid,
+      totalInterest: totalInterestPaid,
+      amortizationSchedule,
+      extraPaymentSavings
+    };
+
+    setResult(calculationResult);
+
+    if (user) {
+      saveCalculation(
+        user.uid,
+        'Loan Calculator',
+        '/loan-calculator',
+        {
+          loanAmount: principal,
+          interestRate: annualRate,
+          loanTerm: term,
+          termUnit,
+          paymentFrequency,
+          extraPayment: extraPmt,
+          processingFee: procFee
+        },
+        {
+          monthlyPayment: monthlyEquivalent,
+          totalAmount: totalAmountPaid,
+          totalInterest: totalInterestPaid,
+          extraPaymentSavings
+        }
+      ).catch((error) => {
+        console.error('Failed to save calculation history:', error);
+      });
+    }
+
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setIsCalculating(false);
+    }, 100);
+  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, user, toast]);
+
   // Load parameters from URL on mount (for shared links) with validation
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -224,149 +372,6 @@ export default function LoanCalculator() {
     const walk = (x - startX) * 2;
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
-
-  const calculateLoan = useCallback(async () => {
-    setIsCalculating(true); // Set loading state
-    setValidationErrors({}); // Clear previous errors
-
-    const principal = parseFloat(loanAmount);
-    const annualRate = parseFloat(interestRate);
-    const term = parseFloat(loanTerm);
-    const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
-    const procFee = parseFloat(processingFee); // Parse processing fee
-
-    // Validate inputs
-    const validation = loanInputSchema.safeParse({
-      loanAmount: principal,
-      interestRate: annualRate,
-      loanTerm: term,
-      extraPayment: extraPmt,
-      processingFee: procFee // Include processing fee in validation
-    });
-
-    if (!validation.success) {
-      const errors: ValidationErrors = {};
-      validation.error.errors.forEach((err) => {
-        const field = err.path[0] as keyof ValidationErrors;
-        errors[field] = err.message;
-      });
-      setValidationErrors(errors);
-      setIsCalculating(false);
-      toast({
-        title: "Invalid Input",
-        description: "Please fix the errors in the form",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Track tool usage for analytics
-    trackToolUsed('Loan Calculator', 'Finance', {
-      loan_amount: principal,
-      interest_rate: annualRate,
-      term_months: termUnit === 'years' ? term * 12 : term,
-      payment_frequency: paymentFrequency,
-      has_extra_payment: extraPmt > 0,
-      processing_fee: procFee // Include processing fee in tracking
-    });
-
-    const annualRateDecimal = annualRate / 100;
-    const termMonths = termUnit === 'years' ? term * 12 : term;
-
-    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
-                           paymentFrequency === 'biweekly' ? 26 : 12;
-    const periodicRate = annualRateDecimal / paymentsPerYear;
-    const totalPayments = termMonths * (paymentsPerYear / 12);
-
-    // Adjust principal by processing fee
-    const adjustedPrincipal = principal + procFee;
-
-    const regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-                          (Math.pow(1 + periodicRate, totalPayments) - 1);
-
-    const amortizationSchedule = [];
-    let currentBalance = adjustedPrincipal;
-    let totalInterestPaid = 0;
-    let totalAmountPaid = 0;
-    let actualPayments = 0;
-
-    for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
-      const interestPayment = currentBalance * periodicRate;
-      const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
-      const actualPaymentAmount = principalPayment + interestPayment;
-
-      currentBalance -= principalPayment;
-      totalInterestPaid += interestPayment;
-      totalAmountPaid += actualPaymentAmount;
-      actualPayments = payment;
-
-      // Store all payments for amortization schedule (no limit)
-      amortizationSchedule.push({
-        month: payment,
-        payment: actualPaymentAmount,
-        principal: principalPayment,
-        interest: interestPayment,
-        balance: currentBalance
-      });
-    }
-
-    let extraPaymentSavings;
-    if (extraPmt > 0) {
-      const regularTotalAmount = regularPayment * totalPayments;
-      const regularTotalInterest = regularTotalAmount - adjustedPrincipal; // Use adjusted principal for original total interest
-
-      extraPaymentSavings = {
-        timeSaved: Math.max(0, totalPayments - actualPayments),
-        interestSaved: Math.max(0, regularTotalInterest - totalInterestPaid),
-        newTotalInterest: totalInterestPaid,
-        newPayoffTime: actualPayments
-      };
-    }
-
-    const monthlyEquivalent = regularPayment * (paymentsPerYear / 12);
-
-    const calculationResult = {
-      monthlyPayment: monthlyEquivalent,
-      totalAmount: totalAmountPaid,
-      totalInterest: totalInterestPaid,
-      amortizationSchedule,
-      extraPaymentSavings
-    };
-
-    setResult(calculationResult);
-
-    // Save calculation history if user is logged in (silently fail if not configured)
-    if (user) {
-      saveCalculation(
-        user.uid,
-        'Loan Calculator',
-        '/loan-calculator',
-        {
-          loanAmount: principal,
-          interestRate: annualRate,
-          loanTerm: term,
-          termUnit,
-          paymentFrequency,
-          extraPayment: extraPmt,
-          processingFee: procFee // Save processing fee
-        },
-        {
-          monthlyPayment: monthlyEquivalent,
-          totalAmount: totalAmountPaid,
-          totalInterest: totalInterestPaid,
-          extraPaymentSavings
-        }
-      ).catch((error) => {
-        // Silently log error - don't interrupt user experience
-        console.error('Failed to save calculation history:', error);
-      });
-    }
-
-    setTimeout(() => {
-      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      setIsCalculating(false); // Reset loading state after results are set
-    }, 100);
-  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, user, toast]);
 
   const resetCalculator = () => {
     setLoanAmount('100000');
@@ -1252,17 +1257,6 @@ export default function LoanCalculator() {
     
     return bestIndex;
   };
-
-  // Memoized currency formatter for better performance
-  const formatCurrency = useMemo(() => {
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-    return (amount: number) => formatter.format(amount);
-  }, []);
 
   const principalPercentage = result ? (parseFloat(loanAmount) / result.totalAmount) * 100 : 0;
   const interestPercentage = result ? (result.totalInterest / result.totalAmount) * 100 : 0;
