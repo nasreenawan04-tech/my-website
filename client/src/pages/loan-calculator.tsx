@@ -65,7 +65,10 @@ const loanInputSchema = z.object({
   }).positive("Loan term must be greater than zero").max(600, "Loan term is too long").finite("Loan term must be a finite number"),
   extraPayment: z.number({
     invalid_type_error: "Extra payment must be a valid number"
-  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
+  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number"),
+  processingFee: z.number({
+    invalid_type_error: "Processing fee must be a valid number"
+  }).min(0, "Processing fee cannot be negative").finite("Processing fee must be a finite number")
 });
 
 interface ValidationErrors {
@@ -73,6 +76,7 @@ interface ValidationErrors {
   interestRate?: string;
   loanTerm?: string;
   extraPayment?: string;
+  processingFee?: string;
 }
 
 export default function LoanCalculator() {
@@ -82,6 +86,7 @@ export default function LoanCalculator() {
   const [termUnit, setTermUnit] = useState('years');
   const [paymentFrequency, setPaymentFrequency] = useState('monthly');
   const [extraPayment, setExtraPayment] = useState('0');
+  const [processingFee, setProcessingFee] = useState('0'); // State for processing fee
   const [showAmortization, setShowAmortization] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [showCharts, setShowCharts] = useState(false);
@@ -111,6 +116,7 @@ export default function LoanCalculator() {
     const unit = params.get('unit');
     const freq = params.get('freq');
     const extra = params.get('extra');
+    const fee = params.get('fee'); // Load processing fee
 
     if (amount || rate || term) {
       if (amount) setLoanAmount(amount);
@@ -119,6 +125,7 @@ export default function LoanCalculator() {
       if (unit) setTermUnit(unit);
       if (freq) setPaymentFrequency(freq);
       if (extra) setExtraPayment(extra);
+      if (fee) setProcessingFee(fee); // Set processing fee
       setShouldAutoCalculate(true);
     }
   }, []);
@@ -167,13 +174,15 @@ export default function LoanCalculator() {
     const annualRate = parseFloat(interestRate);
     const term = parseFloat(loanTerm);
     const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
+    const procFee = parseFloat(processingFee); // Parse processing fee
 
     // Validate inputs
     const validation = loanInputSchema.safeParse({
       loanAmount: principal,
       interestRate: annualRate,
       loanTerm: term,
-      extraPayment: extraPmt
+      extraPayment: extraPmt,
+      processingFee: procFee // Include processing fee in validation
     });
 
     if (!validation.success) {
@@ -198,7 +207,8 @@ export default function LoanCalculator() {
       interest_rate: annualRate,
       term_months: termUnit === 'years' ? term * 12 : term,
       payment_frequency: paymentFrequency,
-      has_extra_payment: extraPmt > 0
+      has_extra_payment: extraPmt > 0,
+      processing_fee: procFee // Include processing fee in tracking
     });
 
     const annualRateDecimal = annualRate / 100;
@@ -209,11 +219,14 @@ export default function LoanCalculator() {
     const periodicRate = annualRateDecimal / paymentsPerYear;
     const totalPayments = termMonths * (paymentsPerYear / 12);
 
-    const regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
+    // Adjust principal by processing fee
+    const adjustedPrincipal = principal + procFee;
+
+    const regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
                           (Math.pow(1 + periodicRate, totalPayments) - 1);
 
     const amortizationSchedule = [];
-    let currentBalance = principal;
+    let currentBalance = adjustedPrincipal;
     let totalInterestPaid = 0;
     let totalAmountPaid = 0;
     let actualPayments = 0;
@@ -242,7 +255,7 @@ export default function LoanCalculator() {
     let extraPaymentSavings;
     if (extraPmt > 0) {
       const regularTotalAmount = regularPayment * totalPayments;
-      const regularTotalInterest = regularTotalAmount - principal;
+      const regularTotalInterest = regularTotalAmount - adjustedPrincipal; // Use adjusted principal for original total interest
 
       extraPaymentSavings = {
         timeSaved: Math.max(0, totalPayments - actualPayments),
@@ -276,7 +289,8 @@ export default function LoanCalculator() {
           loanTerm: term,
           termUnit,
           paymentFrequency,
-          extraPayment: extraPmt
+          extraPayment: extraPmt,
+          processingFee: procFee // Save processing fee
         },
         {
           monthlyPayment: monthlyEquivalent,
@@ -303,6 +317,7 @@ export default function LoanCalculator() {
     setTermUnit('years');
     setPaymentFrequency('monthly');
     setExtraPayment('0');
+    setProcessingFee('0'); // Reset processing fee
     setShowAmortization(false);
     setShowComparison(false);
     setComparisonLoans([]);
@@ -342,7 +357,8 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment
+      extra: extraPayment,
+      fee: processingFee // Include processing fee in share URL
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
@@ -364,6 +380,9 @@ export default function LoanCalculator() {
     shareText += `• Payment Frequency: ${freqDisplay}\n`;
     if (parseFloat(extraPayment) > 0) {
       shareText += `• Extra Payment: ${formatCurrency(parseFloat(extraPayment))}\n`;
+    }
+    if (parseFloat(processingFee) > 0) {
+      shareText += `• Processing Fee: ${formatCurrency(parseFloat(processingFee))}\n`;
     }
     shareText += `\n💵 Payment Breakdown:\n`;
     shareText += `• ${freqDisplay} Payment: ${formatCurrency(actualPeriodicPayment)}\n`;
@@ -430,7 +449,8 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment
+      extra: extraPayment,
+      fee: processingFee // Include processing fee
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareableUrl)}`;
@@ -447,7 +467,8 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment
+      extra: extraPayment,
+      fee: processingFee // Include processing fee
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const tweetText = `💰 My loan calculation: ${formatCurrency(result.monthlyPayment)}/month on ${formatCurrency(parseFloat(loanAmount))} at ${interestRate}% - Calculate yours free!`;
@@ -465,7 +486,8 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment
+      extra: extraPayment,
+      fee: processingFee // Include processing fee
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`;
@@ -482,7 +504,8 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment
+      extra: extraPayment,
+      fee: processingFee // Include processing fee
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
@@ -610,7 +633,7 @@ export default function LoanCalculator() {
 
       // Table rows
       const interestPercent = ((result.totalInterest / result.totalAmount) * 100).toFixed(1);
-      
+
       // Calculate additional values
       const annualRateDecimal = parseFloat(interestRate) / 100;
       const termMonths = termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm);
@@ -619,7 +642,8 @@ export default function LoanCalculator() {
       const periodicRate = annualRateDecimal / paymentsPerYear;
       const totalPayments = termMonths * (paymentsPerYear / 12);
       const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
-      
+      const feeAmount = parseFloat(processingFee);
+
       const metrics: { label: string; value: string; color: [number, number, number] }[] = [
         { label: 'Loan Amount', value: formatCurrency(parseFloat(loanAmount)), color: [71, 85, 105] },
         { label: 'Interest Rate', value: `${interestRate}% per year`, color: [71, 85, 105] },
@@ -639,6 +663,10 @@ export default function LoanCalculator() {
         { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
         { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       );
+
+      if (feeAmount > 0) {
+        metrics.push({ label: 'Processing Fee', value: formatCurrency(feeAmount), color: [239, 68, 68] });
+      }
 
       if (parseFloat(extraPayment) > 0) {
         metrics.push({ label: 'Extra Payment (per period)', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
@@ -766,7 +794,7 @@ export default function LoanCalculator() {
         try {
           doc.addPage();
           yPos = margin;
-          
+
           // Section Header
           doc.setFontSize(12);
           doc.setFont('helvetica', 'bold');
@@ -777,7 +805,7 @@ export default function LoanCalculator() {
           doc.line(margin, yPos, margin + 65, yPos);
           yPos += 10;
           doc.setTextColor(0, 0, 0);
-          
+
           // Optimized column widths (total: 186px)
           const tableWidth = pageWidth - (2 * margin);
           const colWidths = {
@@ -788,14 +816,14 @@ export default function LoanCalculator() {
             payment: 45,        // "MONTHLY PAYMENT"
             interest: 45        // "TOTAL INTEREST"
           };
-          
+
           // Table header
           doc.setFillColor(249, 250, 251);
           doc.rect(margin, yPos, tableWidth, 10, 'F');
           doc.setFontSize(7);
           doc.setFont('helvetica', 'bold');
           doc.setTextColor(55, 65, 81);
-          
+
           let xPos = margin;
           doc.text('LOAN', xPos + 2, yPos + 6);
           xPos += colWidths.loan;
@@ -808,20 +836,20 @@ export default function LoanCalculator() {
           doc.text('MONTHLY PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
           xPos += colWidths.payment;
           doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
-          
+
           yPos += 10;
           doc.setFont('helvetica', 'normal');
-          
+
           // Table rows - 30 rows per page
           const rowsPerPage = 30;
           let rowCount = 0;
-          
+
           comparisonLoans.forEach((loan, index) => {
             if (rowCount >= rowsPerPage) {
               // Add new page
               doc.addPage();
               yPos = margin;
-              
+
               // Repeat header
               doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
@@ -831,13 +859,13 @@ export default function LoanCalculator() {
               doc.setDrawColor(37, 99, 235);
               doc.line(margin, yPos, margin + 85, yPos);
               yPos += 10;
-              
+
               doc.setFillColor(249, 250, 251);
               doc.rect(margin, yPos, tableWidth, 10, 'F');
               doc.setFontSize(7);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(55, 65, 81);
-              
+
               xPos = margin;
               doc.text('LOAN', xPos + 2, yPos + 6);
               xPos += colWidths.loan;
@@ -850,12 +878,12 @@ export default function LoanCalculator() {
               doc.text('MONTHLY PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
               xPos += colWidths.payment;
               doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
-              
+
               yPos += 10;
               doc.setFont('helvetica', 'normal');
               rowCount = 0;
             }
-            
+
             // Alternating row colors
             if (index % 2 === 0) {
               doc.setFillColor(255, 255, 255);
@@ -863,47 +891,47 @@ export default function LoanCalculator() {
               doc.setFillColor(249, 250, 251);
             }
             doc.rect(margin, yPos, tableWidth, 8, 'F');
-            
+
             // Row data
             doc.setFontSize(7);
             xPos = margin;
-            
+
             // Loan name
             doc.setTextColor(17, 24, 39);
             doc.text(loan.name, xPos + 2, yPos + 5.5);
-            
+
             // Amount
             xPos += colWidths.loan;
             doc.text(formatCurrency(loan.amount), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
-            
+
             // Rate
             xPos += colWidths.amount;
             doc.text(`${loan.rate}%`, xPos + colWidths.rate - 2, yPos + 5.5, { align: 'right' });
-            
+
             // Term
             xPos += colWidths.rate;
             const termDisplay = loan.termUnit === 'years' ? `${loan.term}y` : `${loan.term}m`;
             doc.text(termDisplay, xPos + colWidths.term - 2, yPos + 5.5, { align: 'right' });
-            
+
             // Monthly Payment
             xPos += colWidths.term;
             doc.setTextColor(37, 99, 235);
             doc.text(formatCurrency(loan.monthlyPayment), xPos + colWidths.payment - 2, yPos + 5.5, { align: 'right' });
-            
+
             // Total Interest
             xPos += colWidths.payment;
             doc.setTextColor(234, 88, 12);
             doc.text(formatCurrency(loan.totalInterest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
-            
+
             // Row border
             doc.setDrawColor(229, 231, 235);
             doc.setLineWidth(0.1);
             doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
-            
+
             yPos += 8;
             rowCount++;
           });
-          
+
         } catch (error) {
           console.error('Error generating comparison table:', error);
         }
@@ -914,7 +942,7 @@ export default function LoanCalculator() {
         try {
           doc.addPage();
           yPos = margin;
-          
+
           // Section Header
           doc.setFontSize(12);
           doc.setFont('helvetica', 'bold');
@@ -925,7 +953,7 @@ export default function LoanCalculator() {
           doc.line(margin, yPos, margin + 85, yPos);
           yPos += 10;
           doc.setTextColor(0, 0, 0);
-          
+
           // Optimized column widths for mobile (total: 186px)
           const tableWidth = pageWidth - (2 * margin);
           const colWidths = {
@@ -935,14 +963,14 @@ export default function LoanCalculator() {
             interest: 37,   // "Interest"
             balance: 53     // "Balance"
           };
-          
+
           // Table header
           doc.setFillColor(249, 250, 251);
           doc.rect(margin, yPos, tableWidth, 10, 'F');
           doc.setFontSize(7);
           doc.setFont('helvetica', 'bold');
           doc.setTextColor(55, 65, 81);
-          
+
           let xPos = margin;
           doc.text('PAY #', xPos + 2, yPos + 6);
           xPos += colWidths.payment;
@@ -953,20 +981,20 @@ export default function LoanCalculator() {
           doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
           xPos += colWidths.interest;
           doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
-          
+
           yPos += 10;
           doc.setFont('helvetica', 'normal');
-          
+
           // Table rows - 30 rows per page
           const rowsPerPage = 30;
           let rowCount = 0;
-          
+
           result.amortizationSchedule.forEach((payment, index) => {
             if (rowCount >= rowsPerPage) {
               // Add new page
               doc.addPage();
               yPos = margin;
-              
+
               // Repeat header
               doc.setFontSize(12);
               doc.setFont('helvetica', 'bold');
@@ -976,13 +1004,13 @@ export default function LoanCalculator() {
               doc.setDrawColor(37, 99, 235);
               doc.line(margin, yPos, margin + 85, yPos);
               yPos += 10;
-              
+
               doc.setFillColor(249, 250, 251);
               doc.rect(margin, yPos, tableWidth, 10, 'F');
               doc.setFontSize(7);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(55, 65, 81);
-              
+
               xPos = margin;
               doc.text('PAY #', xPos + 2, yPos + 6);
               xPos += colWidths.payment;
@@ -993,12 +1021,12 @@ export default function LoanCalculator() {
               doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
               xPos += colWidths.interest;
               doc.text('BALANCE', xPos + colWidths.balance - 2, yPos + 6, { align: 'right' });
-              
+
               yPos += 10;
               doc.setFont('helvetica', 'normal');
               rowCount = 0;
             }
-            
+
             // Alternating row colors
             if (index % 2 === 0) {
               doc.setFillColor(255, 255, 255);
@@ -1006,38 +1034,38 @@ export default function LoanCalculator() {
               doc.setFillColor(249, 250, 251);
             }
             doc.rect(margin, yPos, tableWidth, 8, 'F');
-            
+
             // Row data
             doc.setFontSize(7);
             xPos = margin;
-            
+
             doc.setTextColor(17, 24, 39);
             doc.text(String(payment.month), xPos + 2, yPos + 5.5);
-            
+
             xPos += colWidths.payment;
             doc.text(formatCurrency(payment.payment), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
-            
+
             xPos += colWidths.amount;
             doc.setTextColor(22, 163, 74);
             doc.text(formatCurrency(payment.principal), xPos + colWidths.principal - 2, yPos + 5.5, { align: 'right' });
-            
+
             xPos += colWidths.principal;
             doc.setTextColor(234, 88, 12);
             doc.text(formatCurrency(payment.interest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
-            
+
             xPos += colWidths.interest;
             doc.setTextColor(17, 24, 39);
             doc.text(formatCurrency(payment.balance), xPos + colWidths.balance - 2, yPos + 5.5, { align: 'right' });
-            
+
             // Row border
             doc.setDrawColor(229, 231, 235);
             doc.setLineWidth(0.1);
             doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
-            
+
             yPos += 8;
             rowCount++;
           });
-          
+
         } catch (error) {
           console.error('Error generating amortization schedule:', error);
         }
@@ -1185,8 +1213,8 @@ export default function LoanCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Loan Calculator - Monthly Payments Instantly | DapsiWow</title>
-        <meta name="description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />
-        <meta name="keywords" content="loan calculator, loan payment calculator, monthly payment calculator, EMI calculator, amortization calculator, personal loan calculator, auto loan calculator, home loan calculator, mortgage calculator, loan calculator with extra payments, calculate loan payments, free loan calculator, debt calculator, business loan calculator, loan interest calculator, loan payoff calculator, loan amortization calculator, student loan calculator, debt consolidation calculator, loan comparison calculator, how to calculate loan payments, loan calculator 2025, best loan calculator, online loan calculator" />
+        <meta name="description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results! Uncover hidden fees and see the truth behind every offer." />
+        <meta name="keywords" content="loan calculator, loan payment calculator, monthly payment calculator, EMI calculator, amortization calculator, personal loan calculator, auto loan calculator, home loan calculator, mortgage calculator, loan calculator with extra payments, calculate loan payments, free loan calculator, debt calculator, business loan calculator, loan interest calculator, loan payoff calculator, loan amortization calculator, student loan calculator, debt consolidation calculator, loan comparison calculator, how to calculate loan payments, loan calculator 2025, best loan calculator, online loan calculator, hidden fees calculator, loan origination fee calculator" />
 
         <meta http-equiv="content-language" content="en-US" />
         <meta name="language" content="English" />
@@ -1204,7 +1232,7 @@ export default function LoanCalculator() {
         <meta name="last-modified" content="2025-01-10" />
 
         <meta property="og:title" content="Loan Calculator - Monthly Payments Instantly | DapsiWow" />
-        <meta property="og:description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />
+        <meta property="og:description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results! Uncover hidden fees and see the truth behind every offer." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/loan-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-loan-calculator.jpg" />
@@ -1217,14 +1245,14 @@ export default function LoanCalculator() {
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Loan Calculator - Monthly Payments Instantly | DapsiWow" />
-        <meta name="twitter:description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />
+        <meta name="twitter:description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results! Uncover hidden fees and see the truth behind every offer." />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-loan-calculator.jpg" />
         <meta name="twitter:image:alt" content="Free Loan Calculator - Monthly Payments, Interest & Amortization Tool" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
 
         <meta name="pinterest-rich-pin" content="true" />
-        <meta property="pinterest:description" content="Calculate loan payments instantly! Free loan calculator with amortization schedules, payment breakdowns & interest savings. Perfect for all loan types." />
+        <meta property="pinterest:description" content="Calculate loan payments instantly! Free loan calculator with amortization schedules, payment breakdowns & interest savings. Uncover hidden fees and compare offers. Perfect for all loan types." />
 
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -1253,13 +1281,13 @@ export default function LoanCalculator() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "Loan Calculator",
-            "description": "Free online loan calculator to calculate monthly payments, total interest, and create detailed amortization schedules for personal loans, auto loans, mortgages, business loans, student loans, and debt consolidation. Get instant, accurate calculations with bank-grade formulas.",
+            "description": "Free online loan calculator to calculate monthly payments, total interest, and create detailed amortization schedules for personal loans, auto loans, mortgages, business loans, student loans, and debt consolidation. Get instant, accurate calculations with bank-grade formulas. Compares offers and uncovers hidden fees.",
             "url": "https://dapsiwow.com/tools/loan-calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
             "browserRequirements": "Requires JavaScript",
             "permissions": "browser",
-            "softwareVersion": "2.0",
+            "softwareVersion": "2.1",
             "datePublished": "2024-01-15",
             "dateModified": "2025-01-10",
             "offers": {
@@ -1279,6 +1307,7 @@ export default function LoanCalculator() {
               "Download professional PDF reports",
               "Share calculations with customizable links",
               "Real-time calculations with no delays",
+              "Uncover hidden fees like origination and processing costs",
               "Works for personal loans, auto loans, mortgages, business loans"
             ],
             "provider": {
@@ -1380,7 +1409,7 @@ export default function LoanCalculator() {
             "@id": "https://dapsiwow.com/tools/loan-calculator#webpage",
             "url": "https://dapsiwow.com/tools/loan-calculator",
             "name": "Free Loan Calculator 2025 - Calculate Monthly Payments & Amortization",
-            "description": "Professional loan calculator to calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, mortgages, and business loans. Free, accurate, and instant results.",
+            "description": "Professional loan calculator to calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, mortgages, and business loans. Free, accurate, and instant results. Uncovers hidden fees and compares loan offers.",
             "inLanguage": "en-US",
             "isPartOf": {
               "@type": "WebSite",
@@ -1431,7 +1460,7 @@ export default function LoanCalculator() {
             "@type": "WebApplication",
             "@id": "https://dapsiwow.com/tools/loan-calculator#webapplication",
             "name": "Loan Calculator",
-            "alternateName": ["Loan Payment Calculator", "EMI Calculator", "Amortization Calculator"],
+            "alternateName": ["Loan Payment Calculator", "EMI Calculator", "Amortization Calculator", "Hidden Fees Calculator"],
             "url": "https://dapsiwow.com/tools/loan-calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
@@ -1492,7 +1521,7 @@ export default function LoanCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate monthly payments, total interest, and amortization schedules instantly. Works for all loan types: personal, auto, home, mortgage, business, student, and debt consolidation. Compare terms and see how extra payments save you money. Free, no registration required.
+                Compare loan offers, uncover hidden fees, and see the truth behind every bank's numbers. Know exactly what you'll pay before you sign anything.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -1668,7 +1697,7 @@ export default function LoanCalculator() {
                       <div className="md:col-span-2 space-y-2 sm:space-y-3">
                         <div className="flex items-center gap-2">
                           <Label htmlFor="extra-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Extra Payment (Optional)
+                            Extra Monthly Payment (Optional)
                           </Label>
                           <Tooltip>
                             <TooltipTrigger>
@@ -1680,29 +1709,50 @@ export default function LoanCalculator() {
                           </Tooltip>
                         </div>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                           <Input
                             id="extra-payment"
                             type="number"
                             value={extraPayment}
                             onChange={(e) => setExtraPayment(e.target.value)}
-                            className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.extraPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.extraPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="0"
                             min="0"
                             step="10"
                             data-testid="input-extra-payment"
-                            aria-label="Extra payment amount per period (optional)"
                           />
                         </div>
-                        {validationErrors.extraPayment && (
-                          <p className="text-xs text-red-600 mt-1" data-testid="error-extra-payment">{validationErrors.extraPayment}</p>
-                        )}
-                        <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
+                        <p className="text-xs sm:text-sm text-gray-500">
+                          Make extra monthly payments to pay off your loan faster
+                        </p>
+                      </div>
+
+                      <div className="md:col-span-2 space-y-2 sm:space-y-3">
+                        <Label htmlFor="processing-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Processing/Origination Fee
+                        </Label>
+                        <div className="relative">
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                          <Input
+                            id="processing-fee"
+                            type="number"
+                            value={processingFee}
+                            onChange={(e) => setProcessingFee(e.target.value)}
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.processingFee ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                            placeholder="0"
+                            min="0"
+                            step="50"
+                            data-testid="input-processing-fee"
+                          />
+                        </div>
+                        <p className="text-xs sm:text-sm text-orange-600 font-medium">
+                          ⚠️ Hidden fees banks don't always advertise upfront
+                        </p>
                       </div>
                     </div>
                   </TooltipProvider>
 
-                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 print:hidden">
                     <Button
                       onClick={calculateLoan}
                       disabled={isCalculating || !loanAmount || !interestRate || !loanTerm || Object.keys(validationErrors).length > 0}
@@ -1850,9 +1900,19 @@ export default function LoanCalculator() {
                             </span>
                           </div>
                         </div>
+                        {parseFloat(processingFee || '0') > 0 && (
+                          <div className="bg-orange-50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm border-2 border-orange-200">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-orange-700 text-xs sm:text-sm md:text-base">⚠️ Hidden Processing Fee</span>
+                              <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all">
+                                {formatCurrency(parseFloat(processingFee || '0'))}
+                              </span>
+                            </div>
+                          </div>
+                        )}
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest Paid</span>
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest</span>
                             <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-total-interest">
                               {formatCurrency(result.totalInterest)}
                             </span>
@@ -1915,7 +1975,37 @@ export default function LoanCalculator() {
                         </div>
                       )}
 
-                      {/* Professional Payment Charts */}
+                      {/* Payment Breakdown Section */}
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        {parseFloat(processingFee || '0') > 0 && (
+                          <div className="bg-orange-50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm border-2 border-orange-200">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-orange-700 text-xs sm:text-sm md:text-base">⚠️ Hidden Processing Fee</span>
+                              <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all">
+                                {formatCurrency(parseFloat(processingFee || '0'))}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
+                            <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all" data-testid="text-total-interest">
+                              {formatCurrency(result.totalInterest)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-amount">
+                              {formatCurrency(result.totalAmount)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Area Chart - Payment Breakdown Over Time */}
                       {showCharts && (
                         <div className="space-y-4">
                         <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
@@ -1943,17 +2033,17 @@ export default function LoanCalculator() {
                                   <Cell key={`cell-${index}`} fill={entry.color} />
                                 ))}
                               </Pie>
-                              <RechartsTooltip 
+                              <RechartsTooltip
                                 formatter={(value: number) => formatCurrency(value)}
-                                contentStyle={{ 
-                                  backgroundColor: '#fff', 
-                                  border: '1px solid #e5e7eb', 
+                                contentStyle={{
+                                  backgroundColor: '#fff',
+                                  border: '1px solid #e5e7eb',
                                   borderRadius: '8px',
                                   fontSize: '12px',
                                   padding: '8px'
                                 }}
                               />
-                              <Legend 
+                              <Legend
                                 wrapperStyle={{ fontSize: '11px' }}
                                 iconType="circle"
                               />
@@ -1974,7 +2064,7 @@ export default function LoanCalculator() {
                         {/* Area Chart - Payment Breakdown Over Time */}
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
                           <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Payment Breakdown Over Time</h3>
-                          
+
                           {/* Chart Filter Toggle */}
                           <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 flex-wrap">
                             <Button
@@ -2032,56 +2122,56 @@ export default function LoanCalculator() {
                                   </linearGradient>
                                 </defs>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                <XAxis 
-                                  dataKey="month" 
+                                <XAxis
+                                  dataKey="month"
                                   tick={{ fontSize: 9 }}
                                   tickMargin={5}
-                                  label={{ 
-                                    value: 'Payment Number', 
-                                    position: 'insideBottom', 
-                                    offset: -2, 
+                                  label={{
+                                    value: 'Payment Number',
+                                    position: 'insideBottom',
+                                    offset: -2,
                                     fontSize: 9,
                                     style: { fill: '#6b7280' }
                                   }}
                                   interval="preserveStartEnd"
                                 />
-                                <YAxis 
+                                <YAxis
                                   tick={{ fontSize: 9 }}
                                   tickMargin={5}
                                   width={40}
                                   tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                                 />
-                                <RechartsTooltip 
+                                <RechartsTooltip
                                   formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
                                   labelFormatter={(label) => `Payment #${label}`}
-                                  contentStyle={{ 
-                                    backgroundColor: '#fff', 
-                                    border: '1px solid #e5e7eb', 
+                                  contentStyle={{
+                                    backgroundColor: '#fff',
+                                    border: '1px solid #e5e7eb',
                                     borderRadius: '8px',
                                     fontSize: '12px',
                                     padding: '8px'
                                   }}
                                 />
                                 {(chartFilter === 'both' || chartFilter === 'principal') && (
-                                  <Area 
-                                    type="monotone" 
-                                    dataKey="principal" 
+                                  <Area
+                                    type="monotone"
+                                    dataKey="principal"
                                     stackId={chartFilter === 'both' ? '1' : undefined}
-                                    stroke="#10b981" 
+                                    stroke="#10b981"
                                     strokeWidth={2}
-                                    fillOpacity={1} 
+                                    fillOpacity={1}
                                     fill="url(#colorPrincipal)"
                                     name="Principal"
                                   />
                                 )}
                                 {(chartFilter === 'both' || chartFilter === 'interest') && (
-                                  <Area 
-                                    type="monotone" 
-                                    dataKey="interest" 
+                                  <Area
+                                    type="monotone"
+                                    dataKey="interest"
                                     stackId={chartFilter === 'both' ? '1' : undefined}
-                                    stroke="#f97316" 
+                                    stroke="#f97316"
                                     strokeWidth={2}
-                                    fillOpacity={1} 
+                                    fillOpacity={1}
                                     fill="url(#colorInterest)"
                                     name="Interest"
                                   />
@@ -2317,7 +2407,7 @@ export default function LoanCalculator() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-gray-900 mb-2">Enter Your Loan Amount</h3>
-                      <p className="text-gray-700 mb-3">Input the total amount you want to borrow (principal). This could be the price of a home, car, or the amount needed for your business or personal loan.</p>
+                      <p className="text-gray-700 mb-3">Input the total amount you want to borrow (principal). This is the amount before considering interest or fees.</p>
                       <div className="bg-gray-50 rounded-lg p-4">
                         <p className="text-sm text-gray-600"><strong>Example:</strong> For a $300,000 home mortgage, enter "300000" in the loan amount field.</p>
                       </div>
@@ -2600,10 +2690,22 @@ Monthly Payment = $488.84
                     </div>
                   </div>
 
-                  {/* Total Interest */}
+                  {/* Processing Fee */}
                   <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6">
                     <h3 className="text-xl font-bold text-orange-900 mb-3 flex items-center gap-2">
                       <span className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white text-sm">2</span>
+                      Processing/Origination Fee
+                    </h3>
+                    <p className="text-gray-700 mb-3">A one-time fee charged by the lender to cover the administrative costs of processing your loan application. These can sometimes be hidden or not clearly disclosed.</p>
+                    <div className="bg-white rounded-lg p-4 mt-3">
+                      <p className="text-sm text-gray-600"><strong>Impact:</strong> This fee increases your total borrowing cost and can slightly affect your overall payment or total interest paid, depending on how it's structured.</p>
+                    </div>
+                  </div>
+
+                  {/* Total Interest */}
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-purple-900 mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white text-sm">3</span>
                       Total Interest
                     </h3>
                     <p className="text-gray-700 mb-3">The total amount you'll pay in interest over the life of the loan. This is the "cost of borrowing" - money paid to the lender beyond repaying what you borrowed.</p>
@@ -2613,21 +2715,21 @@ Monthly Payment = $488.84
                   </div>
 
                   {/* Total Amount Paid */}
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
-                    <h3 className="text-xl font-bold text-purple-900 mb-3 flex items-center gap-2">
-                      <span className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white text-sm">3</span>
+                  <div className="bg-gradient-to-r from-gray-100 to-blue-50 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white text-sm">4</span>
                       Total Amount Paid
                     </h3>
-                    <p className="text-gray-700 mb-3">The complete amount you'll pay over the loan term - your original loan amount plus all interest charges. This shows the true total cost of the loan.</p>
+                    <p className="text-gray-700 mb-3">The complete amount you'll pay over the loan term - your original loan amount plus all interest charges and any upfront fees. This shows the true total cost of the loan.</p>
                     <div className="bg-white rounded-lg p-4 mt-3">
-                      <p className="text-sm text-gray-600"><strong>Example:</strong> On a $200,000 loan at 6% for 30 years, you'll pay $431,676 total ($200,000 principal + $231,676 interest).</p>
+                      <p className="text-sm text-gray-600"><strong>Example:</strong> On a $200,000 loan at 6% for 30 years with a $2,000 origination fee, you'll pay $433,676 total ($200,000 principal + $231,676 interest + $2,000 fee).</p>
                     </div>
                   </div>
 
                   {/* Amortization Schedule */}
                   <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl p-6">
                     <h3 className="text-xl font-bold text-green-900 mb-3 flex items-center gap-2">
-                      <span className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm">4</span>
+                      <span className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm">5</span>
                       Amortization Schedule
                     </h3>
                     <p className="text-gray-700 mb-3">A detailed month-by-month breakdown showing how each payment is split between principal and interest, plus your remaining balance after each payment.</p>
@@ -2639,7 +2741,7 @@ Monthly Payment = $488.84
                 </div>
 
                 <div className="mt-8 bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6">
-                  <h3 className="text-xl font-bold text-yellow-900 mb-3">When to Seek Professional Advice</h3>
+                  <h3 className="font-bold text-yellow-900 mb-3">When to Seek Professional Advice</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start gap-2">
                       <span className="text-yellow-600 font-bold">•</span>
@@ -2807,7 +2909,7 @@ M = $1,199.10
             <Card className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-2xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-6 sm:p-8 lg:p-12 text-center">
                 <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Calculate Your Loan Payments?</h2>
-                <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">Get instant, accurate loan estimates in seconds. Make informed borrowing decisions with confidence.</p>
+                <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">Get instant, accurate loan estimates in seconds. Uncover hidden fees and compare offers to make informed borrowing decisions with confidence.</p>
 
                 <div className="grid sm:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
@@ -2825,14 +2927,14 @@ M = $1,199.10
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                  <button 
+                  <button
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 shadow-xl"
                   >
                     Use Calculator Now
                   </button>
-                  <a 
-                    href="/tools" 
+                  <a
+                    href="/tools"
                     className="bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105"
                   >
                     Explore All Tools
