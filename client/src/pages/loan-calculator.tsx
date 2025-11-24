@@ -310,7 +310,7 @@ export default function LoanCalculator() {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       setIsCalculating(false);
     }, 100);
-  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, user, toast]);
+  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, user, toast, formatCurrency]);
 
   const handleShare = useCallback(async () => {
     if (!result) return;
@@ -369,7 +369,7 @@ export default function LoanCalculator() {
       has_extra_payment: parseFloat(extraPayment) > 0,
       processing_fee: parseFloat(processingFee)
     });
-  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, formatCurrency, toast]);
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, formatCurrency, toast]);
 
   const handleDownloadPDF = useCallback(async () => {
     if (!result) return;
@@ -927,7 +927,7 @@ export default function LoanCalculator() {
     } finally {
       setIsGeneratingPDF(false);
     }
-  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, formatCurrency, toast, comparisonLoans, showAmortization, showComparison]);
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, formatCurrency, toast, comparisonLoans, showAmortization, showComparison]);
 
   // Load parameters from URL on mount (for shared links) with validation
   useEffect(() => {
