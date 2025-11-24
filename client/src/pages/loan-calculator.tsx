@@ -2005,27 +2005,6 @@ export default function LoanCalculator() {
                             </span>
                           </div>
                         </div>
-
-                        {/* Show/Hide Chart Button */}
-                        <div className="flex justify-center pt-2">
-                          <Button
-                            onClick={() => {
-                              setShowCharts(!showCharts);
-                              if (!showCharts) {
-                                setTimeout(() => {
-                                  chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }, 100);
-                              }
-                            }}
-                            variant="outline"
-                            size="sm"
-                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-blue-700 hover:text-blue-800 transition-colors"
-                            data-testid="button-show-chart"
-                          >
-                            <BarChartIcon className="w-4 h-4 mr-1.5" />
-                            {showCharts ? 'Hide Chart' : 'Show Chart'}
-                          </Button>
-                        </div>
                       </div>
 
                       {result.extraPaymentSavings && (
