@@ -544,34 +544,48 @@ export default function LoanCalculator() {
           doc.addPage();
           yPos = margin;
           
-          // Section Header
-          doc.setFontSize(12);
+          // Section Header with icon
+          doc.setFontSize(14);
           doc.setFont('helvetica', 'bold');
           doc.setTextColor(30, 58, 138);
           doc.text('LOAN SCENARIO COMPARISON', margin, yPos);
           yPos += 2;
           doc.setDrawColor(37, 99, 235);
-          doc.line(margin, yPos, margin + 65, yPos);
+          doc.setLineWidth(0.5);
+          doc.line(margin, yPos, margin + 70, yPos);
+          yPos += 8;
+          
+          // Add description
+          doc.setFontSize(8);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(71, 85, 105);
+          doc.text('Compare different loan scenarios to find the best option for your financial situation.', margin, yPos);
           yPos += 10;
           doc.setTextColor(0, 0, 0);
           
-          // Optimized column widths (total: 186px)
+          // Find best options
+          const lowestPayment = Math.min(...comparisonLoans.map(l => l.monthlyPayment));
+          const lowestInterest = Math.min(...comparisonLoans.map(l => l.totalInterest));
+          const lowestTotal = Math.min(...comparisonLoans.map(l => l.totalCost));
+          
+          // Table with enhanced styling
           const tableWidth = pageWidth - (2 * margin);
           const colWidths = {
-            scenario: 22,       // "SCENARIO"
-            amount: 33,         // "AMOUNT"
-            rate: 18,           // "RATE"
-            term: 25,           // "TERM"
-            payment: 45,        // "PAYMENT"
-            interest: 43        // "TOTAL INTEREST"
+            scenario: 28,       // "SCENARIO"
+            amount: 30,         // "AMOUNT"
+            rate: 14,           // "RATE"
+            term: 16,           // "TERM"
+            payment: 32,        // "PAYMENT"
+            interest: 33,       // "INTEREST"
+            total: 33           // "TOTAL COST"
           };
           
-          // Table header
-          doc.setFillColor(249, 250, 251);
+          // Table header with gradient background
+          doc.setFillColor(37, 99, 235);
           doc.rect(margin, yPos, tableWidth, 10, 'F');
           doc.setFontSize(7);
           doc.setFont('helvetica', 'bold');
-          doc.setTextColor(55, 65, 81);
+          doc.setTextColor(255, 255, 255);
           
           let xPos = margin;
           doc.text('SCENARIO', xPos + 2, yPos + 6);
@@ -584,13 +598,15 @@ export default function LoanCalculator() {
           xPos += colWidths.term;
           doc.text('PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
           xPos += colWidths.payment;
-          doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+          xPos += colWidths.interest;
+          doc.text('TOTAL', xPos + colWidths.total - 2, yPos + 6, { align: 'right' });
           
           yPos += 10;
           doc.setFont('helvetica', 'normal');
           
-          // Table rows - 30 rows per page
-          const rowsPerPage = 30;
+          // Table rows - 25 rows per page with enhanced styling
+          const rowsPerPage = 25;
           let rowCount = 0;
           
           comparisonLoans.forEach((scenario, index) => {
@@ -600,20 +616,21 @@ export default function LoanCalculator() {
               yPos = margin;
               
               // Repeat header
-              doc.setFontSize(12);
+              doc.setFontSize(14);
               doc.setFont('helvetica', 'bold');
               doc.setTextColor(30, 58, 138);
               doc.text('LOAN SCENARIO COMPARISON - CONTINUED', margin, yPos);
               yPos += 2;
               doc.setDrawColor(37, 99, 235);
-              doc.line(margin, yPos, margin + 85, yPos);
+              doc.setLineWidth(0.5);
+              doc.line(margin, yPos, margin + 95, yPos);
               yPos += 10;
               
-              doc.setFillColor(249, 250, 251);
+              doc.setFillColor(37, 99, 235);
               doc.rect(margin, yPos, tableWidth, 10, 'F');
               doc.setFontSize(7);
               doc.setFont('helvetica', 'bold');
-              doc.setTextColor(55, 65, 81);
+              doc.setTextColor(255, 255, 255);
               
               xPos = margin;
               doc.text('SCENARIO', xPos + 2, yPos + 6);
@@ -626,60 +643,153 @@ export default function LoanCalculator() {
               xPos += colWidths.term;
               doc.text('PAYMENT', xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
               xPos += colWidths.payment;
-              doc.text('TOTAL INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              doc.text('INTEREST', xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+              xPos += colWidths.interest;
+              doc.text('TOTAL', xPos + colWidths.total - 2, yPos + 6, { align: 'right' });
               
               yPos += 10;
               doc.setFont('helvetica', 'normal');
               rowCount = 0;
             }
             
-            // Alternating row colors
-            if (index % 2 === 0) {
+            // Highlight best options with green background
+            const isBestPayment = scenario.monthlyPayment === lowestPayment;
+            const isBestInterest = scenario.totalInterest === lowestInterest;
+            const isBestTotal = scenario.totalCost === lowestTotal;
+            const isBestOption = isBestPayment || isBestInterest || isBestTotal;
+            
+            // Alternating row colors with highlighting for best options
+            if (isBestOption) {
+              doc.setFillColor(240, 253, 244); // Light green for best options
+            } else if (index % 2 === 0) {
               doc.setFillColor(255, 255, 255);
             } else {
               doc.setFillColor(249, 250, 251);
             }
-            doc.rect(margin, yPos, tableWidth, 8, 'F');
+            doc.rect(margin, yPos, tableWidth, 9, 'F');
+            
+            // Add left border for best options
+            if (isBestOption) {
+              doc.setDrawColor(34, 197, 94);
+              doc.setLineWidth(1.5);
+              doc.line(margin, yPos, margin, yPos + 9);
+            }
             
             // Row data
             doc.setFontSize(7);
             xPos = margin;
             
             // Scenario name
-            doc.setTextColor(17, 24, 39);
-            doc.text(scenario.name, xPos + 2, yPos + 5.5);
+            doc.setFont('helvetica', isBestOption ? 'bold' : 'normal');
+            doc.setTextColor(isBestOption ? 22 : 17, isBestOption ? 163 : 24, isBestOption ? 74 : 39);
+            doc.text(scenario.name, xPos + 2, yPos + 6);
+            doc.setFont('helvetica', 'normal');
             
             // Amount
             xPos += colWidths.scenario;
-            doc.text(formatCurrency(scenario.amount), xPos + colWidths.amount - 2, yPos + 5.5, { align: 'right' });
+            doc.setTextColor(71, 85, 105);
+            doc.text(formatCurrency(scenario.amount), xPos + colWidths.amount - 2, yPos + 6, { align: 'right' });
             
             // Rate
             xPos += colWidths.amount;
-            doc.text(`${scenario.rate}%`, xPos + colWidths.rate - 2, yPos + 5.5, { align: 'right' });
+            doc.text(`${scenario.rate}%`, xPos + colWidths.rate - 2, yPos + 6, { align: 'right' });
             
             // Term
             xPos += colWidths.rate;
             const termDisplay = scenario.termUnit === 'years' ? `${scenario.term}y` : `${scenario.term}m`;
-            doc.text(termDisplay, xPos + colWidths.term - 2, yPos + 5.5, { align: 'right' });
+            doc.text(termDisplay, xPos + colWidths.term - 2, yPos + 6, { align: 'right' });
             
-            // Monthly Payment
+            // Monthly Payment (highlight if best)
             xPos += colWidths.term;
-            doc.setTextColor(37, 99, 235);
-            doc.text(formatCurrency(scenario.monthlyPayment), xPos + colWidths.payment - 2, yPos + 5.5, { align: 'right' });
+            if (isBestPayment) {
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(22, 163, 74);
+            } else {
+              doc.setTextColor(37, 99, 235);
+            }
+            doc.text(formatCurrency(scenario.monthlyPayment), xPos + colWidths.payment - 2, yPos + 6, { align: 'right' });
+            doc.setFont('helvetica', 'normal');
             
-            // Total Interest
+            // Total Interest (highlight if best)
             xPos += colWidths.payment;
-            doc.setTextColor(234, 88, 12);
-            doc.text(formatCurrency(scenario.totalInterest), xPos + colWidths.interest - 2, yPos + 5.5, { align: 'right' });
+            if (isBestInterest) {
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(22, 163, 74);
+            } else {
+              doc.setTextColor(234, 88, 12);
+            }
+            doc.text(formatCurrency(scenario.totalInterest), xPos + colWidths.interest - 2, yPos + 6, { align: 'right' });
+            doc.setFont('helvetica', 'normal');
+            
+            // Total Cost (highlight if best)
+            xPos += colWidths.interest;
+            if (isBestTotal) {
+              doc.setFont('helvetica', 'bold');
+              doc.setTextColor(22, 163, 74);
+            } else {
+              doc.setTextColor(71, 85, 105);
+            }
+            doc.text(formatCurrency(scenario.totalCost), xPos + colWidths.total - 2, yPos + 6, { align: 'right' });
             
             // Row border
             doc.setDrawColor(229, 231, 235);
             doc.setLineWidth(0.1);
-            doc.line(margin, yPos + 8, margin + tableWidth, yPos + 8);
+            doc.line(margin, yPos + 9, margin + tableWidth, yPos + 9);
             
-            yPos += 8;
+            yPos += 9;
             rowCount++;
           });
+          
+          // Add table border
+          doc.setDrawColor(203, 213, 225);
+          doc.setLineWidth(0.3);
+          doc.rect(margin, yPos - (comparisonLoans.length * 9) - 10, tableWidth, (comparisonLoans.length * 9) + 10, 'S');
+          
+          // Add legend for best options
+          yPos += 8;
+          doc.setFillColor(240, 253, 244);
+          doc.roundedRect(margin, yPos, 60, 8, 1, 1, 'F');
+          doc.setDrawColor(34, 197, 94);
+          doc.setLineWidth(0.5);
+          doc.roundedRect(margin, yPos, 60, 8, 1, 1, 'S');
+          
+          doc.setFontSize(7);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(22, 163, 74);
+          doc.text('Best Option', margin + 3, yPos + 5.5);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(71, 85, 105);
+          doc.text('Highlighted in green', margin + 22, yPos + 5.5);
+          
+          // Add summary statistics
+          yPos += 15;
+          doc.setFontSize(10);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 58, 138);
+          doc.text('COMPARISON SUMMARY', margin, yPos);
+          yPos += 7;
+          
+          doc.setFillColor(249, 250, 251);
+          doc.roundedRect(margin, yPos, tableWidth, 24, 2, 2, 'F');
+          doc.setDrawColor(226, 232, 240);
+          doc.roundedRect(margin, yPos, tableWidth, 24, 2, 2, 'S');
+          
+          doc.setFontSize(8);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(71, 85, 105);
+          
+          const avgPayment = comparisonLoans.reduce((sum, l) => sum + l.monthlyPayment, 0) / comparisonLoans.length;
+          const avgInterest = comparisonLoans.reduce((sum, l) => sum + l.totalInterest, 0) / comparisonLoans.length;
+          const paymentRange = Math.max(...comparisonLoans.map(l => l.monthlyPayment)) - lowestPayment;
+          const interestRange = Math.max(...comparisonLoans.map(l => l.totalInterest)) - lowestInterest;
+          
+          doc.text(`Lowest Payment: ${formatCurrency(lowestPayment)}`, margin + 3, yPos + 6);
+          doc.text(`Average Payment: ${formatCurrency(avgPayment)}`, margin + 3, yPos + 12);
+          doc.text(`Payment Range: ${formatCurrency(paymentRange)}`, margin + 3, yPos + 18);
+          
+          doc.text(`Lowest Interest: ${formatCurrency(lowestInterest)}`, pageWidth / 2 + 3, yPos + 6);
+          doc.text(`Average Interest: ${formatCurrency(avgInterest)}`, pageWidth / 2 + 3, yPos + 12);
+          doc.text(`Interest Range: ${formatCurrency(interestRange)}`, pageWidth / 2 + 3, yPos + 18);
           
         } catch (error) {
           console.error('Error generating comparison table:', error);
