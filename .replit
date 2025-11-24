@@ -51,3 +51,8 @@ externalPort = 3000
 deploymentTarget = "autoscale"
 build = ["npm", "run", "build"]
 run = ["npm", "run", "start"]
+
+[userenv]
+
+[userenv.shared]
+VITE_GTM_ID = "GTM-T57J5T4B"
