@@ -2054,34 +2054,25 @@ export default function LoanCalculator() {
                         </div>
                       )}
 
-                      {/* Payment Breakdown Section */}
-                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                        {parseFloat(processingFee || '0') > 0 && (
-                          <div className="bg-orange-50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm border-2 border-orange-200">
-                            <div className="flex justify-between items-center">
-                              <span className="font-medium text-orange-700 text-xs sm:text-sm md:text-base">⚠️ Hidden Processing Fee</span>
-                              <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all">
-                                {formatCurrency(parseFloat(processingFee || '0'))}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
-                            <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all" data-testid="text-total-interest">
-                              {formatCurrency(result.totalInterest)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-amount">
-                              {formatCurrency(result.totalAmount)}
-                            </span>
-                          </div>
-                        </div>
+                      {/* Show/Hide Chart Button */}
+                      <div className="flex justify-center pt-2">
+                        <Button
+                          onClick={() => {
+                            setShowCharts(!showCharts);
+                            if (!showCharts) {
+                              setTimeout(() => {
+                                chartRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              }, 100);
+                            }
+                          }}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-blue-700 hover:text-blue-800 transition-colors"
+                          data-testid="button-show-chart"
+                        >
+                          <BarChartIcon className="w-4 h-4 mr-1.5" />
+                          {showCharts ? 'Hide Chart' : 'Show Chart'}
+                        </Button>
                       </div>
 
                       {/* Area Chart - Payment Breakdown Over Time */}
