@@ -48,6 +48,9 @@ interface ComparisonLoan {
   paymentFrequency: string;
   monthlyPayment: number;
   totalInterest: number;
+  totalCost: number;
+  apr: number; // APR including fees
+  processingFee: number;
 }
 
 const loanInputSchema = z.object({
@@ -93,6 +96,7 @@ export default function LoanCalculator() {
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
   const [result, setResult] = useState<LoanResult | null>(null);
   const [isCalculating, setIsCalculating] = useState(false); // Added for loading state
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false); // Added for PDF generation loading state
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const comparisonRef = useRef<HTMLDivElement>(null);
@@ -107,7 +111,7 @@ export default function LoanCalculator() {
   const { toast } = useToast();
   const { user } = useAuth();
 
-  // Load parameters from URL on mount (for shared links)
+  // Load parameters from URL on mount (for shared links) with validation
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const amount = params.get('amount');
@@ -116,17 +120,43 @@ export default function LoanCalculator() {
     const unit = params.get('unit');
     const freq = params.get('freq');
     const extra = params.get('extra');
-    const fee = params.get('fee'); // Load processing fee
+    const fee = params.get('fee');
 
     if (amount || rate || term) {
-      if (amount) setLoanAmount(amount);
-      if (rate) setInterestRate(rate);
-      if (term) setLoanTerm(term);
-      if (unit) setTermUnit(unit);
-      if (freq) setPaymentFrequency(freq);
-      if (extra) setExtraPayment(extra);
-      if (fee) setProcessingFee(fee); // Set processing fee
-      setShouldAutoCalculate(true);
+      // Validate URL parameters before setting state
+      const parsedAmount = amount ? parseFloat(amount) : null;
+      const parsedRate = rate ? parseFloat(rate) : null;
+      const parsedTerm = term ? parseFloat(term) : null;
+      const parsedExtra = extra ? parseFloat(extra) : null;
+      const parsedFee = fee ? parseFloat(fee) : null;
+
+      // Check if values are valid numbers and within acceptable ranges
+      if (amount && parsedAmount && !isNaN(parsedAmount) && parsedAmount > 0 && parsedAmount <= 100000000) {
+        setLoanAmount(amount);
+      }
+      if (rate && parsedRate && !isNaN(parsedRate) && parsedRate > 0 && parsedRate <= 100) {
+        setInterestRate(rate);
+      }
+      if (term && parsedTerm && !isNaN(parsedTerm) && parsedTerm > 0 && parsedTerm <= 600) {
+        setLoanTerm(term);
+      }
+      if (unit && (unit === 'years' || unit === 'months')) {
+        setTermUnit(unit);
+      }
+      if (freq && (freq === 'monthly' || freq === 'biweekly' || freq === 'weekly')) {
+        setPaymentFrequency(freq);
+      }
+      if (parsedExtra !== null && !isNaN(parsedExtra) && parsedExtra >= 0) {
+        setExtraPayment(extra || '0');
+      }
+      if (parsedFee !== null && !isNaN(parsedFee) && parsedFee >= 0) {
+        setProcessingFee(fee || '0');
+      }
+
+      // Only auto-calculate if we have minimum required params
+      if ((parsedAmount && parsedRate && parsedTerm)) {
+        setShouldAutoCalculate(true);
+      }
     }
   }, []);
 
@@ -241,15 +271,14 @@ export default function LoanCalculator() {
       totalAmountPaid += actualPaymentAmount;
       actualPayments = payment;
 
-      if (payment <= 60) { // Store first 60 payments for amortization schedule
-        amortizationSchedule.push({
-          month: payment,
-          payment: actualPaymentAmount,
-          principal: principalPayment,
-          interest: interestPayment,
-          balance: currentBalance
-        });
-      }
+      // Store all payments for amortization schedule (no limit)
+      amortizationSchedule.push({
+        month: payment,
+        payment: actualPaymentAmount,
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: currentBalance
+      });
     }
 
     let extraPaymentSavings;
@@ -328,15 +357,27 @@ export default function LoanCalculator() {
 
   const addToComparison = () => {
     if (result) {
+      const principal = parseFloat(loanAmount);
+      const fee = parseFloat(processingFee || '0');
+      const totalCost = result.totalAmount;
+      
+      // Calculate APR (Annual Percentage Rate) including fees
+      // APR formula: APR = (((fees + interest) / principal) / term in years) * 100
+      const termYears = termUnit === 'years' ? parseFloat(loanTerm) : parseFloat(loanTerm) / 12;
+      const apr = (((fee + result.totalInterest) / principal) / termYears) * 100;
+
       const newLoan: ComparisonLoan = {
         name: `Loan ${comparisonLoans.length + 1}`,
-        amount: parseFloat(loanAmount),
+        amount: principal,
         rate: parseFloat(interestRate),
         term: parseFloat(loanTerm),
         termUnit: termUnit,
         paymentFrequency: paymentFrequency,
         monthlyPayment: result.monthlyPayment,
-        totalInterest: result.totalInterest
+        totalInterest: result.totalInterest,
+        totalCost: totalCost,
+        apr: apr,
+        processingFee: fee
       };
       setComparisonLoans([...comparisonLoans, newLoan]);
       setShowComparison(true);
@@ -529,6 +570,8 @@ export default function LoanCalculator() {
   const handleDownloadPDF = async () => {
     if (!result) return;
 
+    setIsGeneratingPDF(true); // Set loading state for PDF generation
+    
     try {
       const doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.getWidth();
@@ -1107,7 +1150,40 @@ export default function LoanCalculator() {
         description: "There was an error generating the PDF. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsGeneratingPDF(false); // Reset loading state
     }
+  };
+
+  const removeLoanFromComparison = (index: number) => {
+    const updatedLoans = comparisonLoans.filter((_, i) => i !== index);
+    setComparisonLoans(updatedLoans);
+    toast({
+      title: "Loan Removed",
+      description: "Loan has been removed from comparison.",
+    });
+  };
+
+  const editLoanName = (index: number, newName: string) => {
+    const updatedLoans = [...comparisonLoans];
+    updatedLoans[index] = { ...updatedLoans[index], name: newName };
+    setComparisonLoans(updatedLoans);
+  };
+
+  // Helper function to find the best loan deal (lowest total cost)
+  const getBestLoanIndex = () => {
+    if (comparisonLoans.length === 0) return -1;
+    let bestIndex = 0;
+    let lowestCost = comparisonLoans[0].totalCost;
+    
+    comparisonLoans.forEach((loan, index) => {
+      if (loan.totalCost < lowestCost) {
+        lowestCost = loan.totalCost;
+        bestIndex = index;
+      }
+    });
+    
+    return bestIndex;
   };
 
   const formatCurrency = (amount: number) => {
@@ -1812,9 +1888,12 @@ export default function LoanCalculator() {
                           size="sm"
                           className="rounded-full text-xs sm:text-sm"
                           data-testid="button-export-pdf"
+                          disabled={isGeneratingPDF}
+                          aria-busy={isGeneratingPDF}
+                          aria-label={isGeneratingPDF ? 'Generating PDF...' : 'Export PDF'}
                         >
                           <Download className="w-4 h-4 mr-1.5" />
-                          Export PDF
+                          {isGeneratingPDF ? 'Generating...' : 'Export PDF'}
                         </Button>
                       </div>
 
@@ -2214,30 +2293,71 @@ export default function LoanCalculator() {
                         Clear All
                       </Button>
                     </div>
-                    <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
+                    <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option. The best deal (lowest total cost) is highlighted in green.</p>
                     <div className="overflow-x-auto -mx-4 sm:mx-0" ref={comparisonRef}>
-                      <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                      <table className="w-full min-w-[900px]" data-testid="comparison-table">
                         <thead className="bg-gray-50">
                           <tr>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Amount</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">APR</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Fees</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Term</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly Payment</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Cost</th>
+                            <th className="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">Actions</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 bg-white">
-                          {comparisonLoans.map((loan, index) => (
-                            <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`comparison-row-${index}`}>
-                              <td className="px-4 py-3 text-sm text-gray-900 font-medium">{loan.name}</td>
-                              <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(loan.amount)}</td>
-                              <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.rate}%</td>
-                              <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.term} {loan.termUnit}</td>
-                              <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(loan.monthlyPayment)}</td>
-                              <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(loan.totalInterest)}</td>
-                            </tr>
-                          ))}
+                          {comparisonLoans.map((loan, index) => {
+                            const isBestDeal = index === getBestLoanIndex();
+                            return (
+                              <tr 
+                                key={index} 
+                                className={`transition-colors ${isBestDeal ? 'bg-green-50 hover:bg-green-100' : 'hover:bg-gray-50'}`} 
+                                data-testid={`comparison-row-${index}`}
+                              >
+                                <td className="px-4 py-3 text-sm font-medium">
+                                  <input
+                                    type="text"
+                                    value={loan.name}
+                                    onChange={(e) => editLoanName(index, e.target.value)}
+                                    className="bg-transparent border-0 focus:border-b focus:border-blue-500 outline-none w-full"
+                                    data-testid={`input-loan-name-${index}`}
+                                  />
+                                  {isBestDeal && (
+                                    <span className="inline-block ml-2 px-2 py-0.5 text-xs font-semibold text-green-800 bg-green-200 rounded-full">
+                                      Best Deal
+                                    </span>
+                                  )}
+                                </td>
+                                <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(loan.amount)}</td>
+                                <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.rate.toFixed(2)}%</td>
+                                <td className="px-4 py-3 text-sm text-right font-semibold text-purple-600">{loan.apr.toFixed(2)}%</td>
+                                <td className="px-4 py-3 text-sm text-right text-orange-600">{formatCurrency(loan.processingFee)}</td>
+                                <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.term} {loan.termUnit}</td>
+                                <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(loan.monthlyPayment)}</td>
+                                <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(loan.totalInterest)}</td>
+                                <td className={`px-4 py-3 text-sm text-right font-bold ${isBestDeal ? 'text-green-700' : 'text-gray-900'}`}>
+                                  {formatCurrency(loan.totalCost)}
+                                </td>
+                                <td className="px-4 py-3 text-center">
+                                  <Button
+                                    onClick={() => removeLoanFromComparison(index)}
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8"
+                                    data-testid={`button-remove-loan-${index}`}
+                                    aria-label={`Remove ${loan.name}`}
+                                  >
+                                    <RotateCcw className="w-4 h-4 text-red-500" />
+                                  </Button>
+                                </td>
+                              </tr>
+                            );
+                          })}
                         </tbody>
                       </table>
                     </div>
@@ -2249,7 +2369,7 @@ export default function LoanCalculator() {
                   <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
-                        Amortization Schedule (First 5 Years)
+                        Complete Amortization Schedule
                       </h3>
                       <Button
                         onClick={() => setShowAmortization(false)}
