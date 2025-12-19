@@ -280,11 +280,12 @@ const Header = () => {
 
               {/* Mobile Menu Button - Show on tablet and mobile */}
               <button
-                className="lg:hidden p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
+                className="lg:hidden p-3 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out min-h-11 min-w-11"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 data-testid="button-mobile-menu"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileMenuOpen}
+                title="Toggle navigation menu"
               >
                 <div className="relative w-6 h-6">
                   <Menu 
@@ -304,8 +305,17 @@ const Header = () => {
         </div>
 
         {/* Mobile & Tablet Menu - Smooth slide-in animation */}
+        {/* Semi-transparent backdrop overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 top-16"
+            onClick={() => setIsMobileMenuOpen(false)}
+            data-testid="mobile-menu-backdrop"
+            aria-hidden="true"
+          />
+        )}
         <div 
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-50 ${
             isMobileMenuOpen 
               ? 'max-h-[calc(100vh-4rem)] opacity-100 visible translate-y-0' 
               : 'max-h-0 opacity-0 invisible -translate-y-2'
@@ -313,13 +323,27 @@ const Header = () => {
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
         >
-          <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
+          {/* Mobile Menu Header with Close Button */}
+          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50">
+            <span className="text-sm font-semibold text-neutral-600 dark:text-neutral-400">Menu</span>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors duration-200"
+              data-testid="button-mobile-menu-close"
+              aria-label="Close menu"
+              title="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-8rem)] scrollbar-thin">
             {/* Navigation Links */}
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                className={`block font-medium text-base py-4 px-4 rounded-lg transition-all duration-200 ease-in-out ${
                   location === link.href
                     ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
                     : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
