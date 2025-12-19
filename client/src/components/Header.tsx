@@ -323,21 +323,7 @@ const Header = () => {
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
         >
-          {/* Mobile Menu Header with Close Button */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/50">
-            <span className="text-sm font-semibold text-neutral-600 dark:text-neutral-400">Menu</span>
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-colors duration-200"
-              data-testid="button-mobile-menu-close"
-              aria-label="Close menu"
-              title="Close menu"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-8rem)] scrollbar-thin">
+          <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
             {/* Navigation Links */}
             {navLinks.map((link, index) => (
               <Link
