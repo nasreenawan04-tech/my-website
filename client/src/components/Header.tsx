@@ -151,7 +151,7 @@ const Header = () => {
   return (
     <>
       <header 
-        className={`sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
+        className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
           isScrolled 
             ? 'bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
             : 'bg-white/90 dark:bg-neutral-900/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
@@ -162,25 +162,28 @@ const Header = () => {
           <div className="flex justify-between items-center h-16 lg:h-[4.5rem]">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
-              <Logo />
+              <div aria-label="DapsiWow home">
+                <Logo />
+              </div>
             </div>
 
             {/* Desktop Navigation - Show on lg screens and above */}
-            <nav className="hidden lg:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center gap-8 px-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group ${
+                  className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group whitespace-nowrap ${
                     location === link.href 
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50' 
                       : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  aria-label={link.label}
                 >
                   {link.label}
                   <span 
-                    className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-200 ease-out rounded-full ${
+                    className={`absolute bottom-1 left-3 right-3 h-[2px] bg-blue-600 dark:bg-blue-400 transition-all duration-200 ease-out rounded-full ${
                       location === link.href ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
                     }`}
                   />
@@ -267,8 +270,9 @@ const Header = () => {
                       <Link href="/signup">
                         <Button 
                           size="sm" 
-                          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 shadow-sm transition-all duration-200 hover:shadow-md"
+                          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 shadow-sm transition-all duration-200 hover:shadow-md px-4"
                           data-testid="button-header-signup"
+                          aria-label="Sign up for DapsiWow"
                         >
                           Sign Up
                         </Button>
@@ -315,7 +319,7 @@ const Header = () => {
           />
         )}
         <div 
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-50 ${
+          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-999 ${
             isMobileMenuOpen 
               ? 'max-h-[calc(100vh-4rem)] opacity-100 visible translate-y-0' 
               : 'max-h-0 opacity-0 invisible -translate-y-2'

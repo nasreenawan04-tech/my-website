@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom z-index utilities for header navigation */
+.z-999 {
+  z-index: 999;
+}
+
+.z-1000 {
+  z-index: 1000;
+}
+
 /* Custom scrollbar styles - Fixed for proper class combination support */
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
