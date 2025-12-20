@@ -91,24 +91,6 @@ const toolsData: Tool[] = [
     icon: "fas fa-percentage",
     href: "/tools/dti-ratio-calculator",
   },
-  {
-    id: "personal-finance-dashboard",
-    name: "Personal Finance Dashboard",
-    description:
-      "Comprehensive financial overview with income, expenses, savings, and investment tracking",
-    category: "finance" as const,
-    icon: "fas fa-chart-pie",
-    href: "/tools/personal-finance-dashboard",
-  },
-  {
-    id: "debt-consolidation-calculator",
-    name: "Debt Consolidation Calculator",
-    description:
-      "Calculate potential savings from consolidating multiple debts into a single loan",
-    category: "finance" as const,
-    icon: "fas fa-compress-arrows-alt",
-    href: "/tools/debt-consolidation-calculator",
-  },
 
   // Text Tools (19)
   {
