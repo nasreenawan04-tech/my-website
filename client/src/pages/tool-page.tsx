@@ -25,7 +25,6 @@ const toolComponents = {
   'dti-ratio-calculator': lazy(() => import('@/pages/dti-ratio-calculator')),
   'car-loan-calculator': lazy(() => import('@/pages/car-loan-calculator')),
   'home-loan-calculator': lazy(() => import('@/pages/home-loan-calculator')),
-  'education-loan-calculator': lazy(() => import('@/pages/education-loan-calculator')),
   'credit-card-interest-calculator': lazy(() => import('@/pages/credit-card-interest-calculator')),
   'lease-calculator': lazy(() => import('@/pages/lease-calculator')),
   'percentage-calculator': lazy(() => import('@/pages/percentage-calculator')),

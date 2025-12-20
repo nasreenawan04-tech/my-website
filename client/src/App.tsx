@@ -155,7 +155,8 @@ function Router() {
           <Route path="/tools/break-even-calculator" component={() => <Redirect to="/tools/business-loan-calculator" />} />
           <Route path="/car-loan-calculator" component={() => <Redirect to="/tools/car-loan-calculator" />} />
           <Route path="/home-loan-calculator" component={() => <Redirect to="/tools/home-loan-calculator" />} />
-          <Route path="/education-loan-calculator" component={() => <Redirect to="/tools/education-loan-calculator" />} />
+          <Route path="/education-loan-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/education-loan-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/credit-card-interest-calculator" component={() => <Redirect to="/tools/credit-card-interest-calculator" />} />
           <Route path="/lease-calculator" component={() => <Redirect to="/tools/lease-calculator" />} />
           <Route path="/percentage-calculator" component={() => <Redirect to="/tools/percentage-calculator" />} />

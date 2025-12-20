@@ -83,15 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "education-loan-calculator",
-    name: "Education Loan Calculator",
-    description:
-      "Calculate education loan payments with moratorium period support",
-    category: "finance" as const,
-    icon: "fas fa-graduation-cap",
-    href: "/tools/education-loan-calculator",
-  },
-  {
     id: "credit-card-interest-calculator",
     name: "Credit Card Interest Calculator",
     description: "Calculate credit card interest and payment schedules",
