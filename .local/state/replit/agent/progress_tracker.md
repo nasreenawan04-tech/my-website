@@ -104,3 +104,9 @@
 [x] 104. Removed all 3 tool entries from Text Tools category listing in data/tools.ts
 [x] 105. Added redirect routes to /text-tools for all 3 conversion tools
 [x] 106. Restarted workflow and verified Text Tools page operational
+[x] 107. Deleted /tools/text-to-hex-converter page and removed from data/tools.ts
+[x] 108. Deleted /tools/font-style-changer page and removed from data/tools.ts
+[x] 109. Deleted /tools/markdown-to-html-converter page and removed from data/tools.ts
+[x] 110. Removed all 3 tool entries from Text Tools category listing in data/tools.ts
+[x] 111. Added redirect routes to /text-tools for all 3 text styling/conversion tools
+[x] 112. Restarted workflow and verified Text Tools page operational

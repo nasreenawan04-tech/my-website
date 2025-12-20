@@ -190,6 +190,12 @@ function Router() {
           <Route path="/tools/text-to-decimal-converter" component={() => <Redirect to="/text-tools" />} />
           <Route path="/hex-to-text-converter" component={() => <Redirect to="/text-tools" />} />
           <Route path="/tools/hex-to-text-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-to-hex-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-to-hex-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/font-style-changer" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/font-style-changer" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/markdown-to-html" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/markdown-to-html" component={() => <Redirect to="/text-tools" />} />
           <Route path="/duplicate-line-remover" component={() => <Redirect to="/tools/duplicate-line-remover" />} />
           <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
           <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
