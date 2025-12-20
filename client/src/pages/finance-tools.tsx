@@ -1,11 +1,13 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
-import { Calculator, Search } from 'lucide-react';
+import { Calculator, Search, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
+import { Button } from '@/components/ui/button';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
 
@@ -208,6 +210,56 @@ const FinanceTools = () => {
                   </p>
                 </div>
               )}
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-center mb-12">Explore Other Tool Categories</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white rounded-lg p-8 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold text-neutral-900 mb-3">Finance Tools</h3>
+                  <p className="text-neutral-600 mb-6">
+                    Access 30+ financial calculators including mortgage, loan, ROI, and investment planning tools.
+                  </p>
+                  <a href="/finance-tools" className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2" data-testid="link-explore-finance">
+                    Explore Finance Tools <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+
+                <div className="bg-white rounded-lg p-8 shadow-sm border border-neutral-200 hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold text-neutral-900 mb-3">Health Tools</h3>
+                  <p className="text-neutral-600 mb-6">
+                    Access 30+ health and fitness calculators including BMI, calorie, pregnancy, and medical calculators.
+                  </p>
+                  <a href="/health-tools" className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2" data-testid="link-explore-health">
+                    Explore Health Tools <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Start Processing Text Like a Pro</h2>
+              <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                Save time and boost productivity with our free text processing tools.
+                <br />
+                Analyze, format, and transform your content instantly.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/text-tools" className="inline-block" data-testid="button-browse-all-tools">
+                  <Button variant="secondary" size="lg">
+                    Browse All Tools
+                  </Button>
+                </a>
+                <button className="inline-flex items-center justify-center px-6 py-3 rounded-md bg-white/10 border border-white text-white hover:bg-white/20 font-medium text-lg transition-colors" data-testid="button-create-account">
+                  Create Free Account
+                </button>
+              </div>
             </div>
           </section>
         </main>
