@@ -26,3 +26,9 @@
 [x] 26. Updated App.tsx redirects to /finance-tools for both calculators
 [x] 27. Removed imports from tool-page.tsx component map
 [x] 28. Verified workflow running successfully - Finance Tools page updated
+[x] 29. Deleted /tools/budget-calculator page
+[x] 30. Deleted /tools/loan-comparison-calculator page
+[x] 31. Removed both entries from data/tools.ts (2 tools removed)
+[x] 32. Updated App.tsx: budget redirects to /finance-tools, loan-comparison redirects to /tools/loan-calculator
+[x] 33. Removed imports from tool-page.tsx component map
+[x] 34. Verified workflow running successfully - Finance Tools now displays 11 tools

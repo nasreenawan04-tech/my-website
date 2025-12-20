@@ -169,8 +169,10 @@ function Router() {
           <Route path="/tools/currency-percentage-change-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/future-value-investment-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/tools/future-value-investment-calculator" component={() => <Redirect to="/finance-tools" />} />
-          <Route path="/budget-calculator" component={() => <Redirect to="/tools/budget-calculator" />} />
-          <Route path="/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-comparison-calculator" />} />
+          <Route path="/budget-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/budget-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
+          <Route path="/tools/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
           <Route path="/dti-ratio-calculator" component={() => <Redirect to="/tools/dti-ratio-calculator" />} />
           <Route path="/personal-finance-dashboard" component={() => <Redirect to="/tools/personal-finance-dashboard" />} />
           <Route path="/debt-consolidation-calculator" component={() => <Redirect to="/tools/debt-consolidation-calculator" />} />
