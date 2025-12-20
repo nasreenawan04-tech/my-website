@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "retirement-calculator",
-    name: "Retirement Calculator",
-    description: "Plan your retirement savings",
-    category: "finance" as const,
-    icon: "fas fa-user-clock",
-    href: "/tools/retirement-calculator",
-  },
-  {
     id: "sip-calculator",
     name: "SIP Calculator",
     description: "Calculate Systematic Investment Plan returns",

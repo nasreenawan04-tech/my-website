@@ -289,3 +289,8 @@
 [x] 289. Set up 301 redirects from /stock-profit-calculator and /tools/stock-profit-calculator to /finance-tools
 [x] 290. Restart workflow to verify all changes work correctly
 [x] 291. Complete Stock Profit Calculator removal - all systems operational
+[x] 292. Delete /tools/retirement-calculator page (removed retirement-calculator.tsx file)
+[x] 293. Remove Retirement Calculator from Finance Tools listing (26 → 25 tools)
+[x] 294. Set up 301 redirects from /retirement-calculator and /tools/retirement-calculator to /finance-tools
+[x] 295. Restart workflow to verify all changes work correctly
+[x] 296. Complete Retirement Calculator removal - all systems operational
