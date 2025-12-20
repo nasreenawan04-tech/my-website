@@ -1075,9 +1075,9 @@ export const blogPosts: BlogPost[] = [
           Clean up messy lists and remove duplicate entries automatically. Use our <a href="/tools/duplicate-line-remover" class="text-primary hover:underline font-medium">Duplicate Line Remover</a> to maintain data quality in CSV files, contact lists, or keyword lists.
         </p>
 
-        <h3 class="text-xl font-semibold mt-6 mb-3">Text Cleaner & Formatter</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-3">Base64 Encoder/Decoder</h3>
         <p class="mb-4">
-          Remove unwanted characters, fix spacing, and standardize formatting in one click. The <a href="/tools/text-cleaner-formatter" class="text-primary hover:underline font-medium">Text Cleaner</a> handles content copied from PDFs, emails, or web pages.
+          Convert text to Base64 and decode Base64 to text with advanced encoding options. Perfect for handling encoded content and data transformation needs.
         </p>
 
         <div class="bg-accent/50 border border-border rounded-lg p-6 my-8">

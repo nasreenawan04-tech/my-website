@@ -135,15 +135,6 @@ const toolsData: Tool[] = [
     href: "/tools/base64-encoder-decoder",
   },
   {
-    id: "text-cleaner-formatter",
-    name: "Text Cleaner & Formatter",
-    description:
-      "Clean up messy text by removing extra spaces, line breaks, and formatting issues",
-    category: "text" as const,
-    icon: "fas fa-broom",
-    href: "/tools/text-cleaner-formatter",
-  },
-  {
     id: "unit-converter",
     name: "Unit Converter",
     description:

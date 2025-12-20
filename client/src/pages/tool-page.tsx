@@ -94,7 +94,6 @@ const toolComponents = {
   'text-pattern-generator': lazy(() => import('@/pages/text-pattern-generator')),
   'password-strength-checker': lazy(() => import('@/pages/password-strength-checker')),
   'base64-encoder-decoder': lazy(() => import('@/pages/base64-encoder-decoder')),
-  'text-cleaner-formatter': lazy(() => import('@/pages/text-cleaner-formatter')),
   'unit-converter': lazy(() => import('@/pages/unit-converter')),
 };
 
