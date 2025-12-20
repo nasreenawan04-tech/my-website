@@ -15,7 +15,7 @@ export const categories = {
 };
 
 const toolsData: Tool[] = [
-  // Finance Tools (31)
+  // Finance Tools (30)
   {
     id: "loan-calculator",
     name: "Loan Calculator",
@@ -65,14 +65,6 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-percent",
     href: "/tools/simple-interest-calculator",
-  },
-  {
-    id: "inflation-calculator",
-    name: "Inflation Calculator",
-    description: "Calculate inflation impact over time",
-    category: "finance" as const,
-    icon: "fas fa-arrow-up",
-    href: "/tools/inflation-calculator",
   },
   {
     id: "savings-goal-calculator",

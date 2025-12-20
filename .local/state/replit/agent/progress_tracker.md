@@ -292,6 +292,13 @@
 [x] 282. Remove lazy import from tool-page.tsx
 [x] 283. Redirect old /salary-to-hourly-calculator route to /finance-tools
 [x] 284. Delete salary-to-hourly-calculator.tsx page file
+[x] 285. Delete inflation-calculator from /tools/inflation-calculator route
+[x] 286. Remove inflation-calculator from Finance Tools category listing in tools.ts
+[x] 287. Update Finance Tools count from 31 to 30 tools
+[x] 288. Remove inflation-calculator lazy import from tool-page.tsx
+[x] 289. Add redirect routes for both /inflation-calculator and /tools/inflation-calculator to /finance-tools
+[x] 290. Restart workflow and verify application is running successfully
+[x] 291. Confirm inflation calculator has been deleted and all redirects working
 [x] 285. Run npm install to resolve vite not found error after latest migration
 [x] 286. Restart workflow and verify application is running successfully on port 5000
 [x] 287. Mark all migration tasks as complete - project fully operational in Replit environment
