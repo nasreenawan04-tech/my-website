@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "salary-to-hourly-calculator",
-    name: "Salary to Hourly Calculator",
-    description: "Convert annual salary to hourly wage",
-    category: "finance" as const,
-    icon: "fas fa-clock",
-    href: "/tools/salary-to-hourly-calculator",
-  },
-  {
     id: "tip-calculator",
     name: "Tip Calculator",
     description: "Calculate tip amount and split bills",

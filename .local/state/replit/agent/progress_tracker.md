@@ -282,3 +282,8 @@
 [x] 277. Run npm install and restart workflow after migration
 [x] 278. Mark migration complete - project fully operational in Replit environment
 [x] 279. Add comprehensive SEO meta tags to homepage (updated title, description, Open Graph tags, Twitter Card tags, canonical URL, robots meta tag, viewport meta tag verification)
+[x] 280. Delete Salary to Hourly Calculator tool page at /tools/salary-to-hourly-calculator
+[x] 281. Remove from Finance Tools listing in tools.ts
+[x] 282. Remove lazy import from tool-page.tsx
+[x] 283. Redirect old /salary-to-hourly-calculator route to /finance-tools
+[x] 284. Delete salary-to-hourly-calculator.tsx page file
