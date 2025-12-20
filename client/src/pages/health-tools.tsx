@@ -60,7 +60,7 @@ const HealthTools = () => {
       <Helmet>
         {/* Primary Meta Tags */}
         <title>Health Tools - Free Health & Wellness Calculators</title>
-        <meta name="description" content="Access 27+ free health calculators including BMI, calorie, pregnancy, body fat, and fitness tools. Track your wellness journey with instant, accurate results." />
+        <meta name="description" content="Access 24+ free health calculators including BMI, calorie, body fat, and fitness tools. Track your wellness journey with instant, accurate results." />
         <meta name="keywords" content="health tools, BMI calculator, calorie calculator, pregnancy calculator, fitness tools, health calculators, body fat calculator, ideal weight calculator" />
         <link rel="canonical" href="https://dapsiwow.com/health-tools" />
         <meta name="robots" content="index, follow" />
@@ -102,7 +102,7 @@ const HealthTools = () => {
                 "@id": "https://dapsiwow.com/health-tools",
                 "url": "https://dapsiwow.com/health-tools",
                 "name": "Health Tools - Free Health & Wellness Calculators",
-                "description": "Access 27+ free health calculators including BMI, calorie, pregnancy, body fat, and fitness tools. Track your wellness journey with instant, accurate results.",
+                "description": "Access 24+ free health calculators including BMI, calorie, body fat, and fitness tools. Track your wellness journey with instant, accurate results.",
                 "inLanguage": "en-US",
                 "isPartOf": {
                   "@id": "https://dapsiwow.com/#website"
@@ -306,7 +306,7 @@ const HealthTools = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               >
-                27+ free health and fitness tools to track, calculate, and improve your wellbeing
+                24+ free health and fitness tools to track, calculate, and improve your wellbeing
               </motion.p>
               
               {/* Search Bar */}

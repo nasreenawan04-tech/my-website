@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (27)
+  // Health Tools (24)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",
@@ -240,15 +240,6 @@ const toolsData: Tool[] = [
     href: "/tools/max-heart-rate-calculator",
   },
   {
-    id: "blood-pressure-tracker",
-    name: "Blood Pressure Tracker",
-    description:
-      "Track and monitor blood pressure readings with instant classification",
-    category: "health" as const,
-    icon: "fas fa-stethoscope",
-    href: "/tools/blood-pressure-tracker",
-  },
-  {
     id: "sleep-calculator",
     name: "Sleep Calculator",
     description:
@@ -256,15 +247,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-bed",
     href: "/tools/sleep-calculator",
-  },
-  {
-    id: "ovulation-calculator",
-    name: "Ovulation Calculator",
-    description:
-      "Track fertile days and ovulation date for conception planning",
-    category: "health" as const,
-    icon: "fas fa-female",
-    href: "/tools/ovulation-calculator",
   },
   {
     id: "baby-growth-chart",
@@ -345,14 +327,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-swimmer",
     href: "/tools/swimming-calorie-calculator",
-  },
-  {
-    id: "alcohol-calorie-calculator",
-    name: "Alcohol Calorie Calculator",
-    description: "Calculate calories in alcoholic drinks",
-    category: "health" as const,
-    icon: "fas fa-wine-glass",
-    href: "/tools/alcohol-calorie-calculator",
   },
   {
     id: "smoking-cost-calculator",
