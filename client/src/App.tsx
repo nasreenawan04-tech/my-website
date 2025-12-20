@@ -147,7 +147,8 @@ function Router() {
           <Route path="/tools/stock-profit-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/retirement-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/tools/retirement-calculator" component={() => <Redirect to="/finance-tools" />} />
-          <Route path="/sip-calculator" component={() => <Redirect to="/tools/sip-calculator" />} />
+          <Route path="/sip-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/sip-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/investment-return-calculator" component={() => <Redirect to="/tools/investment-return-calculator" />} />
           <Route path="/break-even-calculator" component={() => <Redirect to="/tools/break-even-calculator" />} />
           <Route path="/car-loan-calculator" component={() => <Redirect to="/tools/car-loan-calculator" />} />

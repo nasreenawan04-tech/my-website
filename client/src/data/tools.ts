@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "sip-calculator",
-    name: "SIP Calculator",
-    description: "Calculate Systematic Investment Plan returns",
-    category: "finance" as const,
-    icon: "fas fa-coins",
-    href: "/tools/sip-calculator",
-  },
-  {
     id: "investment-return-calculator",
     name: "Investment Return Calculator",
     description: "Calculate returns on various investments",

@@ -294,3 +294,8 @@
 [x] 294. Set up 301 redirects from /retirement-calculator and /tools/retirement-calculator to /finance-tools
 [x] 295. Restart workflow to verify all changes work correctly
 [x] 296. Complete Retirement Calculator removal - all systems operational
+[x] 297. Delete /tools/sip-calculator page (removed sip-calculator.tsx file)
+[x] 298. Remove SIP Calculator from Finance Tools listing (25 → 24 tools)
+[x] 299. Set up 301 redirects from /sip-calculator and /tools/sip-calculator to /finance-tools
+[x] 300. Restart workflow to verify all changes work correctly
+[x] 301. Complete SIP Calculator removal - all systems operational
