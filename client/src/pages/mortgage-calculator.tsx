@@ -3288,17 +3288,6 @@ const MortgageCalculator = () => {
                 </div>
 
                 <div className="bg-white rounded-lg p-4 sm:p-5 shadow-md hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2 text-base sm:text-lg">Debt Payoff Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-700 mb-3">Create a debt payoff plan and see how extra payments can help you become debt-free faster.</p>
-                  <a 
-                    href="/tools/debt-payoff-calculator" 
-                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors"
-                  >
-                    Try Calculator →
-                  </a>
-                </div>
-
-                <div className="bg-white rounded-lg p-4 sm:p-5 shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="font-bold text-gray-900 mb-2 text-base sm:text-lg">ROI Calculator</h3>
                   <p className="text-xs sm:text-sm text-gray-700 mb-3">Calculate return on investment for real estate, stocks, or business ventures.</p>
                   <a 

@@ -15,7 +15,7 @@ export const categories = {
 };
 
 const toolsData: Tool[] = [
-  // Finance Tools (29)
+  // Finance Tools (28)
   {
     id: "loan-calculator",
     name: "Loan Calculator",
@@ -65,14 +65,6 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-percent",
     href: "/tools/simple-interest-calculator",
-  },
-  {
-    id: "debt-payoff-calculator",
-    name: "Debt Payoff Calculator",
-    description: "Calculate time to pay off debts",
-    category: "finance" as const,
-    icon: "fas fa-credit-card",
-    href: "/tools/debt-payoff-calculator",
   },
   {
     id: "net-worth-calculator",

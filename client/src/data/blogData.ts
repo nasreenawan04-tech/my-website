@@ -159,24 +159,7 @@ export const blogPosts: BlogPost[] = [
           <strong>Fitness Insight:</strong> Websites featuring calorie calculators attract over 450,000 monthly visitors, making them some of the most popular health tools online. Calculate your ideal daily calorie intake with our <a href="/calorie-calculator" class="text-primary hover:underline font-medium">Calorie Calculator</a>.
         </p>
 
-        <h2 class="text-2xl font-bold mt-8 mb-4">6. Debt Payoff Calculator: Accelerate Financial Freedom</h2>
-        <p class="mb-4">
-          If you're juggling multiple debts — credit cards, student loans, car payments — a debt payoff calculator is your roadmap to financial freedom. This tool compares popular payoff strategies and shows you exactly how to become debt-free faster while saving thousands in interest.
-        </p>
-
-        <h3 class="text-xl font-semibold mt-6 mb-3">Strategic Payoff Methods:</h3>
-        <ul class="list-disc pl-6 mb-4 space-y-2">
-          <li><strong>Debt Avalanche:</strong> Pay highest interest debts first to minimize total interest paid</li>
-          <li><strong>Debt Snowball:</strong> Tackle smallest balances first for psychological wins and momentum</li>
-          <li><strong>Hybrid Approach:</strong> Combine both methods based on your personality and situation</li>
-          <li><strong>Extra Payment Impact:</strong> See how adding just $50-100 monthly accelerates your timeline</li>
-        </ul>
-
-        <p class="mb-6">
-          <strong>Real Success Story:</strong> A user with $47,000 in credit card debt used our <a href="/debt-payoff-calculator" class="text-primary hover:underline font-medium">Debt Payoff Calculator</a> and discovered that the avalanche method would save $3,400 in interest and 8 months compared to minimum payments. That's the power of having a clear plan.
-        </p>
-
-        <h2 class="text-2xl font-bold mt-8 mb-4">7. Retirement Calculator: Plan Your Golden Years</h2>
+        <h2 class="text-2xl font-bold mt-8 mb-4">6. Retirement Calculator: Plan Your Golden Years</h2>
         <p class="mb-4">
           Retirement planning feels overwhelming, but it doesn't have to be. A retirement calculator simplifies the process by showing you exactly how much you need to save now to retire comfortably later. This tool accounts for inflation, expected returns, Social Security benefits, and your desired retirement lifestyle.
         </p>
@@ -194,7 +177,7 @@ export const blogPosts: BlogPost[] = [
           <strong>Sobering Reality:</strong> Most Americans have saved less than $50,000 for retirement by age 40. Using a retirement calculator early helps you avoid becoming part of that statistic. Start planning today with our <a href="/retirement-calculator" class="text-primary hover:underline font-medium">Retirement Calculator</a>.
         </p>
 
-        <h2 class="text-2xl font-bold mt-8 mb-4">8. Percentage Calculator: Everyday Math Made Easy</h2>
+        <h2 class="text-2xl font-bold mt-8 mb-4">7. Percentage Calculator: Everyday Math Made Easy</h2>
         <p class="mb-4">
           Don't underestimate the humble percentage calculator — it's one of the most frequently searched calculator types, with millions of monthly queries. From calculating discounts while shopping to figuring out tip amounts at restaurants, percentage calculators solve dozens of daily problems.
         </p>
@@ -419,7 +402,6 @@ export const blogPosts: BlogPost[] = [
           Taking control of debt is one of the most powerful financial moves you can make. These calculators help you create actionable payoff plans.
         </p>
         <ul class="list-disc pl-6 mb-6 space-y-2">
-          <li><strong>Debt Payoff Calculator:</strong> Compare different payoff strategies like debt avalanche vs. snowball. Our <a href="/debt-payoff-calculator" class="text-primary hover:underline font-medium">Debt Payoff Calculator</a> shows you the fastest path to becoming debt-free.</li>
           <li><strong>Credit Card Payoff Calculator:</strong> Understand how long it takes to pay off credit card balances with minimum payments versus aggressive strategies.</li>
         </ul>
 
@@ -507,13 +489,6 @@ export const blogPosts: BlogPost[] = [
             <li class="flex items-start gap-3">
               <span class="text-primary font-bold">📌</span>
               <div>
-                <strong>Struggling with credit card or multiple debts?</strong><br>
-                → Get organized with <a href="/debt-payoff-calculator" class="text-primary hover:underline font-medium">Debt Payoff Calculator</a>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="text-primary font-bold">📌</span>
-              <div>
                 <strong>Building a business or evaluating profitability?</strong><br>
                 → Analyze with <a href="/business-loan-calculator" class="text-primary hover:underline font-medium">Business Loan Calculator</a> or ROI tools
               </div>
@@ -561,7 +536,7 @@ export const blogPosts: BlogPost[] = [
         <div class="bg-accent/50 border border-border rounded-lg p-6 my-6">
           <h3 class="text-xl font-semibold mb-3">Case Study: Mike's Debt Payoff Strategy</h3>
           <p class="mb-3">
-            Mike had $47,000 in credit card debt across five cards. Using the <a href="/debt-payoff-calculator" class="text-primary hover:underline font-medium">Debt Payoff Calculator</a>, he compared the debt avalanche (highest interest first) versus debt snowball (smallest balance first) methods.
+            Mike had $47,000 in credit card debt across five cards and needed a clear strategy to eliminate it faster.
           </p>
           <p class="mb-0">
             <strong>Result:</strong> The calculator showed him that the avalanche method would save $3,400 in interest and shave 8 months off his payoff timeline. He implemented the strategy and became debt-free in 3.5 years instead of 4.25 years.
@@ -739,7 +714,7 @@ export const blogPosts: BlogPost[] = [
           AI systems favor comprehensive topic coverage over isolated pages. Create pillar content on core topics, then support it with related subtopic pages that link together. This helps AI understand the depth of your expertise.
         </p>
         <p class="mb-6">
-          For instance, a pillar page about "Financial Planning Tools" could link to detailed guides on <a href="/compound-interest-calculator" class="text-primary hover:underline font-medium">Compound Interest Calculators</a>, <a href="/debt-payoff-calculator" class="text-primary hover:underline font-medium">Debt Payoff Strategies</a>, and <a href="/budget-calculator" class="text-primary hover:underline font-medium">Budget Planning</a>.
+          For instance, a pillar page about "Financial Planning Tools" could link to detailed guides on <a href="/compound-interest-calculator" class="text-primary hover:underline font-medium">Compound Interest Calculators</a> and <a href="/budget-calculator" class="text-primary hover:underline font-medium">Budget Planning</a>.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3">3. Emphasize First-Hand Experience and Expertise</h3>
@@ -1012,12 +987,6 @@ export const blogPosts: BlogPost[] = [
             </p>
           </div>
 
-          <div class="border-l-4 border-primary pl-6">
-            <h3 class="text-xl font-semibold mb-3">5. Debt Payoff Calculator</h3>
-            <p class="mb-3">
-              Create a strategic plan to eliminate business debt faster. The <a href="/tools/debt-payoff-calculator" class="text-primary hover:underline font-medium">Debt Payoff Calculator</a> compares payoff strategies and shows interest savings.
-            </p>
-          </div>
 
           <div class="border-l-4 border-primary pl-6">
             <h3 class="text-xl font-semibold mb-3">6. Net Worth Calculator</h3>
