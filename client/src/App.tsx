@@ -157,8 +157,8 @@ function Router() {
           <Route path="/education-loan-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/tools/education-loan-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/credit-card-interest-calculator" component={() => <Redirect to="/tools/credit-card-interest-calculator" />} />
-          <Route path="/lease-calculator" component={() => <Redirect to="/tools/lease-calculator" />} />
-          <Route path="/percentage-calculator" component={() => <Redirect to="/tools/percentage-calculator" />} />
+          <Route path="/lease-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/percentage-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/discount-calculator" component={() => <Redirect to="/tools/discount-calculator" />} />
           <Route path="/vat-gst-calculator" component={() => <Redirect to="/tools/vat-gst-calculator" />} />
           <Route path="/paypal-fee-calculator" component={() => <Redirect to="/tools/paypal-fee-calculator" />} />

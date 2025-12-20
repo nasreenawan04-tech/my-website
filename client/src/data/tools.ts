@@ -83,14 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "percentage-calculator",
-    name: "Percentage Calculator",
-    description: "Calculate percentages and percentage changes",
-    category: "finance" as const,
-    icon: "fas fa-percentage",
-    href: "/tools/percentage-calculator",
-  },
-  {
     id: "discount-calculator",
     name: "Discount Calculator",
     description: "Calculate discounts and final prices",

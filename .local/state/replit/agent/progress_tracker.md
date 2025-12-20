@@ -6,3 +6,7 @@
 [x] 6. Run npm install and restart workflow successfully
 [x] 7. Configured workflow with webview output on port 5000
 [x] 8. Verified application runs correctly with screenshot
+[x] 9. Delete /tools/lease-calculator page redirect to /finance-tools
+[x] 10. Delete /tools/percentage-calculator page and all references
+[x] 11. Removed from Finance Tools category listing
+[x] 12. Updated basic calculator references and blog post content
