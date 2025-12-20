@@ -344,28 +344,6 @@ const FinanceTools = () => {
                   </p>
                 </div>
               )}
-
-              {/* Popular Tools Section */}
-              <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Finance Tools</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <a href="/tools/loan-calculator" className="text-center p-4 bg-blue-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer">
-                    <i className="fas fa-calculator text-2xl text-blue-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Loan Calculator</h3>
-                    <p className="text-sm text-neutral-600">Calculate monthly payments</p>
-                  </a>
-                  <a href="/tools/mortgage-calculator" className="text-center p-4 bg-green-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer">
-                    <i className="fas fa-home text-2xl text-green-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Mortgage Calculator</h3>
-                    <p className="text-sm text-neutral-600">Plan your home purchase</p>
-                  </a>
-                  <a href="/tools/tax-calculator" className="text-center p-4 bg-purple-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer">
-                    <i className="fas fa-percentage text-2xl text-purple-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Tax Calculator</h3>
-                    <p className="text-sm text-neutral-600">Calculate income tax</p>
-                  </a>
-                </div>
-              </div>
             </div>
           </section>
 
