@@ -30,11 +30,8 @@ const toolComponents = {
 
   // Health Tools
   'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
-  'bmr-calculator': lazy(() => import('@/pages/bmr-calculator')),
   'calorie-calculator': lazy(() => import('@/pages/calorie-calculator')),
   'body-fat-calculator': lazy(() => import('@/pages/body-fat-calculator')),
-  'ideal-weight-calculator': lazy(() => import('@/pages/ideal-weight-calculator')),
-  'pregnancy-due-date-calculator': lazy(() => import('@/pages/pregnancy-due-date-calculator')),
   'water-intake-calculator': lazy(() => import('@/pages/water-intake-calculator')),
   'protein-intake-calculator': lazy(() => import('@/pages/protein-intake-calculator')),
   'carb-calculator': lazy(() => import('@/pages/carb-calculator')),

@@ -148,3 +148,14 @@
 [x] 148. Removed from tool-page.tsx component map
 [x] 149. Restarted workflow and verified Text Tools page operational
 [x] 150. All text-cleaner-formatter references removed - application fully operational
+[x] 151. Deleted /tools/bmr-calculator page
+[x] 152. Deleted /tools/pregnancy-due-date-calculator page
+[x] 153. Deleted /tools/ideal-weight-calculator page
+[x] 154. Removed 3 health tools from data/tools.ts
+[x] 155. Updated Health Tools count from 30 to 27 in data/tools.ts comment
+[x] 156. Added redirects to /health-tools for bmr-calculator and pregnancy-due-date-calculator
+[x] 157. Added redirects to /tools/bmi-calculator for ideal-weight-calculator in App.tsx
+[x] 158. Removed all 3 tools from tool-page.tsx component map
+[x] 159. Updated health-tools.tsx counter from "30+" to "27+" (all instances)
+[x] 160. Restarted workflow and verified Health Tools page operational
+[x] 161. Three health tools deleted - application fully operational

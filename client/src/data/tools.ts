@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (30)
+  // Health Tools (27)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",
@@ -154,14 +154,6 @@ const toolsData: Tool[] = [
     icon: "fas fa-weight",
     isPopular: true,
     href: "/tools/bmi-calculator",
-  },
-  {
-    id: "bmr-calculator",
-    name: "BMR Calculator",
-    description: "Calculate Basal Metabolic Rate and daily calorie needs",
-    category: "health" as const,
-    icon: "fas fa-fire",
-    href: "/tools/bmr-calculator",
   },
   {
     id: "calorie-calculator",
@@ -179,22 +171,6 @@ const toolsData: Tool[] = [
     icon: "fas fa-percentage",
     isPopular: true,
     href: "/tools/body-fat-calculator",
-  },
-  {
-    id: "pregnancy-due-date-calculator",
-    name: "Pregnancy Due Date Calculator",
-    description: "Calculate expected delivery date and pregnancy milestones",
-    category: "health" as const,
-    icon: "fas fa-baby",
-    href: "/tools/pregnancy-due-date-calculator",
-  },
-  {
-    id: "ideal-weight-calculator",
-    name: "Ideal Weight Calculator",
-    description: "Calculate ideal body weight using multiple proven formulas",
-    category: "health" as const,
-    icon: "fas fa-balance-scale",
-    href: "/tools/ideal-weight-calculator",
   },
   {
     id: "water-intake-calculator",

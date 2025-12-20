@@ -218,11 +218,14 @@ function Router() {
           <Route path="/base64-encoder-decoder" component={() => <Redirect to="/tools/base64-encoder-decoder" />} />
           <Route path="/hex-to-text-converter" component={() => <Redirect to="/tools/hex-to-text-converter" />} />
           <Route path="/binary-to-text-converter" component={() => <Redirect to="/tools/binary-to-text-converter" />} />
-          <Route path="/bmr-calculator" component={() => <Redirect to="/tools/bmr-calculator" />} />
+          <Route path="/bmr-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/bmr-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/calorie-calculator" component={() => <Redirect to="/tools/calorie-calculator" />} />
           <Route path="/body-fat-calculator" component={() => <Redirect to="/tools/body-fat-calculator" />} />
-          <Route path="/pregnancy-due-date-calculator" component={() => <Redirect to="/tools/pregnancy-due-date-calculator" />} />
-          <Route path="/ideal-weight-calculator" component={() => <Redirect to="/tools/ideal-weight-calculator" />} />
+          <Route path="/pregnancy-due-date-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/pregnancy-due-date-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/ideal-weight-calculator" component={() => <Redirect to="/tools/bmi-calculator" />} />
+          <Route path="/tools/ideal-weight-calculator" component={() => <Redirect to="/tools/bmi-calculator" />} />
           <Route path="/water-intake-calculator" component={() => <Redirect to="/tools/water-intake-calculator" />} />
           <Route path="/protein-intake-calculator" component={() => <Redirect to="/tools/protein-intake-calculator" />} />
           <Route path="/carb-calculator" component={() => <Redirect to="/tools/carb-calculator" />} />
