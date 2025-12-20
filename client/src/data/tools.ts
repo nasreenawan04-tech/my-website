@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "stock-profit-calculator",
-    name: "Stock Profit Calculator",
-    description: "Calculate profit/loss on stock investments",
-    category: "finance" as const,
-    icon: "fas fa-chart-bar",
-    href: "/tools/stock-profit-calculator",
-  },
-  {
     id: "retirement-calculator",
     name: "Retirement Calculator",
     description: "Plan your retirement savings",

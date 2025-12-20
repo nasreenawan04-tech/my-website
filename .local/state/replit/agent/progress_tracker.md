@@ -284,3 +284,8 @@
 [x] 284. Set up 301 redirects from /net-worth-calculator and /tools/net-worth-calculator to /finance-tools
 [x] 285. Restart workflow to verify all changes work correctly
 [x] 286. Complete Net Worth Calculator removal - all systems operational
+[x] 287. Delete /tools/stock-profit-calculator page (removed stock-profit-calculator.tsx file)
+[x] 288. Remove Stock Profit Calculator from Finance Tools listing (27 → 26 tools)
+[x] 289. Set up 301 redirects from /stock-profit-calculator and /tools/stock-profit-calculator to /finance-tools
+[x] 290. Restart workflow to verify all changes work correctly
+[x] 291. Complete Stock Profit Calculator removal - all systems operational
