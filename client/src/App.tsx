@@ -196,7 +196,13 @@ function Router() {
           <Route path="/tools/font-style-changer" component={() => <Redirect to="/text-tools" />} />
           <Route path="/markdown-to-html" component={() => <Redirect to="/text-tools" />} />
           <Route path="/tools/markdown-to-html" component={() => <Redirect to="/text-tools" />} />
-          <Route path="/duplicate-line-remover" component={() => <Redirect to="/tools/duplicate-line-remover" />} />
+          <Route path="/reverse-text" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/reverse-text" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/reverse-text-tool" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-to-qr-code" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-to-qr-code" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/duplicate-line-remover" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/duplicate-line-remover" component={() => <Redirect to="/text-tools" />} />
           <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
           <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
           <Route path="/text-cleaner-formatter" component={() => <Redirect to="/tools/text-cleaner-formatter" />} />

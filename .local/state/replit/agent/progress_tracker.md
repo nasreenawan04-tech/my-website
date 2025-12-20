@@ -114,3 +114,9 @@
 [x] 114. Reconfigured workflow with webview output on port 5000
 [x] 115. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 116. Import complete - all tasks marked as done
+[x] 117. Deleted /tools/reverse-text-tool page
+[x] 118. Deleted /tools/text-to-qr-code page
+[x] 119. Deleted /tools/duplicate-line-remover page
+[x] 120. Removed 3 tools from Text Tools category listing in data/tools.ts
+[x] 121. Added redirect routes to /text-tools for all 3 deleted tools in App.tsx
+[x] 122. Restarted workflow and verified Text Tools page operational
