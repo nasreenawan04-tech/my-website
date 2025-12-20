@@ -83,23 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "currency-percentage-change-calculator",
-    name: "Currency Percentage Change Calculator",
-    description:
-      "Calculate how much a value increased or decreased in percentage",
-    category: "finance" as const,
-    icon: "fas fa-percentage",
-    href: "/tools/currency-percentage-change-calculator",
-  },
-  {
-    id: "future-value-investment-calculator",
-    name: "Future Value Investment Calculator",
-    description: "Project investment growth over time with compound interest",
-    category: "finance" as const,
-    icon: "fas fa-chart-line",
-    href: "/tools/future-value-investment-calculator",
-  },
-  {
     id: "budget-calculator",
     name: "Budget Calculator",
     description:

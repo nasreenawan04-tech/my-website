@@ -20,3 +20,9 @@
 [x] 20. Removed tool entries from data/tools.ts (2 tools removed)
 [x] 21. Removed imports from tool-page.tsx component map
 [x] 22. Verified workflow running successfully with screenshot
+[x] 23. Deleted /tools/currency-percentage-change-calculator page
+[x] 24. Deleted /tools/future-value-investment-calculator page
+[x] 25. Removed both entries from data/tools.ts (2 tools removed)
+[x] 26. Updated App.tsx redirects to /finance-tools for both calculators
+[x] 27. Removed imports from tool-page.tsx component map
+[x] 28. Verified workflow running successfully - Finance Tools page updated

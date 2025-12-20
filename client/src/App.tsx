@@ -165,8 +165,10 @@ function Router() {
           <Route path="/tools/vat-gst-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/paypal-fee-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/tools/paypal-fee-calculator" component={() => <Redirect to="/finance-tools" />} />
-          <Route path="/currency-percentage-change-calculator" component={() => <Redirect to="/tools/currency-percentage-change-calculator" />} />
-          <Route path="/future-value-investment-calculator" component={() => <Redirect to="/tools/future-value-investment-calculator" />} />
+          <Route path="/currency-percentage-change-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/currency-percentage-change-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/future-value-investment-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/future-value-investment-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/budget-calculator" component={() => <Redirect to="/tools/budget-calculator" />} />
           <Route path="/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-comparison-calculator" />} />
           <Route path="/dti-ratio-calculator" component={() => <Redirect to="/tools/dti-ratio-calculator" />} />
