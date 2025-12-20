@@ -48,7 +48,6 @@ const toolComponents = {
   'whr-calculator': lazy(() => import('@/pages/whr-calculator')),
   'life-expectancy-calculator': lazy(() => import('@/pages/life-expectancy-calculator')),
   'cholesterol-risk-calculator': lazy(() => import('@/pages/cholesterol-risk-calculator')),
-  'running-pace-calculator': lazy(() => import('@/pages/running-pace-calculator')),
   'cycling-speed-calculator': lazy(() => import('@/pages/cycling-speed-calculator')),
   'swimming-calorie-calculator': lazy(() => import('@/pages/swimming-calorie-calculator')),
   'smoking-cost-calculator': lazy(() => import('@/pages/smoking-cost-calculator')),

@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (21)
+  // Health Tools (20)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",
@@ -287,14 +287,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-hourglass",
     href: "/tools/life-expectancy-calculator",
-  },
-  {
-    id: "cholesterol-risk-calculator",
-    name: "Cholesterol Risk Calculator",
-    description: "Assess cholesterol-related health risks",
-    category: "health" as const,
-    icon: "fas fa-vial",
-    href: "/tools/cholesterol-risk-calculator",
   },
   {
     id: "running-pace-calculator",
