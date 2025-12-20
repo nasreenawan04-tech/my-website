@@ -238,7 +238,6 @@ export const blogPosts: BlogPost[] = [
 
         <ul class="list-disc pl-6 mb-6 space-y-2">
           <li><strong><a href="/pregnancy-calculator" class="text-primary hover:underline">Pregnancy Calculator</a></strong> — Estimate due dates and track pregnancy milestones</li>
-          <li><strong><a href="/tax-calculator" class="text-primary hover:underline">Tax Calculator</a></strong> — Estimate federal and state income tax obligations</li>
           <li><strong><a href="/age-calculator" class="text-primary hover:underline">Age Calculator</a></strong> — Calculate exact age in years, months, and days</li>
           <li><strong><a href="/grade-calculator" class="text-primary hover:underline">Grade Calculator</a></strong> — Determine final grades and required test scores</li>
           <li><strong><a href="/word-counter" class="text-primary hover:underline">Word Counter</a></strong> — Count words, characters, and sentences for writing projects</li>

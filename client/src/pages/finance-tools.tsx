@@ -60,8 +60,8 @@ const FinanceTools = () => {
       <Helmet>
         {/* Primary Meta Tags */}
         <title>Finance Tools - Free Financial Calculators | DapsiWow</title>
-        <meta name="description" content="Access 29+ free financial calculators including loan, mortgage, tax, and investment tools. Make informed money decisions with instant, accurate results." />
-        <meta name="keywords" content="finance tools, loan calculator, mortgage calculator, tax calculator, financial calculators, budget tools, investment calculator" />
+        <meta name="description" content="Access 28+ free financial calculators including loan, mortgage, and investment tools. Make informed money decisions with instant, accurate results." />
+        <meta name="keywords" content="finance tools, loan calculator, mortgage calculator, financial calculators, budget tools, investment calculator" />
         <link rel="canonical" href="https://dapsiwow.com/finance-tools" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -71,7 +71,7 @@ const FinanceTools = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/finance-tools" />
         <meta property="og:title" content="Finance Tools - Free Financial Calculators | DapsiWow" />
-        <meta property="og:description" content="Access 29+ free financial calculators including loan, mortgage, tax, and investment tools. Make informed money decisions with instant results." />
+        <meta property="og:description" content="Access 28+ free financial calculators including loan, mortgage, and investment tools. Make informed money decisions with instant results." />
         <meta property="og:image" content="https://dapsiwow.com/images/finance-tools-og.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -83,7 +83,7 @@ const FinanceTools = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://dapsiwow.com/finance-tools" />
         <meta name="twitter:title" content="Finance Tools - Free Financial Calculators | DapsiWow" />
-        <meta name="twitter:description" content="Access 30+ free financial calculators for loans, mortgages, taxes, investments and more. Instant results, no registration required." />
+        <meta name="twitter:description" content="Access 28+ free financial calculators for loans, mortgages, investments and more. Instant results, no registration required." />
         <meta name="twitter:image" content="https://dapsiwow.com/images/finance-tools-og.jpg" />
         <meta name="twitter:image:alt" content="DapsiWow Finance Tools Collection" />
         
@@ -102,7 +102,7 @@ const FinanceTools = () => {
                 "@id": "https://dapsiwow.com/finance-tools",
                 "url": "https://dapsiwow.com/finance-tools",
                 "name": "Finance Tools - Free Financial Calculators",
-                "description": "Access 29+ free financial calculators including loan, mortgage, tax, and investment tools. Make informed money decisions with instant, accurate results.",
+                "description": "Access 28+ free financial calculators including loan, mortgage, and investment tools. Make informed money decisions with instant, accurate results.",
                 "inLanguage": "en-US",
                 "isPartOf": {
                   "@id": "https://dapsiwow.com/#website"
@@ -118,9 +118,9 @@ const FinanceTools = () => {
                 "@type": "CollectionPage",
                 "@id": "https://dapsiwow.com/finance-tools#collection",
                 "name": "Finance Tools Collection",
-                "description": "Comprehensive collection of 29+ free financial calculators and planning tools",
+                "description": "Comprehensive collection of 28+ free financial calculators and planning tools",
                 "url": "https://dapsiwow.com/finance-tools",
-                "numberOfItems": 29,
+                "numberOfItems": 28,
                 "itemListElement": [
                   {
                     "@type": "SoftwareApplication",

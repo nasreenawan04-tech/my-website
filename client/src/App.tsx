@@ -126,7 +126,7 @@ function Router() {
           <Route path="/mortgage-calculator" component={() => <Redirect to="/tools/mortgage-calculator" />} />
           <Route path="/emi-calculator" component={() => <Redirect to="/tools/emi-calculator" />} />
           <Route path="/bmi-calculator" component={() => <Redirect to="/tools/bmi-calculator" />} />
-          <Route path="/tax-calculator" component={() => <Redirect to="/tools/tax-calculator" />} />
+          <Route path="/tax-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/word-counter" component={() => <Redirect to="/tools/word-counter" />} />
           <Route path="/character-counter" component={() => <Redirect to="/tools/character-counter" />} />
           <Route path="/compound-interest-calculator" component={() => <Redirect to="/tools/compound-interest-calculator" />} />

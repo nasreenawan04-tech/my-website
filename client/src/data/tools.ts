@@ -15,7 +15,7 @@ export const categories = {
 };
 
 const toolsData: Tool[] = [
-  // Finance Tools (32)
+  // Finance Tools (31)
   {
     id: "loan-calculator",
     name: "Loan Calculator",
@@ -65,14 +65,6 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-percent",
     href: "/tools/simple-interest-calculator",
-  },
-  {
-    id: "tax-calculator",
-    name: "Tax Calculator",
-    description: "Calculate income tax based on your salary",
-    category: "finance" as const,
-    icon: "fas fa-receipt",
-    href: "/tools/tax-calculator",
   },
   {
     id: "salary-to-hourly-calculator",
