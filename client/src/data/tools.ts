@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "net-worth-calculator",
-    name: "Net Worth Calculator",
-    description: "Calculate your total net worth",
-    category: "finance" as const,
-    icon: "fas fa-balance-scale",
-    href: "/tools/net-worth-calculator",
-  },
-  {
     id: "stock-profit-calculator",
     name: "Stock Profit Calculator",
     description: "Calculate profit/loss on stock investments",

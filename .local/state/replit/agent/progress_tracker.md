@@ -279,3 +279,8 @@
 [x] 279. Set up redirects from old URLs to /finance-tools
 [x] 280. Restart workflow to apply changes
 [x] 281. Complete Savings Goal Calculator removal - all systems operational
+[x] 282. Delete /tools/net-worth-calculator page (removed net-worth-calculator.tsx file)
+[x] 283. Remove Net Worth Calculator from Finance Tools category (29 → 28 tools)
+[x] 284. Set up 301 redirects from /net-worth-calculator and /tools/net-worth-calculator to /finance-tools
+[x] 285. Restart workflow to verify all changes work correctly
+[x] 286. Complete Net Worth Calculator removal - all systems operational
