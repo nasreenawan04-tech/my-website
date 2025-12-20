@@ -13,16 +13,17 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow - 180+ Free Online Tools | Finance, Text, Health</title>
-        <meta name="description" content="Access 180+ free online tools instantly. Calculate loans, convert text, track health metrics. No registration, no fees, no downloads. Used by millions. Start now." />
+        <title>DapsiWow - 180+ Free Online Tools | Finance, Text & Health Calculators</title>
+        <meta name="description" content="Access 180+ free online tools for finance (loan calculators, mortgage tools), text analysis (word counter, case converter), and health tracking (BMI calculator, calorie counter). No signup required. Instant results across all devices." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
         <meta name="author" content="DapsiWow Team" />
         <meta name="publisher" content="DapsiWow" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://dapsiwow.com/" />
         
-        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text, Health" />
-        <meta property="og:description" content="Access 180+ free online tools instantly. Calculate loans, convert text, track health metrics. No registration, no fees. Used by millions worldwide." />
+        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text & Health Calculators" />
+        <meta property="og:description" content="Access 180+ free online tools for finance (loan calculators, mortgage tools), text analysis (word counter, case converter), and health tracking (BMI calculator, calorie counter). No signup required. Instant results across all devices." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <meta property="og:image" content="https://dapsiwow.com/images/dapsiwow-og-image.jpg" />
@@ -35,8 +36,8 @@ const Home = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
-        <meta name="twitter:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text, Health" />
-        <meta name="twitter:description" content="Access 180+ free online tools instantly. Calculate loans, convert text, track health metrics. No registration required. Start now." />
+        <meta name="twitter:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text & Health Calculators" />
+        <meta name="twitter:description" content="Access 180+ free online tools for finance (loan calculators, mortgage tools), text analysis (word counter, case converter), and health tracking (BMI calculator, calorie counter). No signup required. Instant results across all devices." />
         <meta name="twitter:image" content="https://dapsiwow.com/images/dapsiwow-twitter-card.jpg" />
         <meta name="twitter:image:alt" content="DapsiWow Free Online Tools Platform" />
         
