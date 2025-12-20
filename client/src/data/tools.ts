@@ -83,22 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "vat-gst-calculator",
-    name: "VAT/GST Calculator",
-    description: "Calculate VAT and GST on products",
-    category: "finance" as const,
-    icon: "fas fa-file-invoice",
-    href: "/tools/vat-gst-calculator",
-  },
-  {
-    id: "paypal-fee-calculator",
-    name: "PayPal Fee Calculator",
-    description: "Calculate PayPal transaction fees",
-    category: "finance" as const,
-    icon: "fab fa-paypal",
-    href: "/tools/paypal-fee-calculator",
-  },
-  {
     id: "currency-percentage-change-calculator",
     name: "Currency Percentage Change Calculator",
     description:

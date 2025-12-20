@@ -161,8 +161,10 @@ function Router() {
           <Route path="/percentage-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/discount-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/tools/discount-calculator" component={() => <Redirect to="/finance-tools" />} />
-          <Route path="/vat-gst-calculator" component={() => <Redirect to="/tools/vat-gst-calculator" />} />
-          <Route path="/paypal-fee-calculator" component={() => <Redirect to="/tools/paypal-fee-calculator" />} />
+          <Route path="/vat-gst-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/vat-gst-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/paypal-fee-calculator" component={() => <Redirect to="/finance-tools" />} />
+          <Route path="/tools/paypal-fee-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/currency-percentage-change-calculator" component={() => <Redirect to="/tools/currency-percentage-change-calculator" />} />
           <Route path="/future-value-investment-calculator" component={() => <Redirect to="/tools/future-value-investment-calculator" />} />
           <Route path="/budget-calculator" component={() => <Redirect to="/tools/budget-calculator" />} />

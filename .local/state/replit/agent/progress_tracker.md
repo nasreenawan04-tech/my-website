@@ -14,3 +14,9 @@
 [x] 14. Removed from Finance Tools category and updated redirects
 [x] 15. Final verification - npm install and workflow restart completed successfully
 [x] 16. Application verified working via screenshot - DapsiWow tools site is fully operational
+[x] 17. Deleted /tools/vat-gst-calculator page and removed from Finance Tools
+[x] 18. Deleted /tools/paypal-fee-calculator page and removed from Finance Tools
+[x] 19. Set up redirects to /finance-tools for both VAT/GST and PayPal calculators
+[x] 20. Removed tool entries from data/tools.ts (2 tools removed)
+[x] 21. Removed imports from tool-page.tsx component map
+[x] 22. Verified workflow running successfully with screenshot
