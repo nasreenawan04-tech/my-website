@@ -83,14 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "credit-card-interest-calculator",
-    name: "Credit Card Interest Calculator",
-    description: "Calculate credit card interest and payment schedules",
-    category: "finance" as const,
-    icon: "fas fa-credit-card",
-    href: "/tools/credit-card-interest-calculator",
-  },
-  {
     id: "lease-calculator",
     name: "Lease Calculator",
     description: "Calculate lease payments for vehicles and assets",
