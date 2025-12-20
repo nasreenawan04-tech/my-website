@@ -83,14 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "discount-calculator",
-    name: "Discount Calculator",
-    description: "Calculate discounts and final prices",
-    category: "finance" as const,
-    icon: "fas fa-tags",
-    href: "/tools/discount-calculator",
-  },
-  {
     id: "vat-gst-calculator",
     name: "VAT/GST Calculator",
     description: "Calculate VAT and GST on products",

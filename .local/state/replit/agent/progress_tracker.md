@@ -10,3 +10,5 @@
 [x] 10. Delete /tools/percentage-calculator page and all references
 [x] 11. Removed from Finance Tools category listing
 [x] 12. Updated basic calculator references and blog post content
+[x] 13. Delete /tools/discount-calculator page
+[x] 14. Removed from Finance Tools category and updated redirects
