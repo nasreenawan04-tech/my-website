@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "investment-return-calculator",
-    name: "Investment Return Calculator",
-    description: "Calculate returns on various investments",
-    category: "finance" as const,
-    icon: "fas fa-money-bill-wave",
-    href: "/tools/investment-return-calculator",
-  },
-  {
     id: "break-even-calculator",
     name: "Break-Even Calculator",
     description: "Calculate business break-even point",

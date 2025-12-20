@@ -303,3 +303,7 @@
 [x] 303. Restart workflow and verify application is running successfully on port 5000
 [x] 304. Take screenshot to confirm homepage and all features are fully functional
 [x] 305. Mark all migration tasks as complete - project fully operational in Replit environment
+[x] 306. Delete Investment Return Calculator page from application
+[x] 307. Remove Investment Return Calculator from Finance Tools category listing
+[x] 308. Add redirects from old paths to /finance-tools landing page
+[x] 309. Complete Investment Return Calculator removal - project ready for deployment
