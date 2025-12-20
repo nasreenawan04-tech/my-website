@@ -34,3 +34,11 @@
 [x] 34. Verified workflow running successfully - Finance Tools now displays 11 tools
 [x] 35. Final import verification - npm install and workflow restart completed
 [x] 36. Application verified running successfully via screenshot - import complete
+[x] 37. Deleted /tools/personal-finance-dashboard and /tools/debt-consolidation-calculator pages
+[x] 38. Removed both tool entries from data/tools.ts
+[x] 39. Updated App.tsx - removed imports and routes for both tools
+[x] 40. Verified workflow running successfully - 2 finance tools removed
+[x] 41. Deleted /tools/dti-ratio-calculator page
+[x] 42. Removed DTI Ratio Calculator entry from data/tools.ts
+[x] 43. Removed import and routes from App.tsx
+[x] 44. Verified workflow running successfully - all 3 tools removed and site operational

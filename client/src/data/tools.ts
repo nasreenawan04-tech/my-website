@@ -82,15 +82,6 @@ const toolsData: Tool[] = [
     icon: "fas fa-house-user",
     href: "/tools/home-loan-calculator",
   },
-  {
-    id: "dti-ratio-calculator",
-    name: "DTI Ratio Calculator",
-    description:
-      "Calculate your debt-to-income ratio for loan qualification and financial health assessment",
-    category: "finance" as const,
-    icon: "fas fa-percentage",
-    href: "/tools/dti-ratio-calculator",
-  },
 
   // Text Tools (19)
   {

@@ -31,7 +31,6 @@ const FavoriteTools = lazy(() => import("@/pages/favorite-tools"));
 const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
 const UrlExtractor = lazy(() => import("@/pages/url-extractor"));
 const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
-const DTIRatioCalculator = lazy(() => import("@/pages/dti-ratio-calculator"));
 const StressLevelCalculator = lazy(() => import("@/pages/stress-level-calculator"));
 const BodyCompositionAnalyzer = lazy(() => import("@/pages/body-composition-analyzer"));
 const MetabolicAgeCalculator = lazy(() => import("@/pages/metabolic-age-calculator"));
@@ -171,7 +170,6 @@ function Router() {
           <Route path="/tools/budget-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
           <Route path="/tools/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
-          <Route path="/dti-ratio-calculator" component={() => <Redirect to="/tools/dti-ratio-calculator" />} />
           <Route path="/sentence-counter" component={() => <Redirect to="/tools/sentence-counter" />} />
           <Route path="/paragraph-counter" component={() => <Redirect to="/tools/paragraph-counter" />} />
           <Route path="/case-converter" component={() => <Redirect to="/tools/case-converter" />} />
@@ -227,7 +225,6 @@ function Router() {
           <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
           <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
-          <Route path="/tools/dti-ratio-calculator" component={DTIRatioCalculator} />
           <Route path="/tools/stress-level-calculator" component={StressLevelCalculator} />
           <Route path="/tools/body-composition-analyzer" component={BodyCompositionAnalyzer} />
           <Route path="/tools/metabolic-age-calculator" component={MetabolicAgeCalculator} />
