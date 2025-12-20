@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "break-even-calculator",
-    name: "Break-Even Calculator",
-    description: "Calculate business break-even point",
-    category: "finance" as const,
-    icon: "fas fa-equals",
-    href: "/tools/break-even-calculator",
-  },
-  {
     id: "car-loan-calculator",
     name: "Car Loan Calculator",
     description: "Calculate car loan payments and interest",
