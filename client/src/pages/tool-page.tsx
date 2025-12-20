@@ -21,14 +21,6 @@ const toolComponents = {
   'business-loan-calculator': lazy(() => import('@/pages/business-loan-calculator')),
   'compound-interest-calculator': lazy(() => import('@/pages/compound-interest-calculator')),
   'simple-interest-calculator': lazy(() => import('@/pages/simple-interest-calculator')),
-  'roi-calculator': lazy(() => import('@/pages/roi-calculator')),
-  'tax-calculator': lazy(() => import('@/pages/tax-calculator')),
-  'savings-goal-calculator': lazy(() => import('@/pages/savings-goal-calculator')),
-  'debt-payoff-calculator': lazy(() => import('@/pages/debt-payoff-calculator')),
-  'net-worth-calculator': lazy(() => import('@/pages/net-worth-calculator')),
-  'stock-profit-calculator': lazy(() => import('@/pages/stock-profit-calculator')),
-  'retirement-calculator': lazy(() => import('@/pages/retirement-calculator')),
-  'sip-calculator': lazy(() => import('@/pages/sip-calculator')),
   'investment-return-calculator': lazy(() => import('@/pages/investment-return-calculator')),
   'dti-ratio-calculator': lazy(() => import('@/pages/dti-ratio-calculator')),
   'break-even-calculator': lazy(() => import('@/pages/break-even-calculator')),
@@ -84,6 +76,7 @@ const toolComponents = {
   'body-composition-analyzer': lazy(() => import('@/pages/body-composition-analyzer')),
   'metabolic-age-calculator': lazy(() => import('@/pages/metabolic-age-calculator')),
   'stress-level-calculator': lazy(() => import('@/pages/stress-level-calculator')),
+  'meal-calorie-tracker': lazy(() => import('@/pages/meal-calorie-tracker')),
 
   // Text Tools
   'word-counter': lazy(() => import('@/pages/word-counter')),
@@ -117,6 +110,7 @@ const toolComponents = {
   'text-statistics-analyzer': lazy(() => import('@/pages/text-statistics-analyzer')),
   'url-extractor': lazy(() => import('@/pages/url-extractor')),
   'text-cleaner-formatter': lazy(() => import('@/pages/text-cleaner-formatter')),
+  'unit-converter': lazy(() => import('@/pages/unit-converter')),
 };
 
 const ToolPage = () => {
