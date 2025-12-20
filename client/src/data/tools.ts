@@ -126,32 +126,6 @@ const toolsData: Tool[] = [
     href: "/tools/qr-code-scanner",
   },
   {
-    id: "text-scrambler",
-    name: "Text Scrambler",
-    description: "Scramble text in various ways - characters, words, or lines",
-    category: "text" as const,
-    icon: "fas fa-random",
-    href: "/tools/text-scrambler",
-  },
-  {
-    id: "text-diff-checker",
-    name: "Text Diff Checker",
-    description:
-      "Compare two texts and highlight differences with side-by-side comparison",
-    category: "text" as const,
-    icon: "fas fa-exchange-alt",
-    href: "/tools/text-diff-checker",
-  },
-  {
-    id: "text-pattern-generator",
-    name: "Text Pattern Generator",
-    description:
-      "Generate repeating text patterns with customizable sequences and formats",
-    category: "text" as const,
-    icon: "fas fa-sync-alt",
-    href: "/tools/text-pattern-generator",
-  },
-  {
     id: "text-formatter-beautifier",
     name: "Text Formatter & Beautifier",
     description:

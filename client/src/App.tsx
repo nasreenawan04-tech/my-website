@@ -203,6 +203,12 @@ function Router() {
           <Route path="/tools/text-to-qr-code" component={() => <Redirect to="/text-tools" />} />
           <Route path="/duplicate-line-remover" component={() => <Redirect to="/text-tools" />} />
           <Route path="/tools/duplicate-line-remover" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-scrambler" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-scrambler" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-diff-checker" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-diff-checker" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-pattern-generator" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-pattern-generator" component={() => <Redirect to="/text-tools" />} />
           <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
           <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
           <Route path="/text-cleaner-formatter" component={() => <Redirect to="/tools/text-cleaner-formatter" />} />
