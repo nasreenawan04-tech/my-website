@@ -83,14 +83,6 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
   {
-    id: "lease-calculator",
-    name: "Lease Calculator",
-    description: "Calculate lease payments for vehicles and assets",
-    category: "finance" as const,
-    icon: "fas fa-file-contract",
-    href: "/tools/lease-calculator",
-  },
-  {
     id: "percentage-calculator",
     name: "Percentage Calculator",
     description: "Calculate percentages and percentage changes",

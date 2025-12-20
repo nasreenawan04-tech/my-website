@@ -40,7 +40,6 @@ const DebtConsolidationCalculator = lazy(() => import("@/pages/debt-consolidatio
 const MealCalorieTracker = lazy(() => import("@/pages/meal-calorie-tracker"));
 const UnitConverter = lazy(() => import("@/pages/unit-converter"));
 const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
-const LeaseCalculator = lazy(() => import("@/pages/lease-calculator"));
 const ProteinIntakeCalculator = lazy(() => import("@/pages/protein-intake-calculator"));
 const Login = lazy(() => import("@/pages/login"));
 const Signup = lazy(() => import("@/pages/signup"));

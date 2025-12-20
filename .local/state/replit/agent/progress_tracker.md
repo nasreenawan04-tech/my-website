@@ -270,3 +270,4 @@
 [x] 270. Complete Mortgage Calculator SEO content enhancement with 9 comprehensive sections following Complete SEO Mastery Course guidelines from attached_assets
 [x] 271. Run npm install to resolve vite not found error after latest migration
 [x] 272. Delete /tools/credit-card-interest-calculator: Remove page, tool entry, and component reference
+[x] 273. Delete /tools/lease-calculator: Remove page, tool entry, component reference, and lazy imports from App.tsx
