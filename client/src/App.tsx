@@ -29,7 +29,6 @@ const AboutUs = lazy(() => import("@/pages/about-us"));
 const RecentlyUsedTools = lazy(() => import("@/pages/recently-used-tools"));
 const FavoriteTools = lazy(() => import("@/pages/favorite-tools"));
 const StressLevelCalculator = lazy(() => import("@/pages/stress-level-calculator"));
-const BodyCompositionAnalyzer = lazy(() => import("@/pages/body-composition-analyzer"));
 const MetabolicAgeCalculator = lazy(() => import("@/pages/metabolic-age-calculator"));
 const MealCalorieTracker = lazy(() => import("@/pages/meal-calorie-tracker"));
 const UnitConverter = lazy(() => import("@/pages/unit-converter"));
@@ -239,7 +238,8 @@ function Router() {
           <Route path="/sleep-calculator" component={() => <Redirect to="/tools/sleep-calculator" />} />
           <Route path="/ovulation-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/ovulation-calculator" component={() => <Redirect to="/health-tools" />} />
-          <Route path="/baby-growth-chart" component={() => <Redirect to="/tools/baby-growth-chart" />} />
+          <Route path="/baby-growth-chart" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/baby-growth-chart" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tdee-calculator" component={() => <Redirect to="/tools/tdee-calculator" />} />
           <Route path="/lean-body-mass-calculator" component={() => <Redirect to="/tools/lean-body-mass-calculator" />} />
           <Route path="/waist-to-height-ratio-calculator" component={() => <Redirect to="/tools/waist-to-height-ratio-calculator" />} />
@@ -252,17 +252,18 @@ function Router() {
           <Route path="/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/smoking-cost-calculator" component={() => <Redirect to="/tools/smoking-cost-calculator" />} />
-          <Route path="/body-water-percentage-calculator" component={() => <Redirect to="/tools/body-water-percentage-calculator" />} />
+          <Route path="/body-water-percentage-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/body-water-percentage-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/hydration-calculator" component={() => <Redirect to="/tools/hydration-calculator" />} />
           <Route path="/sleep-quality-calculator" component={() => <Redirect to="/tools/sleep-quality-calculator" />} />
           <Route path="/stress-level-calculator" component={() => <Redirect to="/tools/stress-level-calculator" />} />
-          <Route path="/body-composition-analyzer" component={() => <Redirect to="/tools/body-composition-analyzer" />} />
+          <Route path="/body-composition-analyzer" component={() => <Redirect to="/tools/bmi-calculator" />} />
+          <Route path="/tools/body-composition-analyzer" component={() => <Redirect to="/tools/bmi-calculator" />} />
           <Route path="/metabolic-age-calculator" component={() => <Redirect to="/tools/metabolic-age-calculator" />} />
           <Route path="/meal-calorie-tracker" component={() => <Redirect to="/tools/meal-calorie-tracker" />} />
 
           {/* Specific tool routes - must come before the generic route */}
           <Route path="/tools/stress-level-calculator" component={StressLevelCalculator} />
-          <Route path="/tools/body-composition-analyzer" component={BodyCompositionAnalyzer} />
           <Route path="/tools/metabolic-age-calculator" component={MetabolicAgeCalculator} />
           <Route path="/tools/meal-calorie-tracker" component={MealCalorieTracker} />
           <Route path="/tools/unit-converter" component={UnitConverter} />

@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (24)
+  // Health Tools (21)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",
@@ -249,14 +249,6 @@ const toolsData: Tool[] = [
     href: "/tools/sleep-calculator",
   },
   {
-    id: "baby-growth-chart",
-    name: "Baby Growth Chart",
-    description: "Track baby growth and development using WHO standards",
-    category: "health" as const,
-    icon: "fas fa-baby",
-    href: "/tools/baby-growth-chart",
-  },
-  {
     id: "tdee-calculator",
     name: "TDEE Calculator",
     description: "Calculate Total Daily Energy Expenditure",
@@ -337,15 +329,6 @@ const toolsData: Tool[] = [
     href: "/tools/smoking-cost-calculator",
   },
   {
-    id: "body-water-percentage-calculator",
-    name: "Body Water Percentage Calculator",
-    description:
-      "Calculate your total body water percentage and get personalized hydration recommendations",
-    category: "health" as const,
-    icon: "fas fa-tint",
-    href: "/tools/body-water-percentage-calculator",
-  },
-  {
     id: "hydration-calculator",
     name: "Hydration Calculator",
     description:
@@ -371,15 +354,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-brain",
     href: "/tools/stress-level-calculator",
-  },
-  {
-    id: "body-composition-analyzer",
-    name: "Body Composition Analyzer",
-    description:
-      "Analyze your body composition with accurate body fat percentage, muscle mass, and personalized fitness recommendations",
-    category: "health" as const,
-    icon: "fas fa-user-check",
-    href: "/tools/body-composition-analyzer",
   },
   {
     id: "metabolic-age-calculator",
