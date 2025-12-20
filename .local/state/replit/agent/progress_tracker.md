@@ -98,3 +98,9 @@
 [x] 98. Deleted /tools/text-to-binary-converter page redirect routes from App.tsx
 [x] 99. Removed all cross-references and redirects for 3 deleted text tools
 [x] 100. Restarted workflow and verified Text Tools page operational
+[x] 101. Deleted /tools/decimal-to-text-converter page and removed from data/tools.ts
+[x] 102. Deleted /tools/text-to-decimal-converter page and removed from data/tools.ts
+[x] 103. Deleted /tools/hex-to-text-converter page and removed from data/tools.ts
+[x] 104. Removed all 3 tool entries from Text Tools category listing in data/tools.ts
+[x] 105. Added redirect routes to /text-tools for all 3 conversion tools
+[x] 106. Restarted workflow and verified Text Tools page operational

@@ -184,6 +184,12 @@ function Router() {
           <Route path="/tools/lorem-ipsum-generator" component={() => <Redirect to="/text-tools" />} />
           <Route path="/fake-address-generator" component={() => <Redirect to="/text-tools" />} />
           <Route path="/tools/fake-address-generator" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/decimal-to-text-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/decimal-to-text-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-to-decimal-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-to-decimal-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/hex-to-text-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/hex-to-text-converter" component={() => <Redirect to="/text-tools" />} />
           <Route path="/duplicate-line-remover" component={() => <Redirect to="/tools/duplicate-line-remover" />} />
           <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
           <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
