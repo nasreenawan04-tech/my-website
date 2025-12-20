@@ -60,7 +60,7 @@ const TextTools = () => {
       <Helmet>
         {/* Primary Meta Tags */}
         <title>Text Tools - Free Writing & Text Processing Utilities</title>
-        <meta name="description" content="Access 27+ free text processing tools including word counter, grammar checker, and text analyzers. Transform and optimize content instantly." />
+        <meta name="description" content="Access 24+ free text processing tools including word counter, grammar checker, and text analyzers. Transform and optimize content instantly." />
         <meta name="keywords" content="text tools, word counter, case converter, grammar checker, plagiarism checker, text summarizer, writing tools, text analyzer" />
         <link rel="canonical" href="https://dapsiwow.com/text-tools" />
         <meta name="robots" content="index, follow" />
@@ -71,7 +71,7 @@ const TextTools = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/text-tools" />
         <meta property="og:title" content="Text Tools - Free Writing & Text Processing Utilities" />
-        <meta property="og:description" content="Access 27+ free text tools including word counter, grammar checker, and more. Process content instantly, no registration." />
+        <meta property="og:description" content="Access 24+ free text tools including word counter, grammar checker, and more. Process content instantly, no registration." />
         <meta property="og:image" content="https://dapsiwow.com/images/text-tools-og.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -83,7 +83,7 @@ const TextTools = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://dapsiwow.com/text-tools" />
         <meta name="twitter:title" content="Text Tools - Free Writing & Text Processing Utilities" />
-        <meta name="twitter:description" content="Access 27+ free text tools for word counting, grammar checking and more. Instant processing, no registration." />
+        <meta name="twitter:description" content="Access 24+ free text tools for word counting, grammar checking and more. Instant processing, no registration." />
         <meta name="twitter:image" content="https://dapsiwow.com/images/text-tools-og.jpg" />
         <meta name="twitter:image:alt" content="DapsiWow Text Tools Collection" />
         
@@ -102,7 +102,7 @@ const TextTools = () => {
                 "@id": "https://dapsiwow.com/text-tools",
                 "url": "https://dapsiwow.com/text-tools",
                 "name": "Text Tools - Free Writing & Text Processing Utilities",
-                "description": "Access 27+ free text processing tools including word counter, grammar checker, and text analyzers. Transform and optimize content instantly.",
+                "description": "Access 24+ free text processing tools including word counter, grammar checker, and text analyzers. Transform and optimize content instantly.",
                 "inLanguage": "en-US",
                 "isPartOf": {
                   "@id": "https://dapsiwow.com/#website"
@@ -118,9 +118,9 @@ const TextTools = () => {
                 "@type": "CollectionPage",
                 "@id": "https://dapsiwow.com/text-tools#collection",
                 "name": "Text Tools Collection",
-                "description": "Comprehensive collection of 27+ free text processing and writing utilities",
+                "description": "Comprehensive collection of 24+ free text processing and writing utilities",
                 "url": "https://dapsiwow.com/text-tools",
-                "numberOfItems": 27,
+                "numberOfItems": 24,
                 "itemListElement": [
                   {
                     "@type": "SoftwareApplication",
@@ -294,7 +294,7 @@ const TextTools = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               >
-                27+ free text and writing tools to analyze, improve, and transform your content
+                24+ free text and writing tools to analyze, improve, and transform your content
               </motion.p>
 
               {/* Search Bar */}

@@ -82,3 +82,10 @@
 [x] 82. Updated text-tools page description and counter from 30+ to 27+
 [x] 83. Added redirects to /text-tools for all deleted tool routes in App.tsx
 [x] 84. Restarted workflow and verified Text Tools page updated
+[x] 85. Deleted /tools/password-strength-checker page
+[x] 86. Deleted /tools/lorem-ipsum-generator page
+[x] 87. Deleted /tools/fake-address-generator page
+[x] 88. Removed 3 tools from Text Tools category listing in data/tools.ts
+[x] 89. Updated "27+" to "24+" in text-tools.tsx (all 5 occurrences updated)
+[x] 90. Added redirects to /text-tools for all deleted tool routes in App.tsx
+[x] 91. Restarted workflow and verified Text Tools page operational

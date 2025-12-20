@@ -177,9 +177,13 @@ function Router() {
           <Route path="/tools/paragraph-counter" component={() => <Redirect to="/text-tools" />} />
           <Route path="/tools/case-converter" component={() => <Redirect to="/text-tools" />} />
           <Route path="/password-generator" component={() => <Redirect to="/tools/password-generator" />} />
-          <Route path="/password-strength-checker" component={() => <Redirect to="/tools/password-strength-checker" />} />
+          <Route path="/password-strength-checker" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/password-strength-checker" component={() => <Redirect to="/text-tools" />} />
           <Route path="/username-generator" component={() => <Redirect to="/tools/username-generator" />} />
-          <Route path="/lorem-ipsum-generator" component={() => <Redirect to="/tools/lorem-ipsum-generator" />} />
+          <Route path="/lorem-ipsum-generator" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/lorem-ipsum-generator" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/fake-address-generator" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/fake-address-generator" component={() => <Redirect to="/text-tools" />} />
           <Route path="/duplicate-line-remover" component={() => <Redirect to="/tools/duplicate-line-remover" />} />
           <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
           <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
