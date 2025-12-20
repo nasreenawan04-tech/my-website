@@ -170,9 +170,12 @@ function Router() {
           <Route path="/tools/budget-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
           <Route path="/tools/loan-comparison-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
-          <Route path="/sentence-counter" component={() => <Redirect to="/tools/sentence-counter" />} />
-          <Route path="/paragraph-counter" component={() => <Redirect to="/tools/paragraph-counter" />} />
-          <Route path="/case-converter" component={() => <Redirect to="/tools/case-converter" />} />
+          <Route path="/sentence-counter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/paragraph-counter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/case-converter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/sentence-counter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/paragraph-counter" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/case-converter" component={() => <Redirect to="/text-tools" />} />
           <Route path="/password-generator" component={() => <Redirect to="/tools/password-generator" />} />
           <Route path="/password-strength-checker" component={() => <Redirect to="/tools/password-strength-checker" />} />
           <Route path="/username-generator" component={() => <Redirect to="/tools/username-generator" />} />

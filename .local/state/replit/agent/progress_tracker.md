@@ -74,3 +74,11 @@
 [x] 74. Restarted workflow and verified Finance Tools page matches design of other category pages
 [x] 75. Reinstalled npm packages and restarted workflow - December 20, 2025
 [x] 76. Verified application running successfully via screenshot - DapsiWow site fully operational
+[x] 77. Deleted /tools/sentence-counter page
+[x] 78. Deleted /tools/paragraph-counter page  
+[x] 79. Deleted /tools/case-converter page
+[x] 80. Removed 3 tools from Text Tools category listing in data/tools.ts
+[x] 81. Updated "30+" to "27+" in text-tools.tsx (all 5 occurrences updated)
+[x] 82. Updated text-tools page description and counter from 30+ to 27+
+[x] 83. Added redirects to /text-tools for all deleted tool routes in App.tsx
+[x] 84. Restarted workflow and verified Text Tools page updated
