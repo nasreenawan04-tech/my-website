@@ -23,7 +23,6 @@ const toolComponents = {
   'simple-interest-calculator': lazy(() => import('@/pages/simple-interest-calculator')),
   'roi-calculator': lazy(() => import('@/pages/roi-calculator')),
   'tax-calculator': lazy(() => import('@/pages/tax-calculator')),
-  'tip-calculator': lazy(() => import('@/pages/tip-calculator')),
   'inflation-calculator': lazy(() => import('@/pages/inflation-calculator')),
   'savings-goal-calculator': lazy(() => import('@/pages/savings-goal-calculator')),
   'debt-payoff-calculator': lazy(() => import('@/pages/debt-payoff-calculator')),

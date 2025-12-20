@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "tip-calculator",
-    name: "Tip Calculator",
-    description: "Calculate tip amount and split bills",
-    category: "finance" as const,
-    icon: "fas fa-hand-holding-usd",
-    href: "/tools/tip-calculator",
-  },
-  {
     id: "inflation-calculator",
     name: "Inflation Calculator",
     description: "Calculate inflation impact over time",
