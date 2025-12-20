@@ -276,3 +276,6 @@
 [x] 276. Configure workflow with webview output type and port 5000 for proper frontend display
 [x] 277. Restart workflow and verify application is running successfully on port 5000
 [x] 278. Confirm all migration tasks are complete - project fully operational in Replit environment
+[x] 279. Identify deployment configuration error - was trying to run non-existent dist/index.cjs file
+[x] 280. Fix deployment configuration to use proper build and run commands for Node.js + static assets setup
+[x] 281. Configure deployment to build frontend with "npm run build" and run with "node server.js"
