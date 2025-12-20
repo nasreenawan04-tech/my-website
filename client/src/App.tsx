@@ -233,7 +233,6 @@ function Router() {
           <Route path="/tools/meal-calorie-tracker" component={MealCalorieTracker} />
           <Route path="/tools/unit-converter" component={UnitConverter} />
           <Route path="/tools/loan-calculator" component={LoanCalculator} />
-          <Route path="/tools/lease-calculator" component={LeaseCalculator} />
           <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
           
           {/* Generic tool route - must come last to avoid conflicts */}
