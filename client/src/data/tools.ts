@@ -67,14 +67,6 @@ const toolsData: Tool[] = [
     href: "/tools/simple-interest-calculator",
   },
   {
-    id: "roi-calculator",
-    name: "ROI Calculator",
-    description: "Calculate return on investment percentage",
-    category: "finance" as const,
-    icon: "fas fa-trending-up",
-    href: "/tools/roi-calculator",
-  },
-  {
     id: "tax-calculator",
     name: "Tax Calculator",
     description: "Calculate income tax based on your salary",

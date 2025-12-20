@@ -131,7 +131,7 @@ function Router() {
           <Route path="/character-counter" component={() => <Redirect to="/tools/character-counter" />} />
           <Route path="/compound-interest-calculator" component={() => <Redirect to="/tools/compound-interest-calculator" />} />
           <Route path="/simple-interest-calculator" component={() => <Redirect to="/tools/simple-interest-calculator" />} />
-          <Route path="/roi-calculator" component={() => <Redirect to="/tools/roi-calculator" />} />
+          <Route path="/roi-calculator" component={() => <Redirect to="/finance-tools" />} />
           <Route path="/salary-to-hourly-calculator" component={() => <Redirect to="/tools/salary-to-hourly-calculator" />} />
           <Route path="/tip-calculator" component={() => <Redirect to="/tools/tip-calculator" />} />
           <Route path="/inflation-calculator" component={() => <Redirect to="/tools/inflation-calculator" />} />

@@ -60,8 +60,8 @@ const FinanceTools = () => {
       <Helmet>
         {/* Primary Meta Tags */}
         <title>Finance Tools - Free Financial Calculators | DapsiWow</title>
-        <meta name="description" content="Access 30+ free financial calculators including loan, mortgage, tax, ROI, and investment tools. Make informed money decisions with instant, accurate results." />
-        <meta name="keywords" content="finance tools, loan calculator, mortgage calculator, tax calculator, ROI calculator, financial calculators, budget tools, investment calculator" />
+        <meta name="description" content="Access 29+ free financial calculators including loan, mortgage, tax, and investment tools. Make informed money decisions with instant, accurate results." />
+        <meta name="keywords" content="finance tools, loan calculator, mortgage calculator, tax calculator, financial calculators, budget tools, investment calculator" />
         <link rel="canonical" href="https://dapsiwow.com/finance-tools" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -71,7 +71,7 @@ const FinanceTools = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/finance-tools" />
         <meta property="og:title" content="Finance Tools - Free Financial Calculators | DapsiWow" />
-        <meta property="og:description" content="Access 30+ free financial calculators including loan, mortgage, tax, ROI, and investment tools. Make informed money decisions with instant results." />
+        <meta property="og:description" content="Access 29+ free financial calculators including loan, mortgage, tax, and investment tools. Make informed money decisions with instant results." />
         <meta property="og:image" content="https://dapsiwow.com/images/finance-tools-og.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -102,7 +102,7 @@ const FinanceTools = () => {
                 "@id": "https://dapsiwow.com/finance-tools",
                 "url": "https://dapsiwow.com/finance-tools",
                 "name": "Finance Tools - Free Financial Calculators",
-                "description": "Access 30+ free financial calculators including loan, mortgage, tax, ROI, and investment tools. Make informed money decisions with instant, accurate results.",
+                "description": "Access 29+ free financial calculators including loan, mortgage, tax, and investment tools. Make informed money decisions with instant, accurate results.",
                 "inLanguage": "en-US",
                 "isPartOf": {
                   "@id": "https://dapsiwow.com/#website"
@@ -118,9 +118,9 @@ const FinanceTools = () => {
                 "@type": "CollectionPage",
                 "@id": "https://dapsiwow.com/finance-tools#collection",
                 "name": "Finance Tools Collection",
-                "description": "Comprehensive collection of 30+ free financial calculators and planning tools",
+                "description": "Comprehensive collection of 29+ free financial calculators and planning tools",
                 "url": "https://dapsiwow.com/finance-tools",
-                "numberOfItems": 30,
+                "numberOfItems": 29,
                 "itemListElement": [
                   {
                     "@type": "SoftwareApplication",
@@ -295,7 +295,7 @@ const FinanceTools = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               >
-                30+ free financial calculators and tools to help you make smart money decisions
+                29+ free financial calculators and tools to help you make smart money decisions
               </motion.p>
               
               {/* Search Bar */}
@@ -363,11 +363,6 @@ const FinanceTools = () => {
                     <i className="fas fa-percentage text-2xl text-purple-600 mb-2"></i>
                     <h3 className="font-semibold text-neutral-800">Tax Calculator</h3>
                     <p className="text-sm text-neutral-600">Calculate income tax</p>
-                  </a>
-                  <a href="/tools/roi-calculator" className="text-center p-4 bg-orange-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer">
-                    <i className="fas fa-trending-up text-2xl text-orange-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">ROI Calculator</h3>
-                    <p className="text-sm text-neutral-600">Calculate returns</p>
                   </a>
                 </div>
               </div>

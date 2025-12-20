@@ -30,12 +30,6 @@ export const RELATED_TOOLS_MAP: Record<string, RelatedToolData> = {
     description: 'Create a debt payoff strategy with snowball or avalanche methods',
     category: 'finance'
   },
-  'roi-calculator': {
-    slug: 'roi-calculator',
-    name: 'ROI Calculator',
-    description: 'Calculate return on investment for purchases and business decisions',
-    category: 'finance'
-  },
   'compound-interest-calculator': {
     slug: 'compound-interest-calculator',
     name: 'Compound Interest Calculator',

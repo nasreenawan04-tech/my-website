@@ -70,7 +70,6 @@ protein-intake-calculator
 qr-code-scanner
 retirement-calculator
 reverse-text-tool
-roi-calculator
 running-pace-calculator
 salary-to-hourly-calculator
 savings-goal-calculator
