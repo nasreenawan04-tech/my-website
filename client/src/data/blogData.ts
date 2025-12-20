@@ -1097,12 +1097,12 @@ export const blogPosts: BlogPost[] = [
 
         <h3 class="text-xl font-semibold mt-6 mb-3">Text Statistics Analyzer</h3>
         <p class="mb-4">
-          Get deep insights into your writing with readability scores, sentence complexity, and lexical diversity. The <a href="/tools/text-statistics-analyzer" class="text-primary hover:underline font-medium">Text Statistics Analyzer</a> helps improve content quality and SEO performance.
+          Get deep insights into your writing with readability scores, sentence complexity, and lexical diversity. The <a href="/tools/word-counter" class="text-primary hover:underline font-medium">Word Counter</a> helps improve content quality and SEO performance.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3">URL Extractor</h3>
         <p class="mb-4">
-          Pull all URLs from large blocks of text automatically. Perfect for link audits, competitor analysis, or cleaning up link lists. Try our <a href="/tools/url-extractor" class="text-primary hover:underline font-medium">URL Extractor</a>.
+          Pull all URLs from large blocks of text automatically. Perfect for link audits, competitor analysis, or cleaning up link lists. Try our <a href="/text-tools" class="text-primary hover:underline font-medium">Text Tools</a>.
         </p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3">Base64 Encoder/Decoder</h3>

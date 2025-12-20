@@ -92,11 +92,8 @@ const toolComponents = {
   'text-scrambler': lazy(() => import('@/pages/text-scrambler')),
   'text-diff-checker': lazy(() => import('@/pages/text-diff-checker')),
   'text-pattern-generator': lazy(() => import('@/pages/text-pattern-generator')),
-  'text-formatter-beautifier': lazy(() => import('@/pages/text-formatter-beautifier')),
   'password-strength-checker': lazy(() => import('@/pages/password-strength-checker')),
   'base64-encoder-decoder': lazy(() => import('@/pages/base64-encoder-decoder')),
-  'text-statistics-analyzer': lazy(() => import('@/pages/text-statistics-analyzer')),
-  'url-extractor': lazy(() => import('@/pages/url-extractor')),
   'text-cleaner-formatter': lazy(() => import('@/pages/text-cleaner-formatter')),
   'unit-converter': lazy(() => import('@/pages/unit-converter')),
 };

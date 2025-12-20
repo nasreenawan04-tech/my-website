@@ -28,8 +28,6 @@ const ToolPage = lazy(() => import("@/pages/tool-page"));
 const AboutUs = lazy(() => import("@/pages/about-us"));
 const RecentlyUsedTools = lazy(() => import("@/pages/recently-used-tools"));
 const FavoriteTools = lazy(() => import("@/pages/favorite-tools"));
-const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
-const UrlExtractor = lazy(() => import("@/pages/url-extractor"));
 const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
 const StressLevelCalculator = lazy(() => import("@/pages/stress-level-calculator"));
 const BodyCompositionAnalyzer = lazy(() => import("@/pages/body-composition-analyzer"));
@@ -209,8 +207,12 @@ function Router() {
           <Route path="/tools/text-diff-checker" component={() => <Redirect to="/text-tools" />} />
           <Route path="/text-pattern-generator" component={() => <Redirect to="/text-tools" />} />
           <Route path="/tools/text-pattern-generator" component={() => <Redirect to="/text-tools" />} />
-          <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
-          <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
+          <Route path="/text-formatter-beautifier" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/text-formatter-beautifier" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/url-extractor" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/tools/url-extractor" component={() => <Redirect to="/text-tools" />} />
+          <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/word-counter" />} />
+          <Route path="/tools/text-statistics-analyzer" component={() => <Redirect to="/tools/word-counter" />} />
           <Route path="/text-cleaner-formatter" component={() => <Redirect to="/tools/text-cleaner-formatter" />} />
           <Route path="/qr-code-scanner" component={() => <Redirect to="/tools/qr-code-scanner" />} />
           <Route path="/base64-encoder-decoder" component={() => <Redirect to="/tools/base64-encoder-decoder" />} />
@@ -253,8 +255,6 @@ function Router() {
           <Route path="/meal-calorie-tracker" component={() => <Redirect to="/tools/meal-calorie-tracker" />} />
 
           {/* Specific tool routes - must come before the generic route */}
-          <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
-          <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
           <Route path="/tools/stress-level-calculator" component={StressLevelCalculator} />
           <Route path="/tools/body-composition-analyzer" component={BodyCompositionAnalyzer} />
