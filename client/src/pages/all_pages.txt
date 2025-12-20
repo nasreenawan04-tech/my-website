@@ -48,7 +48,6 @@ intermittent-fasting-timer
 investment-return-calculator
 keto-macro-calculator
 lean-body-mass-calculator
-lease-calculator
 life-expectancy-calculator
 loan-calculator
 loan-comparison-calculator
