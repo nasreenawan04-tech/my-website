@@ -1027,28 +1027,21 @@ export const blogPosts: BlogPost[] = [
           </div>
 
           <div class="border-l-4 border-primary pl-6">
-            <h3 class="text-xl font-semibold mb-3">7. Savings Goal Calculator</h3>
-            <p class="mb-3">
-              Plan for major expenses like equipment upgrades or expansion. The <a href="/tools/savings-goal-calculator" class="text-primary hover:underline font-medium">Savings Goal Calculator</a> shows monthly contributions needed to reach targets.
-            </p>
-          </div>
-
-          <div class="border-l-4 border-primary pl-6">
-            <h3 class="text-xl font-semibold mb-3">8. Inflation Calculator</h3>
+            <h3 class="text-xl font-semibold mb-3">7. Inflation Calculator</h3>
             <p class="mb-3">
               Adjust prices and budgets for inflation to maintain purchasing power. Our <a href="/tools/inflation-calculator" class="text-primary hover:underline font-medium">Inflation Calculator</a> helps with multi-year financial planning.
             </p>
           </div>
 
           <div class="border-l-4 border-primary pl-6">
-            <h3 class="text-xl font-semibold mb-3">9. Investment Return Calculator</h3>
+            <h3 class="text-xl font-semibold mb-3">8. Investment Return Calculator</h3>
             <p class="mb-3">
               Evaluate potential returns from business investments or portfolio growth. Use the <a href="/tools/investment-return-calculator" class="text-primary hover:underline font-medium">Investment Return Calculator</a> to compare opportunities.
             </p>
           </div>
 
           <div class="border-l-4 border-primary pl-6">
-            <h3 class="text-xl font-semibold mb-3">10. Budget Calculator</h3>
+            <h3 class="text-xl font-semibold mb-3">9. Budget Calculator</h3>
             <p class="mb-3">
               Create and track monthly business budgets to control expenses. Our <a href="/tools/budget-calculator" class="text-primary hover:underline font-medium">Budget Calculator</a> categorizes spending and highlights savings opportunities.
             </p>
