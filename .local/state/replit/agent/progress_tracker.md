@@ -164,8 +164,8 @@
 [x] 164. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 165. Import complete - all tasks marked as done
 [x] 166. Deleted /tools/blood-pressure-tracker page
-[x] 167. Deleted /tools/ovulation-calculator page
-[x] 168. Deleted /tools/alcohol-calorie-calculator page
+[x] 167. Deleted /tools/ovulation-calculator page - Women's health tracking
+[x] 168. Deleted /tools/alcohol-calorie-calculator page - Alcohol calorie tracking
 [x] 169. Removed 3 health tools from data/tools.ts (blood-pressure-tracker, ovulation-calculator, alcohol-calorie-calculator)
 [x] 170. Updated Health Tools count from 27 to 24 in data/tools.ts comment
 [x] 171. Updated health-tools.tsx meta descriptions and counter from "27+" to "24+"
@@ -175,7 +175,7 @@
 [x] 175. Reinstalled npm packages after session restart - December 20, 2025
 [x] 176. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 177. Import complete - all tasks marked as done
-[x] 178. Deleted /tools/baby-growth-chart page
+[x] 178. Deleted /tools/baby-growth-chart page - Pediatric/parenting tool
 [x] 179. Deleted /tools/body-composition-analyzer page
 [x] 180. Deleted /tools/body-water-percentage-calculator page
 [x] 181. Removed 3 health tools from data/tools.ts (baby-growth-chart, body-composition-analyzer, body-water-percentage-calculator)
@@ -207,3 +207,7 @@
 [x] 207. Updated health-tools.tsx meta descriptions and counters from "18+" to "15+" (all 4 instances)
 [x] 208. Restarted workflow and verified Health Tools page operational
 [x] 209. All 2 health tools deleted - application fully operational
+[x] 210. Verified ovulation-calculator already deleted in previous session (Item 167)
+[x] 211. Verified alcohol-calorie-calculator already deleted in previous session (Item 168)
+[x] 212. Verified baby-growth-chart already deleted in previous session (Item 178)
+[x] 213. All requested tools already deleted - redirects in place, data.ts updated, counts at 15+
