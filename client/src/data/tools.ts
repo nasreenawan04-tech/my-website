@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (19)
+  // Health Tools (18)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",
@@ -277,15 +277,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-smoking-ban",
     href: "/tools/smoking-cost-calculator",
-  },
-  {
-    id: "hydration-calculator",
-    name: "Hydration Calculator",
-    description:
-      "Calculate your optimal daily water intake based on weight, activity level, climate, and health factors for proper hydration",
-    category: "health" as const,
-    icon: "fas fa-water",
-    href: "/tools/hydration-calculator",
   },
   {
     id: "sleep-quality-calculator",

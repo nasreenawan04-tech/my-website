@@ -256,7 +256,8 @@ function Router() {
           <Route path="/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/smoking-cost-calculator" component={() => <Redirect to="/tools/smoking-cost-calculator" />} />
-          <Route path="/hydration-calculator" component={() => <Redirect to="/tools/hydration-calculator" />} />
+          <Route path="/hydration-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/hydration-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/sleep-quality-calculator" component={() => <Redirect to="/tools/sleep-quality-calculator" />} />
           <Route path="/stress-level-calculator" component={() => <Redirect to="/tools/stress-level-calculator" />} />
           <Route path="/metabolic-age-calculator" component={() => <Redirect to="/tools/metabolic-age-calculator" />} />

@@ -233,3 +233,12 @@
 [x] 233. Reinstalled npm packages after session restart - December 21, 2025
 [x] 234. Verified application running correctly - DapsiWow site fully operational
 [x] 235. Import complete - all tasks marked as done
+[x] 236. Deleted /tools/hydration-calculator page
+[x] 237. Removed hydration-calculator from Health Tools category listing in data/tools.ts
+[x] 238. Updated Health Tools count from 19 to 18 in data/tools.ts comment
+[x] 239. Updated health-tools.tsx meta descriptions - changed counter from 15+ to 14+
+[x] 240. Added redirect routes to /health-tools for hydration-calculator in App.tsx
+[x] 241. Updated all hero section and schema descriptions in health-tools.tsx from 15+ to 14+
+[x] 242. Removed hydration-calculator lazy import from tool-page.tsx component map
+[x] 243. All hydration-calculator references cleaned up - fitness-tracking-calculator and macro-balance-calculator do not exist in codebase
+[x] 244. Health tools migration complete - redirected hydration-calculator to /health-tools

@@ -45,7 +45,6 @@ const toolComponents = {
   'cycling-speed-calculator': lazy(() => import('@/pages/cycling-speed-calculator')),
   'swimming-calorie-calculator': lazy(() => import('@/pages/swimming-calorie-calculator')),
   'smoking-cost-calculator': lazy(() => import('@/pages/smoking-cost-calculator')),
-  'hydration-calculator': lazy(() => import('@/pages/hydration-calculator')),
   'metabolic-age-calculator': lazy(() => import('@/pages/metabolic-age-calculator')),
   'stress-level-calculator': lazy(() => import('@/pages/stress-level-calculator')),
   'meal-calorie-tracker': lazy(() => import('@/pages/meal-calorie-tracker')),
