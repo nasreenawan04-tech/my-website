@@ -270,3 +270,7 @@
 [x] 270. Application fully operational - Text Tools finalized to exactly 7 tools as requested - COMPLETE
 [x] 271. Session restart - December 21, 2025 - Reinstalled npm packages
 [x] 272. Restarted workflow and verified application running successfully
+[x] 273. Removed bad redirect routes from App.tsx (lines 246-252) that pointed to non-existent health tools
+[x] 274. Cleaned up duplicate redirects - consolidated lean-body-mass, waist-to-height, whr, life-expectancy, running-pace, cycling-speed, swimming-calorie redirects
+[x] 275. Health Tools finalized - 8 tools only: BMI Calculator, Body Fat Calculator, Calorie Calculator, TDEE Calculator, Sleep Calculator, Water Intake Calculator, Protein Intake Calculator, Heart Rate Calculator
+[x] 276. Restarted workflow and verified Health Tools page operational

@@ -243,13 +243,6 @@ function Router() {
           <Route path="/baby-growth-chart" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/baby-growth-chart" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tdee-calculator" component={() => <Redirect to="/tools/tdee-calculator" />} />
-          <Route path="/lean-body-mass-calculator" component={() => <Redirect to="/tools/lean-body-mass-calculator" />} />
-          <Route path="/waist-to-height-ratio-calculator" component={() => <Redirect to="/tools/waist-to-height-ratio-calculator" />} />
-          <Route path="/whr-calculator" component={() => <Redirect to="/tools/whr-calculator" />} />
-          <Route path="/life-expectancy-calculator" component={() => <Redirect to="/tools/life-expectancy-calculator" />} />
-          <Route path="/running-pace-calculator" component={() => <Redirect to="/tools/running-pace-calculator" />} />
-          <Route path="/cycling-speed-calculator" component={() => <Redirect to="/tools/cycling-speed-calculator" />} />
-          <Route path="/swimming-calorie-calculator" component={() => <Redirect to="/tools/swimming-calorie-calculator" />} />
           <Route path="/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/smoking-cost-calculator" component={() => <Redirect to="/health-tools" />} />
