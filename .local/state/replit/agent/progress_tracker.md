@@ -225,3 +225,8 @@
 [x] 225. Reconfigured workflow with webview output on port 5000
 [x] 226. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 227. Import complete - all tasks marked as done
+[x] 228. Verified cocaine-high-calculator does NOT exist in codebase
+[x] 229. Verified cycling-power-output-calculator does NOT exist in codebase
+[x] 230. Verified fat-intake-calculator does NOT exist in codebase
+[x] 231. Confirmed site is clean - all 3 inappropriate/unwanted tools already removed
+[x] 232. Restarted workflow and verified Health Tools page operational
