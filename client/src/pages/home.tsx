@@ -13,8 +13,8 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow - 180+ Free Online Tools | Finance, Text & Health Calculators</title>
-        <meta name="description" content="Access 180+ free online tools for finance (loan calculators, mortgage tools), text analysis (word counter, case converter), and health tracking (BMI calculator, calorie counter). No signup required. Instant results across all devices." />
+        <title>DapsiWow - 23 Free Online Tools | Finance, Text & Health Calculators</title>
+        <meta name="description" content="Access 23 free online tools for finance (loan, mortgage, EMI calculators), text processing (word counter, password generator), and health tracking (BMI, calorie calculator). No signup required. Instant results across all devices." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
         <meta name="author" content="DapsiWow Team" />
         <meta name="publisher" content="DapsiWow" />
@@ -22,27 +22,27 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href="https://dapsiwow.com/" />
         
-        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text & Health Calculators" />
-        <meta property="og:description" content="Access 180+ free online tools for finance (loan calculators, mortgage tools), text analysis (word counter, case converter), and health tracking (BMI calculator, calorie counter). No signup required. Instant results across all devices." />
+        <meta property="og:title" content="DapsiWow - 23 Free Online Tools | Finance, Text & Health Calculators" />
+        <meta property="og:description" content="Access 23 free online tools for finance (loan, mortgage, EMI calculators), text processing (word counter, password generator), and health tracking (BMI, calorie calculator). No signup required. Instant results across all devices." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <meta property="og:image" content="https://dapsiwow.com/images/dapsiwow-og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="DapsiWow - Free Online Tools Platform with 180+ Calculators and Utilities" />
+        <meta property="og:image:alt" content="DapsiWow - Free Online Tools Platform with 23 Calculators and Utilities" />
         <meta property="og:site_name" content="DapsiWow" />
         <meta property="og:locale" content="en_US" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
-        <meta name="twitter:title" content="DapsiWow - 180+ Free Online Tools | Finance, Text & Health Calculators" />
-        <meta name="twitter:description" content="Access 180+ free online tools for finance (loan calculators, mortgage tools), text analysis (word counter, case converter), and health tracking (BMI calculator, calorie counter). No signup required. Instant results across all devices." />
+        <meta name="twitter:title" content="DapsiWow - 23 Free Online Tools | Finance, Text & Health Calculators" />
+        <meta name="twitter:description" content="Access 23 free online tools for finance (loan, mortgage, EMI calculators), text processing (word counter, password generator), and health tracking (BMI, calorie calculator). No signup required. Instant results across all devices." />
         <meta name="twitter:image" content="https://dapsiwow.com/images/dapsiwow-twitter-card.jpg" />
         <meta name="twitter:image:alt" content="DapsiWow Free Online Tools Platform" />
         
         <meta name="pinterest-rich-pin" content="true" />
-        <meta name="pinterest:description" content="DapsiWow: 180+ Free Online Tools for Finance, Text Processing, and Health Tracking. No Registration Required." />
+        <meta name="pinterest:description" content="DapsiWow: 23 Free Online Tools for Finance, Text Processing, and Health Tracking. No Registration Required." />
         
         <meta name="geo.region" content="US" />
         <meta name="geo.placename" content="United States" />
@@ -68,7 +68,7 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "DapsiWow",
-            "description": "Professional online tools platform offering 180+ free utilities for business and personal use",
+            "description": "Professional online tools platform offering 23 free utilities for business and personal use",
             "url": "https://dapsiwow.com/",
             "potentialAction": {
               "@type": "SearchAction",
@@ -148,10 +148,10 @@ const Home = () => {
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "Are all 180+ tools really free to use?",
+                "name": "Are all 23 tools really free to use?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes! Every single tool on DapsiWow is completely free with no hidden costs, subscriptions, or premium upgrades. This includes our advanced loan calculators, mortgage tools, BMI calculators, text converters, and all other utilities. We believe professional-grade tools should be accessible to everyone."
+                  "text": "Yes! Every single tool on DapsiWow is completely free with no hidden costs, subscriptions, or premium upgrades. This includes our loan calculators, mortgage tools, BMI calculators, and all other utilities. We believe professional-grade tools should be accessible to everyone."
                 }
               },
               {
@@ -249,7 +249,7 @@ const Home = () => {
                   What is DapsiWow?
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-8">
-                  DapsiWow is your ultimate online toolkit featuring 180+ professional-grade tools completely free to use.
+                  DapsiWow is your ultimate online toolkit featuring 23 professional-grade tools completely free to use.
                   No registration required, no hidden fees, no software downloads - just powerful tools that work instantly
                   in your browser across all devices.
                 </p>
@@ -307,7 +307,7 @@ const Home = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-inner">
                   <div className="grid grid-cols-2 gap-6 text-center">
                     <div>
-                      <div className="text-4xl font-bold text-blue-600 mb-2">180+</div>
+                      <div className="text-4xl font-bold text-blue-600 mb-2">23</div>
                       <div className="text-neutral-700 font-medium">Free Tools</div>
                     </div>
                     <div>

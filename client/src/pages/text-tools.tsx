@@ -353,12 +353,12 @@ const TextTools = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <a href="/finance-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-semibold text-neutral-800 mb-2">Finance Tools</h3>
-                  <p className="text-neutral-600 mb-4">Access 30+ financial calculators including mortgage, loan, ROI, and investment planning tools.</p>
+                  <p className="text-neutral-600 mb-4">Access 8 financial calculators including loan, mortgage, EMI, and business loan tools.</p>
                   <span className="text-orange-600 font-semibold hover:underline">Explore Finance Tools →</span>
                 </a>
                 <a href="/health-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-semibold text-neutral-800 mb-2">Health Tools</h3>
-                  <p className="text-neutral-600 mb-4">Access 30+ health and fitness calculators including BMI, calorie, pregnancy, and medical calculators.</p>
+                  <p className="text-neutral-600 mb-4">Access 8 health and fitness calculators including BMI, calorie, body fat, and TDEE calculators.</p>
                   <span className="text-orange-600 font-semibold hover:underline">Explore Health Tools →</span>
                 </a>
               </div>

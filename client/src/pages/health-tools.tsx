@@ -120,7 +120,7 @@ const HealthTools = () => {
                 "name": "Health Tools Collection",
                 "description": "Comprehensive collection of 8+ free health and fitness calculators",
                 "url": "https://dapsiwow.com/health-tools",
-                "numberOfItems": 30,
+                "numberOfItems": 8,
                 "itemListElement": [
                   {
                     "@type": "SoftwareApplication",
@@ -365,12 +365,12 @@ const HealthTools = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <a href="/finance-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-semibold text-neutral-800 mb-2">Finance Tools</h3>
-                  <p className="text-neutral-600 mb-4">Access 28+ financial calculators including mortgage, loan, ROI, and investment planning tools.</p>
+                  <p className="text-neutral-600 mb-4">Access 8 financial calculators including loan, mortgage, EMI, and business loan tools.</p>
                   <span className="text-pink-600 font-semibold hover:underline">Explore Finance Tools →</span>
                 </a>
                 <a href="/text-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-semibold text-neutral-800 mb-2">Text Tools</h3>
-                  <p className="text-neutral-600 mb-4">Use 30+ text processing tools including word counter, case converter, and text analyzers.</p>
+                  <p className="text-neutral-600 mb-4">Use 7 text processing tools including word counter, password generator, and QR code scanner.</p>
                   <span className="text-pink-600 font-semibold hover:underline">Explore Text Tools →</span>
                 </a>
               </div>

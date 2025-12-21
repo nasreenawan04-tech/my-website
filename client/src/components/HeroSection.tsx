@@ -295,7 +295,7 @@ const HeroSection = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">180+</div>
+            <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">23</div>
             <div className="text-blue-100 text-xs sm:text-sm md:text-sm lg:text-base">Tools Available</div>
           </motion.div>
           <motion.div 

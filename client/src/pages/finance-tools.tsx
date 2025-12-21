@@ -55,7 +55,7 @@ const FinanceTools = () => {
     <>
       <Helmet>
         <title>Finance Tools - Free Financial Calculators | DapsiWow</title>
-        <meta name="description" content="Access 27+ free financial calculators including loan, mortgage, and investment tools. Make informed money decisions with instant, accurate results." />
+        <meta name="description" content="Access 8 free financial calculators including loan, mortgage, EMI, and business loan tools. Make informed money decisions with instant, accurate results." />
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-finance-tools">
@@ -218,12 +218,12 @@ const FinanceTools = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <a href="/text-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-semibold text-neutral-800 mb-2">Text Tools</h3>
-                  <p className="text-neutral-600 mb-4">Use 30+ text processing tools including word counter, case converter, and text analyzers.</p>
+                  <p className="text-neutral-600 mb-4">Use 7 text processing tools including word counter, password generator, and QR code scanner.</p>
                   <span className="text-blue-600 font-semibold hover:underline">Explore Text Tools →</span>
                 </a>
                 <a href="/health-tools" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                   <h3 className="text-xl font-semibold text-neutral-800 mb-2">Health Tools</h3>
-                  <p className="text-neutral-600 mb-4">Access 30+ health and fitness calculators including BMI, calorie, pregnancy, and medical calculators.</p>
+                  <p className="text-neutral-600 mb-4">Access 8 health and fitness calculators including BMI, calorie, body fat, and TDEE calculators.</p>
                   <span className="text-blue-600 font-semibold hover:underline">Explore Health Tools →</span>
                 </a>
               </div>
