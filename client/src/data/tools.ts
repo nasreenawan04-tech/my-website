@@ -189,15 +189,6 @@ const toolsData: Tool[] = [
     href: "/tools/protein-intake-calculator",
   },
   {
-    id: "daily-step-calorie-converter",
-    name: "Daily Steps to Calories Converter",
-    description:
-      "Convert steps walked to calories burned with personal factors",
-    category: "health" as const,
-    icon: "fas fa-walking",
-    href: "/tools/daily-step-calorie-converter",
-  },
-  {
     id: "heart-rate-calculator",
     name: "Heart Rate Calculator",
     description:
@@ -205,15 +196,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-heartbeat",
     href: "/tools/heart-rate-calculator",
-  },
-  {
-    id: "max-heart-rate-calculator",
-    name: "Max Heart Rate Calculator",
-    description:
-      "Calculate maximum heart rate using multiple scientific formulas",
-    category: "health" as const,
-    icon: "fas fa-heart",
-    href: "/tools/max-heart-rate-calculator",
   },
   {
     id: "sleep-calculator",

@@ -233,9 +233,11 @@ function Router() {
           <Route path="/tools/keto-macro-calculator" component={() => <Redirect to="/tools/calorie-calculator" />} />
           <Route path="/intermittent-fasting-timer" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/intermittent-fasting-timer" component={() => <Redirect to="/health-tools" />} />
-          <Route path="/daily-step-calorie-converter" component={() => <Redirect to="/tools/daily-step-calorie-converter" />} />
+          <Route path="/daily-step-calorie-converter" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/daily-step-calorie-converter" component={() => <Redirect to="/health-tools" />} />
           <Route path="/heart-rate-calculator" component={() => <Redirect to="/tools/heart-rate-calculator" />} />
-          <Route path="/max-heart-rate-calculator" component={() => <Redirect to="/tools/max-heart-rate-calculator" />} />
+          <Route path="/max-heart-rate-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/max-heart-rate-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/blood-pressure-tracker" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/blood-pressure-tracker" component={() => <Redirect to="/health-tools" />} />
           <Route path="/sleep-calculator" component={() => <Redirect to="/tools/sleep-calculator" />} />
