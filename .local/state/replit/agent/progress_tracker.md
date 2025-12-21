@@ -246,3 +246,8 @@
 [x] 246. Reconfigured workflow with webview output on port 5000
 [x] 247. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 248. Import complete - all tasks marked as done
+[x] 249. Deleted 12 health tool pages - lean-body-mass-calculator, waist-to-height-ratio-calculator, whr-calculator, life-expectancy-calculator, running-pace-calculator, cycling-speed-calculator, swimming-calorie-calculator, smoking-cost-calculator, sleep-quality-calculator, stress-level-calculator, metabolic-age-calculator, meal-calorie-tracker
+[x] 250. Removed 12 health tools from data/tools.ts (Health Tools count updated from 18 to 8)
+[x] 251. Removed 3 lazy imports from App.tsx - StressLevelCalculator, MetabolicAgeCalculator, MealCalorieTracker
+[x] 252. Updated App.tsx - removed 3 direct routes and added 24 redirect routes to /health-tools for all deleted tools
+[x] 253. Updated health-tools.tsx - changed all "14+" references to "8+" in meta descriptions and descriptions

@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (18)
+  // Health Tools (8)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",
@@ -213,106 +213,6 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-bolt",
     href: "/tools/tdee-calculator",
-  },
-  {
-    id: "lean-body-mass-calculator",
-    name: "Lean Body Mass Calculator",
-    description: "Calculate lean body mass",
-    category: "health" as const,
-    icon: "fas fa-user-md",
-    href: "/tools/lean-body-mass-calculator",
-  },
-  {
-    id: "waist-to-height-ratio-calculator",
-    name: "Waist-to-Height Ratio Calculator",
-    description: "Calculate waist-to-height ratio",
-    category: "health" as const,
-    icon: "fas fa-ruler",
-    href: "/tools/waist-to-height-ratio-calculator",
-  },
-  {
-    id: "whr-calculator",
-    name: "WHR Calculator (Waist-Hip Ratio)",
-    description: "Calculate waist-to-hip ratio",
-    category: "health" as const,
-    icon: "fas fa-tape",
-    href: "/tools/whr-calculator",
-  },
-  {
-    id: "life-expectancy-calculator",
-    name: "Life Expectancy Calculator",
-    description: "Estimate life expectancy based on lifestyle",
-    category: "health" as const,
-    icon: "fas fa-hourglass",
-    href: "/tools/life-expectancy-calculator",
-  },
-  {
-    id: "running-pace-calculator",
-    name: "Running Pace Calculator",
-    description: "Calculate running pace and times",
-    category: "health" as const,
-    icon: "fas fa-running",
-    href: "/tools/running-pace-calculator",
-  },
-  {
-    id: "cycling-speed-calculator",
-    name: "Cycling Speed Calculator",
-    description: "Calculate cycling speed and distance",
-    category: "health" as const,
-    icon: "fas fa-bicycle",
-    href: "/tools/cycling-speed-calculator",
-  },
-  {
-    id: "swimming-calorie-calculator",
-    name: "Swimming Calorie Calculator",
-    description: "Calculate calories burned while swimming",
-    category: "health" as const,
-    icon: "fas fa-swimmer",
-    href: "/tools/swimming-calorie-calculator",
-  },
-  {
-    id: "smoking-cost-calculator",
-    name: "Smoking Cost Calculator",
-    description: "Calculate the cost of smoking habits",
-    category: "health" as const,
-    icon: "fas fa-smoking-ban",
-    href: "/tools/smoking-cost-calculator",
-  },
-  {
-    id: "sleep-quality-calculator",
-    name: "Sleep Quality Calculator",
-    description:
-      "Assess your sleep quality and get personalized recommendations for better rest",
-    category: "health" as const,
-    icon: "fas fa-moon",
-    href: "/tools/sleep-quality-calculator",
-  },
-  {
-    id: "stress-level-calculator",
-    name: "Stress Level Calculator",
-    description:
-      "Comprehensive stress assessment with personalized recommendations based on lifestyle factors",
-    category: "health" as const,
-    icon: "fas fa-brain",
-    href: "/tools/stress-level-calculator",
-  },
-  {
-    id: "metabolic-age-calculator",
-    name: "Metabolic Age Calculator",
-    description:
-      "Calculate your metabolic age based on lifestyle factors and health metrics with personalized longevity recommendations",
-    category: "health" as const,
-    icon: "fas fa-clock",
-    href: "/tools/metabolic-age-calculator",
-  },
-  {
-    id: "meal-calorie-tracker",
-    name: "Meal Calorie Tracker",
-    description:
-      "Track your daily calorie intake by adding meals with detailed nutritional information and progress monitoring",
-    category: "health" as const,
-    icon: "fas fa-utensils",
-    href: "/tools/meal-calorie-tracker",
   },
 ];
 
