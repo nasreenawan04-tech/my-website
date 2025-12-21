@@ -215,3 +215,9 @@
 [x] 215. Reconfigured workflow with webview output on port 5000
 [x] 216. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 217. Import complete - all tasks marked as done
+[x] 218. Deleted redirect routes for /tools/body-composition-analyzer from App.tsx
+[x] 219. Deleted redirect routes for /tools/body-water-percentage-calculator from App.tsx
+[x] 220. Removed cholesterol-risk-calculator from data/tools.ts (Health Tools count updated from 20 to 19)
+[x] 221. Removed cholesterol-risk-calculator import from tool-page.tsx component map
+[x] 222. Removed cholesterol-risk-calculator redirect from App.tsx
+[x] 223. Restarted workflow and verified Health Tools page operational - 3 tools cleaned up

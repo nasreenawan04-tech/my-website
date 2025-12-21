@@ -145,7 +145,7 @@ const toolsData: Tool[] = [
     href: "/tools/unit-converter",
   },
 
-  // Health Tools (20)
+  // Health Tools (19)
   {
     id: "bmi-calculator",
     name: "BMI Calculator",

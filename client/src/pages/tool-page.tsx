@@ -42,7 +42,6 @@ const toolComponents = {
   'waist-to-height-ratio-calculator': lazy(() => import('@/pages/waist-to-height-ratio-calculator')),
   'whr-calculator': lazy(() => import('@/pages/whr-calculator')),
   'life-expectancy-calculator': lazy(() => import('@/pages/life-expectancy-calculator')),
-  'cholesterol-risk-calculator': lazy(() => import('@/pages/cholesterol-risk-calculator')),
   'cycling-speed-calculator': lazy(() => import('@/pages/cycling-speed-calculator')),
   'swimming-calorie-calculator': lazy(() => import('@/pages/swimming-calorie-calculator')),
   'smoking-cost-calculator': lazy(() => import('@/pages/smoking-cost-calculator')),

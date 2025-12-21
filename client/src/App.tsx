@@ -250,20 +250,15 @@ function Router() {
           <Route path="/waist-to-height-ratio-calculator" component={() => <Redirect to="/tools/waist-to-height-ratio-calculator" />} />
           <Route path="/whr-calculator" component={() => <Redirect to="/tools/whr-calculator" />} />
           <Route path="/life-expectancy-calculator" component={() => <Redirect to="/tools/life-expectancy-calculator" />} />
-          <Route path="/cholesterol-risk-calculator" component={() => <Redirect to="/tools/cholesterol-risk-calculator" />} />
           <Route path="/running-pace-calculator" component={() => <Redirect to="/tools/running-pace-calculator" />} />
           <Route path="/cycling-speed-calculator" component={() => <Redirect to="/tools/cycling-speed-calculator" />} />
           <Route path="/swimming-calorie-calculator" component={() => <Redirect to="/tools/swimming-calorie-calculator" />} />
           <Route path="/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/tools/alcohol-calorie-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/smoking-cost-calculator" component={() => <Redirect to="/tools/smoking-cost-calculator" />} />
-          <Route path="/body-water-percentage-calculator" component={() => <Redirect to="/health-tools" />} />
-          <Route path="/tools/body-water-percentage-calculator" component={() => <Redirect to="/health-tools" />} />
           <Route path="/hydration-calculator" component={() => <Redirect to="/tools/hydration-calculator" />} />
           <Route path="/sleep-quality-calculator" component={() => <Redirect to="/tools/sleep-quality-calculator" />} />
           <Route path="/stress-level-calculator" component={() => <Redirect to="/tools/stress-level-calculator" />} />
-          <Route path="/body-composition-analyzer" component={() => <Redirect to="/tools/bmi-calculator" />} />
-          <Route path="/tools/body-composition-analyzer" component={() => <Redirect to="/tools/bmi-calculator" />} />
           <Route path="/metabolic-age-calculator" component={() => <Redirect to="/tools/metabolic-age-calculator" />} />
           <Route path="/meal-calorie-tracker" component={() => <Redirect to="/tools/meal-calorie-tracker" />} />
 
