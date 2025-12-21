@@ -60,7 +60,7 @@ export const ORGANIZATION_SCHEMA = {
   name: 'DapsiWow',
   url: 'https://dapsiwow.com/',
   logo: 'https://dapsiwow.com/logo.svg',
-  description: 'Professional online tools platform offering 180+ free utilities for business and personal use including finance calculators, text converters, and health trackers.',
+  description: 'Professional online tools platform offering 23 free utilities for business and personal use including finance calculators, text converters, and health trackers.',
   foundingDate: '2025',
   slogan: 'Free Finance, Text, Health and other Online Tools',
   knowsAbout: [

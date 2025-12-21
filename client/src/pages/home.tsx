@@ -125,7 +125,7 @@ const Home = () => {
             "name": "DapsiWow",
             "url": "https://dapsiwow.com/",
             "logo": "https://dapsiwow.com/logo.svg",
-            "description": "Professional online tools platform offering 180+ free utilities for business and personal use including finance calculators, text converters, and health trackers.",
+            "description": "Professional online tools platform offering 23 free utilities for business and personal use including finance calculators, text converters, and health trackers.",
             "foundingDate": "2025",
             "slogan": "Free Finance, Text, Health and other Online Tools",
             "knowsAbout": [
@@ -256,17 +256,17 @@ const Home = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Finance Tools</h3>
-                    <p className="text-neutral-600 text-sm">Calculators for loans, mortgages, investments, taxes, and more financial planning needs</p>
+                    <p className="text-neutral-600 text-sm">Professional financial calculators for loans, mortgages, and investment planning</p>
                   </div>
 
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Text Tools</h3>
-                    <p className="text-neutral-600 text-sm">Word counters, case converters, grammar checkers, and content generation tools</p>
+                    <p className="text-neutral-600 text-sm">Text processing and analysis tools for content creators and professionals</p>
                   </div>
 
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Health Tools</h3>
-                    <p className="text-neutral-600 text-sm">BMI calculators, calorie counters, and wellness tracking tools for healthy living</p>
+                    <p className="text-neutral-600 text-sm">Health and fitness calculators for wellness tracking and fitness planning</p>
                   </div>
                 </div>
               </div>
@@ -389,16 +389,9 @@ const Home = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Loan Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate monthly payments and total interest for any loan. Features advanced
-                    amortization schedules, payment frequency options, and detailed cost breakdowns.
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    Professional loan calculation tool for financial planning and analysis.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• Complete amortization schedule</li>
-                    <li>• Multiple payment frequencies</li>
-                    <li>• Extra payment calculations</li>
-                    <li>• Interest vs principal breakdown</li>
-                  </ul>
                   <a
                     href="/tools/loan-calculator"
                     className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group-hover:gap-2 gap-1"
@@ -410,16 +403,9 @@ const Home = () => {
 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">BMI Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate your Body Mass Index and get comprehensive health insights with
-                    WHO standards, health category classifications, and personalized recommendations.
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    Calculate Body Mass Index and get comprehensive health insights.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• WHO standard classifications</li>
-                    <li>• Health risk assessments</li>
-                    <li>• Ideal weight ranges</li>
-                    <li>• Personalized insights</li>
-                  </ul>
                   <a
                     href="/tools/bmi-calculator"
                     className="inline-flex items-center text-pink-600 font-semibold hover:text-pink-700 transition-colors group-hover:gap-2 gap-1"
@@ -431,16 +417,9 @@ const Home = () => {
 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Username Generator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Generate unique, creative usernames for social media, gaming, and online platforms.
-                    Customize length, style, and add numbers or symbols as needed.
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    Generate unique and creative usernames instantly.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• Multiple generation styles</li>
-                    <li>• Customizable length options</li>
-                    <li>• Special character support</li>
-                    <li>• Availability checking tips</li>
-                  </ul>
                   <a
                     href="/tools/username-generator"
                     className="inline-flex items-center text-yellow-600 font-semibold hover:text-yellow-700 transition-colors group-hover:gap-2 gap-1"
@@ -452,16 +431,9 @@ const Home = () => {
 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Mortgage Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate comprehensive mortgage payments including principal, interest, taxes,
-                    insurance, and PMI. Perfect for home buying decisions and loan comparisons.
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    Calculate comprehensive mortgage payments and costs.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• Complete PITI calculations</li>
-                    <li>• PMI estimation included</li>
-                    <li>• Property tax calculations</li>
-                    <li>• Insurance cost estimates</li>
-                  </ul>
                   <a
                     href="/tools/mortgage-calculator"
                     className="inline-flex items-center text-green-600 font-semibold hover:text-green-700 transition-colors group-hover:gap-2 gap-1"
@@ -473,16 +445,9 @@ const Home = () => {
 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Business Loan Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate business loan payments with origination fees, processing costs, and
-                    effective APR. Compare SBA loans, term loans, and equipment financing options.
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    Calculate business loan payments and costs effectively.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• SBA loan calculations</li>
-                    <li>• Fee structure analysis</li>
-                    <li>• Payment schedule options</li>
-                    <li>• Total cost comparisons</li>
-                  </ul>
                   <a
                     href="/tools/business-loan-calculator"
                     className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700 transition-colors group-hover:gap-2 gap-1"
@@ -493,22 +458,15 @@ const Home = () => {
                 </div>
 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Cholesterol Risk Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Assess cardiovascular health risks based on cholesterol levels, age, and lifestyle
-                    factors. Get personalized recommendations for heart health improvement.
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Calorie Calculator</h3>
+                  <p className="text-neutral-600 mb-6 leading-relaxed">
+                    Track and manage your daily calorie needs.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• Comprehensive risk assessment</li>
-                    <li>• Lifestyle factor analysis</li>
-                    <li>• Personalized recommendations</li>
-                    <li>• Heart health insights</li>
-                  </ul>
                   <a
-                    href="/tools/cholesterol-risk-calculator"
+                    href="/tools/calorie-calculator"
                     className="inline-flex items-center text-red-600 font-semibold hover:text-red-700 transition-colors group-hover:gap-2 gap-1"
                   >
-                    Try Cholesterol Calculator
+                    Try Calorie Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
@@ -522,7 +480,7 @@ const Home = () => {
                   href="/all-tools"
                   className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 gap-2"
                 >
-                  View All 180+ Tools
+                  View All 23 Tools
                   <Zap size={20} />
                 </a>
               </div>
