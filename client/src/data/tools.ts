@@ -189,30 +189,6 @@ const toolsData: Tool[] = [
     href: "/tools/protein-intake-calculator",
   },
   {
-    id: "carb-calculator",
-    name: "Carb Calculator",
-    description: "Calculate daily carbohydrate needs",
-    category: "health" as const,
-    icon: "fas fa-bread-slice",
-    href: "/tools/carb-calculator",
-  },
-  {
-    id: "keto-macro-calculator",
-    name: "Keto Macro Calculator",
-    description: "Calculate macros for ketogenic diet",
-    category: "health" as const,
-    icon: "fas fa-calculator",
-    href: "/tools/keto-macro-calculator",
-  },
-  {
-    id: "intermittent-fasting-timer",
-    name: "Intermittent Fasting Timer",
-    description: "Track intermittent fasting periods and eating windows",
-    category: "health" as const,
-    icon: "fas fa-clock",
-    href: "/tools/intermittent-fasting-timer",
-  },
-  {
     id: "daily-step-calorie-converter",
     name: "Daily Steps to Calories Converter",
     description:

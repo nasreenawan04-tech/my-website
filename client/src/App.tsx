@@ -227,9 +227,12 @@ function Router() {
           <Route path="/tools/ideal-weight-calculator" component={() => <Redirect to="/tools/bmi-calculator" />} />
           <Route path="/water-intake-calculator" component={() => <Redirect to="/tools/water-intake-calculator" />} />
           <Route path="/protein-intake-calculator" component={() => <Redirect to="/tools/protein-intake-calculator" />} />
-          <Route path="/carb-calculator" component={() => <Redirect to="/tools/carb-calculator" />} />
-          <Route path="/keto-macro-calculator" component={() => <Redirect to="/tools/keto-macro-calculator" />} />
-          <Route path="/intermittent-fasting-timer" component={() => <Redirect to="/tools/intermittent-fasting-timer" />} />
+          <Route path="/carb-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/carb-calculator" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/keto-macro-calculator" component={() => <Redirect to="/tools/calorie-calculator" />} />
+          <Route path="/tools/keto-macro-calculator" component={() => <Redirect to="/tools/calorie-calculator" />} />
+          <Route path="/intermittent-fasting-timer" component={() => <Redirect to="/health-tools" />} />
+          <Route path="/tools/intermittent-fasting-timer" component={() => <Redirect to="/health-tools" />} />
           <Route path="/daily-step-calorie-converter" component={() => <Redirect to="/tools/daily-step-calorie-converter" />} />
           <Route path="/heart-rate-calculator" component={() => <Redirect to="/tools/heart-rate-calculator" />} />
           <Route path="/max-heart-rate-calculator" component={() => <Redirect to="/tools/max-heart-rate-calculator" />} />
