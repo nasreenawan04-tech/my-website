@@ -14,21 +14,17 @@ import { ToolPageContext } from '@/contexts/ToolPageContext';
 
 // Map of tool IDs to their corresponding rich components
 const toolComponents = {
-  // Finance Tools
+  // Finance Tools (8)
   'loan-calculator': lazy(() => import('@/pages/loan-calculator')),
   'mortgage-calculator': lazy(() => import('@/pages/mortgage-calculator')),
   'emi-calculator': lazy(() => import('@/pages/emi-calculator')),
   'business-loan-calculator': lazy(() => import('@/pages/business-loan-calculator')),
   'compound-interest-calculator': lazy(() => import('@/pages/compound-interest-calculator')),
   'simple-interest-calculator': lazy(() => import('@/pages/simple-interest-calculator')),
-  'investment-return-calculator': lazy(() => import('@/pages/investment-return-calculator')),
-  'dti-ratio-calculator': lazy(() => import('@/pages/dti-ratio-calculator')),
   'car-loan-calculator': lazy(() => import('@/pages/car-loan-calculator')),
   'home-loan-calculator': lazy(() => import('@/pages/home-loan-calculator')),
-  'personal-finance-dashboard': lazy(() => import('@/pages/personal-finance-dashboard')),
-  'debt-consolidation-calculator': lazy(() => import('@/pages/debt-consolidation-calculator')),
 
-  // Health Tools
+  // Health Tools (8)
   'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
   'calorie-calculator': lazy(() => import('@/pages/calorie-calculator')),
   'body-fat-calculator': lazy(() => import('@/pages/body-fat-calculator')),
@@ -36,46 +32,14 @@ const toolComponents = {
   'protein-intake-calculator': lazy(() => import('@/pages/protein-intake-calculator')),
   'heart-rate-calculator': lazy(() => import('@/pages/heart-rate-calculator')),
   'sleep-calculator': lazy(() => import('@/pages/sleep-calculator')),
-  'sleep-quality-calculator': lazy(() => import('@/pages/sleep-quality-calculator')),
   'tdee-calculator': lazy(() => import('@/pages/tdee-calculator')),
-  'lean-body-mass-calculator': lazy(() => import('@/pages/lean-body-mass-calculator')),
-  'waist-to-height-ratio-calculator': lazy(() => import('@/pages/waist-to-height-ratio-calculator')),
-  'whr-calculator': lazy(() => import('@/pages/whr-calculator')),
-  'life-expectancy-calculator': lazy(() => import('@/pages/life-expectancy-calculator')),
-  'cycling-speed-calculator': lazy(() => import('@/pages/cycling-speed-calculator')),
-  'swimming-calorie-calculator': lazy(() => import('@/pages/swimming-calorie-calculator')),
-  'smoking-cost-calculator': lazy(() => import('@/pages/smoking-cost-calculator')),
-  'metabolic-age-calculator': lazy(() => import('@/pages/metabolic-age-calculator')),
-  'stress-level-calculator': lazy(() => import('@/pages/stress-level-calculator')),
-  'meal-calorie-tracker': lazy(() => import('@/pages/meal-calorie-tracker')),
 
-  // Text Tools
+  // Text Tools (7)
   'word-counter': lazy(() => import('@/pages/word-counter')),
   'character-counter': lazy(() => import('@/pages/character-counter')),
-  'sentence-counter': lazy(() => import('@/pages/sentence-counter')),
-  'paragraph-counter': lazy(() => import('@/pages/paragraph-counter')),
-  'case-converter': lazy(() => import('@/pages/case-converter')),
   'password-generator': lazy(() => import('@/pages/password-generator')),
-  'fake-name-generator': lazy(() => import('@/pages/fake-name-generator')),
   'username-generator': lazy(() => import('@/pages/username-generator')),
-  'fake-address-generator': lazy(() => import('@/pages/fake-address-generator')),
-  'font-style-changer': lazy(() => import('@/pages/font-style-changer')),
-  'reverse-text-tool': lazy(() => import('@/pages/reverse-text-tool')),
-  'text-to-qr-code': lazy(() => import('@/pages/text-to-qr-code')),
-  'text-to-binary-converter': lazy(() => import('@/pages/text-to-binary-converter')),
-  'binary-to-text-converter': lazy(() => import('@/pages/binary-to-text-converter')),
-  'decimal-to-text-converter': lazy(() => import('@/pages/decimal-to-text-converter')),
-  'text-to-decimal-converter': lazy(() => import('@/pages/text-to-decimal-converter')),
   'qr-code-scanner': lazy(() => import('@/pages/qr-code-scanner')),
-  'markdown-to-html': lazy(() => import('@/pages/markdown-to-html')),
-  'lorem-ipsum-generator': lazy(() => import('@/pages/lorem-ipsum-generator')),
-  'hex-to-text-converter': lazy(() => import('@/pages/hex-to-text-converter')),
-  'text-to-hex-converter': lazy(() => import('@/pages/text-to-hex-converter')),
-  'duplicate-line-remover': lazy(() => import('@/pages/duplicate-line-remover')),
-  'text-scrambler': lazy(() => import('@/pages/text-scrambler')),
-  'text-diff-checker': lazy(() => import('@/pages/text-diff-checker')),
-  'text-pattern-generator': lazy(() => import('@/pages/text-pattern-generator')),
-  'password-strength-checker': lazy(() => import('@/pages/password-strength-checker')),
   'base64-encoder-decoder': lazy(() => import('@/pages/base64-encoder-decoder')),
   'unit-converter': lazy(() => import('@/pages/unit-converter')),
 };
