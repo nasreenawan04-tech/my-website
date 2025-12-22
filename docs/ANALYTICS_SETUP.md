@@ -31,6 +31,8 @@ Currently tracking:
 - **Share Actions**: ShareResultsButton component
 - **Signups**: Email and Google OAuth signup
 - **Page Views**: All route changes
+- **Goal Funnels**: Updated to focus on the 23 active tools (Finance, Health, Text categories)
+- **Historical Data**: All tracking for the ~70+ removed tools has been decommissioned
 
 ## Setup Instructions
 

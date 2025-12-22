@@ -324,3 +324,6 @@
 [x] 324. Cleaned up analytics documentation to reflect generic tracking implementation
 [x] 325. Final verification: No orphaned analytics calls for deleted tools found in the codebase.
 [x] 326. Conversion tracking for removed calculators has been successfully removed/verified.
+[x] 327. Updated documentation regarding goal funnels and historical data archiving for removed tools.
+[x] 328. Verified that no Heatmap tracking (Hotjar/CrazyEgg) or custom Tag Manager triggers for deleted tools are present in the codebase.
+[x] 329. Centralized tracking in ToolPage handles all active tools; tag manager triggers are now generic.
