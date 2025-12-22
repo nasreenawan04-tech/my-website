@@ -11,7 +11,7 @@ export default function NotFound() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Page Not Found - 404 Error | DapsiWow</title>
-        <meta name="description" content="The page you're looking for doesn't exist. Explore our 180+ free online tools for finance, text processing, and health calculations." />
+        <meta name="description" content="The page you're looking for doesn't exist. Explore our 23 free online tools for finance, text processing, and health calculations." />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dapsiwow.com/404" />
       </Helmet>

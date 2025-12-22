@@ -71,7 +71,7 @@ const HealthTools = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/health-tools" />
         <meta property="og:title" content="Health Tools - Free Health & Wellness Calculators" />
-        <meta property="og:description" content="Access 8+ free health calculators including BMI, calorie, and fitness tools. Track your wellness with instant results." />
+        <meta property="og:description" content="Access 8 free health calculators including BMI, calorie, and fitness tools. Track your wellness with instant results." />
         <meta property="og:image" content="https://dapsiwow.com/images/health-tools-og.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -83,7 +83,7 @@ const HealthTools = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://dapsiwow.com/health-tools" />
         <meta name="twitter:title" content="Health Tools - Free Health & Wellness Calculators" />
-        <meta name="twitter:description" content="Access 8+ free health calculators for BMI, calories, fitness and more. Instant results, no registration required." />
+        <meta name="twitter:description" content="Access 8 free health calculators for BMI, calories, fitness and more. Instant results, no registration required." />
         <meta name="twitter:image" content="https://dapsiwow.com/images/health-tools-og.jpg" />
         <meta name="twitter:image:alt" content="DapsiWow Health Tools Collection" />
         
@@ -102,7 +102,7 @@ const HealthTools = () => {
                 "@id": "https://dapsiwow.com/health-tools",
                 "url": "https://dapsiwow.com/health-tools",
                 "name": "Health Tools - Free Health & Wellness Calculators",
-                "description": "Access 8+ free health calculators including BMI, calorie, body fat, and fitness tools. Track your wellness journey with instant, accurate results.",
+                "description": "Access 8 free health calculators including BMI, calorie, body fat, and fitness tools. Track your wellness journey with instant, accurate results.",
                 "inLanguage": "en-US",
                 "isPartOf": {
                   "@id": "https://dapsiwow.com/#website"
@@ -118,7 +118,7 @@ const HealthTools = () => {
                 "@type": "CollectionPage",
                 "@id": "https://dapsiwow.com/health-tools#collection",
                 "name": "Health Tools Collection",
-                "description": "Comprehensive collection of 8+ free health and fitness calculators",
+                "description": "Comprehensive collection of 8 free health and fitness calculators",
                 "url": "https://dapsiwow.com/health-tools",
                 "numberOfItems": 8,
                 "itemListElement": [
@@ -306,7 +306,7 @@ const HealthTools = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               >
-                8+ free health and fitness tools to track, calculate, and improve your wellbeing
+                8 free health and fitness tools to track, calculate, and improve your wellbeing
               </motion.p>
               
               {/* Search Bar */}

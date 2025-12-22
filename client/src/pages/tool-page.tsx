@@ -92,7 +92,7 @@ const ToolPage = () => {
       <div className="min-h-screen flex flex-col">
         <Helmet>
           <title>Tool Not Found - 404 Error | DapsiWow</title>
-          <meta name="description" content="The tool you're looking for doesn't exist. Explore our 180+ free online tools for finance, text processing, and health calculations." />
+          <meta name="description" content="The tool you're looking for doesn't exist. Explore our 23 free online tools for finance, text processing, and health calculations." />
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
         <Header />

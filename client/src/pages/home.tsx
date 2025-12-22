@@ -388,15 +388,15 @@ const Home = () => {
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Loan Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Word Counter</h3>
                   <p className="text-neutral-600 mb-6 leading-relaxed">
-                    Professional loan calculation tool for financial planning and analysis.
+                    Analyze text documents with detailed word, character, and readability statistics.
                   </p>
                   <a
-                    href="/tools/loan-calculator"
+                    href="/tools/word-counter"
                     className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group-hover:gap-2 gap-1"
                   >
-                    Try Loan Calculator
+                    Try Word Counter
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
@@ -408,7 +408,7 @@ const Home = () => {
                   </p>
                   <a
                     href="/tools/bmi-calculator"
-                    className="inline-flex items-center text-pink-600 font-semibold hover:text-pink-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-green-600 font-semibold hover:text-green-700 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try BMI Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -571,7 +571,7 @@ const Home = () => {
                     <PenTool className="text-white" size={24} />
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">180+</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">23</div>
                     <div className="text-neutral-800 font-semibold text-lg mb-1">Professional Tools</div>
                     <div className="text-sm text-neutral-500">Continuously expanding collection</div>
                   </div>
@@ -695,7 +695,7 @@ const Home = () => {
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-neutral-600">
-                          Or explore all <a href="/all-tools" className="text-blue-600 hover:text-blue-800 underline font-semibold">180+ professional tools</a>
+                          Or explore all <a href="/all-tools" className="text-blue-600 hover:text-blue-800 underline font-semibold">23 professional tools</a>
                         </p>
                       </div>
                     </div>
@@ -747,7 +747,7 @@ const Home = () => {
                 <div className="space-y-8">
                   <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-free-tools">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      Are all 180+ tools really free to use?
+                      Are all 23 tools really free to use?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
                       Yes! Every single tool on DapsiWow is completely free with no hidden costs, subscriptions, or premium upgrades.

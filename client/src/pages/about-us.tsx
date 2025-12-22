@@ -38,7 +38,7 @@ const AboutUs = () => {
                   <div className="text-neutral-600 font-medium">Happy Users</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">150+</div>
+                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">23</div>
                   <div className="text-neutral-600 font-medium">Free Tools</div>
                 </div>
                 <div className="text-center">
@@ -116,7 +116,7 @@ const AboutUs = () => {
                 What We Offer
               </h2>
               <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                A comprehensive collection of 150+ free online tools across 4 main categories, 
+                A comprehensive collection of 23 free online tools across 3 main categories, 
                 designed to meet all your digital needs.
               </p>
             </div>

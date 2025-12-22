@@ -15,7 +15,7 @@ export const categories = {
 };
 
 const toolsData: Tool[] = [
-  // Finance Tools (28)
+  // Finance Tools (8)
   {
     id: "loan-calculator",
     name: "Loan Calculator",
@@ -83,7 +83,7 @@ const toolsData: Tool[] = [
     href: "/tools/home-loan-calculator",
   },
 
-  // Text Tools (19)
+  // Text Tools (7)
   {
     id: "word-counter",
     name: "Word Counter",

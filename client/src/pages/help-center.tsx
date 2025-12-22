@@ -71,12 +71,12 @@ const HelpCenter = () => {
   const faqs = [
     {
       question: "How do I get started with DapsiWow?",
-      answer: "Simply visit our homepage and start using any of our 150+ tools immediately. No registration or downloads required - just click on any tool and begin working!",
+      answer: "Simply visit our homepage and start using any of our 23 tools immediately. No registration or downloads required - just click on any tool and begin working!",
       category: 'getting-started'
     },
     {
       question: "Are all tools completely free to use?",
-      answer: "Yes! All 150+ tools on DapsiWow are completely free with no hidden costs, subscriptions, or premium tiers. We believe powerful tools should be accessible to everyone.",
+      answer: "Yes! All 23 tools on DapsiWow are completely free with no hidden costs, subscriptions, or premium tiers. We believe powerful tools should be accessible to everyone.",
       category: 'getting-started'
     },
     {
@@ -141,7 +141,7 @@ const HelpCenter = () => {
     <>
       <Helmet>
         <title>Help Center - DapsiWow Support & FAQ</title>
-        <meta name="description" content="Get comprehensive support for DapsiWow's 150+ free online tools. Find answers, tutorials, and expert help for all your productivity needs." />
+        <meta name="description" content="Get comprehensive support for DapsiWow's 23 free online tools. Find answers, tutorials, and expert help for all your productivity needs." />
         <meta name="keywords" content="help center, FAQ, support, dapsiwow help, online tools support, tutorials, guides" />
         <meta property="og:title" content="Help Center - DapsiWow Support & FAQ" />
         <meta property="og:description" content="Get comprehensive support for DapsiWow's free online tools and find answers to all your questions." />
@@ -161,7 +161,7 @@ const HelpCenter = () => {
                   How can we <span className="text-blue-600">help</span> you?
                 </h1>
                 <p className="text-xl lg:text-2xl text-neutral-600 mb-10 max-w-4xl mx-auto leading-relaxed">
-                  Get instant support for all 150+ tools, find detailed guides, and discover tips to make the most of DapsiWow
+                  Get instant support for all 23 tools, find detailed guides, and discover tips to make the most of DapsiWow
                 </p>
 
                 {/* Search Bar */}
@@ -190,7 +190,7 @@ const HelpCenter = () => {
                     <div className="text-neutral-600 font-medium">Help Articles</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">150+</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">23</div>
                     <div className="text-neutral-600 font-medium">Tools Covered</div>
                   </div>
                   <div className="text-center">
