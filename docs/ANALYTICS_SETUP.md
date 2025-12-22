@@ -27,7 +27,7 @@ Centralized tracking functions for all events:
 
 ### 4. Event Tracking Implementations
 Currently tracking:
-- **Tool Usage**: Loan Calculator (example implementation)
+- **Tool Usage**: Generic `trackToolUsed` implementation in dynamic `ToolPage`
 - **Share Actions**: ShareResultsButton component
 - **Signups**: Email and Google OAuth signup
 - **Page Views**: All route changes
