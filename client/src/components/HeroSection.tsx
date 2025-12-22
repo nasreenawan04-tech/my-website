@@ -252,23 +252,24 @@ const HeroSection = () => {
             <input 
               ref={inputRef}
               type="text" 
-              placeholder="Search for tools..."
+              placeholder="Search tools..."
               value={searchQuery}
               onChange={handleSearchChange}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               onKeyDown={handleKeyDown}
-              className="w-full py-3.5 pl-6 pr-14 sm:py-4 sm:pl-8 sm:pr-16 md:py-5 md:pl-10 md:pr-20 text-sm sm:text-base md:text-lg text-neutral-800 bg-gray-50 hover:bg-white focus:bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:shadow-xl transition-all duration-200 ease-in-out border border-transparent focus:border-transparent placeholder:text-gray-500"
+              className="w-full py-3.5 pl-5 pr-12 sm:py-4 sm:pl-8 sm:pr-16 md:py-5 md:pl-10 md:pr-20 text-xs sm:text-base md:text-lg text-neutral-800 bg-gray-50 hover:bg-white focus:bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:shadow-[0_0_20px_rgba(96,165,250,0.4)] transition-all duration-200 ease-in-out border border-transparent focus:border-transparent placeholder:text-gray-400 placeholder:text-xs sm:placeholder:text-sm"
               data-testid="input-search-tools"
               autoComplete="off"
             />
             <button
               type="submit"
-              className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full px-5 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5"
+              className="absolute right-1.5 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full px-3 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:shadow-blue-400/30 active:scale-95 flex items-center justify-center gap-1.5 min-h-10"
               data-testid="button-search-submit"
               aria-label="Search"
             >
               <Search className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5" strokeWidth={2.5} />
+              <span className="hidden sm:inline text-sm font-medium">Search</span>
             </button>
           </form>
         </motion.div>
