@@ -159,7 +159,7 @@ const Header = () => {
         data-testid="header-main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-[4.5rem]">
+          <div className="flex justify-between items-center h-14 sm:h-16 lg:h-[4.5rem]">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
               <div aria-label="DapsiWow home">
@@ -327,13 +327,13 @@ const Header = () => {
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
         >
-          <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
+          <nav className="px-4 py-3 space-y-1 overflow-y-auto max-h-[calc(100vh-3.5rem)] scrollbar-thin">
             {/* Navigation Links */}
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block font-medium text-base py-4 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                className={`block font-medium text-base py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
                   location === link.href
                     ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
                     : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
