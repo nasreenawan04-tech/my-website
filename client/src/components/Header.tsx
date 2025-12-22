@@ -159,7 +159,7 @@ const Header = () => {
         data-testid="header-main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16 lg:h-[4.5rem]">
+          <div className="flex justify-between items-center h-14 sm:h-16 md:h-16 lg:h-[4.5rem]">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
               <div aria-label="DapsiWow home">
@@ -167,13 +167,13 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Desktop Navigation - Show on lg screens and above */}
-            <nav className="hidden lg:flex items-center gap-8 px-4">
+            {/* Desktop Navigation - Show on md screens and above */}
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8 px-2 lg:px-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group whitespace-nowrap ${
+                  className={`px-2 md:px-3 lg:px-4 py-2 text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group whitespace-nowrap ${
                     location === link.href 
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50' 
                       : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
@@ -204,9 +204,9 @@ const Header = () => {
                 <Search className="w-5 h-5" />
               </button>
 
-              {/* Desktop Auth Buttons - Hidden below lg */}
+              {/* Desktop Auth Buttons - Hidden below md */}
               {!loading && (
-                <div className="hidden lg:flex items-center gap-2">
+                <div className="hidden md:flex items-center gap-2">
                   {user ? (
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -282,9 +282,9 @@ const Header = () => {
                 </div>
               )}
 
-              {/* Mobile Menu Button - Show on tablet and mobile */}
+              {/* Mobile Menu Button - Show on mobile only */}
               <button
-                className="lg:hidden p-3 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out min-h-11 min-w-11"
+                className="md:hidden p-3 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-colors duration-200 ease-in-out min-h-11 min-w-11"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 data-testid="button-mobile-menu"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -308,18 +308,18 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile & Tablet Menu - Smooth slide-in animation */}
+        {/* Mobile Menu - Smooth slide-in animation */}
         {/* Semi-transparent backdrop overlay */}
         {isMobileMenuOpen && (
           <div 
-            className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 top-16"
+            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 top-16"
             onClick={() => setIsMobileMenuOpen(false)}
             data-testid="mobile-menu-backdrop"
             aria-hidden="true"
           />
         )}
         <div 
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-999 ${
+          className={`md:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-999 ${
             isMobileMenuOpen 
               ? 'max-h-[calc(100vh-4rem)] opacity-100 visible translate-y-0' 
               : 'max-h-0 opacity-0 invisible -translate-y-2'
