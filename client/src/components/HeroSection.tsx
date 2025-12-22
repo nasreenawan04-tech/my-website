@@ -223,7 +223,11 @@ const HeroSection = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.h1 
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-5 lg:mb-6 leading-tight tracking-tight"
+          style={{
+            fontSize: 'clamp(24px, 5vw, 48px)',
+            marginBottom: 'clamp(12px, 2vw, 24px)'
+          }}
           data-testid="text-hero-title"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -232,7 +236,11 @@ const HeroSection = () => {
           Free Tools to Make Everything Simple
         </motion.h1>
         <motion.p 
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed px-2"
+          className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100 mb-6 sm:mb-7 md:mb-8 lg:mb-10 max-w-4xl mx-auto leading-relaxed px-2"
+          style={{
+            fontSize: 'clamp(14px, 3vw, 20px)',
+            marginBottom: 'clamp(24px, 4vw, 40px)'
+          }}
           data-testid="text-hero-subtitle"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
