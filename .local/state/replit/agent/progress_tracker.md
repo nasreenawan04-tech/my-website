@@ -186,3 +186,4 @@
 [x] 486. Verified Radix UI package installations in package.json - all components are present and correctly named.
 [x] 487. Fixed incorrect named exports in collapsible.tsx (changed CollapsibleTrigger/Content to use .Trigger/.Content) to resolve potential runtime errors and sourcemap noise.
 [x] 488. Updated tsconfig.json with sourceMap, inlineSources, and declarationMap options to improve sourcemap generation and debugging. Verified moduleResolution is set to "bundler" and all UI components are included in the search path.
+[x] 489. Regenerated tooltip, avatar, select, tabs, and collapsible components using shadcn CLI to ensure correct file generation and resolve potential sourcemap resolution errors. Verified components.json configuration before regeneration.
