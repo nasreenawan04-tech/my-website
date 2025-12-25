@@ -433,6 +433,10 @@ export default function CompoundInterestCalculator() {
       }
 
       return {
+        variableName: 'Interest Rate',
+        variableChange: change > 0 ? `+${change}%` : `${change}%`,
+        changeValue: change,
+        resultValue: whatIfAmount,
         rateChange: change > 0 ? `+${change}%` : `${change}%`,
         rate: adjustedRate * 100,
         finalAmount: whatIfAmount,
@@ -464,7 +468,8 @@ export default function CompoundInterestCalculator() {
       goalAnalysis = {
         timeToReachGoal: timeToGoal <= 50 ? timeToGoal : -1,
         requiredMonthlyContribution: Math.max(0, requiredMonthlyContribution),
-        isGoalAchievable: timeToGoal <= 50 || requiredMonthlyContribution <= sip * 2
+        isGoalAchievable: timeToGoal <= 50 || requiredMonthlyContribution <= sip * 2,
+        goalAmount: target
       };
     }
 
@@ -873,22 +878,22 @@ export default function CompoundInterestCalculator() {
       colX += colWidth;
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(34, 197, 94);
-      doc.text(formatCurrency(yearData.interestEarned), colX, yPos + 4);
+      doc.text(formatCurrency(Number(yearData.interestEarned ?? 0)), colX, yPos + 4);
 
       colX += colWidth;
       doc.setTextColor(59, 130, 246);
-      doc.text(formatCurrency(yearData.sipContribution), colX, yPos + 4);
+      doc.text(formatCurrency(Number(yearData.sipContribution ?? 0)), colX, yPos + 4);
 
       colX += colWidth;
       if (showRealValue) {
         doc.setTextColor(147, 51, 234);
-        doc.text(formatCurrency(yearData.realValue), colX, yPos + 4);
+        doc.text(formatCurrency(Number(yearData.realValue ?? 0)), colX, yPos + 4);
         colX += colWidth;
       }
 
       doc.setTextColor(249, 115, 22);
       doc.setFont('helvetica', 'bold');
-      doc.text(formatCurrency(yearData.totalInterest), colX, yPos + 4);
+      doc.text(formatCurrency(Number(yearData.totalInterest ?? 0)), colX, yPos + 4);
 
       yPos += 6;
     });

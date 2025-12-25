@@ -166,6 +166,9 @@ export interface WhatIfScenario {
   resultValue: number; // Resulting calculation value
   difference: number; // Difference from baseline
   percentageChange?: number; // Percentage change
+  rateChange?: string; // Legacy field for Compound Interest
+  rate?: number; // Legacy field for Compound Interest
+  finalAmount?: number; // Legacy field for Compound Interest
 }
 
 /**

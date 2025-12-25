@@ -127,7 +127,8 @@ export default function SimpleInterestCalculator() {
       principal: p,
       interestRate: r,
       timePeriod: t,
-      timeUnit: timeUnit as 'years' | 'months'
+      timeUnit: timeUnit as 'years' | 'months',
+      compoundFrequency: 'annually' // Add dummy value for compatibility
     });
 
     setResult(calculationResult);
@@ -410,10 +411,10 @@ export default function SimpleInterestCalculator() {
       
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
-      doc.text(formatCurrency(year.interestEarned), colX[1], yPos + 4);
+      doc.text(formatCurrency(Number(year.interestEarned ?? 0)), colX[1], yPos + 4);
       
       doc.setTextColor(59, 130, 246);
-      doc.text(formatCurrency(year.cumulativeInterest), colX[2], yPos + 4);
+      doc.text(formatCurrency(Number(year.cumulativeInterest ?? 0)), colX[2], yPos + 4);
       
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(year.totalAmount), colX[3], yPos + 4);

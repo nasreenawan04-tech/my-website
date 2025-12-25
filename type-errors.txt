@@ -2,3 +2,36 @@
 > frontend-tools-app@1.0.0 check
 > tsc
 
+client/src/pages/compound-interest-calculator.tsx(488,15): error TS2345: Argument of type '{ finalAmount: number; totalInterest: number; principalAmount: number; totalContributions: number; realValue: number; inflationAdjustedGains: number; cagr: number; totalTaxPaid: number; postTaxReturns: number; ... 7 more ...; yearlyBreakdown: { ...; }[]; }' is not assignable to parameter of type 'SetStateAction<CompoundInterestResult | null>'.
+  Type '{ finalAmount: number; totalInterest: number; principalAmount: number; totalContributions: number; realValue: number; inflationAdjustedGains: number; cagr: number; totalTaxPaid: number; postTaxReturns: number; ... 7 more ...; yearlyBreakdown: { ...; }[]; }' is missing the following properties from type 'CompoundInterestResult': currency, totalAmount, primaryValue, formattedPrimaryValue, timestamp
+client/src/pages/compound-interest-calculator.tsx(2267,64): error TS18048: 'item.rate' is possibly 'undefined'.
+client/src/pages/compound-interest-calculator.tsx(2268,90): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/compound-interest-calculator.tsx(2355,34): error TS18048: 'result.yearlyBreakdown' is possibly 'undefined'.
+client/src/pages/compound-interest-calculator.tsx(2359,127): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/compound-interest-calculator.tsx(2360,126): error TS2345: Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/compound-interest-calculator.tsx(2362,130): error TS2345: Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/compound-interest-calculator.tsx(2364,128): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/simple-interest-calculator.tsx(126,55): error TS2554: Expected 0 arguments, but got 1.
+client/src/pages/simple-interest-calculator.tsx(134,15): error TS2345: Argument of type 'void' is not assignable to parameter of type 'SetStateAction<SimpleInterestResult | null>'.
+client/src/pages/simple-interest-calculator.tsx(420,31): error TS2345: Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/simple-interest-calculator.tsx(798,9): error TS18048: 'result.yearlyBreakdown' is possibly 'undefined'.
+client/src/pages/simple-interest-calculator.tsx(820,7): error TS18048: 'result.yearlyBreakdown' is possibly 'undefined'.
+client/src/pages/simple-interest-calculator.tsx(853,33): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/simple-interest-calculator.tsx(856,33): error TS2345: Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/simple-interest-calculator.tsx(1721,47): error TS18048: 'result.yearlyBreakdown' is possibly 'undefined'.
+client/src/pages/simple-interest-calculator.tsx(1764,47): error TS18048: 'result.yearlyBreakdown' is possibly 'undefined'.
+client/src/pages/simple-interest-calculator.tsx(1807,34): error TS18048: 'result.yearlyBreakdown' is possibly 'undefined'.
+client/src/pages/simple-interest-calculator.tsx(1811,55): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/simple-interest-calculator.tsx(1814,55): error TS2345: Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+client/src/pages/simple-interest-calculator.tsx(1817,55): error TS2345: Argument of type 'string | number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.

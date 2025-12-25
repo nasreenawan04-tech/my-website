@@ -56,6 +56,7 @@ export interface CompoundInterestResult extends InvestmentCalculationResult {
     requiredMonthlyContribution: number;
     isGoalAchievable: boolean;
     goalAmount: number;
+    finalAmount?: number;
   };
 }
 
