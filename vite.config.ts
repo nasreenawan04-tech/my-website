@@ -57,18 +57,19 @@ export default defineConfig(({ mode }) => {
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Heavy PDF libraries should NOT be in main vendor chunk
-          // They will be dynamically imported, so exclude them from pre-bundling
-          
-          // Core vendor libraries
+          // Core vendor libraries - MUST be in vendor chunk and loaded first
           if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'vendor';
           }
           
-          // Routing
+          // IMPORTANT: Routing depends on React, must be separate
           if (id.includes('node_modules/wouter/')) {
             return 'router';
           }
+          
+          // IMPORTANT: Don't create a utils chunk - let Rollup handle chunking
+          // This was causing the React undefined error where React wasn't available
+          // in the utils chunk when it tried to use createContext
           
           // Data fetching
           if (id.includes('node_modules/@tanstack/react-query/')) {
@@ -101,17 +102,6 @@ export default defineConfig(({ mode }) => {
           if (id.includes('node_modules/react-helmet-async/')) {
             return 'helmet';
           }
-          
-          // Utilities and animations
-          if (id.includes('node_modules/clsx/') ||
-              id.includes('node_modules/tailwind-merge/') ||
-              id.includes('node_modules/framer-motion/') ||
-              id.includes('node_modules/date-fns/')) {
-            return 'utils';
-          }
-          
-          // IMPORTANT: Don't bundle PDF libraries - they'll be dynamically imported
-          // This prevents jsPDF (387KB) and html2canvas (200KB) from being in main bundle
         },
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
