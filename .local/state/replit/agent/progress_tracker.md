@@ -127,3 +127,6 @@
 [x] 427. Verified no remaining TypeScript errors in finance tools after fixes
 [x] 428. Restarted workflow and confirmed application running successfully via screenshot
 [x] 429. DapsiWow site fully operational with all type errors resolved in finance tools
+[x] 430. TASK 16: Fixed ParsedCalculatorInput export error in compound-interest-calculator.tsx
+[x] 431. Removed unused ParsedCalculatorInput import from interest-calculator.engine that was causing runtime error
+[x] 432. Verified application running error-free - DapsiWow site fully operational on home page

@@ -23,8 +23,7 @@ interface LumpSumContribution {
 import { calculateCompoundInterest } from '@/lib/calculators/interest-calculator.engine';
 import { 
   CompoundInterestResult, 
-  CompoundInterestInputs,
-  ParsedCalculatorInput 
+  CompoundInterestInputs
 } from '@/lib/calculators/interest-calculator.engine';
 
 // Comprehensive Zod validation schema
