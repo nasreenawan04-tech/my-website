@@ -9,23 +9,14 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-
-interface WaterIntakeResult {
-  dailyWaterIntake: number;
-  glassesOfWater: number;
-  bottlesOfWater: number;
-  baseWaterNeed: number;
-  activityAdjustment: number;
-  climateAdjustment: number;
-  healthAdjustment: number;
-  recommendations: string[];
-}
+import { calculateWaterIntake, WaterIntakeResult } from '@/lib/calculators/health/water-intake.engine';
+import { Gender, UnitSystem } from '@/types/health-tool.types';
 
 const WaterIntakeCalculator = () => {
   const [weight, setWeight] = useState('70');
   const [age, setAge] = useState('30');
-  const [unitSystem, setUnitSystem] = useState('metric');
-  const [gender, setGender] = useState('');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>('metric');
+  const [gender, setGender] = useState<Gender | ''>('');
   const [activityLevel, setActivityLevel] = useState('');
   const [climate, setClimate] = useState('');
   const [healthConditions, setHealthConditions] = useState('');
@@ -33,146 +24,23 @@ const WaterIntakeCalculator = () => {
   const [isBreastfeeding, setIsBreastfeeding] = useState('');
   const [result, setResult] = useState<WaterIntakeResult | null>(null);
 
-  const calculateWaterIntake = () => {
+  const handleCalculate = () => {
     if (!weight || !age || !gender || !activityLevel) return;
 
-    const weightKg = unitSystem === 'metric' ? parseFloat(weight) : parseFloat(weight) * 0.453592;
-    const ageNum = parseInt(age);
-
-    // Base water intake calculation (ml per day)
-    let baseWater = 0;
-    
-    // Institute of Medicine recommendations
-    if (gender === 'male') {
-      baseWater = 3700; // 3.7L for men
-    } else {
-      baseWater = 2700; // 2.7L for women
-    }
-
-    // Alternative calculation based on weight (35ml per kg of body weight)
-    const weightBasedWater = weightKg * 35;
-    
-    // Use the higher of the two calculations as base
-    baseWater = Math.max(baseWater, weightBasedWater);
-
-    // Activity level adjustments
-    let activityMultiplier = 1;
-    let activityAdjustment = 0;
-    
-    switch (activityLevel) {
-      case 'sedentary':
-        activityMultiplier = 1;
-        break;
-      case 'light':
-        activityMultiplier = 1.1;
-        activityAdjustment = baseWater * 0.1;
-        break;
-      case 'moderate':
-        activityMultiplier = 1.3;
-        activityAdjustment = baseWater * 0.3;
-        break;
-      case 'active':
-        activityMultiplier = 1.5;
-        activityAdjustment = baseWater * 0.5;
-        break;
-      case 'very_active':
-        activityMultiplier = 1.7;
-        activityAdjustment = baseWater * 0.7;
-        break;
-    }
-
-    // Climate adjustments
-    let climateAdjustment = 0;
-    switch (climate) {
-      case 'cold':
-        climateAdjustment = 0;
-        break;
-      case 'temperate':
-        climateAdjustment = 0;
-        break;
-      case 'hot':
-        climateAdjustment = baseWater * 0.15;
-        break;
-      case 'very_hot':
-        climateAdjustment = baseWater * 0.25;
-        break;
-    }
-
-    // Health condition adjustments
-    let healthAdjustment = 0;
-    switch (healthConditions) {
-      case 'none':
-        healthAdjustment = 0;
-        break;
-      case 'fever':
-        healthAdjustment = baseWater * 0.2;
-        break;
-      case 'vomiting':
-        healthAdjustment = baseWater * 0.25;
-        break;
-      case 'diarrhea':
-        healthAdjustment = baseWater * 0.3;
-        break;
-      case 'kidney_stones':
-        healthAdjustment = baseWater * 0.4;
-        break;
-    }
-
-    // Pregnancy and breastfeeding adjustments
-    if (gender === 'female') {
-      if (isPregnant === 'yes') {
-        healthAdjustment += 300; // Additional 300ml for pregnancy
-      }
-      if (isBreastfeeding === 'yes') {
-        healthAdjustment += 700; // Additional 700ml for breastfeeding
-      }
-    }
-
-    // Age adjustments
-    if (ageNum > 65) {
-      healthAdjustment += baseWater * 0.1; // 10% more for elderly
-    }
-
-    const totalWaterIntake = baseWater * activityMultiplier + climateAdjustment + healthAdjustment;
-
-    // Convert to appropriate units
-    let finalWaterIntake = totalWaterIntake;
-    if (unitSystem === 'imperial') {
-      finalWaterIntake = totalWaterIntake * 0.033814; // Convert ml to fl oz
-    }
-
-    // Calculate glasses and bottles (assuming 250ml glass, 500ml bottle)
-    const glassesOfWater = Math.ceil(totalWaterIntake / 250);
-    const bottlesOfWater = Math.ceil(totalWaterIntake / 500);
-
-    // Generate recommendations
-    const recommendations = [];
-    
-    if (activityLevel === 'active' || activityLevel === 'very_active') {
-      recommendations.push('Drink water before, during, and after exercise');
-    }
-    
-    if (climate === 'hot' || climate === 'very_hot') {
-      recommendations.push('Increase intake in hot weather to prevent dehydration');
-    }
-    
-    recommendations.push('Spread your water intake throughout the day');
-    recommendations.push('Monitor urine color - pale yellow indicates good hydration');
-    
-    if (ageNum > 65) {
-      recommendations.push('Older adults should drink water regularly, even when not thirsty');
-    }
-
-    setResult({
-      dailyWaterIntake: Math.round(finalWaterIntake),
-      glassesOfWater,
-      bottlesOfWater,
-      baseWaterNeed: Math.round(baseWater),
-      activityAdjustment: Math.round(activityAdjustment),
-      climateAdjustment: Math.round(climateAdjustment),
-      healthAdjustment: Math.round(healthAdjustment),
-      recommendations
+    const calculatedResult = calculateWaterIntake({
+      weight,
+      age,
+      gender: gender as Gender,
+      activityLevel,
+      climate,
+      healthConditions,
+      isPregnant,
+      isBreastfeeding,
+      unitSystem,
+      height: 0 // Not used but required by interface
     });
+
+    setResult(calculatedResult);
   };
 
   const resetCalculator = () => {
@@ -447,7 +315,7 @@ const WaterIntakeCalculator = () => {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      onClick={calculateWaterIntake}
+                      onClick={handleCalculate}
                       className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >

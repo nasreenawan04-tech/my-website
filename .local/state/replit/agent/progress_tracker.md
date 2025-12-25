@@ -86,6 +86,9 @@
 [x] 386. Added generic function types BMICalculatorFunction, CalorieCalculatorFunction, and BodyFatCalculatorFunction
 [x] 387. Applied generic types to calculateBMI, calculateCalories, and calculateBodyFat engines
 [x] 388. Updated BodyFatResult to extend HealthToolResult for better type consistency
-[x] 386. Session restart - December 25, 2025 - Ran npm install and restarted workflow
-[x] 387. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
-[x] 388. Import complete - ready for user to continue building
+[x] 389. TASK 12: Extracted and typed Water Intake, Protein Intake, and Sleep Calculator engines
+[x] 390. Created water-intake.engine.ts with WaterIntakeCalculatorFunction generic type
+[x] 391. Created protein-intake.engine.ts with ProteinIntakeCalculatorFunction generic type
+[x] 392. Created sleep.engine.ts with SleepCalculatorFunction generic type
+[x] 393. Refactored calculator pages to use extracted engine logic and shared types from health-tool.types.ts
+[x] 394. Verified all health tools are functioning correctly with zero LSP errors
