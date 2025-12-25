@@ -95,6 +95,17 @@
 [x] 395. Fixed TypeScript type mismatches in Water and Protein calculator components
 [x] 396. Corrected ProteinIntakeInput interface to include activityLevel property
 [x] 397. Restarted workflow and verified application stability via screenshot
-[x] 398. Session restart - December 25, 2025 - Ran npm install and restarted workflow
-[x] 399. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
-[x] 400. Import complete - ready for user to continue building
+[x] 398. TASK 13: Added proper TypeScript generic types to Heart Rate Calculator engine
+[x] 399. Created heart-rate.engine.ts with HeartRateCalculatorInput and HeartRateResult generic types
+[x] 400. Extracted heart rate calculation logic with Karvonen method and multiple formulas
+[x] 401. Added validation functions isValidHeartRateInputs and parseHeartRateInput
+[x] 402. Refactored heart-rate-calculator.tsx to use extracted engine logic
+[x] 403. TASK 14: Added proper TypeScript generic types to TDEE Calculator engine
+[x] 404. Created tdee.engine.ts with TDEECalculatorInput and TDEEResult generic types
+[x] 405. Implemented Mifflin-St Jeor BMR calculation and macro breakdown functions
+[x] 406. Added validation functions isValidTDEEInputs and parseTDEEInput with unit conversion
+[x] 407. Refactored tdee-calculator.tsx to use extracted engine logic
+[x] 408. Fixed type errors for Heart Rate and TDEE calculator engines - resolved type mismatches
+[x] 409. All TypeScript diagnostics resolved - Heart Rate and TDEE calculator engines fully typed
+[x] 410. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
+[x] 411. TASK 13 and 14 COMPLETE - Heart Rate and TDEE calculator engines properly typed with generics

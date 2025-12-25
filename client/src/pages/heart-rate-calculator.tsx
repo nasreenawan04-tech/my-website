@@ -8,24 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-
-interface HeartRateResult {
-  maxHeartRate: number;
-  restingHeartRate: number;
-  zones: {
-    zone1: { min: number; max: number; name: string; description: string };
-    zone2: { min: number; max: number; name: string; description: string };
-    zone3: { min: number; max: number; name: string; description: string };
-    zone4: { min: number; max: number; name: string; description: string };
-    zone5: { min: number; max: number; name: string; description: string };
-  };
-  targetHeartRates: {
-    fatBurn: { min: number; max: number };
-    cardio: { min: number; max: number };
-    peak: { min: number; max: number };
-  };
-  formula: string;
-}
+import { calculateHeartRate, HeartRateResult, HeartRateCalculatorInput } from '@/tools/health/engines/heart-rate.engine';
 
 export default function HeartRateCalculator() {
   const [age, setAge] = useState('30');
@@ -35,97 +18,16 @@ export default function HeartRateCalculator() {
   const [formula, setFormula] = useState('tanaka');
   const [result, setResult] = useState<HeartRateResult | null>(null);
 
-  const calculateHeartRate = () => {
-    const ageNum = parseFloat(age);
-    const restingHR = parseFloat(restingHeartRate) || 70;
+  const handleCalculateHeartRate = () => {
+    const input: HeartRateCalculatorInput = {
+      age: parseFloat(age),
+      restingHeartRate: parseFloat(restingHeartRate) || 70,
+      gender: (gender === 'male' || gender === 'female') ? gender : 'male',
+      formula: formula as 'traditional' | 'tanaka' | 'gulati' | 'nes'
+    };
 
-    if (ageNum && ageNum >= 15 && ageNum <= 100) {
-      let maxHR: number;
-      let formulaName: string;
-
-      // Calculate maximum heart rate based on selected formula
-      switch (formula) {
-        case 'tanaka':
-          maxHR = 208 - (0.7 * ageNum);
-          formulaName = 'Tanaka Formula';
-          break;
-        case 'gulati':
-          if (gender === 'female') {
-            maxHR = 206 - (0.88 * ageNum);
-            formulaName = 'Gulati Formula (Women)';
-          } else {
-            maxHR = 220 - ageNum;
-            formulaName = 'Traditional Formula';
-          }
-          break;
-        case 'nes':
-          maxHR = 211 - (0.64 * ageNum);
-          formulaName = 'Nes Formula';
-          break;
-        default: // traditional
-          maxHR = 220 - ageNum;
-          formulaName = 'Traditional Formula';
-      }
-
-      // Calculate heart rate zones using Karvonen method
-      const heartRateReserve = maxHR - restingHR;
-
-      const zones = {
-        zone1: {
-          min: Math.round(restingHR + (heartRateReserve * 0.50)),
-          max: Math.round(restingHR + (heartRateReserve * 0.60)),
-          name: 'Active Recovery',
-          description: 'Light activity, fat burning'
-        },
-        zone2: {
-          min: Math.round(restingHR + (heartRateReserve * 0.60)),
-          max: Math.round(restingHR + (heartRateReserve * 0.70)),
-          name: 'Aerobic Base',
-          description: 'Base fitness, fat burning'
-        },
-        zone3: {
-          min: Math.round(restingHR + (heartRateReserve * 0.70)),
-          max: Math.round(restingHR + (heartRateReserve * 0.80)),
-          name: 'Aerobic Fitness',
-          description: 'Cardio fitness improvement'
-        },
-        zone4: {
-          min: Math.round(restingHR + (heartRateReserve * 0.80)),
-          max: Math.round(restingHR + (heartRateReserve * 0.90)),
-          name: 'Lactate Threshold',
-          description: 'High intensity training'
-        },
-        zone5: {
-          min: Math.round(restingHR + (heartRateReserve * 0.90)),
-          max: Math.round(maxHR),
-          name: 'VO2 Max',
-          description: 'Maximum effort training'
-        }
-      };
-
-      const targetHeartRates = {
-        fatBurn: {
-          min: Math.round(maxHR * 0.57),
-          max: Math.round(maxHR * 0.67)
-        },
-        cardio: {
-          min: Math.round(maxHR * 0.64),
-          max: Math.round(maxHR * 0.76)
-        },
-        peak: {
-          min: Math.round(maxHR * 0.77),
-          max: Math.round(maxHR * 0.93)
-        }
-      };
-
-      setResult({
-        maxHeartRate: Math.round(maxHR),
-        restingHeartRate: restingHR,
-        zones,
-        targetHeartRates,
-        formula: formulaName
-      });
-    }
+    const result = calculateHeartRate(input);
+    setResult(result);
   };
 
   const resetCalculator = () => {
@@ -323,7 +225,7 @@ export default function HeartRateCalculator() {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      onClick={calculateHeartRate}
+                      onClick={handleCalculateHeartRate}
                       className="flex-1 h-14 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >

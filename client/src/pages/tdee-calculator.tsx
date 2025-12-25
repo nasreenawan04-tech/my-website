@@ -9,27 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-
-interface TDEEResult {
-  bmr: number;
-  tdee: number;
-  activityFactor: number;
-  activityDescription: string;
-  caloriesForWeightLoss: {
-    mild: number;
-    moderate: number;
-    aggressive: number;
-  };
-  caloriesForWeightGain: {
-    mild: number;
-    moderate: number;
-  };
-  macroBreakdown: {
-    protein: { grams: number; calories: number };
-    carbs: { grams: number; calories: number };
-    fats: { grams: number; calories: number };
-  };
-}
+import { calculateTDEE, TDEEResult, TDEECalculatorInput } from '@/tools/health/engines/tdee.engine';
 
 const TDEECalculator = () => {
   const [weight, setWeight] = useState('');
@@ -42,88 +22,20 @@ const TDEECalculator = () => {
   const [unitSystem, setUnitSystem] = useState('metric');
   const [result, setResult] = useState<TDEEResult | null>(null);
 
-  const calculateTDEE = () => {
-    let weightKg: number;
-    let heightCm: number;
+  const handleCalculateTDEE = () => {
+    const input: TDEECalculatorInput = {
+      weight: parseFloat(weight),
+      height: unitSystem === 'metric' ? parseFloat(height) : 0,
+      feet: unitSystem === 'imperial' ? parseFloat(feet) : undefined,
+      inches: unitSystem === 'imperial' ? parseFloat(inches) : undefined,
+      age: parseFloat(age),
+      gender: gender as 'male' | 'female',
+      activityLevel: activityLevel as any,
+      unitSystem: unitSystem as 'metric' | 'imperial'
+    };
 
-    if (unitSystem === 'metric') {
-      weightKg = parseFloat(weight);
-      heightCm = parseFloat(height);
-    } else {
-      // Imperial system
-      weightKg = parseFloat(weight) * 0.453592; // Convert lbs to kg
-      const totalInches = (parseFloat(feet) * 12) + parseFloat(inches);
-      heightCm = totalInches * 2.54; // Convert inches to cm
-    }
-
-    const ageYears = parseFloat(age);
-
-    if (weightKg && heightCm && ageYears && gender && activityLevel) {
-      // Mifflin-St Jeor Equation for BMR
-      let bmr: number;
-      if (gender === 'male') {
-        bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears + 5;
-      } else {
-        bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears - 161;
-      }
-
-      // Activity multipliers
-      const activityFactors = {
-        sedentary: { factor: 1.2, description: 'Little to no exercise' },
-        lightlyActive: { factor: 1.375, description: 'Light exercise 1-3 days/week' },
-        moderatelyActive: { factor: 1.55, description: 'Moderate exercise 3-5 days/week' },
-        veryActive: { factor: 1.725, description: 'Hard exercise 6-7 days/week' },
-        extraActive: { factor: 1.9, description: 'Very hard exercise + physical job' }
-      };
-
-      const selectedActivity = activityFactors[activityLevel as keyof typeof activityFactors];
-      const tdee = bmr * selectedActivity.factor;
-
-      // Weight management calorie targets
-      const caloriesForWeightLoss = {
-        mild: tdee - 250,      // 0.5 lbs/week loss
-        moderate: tdee - 500,  // 1 lb/week loss
-        aggressive: tdee - 750 // 1.5 lbs/week loss
-      };
-
-      const caloriesForWeightGain = {
-        mild: tdee + 250,      // 0.5 lbs/week gain
-        moderate: tdee + 500   // 1 lb/week gain
-      };
-
-      // Macro breakdown (40% carbs, 30% protein, 30% fat)
-      const macroBreakdown = {
-        protein: {
-          calories: Math.round(tdee * 0.30),
-          grams: Math.round((tdee * 0.30) / 4)
-        },
-        carbs: {
-          calories: Math.round(tdee * 0.40),
-          grams: Math.round((tdee * 0.40) / 4)
-        },
-        fats: {
-          calories: Math.round(tdee * 0.30),
-          grams: Math.round((tdee * 0.30) / 9)
-        }
-      };
-
-      setResult({
-        bmr: Math.round(bmr),
-        tdee: Math.round(tdee),
-        activityFactor: selectedActivity.factor,
-        activityDescription: selectedActivity.description,
-        caloriesForWeightLoss: {
-          mild: Math.round(caloriesForWeightLoss.mild),
-          moderate: Math.round(caloriesForWeightLoss.moderate),
-          aggressive: Math.round(caloriesForWeightLoss.aggressive)
-        },
-        caloriesForWeightGain: {
-          mild: Math.round(caloriesForWeightGain.mild),
-          moderate: Math.round(caloriesForWeightGain.moderate)
-        },
-        macroBreakdown
-      });
-    }
+    const result = calculateTDEE(input);
+    setResult(result);
   };
 
   const resetCalculator = () => {
@@ -359,7 +271,7 @@ const TDEECalculator = () => {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      onClick={calculateTDEE}
+                      onClick={handleCalculateTDEE}
                       className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
