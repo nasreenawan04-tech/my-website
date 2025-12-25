@@ -53,55 +53,15 @@ export default defineConfig(({ mode }) => {
     cssMinify: "lightningcss",
     sourcemap: false,
     cssCodeSplit: true,
-    assetsInlineLimit: 8192, // Increased for better caching
+    assetsInlineLimit: 8192,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          // Core vendor libraries - MUST be in vendor chunk and loaded first
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'vendor';
-          }
-          
-          // IMPORTANT: Routing depends on React, must be separate
-          if (id.includes('node_modules/wouter/')) {
-            return 'router';
-          }
-          
-          // IMPORTANT: Don't create a utils chunk - let Rollup handle chunking
-          // This was causing the React undefined error where React wasn't available
-          // in the utils chunk when it tried to use createContext
-          
-          // Data fetching
-          if (id.includes('node_modules/@tanstack/react-query/')) {
-            return 'query';
-          }
-          
-          // UI - only include core Radix UI components
-          if (id.includes('node_modules/@radix-ui/')) {
-            return 'ui';
-          }
-          
-          // Forms
-          if (id.includes('node_modules/react-hook-form/') || 
-              id.includes('node_modules/@hookform/') ||
-              id.includes('node_modules/zod/')) {
-            return 'form';
-          }
-          
-          // Charts - large library, could be further split
-          if (id.includes('node_modules/recharts/')) {
-            return 'charts';
-          }
-          
-          // Icons
-          if (id.includes('node_modules/lucide-react/')) {
-            return 'icons';
-          }
-          
-          // SEO/Helmet
-          if (id.includes('node_modules/react-helmet-async/')) {
-            return 'helmet';
-          }
+        manualChunks: {
+          // React core must be in vendor and loaded FIRST
+          'vendor': [
+            'react',
+            'react-dom'
+          ]
         },
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
