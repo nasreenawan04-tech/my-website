@@ -141,14 +141,14 @@ export default function CompoundInterestCalculator() {
   }, []);
 
   // Auto-calculate when URL parameters are loaded
-  useEffect(() => {
+    useEffect(() => {
     if (shouldAutoCalculate.current && principal && interestRate && timePeriod) {
-      calculateCompoundInterest();
+      calculateCompoundInterestFunc();
       shouldAutoCalculate.current = false;
     }
   }, [principal, interestRate, timePeriod, timeUnit, compoundFrequency, enableSIP, sipAmount, sipFrequency, stepUpPercentage, inflationRate, enableGoalPlanning, goalAmount]);
 
-  const calculateCompoundInterest = () => {
+  const calculateCompoundInterestFunc = () => {
     // Clear previous validation errors
     setValidationErrors({});
 
@@ -374,13 +374,6 @@ export default function CompoundInterestCalculator() {
     const totalTaxPaid = taxRateDecimal * taxableGains;
     const postTaxReturns = finalAmount - totalTaxPaid;
 
-    // Phase 1 Feature: Net Returns After Fees (fees already deducted in loop)
-    const netReturnsAfterFees = finalAmount;
-
-    // Phase 1 Feature: Investment Doubling Time (Rule of 72)
-    const doublingTime = r > 0 ? 72 / (r * 100) : 0;
-
-    // Phase 1 Feature: Milestone Tracker (when investment reaches 2x, 3x, 5x, 10x)
     const milestones = {
       double: null as number | null,
       triple: null as number | null,
@@ -388,7 +381,7 @@ export default function CompoundInterestCalculator() {
       tenx: null as number | null
     };
 
-    yearlyBreakdown.forEach((year) => {
+    (yearlyBreakdown || []).forEach((year) => {
       const multiple = year.amount / p;
       if (milestones.double === null && multiple >= 2) milestones.double = year.year;
       if (milestones.triple === null && multiple >= 3) milestones.triple = year.year;
@@ -1930,7 +1923,7 @@ export default function CompoundInterestCalculator() {
                   <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       ref={calculateButtonRef}
-                      onClick={calculateCompoundInterest}
+                      onClick={calculateCompoundInterestFunc}
                       size="lg"
                       className="w-full sm:w-auto text-white font-semibold shadow-lg transition-colors"
                       data-testid="button-calculate"
