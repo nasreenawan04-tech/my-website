@@ -6,23 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-
-interface CharacterCountResult {
-  totalCharacters: number;
-  charactersWithoutSpaces: number;
-  alphabeticCharacters: number;
-  numericCharacters: number;
-  specialCharacters: number;
-  upperCaseLetters: number;
-  lowerCaseLetters: number;
-  words: number;
-  sentences: number;
-  paragraphs: number;
-  lines: number;
-  spaces: number;
-  punctuation: number;
-  uniqueWords: number;
-}
+import { CharacterCountResult, analyzeText } from '@/types/text-tool.types';
 
 export default function CharacterCounter() {
   const [text, setText] = useState('');
@@ -31,64 +15,8 @@ export default function CharacterCounter() {
   const [showAdvancedStats, setShowAdvancedStats] = useState(false);
 
   const calculateCharacterCount = (inputText: string): CharacterCountResult => {
-    // Total characters
-    const totalCharacters = inputText.length;
-
-    // Characters without spaces
-    const charactersWithoutSpaces = inputText.replace(/\s/g, '').length;
-
-    // Alphabetic characters (letters only)
-    const alphabeticCharacters = (inputText.match(/[a-zA-Z]/g) || []).length;
-
-    // Numeric characters (digits only)
-    const numericCharacters = (inputText.match(/[0-9]/g) || []).length;
-
-    // Special characters (excluding letters, numbers, and spaces)
-    const specialCharacters = (inputText.match(/[^a-zA-Z0-9\s]/g) || []).length;
-
-    // Upper and lower case letters
-    const upperCaseLetters = (inputText.match(/[A-Z]/g) || []).length;
-    const lowerCaseLetters = (inputText.match(/[a-z]/g) || []).length;
-
-    // Words
-    const words = inputText.trim() === '' ? 0 : inputText.trim().split(/\s+/).filter(word => word.length > 0).length;
-
-    // Sentences
-    const sentences = inputText.trim() === '' ? 0 : inputText.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length;
-
-    // Paragraphs
-    const paragraphs = inputText.trim() === '' ? 0 : inputText.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0).length;
-
-    // Lines
-    const lines = inputText === '' ? 0 : inputText.split('\n').length;
-
-    // Spaces
-    const spaces = (inputText.match(/\s/g) || []).length;
-
-    // Punctuation
-    const punctuation = (inputText.match(/[.,;:!?'"()[\]{}\-]/g) || []).length;
-
-    // Unique words (case-insensitive)
-    const wordsArray = inputText.trim().split(/\s+/).filter(word => word.length > 0);
-    const uniqueWordsSet = new Set(wordsArray.map(word => word.toLowerCase().replace(/[^a-z0-9]/gi, '')));
-    const uniqueWords = uniqueWordsSet.size;
-
-    return {
-      totalCharacters,
-      charactersWithoutSpaces,
-      alphabeticCharacters,
-      numericCharacters,
-      specialCharacters,
-      upperCaseLetters,
-      lowerCaseLetters,
-      words,
-      sentences,
-      paragraphs,
-      lines,
-      spaces,
-      punctuation,
-      uniqueWords
-    };
+    const analysis = analyzeText(inputText);
+    return analysis as CharacterCountResult;
   };
 
   // Real-time calculation as user types

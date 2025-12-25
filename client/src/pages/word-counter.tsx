@@ -7,22 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-
-interface WordCountResult {
-  characters: number;
-  charactersNoSpaces: number;
-  words: number;
-  sentences: number;
-  paragraphs: number;
-  lines: number;
-  averageWordLength: number;
-  averageWordsPerSentence: number;
-  longestWord: number;
-  shortestWord: number;
-  uniqueWords: number;
-  readingTime: number;
-  speakingTime: number;
-}
+import { WordCountResult, analyzeText } from '@/types/text-tool.types';
 
 const WordCounter = () => {
   const [text, setText] = useState('');
@@ -30,80 +15,13 @@ const WordCounter = () => {
   const [showAdvancedStats, setShowAdvancedStats] = useState(false);
 
   const calculateWordCount = (inputText: string): WordCountResult => {
-    if (inputText.trim() === '') {
-      return {
-        characters: 0,
-        charactersNoSpaces: 0,
-        words: 0,
-        sentences: 0,
-        paragraphs: 0,
-        lines: 0,
-        averageWordLength: 0,
-        averageWordsPerSentence: 0,
-        longestWord: 0,
-        shortestWord: 0,
-        uniqueWords: 0,
-        readingTime: 0,
-        speakingTime: 0
-      };
-    }
-
-    // Characters (including spaces)
-    const characters = inputText.length;
-
-    // Characters (excluding spaces)
-    const charactersNoSpaces = inputText.replace(/\s/g, '').length;
-
-    // Words - split by whitespace and filter out empty strings
-    const wordsArray = inputText.trim().split(/\s+/).filter(word => word.length > 0);
-    const words = wordsArray.length;
-
-    // Sentences - split by sentence-ending punctuation
-    const sentences = inputText.trim() === '' ? 0 : inputText.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length;
-
-    // Paragraphs - split by double line breaks or single line breaks
-    const paragraphs = inputText.trim() === '' ? 0 : inputText.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0).length;
-
-    // Lines - split by line breaks
-    const lines = inputText === '' ? 0 : inputText.split('\n').length;
-
-    // Average word length
-    const totalWordLength = wordsArray.reduce((sum, word) => sum + word.length, 0);
-    const averageWordLength = words > 0 ? Math.round((totalWordLength / words) * 10) / 10 : 0;
-
-    // Average words per sentence
-    const averageWordsPerSentence = sentences > 0 ? Math.round((words / sentences) * 10) / 10 : 0;
-
-    // Longest and shortest word
-    const wordLengths = wordsArray.map(word => word.length);
-    const longestWord = wordLengths.length > 0 ? Math.max(...wordLengths) : 0;
-    const shortestWord = wordLengths.length > 0 ? Math.min(...wordLengths) : 0;
-
-    // Unique words (case-insensitive)
-    const uniqueWordsSet = new Set(wordsArray.map(word => word.toLowerCase()));
-    const uniqueWords = uniqueWordsSet.size;
-
-    // Reading time (average 200 words per minute)
-    const readingTime = Math.ceil(words / 200);
-
-    // Speaking time (average 130 words per minute)
-    const speakingTime = Math.ceil(words / 130);
-
+    const analysis = analyzeText(inputText);
+    
     return {
-      characters,
-      charactersNoSpaces,
-      words,
-      sentences,
-      paragraphs,
-      lines,
-      averageWordLength,
-      averageWordsPerSentence,
-      longestWord,
-      shortestWord,
-      uniqueWords,
-      readingTime,
-      speakingTime
-    };
+      ...analysis,
+      characters: analysis.totalCharacters,
+      charactersNoSpaces: analysis.charactersWithoutSpaces,
+    } as WordCountResult;
   };
 
   // Real-time calculation as user types
