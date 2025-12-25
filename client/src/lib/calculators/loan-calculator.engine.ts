@@ -176,38 +176,15 @@ export interface BusinessLoanResult extends LoanCalculationResult {
 }
 
 /**
- * Main Business Loan calculator engine function
- * Implements the CalculatorFunction generic interface with BusinessLoanResult as the result type
- * @param inputs - Parsed loan calculator inputs (validated)
- * @param config - Optional calculator configuration for metadata
- * @returns BusinessLoanResult with payment details, schedule, and prepayment analysis
+ * Main internal loan calculation logic
+ * @param inputs - Parsed loan calculator inputs
+ * @param config - Optional configuration
+ * @returns LoanCalculatorResult
  */
-export const calculateBusinessLoan: CalculatorFunction<BusinessLoanResult> = (
-  inputs: ParsedCalculatorInput,
-  config?: Partial<CalculatorConfig>
-): BusinessLoanResult => {
-  const result = calculateLoan(inputs, config);
-  return {
-    ...result,
-    primaryValue: result.monthlyPayment,
-    formattedPrimaryValue: `$${result.monthlyPayment.toFixed(2)}`
-  };
-};
-
-/**
- * Main EMI calculator engine function
- * Implements the CalculatorFunction generic interface with LoanCalculatorResult as the result type
- * @param inputs - Parsed loan calculator inputs (validated)
- * @param config - Optional calculator configuration for metadata
- * @returns LoanCalculatorResult with payment details, schedule, and prepayment analysis
- */
-export const calculateEMI: CalculatorFunction<LoanCalculatorResult> = (
+const calculateLoanInternal = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): LoanCalculatorResult => {
-  return calculateLoan(inputs, config);
-};
-
   const loanInputs = parseLoanInputs(inputs);
   const {
     loanAmount,
@@ -293,6 +270,40 @@ export const calculateEMI: CalculatorFunction<LoanCalculatorResult> = (
     paymentsPerYear
   };
 };
+
+/**
+ * Main Business Loan calculator engine function
+ * Implements the CalculatorFunction generic interface with BusinessLoanResult as the result type
+ * @param inputs - Parsed loan calculator inputs (validated)
+ * @param config - Optional calculator configuration for metadata
+ * @returns BusinessLoanResult with payment details, schedule, and prepayment analysis
+ */
+export const calculateBusinessLoan: CalculatorFunction<BusinessLoanResult> = (
+  inputs: ParsedCalculatorInput,
+  config?: Partial<CalculatorConfig>
+): BusinessLoanResult => {
+  const result = calculateLoanInternal(inputs, config);
+  return {
+    ...result,
+    primaryValue: result.monthlyPayment,
+    formattedPrimaryValue: `$${result.monthlyPayment.toFixed(2)}`
+  };
+};
+
+/**
+ * Main EMI calculator engine function
+ * Implements the CalculatorFunction generic interface with LoanCalculatorResult as the result type
+ * @param inputs - Parsed loan calculator inputs (validated)
+ * @param config - Optional calculator configuration for metadata
+ * @returns LoanCalculatorResult with payment details, schedule, and prepayment analysis
+ */
+export const calculateEMI: CalculatorFunction<LoanCalculatorResult> = (
+  inputs: ParsedCalculatorInput,
+  config?: Partial<CalculatorConfig>
+): LoanCalculatorResult => {
+  return calculateLoanInternal(inputs, config);
+};
+
 
 /**
  * Type guard to check if inputs are valid loan calculator inputs
