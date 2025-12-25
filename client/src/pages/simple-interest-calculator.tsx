@@ -323,7 +323,7 @@ export default function SimpleInterestCalculator() {
   };
 
   const handleDownloadYearlyBreakdownPDF = async () => {
-    const breakdown = (result?.yearlyBreakdown || []);
+    const breakdown = result?.yearlyBreakdown || [];
     if (!result || breakdown.length === 0) return;
 
     const { jsPDF } = await import('jspdf');
@@ -381,7 +381,7 @@ export default function SimpleInterestCalculator() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
     
-    (result?.yearlyBreakdown || []).forEach((year: any, index: number) => {
+    breakdown.forEach((year, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
@@ -411,17 +411,17 @@ export default function SimpleInterestCalculator() {
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
       
-      doc.text(year.year.toString(), colX[0], yPos + 4);
+      doc.text((year.year || index + 1).toString(), colX[0], yPos + 4);
       
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
-      doc.text(formatCurrency(Number((year as any).interestEarned || 0)), colX[1], yPos + 4);
+      doc.text(formatCurrency(Number(year.interestEarned || 0)), colX[1], yPos + 4);
       
       doc.setTextColor(59, 130, 246);
-      doc.text(formatCurrency(Number((year as any).cumulativeInterest || 0)), colX[2], yPos + 4);
+      doc.text(formatCurrency(Number(year.cumulativeInterest || 0)), colX[2], yPos + 4);
       
       doc.setTextColor(0, 0, 0);
-      doc.text(formatCurrency(Number((year as any).totalAmount || 0)), colX[3], yPos + 4);
+      doc.text(formatCurrency(Number(year.totalAmount || year.amount || 0)), colX[3], yPos + 4);
       
       doc.setFont('helvetica', 'normal');
       yPos += 6;
@@ -799,7 +799,7 @@ export default function SimpleInterestCalculator() {
     doc.text(formatCurrency(result.totalAmount), col4X, yPos);
     
     // Yearly Breakdown if available
-    if (result.yearlyBreakdown.length > 0) {
+    if (result?.yearlyBreakdown && result.yearlyBreakdown.length > 0) {
       yPos += 12;
       
       // Table header with blue background
@@ -854,10 +854,10 @@ export default function SimpleInterestCalculator() {
         
         doc.setTextColor(34, 197, 94);
         doc.setFont('helvetica', 'bold');
-        doc.text(formatCurrency(year.interestEarned), interestColX, yPos + 4);
+        doc.text(formatCurrency(year.interestEarned || 0), interestColX, yPos + 4);
         
         doc.setTextColor(0, 0, 0);
-        doc.text(formatCurrency(year.totalAmount), totalColX, yPos + 4);
+        doc.text(formatCurrency(Number(year.totalAmount || 0)), totalColX, yPos + 4);
         yPos += 6;
       });
     }
@@ -1724,7 +1724,7 @@ export default function SimpleInterestCalculator() {
                           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
                             <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Yearly Interest Growth</h3>
                             <ResponsiveContainer width="100%" height={280}>
-                              <BarChart data={result.yearlyBreakdown.slice(0, 10)}>
+                              <BarChart data={(result?.yearlyBreakdown || []).slice(0, 10)}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                                 <XAxis 
                                   dataKey="year" 
@@ -1767,7 +1767,7 @@ export default function SimpleInterestCalculator() {
                       )}
 
                       {/* Yearly Breakdown */}
-                      {showYearlyBreakdown && result.yearlyBreakdown.length > 0 && (
+                      {showYearlyBreakdown && (result?.yearlyBreakdown || []).length > 0 && (
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 
