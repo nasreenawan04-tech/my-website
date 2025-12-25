@@ -16,18 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import ShareResultsButton from '@/components/ShareResultsButton';
 
-interface SimpleInterestResult {
-  simpleInterest: number;
-  totalAmount: number;
-  principalAmount: number;
-  monthlyInterest: number;
-  yearlyBreakdown: Array<{
-    year: number;
-    interestEarned: number;
-    totalAmount: number;
-    cumulativeInterest: number;
-  }>;
-}
+import { calculateSimpleInterest, SimpleInterestResult } from '@/lib/calculators/interest-calculator.engine';
 
 interface ComparisonScenario {
   name: string;

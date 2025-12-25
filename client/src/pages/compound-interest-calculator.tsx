@@ -15,58 +15,12 @@ import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 
-interface LumpSumContribution {
-  year: number;
-  amount: number;
-}
-
-interface CompoundInterestResult {
-  finalAmount: number;
-  totalInterest: number;
-  principalAmount: number;
-  totalContributions: number;
-  realValue: number;
-  inflationAdjustedGains: number;
-  cagr: number;
-  totalTaxPaid: number;
-  postTaxReturns: number;
-  totalFeesPaid: number;
-  netReturnsAfterFees: number;
-  doublingTime: number;
-  milestones: {
-    double: number | null;
-    triple: number | null;
-    fivex: number | null;
-    tenx: number | null;
-  };
-  whatIfAnalysis: Array<{
-    rateChange: string;
-    rate: number;
-    finalAmount: number;
-    difference: number;
-  }>;
-  goalAnalysis?: {
-    timeToReachGoal: number;
-    requiredMonthlyContribution: number;
-    isGoalAchievable: boolean;
-  };
-  sipAnalysis?: {
-    totalSIPContributions: number;
-    sipInterestEarned: number;
-    averageAnnualReturn: number;
-  };
-  yearlyBreakdown: Array<{
-    year: number;
-    amount: number;
-    interestEarned: number;
-    totalInterest: number;
-    sipContribution: number;
-    cumulativeContributions: number;
-    realValue: number;
-    principal: number;
-    totalContributionsAtYear: number;
-  }>;
-}
+import { calculateCompoundInterest } from '@/lib/calculators/interest-calculator.engine';
+import { 
+  CompoundInterestResult, 
+  CompoundInterestInputs,
+  ParsedCalculatorInput 
+} from '@/lib/calculators/interest-calculator.engine';
 
 // Comprehensive Zod validation schema
 const compoundInterestSchema = z.object({
