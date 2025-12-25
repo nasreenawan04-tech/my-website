@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => {
     target: "esnext",
     minify: "esbuild",
     cssMinify: "lightningcss",
-    sourcemap: true,
+    sourcemap: "inline",
     cssCodeSplit: true,
     assetsInlineLimit: 8192, // Increased for better caching
     rollupOptions: {
