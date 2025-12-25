@@ -366,3 +366,12 @@
 [x] 354. Added health tool metadata interfaces (HealthToolProperties, MetricRangesConfig)
 [x] 355. Added utility interfaces (UnitConverter, HealthInputValidator)
 [x] 356. Task complete - Health tool types file created with full documentation
+[x] 357. Created client/src/lib/calculators/loan-calculator.engine.ts with typed engine functions
+[x] 358. Implemented LoanCalculatorInputs, LoanCalculatorResult with proper TypeScript generics
+[x] 359. Added parseLoanInputs, calculateAmortizationSchedule, calculatePrepaymentSavings functions
+[x] 360. Implemented calculateLoan as CalculatorFunction generic with full typing
+[x] 361. Created client/src/lib/calculators/mortgage-calculator.engine.ts with typed engine functions
+[x] 362. Implemented MortgageCalculatorInputs, MortgageCalculatorResult with proper TypeScript generics
+[x] 363. Added parseMortgageInputs, calculateMortgageAmortization, calculateMonthlyPMI functions
+[x] 364. Implemented calculateMortgage as CalculatorFunction generic with full typing
+[x] 365. Task 6 complete - Finance calculation engines typed with generics (Loan & Mortgage)
