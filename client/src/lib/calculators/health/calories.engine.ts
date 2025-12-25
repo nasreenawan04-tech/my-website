@@ -9,8 +9,14 @@ import {
   Gender,
   HealthGoal,
   CalculationMethod,
-  MacroBreakdown
+  MacroBreakdown,
+  HealthToolResult
 } from '@/types/health-tool.types';
+
+/**
+ * Generic type for Calorie Calculator
+ */
+export type CalorieCalculatorFunction<T extends CalorieResult = CalorieResult> = (inputs: CalorieCalculatorInput) => T;
 
 const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
   'sedentary': 1.2,
@@ -40,7 +46,7 @@ export const isValidCalorieInputs = (inputs: Partial<CalorieCalculatorInput>): b
 /**
  * Calculates Calorie needs
  */
-export const calculateCalories = (inputs: CalorieCalculatorInput): CalorieResult => {
+export const calculateCalories: CalorieCalculatorFunction = (inputs: CalorieCalculatorInput): CalorieResult => {
   const { weight, height, feet, inches, age, gender, activityLevel, goal, equation, unitSystem, customDeficit } = inputs;
   
   let weightKg: number;

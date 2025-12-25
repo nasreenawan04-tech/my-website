@@ -7,8 +7,14 @@ import {
   BMIResult, 
   HealthCategory, 
   Gender,
-  UnitSystem
+  UnitSystem,
+  HealthToolResult
 } from '@/types/health-tool.types';
+
+/**
+ * Generic type for BMI Calculator
+ */
+export type BMICalculatorFunction<T extends BMIResult = BMIResult> = (inputs: BMICalculatorInput) => T;
 
 /**
  * Validates BMI inputs
@@ -28,7 +34,7 @@ export const isValidBMIInputs = (inputs: Partial<BMICalculatorInput>): boolean =
 /**
  * Calculates BMI based on weight and height
  */
-export const calculateBMI = (inputs: BMICalculatorInput): BMIResult => {
+export const calculateBMI: BMICalculatorFunction = (inputs: BMICalculatorInput): BMIResult => {
   const { weight, height, feet, inches, unitSystem } = inputs;
   
   let weightKg: number;

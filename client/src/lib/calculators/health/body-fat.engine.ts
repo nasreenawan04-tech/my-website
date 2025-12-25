@@ -5,7 +5,8 @@
 import { 
   HealthCalculatorInput, 
   Gender, 
-  UnitSystem 
+  UnitSystem,
+  HealthToolResult
 } from '@/types/health-tool.types';
 
 export interface BodyFatInput extends HealthCalculatorInput {
@@ -14,13 +15,18 @@ export interface BodyFatInput extends HealthCalculatorInput {
   hip?: string | number;
 }
 
-export interface BodyFatResult {
+export interface BodyFatResult extends HealthToolResult {
   bodyFatPercentage: number;
   classification: string;
   leanBodyMass: number;
   fatMass: number;
   method: string;
 }
+
+/**
+ * Generic type for Body Fat Calculator
+ */
+export type BodyFatCalculatorFunction<T extends BodyFatResult = BodyFatResult> = (inputs: BodyFatInput) => T;
 
 /**
  * Validates Body Fat calculator inputs
@@ -35,7 +41,7 @@ export const isValidBodyFatInputs = (inputs: Partial<BodyFatInput>): boolean => 
 /**
  * Calculates Body Fat percentage
  */
-export const calculateBodyFat = (inputs: BodyFatInput): BodyFatResult => {
+export const calculateBodyFat: BodyFatCalculatorFunction = (inputs: BodyFatInput): BodyFatResult => {
   const { weight, height, neck, waist, hip, gender, unitSystem, age } = inputs;
   
   let weightKg: number;
