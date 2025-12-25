@@ -399,17 +399,6 @@ export default function CompoundInterestCalculator() {
 
     // Phase 1 Feature: What-If Analysis (sensitivity to rate changes)
     const whatIfAnalysis = [-3, -2, -1, 1, 2, 3].map(change => {
-      <div className="hidden">
-        {yearlyBreakdownData.map((year: any) => (
-          <div key={year.year}>
-            {formatCurrency(year.amount)}
-          </div>
-        ))}
-      </div>
-    );
-
-    // Phase 1 Feature: What-If Analysis (sensitivity to rate changes)
-    const whatIfAnalysis = [-3, -2, -1, 1, 2, 3].map(change => {
       const adjustedRate = r + (change / 100);
       if (adjustedRate <= 0) return null;
 
@@ -2367,7 +2356,7 @@ export default function CompoundInterestCalculator() {
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-gray-200 bg-white">
-                                {result.yearlyBreakdown.map((year, index) => (
+                                {(result?.yearlyBreakdown || []).map((year, index) => (
                                   <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`breakdown-row-${index}`}>
                                     <td className="px-4 py-3 text-sm text-gray-900 font-medium">{year.year}</td>
                                     <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(Number(year.amount ?? 0))}</td>
