@@ -50,7 +50,6 @@ export default defineConfig(({ mode }) => {
     emptyOutDir: true,
     target: "esnext",
     minify: "esbuild",
-    cssMinify: "lightningcss",
     sourcemap: false,
     cssCodeSplit: true,
     assetsInlineLimit: 8192,
