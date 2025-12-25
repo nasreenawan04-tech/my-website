@@ -13,30 +13,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
 import { Copy, Eye, EyeOff, RefreshCw, Trash2, Download, CheckCircle, FileDown } from 'lucide-react';
-
-interface PasswordOptions {
-  length: number;
-  includeUppercase: boolean;
-  includeLowercase: boolean;
-  includeNumbers: boolean;
-  includeSymbols: boolean;
-  excludeSimilar: boolean;
-  excludeAmbiguous: boolean;
-  customCharacters: string;
-}
-
-interface PasswordStrength {
-  score: number;
-  label: string;
-  color: string;
-  description: string;
-}
-
-interface PasswordEntropy {
-  entropy: number;
-  charsetSize: number;
-  crackTime: string;
-}
+import { PasswordOptions, PasswordStrength, PasswordEntropy } from '@/types/text-tool.types';
 
 export default function PasswordGenerator() {
   const { toast } = useToast();
@@ -177,24 +154,30 @@ export default function PasswordGenerator() {
     if (opts.includeSymbols) charsetSize += 25;
     if (opts.customCharacters) charsetSize += opts.customCharacters.length;
 
-    const entropy = pwd.length * Math.log2(charsetSize);
+    const entropyValue = pwd.length * Math.log2(charsetSize);
     
     const guessesPerSecond = 1_000_000_000; // 1 billion guesses per second
     const totalCombinations = Math.pow(charsetSize, pwd.length);
     const secondsToCrack = totalCombinations / (2 * guessesPerSecond); // divide by 2 for average case
 
-    let crackTime = '';
-    if (secondsToCrack < 1) crackTime = 'Instant';
-    else if (secondsToCrack < 60) crackTime = `${Math.round(secondsToCrack)} seconds`;
-    else if (secondsToCrack < 3600) crackTime = `${Math.round(secondsToCrack / 60)} minutes`;
-    else if (secondsToCrack < 86400) crackTime = `${Math.round(secondsToCrack / 3600)} hours`;
-    else if (secondsToCrack < 31536000) crackTime = `${Math.round(secondsToCrack / 86400)} days`;
-    else if (secondsToCrack < 31536000000) crackTime = `${Math.round(secondsToCrack / 31536000)} years`;
-    else if (secondsToCrack < 31536000000000) crackTime = `${Math.round(secondsToCrack / 31536000000)} thousand years`;
-    else if (secondsToCrack < 31536000000000000) crackTime = `${Math.round(secondsToCrack / 31536000000000)} million years`;
-    else crackTime = 'Billions of years';
+    let crackTimeReadable = '';
+    if (secondsToCrack < 1) crackTimeReadable = 'Instant';
+    else if (secondsToCrack < 60) crackTimeReadable = `${Math.round(secondsToCrack)} seconds`;
+    else if (secondsToCrack < 3600) crackTimeReadable = `${Math.round(secondsToCrack / 60)} minutes`;
+    else if (secondsToCrack < 86400) crackTimeReadable = `${Math.round(secondsToCrack / 3600)} hours`;
+    else if (secondsToCrack < 31536000) crackTimeReadable = `${Math.round(secondsToCrack / 86400)} days`;
+    else if (secondsToCrack < 31536000000) crackTimeReadable = `${Math.round(secondsToCrack / 31536000)} years`;
+    else if (secondsToCrack < 31536000000000) crackTimeReadable = `${Math.round(secondsToCrack / 31536000000)} thousand years`;
+    else if (secondsToCrack < 31536000000000000) crackTimeReadable = `${Math.round(secondsToCrack / 31536000000000)} million years`;
+    else crackTimeReadable = 'Billions of years';
 
-    return { entropy: Math.round(entropy), charsetSize, crackTime };
+    return { 
+      entropy: Math.round(entropyValue), 
+      charsetSize, 
+      crackTimeSeconds: secondsToCrack,
+      crackTimeReadable,
+      estimatedCrackTime: crackTimeReadable 
+    };
   };
 
   const updateOption = (key: keyof PasswordOptions, value: boolean | number | string) => {
@@ -636,7 +619,7 @@ export default function PasswordGenerator() {
                             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 sm:p-4 border border-purple-100">
                               <div className="text-xs text-purple-700 font-medium mb-1">Crack Time</div>
                               <div className="text-sm sm:text-base font-bold text-purple-900" data-testid="text-crack-time">
-                                {passwordEntropy.crackTime}
+                                {passwordEntropy.crackTimeReadable}
                               </div>
                             </div>
                           </div>

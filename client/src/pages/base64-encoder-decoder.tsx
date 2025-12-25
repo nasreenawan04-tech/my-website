@@ -13,38 +13,17 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useToast } from '@/hooks/use-toast';
-
-interface ConversionOptions {
-  mode: 'encode' | 'decode';
-  lineBreakEvery: number;
-  addLineBreaks: boolean;
-  urlSafe: boolean;
-  validateInput: boolean;
-  addPadding: boolean;
-  stripWhitespace: boolean;
-  addPrefix: string;
-  addSuffix: string;
-}
-
-interface ConversionResult {
-  originalText: string;
-  convertedText: string;
-  mode: 'encode' | 'decode';
-  charCount: number;
-  byteCount: number;
-  isValid: boolean;
-  errorMessage?: string;
-  timestamp: Date;
-}
+import { TextTransformationOptions, TextTransformationResult } from '@/types/text-tool.types';
 
 const Base64EncoderDecoder = () => {
   const [inputText, setInputText] = useState('');
-  const [conversionResult, setConversionResult] = useState<ConversionResult | null>(null);
-  const [conversionHistory, setConversionHistory] = useState<ConversionResult[]>([]);
+  const [conversionResult, setConversionResult] = useState<TextTransformationResult | null>(null);
+  const [conversionHistory, setConversionHistory] = useState<TextTransformationResult[]>([]);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showResults, setShowResults] = useState(false);
-  const [options, setOptions] = useState<ConversionOptions>({
+  const [options, setOptions] = useState<TextTransformationOptions & { addPrefix: string; addSuffix: string }>({
     mode: 'encode',
+    type: 'base64',
     lineBreakEvery: 76,
     addLineBreaks: false,
     urlSafe: false,
@@ -56,7 +35,7 @@ const Base64EncoderDecoder = () => {
   });
   const { toast } = useToast();
 
-  const isValidBase64 = (str: string, opts: ConversionOptions): boolean => {
+  const isValidBase64 = (str: string, opts: TextTransformationOptions & { stripWhitespace?: boolean }): boolean => {
     if (!str) return false;
     try {
       let processedStr = str;
@@ -95,7 +74,7 @@ const Base64EncoderDecoder = () => {
     }
   };
 
-  const encodeToBase64 = (text: string, opts: ConversionOptions): string => {
+  const encodeToBase64 = (text: string, opts: TextTransformationOptions): string => {
     if (!text) return '';
     
     try {
@@ -115,7 +94,7 @@ const Base64EncoderDecoder = () => {
       }
       
       // Add line breaks
-      if (opts.addLineBreaks && opts.lineBreakEvery > 0) {
+      if (opts.addLineBreaks && opts.lineBreakEvery && opts.lineBreakEvery > 0) {
         const regex = new RegExp(`.{1,${opts.lineBreakEvery}}`, 'g');
         encoded = encoded.match(regex)?.join('\n') || encoded;
       }
@@ -126,7 +105,7 @@ const Base64EncoderDecoder = () => {
     }
   };
 
-  const decodeFromBase64 = (base64: string, opts: ConversionOptions): string => {
+  const decodeFromBase64 = (base64: string, opts: TextTransformationOptions & { stripWhitespace?: boolean }): string => {
     if (!base64) return '';
     
     try {
@@ -189,10 +168,12 @@ const Base64EncoderDecoder = () => {
         formattedText = `${options.addPrefix}${convertedText}${options.addSuffix}`;
       }
 
-      const result: ConversionResult = {
+      const result: TextTransformationResult = {
+        inputText: inputText,
+        inputLength: inputText.length,
         originalText: inputText,
-        convertedText: formattedText,
-        mode: options.mode,
+        transformedText: formattedText,
+        mode: options.mode as 'encode' | 'decode',
         charCount: inputText.length,
         byteCount: new Blob([inputText]).size,
         isValid,
@@ -213,10 +194,12 @@ const Base64EncoderDecoder = () => {
         });
       }
     } catch (error) {
-      const errorResult: ConversionResult = {
+      const errorResult: TextTransformationResult = {
+        inputText: inputText,
+        inputLength: inputText.length,
         originalText: inputText,
-        convertedText: '',
-        mode: options.mode,
+        transformedText: '',
+        mode: options.mode as 'encode' | 'decode',
         charCount: inputText.length,
         byteCount: 0,
         isValid: false,
@@ -228,7 +211,7 @@ const Base64EncoderDecoder = () => {
     }
   };
 
-  const updateOption = <K extends keyof ConversionOptions>(key: K, value: ConversionOptions[K]) => {
+  const updateOption = <K extends keyof (TextTransformationOptions & { addPrefix: string; addSuffix: string })>(key: K, value: (TextTransformationOptions & { addPrefix: string; addSuffix: string })[K]) => {
     setOptions(prev => ({ ...prev, [key]: value }));
   };
 
@@ -254,8 +237,8 @@ const Base64EncoderDecoder = () => {
     }));
     
     // Swap input and output if there's a valid result
-    if (conversionResult?.isValid && conversionResult.convertedText) {
-      setInputText(conversionResult.convertedText);
+    if (conversionResult?.isValid && conversionResult.transformedText) {
+      setInputText(conversionResult.transformedText);
     }
   };
 
@@ -626,7 +609,7 @@ const Base64EncoderDecoder = () => {
                                 <p className="text-xs sm:text-sm text-gray-600 break-words">{getOutputFormatLabel()}</p>
                               </div>
                               <Button
-                                onClick={() => handleCopyToClipboard(conversionResult.convertedText)}
+                                onClick={() => handleCopyToClipboard(conversionResult.transformedText)}
                                 variant="outline"
                                 size="sm"
                                 className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
@@ -639,7 +622,7 @@ const Base64EncoderDecoder = () => {
                               className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
                               data-testid="conversion-output"
                             >
-                              {conversionResult.convertedText || '(empty result)'}
+                              {conversionResult.transformedText || '(empty result)'}
                             </div>
                           </div>
 
@@ -652,7 +635,7 @@ const Base64EncoderDecoder = () => {
                                 <div className="text-sm text-blue-700 font-medium">Input Length</div>
                               </div>
                               <div className="bg-green-50 rounded-lg p-4 text-center">
-                                <div className="text-2xl font-bold text-green-600" data-testid="output-length">{conversionResult.convertedText.length}</div>
+                                <div className="text-2xl font-bold text-green-600" data-testid="output-length">{conversionResult.transformedText.length}</div>
                                 <div className="text-sm text-green-700 font-medium">Output Length</div>
                               </div>
                               <div className="bg-purple-50 rounded-lg p-4 text-center">
