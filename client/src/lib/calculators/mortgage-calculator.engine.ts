@@ -305,6 +305,25 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
 };
 
 /**
+ * Validates mortgage calculator inputs
+ * @param inputs - The input object to validate
+ * @returns Boolean indicating if inputs are valid
+ */
+function isValidMortgageCalculatorInputs(inputs: ParsedCalculatorInput): boolean {
+  const homePrice = Number(inputs.homePrice);
+  const downPayment = Number(inputs.downPayment);
+  const interestRate = Number(inputs.interestRate);
+  const loanTerm = Number(inputs.loanTerm);
+  
+  return (
+    isFinite(homePrice) && homePrice > 0 &&
+    isFinite(downPayment) && downPayment >= 0 && downPayment < homePrice &&
+    isFinite(interestRate) && interestRate >= 0 &&
+    isFinite(loanTerm) && loanTerm > 0
+  );
+}
+
+/**
  * Type guard to check if inputs are valid mortgage calculator inputs
  * Validates that required mortgage input fields are present and have valid values
  * @param inputs - Inputs to validate

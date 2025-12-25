@@ -51,3 +51,13 @@
 [x] 351. Verified all TypeScript diagnostics resolved - no LSP errors in interest-calculator.engine.ts
 [x] 352. Restarted workflow and verified application running successfully via screenshot
 [x] 353. Task 8 complete - Interest calculator engines properly typed with generics
+[x] 354. TASK 9: Added proper TypeScript generic types to Car Loan and Home Loan Calculator engines
+[x] 355. Implemented CarLoanCalculatorInputs and CarLoanCalculatorResult interfaces in loan-calculator.engine.ts
+[x] 356. Created calculateCarLoan function with CalculatorFunction<CarLoanCalculatorResult> generic type
+[x] 357. Added parseCarLoanInputs helper function for form input parsing and validation
+[x] 358. Added isValidCarLoanInputs validation function with input sanity checks
+[x] 359. Enhanced mortgage-calculator.engine.ts with additional validation function isValidMortgageCalculatorInputs
+[x] 360. Added comprehensive JSDoc documentation for car loan calculator and validation functions
+[x] 361. Verified all TypeScript diagnostics resolved - no LSP errors in both loan and mortgage calculator engines
+[x] 362. Restarted workflow and confirmed application running successfully via screenshot
+[x] 363. Task 9 complete - Car Loan and Home Loan (Mortgage) calculator engines properly typed with generics

@@ -306,6 +306,129 @@ export const calculateEMI: CalculatorFunction<LoanCalculatorResult> = (
 
 
 /**
+ * Extended inputs for Car Loan Calculator
+ */
+export interface CarLoanCalculatorInputs extends LoanInputs {
+  carPrice: number;
+  downPayment?: number;
+  downPaymentPercent?: number;
+  usePercentage?: boolean;
+  loanTerm: number;
+  termUnit?: 'months' | 'years';
+}
+
+/**
+ * Extended result for Car Loan Calculator
+ */
+export interface CarLoanCalculatorResult extends LoanCalculationResult {
+  carPrice: number;
+  downPayment: number;
+  loanAmount: number;
+  monthlyPayment: number;
+}
+
+/**
+ * Parse and validate car loan calculator inputs from string form values
+ * @param inputs - Form input state with string values
+ * @returns Parsed and typed car loan inputs
+ */
+export function parseCarLoanInputs(inputs: ParsedCalculatorInput): CarLoanCalculatorInputs {
+  return {
+    carPrice: Number(inputs.carPrice) || 0,
+    downPayment: Number(inputs.downPayment) || 0,
+    downPaymentPercent: Number(inputs.downPaymentPercent) || 0,
+    usePercentage: inputs.usePercentage === true || inputs.usePercentage === 'true',
+    loanAmount: 0, // Will be calculated
+    interestRate: Number(inputs.interestRate) || 0,
+    loanTerm: Number(inputs.loanTerm) || 0,
+    termUnit: (inputs.termUnit as 'months' | 'years') || 'years'
+  };
+}
+
+/**
+ * Validates car loan calculator inputs
+ * @param inputs - The input object to validate
+ * @returns Boolean indicating if inputs are valid
+ */
+function isValidCarLoanInputs(inputs: ParsedCalculatorInput): boolean {
+  const carPrice = Number(inputs.carPrice);
+  const interestRate = Number(inputs.interestRate);
+  const loanTerm = Number(inputs.loanTerm);
+  
+  return (
+    isFinite(carPrice) && carPrice > 0 &&
+    isFinite(interestRate) && interestRate >= 0 &&
+    isFinite(loanTerm) && loanTerm > 0
+  );
+}
+
+/**
+ * Main Car Loan Calculator Engine
+ * Calculates monthly payment based on car price, down payment, interest rate, and loan term
+ * Implements the CalculatorFunction generic interface with CarLoanCalculatorResult as result type
+ * 
+ * @param inputs - Parsed car loan calculator inputs (validated)
+ * @param config - Optional calculator configuration for metadata
+ * @returns CarLoanCalculatorResult with payment details and financial breakdown
+ */
+export const calculateCarLoan: CalculatorFunction<CarLoanCalculatorResult> = (
+  inputs: ParsedCalculatorInput,
+  config?: Partial<CalculatorConfig>
+): CarLoanCalculatorResult => {
+  if (!isValidCarLoanInputs(inputs)) {
+    throw new Error('Invalid car loan calculator inputs');
+  }
+
+  const carLoanInputs = parseCarLoanInputs(inputs);
+  const {
+    carPrice,
+    downPaymentPercent = 0,
+    downPayment: inputDownPayment = 0,
+    usePercentage = true,
+    interestRate,
+    loanTerm,
+    termUnit = 'years'
+  } = carLoanInputs;
+
+  // Calculate down payment
+  const downPayment = usePercentage 
+    ? (carPrice * downPaymentPercent) / 100 
+    : inputDownPayment;
+
+  const loanAmount = carPrice - downPayment;
+  const monthlyRate = (interestRate / 100) / 12;
+  const termMonths = termUnit === 'years' ? loanTerm * 12 : loanTerm;
+
+  // Calculate monthly payment
+  let monthlyPayment: number;
+  if (monthlyRate === 0) {
+    // Handle 0% interest rate
+    monthlyPayment = loanAmount / termMonths;
+  } else {
+    // Standard loan payment formula: M = P * [r(1+r)^n] / [(1+r)^n - 1]
+    const numerator = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, termMonths);
+    const denominator = Math.pow(1 + monthlyRate, termMonths) - 1;
+    monthlyPayment = numerator / denominator;
+  }
+
+  const totalAmount = monthlyPayment * termMonths;
+  const totalInterest = totalAmount - loanAmount;
+
+  return {
+    carPrice,
+    downPayment: Math.round(downPayment * 100) / 100,
+    loanAmount: Math.round(loanAmount * 100) / 100,
+    monthlyPayment: Math.round(monthlyPayment * 100) / 100,
+    totalAmount: Math.round(totalAmount * 100) / 100,
+    totalInterest: Math.round(totalInterest * 100) / 100,
+    primaryValue: Math.round(monthlyPayment * 100) / 100,
+    formattedPrimaryValue: `$${(Math.round(monthlyPayment * 100) / 100).toFixed(2)}`,
+    timestamp: new Date(),
+    currency: 'USD'
+  };
+};
+
+/**
  * Type guard to check if inputs are valid loan calculator inputs
  * Validates that required loan input fields are present and have valid values
  * @param inputs - Inputs to validate
