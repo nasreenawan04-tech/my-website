@@ -129,7 +129,7 @@ export default function SimpleInterestCalculator() {
       timePeriod: t,
       timeUnit: timeUnit as 'years' | 'months',
       compoundFrequency: '1'
-    });
+    } as any);
 
     if (calculationResult) {
       setResult(calculationResult);

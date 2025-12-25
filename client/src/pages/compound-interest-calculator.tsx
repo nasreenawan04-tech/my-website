@@ -497,8 +497,12 @@ export default function CompoundInterestCalculator() {
       stepUpPercentage: stepUpPercentage,
       inflationRate: inflationRate,
       enableGoalPlanning: enableGoalPlanning,
-      goalAmount: goalAmount
-    });
+      goalAmount: goalAmount,
+      taxRate: taxRate,
+      expenseRatio: expenseRatio,
+      enableTax: enableTax,
+      enableFees: enableFees
+    } as any);
 
     setResult(calcResult);
   };

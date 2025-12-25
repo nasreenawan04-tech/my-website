@@ -30,6 +30,11 @@ export interface CompoundInterestInputs extends InvestmentInputs {
  * Extended result for Compound Interest Calculator
  */
 export interface CompoundInterestResult extends InvestmentCalculationResult {
+  currency: string;
+  totalAmount: number;
+  primaryValue: number;
+  formattedPrimaryValue: string;
+  timestamp: Date;
   principalAmount: number;
   totalContributions: number;
   realValue: number;
