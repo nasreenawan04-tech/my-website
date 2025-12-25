@@ -182,3 +182,4 @@
 [x] 482. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
 [x] 483. Import complete - ready for user to continue building
 [x] 484. Updated vite.config.ts to conditionally disable sourcemaps in production to fix Vercel errors.
+[x] 485. Cleaned up empty line 2 in tooltip.tsx, avatar.tsx, select.tsx, tabs.tsx, and collapsible.tsx to ensure consistent import structure and avoid potential sourcemap resolution noise.
