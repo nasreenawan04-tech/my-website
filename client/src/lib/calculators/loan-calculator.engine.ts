@@ -155,17 +155,59 @@ export function calculatePrepaymentSavings(
 }
 
 /**
- * Main loan calculator engine function
- * Calculates monthly payment, total interest, and amortization schedule
+ * Extended loan inputs for Business Loan Calculator
+ */
+export interface BusinessLoanInputs extends LoanInputs {
+  loanAmount: number;
+  interestRate: number;
+  loanTerm: number;
+  termUnit: 'months' | 'years';
+  revenue?: number;
+  yearsInBusiness?: number;
+}
+
+/**
+ * Extended loan result for Business Loan Calculator
+ */
+export interface BusinessLoanResult extends LoanCalculationResult {
+  monthlyPayment: number;
+  totalInterest: number;
+  totalAmount: number;
+}
+
+/**
+ * Main Business Loan calculator engine function
+ * Implements the CalculatorFunction generic interface with BusinessLoanResult as the result type
+ * @param inputs - Parsed loan calculator inputs (validated)
+ * @param config - Optional calculator configuration for metadata
+ * @returns BusinessLoanResult with payment details, schedule, and prepayment analysis
+ */
+export const calculateBusinessLoan: CalculatorFunction<BusinessLoanResult> = (
+  inputs: ParsedCalculatorInput,
+  config?: Partial<CalculatorConfig>
+): BusinessLoanResult => {
+  const result = calculateLoan(inputs, config);
+  return {
+    ...result,
+    primaryValue: result.monthlyPayment,
+    formattedPrimaryValue: `$${result.monthlyPayment.toFixed(2)}`
+  };
+};
+
+/**
+ * Main EMI calculator engine function
  * Implements the CalculatorFunction generic interface with LoanCalculatorResult as the result type
  * @param inputs - Parsed loan calculator inputs (validated)
  * @param config - Optional calculator configuration for metadata
  * @returns LoanCalculatorResult with payment details, schedule, and prepayment analysis
  */
-export const calculateLoan: CalculatorFunction<LoanCalculatorResult> = (
+export const calculateEMI: CalculatorFunction<LoanCalculatorResult> = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): LoanCalculatorResult => {
+  return calculateLoan(inputs, config);
+};
+
   const loanInputs = parseLoanInputs(inputs);
   const {
     loanAmount,
