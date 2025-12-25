@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, path.resolve(__dirname, "client"), '');
   
   return {
+    base: "/",
     plugins: [
       react(),
       injectGTMPlugin(env),

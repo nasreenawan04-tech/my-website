@@ -70,10 +70,12 @@ function PageViewTracker() {
 
 function Router() {
   return (
-    <ErrorBoundary onError={(error, errorInfo) => {
-      console.error('Router Error:', error, errorInfo);
-      // Log critical navigation errors
-    }}>
+    <ErrorBoundary 
+      fallback={<div className="flex items-center justify-center min-h-screen">Something went wrong. Please refresh.</div>}
+      onError={(error, errorInfo) => {
+        console.error('Router Error:', error, errorInfo);
+      }}
+    >
       <ScrollToTop />
       <PageViewTracker />
       <Suspense fallback={<PageLoadingSpinner />}>
