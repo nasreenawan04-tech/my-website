@@ -12,8 +12,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 // Core pages (loaded immediately for performance)
-import Home from "@/pages/home";
-import NotFound from "@/pages/not-found";
+import Home from "./pages/home";
+import NotFound from "./pages/not-found";
 
 // Lazy load all other pages for better performance
 const AllTools = lazy(() => import("@/pages/all-tools"));
