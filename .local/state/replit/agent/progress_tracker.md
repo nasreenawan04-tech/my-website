@@ -358,3 +358,11 @@
 [x] 346. Reconfigured workflow with webview output on port 5000
 [x] 347. Verified application running correctly via screenshot - DapsiWow site fully operational
 [x] 348. IMPORT COMPLETE - All tasks marked as done
+[x] 349. Created src/types/health-tool.types.ts with comprehensive TypeScript interfaces
+[x] 350. Defined health metric types (UnitSystem, Gender, ActivityLevel, HealthGoal, CalculationMethod)
+[x] 351. Created calculator input interfaces (BMICalculatorInput, CalorieCalculatorInput)
+[x] 352. Created calculator result interfaces (BMIResult, CalorieResult)
+[x] 353. Added supporting interfaces (MacroBreakdown, WeightRecommendation, NormalizedMetrics)
+[x] 354. Added health tool metadata interfaces (HealthToolProperties, MetricRangesConfig)
+[x] 355. Added utility interfaces (UnitConverter, HealthInputValidator)
+[x] 356. Task complete - Health tool types file created with full documentation
