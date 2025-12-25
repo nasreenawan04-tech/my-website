@@ -18,9 +18,9 @@ const BMICalculator = () => {
   const [height, setHeight] = useState('');
   const [feet, setFeet] = useState('');
   const [inches, setInches] = useState('');
-  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>('metric');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState<Gender | string>('male');
+  const [gender, setGender] = useState<Gender>('male');
   const [result, setResult] = useState<BMIResult | null>(null);
 
   const handleCalculate = () => {
@@ -352,7 +352,7 @@ const BMICalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Unit System</Label>
                       <RadioGroup 
                         value={unitSystem} 
-                        onValueChange={setUnitSystem}
+                        onValueChange={(val) => setUnitSystem(val as UnitSystem)}
                         className="flex gap-6"
                       >
                         <div className="flex items-center space-x-2">
@@ -459,7 +459,7 @@ const BMICalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Gender <span className="text-gray-400 font-normal">- Optional</span>
                       </Label>
-                      <Select value={gender} onValueChange={setGender}>
+                      <Select value={gender} onValueChange={(val) => setGender(val as Gender)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>

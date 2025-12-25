@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-import { calculateBodyFat, isValidBodyFatInputs, BodyFatInput } from '@/lib/calculators/health/body-fat.engine';
+import { calculateBodyFat, isValidBodyFatInputs, BodyFatInput, BodyFatResult } from '@/lib/calculators/health/body-fat.engine';
 import { Gender, UnitSystem } from '@/types/health-tool.types';
 
 const BodyFatCalculator = () => {
@@ -22,9 +22,9 @@ const BodyFatCalculator = () => {
   const [waist, setWaist] = useState('');
   const [hip, setHip] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState<Gender | string>('');
-  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
-  const [result, setResult] = useState<any>(null);
+  const [gender, setGender] = useState<Gender>('male');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>('metric');
+  const [result, setResult] = useState<BodyFatResult | null>(null);
 
   const handleCalculate = () => {
     const inputs: BodyFatInput = {
@@ -54,7 +54,7 @@ const BodyFatCalculator = () => {
     setWaist('');
     setHip('');
     setAge('');
-    setGender('');
+    setGender('male');
     setUnitSystem('metric');
     setResult(null);
   };
@@ -164,7 +164,7 @@ const BodyFatCalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Unit System</Label>
                       <RadioGroup 
                         value={unitSystem} 
-                        onValueChange={setUnitSystem}
+                        onValueChange={(val) => setUnitSystem(val as UnitSystem)}
                         className="flex gap-8"
                       >
                         <div className="flex items-center space-x-3">
@@ -183,7 +183,7 @@ const BodyFatCalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Gender *
                       </Label>
-                      <Select value={gender} onValueChange={setGender}>
+                      <Select value={gender} onValueChange={(val) => setGender(val as Gender)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>

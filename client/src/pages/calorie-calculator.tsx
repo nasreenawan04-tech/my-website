@@ -19,11 +19,11 @@ export default function CalorieCalculator() {
   const [feet, setFeet] = useState('5');
   const [inches, setInches] = useState('9');
   const [age, setAge] = useState('30');
-  const [gender, setGender] = useState<Gender | string>('male');
-  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
-  const [activityLevel, setActivityLevel] = useState<ActivityLevel | string>('moderately-active');
-  const [goal, setGoal] = useState<HealthGoal | string>('maintain');
-  const [equation, setEquation] = useState<CalculationMethod | string>('mifflin');
+  const [gender, setGender] = useState<Gender>('male');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>('metric');
+  const [activityLevel, setActivityLevel] = useState<ActivityLevel>('moderately-active');
+  const [goal, setGoal] = useState<HealthGoal>('maintain');
+  const [equation, setEquation] = useState<CalculationMethod>('mifflin');
   const [customDeficit, setCustomDeficit] = useState('500');
   const [result, setResult] = useState<CalorieResult | null>(null);
 
@@ -144,7 +144,7 @@ export default function CalorieCalculator() {
                       </Label>
                       <RadioGroup 
                         value={unitSystem} 
-                        onValueChange={setUnitSystem}
+                        onValueChange={(val) => setUnitSystem(val as UnitSystem)}
                         className="flex gap-6"
                       >
                         <div className="flex items-center space-x-2">
@@ -163,7 +163,7 @@ export default function CalorieCalculator() {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Gender
                       </Label>
-                      <Select value={gender} onValueChange={setGender}>
+                      <Select value={gender} onValueChange={(val) => setGender(val as Gender)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>
@@ -265,7 +265,7 @@ export default function CalorieCalculator() {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Activity Level
                       </Label>
-                      <Select value={activityLevel} onValueChange={setActivityLevel}>
+                      <Select value={activityLevel} onValueChange={(val) => setActivityLevel(val as ActivityLevel)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity">
                           <SelectValue placeholder="Select activity level" />
                         </SelectTrigger>
@@ -284,7 +284,7 @@ export default function CalorieCalculator() {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Primary Goal
                       </Label>
-                      <Select value={goal} onValueChange={setGoal}>
+                      <Select value={goal} onValueChange={(val) => setGoal(val as HealthGoal)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-goal">
                           <SelectValue placeholder="Select your goal" />
                         </SelectTrigger>
@@ -301,7 +301,7 @@ export default function CalorieCalculator() {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Calculation Method
                       </Label>
-                      <Select value={equation} onValueChange={setEquation}>
+                      <Select value={equation} onValueChange={(val) => setEquation(val as CalculationMethod)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-equation">
                           <SelectValue placeholder="Select equation" />
                         </SelectTrigger>

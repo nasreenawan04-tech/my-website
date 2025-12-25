@@ -18,9 +18,9 @@ const TDEECalculator = () => {
   const [feet, setFeet] = useState('');
   const [inches, setInches] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState<Gender | string>('');
-  const [activityLevel, setActivityLevel] = useState<ActivityLevel | string>('');
-  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
+  const [gender, setGender] = useState<Gender | ''>('');
+  const [activityLevel, setActivityLevel] = useState<ActivityLevel | ''>('');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>('metric');
   const [result, setResult] = useState<TDEEResult | null>(null);
 
   const handleCalculateTDEE = () => {
@@ -133,7 +133,7 @@ const TDEECalculator = () => {
                       </Label>
                       <RadioGroup 
                         value={unitSystem} 
-                        onValueChange={setUnitSystem}
+                        onValueChange={(val) => setUnitSystem(val as UnitSystem)}
                         className="flex gap-6"
                       >
                         <div className="flex items-center space-x-2">
@@ -152,7 +152,7 @@ const TDEECalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Gender
                       </Label>
-                      <Select value={gender} onValueChange={setGender}>
+                      <Select value={gender} onValueChange={(val) => setGender(val as Gender)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>
@@ -254,7 +254,7 @@ const TDEECalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Activity Level
                       </Label>
-                      <Select value={activityLevel} onValueChange={setActivityLevel}>
+                      <Select value={activityLevel} onValueChange={(val) => setActivityLevel(val as ActivityLevel)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity">
                           <SelectValue placeholder="Select activity level" />
                         </SelectTrigger>
