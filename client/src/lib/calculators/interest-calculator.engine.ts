@@ -14,11 +14,15 @@ export { ParsedCalculatorInput };
  * Extended inputs for Compound Interest Calculator
  */
 export interface CompoundInterestInputs extends InvestmentInputs {
+  enableSIP?: boolean;
   sipAmount?: number;
   sipFrequency?: number;
   stepUpPercentage?: number;
+  enableGoalPlanning?: boolean;
   goalAmount?: number;
+  enableTax?: boolean;
   taxRate?: number;
+  enableFees?: boolean;
   expenseRatio?: number;
 }
 
@@ -56,17 +60,43 @@ export interface CompoundInterestResult extends InvestmentCalculationResult {
 }
 
 /**
+ * Validates compound interest inputs
+ * @param inputs - The input object to validate
+ * @returns Boolean indicating if inputs are valid
+ */
+function isValidCompoundInterestInputs(inputs: ParsedCalculatorInput): boolean {
+  const principal = Number(inputs.principal);
+  const interestRate = Number(inputs.interestRate);
+  const timePeriod = Number(inputs.timePeriod);
+  
+  return (
+    isFinite(principal) && principal > 0 &&
+    isFinite(interestRate) && interestRate >= 0 &&
+    isFinite(timePeriod) && timePeriod > 0
+  );
+}
+
+/**
  * Compound Interest Calculator Engine
+ * Calculates compound interest with support for SIP contributions, tax, fees, and inflation adjustments
+ * 
+ * @param inputs - Calculator inputs including principal, rate, time period, and optional features
+ * @param config - Optional calculator configuration
+ * @returns CompoundInterestResult with comprehensive financial breakdown
  */
 export const calculateCompoundInterest: CalculatorFunction<CompoundInterestResult> = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): CompoundInterestResult => {
+  if (!isValidCompoundInterestInputs(inputs)) {
+    throw new Error('Invalid compound interest calculator inputs');
+  }
+
   const p = Number(inputs.principal) || 0;
   const r = (Number(inputs.interestRate) || 0) / 100;
   const t = inputs.timeUnit === 'years' ? (Number(inputs.timePeriod) || 0) : (Number(inputs.timePeriod) || 0) / 12;
   const n = Number(inputs.compoundFrequency) || 12;
-  const sip = inputs.enableSIP ? (Number(inputs.sipAmount) || 0) : 0;
+  const sip = (inputs.enableSIP as boolean) ? (Number(inputs.sipAmount) || 0) : 0;
   const sipFreq = Number(inputs.sipFrequency) || 12;
   const stepUp = (Number(inputs.stepUpPercentage) || 0) / 100;
   const inflation = (Number(inputs.inflationRate) || 0) / 100;
@@ -136,15 +166,16 @@ export const calculateCompoundInterest: CalculatorFunction<CompoundInterestResul
   // Simple CAGR approximation
   const cagr = t > 0 && totalContributions > 0 ? ((Math.pow(finalAmount / totalContributions, 1 / t) - 1) * 100) : 0;
 
-  const milestones = {
-    double: null as number | null,
-    triple: null as number | null,
-    fivex: null as number | null,
-    tenx: null as number | null
+  const milestones: CompoundInterestResult['milestones'] = {
+    double: null,
+    triple: null,
+    fivex: null,
+    tenx: null
   };
 
   yearlyBreakdown.forEach((year) => {
-    const multiple = (year.amount as number) / p;
+    const yearAmount = typeof year.amount === 'number' ? year.amount : 0;
+    const multiple = yearAmount / p;
     if (milestones.double === null && multiple >= 2) milestones.double = year.year;
     if (milestones.triple === null && multiple >= 3) milestones.triple = year.year;
     if (milestones.fivex === null && multiple >= 5) milestones.fivex = year.year;
@@ -180,6 +211,14 @@ export const calculateCompoundInterest: CalculatorFunction<CompoundInterestResul
 };
 
 /**
+ * Extended inputs for Simple Interest Calculator
+ */
+export interface SimpleInterestInputs extends InvestmentInputs {
+  // Simple interest may override compound frequency to "never" or similar
+  noCompounding?: boolean;
+}
+
+/**
  * Extended result for Simple Interest Calculator
  */
 export interface SimpleInterestResult extends InvestmentCalculationResult {
@@ -189,12 +228,38 @@ export interface SimpleInterestResult extends InvestmentCalculationResult {
 }
 
 /**
+ * Validates simple interest inputs
+ * @param inputs - The input object to validate
+ * @returns Boolean indicating if inputs are valid
+ */
+function isValidSimpleInterestInputs(inputs: ParsedCalculatorInput): boolean {
+  const principal = Number(inputs.principal);
+  const interestRate = Number(inputs.interestRate);
+  const timePeriod = Number(inputs.timePeriod);
+  
+  return (
+    isFinite(principal) && principal > 0 &&
+    isFinite(interestRate) && interestRate >= 0 &&
+    isFinite(timePeriod) && timePeriod > 0
+  );
+}
+
+/**
  * Simple Interest Calculator Engine
+ * Calculates simple interest without compounding
+ * 
+ * @param inputs - Calculator inputs including principal, rate, and time period
+ * @param config - Optional calculator configuration
+ * @returns SimpleInterestResult with yearly breakdown
  */
 export const calculateSimpleInterest: CalculatorFunction<SimpleInterestResult> = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): SimpleInterestResult => {
+  if (!isValidSimpleInterestInputs(inputs)) {
+    throw new Error('Invalid simple interest calculator inputs');
+  }
+
   const p = Number(inputs.principal) || 0;
   const r = (Number(inputs.interestRate) || 0) / 100;
   const t = inputs.timeUnit === 'years' ? (Number(inputs.timePeriod) || 0) : (Number(inputs.timePeriod) || 0) / 12;

@@ -42,3 +42,12 @@
 [x] 342. Restarted workflow and verified application running via screenshot
 [x] 343. DapsiWow site fully operational - 23 tools across 3 categories (Finance, Text, Health)
 [x] 344. Import complete - ready for user to continue building
+[x] 345. TASK 8: Added proper TypeScript generic types to Compound Interest and Simple Interest Calculator engines
+[x] 346. Implemented CompoundInterestInputs and CompoundInterestResult with CalculatorFunction<T> generic interface
+[x] 347. Implemented SimpleInterestInputs and SimpleInterestResult with CalculatorFunction<T> generic interface
+[x] 348. Added input validation functions (isValidCompoundInterestInputs and isValidSimpleInterestInputs)
+[x] 349. Enhanced JSDoc documentation for both calculator engines with detailed descriptions
+[x] 350. Fixed type assertions in milestone calculations and improved type safety throughout
+[x] 351. Verified all TypeScript diagnostics resolved - no LSP errors in interest-calculator.engine.ts
+[x] 352. Restarted workflow and verified application running successfully via screenshot
+[x] 353. Task 8 complete - Interest calculator engines properly typed with generics
