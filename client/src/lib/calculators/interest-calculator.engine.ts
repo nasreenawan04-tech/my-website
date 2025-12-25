@@ -8,6 +8,8 @@ import {
   WhatIfScenario
 } from '@/types/calculator.types';
 
+export { ParsedCalculatorInput };
+
 /**
  * Extended inputs for Compound Interest Calculator
  */
@@ -44,6 +46,12 @@ export interface CompoundInterestResult extends InvestmentCalculationResult {
     totalSIPContributions: number;
     sipInterestEarned: number;
     averageAnnualReturn: number;
+  };
+  goalAnalysis?: {
+    timeToReachGoal: number;
+    requiredMonthlyContribution: number;
+    isGoalAchievable: boolean;
+    goalAmount: number;
   };
 }
 

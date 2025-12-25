@@ -122,38 +122,15 @@ export default function SimpleInterestCalculator() {
     // Simple Interest Formula: SI = P × R × T
     const rDecimal = r / 100;
     const timeInYears = timeUnit === 'years' ? t : t / 12;
-    const simpleInterest = p * rDecimal * timeInYears;
-    const totalAmount = p + simpleInterest;
-    const monthlyInterest = simpleInterest / (timeInYears * 12);
-
-    // Calculate yearly breakdown
-    const yearlyBreakdown = [];
-    const years = Math.ceil(timeInYears);
     
-    for (let year = 1; year <= years; year++) {
-      const currentYearTime = Math.min(year, timeInYears);
-      const previousYearTime = Math.min(year - 1, timeInYears);
-      
-      const cumulativeInterest = p * rDecimal * currentYearTime;
-      const previousCumulativeInterest = p * rDecimal * previousYearTime;
-      const interestEarned = cumulativeInterest - previousCumulativeInterest;
-      const totalAmountYear = p + cumulativeInterest;
-      
-      yearlyBreakdown.push({
-        year,
-        interestEarned,
-        totalAmount: totalAmountYear,
-        cumulativeInterest
-      });
-    }
-
-    setResult({
-      simpleInterest,
-      totalAmount,
-      principalAmount: p,
-      monthlyInterest,
-      yearlyBreakdown
+    const calculationResult = calculateSimpleInterest({
+      principal: p,
+      interestRate: r,
+      timePeriod: t,
+      timeUnit: timeUnit as 'years' | 'months'
     });
+
+    setResult(calculationResult);
 
     toast({
       title: "Calculation Complete!",

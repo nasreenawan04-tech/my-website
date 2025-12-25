@@ -15,6 +15,11 @@ import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 
+interface LumpSumContribution {
+  year: number;
+  amount: number;
+}
+
 import { calculateCompoundInterest } from '@/lib/calculators/interest-calculator.engine';
 import { 
   CompoundInterestResult, 
