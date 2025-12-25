@@ -181,3 +181,4 @@
 [x] 481. Restarted workflow with webview output on port 5000
 [x] 482. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
 [x] 483. Import complete - ready for user to continue building
+[x] 484. Updated vite.config.ts to conditionally disable sourcemaps in production to fix Vercel errors.
