@@ -55,16 +55,62 @@ export default defineConfig(({ mode }) => {
     assetsInlineLimit: 8192, // Increased for better caching
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          router: ["wouter"],
-          query: ["@tanstack/react-query"],
-          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tabs", "@radix-ui/react-select", "@radix-ui/react-slider"],
-          form: ["react-hook-form", "@hookform/resolvers", "zod"],
-          charts: ["recharts"],
-          icons: ["lucide-react"],
-          utils: ["clsx", "tailwind-merge", "framer-motion", "date-fns"],
-          helmet: ["react-helmet-async"]
+        manualChunks(id) {
+          // Heavy PDF libraries should NOT be in main vendor chunk
+          // They will be dynamically imported, so exclude them from pre-bundling
+          
+          // Core vendor libraries
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor';
+          }
+          
+          // Routing
+          if (id.includes('node_modules/wouter/')) {
+            return 'router';
+          }
+          
+          // Data fetching
+          if (id.includes('node_modules/@tanstack/react-query/')) {
+            return 'query';
+          }
+          
+          // UI - only include core Radix UI components
+          if (id.includes('node_modules/@radix-ui/')) {
+            return 'ui';
+          }
+          
+          // Forms
+          if (id.includes('node_modules/react-hook-form/') || 
+              id.includes('node_modules/@hookform/') ||
+              id.includes('node_modules/zod/')) {
+            return 'form';
+          }
+          
+          // Charts - large library, could be further split
+          if (id.includes('node_modules/recharts/')) {
+            return 'charts';
+          }
+          
+          // Icons
+          if (id.includes('node_modules/lucide-react/')) {
+            return 'icons';
+          }
+          
+          // SEO/Helmet
+          if (id.includes('node_modules/react-helmet-async/')) {
+            return 'helmet';
+          }
+          
+          // Utilities and animations
+          if (id.includes('node_modules/clsx/') ||
+              id.includes('node_modules/tailwind-merge/') ||
+              id.includes('node_modules/framer-motion/') ||
+              id.includes('node_modules/date-fns/')) {
+            return 'utils';
+          }
+          
+          // IMPORTANT: Don't bundle PDF libraries - they'll be dynamically imported
+          // This prevents jsPDF (387KB) and html2canvas (200KB) from being in main bundle
         },
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
