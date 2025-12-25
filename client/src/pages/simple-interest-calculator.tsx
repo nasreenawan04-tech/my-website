@@ -128,10 +128,12 @@ export default function SimpleInterestCalculator() {
       interestRate: r,
       timePeriod: t,
       timeUnit: timeUnit as 'years' | 'months',
-      compoundFrequency: 'annually' // Add dummy value for compatibility
+      compoundFrequency: '1'
     });
 
-    setResult(calculationResult);
+    if (calculationResult) {
+      setResult(calculationResult);
+    }
 
     toast({
       title: "Calculation Complete!",
@@ -406,18 +408,17 @@ export default function SimpleInterestCalculator() {
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
       
-      doc.setTextColor(0, 0, 0);
       doc.text(year.year.toString(), colX[0], yPos + 4);
       
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
-      doc.text(formatCurrency(Number(year.interestEarned ?? 0)), colX[1], yPos + 4);
+      doc.text(formatCurrency(Number((year as any).interestEarned ?? 0)), colX[1], yPos + 4);
       
       doc.setTextColor(59, 130, 246);
-      doc.text(formatCurrency(Number(year.cumulativeInterest ?? 0)), colX[2], yPos + 4);
+      doc.text(formatCurrency(Number((year as any).cumulativeInterest ?? 0)), colX[2], yPos + 4);
       
       doc.setTextColor(0, 0, 0);
-      doc.text(formatCurrency(year.totalAmount), colX[3], yPos + 4);
+      doc.text(formatCurrency(Number((year as any).totalAmount ?? 0)), colX[3], yPos + 4);
       
       doc.setFont('helvetica', 'normal');
       yPos += 6;

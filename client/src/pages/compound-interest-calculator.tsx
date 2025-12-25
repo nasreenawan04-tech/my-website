@@ -485,25 +485,22 @@ export default function CompoundInterestCalculator() {
       };
     }
 
-    setResult({
-      finalAmount,
-      totalInterest,
-      principalAmount: p,
-      totalContributions,
-      realValue,
-      inflationAdjustedGains,
-      cagr,
-      totalTaxPaid,
-      postTaxReturns,
-      totalFeesPaid,
-      netReturnsAfterFees,
-      doublingTime,
-      milestones,
-      whatIfAnalysis,
-      goalAnalysis,
-      sipAnalysis,
-      yearlyBreakdown
+    const calcResult = calculateCompoundInterest({
+      principal: principal,
+      interestRate: interestRate,
+      timePeriod: timePeriod,
+      timeUnit: timeUnit as 'years' | 'months',
+      compoundFrequency: compoundFrequency,
+      enableSIP: enableSIP,
+      sipAmount: sipAmount,
+      sipFrequency: sipFrequency,
+      stepUpPercentage: stepUpPercentage,
+      inflationRate: inflationRate,
+      enableGoalPlanning: enableGoalPlanning,
+      goalAmount: goalAmount
     });
+
+    setResult(calcResult);
   };
 
   const resetCalculator = () => {
@@ -2264,10 +2261,12 @@ export default function CompoundInterestCalculator() {
                                 {result.whatIfAnalysis.map((item, idx) => (
                                   <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
                                     <td className="py-2 px-3 font-medium">{item.rateChange}</td>
-                                    <td className="py-2 px-3">{item.rate.toFixed(2)}%</td>
-                                    <td className="py-2 px-3 text-right">{formatCurrency(item.finalAmount)}</td>
-                                    <td className={`py-2 px-3 text-right font-semibold ${item.difference >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                      {item.difference >= 0 ? '+' : ''}{formatCurrency(item.difference)}
+                                    <td className="py-2 px-3">{item.rate?.toFixed(2) ?? '0.00'}%</td>
+                                    <td className="py-2 px-3 text-right font-semibold text-blue-600">
+                                      {formatCurrency(Number((item as any).finalAmount ?? (item as any).resultValue ?? 0))}
+                                    </td>
+                                    <td className={`py-2 px-3 text-right font-semibold ${(item as any).difference >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                      {(item as any).difference >= 0 ? '+' : ''}{formatCurrency((item as any).difference)}
                                     </td>
                                   </tr>
                                 ))}
@@ -2303,7 +2302,7 @@ export default function CompoundInterestCalculator() {
                                   {result.goalAnalysis.timeToReachGoal > 0 ? `${result.goalAnalysis.timeToReachGoal} years` : 'Goal not achievable'}
                                 </span>
                               </div>
-                              {result.goalAnalysis.requiredMonthlyContribution > 0 && (
+                              {result.goalAnalysis && result.goalAnalysis.requiredMonthlyContribution !== undefined && result.goalAnalysis.requiredMonthlyContribution > 0 && (
                                 <div className="flex justify-between items-center">
                                   <span className="font-medium text-green-700">Required Monthly SIP</span>
                                   <span className="font-bold text-green-600" data-testid="text-required-sip">
@@ -2355,13 +2354,13 @@ export default function CompoundInterestCalculator() {
                                 {result.yearlyBreakdown.map((year, index) => (
                                   <tr key={index} className="hover:bg-gray-50 transition-colors" data-testid={`breakdown-row-${index}`}>
                                     <td className="px-4 py-3 text-sm text-gray-900 font-medium">{year.year}</td>
-                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(year.amount)}</td>
-                                    <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(year.interestEarned)}</td>
-                                    <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(year.sipContribution)}</td>
+                                    <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(Number(year.amount ?? 0))}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-green-600">{formatCurrency(Number(year.interestEarned ?? 0))}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(Number(year.sipContribution ?? 0))}</td>
                                     {showRealValue && (
-                                      <td className="px-4 py-3 text-sm text-right font-semibold text-purple-600">{formatCurrency(year.realValue)}</td>
+                                      <td className="px-4 py-3 text-sm text-right font-semibold text-purple-600">{formatCurrency(Number(year.realValue ?? 0))}</td>
                                     )}
-                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(year.totalInterest)}</td>
+                                    <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(Number(year.totalInterest ?? 0))}</td>
                                   </tr>
                                 ))}
                               </tbody>
