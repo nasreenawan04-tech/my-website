@@ -9,6 +9,7 @@ import {
 
 export interface ProteinIntakeInput extends HealthCalculatorInput {
   fitnessGoal: string;
+  activityLevel: string;
   healthConditions: string;
   isPregnant: string;
   isBreastfeeding: string;

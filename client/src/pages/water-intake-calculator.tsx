@@ -149,7 +149,7 @@ const WaterIntakeCalculator = () => {
                       </Label>
                       <RadioGroup 
                         value={unitSystem} 
-                        onValueChange={setUnitSystem}
+                        onValueChange={(val) => setUnitSystem(val as UnitSystem)}
                         className="flex gap-6"
                       >
                         <div className="flex items-center space-x-2">
@@ -204,7 +204,7 @@ const WaterIntakeCalculator = () => {
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Gender
                       </Label>
-                      <Select value={gender} onValueChange={setGender}>
+                      <Select value={gender} onValueChange={(val) => setGender(val as Gender)}>
                         <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>

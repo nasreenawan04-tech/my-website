@@ -92,3 +92,6 @@
 [x] 392. Created sleep.engine.ts with SleepCalculatorFunction generic type
 [x] 393. Refactored calculator pages to use extracted engine logic and shared types from health-tool.types.ts
 [x] 394. Verified all health tools are functioning correctly with zero LSP errors
+[x] 395. Fixed TypeScript type mismatches in Water and Protein calculator components
+[x] 396. Corrected ProteinIntakeInput interface to include activityLevel property
+[x] 397. Restarted workflow and verified application stability via screenshot
