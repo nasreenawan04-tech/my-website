@@ -8,8 +8,6 @@ import {
   WhatIfScenario
 } from '@/types/calculator.types';
 
-export { ParsedCalculatorInput };
-
 /**
  * Extended inputs for Compound Interest Calculator
  */

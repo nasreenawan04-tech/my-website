@@ -134,3 +134,5 @@
 [x] 434. Restarted workflow and verified application running via screenshot
 [x] 435. DapsiWow site fully operational - 23 tools across 3 categories (Finance, Text, Health)
 [x] 436. Import complete - ready for user to continue building
+[x] 437. Fixed ParsedCalculatorInput export error - removed unnecessary re-export from interest-calculator.engine.ts
+[x] 438. Verified application running successfully - error resolved and DapsiWow site fully operational
