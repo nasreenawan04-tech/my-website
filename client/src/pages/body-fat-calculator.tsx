@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import { calculateBodyFat, isValidBodyFatInputs, BodyFatInput } from '@/lib/calculators/health/body-fat.engine';
+import { Gender, UnitSystem } from '@/types/health-tool.types';
 
 const BodyFatCalculator = () => {
   const [weight, setWeight] = useState('');
@@ -21,8 +22,8 @@ const BodyFatCalculator = () => {
   const [waist, setWaist] = useState('');
   const [hip, setHip] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState<any>('');
-  const [unitSystem, setUnitSystem] = useState<any>('metric');
+  const [gender, setGender] = useState<Gender | string>('');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
   const [result, setResult] = useState<any>(null);
 
   const handleCalculate = () => {

@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import { calculateCalories, isValidCalorieInputs } from '@/lib/calculators/health/calories.engine';
-import { CalorieCalculatorInput, CalorieResult } from '@/types/health-tool.types';
+import { CalorieCalculatorInput, CalorieResult, Gender, UnitSystem, ActivityLevel, HealthGoal, CalculationMethod } from '@/types/health-tool.types';
 
 export default function CalorieCalculator() {
   const [weight, setWeight] = useState('70');
@@ -19,11 +19,11 @@ export default function CalorieCalculator() {
   const [feet, setFeet] = useState('5');
   const [inches, setInches] = useState('9');
   const [age, setAge] = useState('30');
-  const [gender, setGender] = useState<any>('male');
-  const [unitSystem, setUnitSystem] = useState<any>('metric');
-  const [activityLevel, setActivityLevel] = useState<any>('moderately-active');
-  const [goal, setGoal] = useState<any>('maintain');
-  const [equation, setEquation] = useState<any>('mifflin');
+  const [gender, setGender] = useState<Gender | string>('male');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
+  const [activityLevel, setActivityLevel] = useState<ActivityLevel | string>('moderately-active');
+  const [goal, setGoal] = useState<HealthGoal | string>('maintain');
+  const [equation, setEquation] = useState<CalculationMethod | string>('mifflin');
   const [customDeficit, setCustomDeficit] = useState('500');
   const [result, setResult] = useState<CalorieResult | null>(null);
 
@@ -53,11 +53,11 @@ export default function CalorieCalculator() {
     setFeet('5');
     setInches('9');
     setAge('30');
-    setGender('male');
-    setUnitSystem('metric');
-    setActivityLevel('moderately-active');
-    setGoal('maintain');
-    setEquation('mifflin');
+    setGender('male' as Gender);
+    setUnitSystem('metric' as UnitSystem);
+    setActivityLevel('moderately-active' as ActivityLevel);
+    setGoal('maintain' as HealthGoal);
+    setEquation('mifflin' as CalculationMethod);
     setCustomDeficit('500');
     setResult(null);
   };

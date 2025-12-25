@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { calculateTDEE, TDEEResult, TDEECalculatorInput } from '@/tools/health/engines/tdee.engine';
+import { Gender, UnitSystem, ActivityLevel } from '@/types/health-tool.types';
 
 const TDEECalculator = () => {
   const [weight, setWeight] = useState('');
@@ -17,9 +18,9 @@ const TDEECalculator = () => {
   const [feet, setFeet] = useState('');
   const [inches, setInches] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [activityLevel, setActivityLevel] = useState('');
-  const [unitSystem, setUnitSystem] = useState('metric');
+  const [gender, setGender] = useState<Gender | string>('');
+  const [activityLevel, setActivityLevel] = useState<ActivityLevel | string>('');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
   const [result, setResult] = useState<TDEEResult | null>(null);
 
   const handleCalculateTDEE = () => {
@@ -29,9 +30,9 @@ const TDEECalculator = () => {
       feet: unitSystem === 'imperial' ? parseFloat(feet) : undefined,
       inches: unitSystem === 'imperial' ? parseFloat(inches) : undefined,
       age: parseFloat(age),
-      gender: gender as 'male' | 'female',
-      activityLevel: activityLevel as any,
-      unitSystem: unitSystem as 'metric' | 'imperial'
+      gender: gender as Gender,
+      activityLevel: activityLevel as ActivityLevel,
+      unitSystem: unitSystem as UnitSystem
     };
 
     const result = calculateTDEE(input);

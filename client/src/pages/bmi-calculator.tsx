@@ -11,16 +11,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import { calculateBMI, isValidBMIInputs } from '@/lib/calculators/health/bmi.engine';
-import { BMICalculatorInput, BMIResult } from '@/types/health-tool.types';
+import { BMICalculatorInput, BMIResult, UnitSystem, Gender } from '@/types/health-tool.types';
 
 const BMICalculator = () => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [feet, setFeet] = useState('');
   const [inches, setInches] = useState('');
-  const [unitSystem, setUnitSystem] = useState<any>('metric');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem | string>('metric');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState<any>('male');
+  const [gender, setGender] = useState<Gender | string>('male');
   const [result, setResult] = useState<BMIResult | null>(null);
 
   const handleCalculate = () => {
@@ -45,7 +45,7 @@ const BMICalculator = () => {
     setFeet('');
     setInches('');
     setAge('');
-    setGender('');
+    setGender('male');
     setUnitSystem('metric');
     setResult(null);
   };
