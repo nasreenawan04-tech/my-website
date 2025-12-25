@@ -8,6 +8,7 @@ import {
   LoanCalculationResult,
   ParsedCalculatorInput,
   AmortizationEntry,
+  AmortizationSchedule,
   PrepaymentSavings,
   CalculatorFunction,
   CalculatorConfig
@@ -59,7 +60,7 @@ export function parseLoanInputs(inputs: ParsedCalculatorInput): LoanCalculatorIn
  * @param extraPayment - Extra payment amount per period
  * @param balloonPayment - Balloon payment at end of loan
  * @param paymentFrequency - Payment frequency (weekly, biweekly, monthly)
- * @returns Amortization schedule entries
+ * @returns Amortization schedule entries array
  */
 export function calculateAmortizationSchedule(
   principal: number,
@@ -68,7 +69,7 @@ export function calculateAmortizationSchedule(
   extraPayment: number = 0,
   balloonPayment: number = 0,
   paymentFrequency: 'weekly' | 'biweekly' | 'monthly' = 'monthly'
-): AmortizationEntry[] {
+): Array<AmortizationEntry> {
   const schedule: AmortizationEntry[] = [];
 
   // Calculate payment frequency
@@ -131,10 +132,10 @@ export function calculateAmortizationSchedule(
  * @param schedule - Amortization schedule with extra payments
  * @param regularPayment - Regular payment without extra
  * @param totalPayments - Total expected payments without extra
- * @returns Prepayment savings analysis
+ * @returns Prepayment savings analysis with time and interest saved metrics
  */
 export function calculatePrepaymentSavings(
-  schedule: AmortizationEntry[],
+  schedule: ReadonlyArray<AmortizationEntry>,
   regularPayment: number,
   totalPayments: number
 ): PrepaymentSavings {
@@ -156,9 +157,10 @@ export function calculatePrepaymentSavings(
 /**
  * Main loan calculator engine function
  * Calculates monthly payment, total interest, and amortization schedule
- * @param inputs - Parsed loan calculator inputs
- * @param config - Optional calculator configuration
- * @returns Typed loan calculation result
+ * Implements the CalculatorFunction generic interface with LoanCalculatorResult as the result type
+ * @param inputs - Parsed loan calculator inputs (validated)
+ * @param config - Optional calculator configuration for metadata
+ * @returns LoanCalculatorResult with payment details, schedule, and prepayment analysis
  */
 export const calculateLoan: CalculatorFunction<LoanCalculatorResult> = (
   inputs: ParsedCalculatorInput,
@@ -190,7 +192,7 @@ export const calculateLoan: CalculatorFunction<LoanCalculatorResult> = (
   const totalPayments = termMonths * (paymentsPerYear / 12);
 
   // Generate amortization schedule
-  const schedule = calculateAmortizationSchedule(
+  const scheduleEntries = calculateAmortizationSchedule(
     adjustedPrincipal,
     interestRate,
     termMonths,
@@ -200,8 +202,8 @@ export const calculateLoan: CalculatorFunction<LoanCalculatorResult> = (
   );
 
   // Calculate totals from schedule
-  const totalInterest = schedule.reduce((sum, entry) => sum + entry.interest, 0);
-  const totalAmount = schedule.reduce((sum, entry) => sum + entry.payment, 0);
+  const totalInterest = scheduleEntries.reduce((sum, entry) => sum + entry.interest, 0);
+  const totalAmount = scheduleEntries.reduce((sum, entry) => sum + entry.payment, 0);
 
   // Calculate regular payment for comparison
   let regularPayment: number;
@@ -223,14 +225,21 @@ export const calculateLoan: CalculatorFunction<LoanCalculatorResult> = (
   // Calculate prepayment savings if extra payment
   let extraPaymentSavings: PrepaymentSavings | undefined;
   if (extraPayment > 0) {
-    extraPaymentSavings = calculatePrepaymentSavings(schedule, regularPayment, totalPayments);
+    extraPaymentSavings = calculatePrepaymentSavings(scheduleEntries, regularPayment, totalPayments);
   }
+
+  const totalPrincipal = scheduleEntries.reduce((sum, entry) => sum + entry.principal, 0);
 
   return {
     monthlyPayment: Math.round(monthlyPaymentEquivalent * 100) / 100,
     totalAmount: Math.round(totalAmount * 100) / 100,
     totalInterest: Math.round(totalInterest * 100) / 100,
-    amortizationSchedule: schedule,
+    amortizationSchedule: {
+      entries: scheduleEntries,
+      totalPayments: totalPayments,
+      totalInterest: Math.round(totalInterest * 100) / 100,
+      totalPrincipal: Math.round(totalPrincipal * 100) / 100
+    },
     extraPaymentSavings,
     primaryValue: Math.round(monthlyPaymentEquivalent * 100) / 100,
     formattedPrimaryValue: `$${(Math.round(monthlyPaymentEquivalent * 100) / 100).toFixed(2)}`,
@@ -245,8 +254,11 @@ export const calculateLoan: CalculatorFunction<LoanCalculatorResult> = (
 
 /**
  * Type guard to check if inputs are valid loan calculator inputs
+ * Validates that required loan input fields are present and have valid values
+ * @param inputs - Inputs to validate
+ * @returns Boolean indicating if inputs are valid for loan calculation
  */
-export function isValidLoanInputs(inputs: ParsedCalculatorInput): inputs is LoanCalculatorInputs {
+export function isValidLoanInputs(inputs: ParsedCalculatorInput): boolean {
   return (
     typeof inputs.loanAmount === 'number' &&
     typeof inputs.interestRate === 'number' &&

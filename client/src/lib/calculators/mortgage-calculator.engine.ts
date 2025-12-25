@@ -1,6 +1,6 @@
 /**
  * Mortgage Calculator Engine - Typed calculation functions
- * Implements generic CalculatorFunction type with LoanInputs and LoanCalculationResult
+ * Implements generic CalculatorFunction type with MortgageCalculatorInputs and MortgageCalculatorResult
  */
 
 import {
@@ -8,6 +8,7 @@ import {
   LoanCalculationResult,
   ParsedCalculatorInput,
   AmortizationEntry,
+  AmortizationSchedule,
   PrepaymentSavings,
   CalculatorFunction,
   CalculatorConfig
@@ -79,7 +80,7 @@ export function parseMortgageInputs(inputs: ParsedCalculatorInput): MortgageCalc
  * @param extraPayment - Extra payment per period
  * @param loanType - Loan type (affects rate adjustments)
  * @param paymentFrequency - Payment frequency
- * @returns Amortization schedule entries
+ * @returns Array of amortization schedule entries
  */
 export function calculateMortgageAmortization(
   principal: number,
@@ -88,7 +89,7 @@ export function calculateMortgageAmortization(
   extraPayment: number = 0,
   loanType: 'conventional' | 'fha' | 'va' = 'conventional',
   paymentFrequency: 'monthly' | 'biweekly' | 'weekly' = 'monthly'
-): AmortizationEntry[] {
+): Array<AmortizationEntry> {
   const schedule: AmortizationEntry[] = [];
 
   const paymentsPerYear =
@@ -165,9 +166,10 @@ export function calculateMonthlyPMI(
 /**
  * Main mortgage calculator engine function
  * Calculates monthly payment with all costs (PI, taxes, insurance, PMI, HOA)
- * @param inputs - Parsed mortgage calculator inputs
- * @param config - Optional calculator configuration
- * @returns Typed mortgage calculation result
+ * Implements the CalculatorFunction generic interface with MortgageCalculatorResult as the result type
+ * @param inputs - Parsed mortgage calculator inputs (validated)
+ * @param config - Optional calculator configuration for metadata
+ * @returns MortgageCalculatorResult with comprehensive housing cost breakdown and amortization schedule
  */
 export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
   inputs: ParsedCalculatorInput,
@@ -218,7 +220,7 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
         (Math.pow(1 + adjustedRate, totalPayments) - 1);
 
   // Generate amortization schedule
-  const schedule = calculateMortgageAmortization(
+  const scheduleEntries = calculateMortgageAmortization(
     principal,
     interestRate,
     loanTerm,
@@ -228,8 +230,8 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
   );
 
   // Calculate totals from schedule
-  const totalInterest = schedule.reduce((sum, entry) => sum + entry.interest, 0);
-  const totalAmount = schedule.reduce((sum, entry) => sum + entry.payment, 0);
+  const totalInterest = scheduleEntries.reduce((sum, entry) => sum + entry.interest, 0);
+  const totalAmount = scheduleEntries.reduce((sum, entry) => sum + entry.payment, 0);
 
   // Calculate monthly housing costs
   const monthlyTaxes = propertyTax / 12;
@@ -257,13 +259,13 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
   if (extraPayment > 0) {
     const regularTotalAmount = monthlyPI * totalPayments;
     const regularTotalInterest = regularTotalAmount - principal;
-    const totalInterestWithExtra = schedule.reduce((sum, entry) => sum + entry.interest, 0);
+    const totalInterestWithExtra = scheduleEntries.reduce((sum, entry) => sum + entry.interest, 0);
 
     extraPaymentSavings = {
-      timeSaved: Math.max(0, totalPayments - schedule.length),
+      timeSaved: Math.max(0, totalPayments - scheduleEntries.length),
       interestSaved: Math.max(0, regularTotalInterest - totalInterestWithExtra),
       newTotalInterest: totalInterestWithExtra,
-      newPayoffTime: schedule.length,
+      newPayoffTime: scheduleEntries.length,
       savingsPercentage:
         regularTotalInterest > 0
           ? ((regularTotalInterest - totalInterestWithExtra) / regularTotalInterest) * 100
@@ -271,11 +273,18 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
     };
   }
 
+  const totalPrincipal = scheduleEntries.reduce((sum, entry) => sum + entry.principal, 0);
+
   return {
     monthlyPayment: Math.round(totalMonthlyPayment * 100) / 100,
     totalAmount: Math.round(totalAmount * 100) / 100,
     totalInterest: Math.round(totalInterest * 100) / 100,
-    amortizationSchedule: schedule,
+    amortizationSchedule: {
+      entries: scheduleEntries,
+      totalPayments: totalPayments,
+      totalInterest: Math.round(totalInterest * 100) / 100,
+      totalPrincipal: Math.round(totalPrincipal * 100) / 100
+    },
     extraPaymentSavings,
     primaryValue: Math.round(totalMonthlyPayment * 100) / 100,
     formattedPrimaryValue: `$${(Math.round(totalMonthlyPayment * 100) / 100).toFixed(2)}`,
@@ -291,18 +300,17 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
     closingCosts: Math.round(closingCosts * 100) / 100,
     totalCashNeeded: Math.round(totalCashNeeded * 100) / 100,
     loanToValue: Math.round(loanToValue * 100) / 100,
-    debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100,
-    paymentFrequency,
-    monthlyPaymentEquivalent: Math.round(totalMonthlyPayment * 100) / 100,
-    termInMonths: loanTerm * 12,
-    paymentsPerYear
+    debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100
   };
 };
 
 /**
  * Type guard to check if inputs are valid mortgage calculator inputs
+ * Validates that required mortgage input fields are present and have valid values
+ * @param inputs - Inputs to validate
+ * @returns Boolean indicating if inputs are valid for mortgage calculation
  */
-export function isValidMortgageInputs(inputs: ParsedCalculatorInput): inputs is MortgageCalculatorInputs {
+export function isValidMortgageInputs(inputs: ParsedCalculatorInput): boolean {
   return (
     typeof inputs.homePrice === 'number' &&
     typeof inputs.downPayment === 'number' &&
