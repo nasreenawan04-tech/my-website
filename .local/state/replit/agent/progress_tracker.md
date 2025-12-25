@@ -189,3 +189,4 @@
 [x] 489. Regenerated tooltip, avatar, select, tabs, and collapsible components using shadcn CLI to ensure correct file generation and resolve potential sourcemap resolution errors. Verified components.json configuration before regeneration.
 [x] 490. Verified required UI dependencies (@radix-ui, class-variance-authority, clsx, tailwind-merge) in package.json and ensured all packages are properly installed via npm.
 [x] 491. Updated vercel.json and package.json build script to include type checking and memory optimizations for Vercel deployments.
+[x] 492. Fixed tsconfig.json error by removing declarationMap, which is not required for this web application. Verified build success with npm run check.

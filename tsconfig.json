@@ -7,7 +7,6 @@
     "noEmit": true,
     "sourceMap": true,
     "inlineSources": true,
-    "declarationMap": true,
     "module": "ESNext",
     "strict": true,
     "noImplicitAny": true,
