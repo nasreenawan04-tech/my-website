@@ -35,3 +35,6 @@
 [x] 335. Session restart - December 25, 2025 - Reinstalled npm packages
 [x] 336. Restarted workflow and verified application running via screenshot
 [x] 337. DapsiWow site fully operational - 23 tools across 3 categories (Finance, Text, Health)
+[x] 338. TASK 7: Added proper TypeScript generic types to EMI and Business Loan calculators
+[x] 339. Refactored loan-calculator.engine.ts with internal shared logic and generic interfaces
+[x] 340. Verified application stability and updated progress tracker
