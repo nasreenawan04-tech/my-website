@@ -10,82 +10,32 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-interface BMIResult {
-  bmi: number;
-  category: string;
-  healthyWeightMin: number;
-  healthyWeightMax: number;
-  weightToLose?: number;
-  weightToGain?: number;
-}
+import { calculateBMI, isValidBMIInputs } from '@/lib/calculators/health/bmi.engine';
+import { BMICalculatorInput, BMIResult } from '@/types/health-tool.types';
 
 const BMICalculator = () => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [feet, setFeet] = useState('');
   const [inches, setInches] = useState('');
-  const [unitSystem, setUnitSystem] = useState('metric');
+  const [unitSystem, setUnitSystem] = useState<any>('metric');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState<any>('male');
   const [result, setResult] = useState<BMIResult | null>(null);
 
-  const calculateBMI = () => {
-    let weightKg: number;
-    let heightM: number;
+  const handleCalculate = () => {
+    const inputs: BMICalculatorInput = {
+      weight,
+      height,
+      feet,
+      inches,
+      unitSystem: unitSystem as any,
+      age,
+      gender: gender as any,
+    };
 
-    if (unitSystem === 'metric') {
-      weightKg = parseFloat(weight);
-      heightM = parseFloat(height) / 100; // Convert cm to meters
-    } else {
-      // Imperial system
-      weightKg = parseFloat(weight) * 0.453592; // Convert lbs to kg
-      const totalInches = (parseFloat(feet) * 12) + parseFloat(inches);
-      heightM = totalInches * 0.0254; // Convert inches to meters
-    }
-
-    if (weightKg && heightM && heightM > 0) {
-      const bmi = weightKg / (heightM * heightM);
-      let category = '';
-      let healthyWeightMin = 18.5 * (heightM * heightM);
-      let healthyWeightMax = 24.9 * (heightM * heightM);
-
-      // Convert healthy weight to appropriate units
-      if (unitSystem === 'imperial') {
-        healthyWeightMin = healthyWeightMin / 0.453592; // Convert to lbs
-        healthyWeightMax = healthyWeightMax / 0.453592; // Convert to lbs
-      }
-
-      if (bmi < 18.5) {
-        category = 'Underweight';
-      } else if (bmi >= 18.5 && bmi < 25) {
-        category = 'Normal weight';
-      } else if (bmi >= 25 && bmi < 30) {
-        category = 'Overweight';
-      } else {
-        category = 'Obese';
-      }
-
-      let weightToLose: number | undefined;
-      let weightToGain: number | undefined;
-
-      const currentWeight = unitSystem === 'metric' ? weightKg : parseFloat(weight);
-      const targetWeightMin = unitSystem === 'metric' ? healthyWeightMin : healthyWeightMin;
-      const targetWeightMax = unitSystem === 'metric' ? healthyWeightMax : healthyWeightMax;
-
-      if (bmi > 25) {
-        weightToLose = currentWeight - targetWeightMax;
-      } else if (bmi < 18.5) {
-        weightToGain = targetWeightMin - currentWeight;
-      }
-
-      setResult({
-        bmi: Math.round(bmi * 100) / 100,
-        category,
-        healthyWeightMin: Math.round(healthyWeightMin * 100) / 100,
-        healthyWeightMax: Math.round(healthyWeightMax * 100) / 100,
-        weightToLose: weightToLose ? Math.round(weightToLose * 100) / 100 : undefined,
-        weightToGain: weightToGain ? Math.round(weightToGain * 100) / 100 : undefined
-      });
+    if (isValidBMIInputs(inputs)) {
+      setResult(calculateBMI(inputs));
     }
   };
 
@@ -525,7 +475,7 @@ const BMICalculator = () => {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      onClick={calculateBMI}
+                      onClick={handleCalculate}
                       className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >

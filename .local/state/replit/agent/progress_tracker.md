@@ -78,3 +78,8 @@
 [x] 378. Session restart - December 25, 2025 - Ran npm install and restarted workflow
 [x] 379. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
 [x] 380. Import complete - ready for user to continue building
+[x] 381. TASK 11: Added proper TypeScript generic types to health calculator engines (BMI, Calorie, Body Fat)
+[x] 382. Created bmi.engine.ts, calories.engine.ts, and body-fat.engine.ts with proper generic interfaces
+[x] 383. Refactored health calculator pages to use external engine logic and shared types
+[x] 384. Verified all health tools are functioning correctly and resolved type diagnostics
+[x] 385. Task 11 complete - 3 health tool engines properly typed and integrated

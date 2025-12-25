@@ -10,13 +10,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-interface BodyFatResult {
-  bodyFatPercentage: number;
-  classification: string;
-  leanBodyMass: number;
-  fatMass: number;
-  method: string;
-}
+import { calculateBodyFat, isValidBodyFatInputs, BodyFatInput } from '@/lib/calculators/health/body-fat.engine';
 
 const BodyFatCalculator = () => {
   const [weight, setWeight] = useState('');
@@ -27,114 +21,26 @@ const BodyFatCalculator = () => {
   const [waist, setWaist] = useState('');
   const [hip, setHip] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [unitSystem, setUnitSystem] = useState('metric');
-  const [result, setResult] = useState<BodyFatResult | null>(null);
+  const [gender, setGender] = useState<any>('');
+  const [unitSystem, setUnitSystem] = useState<any>('metric');
+  const [result, setResult] = useState<any>(null);
 
-  const calculateBodyFat = () => {
-    let weightKg: number;
-    let heightCm: number;
-    let neckCm: number;
-    let waistCm: number;
-    let hipCm: number;
+  const handleCalculate = () => {
+    const inputs: BodyFatInput = {
+      weight,
+      height,
+      feet,
+      inches,
+      neck,
+      waist,
+      hip,
+      age,
+      gender: gender as any,
+      unitSystem: unitSystem as any,
+    };
 
-    if (unitSystem === 'metric') {
-      weightKg = parseFloat(weight);
-      heightCm = parseFloat(height);
-      neckCm = parseFloat(neck);
-      waistCm = parseFloat(waist);
-      hipCm = parseFloat(hip);
-    } else {
-      // Imperial system
-      weightKg = parseFloat(weight) * 0.453592; // Convert lbs to kg
-      const totalInches = (parseFloat(feet) * 12) + parseFloat(inches);
-      heightCm = totalInches * 2.54; // Convert inches to cm
-      neckCm = parseFloat(neck) * 2.54; // Convert inches to cm
-      waistCm = parseFloat(waist) * 2.54; // Convert inches to cm
-      hipCm = parseFloat(hip) * 2.54; // Convert inches to cm
-    }
-
-    if (weightKg && heightCm && neckCm && waistCm && gender) {
-      let bodyFatPercentage: number;
-      
-      // US Navy Method
-      if (gender === 'male') {
-        // Male formula: 495 / (1.0324 - 0.19077 * log10(waist - neck) + 0.15456 * log10(height)) - 450
-        const log10WaistNeck = Math.log10(waistCm - neckCm);
-        const log10Height = Math.log10(heightCm);
-        bodyFatPercentage = 495 / (1.0324 - 0.19077 * log10WaistNeck + 0.15456 * log10Height) - 450;
-      } else {
-        // Female formula requires hip measurement
-        if (!hipCm) {
-          return; // Hip measurement is required for females
-        }
-        // Female formula: 495 / (1.29579 - 0.35004 * log10(waist + hip - neck) + 0.22100 * log10(height)) - 450
-        const log10WaistHipNeck = Math.log10(waistCm + hipCm - neckCm);
-        const log10Height = Math.log10(heightCm);
-        bodyFatPercentage = 495 / (1.29579 - 0.35004 * log10WaistHipNeck + 0.22100 * log10Height) - 450;
-      }
-
-      // Ensure the result is within reasonable bounds
-      bodyFatPercentage = Math.max(3, Math.min(50, bodyFatPercentage));
-
-      // Classification based on gender and age
-      const getClassification = (bf: number, gender: string, age: number) => {
-        const ageNum = age || 30; // Default age if not provided
-        
-        if (gender === 'male') {
-          if (ageNum <= 30) {
-            if (bf < 8) return 'Essential Fat';
-            if (bf < 14) return 'Athletes';
-            if (bf < 18) return 'Fitness';
-            if (bf < 25) return 'Average';
-            return 'Obese';
-          } else if (ageNum <= 50) {
-            if (bf < 8) return 'Essential Fat';
-            if (bf < 17) return 'Athletes';
-            if (bf < 21) return 'Fitness';
-            if (bf < 28) return 'Average';
-            return 'Obese';
-          } else {
-            if (bf < 8) return 'Essential Fat';
-            if (bf < 19) return 'Athletes';
-            if (bf < 23) return 'Fitness';
-            if (bf < 30) return 'Average';
-            return 'Obese';
-          }
-        } else {
-          if (ageNum <= 30) {
-            if (bf < 14) return 'Essential Fat';
-            if (bf < 21) return 'Athletes';
-            if (bf < 25) return 'Fitness';
-            if (bf < 32) return 'Average';
-            return 'Obese';
-          } else if (ageNum <= 50) {
-            if (bf < 14) return 'Essential Fat';
-            if (bf < 24) return 'Athletes';
-            if (bf < 28) return 'Fitness';
-            if (bf < 35) return 'Average';
-            return 'Obese';
-          } else {
-            if (bf < 14) return 'Essential Fat';
-            if (bf < 26) return 'Athletes';
-            if (bf < 30) return 'Fitness';
-            if (bf < 37) return 'Average';
-            return 'Obese';
-          }
-        }
-      };
-
-      const classification = getClassification(bodyFatPercentage, gender, parseFloat(age));
-      const fatMass = (bodyFatPercentage / 100) * weightKg;
-      const leanBodyMass = weightKg - fatMass;
-
-      setResult({
-        bodyFatPercentage: Math.round(bodyFatPercentage * 10) / 10,
-        classification,
-        leanBodyMass: Math.round(leanBodyMass * 10) / 10,
-        fatMass: Math.round(fatMass * 10) / 10,
-        method: 'US Navy Method'
-      });
+    if (isValidBodyFatInputs(inputs)) {
+      setResult(calculateBodyFat(inputs));
     }
   };
 
@@ -441,7 +347,7 @@ const BodyFatCalculator = () => {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      onClick={calculateBodyFat}
+                      onClick={handleCalculate}
                       className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >

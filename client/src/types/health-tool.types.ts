@@ -43,6 +43,8 @@ export interface HealthCalculatorInput {
   age: string | number;
   gender: Gender;
   unitSystem: UnitSystem;
+  feet?: string | number;
+  inches?: string | number;
 }
 
 /**

@@ -10,29 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
-interface CalorieResult {
-  bmr: number;
-  tdee: number;
-  maintenanceCalories: number;
-  weightLossCalories: {
-    mild: number;
-    moderate: number;
-    aggressive: number;
-  };
-  weightGainCalories: {
-    mild: number;
-    moderate: number;
-  };
-  macroBreakdown: {
-    protein: { grams: number; calories: number };
-    carbs: { grams: number; calories: number };
-    fat: { grams: number; calories: number };
-  };
-  activityMultiplier: number;
-  equation: string;
-  weeklyCalorieDeficit?: number;
-  monthlyWeightLoss?: number;
-}
+import { calculateCalories, isValidCalorieInputs } from '@/lib/calculators/health/calories.engine';
+import { CalorieCalculatorInput, CalorieResult } from '@/types/health-tool.types';
 
 export default function CalorieCalculator() {
   const [weight, setWeight] = useState('70');
@@ -40,145 +19,31 @@ export default function CalorieCalculator() {
   const [feet, setFeet] = useState('5');
   const [inches, setInches] = useState('9');
   const [age, setAge] = useState('30');
-  const [gender, setGender] = useState('male');
-  const [unitSystem, setUnitSystem] = useState('metric');
-  const [activityLevel, setActivityLevel] = useState('moderately-active');
-  const [goal, setGoal] = useState('maintain');
-  const [equation, setEquation] = useState('mifflin');
+  const [gender, setGender] = useState<any>('male');
+  const [unitSystem, setUnitSystem] = useState<any>('metric');
+  const [activityLevel, setActivityLevel] = useState<any>('moderately-active');
+  const [goal, setGoal] = useState<any>('maintain');
+  const [equation, setEquation] = useState<any>('mifflin');
   const [customDeficit, setCustomDeficit] = useState('500');
   const [result, setResult] = useState<CalorieResult | null>(null);
 
-  const calculateCalories = () => {
-    let weightKg: number;
-    let heightCm: number;
+  const handleCalculate = () => {
+    const inputs: CalorieCalculatorInput = {
+      weight,
+      height,
+      feet,
+      inches,
+      age,
+      gender: gender as any,
+      unitSystem: unitSystem as any,
+      activityLevel: activityLevel as any,
+      goal: goal as any,
+      equation: equation as any,
+      customDeficit,
+    };
 
-    if (unitSystem === 'metric') {
-      weightKg = parseFloat(weight);
-      heightCm = parseFloat(height);
-    } else {
-      // Imperial system
-      weightKg = parseFloat(weight) * 0.453592; // Convert lbs to kg
-      const totalInches = (parseFloat(feet) * 12) + parseFloat(inches);
-      heightCm = totalInches * 2.54; // Convert inches to cm
-    }
-
-    const ageYears = parseFloat(age);
-
-    if (weightKg && heightCm && ageYears && gender) {
-      let bmr: number;
-      let equationUsed: string;
-
-      // Calculate BMR using selected equation
-      if (equation === 'mifflin') {
-        // Mifflin-St Jeor Equation (most accurate)
-        if (gender === 'male') {
-          bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears + 5;
-        } else {
-          bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears - 161;
-        }
-        equationUsed = 'Mifflin-St Jeor';
-      } else {
-        // Harris-Benedict Equation (revised)
-        if (gender === 'male') {
-          bmr = 88.362 + (13.397 * weightKg) + (4.799 * heightCm) - (5.677 * ageYears);
-        } else {
-          bmr = 447.593 + (9.247 * weightKg) + (3.098 * heightCm) - (4.330 * ageYears);
-        }
-        equationUsed = 'Harris-Benedict';
-      }
-
-      // Activity multipliers
-      const activityMultipliers = {
-        'sedentary': 1.2,
-        'lightly-active': 1.375,
-        'moderately-active': 1.55,
-        'very-active': 1.725,
-        'extra-active': 1.9
-      };
-
-      const multiplier = activityMultipliers[activityLevel as keyof typeof activityMultipliers];
-      const tdee = bmr * multiplier;
-
-      // Calculate calorie goals based on selected goal
-      let maintenanceCalories = tdee;
-      let weightLossCalories, weightGainCalories;
-      let weeklyCalorieDeficit, monthlyWeightLoss;
-
-      if (goal === 'lose') {
-        const customDeficitValue = parseFloat(customDeficit) || 500;
-        weightLossCalories = {
-          mild: tdee - 250,      // 0.5 lbs/week
-          moderate: tdee - customDeficitValue,  // Custom deficit
-          aggressive: tdee - 750 // 1.5 lbs/week
-        };
-        weightGainCalories = {
-          mild: tdee + 250,
-          moderate: tdee + 500
-        };
-        weeklyCalorieDeficit = customDeficitValue * 7;
-        monthlyWeightLoss = (customDeficitValue * 30) / 3500; // 3500 cal = 1 lb
-      } else if (goal === 'gain') {
-        weightLossCalories = {
-          mild: tdee - 250,
-          moderate: tdee - 500,
-          aggressive: tdee - 750
-        };
-        weightGainCalories = {
-          mild: tdee + 250,      // 0.5 lbs/week
-          moderate: tdee + 500   // 1 lb/week
-        };
-      } else {
-        // Maintain weight
-        weightLossCalories = {
-          mild: tdee - 250,
-          moderate: tdee - 500,
-          aggressive: tdee - 750
-        };
-        weightGainCalories = {
-          mild: tdee + 250,
-          moderate: tdee + 500
-        };
-      }
-
-      // Calculate macro breakdown for maintenance calories (40% carbs, 30% protein, 30% fat)
-      const proteinCalories = maintenanceCalories * 0.30;
-      const carbsCalories = maintenanceCalories * 0.40;
-      const fatCalories = maintenanceCalories * 0.30;
-
-      const macroBreakdown = {
-        protein: {
-          grams: Math.round(proteinCalories / 4), // 4 cal/g
-          calories: Math.round(proteinCalories)
-        },
-        carbs: {
-          grams: Math.round(carbsCalories / 4), // 4 cal/g
-          calories: Math.round(carbsCalories)
-        },
-        fat: {
-          grams: Math.round(fatCalories / 9), // 9 cal/g
-          calories: Math.round(fatCalories)
-        }
-      };
-
-      setResult({
-        bmr: Math.round(bmr),
-        tdee: Math.round(tdee),
-        maintenanceCalories: Math.round(maintenanceCalories),
-        weightLossCalories: {
-          mild: Math.round(weightLossCalories.mild),
-          moderate: Math.round(weightLossCalories.moderate),
-          aggressive: Math.round(weightLossCalories.aggressive)
-        },
-        weightGainCalories: {
-          mild: Math.round(weightGainCalories.mild),
-          moderate: Math.round(weightGainCalories.moderate)
-        },
-        macroBreakdown,
-        activityMultiplier: multiplier,
-        equation: equationUsed,
-        weeklyCalorieDeficit,
-        monthlyWeightLoss
-      });
+    if (isValidCalorieInputs(inputs)) {
+      setResult(calculateCalories(inputs));
     }
   };
 
@@ -472,7 +337,7 @@ export default function CalorieCalculator() {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
-                      onClick={calculateCalories}
+                      onClick={handleCalculate}
                       className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
