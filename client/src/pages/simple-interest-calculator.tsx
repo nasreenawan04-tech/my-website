@@ -188,7 +188,9 @@ export default function SimpleInterestCalculator() {
   };
 
   const addToComparison = () => {
-    if (result && result.yearlyBreakdown) {
+    const yearlyBreakdown = result?.yearlyBreakdown || [];
+
+    if (result && yearlyBreakdown.length > 0) {
       const newScenario: ComparisonScenario = {
         name: `Scenario ${comparisonScenarios.length + 1}`,
         principal: result.principalAmount,
@@ -321,7 +323,8 @@ export default function SimpleInterestCalculator() {
   };
 
   const handleDownloadYearlyBreakdownPDF = async () => {
-    if (!result || !result.yearlyBreakdown || result.yearlyBreakdown.length === 0) return;
+    const breakdown = (result?.yearlyBreakdown || []);
+    if (!result || breakdown.length === 0) return;
 
     const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
@@ -378,7 +381,7 @@ export default function SimpleInterestCalculator() {
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
     
-    result.yearlyBreakdown.forEach((year, index) => {
+    (result?.yearlyBreakdown || []).forEach((year: any, index: number) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
@@ -412,13 +415,13 @@ export default function SimpleInterestCalculator() {
       
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
-      doc.text(formatCurrency(Number((year as any).interestEarned ?? 0)), colX[1], yPos + 4);
+      doc.text(formatCurrency(Number((year as any).interestEarned || 0)), colX[1], yPos + 4);
       
       doc.setTextColor(59, 130, 246);
-      doc.text(formatCurrency(Number((year as any).cumulativeInterest ?? 0)), colX[2], yPos + 4);
+      doc.text(formatCurrency(Number((year as any).cumulativeInterest || 0)), colX[2], yPos + 4);
       
       doc.setTextColor(0, 0, 0);
-      doc.text(formatCurrency(Number((year as any).totalAmount ?? 0)), colX[3], yPos + 4);
+      doc.text(formatCurrency(Number((year as any).totalAmount || 0)), colX[3], yPos + 4);
       
       doc.setFont('helvetica', 'normal');
       yPos += 6;
@@ -891,7 +894,7 @@ export default function SimpleInterestCalculator() {
     });
   };
 
-  const formatCurrency = useMemo(() => {
+  const formatCurrencyMemo = useMemo(() => {
     const currencyMap: { [key: string]: { locale: string; currency: string } } = {
       USD: { locale: 'en-US', currency: 'USD' },
       EUR: { locale: 'de-DE', currency: 'EUR' },
@@ -913,17 +916,10 @@ export default function SimpleInterestCalculator() {
       maximumFractionDigits: 2
     });
     
-    const formatCurrency = (val: number) => {
-      return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: currency || 'USD',
-      }).format(val);
-    };
-
-    const yearlyBreakdown = result?.yearlyBreakdown || [];
-
     return (amount: number) => formatter.format(amount);
   }, [currency]);
+
+  const formatCurrency = (val: number) => formatCurrencyMemo(val);
 
   const handleCopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -1814,7 +1810,7 @@ export default function SimpleInterestCalculator() {
                                 </tr>
                               </thead>
                               <tbody className="divide-y divide-gray-100">
-                                {result.yearlyBreakdown.map((year) => (
+                                {(result?.yearlyBreakdown || []).map((year: any) => (
                                   <tr key={year.year} className="hover:bg-blue-50 transition-colors">
                                     <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{year.year}</td>
                                     <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">

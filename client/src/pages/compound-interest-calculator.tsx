@@ -381,13 +381,32 @@ export default function CompoundInterestCalculator() {
       tenx: null as number | null
     };
 
-    (yearlyBreakdown || []).forEach((year) => {
-      const multiple = year.amount / p;
+    (result?.yearlyBreakdown || []).forEach((year: any) => {
+      const amount = Number(year.amount || 0);
+      const multiple = amount / p;
       if (milestones.double === null && multiple >= 2) milestones.double = year.year;
       if (milestones.triple === null && multiple >= 3) milestones.triple = year.year;
       if (milestones.fivex === null && multiple >= 5) milestones.fivex = year.year;
       if (milestones.tenx === null && multiple >= 10) milestones.tenx = year.year;
     });
+
+    const formatCurrency = (val: number) => {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(val);
+    };
+
+    // Phase 1 Feature: What-If Analysis (sensitivity to rate changes)
+    const whatIfAnalysis = [-3, -2, -1, 1, 2, 3].map(change => {
+      <div className="hidden">
+        {yearlyBreakdownData.map((year: any) => (
+          <div key={year.year}>
+            {formatCurrency(year.amount)}
+          </div>
+        ))}
+      </div>
+    );
 
     // Phase 1 Feature: What-If Analysis (sensitivity to rate changes)
     const whatIfAnalysis = [-3, -2, -1, 1, 2, 3].map(change => {
