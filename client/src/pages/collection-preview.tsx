@@ -4,9 +4,11 @@ import { tools } from "@/data/tools";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ChevronLeft, Share2, Plus, LayoutGrid } from "lucide-react";
+import { ChevronLeft, Share2, Plus, LayoutGrid, Download } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Helmet } from "react-helmet-async";
+import { useFavorites } from "@/hooks/use-favorites";
+import { useToast } from "@/hooks/use-toast";
 
 // Mock function for fetching collection details - in a real app this would call an API
 const fetchCollection = async (shareId: string) => {
@@ -32,12 +34,33 @@ const fetchCollection = async (shareId: string) => {
 export default function CollectionPreview() {
   const [, params] = useRoute("/share/:shareId");
   const shareId = params?.shareId;
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const { toast } = useToast();
 
   const { data: collection, isLoading, error } = useQuery({
     queryKey: ["/api/collections", shareId],
     queryFn: () => fetchCollection(shareId || ""),
     enabled: !!shareId
   });
+
+  const handleImportAll = () => {
+    if (!collection) return;
+    
+    let importedCount = 0;
+    collection.tools.forEach(tool => {
+      if (!isFavorite(tool.id)) {
+        toggleFavorite(tool);
+        importedCount++;
+      }
+    });
+
+    toast({
+      title: importedCount > 0 ? "Tools Imported!" : "No new tools to import",
+      description: importedCount > 0 
+        ? `Successfully added ${importedCount} tools to your favorites.` 
+        : "All tools from this collection are already in your favorites.",
+    });
+  };
 
   if (isLoading) {
     return (
@@ -100,9 +123,9 @@ export default function CollectionPreview() {
               <Share2 className="h-4 w-4" />
               Share Collection
             </Button>
-            <Button size="sm" className="gap-2">
-              <Plus className="h-4 w-4" />
-              Add All to Favorites
+            <Button size="sm" className="gap-2" onClick={handleImportAll}>
+              <Download className="h-4 w-4" />
+              Import to Favorites
             </Button>
           </div>
         </div>
