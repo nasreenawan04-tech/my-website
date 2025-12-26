@@ -13,7 +13,7 @@
       "destination": "/sw.js"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/|sw.js|assets/|favicon.ico|logo.svg|robots.txt|sitemap.*\\.xml|BingSiteAuth.xml|ads.txt|apple-touch-icon.png|site.webmanifest).*)",
       "destination": "/index.html"
     }
   ],
