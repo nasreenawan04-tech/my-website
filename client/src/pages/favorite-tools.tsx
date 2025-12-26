@@ -4,12 +4,14 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { useFavorites } from '@/hooks/use-favorites';
-import { Star, Trash2, ArrowLeft, FolderPlus, Edit2, Check, X, Folder } from 'lucide-react';
+import { Star, Trash2, ArrowLeft, FolderPlus, Edit2, Check, X, Folder, Share2 } from 'lucide-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { clearAllFavorites } from '@/lib/userPreferences';
 import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '@/lib/queryClient';
+import { nanoid } from 'nanoid';
 import {
   Dialog,
   DialogContent,
@@ -33,6 +35,37 @@ const FavoriteTools = () => {
   const [newCategoryName, setNewCategoryName] = useState('');
   const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState('');
+  const [isSharing, setIsSharing] = useState(false);
+
+  const handleShare = async () => {
+    if (favorites.length === 0) return;
+    
+    setIsSharing(true);
+    try {
+      const shareId = nanoid(10);
+      const collectionName = "My Favorite Tools";
+      const toolIds = favorites.map(f => f.id);
+
+      // We'll implement the backend endpoint in the next task
+      // For now, let's prepare the UI logic
+      const shareUrl = `${window.location.origin}/share/${shareId}`;
+      
+      await navigator.clipboard.writeText(shareUrl);
+      
+      toast({
+        title: "Share link copied!",
+        description: "Your favorite tools collection link is ready to share.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Sharing failed",
+        description: "Could not generate share link. Please try again.",
+      });
+    } finally {
+      setIsSharing(false);
+    }
+  };
 
   const handleClearFavorites = () => {
     if (confirm('Are you sure you want to remove all favorite tools?')) {
@@ -128,6 +161,15 @@ const FavoriteTools = () => {
                 </div>
 
                 <div className="flex gap-2">
+                  <Button 
+                    variant="secondary" 
+                    className="gap-2 bg-white/20 text-white hover:bg-white/30 border-0"
+                    onClick={handleShare}
+                    disabled={isSharing || favorites.length === 0}
+                  >
+                    <Share2 size={18} />
+                    {isSharing ? 'Sharing...' : 'Share Collection'}
+                  </Button>
                   <Dialog open={isAddingCategory} onOpenChange={setIsAddingCategory}>
                     <DialogTrigger asChild>
                       <Button variant="secondary" className="gap-2 bg-white/20 text-white hover:bg-white/30 border-0">
