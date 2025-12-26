@@ -14,6 +14,7 @@ import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, B
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import ShareResultsButton from '@/components/ShareResultsButton';
+import { PresetManager } from '@/components/PresetManager';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';

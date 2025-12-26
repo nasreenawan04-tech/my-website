@@ -10,6 +10,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
+import { useToast } from '@/hooks/use-toast';
+import { PresetManager } from '@/components/PresetManager';
 import { calculateBMI, isValidBMIInputs } from '@/lib/calculators/health/bmi.engine';
 import { BMICalculatorInput, BMIResult, UnitSystem, Gender } from '@/types/health-tool.types';
 
@@ -22,6 +24,7 @@ const BMICalculator = () => {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState<Gender>('male');
   const [result, setResult] = useState<BMIResult | null>(null);
+  const { toast } = useToast();
 
   const handleCalculate = () => {
     const inputs: Partial<BMICalculatorInput> = {
@@ -341,9 +344,36 @@ const BMICalculator = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
                 <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">BMI Configuration</h2>
-                    <p className="text-gray-600">Enter your body measurements to get accurate BMI calculations</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <h2 className="text-3xl font-bold text-gray-900 mb-2">BMI Configuration</h2>
+                      <p className="text-gray-600">Enter your body measurements to get accurate BMI calculations</p>
+                    </div>
+                    <PresetManager
+                      toolId="bmi-calculator"
+                      currentValues={{
+                        weight,
+                        height,
+                        feet,
+                        inches,
+                        unitSystem,
+                        age,
+                        gender,
+                      }}
+                      onLoadPreset={(values) => {
+                        if (values.weight !== undefined) setWeight(values.weight);
+                        if (values.height !== undefined) setHeight(values.height);
+                        if (values.feet !== undefined) setFeet(values.feet);
+                        if (values.inches !== undefined) setInches(values.inches);
+                        if (values.unitSystem !== undefined) setUnitSystem(values.unitSystem);
+                        if (values.age !== undefined) setAge(values.age);
+                        if (values.gender !== undefined) setGender(values.gender);
+                        toast({
+                          title: "Preset loaded",
+                          description: "The calculation parameters have been updated.",
+                        });
+                      }}
+                    />
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
