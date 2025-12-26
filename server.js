@@ -1,30 +1,31 @@
 import express from 'express';
-import { storage } from './server/storage.js';
-import { insertCollectionSchema } from './shared/schema.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
 
+// API routes - stubbed out or use in-memory for simple logic if storage isn't ready
 app.post('/api/collections', async (req, res) => {
-  try {
-    const data = insertCollectionSchema.parse(req.body);
-    const collection = await storage.createCollection(data);
-    res.json(collection);
-  } catch (error) {
-    res.status(400).json({ error: "Invalid collection data" });
-  }
+    res.status(501).json({ error: "API not implemented in production server yet" });
 });
 
 app.get('/api/collections/:shareId', async (req, res) => {
-  try {
-    const collection = await storage.getCollection(req.params.shareId);
-    if (!collection) {
-      return res.status(404).json({ error: "Collection not found" });
-    }
-    res.json(collection);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
-  }
+    res.status(501).json({ error: "API not implemented in production server yet" });
 });
 
-// ... existing server logic ...
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// SPA Fallback: Serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});

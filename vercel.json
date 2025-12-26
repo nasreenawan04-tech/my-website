@@ -5,21 +5,12 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/(assets|images)/(.*)",
-      "destination": "/$1/$2"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*",
-      "dest": "/index.html"
     }
   ],
   "cleanUrls": true,
