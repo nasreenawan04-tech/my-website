@@ -114,6 +114,19 @@ Completed full "pure SEO" implementation across all major pages following DapsiW
 **Verification Status:**
 All 6 pages audited and architect-approved with zero errors. Application running cleanly on port 5000 with no console errors.
 
+### Offline Functionality Audit - December 26, 2025
+Conducted a comprehensive audit of all calculation and text engines:
+
+**Audit Findings:**
+- **Calculation Engines**: 100% of math logic in `client/src/lib/calculators` and `client/src/lib/text-engines` is client-side. No external API calls are used for core calculations.
+- **Unit Converter**: Uses a static, local dataset for all conversion factors. Works fully offline.
+- **QR Code Scanner**: Uses `jsQR` for pure client-side image processing. No server-side decoding or API calls.
+- **Firestore Sync**: Identified as the only "Offline-Incompatible" feature. It gracefully fails or stays in a local state when offline.
+
+**Improvements Made:**
+- Added `isOnline` utility to `client/src/lib/firebase.ts` for consistent connectivity checks.
+- Verified that all tool components in `client/src/pages` function without network dependencies once the JS bundle is loaded.
+
 ## User Preferences
 Preferred communication style: Simple, everyday language.
 

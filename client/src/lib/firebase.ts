@@ -3,7 +3,10 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 // Check if Firebase is configured
-export const isFirebaseConfigured = !!import.meta.env.VITE_FIREBASE_API_KEY;
+export const isFirebaseConfigured = typeof import.meta.env.VITE_FIREBASE_API_KEY === 'string' && import.meta.env.VITE_FIREBASE_API_KEY.length > 0;
+
+// Helper to check online status
+export const isOnline = () => typeof window !== 'undefined' && window.navigator.onLine;
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "placeholder-key",
