@@ -99,6 +99,10 @@ export default defineConfig(({ mode }) => {
   },
   esbuild: {
     drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
+    legalComments: 'none',
+    minifyIdentifiers: true,
+    minifySyntax: true,
+    minifyWhitespace: true,
   },
 };
 });
