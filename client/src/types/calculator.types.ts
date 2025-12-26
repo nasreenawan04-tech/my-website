@@ -196,8 +196,8 @@ export interface CalculatorUIState {
  * Generic calculator function type
  * Validates inputs and returns a calculator result
  */
-export type CalculatorFunction<T extends CalculatorResult> = (
-  inputs: ParsedCalculatorInput,
+export type CalculatorFunction<T extends CalculatorResult, I = ParsedCalculatorInput> = (
+  inputs: I,
   config?: Partial<CalculatorConfig>
 ) => T;
 
@@ -205,9 +205,9 @@ export type CalculatorFunction<T extends CalculatorResult> = (
  * Generic validator function type
  * Validates inputs against schema
  */
-export type ValidatorFunction = (
-  inputs: ParsedCalculatorInput
-) => ValidationResult;
+export type ValidatorFunction<I = ParsedCalculatorInput> = (
+  inputs: I
+) => ValidationResult<I>;
 
 /**
  * Financial calculator specific types

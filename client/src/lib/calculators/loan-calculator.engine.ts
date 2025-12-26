@@ -278,7 +278,7 @@ const calculateLoanInternal = (
  * @param config - Optional calculator configuration for metadata
  * @returns BusinessLoanResult with payment details, schedule, and prepayment analysis
  */
-export const calculateBusinessLoan: CalculatorFunction<BusinessLoanResult> = (
+export const calculateBusinessLoan: CalculatorFunction<BusinessLoanResult, ParsedCalculatorInput> = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): BusinessLoanResult => {
@@ -297,7 +297,7 @@ export const calculateBusinessLoan: CalculatorFunction<BusinessLoanResult> = (
  * @param config - Optional calculator configuration for metadata
  * @returns LoanCalculatorResult with payment details, schedule, and prepayment analysis
  */
-export const calculateEMI: CalculatorFunction<LoanCalculatorResult> = (
+export const calculateEMI: CalculatorFunction<LoanCalculatorResult, ParsedCalculatorInput> = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): LoanCalculatorResult => {
@@ -371,7 +371,7 @@ function isValidCarLoanInputs(inputs: ParsedCalculatorInput): boolean {
  * @param config - Optional calculator configuration for metadata
  * @returns CarLoanCalculatorResult with payment details and financial breakdown
  */
-export const calculateCarLoan: CalculatorFunction<CarLoanCalculatorResult> = (
+export const calculateCarLoan: CalculatorFunction<CarLoanCalculatorResult, ParsedCalculatorInput> = (
   inputs: ParsedCalculatorInput,
   config?: Partial<CalculatorConfig>
 ): CarLoanCalculatorResult => {
