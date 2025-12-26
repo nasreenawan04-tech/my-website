@@ -13,8 +13,12 @@
       "destination": "/sw.js"
     },
     {
-      "source": "/((?!api/|sw.js|assets/|favicon.ico|logo.svg|robots.txt|sitemap.*\\.xml|BingSiteAuth.xml|ads.txt|apple-touch-icon.png|site.webmanifest).*)",
-      "destination": "/index.html"
+      "source": "/tools/:id",
+      "destination": "/tools/:id/index.html"
+    },
+    {
+      "source": "/:path",
+      "destination": "/:path/index.html"
     }
   ],
   "cleanUrls": true,
