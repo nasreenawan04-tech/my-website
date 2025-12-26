@@ -2,8 +2,18 @@ import { Tool } from '@/data/tools';
 
 // Local storage keys
 const FAVORITES_KEY = 'dapsiwow-favorites';
+const FAVORITE_CATEGORIES_KEY = 'dapsiwow-favorite-categories';
 const RECENT_TOOLS_KEY = 'dapsiwow-recent';
 const USER_PREFERENCES_KEY = 'dapsiwow-preferences';
+
+export interface FavoriteTool extends Tool {
+  categoryId?: string;
+}
+
+export interface FavoriteCategory {
+  id: string;
+  name: string;
+}
 
 export interface RecentTool {
   tool: Tool;
@@ -17,8 +27,48 @@ export interface UserPreferences {
   maxRecentTools?: number;
 }
 
+// Category Management
+export const getFavoriteCategories = (): FavoriteCategory[] => {
+  try {
+    const stored = localStorage.getItem(FAVORITE_CATEGORIES_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+export const addFavoriteCategory = (name: string): FavoriteCategory => {
+  const categories = getFavoriteCategories();
+  const newCategory = { id: Math.random().toString(36).substr(2, 9), name };
+  const updated = [...categories, newCategory];
+  localStorage.setItem(FAVORITE_CATEGORIES_KEY, JSON.stringify(updated));
+  window.dispatchEvent(new CustomEvent('favoritesCategoriesChanged', { detail: { categories: updated } }));
+  return newCategory;
+};
+
+export const renameFavoriteCategory = (id: string, newName: string): void => {
+  const categories = getFavoriteCategories();
+  const updated = categories.map(cat => cat.id === id ? { ...cat, name: newName } : cat);
+  localStorage.setItem(FAVORITE_CATEGORIES_KEY, JSON.stringify(updated));
+  window.dispatchEvent(new CustomEvent('favoritesCategoriesChanged', { detail: { categories: updated } }));
+};
+
+export const deleteFavoriteCategory = (id: string): void => {
+  const categories = getFavoriteCategories();
+  const updated = categories.filter(cat => cat.id !== id);
+  localStorage.setItem(FAVORITE_CATEGORIES_KEY, JSON.stringify(updated));
+  
+  // Also remove category from tools
+  const favorites = getFavorites();
+  const updatedFavorites = favorites.map(fav => fav.categoryId === id ? { ...fav, categoryId: undefined } : fav);
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
+  
+  window.dispatchEvent(new CustomEvent('favoritesCategoriesChanged', { detail: { categories: updated } }));
+  window.dispatchEvent(new CustomEvent('favoritesChanged', { detail: { favorites: updatedFavorites } }));
+};
+
 // Favorites Management
-export const getFavorites = (): Tool[] => {
+export const getFavorites = (): FavoriteTool[] => {
   try {
     const stored = localStorage.getItem(FAVORITES_KEY);
     return stored ? JSON.parse(stored) : [];
@@ -27,11 +77,11 @@ export const getFavorites = (): Tool[] => {
   }
 };
 
-export const addToFavorites = (tool: Tool): void => {
+export const addToFavorites = (tool: Tool, categoryId?: string): void => {
   try {
     const favorites = getFavorites();
     if (!favorites.some(fav => fav.id === tool.id)) {
-      const updated = [...favorites, tool];
+      const updated = [...favorites, { ...tool, categoryId }];
       localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
       
       // Dispatch custom event for UI updates
@@ -41,6 +91,17 @@ export const addToFavorites = (tool: Tool): void => {
     }
   } catch (error) {
     console.error('Failed to add to favorites:', error);
+  }
+};
+
+export const updateFavoriteCategory = (toolId: string, categoryId?: string): void => {
+  try {
+    const favorites = getFavorites();
+    const updated = favorites.map(fav => fav.id === toolId ? { ...fav, categoryId } : fav);
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
+    window.dispatchEvent(new CustomEvent('favoritesChanged', { detail: { favorites: updated } }));
+  } catch (error) {
+    console.error('Failed to update favorite category:', error);
   }
 };
 

@@ -3,9 +3,17 @@ import { useLocation } from 'wouter';
 import { type Tool, categories } from '@/data/tools';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useRecentTools } from '@/hooks/use-recent-tools';
-import { ArrowRight, TrendingUp, Scale } from 'lucide-react';
+import { useFavorites } from '@/hooks/use-favorites';
+import { ArrowRight, TrendingUp, Scale, FolderPlus } from 'lucide-react';
 import { useComparison } from '@/context/ComparisonContext';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 
 interface ToolCardProps {
   tool: Tool;
@@ -28,6 +36,8 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
   const [, setLocation] = useLocation();
   const { addRecent } = useRecentTools();
   const { addToCompare } = useComparison();
+  const { categories: favCategories, updateFavoriteCategory, isFavorite } = useFavorites();
+  const isToolFavorite = isFavorite(tool.id);
 
   const handleClick = () => {
     const targetPath = tool.href || `/tools/${tool.id}`;
@@ -83,6 +93,42 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
                 <Scale size={16} />
               </Button>
             )}
+
+            {isToolFavorite && favCategories.length > 0 && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="h-8 w-8 text-neutral-500 hover:text-primary"
+                    title="Move to category"
+                  >
+                    <FolderPlus size={16} />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={(e) => {
+                    e.stopPropagation();
+                    updateFavoriteCategory(tool.id, undefined);
+                  }}>
+                    Uncategorized
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {favCategories.map((cat) => (
+                    <DropdownMenuItem 
+                      key={cat.id}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        updateFavoriteCategory(tool.id, cat.id);
+                      }}
+                    >
+                      {cat.name}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+            
             <FavoriteButton tool={tool} size="sm" />
           </div>
         </div>
@@ -123,5 +169,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
     </div>
   );
 };
+
+export default ToolCard;
 
 export default ToolCard;
