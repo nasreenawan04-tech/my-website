@@ -24,14 +24,14 @@ const BMICalculator = () => {
   const [result, setResult] = useState<BMIResult | null>(null);
 
   const handleCalculate = () => {
-    const inputs: BMICalculatorInput = {
+    const inputs: Partial<BMICalculatorInput> = {
       weight,
       height,
       feet,
       inches,
-      unitSystem: unitSystem as any,
+      unitSystem,
       age,
-      gender: gender as any,
+      gender,
     };
 
     if (isValidBMIInputs(inputs)) {

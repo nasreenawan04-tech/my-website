@@ -12,11 +12,12 @@ import {
   MacroBreakdown,
   HealthToolResult
 } from '@/types/health-tool.types';
+import { CalculatorFunction } from '@/types/calculator.types';
 
 /**
  * Generic type for Calorie Calculator
  */
-export type CalorieCalculatorFunction<T extends CalorieResult = CalorieResult> = (inputs: CalorieCalculatorInput) => T;
+export type CalorieCalculatorFunction = CalculatorFunction<CalorieResult, CalorieCalculatorInput>;
 
 const ACTIVITY_MULTIPLIERS: Record<ActivityLevel, number> = {
   'sedentary': 1.2,

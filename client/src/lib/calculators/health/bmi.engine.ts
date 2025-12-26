@@ -10,16 +10,17 @@ import {
   UnitSystem,
   HealthToolResult
 } from '@/types/health-tool.types';
+import { CalculatorFunction } from '@/types/calculator.types';
 
 /**
  * Generic type for BMI Calculator
  */
-export type BMICalculatorFunction<T extends BMIResult = BMIResult> = (inputs: BMICalculatorInput) => T;
+export type BMICalculatorFunction = CalculatorFunction<BMIResult, BMICalculatorInput>;
 
 /**
  * Validates BMI inputs
  */
-export const isValidBMIInputs = (inputs: Partial<BMICalculatorInput>): boolean => {
+export const isValidBMIInputs = (inputs: Partial<BMICalculatorInput>): inputs is BMICalculatorInput => {
   const { weight, height, unitSystem, feet, inches } = inputs;
   
   if (!unitSystem) return false;
@@ -27,7 +28,7 @@ export const isValidBMIInputs = (inputs: Partial<BMICalculatorInput>): boolean =
   if (unitSystem === 'metric') {
     return !!(weight && height && Number(weight) > 0 && Number(height) > 0);
   } else {
-    return !!(weight && feet && Number(weight) > 0 && Number(feet) >= 0 && Number(inches ?? 0) >= 0);
+    return !!(weight && feet && Number(weight) > 0 && Number(feet) >= 0 && (inches === undefined || Number(inches) >= 0));
   }
 };
 
