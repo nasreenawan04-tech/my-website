@@ -185,6 +185,9 @@ const FavoriteTools = () => {
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Create Custom Category</DialogTitle>
+                        <DialogDescription>
+                          Enter a name for your new category to organize your favorite tools.
+                        </DialogDescription>
                       </DialogHeader>
                       <div className="py-4">
                         <Input
