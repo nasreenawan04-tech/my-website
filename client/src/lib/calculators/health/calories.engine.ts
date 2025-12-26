@@ -115,5 +115,8 @@ export const calculateCalories: CalorieCalculatorFunction = (inputs: CalorieCalc
     equation: equation === 'mifflin' ? 'Mifflin-St Jeor' : 'Harris-Benedict',
     weeklyCalorieDeficit: goal === 'lose' ? customDeficitValue * 7 : undefined,
     monthlyWeightLoss: goal === 'lose' ? (customDeficitValue * 30) / 7700 : undefined, // ~7700 cal per kg
+    primaryValue: Math.round(maintenanceCalories),
+    formattedPrimaryValue: Math.round(maintenanceCalories).toString(),
+    timestamp: new Date(),
   };
 };

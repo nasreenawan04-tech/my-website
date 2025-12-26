@@ -83,5 +83,8 @@ export const calculateBMI: BMICalculatorFunction = (inputs: BMICalculatorInput):
     healthyWeightMax: Math.round(healthyWeightMax * conversionFactor * 10) / 10,
     weightToLose: weightToLose ? Math.round(weightToLose * conversionFactor * 10) / 10 : undefined,
     weightToGain: weightToGain ? Math.round(weightToGain * conversionFactor * 10) / 10 : undefined,
+    primaryValue: Math.round(bmiValue * 10) / 10,
+    formattedPrimaryValue: (Math.round(bmiValue * 10) / 10).toFixed(1),
+    timestamp: new Date(),
   };
 };

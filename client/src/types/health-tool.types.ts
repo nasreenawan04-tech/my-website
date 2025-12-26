@@ -1,7 +1,4 @@
-/**
- * Health Tool Types - Shared TypeScript interfaces for health calculators
- * Based on BMI Calculator, Calorie Calculator, and other health tracking tools
- */
+import { CalculatorResult } from './calculator.types';
 
 /**
  * Unit system for measurements
@@ -86,7 +83,7 @@ export interface BMICalculatorInput extends HealthCalculatorInput {
 /**
  * BMI Calculator result/output
  */
-export interface BMIResult {
+export interface BMIResult extends CalculatorResult {
   bmi: number;
   category: HealthCategory;
   healthyWeightMin: number;
@@ -138,7 +135,7 @@ export interface CalorieGoals {
 /**
  * Calorie Calculator result/output
  */
-export interface CalorieResult {
+export interface CalorieResult extends CalculatorResult {
   bmr: number;
   tdee: number;
   maintenanceCalories: number;
