@@ -290,17 +290,21 @@ function Router() {
   );
 }
 
+import { ComparisonProvider } from "@/context/ComparisonContext";
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <ThemeProvider defaultTheme="light" storageKey="dapsiwow-ui-theme">
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-            <BackToTop />
-            <PerformanceMetrics />
-          </TooltipProvider>
+          <ComparisonProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Router />
+              <BackToTop />
+              <PerformanceMetrics />
+            </TooltipProvider>
+          </ComparisonProvider>
         </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>
