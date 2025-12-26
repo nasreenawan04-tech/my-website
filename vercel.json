@@ -13,12 +13,8 @@
       "destination": "/sw.js"
     },
     {
-      "source": "/tools/:id",
-      "destination": "/tools/:id/index.html"
-    },
-    {
-      "source": "/:path",
-      "destination": "/:path/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "cleanUrls": true,
