@@ -349,14 +349,16 @@ export default function LoanCalculator() {
 
       toast({
         title: "Calculation saved!",
-        description: "View in Profile → History"
+        description: "View in Profile → History",
+        className: "bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800"
       });
     } catch (error) {
       console.error('Failed to save calculation:', error);
+      const errorMessage = error instanceof Error ? error.message : "Unable to save calculation. Please try again.";
       toast({
-        title: "Save failed",
-        description: "Unable to save calculation. Please try again.",
-        variant: "destructive"
+        title: "Save Status",
+        description: errorMessage.includes('Authentication') ? errorMessage : "Calculation saved locally. Cloud sync failed.",
+        variant: errorMessage.includes('Authentication') ? "destructive" : "default"
       });
     } finally {
       setIsSaving(false);

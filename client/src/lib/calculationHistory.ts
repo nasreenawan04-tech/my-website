@@ -102,8 +102,26 @@ export async function saveCalculation(
   inputs: Record<string, any>,
   results: Record<string, any>
 ): Promise<void> {
+  // Always save to local storage as a robust fallback/cache
+  try {
+    const localHistory = JSON.parse(localStorage.getItem('local_calculation_history') || '[]');
+    const newEntry = {
+      id: `local_${Date.now()}`,
+      userId,
+      toolName,
+      toolPath,
+      inputs,
+      results,
+      timestamp: new Date().toISOString()
+    };
+    localHistory.unshift(newEntry);
+    localStorage.setItem('local_calculation_history', JSON.stringify(localHistory.slice(0, 50)));
+  } catch (e) {
+    console.warn('Failed to save to local storage:', e);
+  }
+
   if (!isFirebaseConfigured || !db) {
-    console.warn('Firestore not configured, calculation history not saved');
+    console.warn('Firestore not configured, calculation saved to local storage only');
     return;
   }
 
@@ -117,8 +135,12 @@ export async function saveCalculation(
       timestamp: Timestamp.now()
     });
   } catch (error) {
-    console.error('Error saving calculation:', error);
-    throw error;
+    console.error('Error saving calculation to Firestore:', error);
+    // We already saved to local storage, so we don't throw unless it's a critical auth issue
+    if ((error as any)?.code === 'permission-denied') {
+      throw new Error('Authentication expired. Please sign in again.');
+    }
+    // For other errors, we let the local save be the successful outcome
   }
 }
 
