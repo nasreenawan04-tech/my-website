@@ -68,6 +68,8 @@ function PageViewTracker() {
   return null;
 }
 
+const CompareTools = lazy(() => import("@/pages/compare-tools"));
+
 function Router() {
   return (
     <ErrorBoundary 
@@ -84,6 +86,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/all-tools" component={AllTools} />
           <Route path="/tools" component={AllTools} />
+          <Route path="/compare-tools" component={CompareTools} />
 
           {/* Category pages - standardized */}
           <Route path="/finance-tools" component={FinanceTools} />
