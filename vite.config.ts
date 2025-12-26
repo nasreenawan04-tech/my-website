@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => {
     emptyOutDir: true,
     target: "esnext",
     minify: "esbuild",
-    sourcemap: false,
+    sourcemap: true,
     cssCodeSplit: true,
     assetsInlineLimit: 8192,
     rollupOptions: {
