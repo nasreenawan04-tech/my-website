@@ -46,8 +46,13 @@ const FavoriteTools = () => {
       const collectionName = "My Favorite Tools";
       const toolIds = favorites.map(f => f.id);
 
-      // We'll implement the backend endpoint in the next task
-      // For now, let's prepare the UI logic
+      // Create the collection in the backend
+      await apiRequest('POST', '/api/collections', {
+        shareId,
+        name: collectionName,
+        toolIds
+      });
+
       const shareUrl = `${window.location.origin}/share/${shareId}`;
       
       await navigator.clipboard.writeText(shareUrl);
