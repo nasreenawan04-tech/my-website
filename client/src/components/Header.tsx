@@ -5,11 +5,12 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Menu, X, Search, User, LogOut } from 'lucide-react';
+import { Menu, X, Search, User, LogOut, Scale } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useComparison } from '@/context/ComparisonContext';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,6 +32,7 @@ const Header = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { user, logout, loading } = useAuth();
   const { toast } = useToast();
+  const { selectedTools } = useComparison();
   
   // Debounce search query for better performance
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
@@ -193,6 +195,23 @@ const Header = () => {
 
             {/* Right Section - Search, Auth, and Mobile Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Compare Button */}
+              {selectedTools.length > 0 && (
+                <Link href="/compare-tools">
+                  <button 
+                    className="p-2 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 relative"
+                    data-testid="button-header-compare"
+                    aria-label="View comparison"
+                    title="View comparison"
+                  >
+                    <Scale className="w-5 h-5" />
+                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+                      {selectedTools.length}
+                    </span>
+                  </button>
+                </Link>
+              )}
+
               {/* Search Button */}
               <button 
                 className="p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
