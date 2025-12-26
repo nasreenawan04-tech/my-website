@@ -7,14 +7,22 @@ interface ComparisonContextType {
   addToCompare: (tool: Tool) => void;
   removeFromCompare: (toolId: string) => void;
   clearComparison: () => void;
+  setComparison: (toolIds: string[]) => void;
   isComparing: boolean;
 }
 
 const ComparisonContext = createContext<ComparisonContextType | undefined>(undefined);
 
+import { tools } from '@/data/tools';
+
 export function ComparisonProvider({ children }: { children: ReactNode }) {
   const [selectedTools, setSelectedTools] = useState<Tool[]>([]);
   const { toast } = useToast();
+
+  const setComparison = (toolIds: string[]) => {
+    const toolsToSet = tools.filter(t => toolIds.includes(t.id));
+    setSelectedTools(toolsToSet);
+  };
 
   const addToCompare = (tool: Tool) => {
     if (selectedTools.find((t) => t.id === tool.id)) {
@@ -65,6 +73,7 @@ export function ComparisonProvider({ children }: { children: ReactNode }) {
         addToCompare,
         removeFromCompare,
         clearComparison,
+        setComparison,
         isComparing: selectedTools.length > 0,
       } }
     >

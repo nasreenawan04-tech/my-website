@@ -11,8 +11,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { saveComparison } from "@/lib/calculationHistory";
-import { jsPDF } from "jspdf";
-import html2canvas from "html2canvas";
+import { exportToPDF } from "@/lib/dynamicPDFExporter";
 
 export default function CompareTools() {
   const { selectedTools, removeFromCompare, clearComparison } = useComparison();
@@ -66,24 +65,11 @@ export default function CompareTools() {
     if (selectedTools.length === 0) return;
     setIsExporting(true);
     try {
-      const element = document.getElementById('comparison-grid');
-      if (!element) return;
-
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#f8fafc'
+      await exportToPDF({
+        filename: `tool-comparison-${selectedTools[0].category}.pdf`,
+        elementId: 'comparison-grid',
+        toolName: 'Tool Comparison'
       });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('l', 'mm', 'a4');
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`tool-comparison-${selectedTools[0].category}.pdf`);
       
       toast({
         title: "Report generated",

@@ -5,6 +5,23 @@ DapsiWow is a comprehensive web platform offering over 180 free online tools acr
 
 ## Recent Changes
 
+### Tool Comparison Feature - December 26, 2025
+Implemented a comprehensive Comparison Tool feature for side-by-side tool analysis:
+
+**Feature Highlights:**
+- **Comparison UI**: Responsive 2-3 column grid for side-by-side tool usage and output comparison.
+- **Persistence**: Integration with Firestore (for authenticated users) and localStorage (for guest users) to save and reload comparisons.
+- **Profile Integration**: Added "Comparisons" tab to the user profile page to view and load saved comparisons.
+- **Professional Export**: Professional PDF report generation using `dynamicPDFExporter.ts` for optimized bundle size.
+- **Shared Input Sync**: State management prepared for synchronizing inputs across compared tools.
+- **UX Improvements**: Comparison status badge in the header and "Add to Compare" buttons on tool cards and hero sections.
+
+**Technical Details:**
+- Created `ComparisonContext` for centralized state management.
+- Implemented `saveComparison` and `getComparisonHistory` in `calculationHistory.ts`.
+- Developed `/compare-tools` page with dynamic rendering of tool components.
+- Zero LSP errors and smooth integration with existing professional PDF export logic.
+
 ### Mortgage Calculator UI Unification - November 13, 2025
 Unified the Mortgage Calculator UI design with the Loan Calculator to ensure consistent user experience across financial tools:
 
@@ -110,12 +127,12 @@ Preferred communication style: Simple, everyday language.
 - **UI/UX Decisions**: Emphasizes premium layouts, hero gradients, icons, tooltips, and professional card layouts. Incorporates interactive charts, scenario comparisons, and detailed yearly breakdowns where applicable. Responsive design is a core principle, using progressive responsive classes for optimal display across devices.
 
 ### State Management
-- **Global State**: React Context for theme management.
+- **Global State**: React Context for theme management and tool comparison.
 - **Server State**: TanStack Query (minimal usage due to client-only nature).
-- **Local State**: React hooks with localStorage integration for user preferences, favorites, recent tools, and calculation history. All data persists client-side only.
+- **Local State**: React hooks with localStorage integration for user preferences, favorites, recent tools, and calculation history. Firestore integration for cloud-syncing authenticated user data.
 
 ### Performance Optimizations
-- **Code Splitting**: Lazy loading for all tool pages.
+- **Code Splitting**: Lazy loading for all tool pages and heavy libraries like jsPDF.
 - **Image Optimization**: Lazy loading components for assets.
 - **Caching**: Service worker for offline functionality.
 
@@ -123,7 +140,7 @@ Preferred communication style: Simple, everyday language.
 - **Modular Design**: Each tool is a self-contained component.
 - **Calculation Engine**: Client-side mathematical calculations with robust validation (e.g., `Number.isFinite()` checks).
 - **Result Sharing**: URL-based result sharing without server storage.
-- **PDF Export**: Functionality to generate professional calculation reports.
+- **PDF Export**: Functionality to generate professional calculation reports using optimized dynamic loading.
 - **Social Sharing**: Integrated social sharing features for various platforms with secure implementation.
 
 ### SEO and Discoverability
@@ -150,7 +167,7 @@ Preferred communication style: Simple, everyday language.
 - **Form Handling**: React Hook Form with Zod validation.
 - **Date Manipulation**: date-fns.
 - **Mathematical Operations**: Custom client-side calculation engines.
-- **PDF Generation**: jsPDF for client-side PDF export.
+- **PDF Generation**: jsPDF and html2canvas via dynamic export utility.
 
 ### Email Integration
 - **EmailJS**: Client-side email service for contact forms.

@@ -9,9 +9,11 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield, TrendingUp, Activity, Award, ChevronRight } from 'lucide-react';
+import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield, TrendingUp, Activity, Award, ChevronRight, Scale } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
-import { getCalculationHistory, deleteCalculation, clearAllCalculations, CalculationHistory } from '@/lib/calculationHistory';
+import { getCalculationHistory, deleteCalculation, clearAllCalculations, CalculationHistory, getComparisonHistory, ComparisonHistory } from '@/lib/calculationHistory';
+import { useComparison } from '@/context/ComparisonContext';
+import { tools } from '@/data/tools';
 import { Link } from 'wouter';
 import { format, formatDistanceToNow } from 'date-fns';
 import {
@@ -56,7 +58,9 @@ export default function Profile() {
 
   // Calculation history state
   const [calculationHistory, setCalculationHistory] = useState<CalculationHistory[]>([]);
+  const [comparisonHistory, setComparisonHistory] = useState<ComparisonHistory[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
+  const { setComparison } = useComparison();
 
   // Active tab state
   const [activeTab, setActiveTab] = useState('overview');
@@ -73,7 +77,7 @@ export default function Profile() {
 
       setFavoritesCount(getFavorites().length);
       setRecentToolsCount(getRecentTools().length);
-      loadCalculationHistory();
+      loadHistory();
 
       const handleFavoritesChange = () => setFavoritesCount(getFavorites().length);
       const handleRecentChange = () => setRecentToolsCount(getRecentTools().length);
@@ -209,15 +213,19 @@ export default function Profile() {
     });
   };
 
-  const loadCalculationHistory = async () => {
+  const loadHistory = async () => {
     if (!user) return;
 
     setHistoryLoading(true);
     try {
-      const history = await getCalculationHistory(user.uid);
-      setCalculationHistory(history);
+      const [calcHistory, compHistory] = await Promise.all([
+        getCalculationHistory(user.uid),
+        getComparisonHistory(user.uid)
+      ]);
+      setCalculationHistory(calcHistory);
+      setComparisonHistory(compHistory);
     } catch (error) {
-      console.error('Failed to load calculation history:', error);
+      console.error('Failed to load history:', error);
     } finally {
       setHistoryLoading(false);
     }
@@ -419,10 +427,14 @@ export default function Profile() {
       <div className="bg-gray-50 dark:bg-neutral-900 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-grid">
+            <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:inline-grid">
               <TabsTrigger value="overview" className="gap-2">
                 <Activity className="h-4 w-4" />
                 <span className="hidden sm:inline">Overview</span>
+              </TabsTrigger>
+              <TabsTrigger value="comparisons" className="gap-2">
+                <Scale className="h-4 w-4" />
+                <span className="hidden sm:inline">Comparisons</span>
               </TabsTrigger>
               <TabsTrigger value="profile" className="gap-2">
                 <User className="h-4 w-4" />
@@ -533,6 +545,58 @@ export default function Profile() {
                   </CardContent>
                 </Card>
               </div>
+            </TabsContent>
+
+            {/* Comparisons Tab */}
+            <TabsContent value="comparisons" className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Scale className="h-5 w-5 text-blue-600" />
+                    Saved Comparisons
+                  </CardTitle>
+                  <CardDescription>View and reload your tool comparisons</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {historyLoading ? (
+                    <div className="flex justify-center py-8">
+                      <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
+                    </div>
+                  ) : comparisonHistory.length === 0 ? (
+                    <div className="text-center py-8">
+                      <Scale className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">No saved comparisons yet</p>
+                    </div>
+                  ) : (
+                    <div className="grid gap-4">
+                      {comparisonHistory.map((comp) => (
+                        <div key={comp.id} className="flex items-center justify-between p-4 rounded-xl border border-gray-100 dark:border-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all group">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                              <Badge variant="outline" className="capitalize">{comp.category}</Badge>
+                              <span className="text-xs text-gray-500">{formatDistanceToNow(comp.timestamp, { addSuffix: true })}</span>
+                            </div>
+                            <p className="text-sm font-medium truncate">
+                              {comp.toolIds.map(id => tools.find(t => t.id === id)?.name).join(' vs ')}
+                            </p>
+                          </div>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            onClick={() => {
+                              setComparison(comp.toolIds);
+                              setLocation('/compare-tools');
+                            }}
+                          >
+                            Load <ChevronRight className="h-4 w-4 ml-1" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
             </TabsContent>
 
             {/* Profile Tab */}
