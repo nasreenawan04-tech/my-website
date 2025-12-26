@@ -23,6 +23,77 @@ export interface CalculationHistory {
 }
 
 const COLLECTION_NAME = 'calculationHistory';
+const COMPARISON_COLLECTION_NAME = 'comparisonHistory';
+
+export interface ComparisonHistory {
+  id?: string;
+  userId: string;
+  category: string;
+  toolIds: string[];
+  timestamp: Date;
+}
+
+export async function saveComparison(
+  userId: string,
+  category: string,
+  toolIds: string[]
+): Promise<void> {
+  if (!isFirebaseConfigured || !db) {
+    const saved = JSON.parse(localStorage.getItem('saved_comparisons') || '[]');
+    saved.push({
+      id: Math.random().toString(36).substr(2, 9),
+      userId,
+      category,
+      toolIds,
+      timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('saved_comparisons', JSON.stringify(saved.slice(-20)));
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, COMPARISON_COLLECTION_NAME), {
+      userId,
+      category,
+      toolIds,
+      timestamp: Timestamp.now()
+    });
+  } catch (error) {
+    console.error('Error saving comparison:', error);
+    throw error;
+  }
+}
+
+export async function getComparisonHistory(userId: string): Promise<ComparisonHistory[]> {
+  if (!isFirebaseConfigured || !db) {
+    const saved = JSON.parse(localStorage.getItem('saved_comparisons') || '[]');
+    return saved.map((s: any) => ({ ...s, timestamp: new Date(s.timestamp) }));
+  }
+
+  try {
+    const q = query(
+      collection(db, COMPARISON_COLLECTION_NAME),
+      where('userId', '==', userId),
+      orderBy('timestamp', 'desc')
+    );
+    const querySnapshot = await getDocs(q);
+    const history: ComparisonHistory[] = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      history.push({
+        id: doc.id,
+        userId: data.userId,
+        category: data.category,
+        toolIds: data.toolIds,
+        timestamp: data.timestamp.toDate()
+      });
+    });
+    return history;
+  } catch (error) {
+    console.error('Error getting comparison history:', error);
+    return [];
+  }
+}
 
 export async function saveCalculation(
   userId: string,

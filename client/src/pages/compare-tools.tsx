@@ -4,25 +4,102 @@ import Footer from "@/components/Footer";
 import ToolHeroSection from "@/components/ToolHeroSection";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { X, ArrowLeft, RefreshCw } from "lucide-react";
+import { X, ArrowLeft, RefreshCw, Save, Download } from "lucide-react";
 import { useLocation } from "wouter";
 import { Helmet } from "react-helmet-async";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+import { saveComparison } from "@/lib/calculationHistory";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
-// For now, we'll map category to a generic comparison view
-// In a real app, we might want specialized comparison components per tool type
 export default function CompareTools() {
   const { selectedTools, removeFromCompare, clearComparison } = useComparison();
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [sharedInputs, setSharedInputs] = useState<Record<string, any>>({});
+  const [isSaving, setIsSaving] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
 
   useEffect(() => {
     if (selectedTools.length === 0) {
-      // Redirect back if no tools selected
       const timer = setTimeout(() => setLocation("/"), 2000);
       return () => clearTimeout(timer);
     }
   }, [selectedTools, setLocation]);
+
+  const handleSave = async () => {
+    if (!user) {
+      toast({
+        title: "Sign in required",
+        description: "Please sign in to save your comparison.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      await saveComparison(
+        user.uid,
+        selectedTools[0].category,
+        selectedTools.map(t => t.id)
+      );
+      toast({
+        title: "Comparison saved",
+        description: "You can find your saved comparisons in your profile.",
+      });
+    } catch (error) {
+      toast({
+        title: "Save failed",
+        description: "Could not save comparison. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleExportPDF = useCallback(async () => {
+    if (selectedTools.length === 0) return;
+    setIsExporting(true);
+    try {
+      const element = document.getElementById('comparison-grid');
+      if (!element) return;
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#f8fafc'
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('l', 'mm', 'a4');
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`tool-comparison-${selectedTools[0].category}.pdf`);
+      
+      toast({
+        title: "Report generated",
+        description: "Your comparison report has been downloaded.",
+      });
+    } catch (error) {
+      console.error('PDF Export Error:', error);
+      toast({
+        title: "Export failed",
+        description: "Could not generate PDF report.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsExporting(false);
+    }
+  }, [selectedTools, toast]);
 
   if (selectedTools.length === 0) {
     return (
@@ -33,10 +110,6 @@ export default function CompareTools() {
       </div>
     );
   }
-
-  const handleSharedInputChange = (key: string, value: any) => {
-    setSharedInputs(prev => ({ ...prev, [key]: value }));
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950">
@@ -52,16 +125,36 @@ export default function CompareTools() {
         />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex justify-between items-center mb-8">
-            <Button variant="ghost" onClick={() => window.history.back()} className="gap-2">
-              <ArrowLeft size={16} /> Back
-            </Button>
-            <Button variant="outline" onClick={clearComparison} className="gap-2 text-destructive hover:text-destructive">
-              <RefreshCw size={16} /> Clear All
-            </Button>
+          <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" onClick={() => window.history.back()} className="gap-2">
+                <ArrowLeft size={16} /> Back
+              </Button>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button 
+                variant="outline" 
+                onClick={handleSave} 
+                disabled={isSaving}
+                className="gap-2"
+              >
+                <Save size={16} /> {isSaving ? "Saving..." : "Save Comparison"}
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={handleExportPDF} 
+                disabled={isExporting}
+                className="gap-2"
+              >
+                <Download size={16} /> {isExporting ? "Exporting..." : "Export PDF"}
+              </Button>
+              <Button variant="outline" onClick={clearComparison} className="gap-2 text-destructive hover:text-destructive">
+                <RefreshCw size={16} /> Clear All
+              </Button>
+            </div>
           </div>
 
-          <div className={`grid gap-6 grid-cols-1 md:grid-cols-${selectedTools.length} lg:grid-cols-${selectedTools.length}`}>
+          <div id="comparison-grid" className={`grid gap-6 grid-cols-1 md:grid-cols-${selectedTools.length} lg:grid-cols-${selectedTools.length}`}>
             {selectedTools.map((tool) => (
               <Card key={tool.id} className="relative overflow-hidden flex flex-col">
                 <Button 
@@ -82,10 +175,8 @@ export default function CompareTools() {
                 </div>
 
                 <CardContent className="p-6 flex-1">
-                  {/* In a fully dynamic system, we would render the tool's engine here */}
                   <div className="flex flex-col items-center justify-center py-12 text-center text-muted-foreground italic">
                     <p>Comparison engine for {tool.name} coming soon.</p>
-                    <p className="text-xs mt-2">Shared state: {JSON.stringify(sharedInputs)}</p>
                   </div>
                 </CardContent>
               </Card>
