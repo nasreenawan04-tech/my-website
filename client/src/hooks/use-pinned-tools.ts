@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { syncPreferencesToCloud, getPreferencesFromCloud } from '@/lib/cloudSync';
 
 export interface PinnedTool {
   id: string;
@@ -7,6 +9,7 @@ export interface PinnedTool {
 }
 
 export function usePinnedTools() {
+  const { user } = useAuth();
   const [pinnedTools, setPinnedTools] = useState<PinnedTool[]>([]);
   const storageKey = 'pinned-tools';
 
@@ -19,7 +22,15 @@ export function usePinnedTools() {
         console.error('Failed to parse pinned tools', e);
       }
     }
-  }, []);
+
+    if (user) {
+      getPreferencesFromCloud(user.uid).then(prefs => {
+        if (prefs?.pinnedTools) {
+          setPinnedTools(prefs.pinnedTools);
+        }
+      });
+    }
+  }, [user]);
 
   const togglePin = useCallback((tool: PinnedTool) => {
     setPinnedTools(prev => {
@@ -32,9 +43,13 @@ export function usePinnedTools() {
         updated = [...prev, tool].slice(-5);
       }
       localStorage.setItem(storageKey, JSON.stringify(updated));
+      
+      if (user) {
+        syncPreferencesToCloud(user.uid, { pinnedTools: updated });
+      }
       return updated;
     });
-  }, []);
+  }, [user]);
 
   const isPinned = useCallback((toolId: string) => {
     return pinnedTools.some(t => t.id === toolId);

@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { syncPreferencesToCloud, getPreferencesFromCloud } from '@/lib/cloudSync';
 
 export interface Preset {
   id: string;
@@ -8,6 +10,7 @@ export interface Preset {
 }
 
 export function usePresets(toolId: string) {
+  const { user } = useAuth();
   const [presets, setPresets] = useState<Preset[]>([]);
   const storageKey = `tool-presets-${toolId}`;
 
@@ -20,7 +23,15 @@ export function usePresets(toolId: string) {
         console.error('Failed to parse presets', e);
       }
     }
-  }, [storageKey]);
+
+    if (user) {
+      getPreferencesFromCloud(user.uid).then(prefs => {
+        if (prefs?.presets && prefs.presets[toolId]) {
+          setPresets(prefs.presets[toolId]);
+        }
+      });
+    }
+  }, [storageKey, user, toolId]);
 
   const savePreset = useCallback((name: string, values: Record<string, any>) => {
     const newPreset: Preset = {
@@ -32,14 +43,30 @@ export function usePresets(toolId: string) {
     const updated = [...presets, newPreset];
     setPresets(updated);
     localStorage.setItem(storageKey, JSON.stringify(updated));
+    
+    if (user) {
+      getPreferencesFromCloud(user.uid).then(prefs => {
+        const allPresets = prefs?.presets || {};
+        allPresets[toolId] = updated;
+        syncPreferencesToCloud(user.uid, { presets: allPresets });
+      });
+    }
     return newPreset;
-  }, [presets, storageKey]);
+  }, [presets, storageKey, user, toolId]);
 
   const deletePreset = useCallback((id: string) => {
     const updated = presets.filter(p => p.id !== id);
     setPresets(updated);
     localStorage.setItem(storageKey, JSON.stringify(updated));
-  }, [presets, storageKey]);
+
+    if (user) {
+      getPreferencesFromCloud(user.uid).then(prefs => {
+        const allPresets = prefs?.presets || {};
+        allPresets[toolId] = updated;
+        syncPreferencesToCloud(user.uid, { presets: allPresets });
+      });
+    }
+  }, [presets, storageKey, user, toolId]);
 
   return {
     presets,
