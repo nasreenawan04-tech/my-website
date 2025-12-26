@@ -1,10 +1,22 @@
+import { Button } from "@/components/ui/button";
+import { Scale } from "lucide-react";
+import { useComparison } from "@/context/ComparisonContext";
+import { tools } from "@/data/tools";
+import { useLocation } from "wouter";
+
 interface ToolHeroSectionProps {
   title: string;
   description: string;
   testId?: string;
+  toolId?: string;
 }
 
-const ToolHeroSection = ({ title, description, testId }: ToolHeroSectionProps) => {
+const ToolHeroSection = ({ title, description, testId, toolId }: ToolHeroSectionProps) => {
+  const { addToCompare } = useComparison();
+  const [location] = useLocation();
+
+  const tool = toolId ? tools.find(t => t.id === toolId) : tools.find(t => t.href === location);
+
   return (
     <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -18,6 +30,19 @@ const ToolHeroSection = ({ title, description, testId }: ToolHeroSectionProps) =
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             {description}
           </p>
+          {tool?.canCompare && (
+            <div className="flex justify-center pt-4">
+              <Button
+                variant="outline"
+                className="gap-2"
+                onClick={() => addToCompare(tool)}
+                data-testid={`button-compare-hero-${tool.id}`}
+              >
+                <Scale size={18} />
+                Add to Comparison
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>

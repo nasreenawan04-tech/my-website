@@ -6,6 +6,7 @@ export interface Tool {
   icon: string;
   isPopular?: boolean;
   href: string;
+  canCompare?: boolean;
 }
 
 export const categories = {
@@ -24,6 +25,7 @@ const toolsData: Tool[] = [
     icon: "fas fa-calculator",
     isPopular: true,
     href: "/tools/loan-calculator",
+    canCompare: true,
   },
   {
     id: "mortgage-calculator",
@@ -33,6 +35,7 @@ const toolsData: Tool[] = [
     icon: "fas fa-home",
     isPopular: true,
     href: "/tools/mortgage-calculator",
+    canCompare: true,
   },
   {
     id: "emi-calculator",
@@ -41,6 +44,7 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-chart-line",
     href: "/tools/emi-calculator",
+    canCompare: true,
   },
   {
     id: "business-loan-calculator",
@@ -49,6 +53,7 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-building",
     href: "/tools/business-loan-calculator",
+    canCompare: true,
   },
   {
     id: "compound-interest-calculator",
@@ -57,6 +62,7 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-chart-area",
     href: "/tools/compound-interest-calculator",
+    canCompare: true,
   },
   {
     id: "simple-interest-calculator",
@@ -65,6 +71,7 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-percent",
     href: "/tools/simple-interest-calculator",
+    canCompare: true,
   },
   {
     id: "car-loan-calculator",
@@ -73,6 +80,7 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-car",
     href: "/tools/car-loan-calculator",
+    canCompare: true,
   },
   {
     id: "home-loan-calculator",
@@ -81,6 +89,7 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-house-user",
     href: "/tools/home-loan-calculator",
+    canCompare: true,
   },
 
   // Text Tools (7)
@@ -154,6 +163,7 @@ const toolsData: Tool[] = [
     icon: "fas fa-weight",
     isPopular: true,
     href: "/tools/bmi-calculator",
+    canCompare: true,
   },
   {
     id: "calorie-calculator",
@@ -162,6 +172,7 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-utensils",
     href: "/tools/calorie-calculator",
+    canCompare: true,
   },
   {
     id: "body-fat-calculator",
@@ -171,6 +182,7 @@ const toolsData: Tool[] = [
     icon: "fas fa-percentage",
     isPopular: true,
     href: "/tools/body-fat-calculator",
+    canCompare: true,
   },
   {
     id: "water-intake-calculator",
@@ -179,6 +191,7 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-tint",
     href: "/tools/water-intake-calculator",
+    canCompare: true,
   },
   {
     id: "protein-intake-calculator",
@@ -187,6 +200,7 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-drumstick-bite",
     href: "/tools/protein-intake-calculator",
+    canCompare: true,
   },
   {
     id: "heart-rate-calculator",
@@ -196,15 +210,17 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-heartbeat",
     href: "/tools/heart-rate-calculator",
+    canCompare: true,
   },
   {
     id: "sleep-calculator",
     name: "Sleep Calculator",
     description:
-      "Calculate optimal sleep and wake times based on natural sleep cycles",
+      "Calculate optimal sleep and wake times based natural sleep cycles",
     category: "health" as const,
     icon: "fas fa-bed",
     href: "/tools/sleep-calculator",
+    canCompare: true,
   },
   {
     id: "tdee-calculator",
@@ -213,6 +229,7 @@ const toolsData: Tool[] = [
     category: "health" as const,
     icon: "fas fa-bolt",
     href: "/tools/tdee-calculator",
+    canCompare: true,
   },
 ];
 
