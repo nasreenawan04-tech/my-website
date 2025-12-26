@@ -9,8 +9,11 @@ export const collections = pgTable("collections", {
   toolIds: text("tool_ids").array().notNull(),
 });
 
-export const insertCollectionSchema = createInsertSchema(collections).omit({
-  id: true,
+// Using standard Zod for the insert schema due to a version mismatch or environment issue with createInsertSchema
+export const insertCollectionSchema = z.object({
+  shareId: z.string(),
+  name: z.string(),
+  toolIds: z.array(z.string()),
 });
 
 export type InsertCollection = z.infer<typeof insertCollectionSchema>;
