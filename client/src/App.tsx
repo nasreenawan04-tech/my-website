@@ -37,6 +37,7 @@ const ForgotPassword = lazy(() => import("@/pages/forgot-password"));
 const Profile = lazy(() => import("@/pages/profile"));
 const Blog = lazy(() => import("@/pages/blog"));
 const BlogPost = lazy(() => import("@/pages/blog-post"));
+const CollectionPreview = lazy(() => import("@/pages/collection-preview"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -111,6 +112,9 @@ function Router() {
           {/* Blog pages */}
           <Route path="/blog" component={Blog} />
           <Route path="/blog/:slug" component={BlogPost} />
+
+          {/* Collection sharing */}
+          <Route path="/share/:shareId" component={CollectionPreview} />
 
           {/* Legacy route redirects to standardized URLs */}
           <Route path="/about" component={() => <Redirect to="/about-us" />} />
