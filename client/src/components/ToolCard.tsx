@@ -171,5 +171,3 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
 };
 
 export default ToolCard;
-
-export default ToolCard;
