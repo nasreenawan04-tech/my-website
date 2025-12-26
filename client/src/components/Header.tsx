@@ -5,6 +5,7 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
+import { QuickAccessBar } from './QuickAccessBar';
 import { Menu, X, Search, User, LogOut, Scale } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -152,6 +153,7 @@ const Header = () => {
 
   return (
     <>
+      <QuickAccessBar />
       <header 
         className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
           isScrolled 

@@ -15,6 +15,8 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import ShareResultsButton from '@/components/ShareResultsButton';
 import { PresetManager } from '@/components/PresetManager';
+import { Pin } from 'lucide-react';
+import { usePinnedTools } from '@/hooks/use-pinned-tools';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
@@ -119,6 +121,9 @@ export default function LoanCalculator() {
   const [isSaving, setIsSaving] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
+  const { pinnedTools, togglePin, isPinned } = usePinnedTools();
+  const toolId = 'loan-calculator';
+  const toolName = 'Loan Calculator';
 
   // Memoized currency formatter for better performance
   const formatCurrency = useMemo(() => {

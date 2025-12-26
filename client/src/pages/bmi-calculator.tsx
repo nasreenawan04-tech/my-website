@@ -12,6 +12,9 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import { useToast } from '@/hooks/use-toast';
 import { PresetManager } from '@/components/PresetManager';
+import { Pin } from 'lucide-react';
+import { usePinnedTools } from '@/hooks/use-pinned-tools';
+import { cn } from '@/lib/utils';
 import { calculateBMI, isValidBMIInputs } from '@/lib/calculators/health/bmi.engine';
 import { BMICalculatorInput, BMIResult, UnitSystem, Gender } from '@/types/health-tool.types';
 
@@ -25,6 +28,9 @@ const BMICalculator = () => {
   const [gender, setGender] = useState<Gender>('male');
   const [result, setResult] = useState<BMIResult | null>(null);
   const { toast } = useToast();
+  const { pinnedTools, togglePin, isPinned } = usePinnedTools();
+  const toolId = 'bmi-calculator';
+  const toolName = 'BMI Calculator';
 
   const handleCalculate = () => {
     const inputs: Partial<BMICalculatorInput> = {
@@ -321,8 +327,22 @@ const BMICalculator = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional BMI Calculator</span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={cn(
+                    "h-6 w-6 rounded-full transition-all",
+                    isPinned(toolId) 
+                      ? "text-blue-600 bg-blue-50 hover:bg-blue-100" 
+                      : "text-slate-400 hover:text-blue-600 hover:bg-blue-50"
+                  )}
+                  onClick={() => togglePin({ id: toolId, name: toolName, url: '/tools/bmi-calculator' })}
+                  title={isPinned(toolId) ? "Unpin from Quick Access" : "Pin to Quick Access"}
+                >
+                  <Pin className={cn("h-3.5 w-3.5", isPinned(toolId) && "fill-current")} />
+                </Button>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="text-bmi-title">
                 <span className="block">Smart BMI</span>
