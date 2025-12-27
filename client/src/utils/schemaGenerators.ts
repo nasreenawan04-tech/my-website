@@ -83,8 +83,6 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     },
     
     // Adding SoftwareApplication specific fields for better SEO
-    applicationCategory: config.schema.applicationCategory || categoryDefaults.schemaDefaults.applicationCategory,
-    operatingSystem: categoryDefaults.schemaDefaults.operatingSystem,
     storageRequirements: 'None',
     memoryRequirements: 'None'
   };
