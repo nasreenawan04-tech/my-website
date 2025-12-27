@@ -58,3 +58,5 @@
 [x] 58. Performance Audit & Optimization - Implemented Stale-While-Revalidate pattern in Service Worker for faster tool page loads.
 [x] 59. UX Optimization - Optimized scroll event handling in Header to reduce layout thrashing.
 [x] 60. Analytics Accuracy - Improved PageViewTracker timing to ensure correct document title tracking.
+[x] 61. Math Edge Case Fix - Resolved division-by-zero risk in Loan Calculator for 0% interest scenarios.
+[x] 62. SEO Deep Dive - Enhanced WebApplication JSON-LD with SoftwareApplication-specific fields for improved search visibility.

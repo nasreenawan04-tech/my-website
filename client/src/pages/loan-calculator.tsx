@@ -192,7 +192,7 @@ export default function LoanCalculator() {
     if (paymentFrequency === 'weekly') {
       paymentsPerYear = 52;
     } else if (paymentFrequency === 'biweekly') {
-      paymentsPerYear = biweeklyMode === 'accelerated' ? 26 : 26; // Standard = 26, Accelerated effectively = 13 monthly
+      paymentsPerYear = 26;
     } else {
       paymentsPerYear = 12;
     }
@@ -205,7 +205,9 @@ export default function LoanCalculator() {
     // Calculate regular payment (without balloon)
     let regularPayment: number;
     
-    if (balloonPmt > 0) {
+    if (annualRateDecimal === 0) {
+      regularPayment = (adjustedPrincipal - balloonPmt) / totalPayments;
+    } else if (balloonPmt > 0) {
       // Loan with balloon payment: P = (L - B/(1+r)^n) * [r(1+r)^n] / [(1+r)^n - 1]
       const discountedBalloon = balloonPmt / Math.pow(1 + periodicRate, totalPayments);
       const principalMinusBalloon = adjustedPrincipal - discountedBalloon;

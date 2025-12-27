@@ -80,12 +80,21 @@ export function calculateAmortizationSchedule(
 
   const annualRateDecimal = annualRate / 100;
   const periodicRate = annualRateDecimal / paymentsPerYear;
+  
+  // Total payments over the full term
   const totalPayments = termMonths * (paymentsPerYear / 12);
+
+  // Safety check for invalid rates or terms to avoid NaN/Infinity
+  if (!isFinite(periodicRate) || !isFinite(totalPayments) || totalPayments <= 0) {
+    return [];
+  }
 
   // Calculate regular payment
   let regularPayment: number;
 
-  if (balloonPayment > 0) {
+  if (annualRateDecimal === 0) {
+    regularPayment = principal / totalPayments;
+  } else if (balloonPayment > 0) {
     // Loan with balloon payment formula
     const discountedBalloon = balloonPayment / Math.pow(1 + periodicRate, totalPayments);
     const principalMinusBalloon = principal - discountedBalloon;

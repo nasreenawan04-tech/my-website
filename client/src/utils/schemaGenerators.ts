@@ -80,7 +80,13 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     audience: {
       '@type': 'Audience',
       audienceType: 'General Public, Professionals, Students'
-    }
+    },
+    
+    // Adding SoftwareApplication specific fields for better SEO
+    applicationCategory: config.schema.applicationCategory || categoryDefaults.schemaDefaults.applicationCategory,
+    operatingSystem: categoryDefaults.schemaDefaults.operatingSystem,
+    storageRequirements: 'None',
+    memoryRequirements: 'None'
   };
 
   return baseSchema;
