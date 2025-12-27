@@ -431,6 +431,7 @@ const BMICalculator = () => {
                           placeholder={unitSystem === 'metric' ? "70" : "154"}
                           min="0"
                           step="0.1"
+                          aria-label={`Enter weight in ${unitSystem === 'metric' ? 'kilograms' : 'pounds'}`}
                           data-testid="input-weight"
                         />
                       </div>
@@ -438,11 +439,12 @@ const BMICalculator = () => {
 
                     {/* Height */}
                     <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <Label htmlFor={unitSystem === 'metric' ? "height" : "feet"} className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'}
                       </Label>
                       {unitSystem === 'metric' ? (
                         <Input
+                          id="height"
                           type="number"
                           value={height}
                           onChange={(e) => setHeight(e.target.value)}
@@ -450,12 +452,13 @@ const BMICalculator = () => {
                           placeholder="175"
                           min="0"
                           step="0.1"
+                          aria-label="Enter height in centimeters"
                           data-testid="input-height"
                         />
                       ) : (
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-2 gap-3" role="group" aria-label="Height in feet and inches">
                           <div>
-                            <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
+                            <Label htmlFor="feet" className="text-xs text-gray-500 sr-only">Feet</Label>
                             <Input
                               id="feet"
                               type="number"
@@ -465,11 +468,12 @@ const BMICalculator = () => {
                               placeholder="5"
                               min="0"
                               max="8"
+                              aria-label="Height feet"
                               data-testid="input-feet"
                             />
                           </div>
                           <div>
-                            <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
+                            <Label htmlFor="inches" className="text-xs text-gray-500 sr-only">Inches</Label>
                             <Input
                               id="inches"
                               type="number"
@@ -479,6 +483,7 @@ const BMICalculator = () => {
                               placeholder="9"
                               min="0"
                               max="11"
+                              aria-label="Height inches"
                               data-testid="input-inches"
                             />
                           </div>

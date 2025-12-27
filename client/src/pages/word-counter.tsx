@@ -329,6 +329,8 @@ Speaking time: ${result.speakingTime} minute(s)`;
                       onChange={(e) => setText(e.target.value)}
                       className="min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                       placeholder="Type or paste your text here to get instant word count and text statistics..."
+                      aria-live="polite"
+                      aria-atomic="false"
                       data-testid="textarea-text-input"
                     />
                   </div>
