@@ -18,14 +18,27 @@ import { cn } from '@/lib/utils';
 import { calculateBMI, isValidBMIInputs } from '@/lib/calculators/health/bmi.engine';
 import { BMICalculatorInput, BMIResult, UnitSystem, Gender } from '@/types/health-tool.types';
 
+import { usePredictiveInput } from '@/hooks/use-predictive-input';
+
 const BMICalculator = () => {
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [feet, setFeet] = useState('');
-  const [inches, setInches] = useState('');
-  const [unitSystem, setUnitSystem] = useState<UnitSystem>('metric');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState<Gender>('male');
+  const toolId = 'bmi-calculator';
+  const { predictedValues, updatePredictions } = usePredictiveInput(toolId, {}, {
+    weight: '',
+    height: '',
+    feet: '',
+    inches: '',
+    unitSystem: 'metric',
+    age: '',
+    gender: 'male'
+  });
+
+  const [weight, setWeight] = useState(predictedValues.weight);
+  const [height, setHeight] = useState(predictedValues.height);
+  const [feet, setFeet] = useState(predictedValues.feet);
+  const [inches, setInches] = useState(predictedValues.inches);
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>(predictedValues.unitSystem);
+  const [age, setAge] = useState(predictedValues.age);
+  const [gender, setGender] = useState<Gender>(predictedValues.gender);
   const [result, setResult] = useState<BMIResult | null>(null);
   const { toast } = useToast();
   const { pinnedTools, togglePin, isPinned } = usePinnedTools();
@@ -44,7 +57,17 @@ const BMICalculator = () => {
     };
 
     if (isValidBMIInputs(inputs)) {
-      setResult(calculateBMI(inputs));
+      const res = calculateBMI(inputs);
+      setResult(res);
+      updatePredictions({
+        weight,
+        height,
+        feet,
+        inches,
+        unitSystem,
+        age,
+        gender
+      });
     }
   };
 

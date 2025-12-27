@@ -90,16 +90,30 @@ interface ValidationErrors {
   balloonPayment?: string;
 }
 
+import { usePredictiveInput } from '@/hooks/use-predictive-input';
+
 export default function LoanCalculator() {
-  const [loanAmount, setLoanAmount] = useState('100000');
-  const [interestRate, setInterestRate] = useState('5.50');
-  const [loanTerm, setLoanTerm] = useState('30');
-  const [termUnit, setTermUnit] = useState('years');
-  const [paymentFrequency, setPaymentFrequency] = useState('monthly');
-  const [extraPayment, setExtraPayment] = useState('0');
-  const [processingFee, setProcessingFee] = useState('0'); // State for processing fee
-  const [balloonPayment, setBalloonPayment] = useState('0'); // Balloon payment at end
-  const [biweeklyMode, setBiweeklyMode] = useState<'standard' | 'accelerated'>('standard'); // Biweekly payment mode
+  const toolId = 'loan-calculator';
+  const { predictedValues, updatePredictions } = usePredictiveInput(toolId, {}, {
+    loanAmount: '100000',
+    interestRate: '5.50',
+    loanTerm: '30',
+    termUnit: 'years',
+    paymentFrequency: 'monthly',
+    extraPayment: '0',
+    processingFee: '0',
+    balloonPayment: '0'
+  });
+
+  const [loanAmount, setLoanAmount] = useState(predictedValues.loanAmount);
+  const [interestRate, setInterestRate] = useState(predictedValues.interestRate);
+  const [loanTerm, setLoanTerm] = useState(predictedValues.loanTerm);
+  const [termUnit, setTermUnit] = useState(predictedValues.termUnit);
+  const [paymentFrequency, setPaymentFrequency] = useState(predictedValues.paymentFrequency);
+  const [extraPayment, setExtraPayment] = useState(predictedValues.extraPayment);
+  const [processingFee, setProcessingFee] = useState(predictedValues.processingFee);
+  const [balloonPayment, setBalloonPayment] = useState(predictedValues.balloonPayment);
+  const [biweeklyMode, setBiweeklyMode] = useState<'standard' | 'accelerated'>('standard');
   const [showAmortization, setShowAmortization] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [showCharts, setShowCharts] = useState(false);
@@ -288,6 +302,16 @@ export default function LoanCalculator() {
     };
 
     setResult(calculationResult);
+    updatePredictions({
+      loanAmount,
+      interestRate,
+      loanTerm,
+      termUnit,
+      paymentFrequency,
+      extraPayment,
+      processingFee,
+      balloonPayment
+    });
 
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
