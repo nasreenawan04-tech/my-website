@@ -6,13 +6,29 @@ import {
   generateHowToSchema, 
   generateFAQSchema, 
   generateBreadcrumbSchema,
-  generateQuestionSchema
+  generateQuestionSchema,
+  generateAggregateOfferSchema
 } from '@/utils/schemaGenerators';
 
 interface ToolSEOHeadProps {
   config: ToolSEOConfig;
 }
 
+/**
+ * ToolSEOHead Component
+ * 
+ * Renders comprehensive SEO meta tags and structured data for tool pages
+ * 
+ * Includes:
+ * - Meta tags (title, description, keywords, og:*, twitter:*)
+ * - Structured data schemas:
+ *   - WebApplication (with AggregateOffer for finance tools)
+ *   - Question (calculator rich snippets)
+ *   - HowTo (instructional content)
+ *   - FAQPage (FAQ rich snippets)
+ *   - BreadcrumbList (navigation hierarchy)
+ *   - Organization
+ */
 export function ToolSEOHead({ config }: ToolSEOHeadProps) {
   const baseUrl = 'https://dapsiwow.com';
   const toolUrl = config.canonicalPath 
@@ -23,6 +39,7 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
   const ogImage = `${baseUrl}/images/tools/${config.slug}-og.jpg`;
   const twitterImage = `${baseUrl}/images/tools/${config.slug}-twitter.jpg`;
   
+  // Generate Question schema for calculator tools
   const questionSchema = config.slug.includes('calculator') ? generateQuestionSchema(config) : null;
   
   return (

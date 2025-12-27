@@ -1,7 +1,33 @@
 import { ToolSEOConfig, CategoryDefaults } from '@/config/seo/types';
 
-export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefaults: CategoryDefaults) {
+/**
+ * Generates an AggregateOffer schema for pricing information
+ * Used for finance tools and tools with multiple pricing tiers
+ */
+export function generateAggregateOfferSchema() {
   return {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'USD',
+    lowPrice: '0',
+    highPrice: '0',
+    offerCount: '1',
+    offers: [
+      {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock'
+      }
+    ]
+  };
+}
+
+/**
+ * Generates a WebApplication schema with optional AggregateOffer for pricing
+ * Includes application details, ratings, and features
+ */
+export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefaults: CategoryDefaults) {
+  const baseSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: config.schema.name,
@@ -16,13 +42,15 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     datePublished: '2024-01-15',
     dateModified: new Date().toISOString().split('T')[0],
     
-    offers: {
-      '@type': 'Offer',
-      price: categoryDefaults.schemaDefaults.offers.price,
-      priceCurrency: categoryDefaults.schemaDefaults.offers.priceCurrency,
-      availability: 'https://schema.org/InStock',
-      validFrom: '2024-01-15'
-    },
+    offers: (config.category === 'finance' || config.slug.includes('compare')) 
+      ? generateAggregateOfferSchema()
+      : {
+          '@type': 'Offer',
+          price: categoryDefaults.schemaDefaults.offers.price,
+          priceCurrency: categoryDefaults.schemaDefaults.offers.priceCurrency,
+          availability: 'https://schema.org/InStock',
+          validFrom: '2024-01-15'
+        },
     
     featureList: config.schema.featureList,
     
@@ -52,27 +80,17 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     audience: {
       '@type': 'Audience',
       audienceType: 'General Public, Professionals, Students'
-    },
-    ...((config.category === 'finance' || config.slug.includes('compare')) && {
-      offers: {
-        '@type': 'AggregateOffer',
-        priceCurrency: 'USD',
-        lowPrice: '0',
-        highPrice: '0',
-        offerCount: '1',
-        offers: [
-          {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD',
-            availability: 'https://schema.org/InStock'
-          }
-        ]
-      }
-    })
+    }
   };
+
+  return baseSchema;
 }
 
+/**
+ * Generates a Question schema for calculator rich snippets
+ * Used to provide structured data for calculator tools in search results
+ * Generates from the first FAQ item if available
+ */
 export function generateQuestionSchema(config: ToolSEOConfig) {
   if (!config.faq || config.faq.length === 0) return null;
   
@@ -87,6 +105,10 @@ export function generateQuestionSchema(config: ToolSEOConfig) {
   };
 }
 
+/**
+ * Generates a HowTo schema for step-by-step instructions
+ * Helps search engines understand tutorial and instructional content
+ */
 export function generateHowToSchema(config: ToolSEOConfig, toolUrl: string) {
   return {
     '@context': 'https://schema.org',
@@ -118,6 +140,10 @@ export function generateHowToSchema(config: ToolSEOConfig, toolUrl: string) {
   };
 }
 
+/**
+ * Generates a FAQPage schema with multiple Question entries
+ * Enables rich snippets for FAQ content in search results
+ */
 export function generateFAQSchema(config: ToolSEOConfig) {
   return {
     '@context': 'https://schema.org',
@@ -133,6 +159,10 @@ export function generateFAQSchema(config: ToolSEOConfig) {
   };
 }
 
+/**
+ * Generates a BreadcrumbList schema for navigation hierarchy
+ * Improves SERP display and user navigation understanding
+ */
 export function generateBreadcrumbSchema(config: ToolSEOConfig, baseUrl: string) {
   const categoryMap: Record<string, string> = {
     finance: 'Finance Tools',
