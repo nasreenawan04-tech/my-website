@@ -1,12 +1,21 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { generateSitemap } from './server/sitemap.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
+
+// Dynamic Sitemap Route
+app.get('/sitemap.xml', (req, res) => {
+  const domain = req.get('host') || 'dapsiwow.com';
+  const sitemap = generateSitemap(domain);
+  res.header('Content-Type', 'application/xml');
+  res.send(sitemap);
+});
 
 // API routes - stubbed out or use in-memory for simple logic if storage isn't ready
 app.post('/api/collections', async (req, res) => {
