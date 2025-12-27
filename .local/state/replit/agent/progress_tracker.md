@@ -24,3 +24,4 @@
 [x] 24. Restarted workflow with webview output on port 5000
 [x] 25. Verified application running via screenshot - DapsiWow site fully operational with 23 tools
 [x] 26. Import complete - ready for user to continue building
+[x] 27. Infrastructure & Global Patterns - Updated schemaGenerators.ts and ToolSEOHead.tsx with AggregateOffer and Question schema support
