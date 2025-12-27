@@ -89,20 +89,20 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
 /**
  * Generates a Question schema for calculator rich snippets
  * Used to provide structured data for calculator tools in search results
- * Generates from the first FAQ item if available
+ * Generates multiple Question schemas if FAQs are available
  */
-export function generateQuestionSchema(config: ToolSEOConfig) {
-  if (!config.faq || config.faq.length === 0) return null;
+export function generateQuestionSchemas(config: ToolSEOConfig) {
+  if (!config.faq || config.faq.length === 0) return [];
   
-  return {
+  return config.faq.map(item => ({
     '@context': 'https://schema.org',
     '@type': 'Question',
-    name: config.faq[0].question,
+    name: item.question,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: config.faq[0].answer
+      text: item.answer
     }
-  };
+  }));
 }
 
 /**

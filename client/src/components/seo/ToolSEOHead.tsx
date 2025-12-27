@@ -6,7 +6,7 @@ import {
   generateHowToSchema, 
   generateFAQSchema, 
   generateBreadcrumbSchema,
-  generateQuestionSchema,
+  generateQuestionSchemas,
   generateAggregateOfferSchema
 } from '@/utils/schemaGenerators';
 
@@ -39,8 +39,8 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
   const ogImage = `${baseUrl}/images/tools/${config.slug}-og.jpg`;
   const twitterImage = `${baseUrl}/images/tools/${config.slug}-twitter.jpg`;
   
-  // Generate Question schema for calculator tools
-  const questionSchema = config.slug.includes('calculator') ? generateQuestionSchema(config) : null;
+  // Generate Question schemas for calculator tools
+  const questionSchemas = config.slug.includes('calculator') ? generateQuestionSchemas(config) : [];
   
   return (
     <Helmet>
@@ -97,11 +97,11 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
         {JSON.stringify(generateFAQSchema(config))}
       </script>
       
-      {questionSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(questionSchema)}
+      {questionSchemas.map((schema, index) => (
+        <script key={`question-${index}`} type="application/ld+json">
+          {JSON.stringify(schema)}
         </script>
-      )}
+      ))}
       
       <script type="application/ld+json">
         {JSON.stringify(generateBreadcrumbSchema(config, baseUrl))}
