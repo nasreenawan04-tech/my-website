@@ -167,13 +167,13 @@ const Header = () => {
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-16 lg:h-[4.5rem]">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
-              <div aria-label="DapsiWow home">
+              <Link href="/" aria-label="DapsiWow home">
                 <Logo />
-              </div>
+              </Link>
             </div>
 
             {/* Desktop Navigation - Show on md screens and above */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8 px-2 lg:px-4">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8 px-2 lg:px-4" aria-label="Main navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -226,7 +226,7 @@ const Header = () => {
                 aria-label="Search tools"
                 title="Search tools"
               >
-                <Search className="w-5 h-5" />
+                <Search className="w-5 h-5" aria-hidden="true" />
               </button>
 
               {/* Desktop Auth Buttons - Hidden below md */}
@@ -321,11 +321,13 @@ const Header = () => {
                     className={`absolute inset-0 w-6 h-6 transition-all duration-300 ease-in-out ${
                       isMobileMenuOpen ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'
                     }`}
+                    aria-hidden="true"
                   />
                   <X 
                     className={`absolute inset-0 w-6 h-6 transition-all duration-300 ease-in-out ${
                       isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-0'
                     }`}
+                    aria-hidden="true"
                   />
                 </div>
               </button>
