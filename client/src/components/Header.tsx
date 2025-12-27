@@ -240,7 +240,7 @@ const Header = () => {
                         >
                           <Avatar className="h-8 w-8 transition-transform duration-200 hover:scale-105">
                             <AvatarImage src={user.photoURL || defaultAvatarUrl} alt={user.displayName || user.email || 'User'} />
-                            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
+                            <AvatarFallback className="bg-gradient-to-br from-blue-600 to-purple-600 text-white text-sm font-bold shadow-sm">
                               {user.displayName
                                 ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
                                 : user.email?.charAt(0).toUpperCase() || 'U'}

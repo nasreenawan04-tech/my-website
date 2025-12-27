@@ -346,6 +346,7 @@ export default function PasswordGenerator() {
                           min={4}
                           step={1}
                           className="w-full"
+                          aria-label="Password length"
                         />
                         <div className="flex justify-between text-sm text-gray-500 mt-2">
                           <span>4</span>
@@ -436,7 +437,7 @@ export default function PasswordGenerator() {
                           <span className="flex items-center">
                             Advanced Customization
                           </span>
-                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
+                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`} aria-hidden="true">▼</span>
                         </Button>
                       </CollapsibleTrigger>
                       <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">

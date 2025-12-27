@@ -144,14 +144,14 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
         <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 md:gap-3 mt-auto">
           <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
             <span 
-              className={`inline-flex items-center px-2 sm:px-2.5 md:px-3 py-0.5 sm:py-1 ${categoryColors[tool.category]} text-xs sm:text-sm rounded-full font-medium whitespace-nowrap`}
+              className={`inline-flex items-center px-2 sm:px-2.5 md:px-3 py-0.5 sm:py-1 ${categoryColors[tool.category]} text-xs sm:text-sm rounded-full font-bold whitespace-nowrap shadow-sm`}
               data-testid={`text-tool-category-${tool.id}`}
             >
               {categories[tool.category]}
             </span>
             
             {tool.isPopular && (
-              <div className="inline-flex items-center gap-0.5 sm:gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 rounded-full font-medium whitespace-nowrap">
+              <div className="inline-flex items-center gap-0.5 sm:gap-1 bg-gradient-to-r from-yellow-500 to-orange-600 text-white text-xs px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 rounded-full font-bold whitespace-nowrap shadow-sm">
                 <TrendingUp size={10} className="hidden sm:block sm:w-3 sm:h-3" />
                 <span>Popular</span>
               </div>

@@ -62,10 +62,10 @@ const Footer = () => {
             <div className="text-neutral-400 text-center md:text-left mb-4 md:mb-0">
               <p>© {currentYear} DapsiWow.com. All rights reserved. Made with ❤️ for productivity.</p>
             </div>
-            <div className="text-neutral-400 text-center md:text-right">
+            <div className="text-neutral-300 text-center md:text-right">
               <p className="flex items-center justify-center md:justify-end">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                Processing <span className="font-semibold mx-1" data-testid="text-daily-file-count">12,847</span> files today
+                <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                Processing <span className="font-bold text-neutral-100 mx-1" data-testid="text-daily-file-count">12,847</span> files today
               </p>
             </div>
           </div>
