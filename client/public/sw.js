@@ -258,10 +258,18 @@ self.addEventListener('fetch', (event) => {
                 })
                 .catch((error) => {
                   if (cachedResponse) return cachedResponse;
-                  throw error;
+                  // If both fail, try to serve the offline page (main shell)
+                  return caches.match('/');
                 });
 
-              return cachedResponse || fetchPromise;
+              // Optimization: Use cached response but update it in background (stale-while-revalidate)
+              if (cachedResponse) {
+                // Background update
+                fetchPromise.catch(() => {}); 
+                return cachedResponse;
+              }
+              
+              return fetchPromise;
             });
         })
         .catch(() => caches.match('/'))

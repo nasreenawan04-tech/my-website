@@ -58,12 +58,18 @@ function PageViewTracker() {
   useEffect(() => {
     // Wait for document.title to update after route change
     // This ensures Helmet has updated the title before we track the page view
-    requestAnimationFrame(() => {
-      // Dynamically import analytics to avoid issues during SSR
+    const handleTracking = () => {
       import('@/lib/analytics').then(({ trackPageView }) => {
         trackPageView(location, document.title);
       });
-    });
+    };
+
+    // Use a small delay to ensure Helmet has finished DOM updates
+    const timer = setTimeout(() => {
+      requestAnimationFrame(handleTracking);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [location]);
 
   return null;

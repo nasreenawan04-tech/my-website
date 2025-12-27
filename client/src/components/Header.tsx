@@ -42,7 +42,8 @@ const Header = () => {
   // Handle scroll effect with smooth transition
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrolled = window.scrollY > 10;
+      setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
     };
     
     // Throttle scroll handler for better performance
