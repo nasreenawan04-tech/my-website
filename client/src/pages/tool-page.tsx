@@ -11,6 +11,7 @@ import ProgressiveLoader from '@/components/ProgressiveLoader';
 import NotFound from '@/pages/not-found';
 import { useRecentTools } from '@/hooks/use-recent-tools';
 import { ToolPageContext } from '@/contexts/ToolPageContext';
+import { ToolCalculationHistory } from '@/components/ToolCalculationHistory';
 
 // Map of tool IDs to their corresponding rich components
 const toolComponents = {
@@ -118,7 +119,16 @@ const ToolPage = () => {
     return (
       <ToolPageContext.Provider value={{ canonicalOverride: `https://dapsiwow.com/tools/${tool.id}` }}>
         <Suspense fallback={<PageLoadingSpinner />}>
-          <ToolComponent />
+          <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <ToolComponent />
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <ToolCalculationHistory toolPath={`/tools/${tool.id}`} />
+              </div>
+            </main>
+            <Footer />
+          </div>
         </Suspense>
       </ToolPageContext.Provider>
     );
