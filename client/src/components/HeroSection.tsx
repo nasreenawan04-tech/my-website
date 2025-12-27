@@ -255,9 +255,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          role="search"
         >
           <form onSubmit={handleSearch} className="relative flex items-center">
+            <label htmlFor="hero-search-input" className="sr-only">Search for tools</label>
             <input 
+              id="hero-search-input"
               ref={inputRef}
               type="text" 
               placeholder="Search tools..."

@@ -242,10 +242,10 @@ const Home = () => {
           <RecentToolsSection />
 
           {/* What is DapsiWow Section */}
-          <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+          <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50" aria-labelledby="what-is-dapsiwow">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 id="what-is-dapsiwow" className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
                   What is DapsiWow?
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-8">
@@ -277,10 +277,10 @@ const Home = () => {
           <CategorySection />
 
           {/* About DapsiWow Section */}
-          <section className="py-20 bg-white">
+          <section className="py-20 bg-white" aria-labelledby="why-choose-dapsiwow">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 id="why-choose-dapsiwow" className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
                   Why Choose DapsiWow?
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
@@ -375,10 +375,10 @@ const Home = () => {
           </section>
 
           {/* Featured Tools Spotlight */}
-          <section className="py-20 bg-gradient-to-br from-neutral-50 to-blue-50">
+          <section className="py-20 bg-gradient-to-br from-neutral-50 to-blue-50" aria-labelledby="featured-spotlight">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 id="featured-spotlight" className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
                   Featured Tools Spotlight
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-3xl mx-auto">

@@ -24,28 +24,28 @@ const Footer = () => {
           </div>
 
           {/* Popular Tools */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Popular Tools</h3>
+          <nav aria-labelledby="footer-popular-tools">
+            <h3 id="footer-popular-tools" className="text-lg font-semibold mb-6">Popular Tools</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/tools/loan-calculator" className="hover:text-white transition-colors" data-testid="link-loan-calculator">Loan Calculator</Link></li>
               <li><Link href="/tools/word-counter" className="hover:text-white transition-colors" data-testid="link-word-counter">Word Counter</Link></li>
               <li><Link href="/tools/bmi-calculator" className="hover:text-white transition-colors" data-testid="link-bmi-calculator">BMI Calculator</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Categories */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Categories</h3>
+          <nav aria-labelledby="footer-categories">
+            <h3 id="footer-categories" className="text-lg font-semibold mb-6">Categories</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/finance-tools" className="hover:text-white transition-colors" data-testid="link-finance-tools">Finance Tools</Link></li>
               <li><Link href="/text-tools" className="hover:text-white transition-colors" data-testid="link-text-tools">Text Tools</Link></li>
               <li><Link href="/health-tools" className="hover:text-white transition-colors" data-testid="link-health-tools">Health Tools</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Support */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Company</h3>
+          <nav aria-labelledby="footer-company">
+            <h3 id="footer-company" className="text-lg font-semibold mb-6">Company</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/about-us" className="hover:text-white transition-colors" data-testid="link-about-us">About Us</Link></li>
               <li><Link href="/help-center" className="hover:text-white transition-colors" data-testid="link-help-center">Help Center</Link></li>
@@ -53,7 +53,7 @@ const Footer = () => {
               <li><Link href="/privacy-policy" className="hover:text-white transition-colors" data-testid="link-privacy-policy">Privacy Policy</Link></li>
               <li><Link href="/terms-of-service" className="hover:text-white transition-colors" data-testid="link-terms-of-service">Terms of Service</Link></li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Section */}

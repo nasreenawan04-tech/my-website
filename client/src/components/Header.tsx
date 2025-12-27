@@ -171,7 +171,7 @@ const Header = () => {
             </div>
 
             {/* Desktop Navigation - Show on md screens and above */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8 px-2 lg:px-4" aria-label="Main navigation">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8 px-2 lg:px-4" aria-label="Main Navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -182,7 +182,7 @@ const Header = () => {
                       : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  aria-label={link.label}
+                  aria-current={location === link.href ? 'page' : undefined}
                 >
                   {link.label}
                   <span 

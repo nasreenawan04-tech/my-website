@@ -59,8 +59,8 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
-      role="button"
-      aria-label={`Open ${tool.name} - ${tool.description}`}
+      role="link"
+      aria-label={`Open ${tool.name} tool. ${tool.description}`}
       data-testid={`card-tool-${tool.id}`}
     >
       {/* Gradient accent line */}
