@@ -1,4 +1,4 @@
-import { db, auth, isFirebaseConfigured } from './firebase';
+import { db, auth, isFirebaseConfigured, isOnline } from './firebase';
 import { 
   doc, 
   setDoc, 
@@ -41,6 +41,34 @@ export interface UserPreferences {
 }
 
 const PREFERENCES_COLLECTION = 'userPreferences';
+const OFFLINE_PREFS_QUEUE_KEY = 'dapsiwow_offline_prefs_queue';
+
+function addToPrefsQueue(data: Partial<UserPreferences>) {
+  try {
+    localStorage.setItem(OFFLINE_PREFS_QUEUE_KEY, JSON.stringify({
+      data,
+      timestamp: Date.now()
+    }));
+  } catch (e) {
+    console.warn('Failed to add to prefs queue:', e);
+  }
+}
+
+export async function processOfflinePrefsQueue(userId: string) {
+  if (!isOnline() || !isFirebaseConfigured || !db || !userId) return;
+
+  const queued = localStorage.getItem(OFFLINE_PREFS_QUEUE_KEY);
+  if (!queued) return;
+
+  try {
+    const { data } = JSON.parse(queued);
+    await syncPreferencesToCloud(userId, data);
+    localStorage.removeItem(OFFLINE_PREFS_QUEUE_KEY);
+    console.log('Offline preferences synced successfully');
+  } catch (e) {
+    console.error('Failed to sync offline preferences:', e);
+  }
+}
 
 /**
  * Sync user preferences to Firebase Firestore
@@ -54,6 +82,11 @@ export async function syncPreferencesToCloud(userId: string, data: Partial<UserP
 
   if (!userId) {
     console.warn('No userId provided for cloud sync');
+    return;
+  }
+
+  if (!isOnline()) {
+    addToPrefsQueue(data);
     return;
   }
 
@@ -71,7 +104,8 @@ export async function syncPreferencesToCloud(userId: string, data: Partial<UserP
     }
   } catch (error) {
     console.error('Error syncing preferences to cloud:', error);
-    // Don't throw - allow app to continue working offline
+    // Queue for later if it was a network error
+    addToPrefsQueue(data);
   }
 }
 

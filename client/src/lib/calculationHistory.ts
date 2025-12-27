@@ -10,7 +10,7 @@ import {
   limit,
   Timestamp
 } from 'firebase/firestore';
-import { db, isFirebaseConfigured } from './firebase';
+import { db, isFirebaseConfigured, isOnline } from './firebase';
 
 export interface CalculationHistory {
   id?: string;
@@ -24,6 +24,73 @@ export interface CalculationHistory {
 
 const COLLECTION_NAME = 'calculationHistory';
 const COMPARISON_COLLECTION_NAME = 'comparisonHistory';
+const OFFLINE_QUEUE_KEY = 'dapsiwow_offline_sync_queue';
+
+interface OfflineQueueItem {
+  type: 'calculation' | 'comparison';
+  data: any;
+  timestamp: number;
+}
+
+function addToOfflineQueue(item: OfflineQueueItem) {
+  try {
+    const queue = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+    queue.push(item);
+    localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue));
+  } catch (e) {
+    console.warn('Failed to add to offline queue:', e);
+  }
+}
+
+export async function processOfflineQueue() {
+  if (!isOnline() || !isFirebaseConfigured || !db) return;
+
+  const queue: OfflineQueueItem[] = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+  if (queue.length === 0) return;
+
+  console.log(`Processing ${queue.length} offline calculation items...`);
+  const remainingItems: OfflineQueueItem[] = [];
+
+  for (const item of queue) {
+    try {
+      if (item.type === 'calculation') {
+        const { userId, toolName, toolPath, inputs, results } = item.data;
+        await addDoc(collection(db, COLLECTION_NAME), {
+          userId,
+          toolName,
+          toolPath,
+          inputs,
+          results,
+          timestamp: Timestamp.fromMillis(item.timestamp)
+        });
+      } else if (item.type === 'comparison') {
+        const { userId, category, toolIds } = item.data;
+        await addDoc(collection(db, COMPARISON_COLLECTION_NAME), {
+          userId,
+          category,
+          toolIds,
+          timestamp: Timestamp.fromMillis(item.timestamp)
+        });
+      }
+    } catch (e) {
+      console.error('Failed to sync offline item:', e);
+      remainingItems.push(item);
+    }
+  }
+
+  if (remainingItems.length === 0) {
+    localStorage.removeItem(OFFLINE_QUEUE_KEY);
+  } else {
+    localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(remainingItems));
+  }
+}
+
+// Register online listener
+if (typeof window !== 'undefined') {
+  window.addEventListener('online', () => {
+    processOfflineQueue().catch(console.error);
+  });
+}
 
 export interface ComparisonHistory {
   id?: string;
@@ -38,7 +105,8 @@ export async function saveComparison(
   category: string,
   toolIds: string[]
 ): Promise<void> {
-  if (!isFirebaseConfigured || !db) {
+  // Always save locally first
+  try {
     const saved = JSON.parse(localStorage.getItem('saved_comparisons') || '[]');
     saved.push({
       id: Math.random().toString(36).substr(2, 9),
@@ -48,6 +116,18 @@ export async function saveComparison(
       timestamp: new Date().toISOString()
     });
     localStorage.setItem('saved_comparisons', JSON.stringify(saved.slice(-20)));
+  } catch (e) {
+    console.warn('Failed to save comparison locally:', e);
+  }
+
+  if (!isFirebaseConfigured || !db) return;
+
+  if (!isOnline()) {
+    addToOfflineQueue({
+      type: 'comparison',
+      data: { userId, category, toolIds },
+      timestamp: Date.now()
+    });
     return;
   }
 
@@ -60,7 +140,11 @@ export async function saveComparison(
     });
   } catch (error) {
     console.error('Error saving comparison:', error);
-    throw error;
+    addToOfflineQueue({
+      type: 'comparison',
+      data: { userId, category, toolIds },
+      timestamp: Date.now()
+    });
   }
 }
 
@@ -125,6 +209,15 @@ export async function saveCalculation(
     return;
   }
 
+  if (!isOnline()) {
+    addToOfflineQueue({
+      type: 'calculation',
+      data: { userId, toolName, toolPath, inputs, results },
+      timestamp: Date.now()
+    });
+    return;
+  }
+
   try {
     await addDoc(collection(db, COLLECTION_NAME), {
       userId,
@@ -136,11 +229,15 @@ export async function saveCalculation(
     });
   } catch (error) {
     console.error('Error saving calculation to Firestore:', error);
+    addToOfflineQueue({
+      type: 'calculation',
+      data: { userId, toolName, toolPath, inputs, results },
+      timestamp: Date.now()
+    });
     // We already saved to local storage, so we don't throw unless it's a critical auth issue
     if ((error as any)?.code === 'permission-denied') {
       throw new Error('Authentication expired. Please sign in again.');
     }
-    // For other errors, we let the local save be the successful outcome
   }
 }
 
