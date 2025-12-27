@@ -6,6 +6,7 @@ import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
 import { QuickAccessBar } from './QuickAccessBar';
+import { OfflineStatus } from './ui/OfflineStatus';
 import { Menu, X, Search, User, LogOut, Scale } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -197,6 +198,9 @@ const Header = () => {
 
             {/* Right Section - Search, Auth, and Mobile Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Offline Status */}
+              <OfflineStatus />
+
               {/* Compare Button */}
               {selectedTools.length > 0 && (
                 <Link href="/compare-tools">
