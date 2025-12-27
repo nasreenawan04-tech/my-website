@@ -15,7 +15,7 @@ const RecentToolsSection = () => {
   const displayTools = recentTools.slice(0, 6).map(rt => rt.tool);
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900" data-testid="recent-tools-section">
+    <section className="py-8 sm:py-12 md:py-16 bg-neutral-50 dark:bg-neutral-900" aria-labelledby="recent-tools-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header - Responsive layout */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 md:mb-12">
@@ -24,7 +24,7 @@ const RecentToolsSection = () => {
               <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div className="min-w-0 flex-1">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-800 dark:text-neutral-100 leading-tight" data-testid="text-recent-tools-title">
+              <h2 id="recent-tools-title" className="text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-800 dark:text-neutral-100 leading-tight" data-testid="text-recent-tools-title">
                 Recently Used Tools
               </h2>
               <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-0.5 sm:mt-1" data-testid="text-recent-tools-subtitle">

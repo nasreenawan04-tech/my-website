@@ -41,10 +41,10 @@ const CategorySection = () => {
   };
 
   return (
-    <section className="py-20 bg-neutral-50" data-testid="category-section">
+    <section className="py-20 bg-neutral-50" aria-labelledby="category-section-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6" data-testid="text-category-title">
+          <h2 id="category-section-title" className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6" data-testid="text-category-title">
             Tools by Category
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto" data-testid="text-category-subtitle">
