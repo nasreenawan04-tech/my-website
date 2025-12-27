@@ -7,8 +7,8 @@ import {
   generateFAQSchema, 
   generateBreadcrumbSchema,
   generateQuestionSchemas,
-  generateAggregateOfferSchema
 } from '@/utils/schemaGenerators';
+import { BreadcrumbSchema } from './BreadcrumbSchema';
 
 interface ToolSEOHeadProps {
   config: ToolSEOConfig;
@@ -103,9 +103,7 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
         </script>
       ))}
       
-      <script type="application/ld+json">
-        {JSON.stringify(generateBreadcrumbSchema(config, baseUrl))}
-      </script>
+      <BreadcrumbSchema config={config} baseUrl={baseUrl} />
       
       <script type="application/ld+json">
         {JSON.stringify(ORGANIZATION_SCHEMA)}
