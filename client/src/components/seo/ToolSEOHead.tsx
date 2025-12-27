@@ -5,7 +5,8 @@ import {
   generateWebApplicationSchema, 
   generateHowToSchema, 
   generateFAQSchema, 
-  generateBreadcrumbSchema 
+  generateBreadcrumbSchema,
+  generateQuestionSchema
 } from '@/utils/schemaGenerators';
 
 interface ToolSEOHeadProps {
@@ -21,6 +22,8 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
   
   const ogImage = `${baseUrl}/images/tools/${config.slug}-og.jpg`;
   const twitterImage = `${baseUrl}/images/tools/${config.slug}-twitter.jpg`;
+  
+  const questionSchema = config.slug.includes('calculator') ? generateQuestionSchema(config) : null;
   
   return (
     <Helmet>
@@ -76,6 +79,12 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
       <script type="application/ld+json">
         {JSON.stringify(generateFAQSchema(config))}
       </script>
+      
+      {questionSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(questionSchema)}
+        </script>
+      )}
       
       <script type="application/ld+json">
         {JSON.stringify(generateBreadcrumbSchema(config, baseUrl))}

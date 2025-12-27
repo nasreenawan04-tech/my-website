@@ -52,6 +52,37 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     audience: {
       '@type': 'Audience',
       audienceType: 'General Public, Professionals, Students'
+    },
+    ...((config.category === 'finance' || config.slug.includes('compare')) && {
+      offers: {
+        '@type': 'AggregateOffer',
+        priceCurrency: 'USD',
+        lowPrice: '0',
+        highPrice: '0',
+        offerCount: '1',
+        offers: [
+          {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock'
+          }
+        ]
+      }
+    })
+  };
+}
+
+export function generateQuestionSchema(config: ToolSEOConfig) {
+  if (!config.faq || config.faq.length === 0) return null;
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Question',
+    name: config.faq[0].question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: config.faq[0].answer
     }
   };
 }
