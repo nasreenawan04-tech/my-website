@@ -322,7 +322,7 @@ const TextTools = () => {
               {/* Results Info */}
               <div className="mb-8">
                 <p className="text-neutral-600 text-center" data-testid="text-results-count">
-                  Showing {filteredTools.length} text tools
+                  Showing {filteredTools.length} tools
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
               </div>

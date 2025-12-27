@@ -334,7 +334,7 @@ const HealthTools = () => {
               {/* Results Info */}
               <div className="mb-8">
                 <p className="text-neutral-600 text-center" data-testid="health-results-count">
-                  Showing {filteredTools.length} health tools
+                  Showing {filteredTools.length} tools
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
               </div>

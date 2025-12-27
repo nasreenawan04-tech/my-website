@@ -187,10 +187,10 @@ const FinanceTools = () => {
           <section className="py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mb-8">
-                <p className="text-neutral-600 text-center" data-testid="finance-results-count">
-                  Showing {filteredTools.length} finance tools
-                  {searchQuery && ` matching "${searchQuery}"`}
-                </p>
+                  <p className="text-neutral-600 text-center" data-testid="finance-results-count">
+                    Showing {filteredTools.length} tools
+                    {searchQuery && ` matching "${searchQuery}"`}
+                  </p>
               </div>
 
               {filteredTools.length > 0 ? (

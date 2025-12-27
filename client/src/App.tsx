@@ -289,6 +289,7 @@ function Router() {
           
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />
+          <Route path="/tools/:toolId/compare" component={CompareTools} />
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
