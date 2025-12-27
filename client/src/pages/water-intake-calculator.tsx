@@ -103,6 +103,49 @@ const WaterIntakeCalculator = () => {
             ]
           })}
         </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Your Water Needs",
+            "description": "Stay hydrated by finding your exact daily water requirements.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Weight",
+                "text": "Input your body weight as the primary baseline for water needs."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Add Lifestyle Factors",
+                "text": "Select your activity level and current climate (hot/cold)."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Review Daily Goal",
+                "text": "See your total daily intake goal in liters or ounces."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much water should I drink daily?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "While 8 glasses is a common rule, your actual needs depend on your weight and activity level. Most people need between 2 and 4 liters daily."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       
       <Header />

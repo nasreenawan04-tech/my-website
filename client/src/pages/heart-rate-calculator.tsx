@@ -67,7 +67,7 @@ export default function HeartRateCalculator() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Heart Rate Calculator",
-            "description": "Free online heart rate calculator to determine target heart rate zones for optimal training, fat burning, and cardiovascular fitness. Calculate maximum heart rate using multiple scientific formulas including Tanaka, Gulati, and Nes formulas.",
+            "description": "Free online heart rate calculator to determine target heart rate zones for optimal training, fat burning, and cardiovascular fitness.",
             "url": "https://dapsiwow.com/tools/heart-rate-calculator",
             "applicationCategory": "HealthApplication",
             "operatingSystem": "Any",
@@ -83,6 +83,49 @@ export default function HeartRateCalculator() {
               "Karvonen method calculations",
               "Fat burning zone calculator",
               "Cardio fitness zone analysis"
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Target Heart Rate Zones",
+            "description": "Optimize your cardio training by finding your specific heart rate zones.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Age",
+                "text": "Input your age to estimate your maximum heart rate."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Input Resting Heart Rate",
+                "text": "For best results, enter your pulse while resting to use the Karvonen method."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Analyze Zones",
+                "text": "Review your training zones from 'Warm Up' to 'Maximum Effort' to guide your workouts."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the best heart rate for fat burning?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The fat-burning zone is typically between 60% and 70% of your maximum heart rate (Zone 2)."
+                }
+              }
             ]
           })}
         </script>

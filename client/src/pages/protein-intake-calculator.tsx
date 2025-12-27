@@ -73,7 +73,7 @@ const ProteinIntakeCalculator = () => {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Protein Intake Calculator",
-            "description": "Free online protein intake calculator to determine daily protein requirements based on personal factors, activity level, and fitness goals. Get personalized protein recommendations.",
+            "description": "Free online protein intake calculator to determine daily protein requirements based on weight, activity level, fitness goals, and health conditions.",
             "url": "https://dapsiwow.com/tools/protein-intake-calculator",
             "applicationCategory": "HealthApplication",
             "operatingSystem": "Any",
@@ -89,6 +89,57 @@ const ProteinIntakeCalculator = () => {
               "Fitness goal customization",
               "Health condition considerations",
               "Protein source recommendations"
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Daily Protein Needs",
+            "description": "Calculate exactly how much protein you need per day for your fitness goals.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Weight and Age",
+                "text": "Input your current body weight and age to establish your baseline requirements."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Select Fitness Goal",
+                "text": "Choose whether you want to lose weight, gain muscle, or maintain your current physique."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Get Protein Target",
+                "text": "Click calculate to see your total daily protein grams and per-meal distribution."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much protein do I need for muscle gain?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For muscle gain, most research suggests 0.7 to 1.0 grams of protein per pound of body weight (1.6 to 2.2g per kg)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is too much protein bad for my kidneys?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "For healthy individuals, high protein intake is generally safe. However, those with pre-existing kidney conditions should consult a doctor."
+                }
+              }
             ]
           })}
         </script>

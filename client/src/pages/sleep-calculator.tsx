@@ -72,7 +72,7 @@ export default function SleepCalculator() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Sleep Calculator",
-            "description": "Free online sleep calculator to optimize sleep schedules based on natural sleep cycles. Calculate ideal bedtime and wake-up times with personalized recommendations.",
+            "description": "Free online sleep calculator to optimize sleep schedules based on natural sleep cycles.",
             "url": "https://dapsiwow.com/tools/sleep-calculator",
             "applicationCategory": "HealthApplication",
             "operatingSystem": "Any",
@@ -87,6 +87,49 @@ export default function SleepCalculator() {
               "Age-specific sleep recommendations",
               "Lifestyle-based sleep advice",
               "Sleep efficiency tracking"
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Optimize Your Sleep Schedule",
+            "description": "Wake up feeling refreshed by timing your sleep with natural 90-minute cycles.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Choose Calculation Type",
+                "text": "Select whether you want to find your ideal bedtime or wake-up time."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Input Time",
+                "text": "Enter your desired wake-up or bedtime."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Review Cycles",
+                "text": "Choose a time that completes a full 90-minute sleep cycle to avoid morning grogginess."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long is one sleep cycle?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A standard sleep cycle lasts approximately 90 minutes. Waking up at the end of a cycle helps you feel more alert."
+                }
+              }
             ]
           })}
         </script>

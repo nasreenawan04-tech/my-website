@@ -98,6 +98,57 @@ export default function CalorieCalculator() {
             ]
           })}
         </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Daily Calorie Needs",
+            "description": "Determine how many calories you need daily to reach your health goals.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Basic Stats",
+                "text": "Input your age, gender, weight, and height."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Select Activity Level",
+                "text": "Choose how often you exercise per week to estimate your TDEE."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Set Your Goal",
+                "text": "Select whether you want to lose, maintain, or gain weight."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How many calories should I eat to lose weight?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To lose roughly 1 pound per week, a deficit of 500 calories per day from your TDEE is generally recommended."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the most accurate calorie formula?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The Mifflin-St Jeor equation is currently considered the most accurate for the general population."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       
       <Header />

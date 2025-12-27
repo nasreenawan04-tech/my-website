@@ -120,6 +120,57 @@ const BodyFatCalculator = () => {
             ]
           })}
         </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Body Fat Percentage",
+            "description": "Step-by-step guide to measuring and calculating your body fat percentage.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Take Measurements",
+                "text": "Use a flexible tape to measure your neck and waist (and hips for women) at the specified points."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Input Data",
+                "text": "Enter your gender, age, weight, and measurements into the calculator."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Get Results",
+                "text": "Click calculate to see your body fat percentage and health classification."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a healthy body fat percentage?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Healthy ranges vary by age and gender. Generally, for men 14-24% is considered fit/average, and for women 21-31% is considered fit/average."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is the US Navy method accurate?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The US Navy method is a highly reliable circumference-based estimation, often within 3-4% of DEXA scan results when measured correctly."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       
       <Header />

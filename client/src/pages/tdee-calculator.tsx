@@ -87,6 +87,49 @@ const TDEECalculator = () => {
             ]
           })}
         </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Find Your TDEE",
+            "description": "Learn your maintenance calories (TDEE) in three simple steps.",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Personal Info",
+                "text": "Input your age, gender, height, and weight."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Pick Activity Multiplier",
+                "text": "Choose the activity level that best matches your weekly movement."
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Review Expenditure",
+                "text": "See exactly how many calories you burn per day on average."
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a healthy TDEE?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A healthy TDEE depends entirely on your size and activity. Most adults fall between 1,800 and 2,800 calories per day."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       
       <Header />
