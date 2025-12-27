@@ -47,6 +47,7 @@ const FavoriteButton = ({
         ${className}
       `}
       title={isToolFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      aria-label={isToolFavorite ? `Remove ${tool.name} from favorites` : `Add ${tool.name} to favorites`}
       data-testid={`button-favorite-${tool.id}`}
     >
       <Star 

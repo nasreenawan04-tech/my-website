@@ -340,6 +340,7 @@ const BMICalculator = () => {
                   )}
                   onClick={() => togglePin({ id: toolId, name: toolName, url: '/tools/bmi-calculator' })}
                   title={isPinned(toolId) ? "Unpin from Quick Access" : "Pin to Quick Access"}
+                  aria-label={isPinned(toolId) ? "Unpin from Quick Access" : "Pin to Quick Access"}
                 >
                   <Pin className={cn("h-3.5 w-3.5", isPinned(toolId) && "fill-current")} />
                 </Button>

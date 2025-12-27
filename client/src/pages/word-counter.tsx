@@ -372,7 +372,11 @@ Speaking time: ${result.speakingTime} minute(s)`;
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                <div 
+                  className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:py-12"
+                  aria-live="polite"
+                  aria-atomic="true"
+                >
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Text Statistics</h2>
 
                   {result && result.words > 0 ? (

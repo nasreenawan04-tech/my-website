@@ -90,6 +90,7 @@ const ShareResultsButton = ({
         ${className}
       `}
       data-testid="button-share-results"
+      aria-label="Share calculation results"
       title="Share calculation results"
     >
       <i className={`fas ${isSharing ? 'fa-spinner fa-spin' : 'fa-share-alt'}`}></i>
