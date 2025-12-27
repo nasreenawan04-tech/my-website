@@ -552,7 +552,7 @@ const BMICalculator = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">BMI Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="bmi-results">
+                    <div className="space-y-6" data-testid="bmi-results" aria-live="polite" aria-atomic="true" role="region" aria-label="BMI calculation results">
                       {/* BMI Value Highlight */}
                       <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
                         <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Your BMI</div>

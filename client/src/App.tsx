@@ -79,6 +79,7 @@ function Router() {
         console.error('Router Error:', error, errorInfo);
       }}
     >
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-9999 focus:p-4 focus:bg-blue-600 focus:text-white">Skip to main content</a>
       <ScrollToTop />
       <PageViewTracker />
       <Suspense fallback={<PageLoadingSpinner />}>
