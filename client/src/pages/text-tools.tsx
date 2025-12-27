@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
 import { Pen, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -8,6 +7,7 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
+import { CategorySEOHead } from '@/components/seo/CategorySEOHead';
 
 const TextTools = () => {
   const [location] = useLocation();
@@ -57,133 +57,11 @@ const TextTools = () => {
 
   return (
     <>
-      <Helmet>
-        {/* Primary Meta Tags */}
-        <title>Text Tools - Free Writing & Text Processing Utilities</title>
-        <meta name="description" content="Access 7 powerful text processing tools including word counter, character counter, password generator, and more. Transform your content instantly." />
-        <meta name="keywords" content="text tools, word counter, case converter, grammar checker, plagiarism checker, text summarizer, writing tools, text analyzer" />
-        <link rel="canonical" href="https://dapsiwow.com/text-tools" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <meta name="publisher" content="DapsiWow" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/text-tools" />
-        <meta property="og:title" content="Text Tools - Free Writing & Text Processing Utilities" />
-        <meta property="og:description" content="Access 7 free text tools including word counter, character counter, password generator, and more. Process content instantly, no registration." />
-        <meta property="og:image" content="https://dapsiwow.com/images/text-tools-og.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="DapsiWow Text Tools - Free Text Processing Utilities" />
-        <meta property="og:site_name" content="DapsiWow" />
-        <meta property="og:locale" content="en_US" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://dapsiwow.com/text-tools" />
-        <meta name="twitter:title" content="Text Tools - Free Writing & Text Processing Utilities" />
-        <meta name="twitter:description" content="Access 7 free text tools for word counting, password generation, and more. Instant processing, no registration." />
-        <meta name="twitter:image" content="https://dapsiwow.com/images/text-tools-og.jpg" />
-        <meta name="twitter:image:alt" content="DapsiWow Text Tools Collection" />
-        
-        {/* Additional Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        
-        {/* Schema.org Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "WebPage",
-                "@id": "https://dapsiwow.com/text-tools",
-                "url": "https://dapsiwow.com/text-tools",
-                "name": "Text Tools - Free Writing & Text Processing Utilities",
-                "description": "Access 7 free text processing tools including word counter, character counter, password generator, and more. Transform and optimize content instantly.",
-                "inLanguage": "en-US",
-                "isPartOf": {
-                  "@id": "https://dapsiwow.com/#website"
-                },
-                "breadcrumb": {
-                  "@id": "https://dapsiwow.com/text-tools#breadcrumb"
-                },
-                "mainEntity": {
-                  "@id": "https://dapsiwow.com/text-tools#collection"
-                }
-              },
-              {
-                "@type": "CollectionPage",
-                "@id": "https://dapsiwow.com/text-tools#collection",
-                "name": "Text Tools Collection",
-                "description": "Comprehensive collection of 7 free text processing and writing utilities",
-                "url": "https://dapsiwow.com/text-tools",
-                "numberOfItems": 7,
-                "itemListElement": [
-                  {
-                    "@type": "SoftwareApplication",
-                    "name": "Word Counter",
-                    "url": "https://dapsiwow.com/tools/word-counter",
-                    "description": "Count words, characters, and sentences in your text",
-                    "applicationCategory": "UtilitiesApplication",
-                    "offers": {
-                      "@type": "Offer",
-                      "price": "0",
-                      "priceCurrency": "USD"
-                    }
-                  },
-                ]
-              },
-              {
-                "@type": "BreadcrumbList",
-                "@id": "https://dapsiwow.com/text-tools#breadcrumb",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://dapsiwow.com"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Text Tools",
-                    "item": "https://dapsiwow.com/text-tools"
-                  }
-                ]
-              },
-              {
-                "@type": "Organization",
-                "@id": "https://dapsiwow.com/#organization",
-                "name": "DapsiWow",
-                "url": "https://dapsiwow.com",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://dapsiwow.com/images/logo.png"
-                },
-                "sameAs": [
-                  "https://facebook.com/dapsiwow",
-                  "https://twitter.com/dapsiwow",
-                  "https://linkedin.com/company/dapsiwow"
-                ]
-              },
-              {
-                "@type": "WebSite",
-                "@id": "https://dapsiwow.com/#website",
-                "url": "https://dapsiwow.com",
-                "name": "DapsiWow",
-                "description": "Free online tools and calculators for finance, health, and text processing",
-                "publisher": {
-                  "@id": "https://dapsiwow.com/#organization"
-                },
-                "inLanguage": "en-US"
-              }
-            ]
-          })}
-        </script>
-      </Helmet>
+      <CategorySEOHead 
+        category="text"
+        title="Text Tools - Free Writing & Text Processing Utilities | DapsiWow"
+        description="Access 7 powerful text processing tools including word counter, password generator, and more. Transform your content instantly with free online utilities."
+      />
 
       <div className="min-h-screen flex flex-col" data-testid="page-text-tools">
         <Header />

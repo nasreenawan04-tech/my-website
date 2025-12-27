@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
 import { Calculator, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -8,6 +7,7 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
+import { CategorySEOHead } from '@/components/seo/CategorySEOHead';
 
 const FinanceTools = () => {
   const [location] = useLocation();
@@ -53,10 +53,11 @@ const FinanceTools = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Finance Tools - Free Financial Calculators | DapsiWow</title>
-        <meta name="description" content="Access 8 free financial calculators including loan, mortgage, EMI, and business loan tools. Make informed money decisions with instant, accurate results." />
-      </Helmet>
+      <CategorySEOHead 
+        category="finance"
+        title="Finance Tools - Free Financial Calculators | DapsiWow"
+        description="Access 8 free financial calculators including loan, mortgage, EMI, and business loan tools. Make informed money decisions with instant, accurate results."
+      />
 
       <div className="min-h-screen flex flex-col" data-testid="page-finance-tools">
         <Header />

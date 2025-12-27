@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
 import { Heart, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -8,6 +7,7 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
+import { CategorySEOHead } from '@/components/seo/CategorySEOHead';
 
 const HealthTools = () => {
   const [location, setLocation] = useLocation();
@@ -57,145 +57,11 @@ const HealthTools = () => {
 
   return (
     <>
-      <Helmet>
-        {/* Primary Meta Tags */}
-        <title>Health Tools - Free Health & Wellness Calculators</title>
-        <meta name="description" content="Access 8 free health calculators including BMI, body fat, calorie, and TDEE calculators. Track your wellness journey with instant, accurate results." />
-        <meta name="keywords" content="health tools, BMI calculator, calorie calculator, body fat calculator, TDEE calculator, fitness tools, health calculators, sleep calculator" />
-        <link rel="canonical" href="https://dapsiwow.com/health-tools" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <meta name="publisher" content="DapsiWow" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/health-tools" />
-        <meta property="og:title" content="Health Tools - Free Health & Wellness Calculators" />
-        <meta property="og:description" content="Access 8 free health calculators including BMI, calorie, and fitness tools. Track your wellness with instant results." />
-        <meta property="og:image" content="https://dapsiwow.com/images/health-tools-og.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="DapsiWow Health Tools - Free Health Calculators" />
-        <meta property="og:site_name" content="DapsiWow" />
-        <meta property="og:locale" content="en_US" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://dapsiwow.com/health-tools" />
-        <meta name="twitter:title" content="Health Tools - Free Health & Wellness Calculators" />
-        <meta name="twitter:description" content="Access 8 free health calculators for BMI, calories, fitness and more. Instant results, no registration required." />
-        <meta name="twitter:image" content="https://dapsiwow.com/images/health-tools-og.jpg" />
-        <meta name="twitter:image:alt" content="DapsiWow Health Tools Collection" />
-        
-        {/* Additional Meta Tags */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="language" content="English" />
-        
-        {/* Schema.org Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "WebPage",
-                "@id": "https://dapsiwow.com/health-tools",
-                "url": "https://dapsiwow.com/health-tools",
-                "name": "Health Tools - Free Health & Wellness Calculators",
-                "description": "Access 8 free health calculators including BMI, calorie, body fat, and fitness tools. Track your wellness journey with instant, accurate results.",
-                "inLanguage": "en-US",
-                "isPartOf": {
-                  "@id": "https://dapsiwow.com/#website"
-                },
-                "breadcrumb": {
-                  "@id": "https://dapsiwow.com/health-tools#breadcrumb"
-                },
-                "mainEntity": {
-                  "@id": "https://dapsiwow.com/health-tools#collection"
-                }
-              },
-              {
-                "@type": "CollectionPage",
-                "@id": "https://dapsiwow.com/health-tools#collection",
-                "name": "Health Tools Collection",
-                "description": "Comprehensive collection of 8 free health and fitness calculators",
-                "url": "https://dapsiwow.com/health-tools",
-                "numberOfItems": 8,
-                "itemListElement": [
-                  {
-                    "@type": "SoftwareApplication",
-                    "name": "BMI Calculator",
-                    "url": "https://dapsiwow.com/tools/bmi-calculator",
-                    "description": "Calculate body mass index and health category",
-                    "applicationCategory": "HealthApplication",
-                    "offers": {
-                      "@type": "Offer",
-                      "price": "0",
-                      "priceCurrency": "USD"
-                    }
-                  },
-                  {
-                    "@type": "SoftwareApplication",
-                    "name": "Calorie Calculator",
-                    "url": "https://dapsiwow.com/tools/calorie-calculator",
-                    "description": "Calculate daily calorie needs for weight goals",
-                    "applicationCategory": "HealthApplication",
-                    "offers": {
-                      "@type": "Offer",
-                      "price": "0",
-                      "priceCurrency": "USD"
-                    }
-                  }
-                ]
-              },
-              {
-                "@type": "BreadcrumbList",
-                "@id": "https://dapsiwow.com/health-tools#breadcrumb",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://dapsiwow.com"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Health Tools",
-                    "item": "https://dapsiwow.com/health-tools"
-                  }
-                ]
-              },
-              {
-                "@type": "Organization",
-                "@id": "https://dapsiwow.com/#organization",
-                "name": "DapsiWow",
-                "url": "https://dapsiwow.com",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://dapsiwow.com/images/logo.png"
-                },
-                "sameAs": [
-                  "https://facebook.com/dapsiwow",
-                  "https://twitter.com/dapsiwow",
-                  "https://linkedin.com/company/dapsiwow"
-                ]
-              },
-              {
-                "@type": "WebSite",
-                "@id": "https://dapsiwow.com/#website",
-                "url": "https://dapsiwow.com",
-                "name": "DapsiWow",
-                "description": "Free online tools and calculators for finance, health, and text processing",
-                "publisher": {
-                  "@id": "https://dapsiwow.com/#organization"
-                },
-                "inLanguage": "en-US"
-              }
-            ]
-          })}
-        </script>
-      </Helmet>
+      <CategorySEOHead 
+        category="health"
+        title="Health Tools - Free Health & Wellness Calculators | DapsiWow"
+        description="Access 8 free health calculators including BMI, body fat, calorie, and TDEE calculators. Track your wellness journey with instant, accurate results."
+      />
 
       <div className="min-h-screen flex flex-col" data-testid="page-health-tools">
         <Header />
