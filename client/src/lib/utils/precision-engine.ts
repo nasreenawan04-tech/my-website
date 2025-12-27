@@ -1,0 +1,86 @@
+/**
+ * PrecisionMath utility for robust financial and health calculations.
+ * Avoids common floating-point errors by using integer-based arithmetic for currency
+ * and controlled rounding for scientific values.
+ */
+export const PrecisionMath = {
+  /**
+   * Rounds a number to a specific decimal precision correctly.
+   */
+  round: (value: number, decimals: number = 2): number => {
+    const multiplier = Math.pow(10, decimals);
+    return Math.round((value + Number.EPSILON) * multiplier) / multiplier;
+  },
+
+  /**
+   * Safe financial addition.
+   */
+  add: (a: number, b: number): number => {
+    return (Math.round(a * 100) + Math.round(b * 100)) / 100;
+  },
+
+  /**
+   * Safe financial subtraction.
+   */
+  subtract: (a: number, b: number): number => {
+    return (Math.round(a * 100) - Math.round(b * 100)) / 100;
+  },
+
+  /**
+   * Formats a number as currency with guaranteed precision.
+   */
+  formatCurrency: (value: number, currency: string = 'USD'): string => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(PrecisionMath.round(value, 2));
+  },
+};
+
+/**
+ * Storage Keys Registry to prevent collisions.
+ */
+export const STORAGE_KEYS = {
+  FAVORITES: 'dapsiwow-favorites',
+  FAVORITE_CATEGORIES: 'dapsiwow-favorite-categories',
+  PINNED_TOOLS: 'pinned-tools',
+  CALC_HISTORY: 'local_calculation_history',
+  USER_PREFS: 'dapsiwow_user_preferences',
+} as const;
+
+/**
+ * Robust LocalStorage Wrapper with cross-tab sync and error recovery.
+ */
+export const PersistentStorage = {
+  save: <T>(key: string, value: T): void => {
+    try {
+      const serialized = JSON.stringify(value);
+      localStorage.setItem(key, serialized);
+      // Trigger a storage event for cross-tab sync if needed
+      window.dispatchEvent(new StorageEvent('storage', { key, newValue: serialized }));
+    } catch (e) {
+      console.error(`[PersistentStorage] Error saving key "${key}":`, e);
+    }
+  },
+
+  load: <T>(key: string, defaultValue: T): T => {
+    try {
+      const item = localStorage.getItem(key);
+      if (item === null) return defaultValue;
+      return JSON.parse(item) as T;
+    } catch (e) {
+      console.error(`[PersistentStorage] Error loading key "${key}", using default.`, e);
+      return defaultValue;
+    }
+  },
+
+  remove: (key: string): void => {
+    try {
+      localStorage.removeItem(key);
+    } catch (e) {
+      console.error(`[PersistentStorage] Error removing key "${key}":`, e);
+    }
+  },
+};

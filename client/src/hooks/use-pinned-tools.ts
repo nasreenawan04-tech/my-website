@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { syncPreferencesToCloud, getPreferencesFromCloud } from '@/lib/cloudSync';
+import { PersistentStorage, STORAGE_KEYS } from '@/lib/utils/precision-engine';
 
 export interface PinnedTool {
   id: string;
@@ -8,7 +9,6 @@ export interface PinnedTool {
   url: string;
 }
 
-const STORAGE_KEY = 'pinned-tools';
 const MAX_PINNED = 5;
 
 export function usePinnedTools() {
@@ -19,14 +19,8 @@ export function usePinnedTools() {
   // Load local and cloud pinned tools on mount and when user changes
   useEffect(() => {
     // Load from local storage first
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        setPinnedTools(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to parse pinned tools', e);
-      }
-    }
+    const saved = PersistentStorage.load<PinnedTool[]>(STORAGE_KEYS.PINNED_TOOLS, []);
+    setPinnedTools(saved);
 
     // Load from cloud if user is logged in
     if (user) {
@@ -34,7 +28,7 @@ export function usePinnedTools() {
       getPreferencesFromCloud(user.uid).then(prefs => {
         if (prefs?.pinnedTools) {
           setPinnedTools(prefs.pinnedTools);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs.pinnedTools));
+          PersistentStorage.save(STORAGE_KEYS.PINNED_TOOLS, prefs.pinnedTools);
         }
         setIsLoading(false);
       }).catch(error => {
@@ -67,7 +61,7 @@ export function usePinnedTools() {
         // Limit to MAX_PINNED tools, keep the most recent
         updated = [...prev, tool].slice(-MAX_PINNED);
       }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      PersistentStorage.save(STORAGE_KEYS.PINNED_TOOLS, updated);
       return updated;
     });
   }, []);

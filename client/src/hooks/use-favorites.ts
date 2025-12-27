@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { syncPreferencesToCloud, getPreferencesFromCloud } from '@/lib/cloudSync';
 import { Tool } from '@/data/tools';
+import { PersistentStorage, STORAGE_KEYS } from '@/lib/utils/precision-engine';
 import { 
   getFavorites, 
   addToFavorites as localAddToFavorites, 
@@ -29,11 +30,11 @@ export const useFavorites = () => {
       getPreferencesFromCloud(user.uid).then(prefs => {
         if (prefs?.favorites && Array.isArray(prefs.favorites)) {
           setFavorites(prefs.favorites as FavoriteTool[]);
-          localStorage.setItem('dapsiwow-favorites', JSON.stringify(prefs.favorites));
+          PersistentStorage.save(STORAGE_KEYS.FAVORITES, prefs.favorites);
         }
         if (prefs?.categories && Array.isArray(prefs.categories)) {
           setCategories(prefs.categories as FavoriteCategory[]);
-          localStorage.setItem('dapsiwow-favorite-categories', JSON.stringify(prefs.categories));
+          PersistentStorage.save(STORAGE_KEYS.FAVORITE_CATEGORIES, prefs.categories);
         }
         setIsLoading(false);
       }).catch(error => {

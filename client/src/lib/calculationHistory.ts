@@ -11,6 +11,7 @@ import {
   Timestamp
 } from 'firebase/firestore';
 import { db, isFirebaseConfigured, isOnline } from './firebase';
+import { PersistentStorage, STORAGE_KEYS } from './utils/precision-engine';
 
 export interface CalculationHistory {
   id?: string;
@@ -34,9 +35,9 @@ interface OfflineQueueItem {
 
 function addToOfflineQueue(item: OfflineQueueItem) {
   try {
-    const queue = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+    const queue = PersistentStorage.load<OfflineQueueItem[]>(OFFLINE_QUEUE_KEY, []);
     queue.push(item);
-    localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(queue));
+    PersistentStorage.save(OFFLINE_QUEUE_KEY, queue);
   } catch (e) {
     console.warn('Failed to add to offline queue:', e);
   }
@@ -45,7 +46,7 @@ function addToOfflineQueue(item: OfflineQueueItem) {
 export async function processOfflineQueue() {
   if (!isOnline() || !isFirebaseConfigured || !db) return;
 
-  const queue: OfflineQueueItem[] = JSON.parse(localStorage.getItem(OFFLINE_QUEUE_KEY) || '[]');
+  const queue = PersistentStorage.load<OfflineQueueItem[]>(OFFLINE_QUEUE_KEY, []);
   if (queue.length === 0) return;
 
   console.log(`Processing ${queue.length} offline calculation items...`);
@@ -79,9 +80,9 @@ export async function processOfflineQueue() {
   }
 
   if (remainingItems.length === 0) {
-    localStorage.removeItem(OFFLINE_QUEUE_KEY);
+    PersistentStorage.remove(OFFLINE_QUEUE_KEY);
   } else {
-    localStorage.setItem(OFFLINE_QUEUE_KEY, JSON.stringify(remainingItems));
+    PersistentStorage.save(OFFLINE_QUEUE_KEY, remainingItems);
   }
 }
 
@@ -107,7 +108,7 @@ export async function saveComparison(
 ): Promise<void> {
   // Always save locally first
   try {
-    const saved = JSON.parse(localStorage.getItem('saved_comparisons') || '[]');
+    const saved = PersistentStorage.load<any[]>('saved_comparisons', []);
     saved.push({
       id: Math.random().toString(36).substr(2, 9),
       userId,
@@ -115,7 +116,7 @@ export async function saveComparison(
       toolIds,
       timestamp: new Date().toISOString()
     });
-    localStorage.setItem('saved_comparisons', JSON.stringify(saved.slice(-20)));
+    PersistentStorage.save('saved_comparisons', saved.slice(-20));
   } catch (e) {
     console.warn('Failed to save comparison locally:', e);
   }
@@ -150,7 +151,7 @@ export async function saveComparison(
 
 export async function getComparisonHistory(userId: string): Promise<ComparisonHistory[]> {
   if (!isFirebaseConfigured || !db) {
-    const saved = JSON.parse(localStorage.getItem('saved_comparisons') || '[]');
+    const saved = PersistentStorage.load<any[]>('saved_comparisons', []);
     return saved.map((s: any) => ({ ...s, timestamp: new Date(s.timestamp) }));
   }
 
@@ -188,7 +189,7 @@ export async function saveCalculation(
 ): Promise<void> {
   // Always save to local storage as a robust fallback/cache
   try {
-    const localHistory = JSON.parse(localStorage.getItem('local_calculation_history') || '[]');
+    const localHistory = PersistentStorage.load<any[]>(STORAGE_KEYS.CALC_HISTORY, []);
     const newEntry = {
       id: `local_${Date.now()}`,
       userId,
@@ -199,7 +200,7 @@ export async function saveCalculation(
       timestamp: new Date().toISOString()
     };
     localHistory.unshift(newEntry);
-    localStorage.setItem('local_calculation_history', JSON.stringify(localHistory.slice(0, 50)));
+    PersistentStorage.save(STORAGE_KEYS.CALC_HISTORY, localHistory.slice(0, 50));
   } catch (e) {
     console.warn('Failed to save to local storage:', e);
   }
