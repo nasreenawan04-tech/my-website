@@ -12,6 +12,7 @@ import NotFound from '@/pages/not-found';
 import { useRecentTools } from '@/hooks/use-recent-tools';
 import { ToolPageContext } from '@/contexts/ToolPageContext';
 import { ToolCalculationHistory } from '@/components/ToolCalculationHistory';
+import { SearchIntentSection } from '@/components/seo/SearchIntentSection';
 
 // Map of tool IDs to their corresponding rich components
 const toolComponents = {
@@ -124,6 +125,7 @@ const ToolPage = () => {
             <main className="flex-1">
               <ToolComponent />
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <SearchIntentSection category={tool.category} toolName={tool.name} />
                 <ToolCalculationHistory toolPath={`/tools/${tool.id}`} />
               </div>
             </main>
