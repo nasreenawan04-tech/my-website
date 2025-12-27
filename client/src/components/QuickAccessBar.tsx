@@ -33,13 +33,14 @@ export function QuickAccessBar() {
                 variant="ghost"
                 size="icon"
                 className="absolute -right-1 -top-1 h-4 w-4 rounded-full bg-white shadow-sm border border-slate-100 opacity-0 group-hover:opacity-100 hover:bg-red-50 hover:text-red-500 transition-all dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-red-900/20"
+                aria-label={`Unpin ${tool.name}`}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   togglePin(tool);
                 }}
               >
-                <X className="h-2.5 w-2.5" />
+                <X className="h-2.5 w-2.5" aria-hidden="true" />
               </Button>
             </div>
           ))}

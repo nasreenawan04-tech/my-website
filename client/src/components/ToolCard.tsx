@@ -88,9 +88,10 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
                   addToCompare(tool);
                 }}
                 data-testid={`button-compare-tool-${tool.id}`}
+                aria-label={`Add ${tool.name} to comparison`}
                 title="Add to comparison"
               >
-                <Scale size={16} />
+                <Scale size={16} aria-hidden="true" />
               </Button>
             )}
 
@@ -101,9 +102,10 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
                     size="icon"
                     variant="ghost"
                     className="h-8 w-8 text-neutral-500 hover:text-primary"
+                    aria-label="Move favorite to category"
                     title="Move to category"
                   >
-                    <FolderPlus size={16} />
+                    <FolderPlus size={16} aria-hidden="true" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">

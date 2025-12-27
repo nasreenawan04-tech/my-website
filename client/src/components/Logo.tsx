@@ -49,7 +49,7 @@ const Logo = ({ className = '', size = 'md', showText = true, onClick }: LogoPro
   }
 
   return (
-    <Link href="/" className="flex items-center" data-testid="logo-link">
+    <Link href="/" className="flex items-center" data-testid="logo-link" aria-label="DapsiWow home">
       {content}
     </Link>
   );

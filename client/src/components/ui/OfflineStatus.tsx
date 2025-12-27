@@ -32,12 +32,12 @@ export function OfflineStatus() {
         <TooltipTrigger asChild>
           <Badge 
             variant="outline" 
-            className="flex items-center gap-1.5 bg-yellow-50 text-yellow-700 border-yellow-200 py-1 px-3 hover:bg-yellow-100 transition-colors cursor-help dark:bg-yellow-900/30 dark:text-yellow-400 dark:border-yellow-800"
+            className="flex items-center gap-1.5 bg-yellow-100 text-yellow-900 border-yellow-300 py-1 px-3 hover:bg-yellow-200 transition-colors cursor-help dark:bg-yellow-900/40 dark:text-yellow-100 dark:border-yellow-700"
             data-testid="status-offline"
           >
-            <WifiOff className="h-3.5 w-3.5" />
+            <WifiOff className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="text-xs font-semibold uppercase tracking-wider">Offline Mode</span>
-            <AlertCircle className="h-3.5 w-3.5" />
+            <AlertCircle className="h-3.5 w-3.5" aria-hidden="true" />
           </Badge>
         </TooltipTrigger>
         <TooltipContent className="max-w-xs p-3 bg-white dark:bg-slate-900 border shadow-lg">

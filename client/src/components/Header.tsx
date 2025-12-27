@@ -167,9 +167,7 @@ const Header = () => {
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-16 lg:h-[4.5rem]">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
-              <Link href="/" aria-label="DapsiWow home">
-                <Logo />
-              </Link>
+              <Logo />
             </div>
 
             {/* Desktop Navigation - Show on md screens and above */}
