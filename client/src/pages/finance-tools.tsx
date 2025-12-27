@@ -184,7 +184,7 @@ const FinanceTools = () => {
             </div>
           </section>
 
-          <section className="py-16">
+          <section id="tools" className="py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="mb-8">
                   <p className="text-neutral-600 text-center" data-testid="finance-results-count">

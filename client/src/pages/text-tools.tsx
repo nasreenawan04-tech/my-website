@@ -317,7 +317,7 @@ const TextTools = () => {
           </section>
 
           {/* Tools Section */}
-          <section className="py-16">
+          <section id="tools" className="py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Results Info */}
               <div className="mb-8">
