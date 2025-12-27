@@ -18,6 +18,33 @@ const STATIC_ASSETS = [
   '/sw-register.js'
 ];
 
+// Top 30 Popular Tools for Proactive Caching
+const POPULAR_TOOL_ASSETS = [
+  '/tools/loan-calculator',
+  '/tools/mortgage-calculator',
+  '/tools/emi-calculator',
+  '/tools/business-loan-calculator',
+  '/tools/compound-interest-calculator',
+  '/tools/simple-interest-calculator',
+  '/tools/car-loan-calculator',
+  '/tools/home-loan-calculator',
+  '/tools/word-counter',
+  '/tools/character-counter',
+  '/tools/password-generator',
+  '/tools/username-generator',
+  '/tools/qr-code-scanner',
+  '/tools/base64-encoder-decoder',
+  '/tools/unit-converter',
+  '/tools/bmi-calculator',
+  '/tools/calorie-calculator',
+  '/tools/body-fat-calculator',
+  '/tools/water-intake-calculator',
+  '/tools/protein-intake-calculator',
+  '/tools/heart-rate-calculator',
+  '/tools/sleep-calculator',
+  '/tools/tdee-calculator'
+];
+
 // External domains to SKIP (do not intercept or cache)
 const EXTERNAL_DOMAINS = [
   'googlesyndication.com',
@@ -59,17 +86,22 @@ function isSameOrigin(url) {
   }
 }
 
-// Install event - cache static assets
+// Install event - cache static assets and popular tools
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then((cache) => {
+    Promise.all([
+      caches.open(STATIC_CACHE).then((cache) => {
         return cache.addAll(STATIC_ASSETS).catch((error) => {
-          console.warn('Failed to cache some assets during install:', error);
-          // Continue anyway
+          console.warn('Failed to cache static assets during install:', error);
+        });
+      }),
+      caches.open(TOOLS_CACHE).then((cache) => {
+        return cache.addAll(POPULAR_TOOL_ASSETS).catch((error) => {
+          console.warn('Failed to cache popular tools during install:', error);
         });
       })
-      .then(() => self.skipWaiting())
+    ])
+    .then(() => self.skipWaiting())
   );
 });
 
