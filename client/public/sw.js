@@ -1,22 +1,21 @@
 // Dynamic cache versioning based on build timestamp
-const CACHE_VERSION = '2025.09.22.001';
+const CACHE_VERSION = '2025.12.27.001';
 const CACHE_NAME = `dapsiwow-v${CACHE_VERSION}`;
 const STATIC_CACHE = `dapsiwow-static-v${CACHE_VERSION}`;
+const TOOLS_CACHE = `dapsiwow-tools-v${CACHE_VERSION}`;
 const API_CACHE = `dapsiwow-api-v${CACHE_VERSION}`;
 const FONT_CACHE = `dapsiwow-fonts-v${CACHE_VERSION}`;
 
-// Assets to cache on install
+// Assets to cache on install (Core App Shell)
 const STATIC_ASSETS = [
   '/',
+  '/index.html',
   '/favicon.svg',
   '/logo.svg', 
   '/site.webmanifest',
   '/robots.txt',
   '/sitemap.xml',
-  '/sitemap-main.xml',
-  '/sitemap-finance.xml',
-  '/sitemap-health.xml',
-  '/sitemap-text.xml'
+  '/sw-register.js'
 ];
 
 // External domains to SKIP (do not intercept or cache)
@@ -83,6 +82,7 @@ self.addEventListener('activate', (event) => {
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME && 
                 cacheName !== STATIC_CACHE && 
+                cacheName !== TOOLS_CACHE &&
                 cacheName !== API_CACHE &&
                 cacheName !== FONT_CACHE) {
               return caches.delete(cacheName);
@@ -180,33 +180,59 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets - stale-while-revalidate for better performance
-  if (url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico)$/)) {
+  // Static assets (JS, CSS, Images) - Cache First, Network Second for tool-specific assets
+  if (url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico|webp)$/)) {
+    // Determine which cache to use
+    const targetCache = url.pathname.includes('/assets/') ? TOOLS_CACHE : STATIC_CACHE;
+    
     event.respondWith(
-      caches.open(STATIC_CACHE)
+      caches.open(targetCache)
+        .then((cache) => {
+          return cache.match(request)
+            .then((cachedResponse) => {
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              
+              return fetch(request)
+                .then((response) => {
+                  if (response.ok && response.status === 200) {
+                    cache.put(request, response.clone()).catch(() => {});
+                  }
+                  return response;
+                })
+                .catch(() => {
+                  return new Response('Asset not available offline', { status: 404 });
+                });
+            });
+        })
+    );
+    return;
+  }
+
+  // Tool pages - Cache First, Network Second
+  if (url.pathname.startsWith('/tools/')) {
+    event.respondWith(
+      caches.open(TOOLS_CACHE)
         .then((cache) => {
           return cache.match(request)
             .then((cachedResponse) => {
               const fetchPromise = fetch(request)
-                .then((response) => {
-                  // Clone response before any use
-                  const clonedResponse = response.clone();
-                  if (response.ok && response.status === 200) {
-                    cache.put(request, clonedResponse).catch(() => {
-                      // Silently fail cache write
-                    });
+                .then((networkResponse) => {
+                  if (networkResponse.ok && networkResponse.status === 200) {
+                    cache.put(request, networkResponse.clone()).catch(() => {});
                   }
-                  return response;
+                  return networkResponse;
                 })
                 .catch((error) => {
-                  // Return cached version if available, otherwise fail gracefully
-                  return cachedResponse || new Response('Asset not available', { status: 404 });
+                  if (cachedResponse) return cachedResponse;
+                  throw error;
                 });
 
-              // Return cached version immediately, but update cache in background
               return cachedResponse || fetchPromise;
             });
         })
+        .catch(() => caches.match('/'))
     );
     return;
   }
