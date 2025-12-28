@@ -3,6 +3,7 @@
  * Implements generic CalculatorFunction type with MortgageCalculatorInputs and MortgageCalculatorResult
  */
 
+import { PrecisionMath } from '@/lib/utils/precision-engine';
 import {
   LoanInputs,
   LoanCalculationResult,
@@ -118,15 +119,18 @@ export function calculateMortgageAmortization(
 
   let currentBalance = principal;
 
-  for (let period = 1; period <= totalPayments && currentBalance > 0.01; period++) {
-    const interestPayment = currentBalance * adjustedRate;
-    const principalPayment = Math.min(monthlyPI - interestPayment + extraPayment, currentBalance);
+  for (let period = 1; period <= totalPayments && currentBalance > 0.005; period++) {
+    const interestPayment = PrecisionMath.multiply(currentBalance, adjustedRate);
+    const principalPayment = Math.min(
+      PrecisionMath.add(PrecisionMath.subtract(monthlyPI, interestPayment), extraPayment),
+      currentBalance
+    );
 
-    currentBalance -= principalPayment;
+    currentBalance = PrecisionMath.subtract(currentBalance, principalPayment);
 
     schedule.push({
       period,
-      payment: principalPayment + interestPayment,
+      payment: PrecisionMath.add(principalPayment, interestPayment),
       principal: principalPayment,
       interest: interestPayment,
       balance: Math.max(0, currentBalance)
@@ -229,78 +233,80 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
     paymentFrequency
   );
 
-  // Calculate totals from schedule
-  const totalInterest = scheduleEntries.reduce((sum, entry) => sum + entry.interest, 0);
-  const totalAmount = scheduleEntries.reduce((sum, entry) => sum + entry.payment, 0);
+  // Calculate totals from schedule using precision math
+  const totalInterest = scheduleEntries.reduce((sum, entry) => PrecisionMath.add(sum, entry.interest), 0);
+  const totalAmount = scheduleEntries.reduce((sum, entry) => PrecisionMath.add(sum, entry.payment), 0);
 
   // Calculate monthly housing costs
-  const monthlyTaxes = propertyTax / 12;
-  const monthlyInsuranceAmount = homeInsurance / 12;
+  const monthlyTaxes = PrecisionMath.divide(propertyTax, 12);
+  const monthlyInsuranceAmount = PrecisionMath.divide(homeInsurance, 12);
   const monthlyPMI = calculateMonthlyPMI(principal, homePrice, pmiRate, loanType);
   const monthlyHOA = hoaFees;
 
   // Convert PI to monthly equivalent
-  const monthlyPIEquivalent = monthlyPI * (paymentsPerYear / 12);
-  const totalMonthlyPayment =
-    monthlyPIEquivalent + monthlyTaxes + monthlyInsuranceAmount + monthlyPMI + monthlyHOA;
+  const monthlyPIEquivalent = PrecisionMath.multiply(monthlyPI, paymentsPerYear / 12);
+  const totalMonthlyPayment = PrecisionMath.add(
+    PrecisionMath.add(PrecisionMath.add(monthlyPIEquivalent, monthlyTaxes), monthlyInsuranceAmount),
+    PrecisionMath.add(monthlyPMI, monthlyHOA)
+  );
 
   // Calculate closing costs and total cash needed
-  const closingCosts = (homePrice * closingCostPercent) / 100;
-  const totalCashNeeded = downPayment + closingCosts;
+  const closingCosts = PrecisionMath.divide(PrecisionMath.multiply(homePrice, closingCostPercent), 100);
+  const totalCashNeeded = PrecisionMath.add(downPayment, closingCosts);
 
   // Calculate loan-to-value ratio
-  const loanToValue = (principal / homePrice) * 100;
+  const loanToValue = PrecisionMath.multiply(PrecisionMath.divide(principal, homePrice), 100);
 
   // Calculate debt-to-income ratio
-  const debtToIncomeRatio = monthlyIncome > 0 ? (totalMonthlyPayment / monthlyIncome) * 100 : 0;
+  const debtToIncomeRatio = monthlyIncome > 0 ? PrecisionMath.multiply(PrecisionMath.divide(totalMonthlyPayment, monthlyIncome), 100) : 0;
 
   // Calculate prepayment savings if extra payment
   let extraPaymentSavings: PrepaymentSavings | undefined;
   if (extraPayment > 0) {
-    const regularTotalAmount = monthlyPI * totalPayments;
-    const regularTotalInterest = regularTotalAmount - principal;
-    const totalInterestWithExtra = scheduleEntries.reduce((sum, entry) => sum + entry.interest, 0);
+    const regularTotalAmount = PrecisionMath.multiply(monthlyPI, totalPayments);
+    const regularTotalInterest = PrecisionMath.subtract(regularTotalAmount, principal);
+    const totalInterestWithExtra = scheduleEntries.reduce((sum, entry) => PrecisionMath.add(sum, entry.interest), 0);
 
     extraPaymentSavings = {
       timeSaved: Math.max(0, totalPayments - scheduleEntries.length),
-      interestSaved: Math.max(0, regularTotalInterest - totalInterestWithExtra),
+      interestSaved: Math.max(0, PrecisionMath.subtract(regularTotalInterest, totalInterestWithExtra)),
       newTotalInterest: totalInterestWithExtra,
       newPayoffTime: scheduleEntries.length,
       savingsPercentage:
         regularTotalInterest > 0
-          ? ((regularTotalInterest - totalInterestWithExtra) / regularTotalInterest) * 100
+          ? PrecisionMath.multiply(PrecisionMath.divide(PrecisionMath.subtract(regularTotalInterest, totalInterestWithExtra), regularTotalInterest), 100)
           : 0
     };
   }
 
-  const totalPrincipal = scheduleEntries.reduce((sum, entry) => sum + entry.principal, 0);
+  const totalPrincipal = scheduleEntries.reduce((sum, entry) => PrecisionMath.add(sum, entry.principal), 0);
 
   return {
-    monthlyPayment: Math.round(totalMonthlyPayment * 100) / 100,
-    totalAmount: Math.round(totalAmount * 100) / 100,
-    totalInterest: Math.round(totalInterest * 100) / 100,
+    monthlyPayment: PrecisionMath.round(totalMonthlyPayment, 2),
+    totalAmount: PrecisionMath.round(totalAmount, 2),
+    totalInterest: PrecisionMath.round(totalInterest, 2),
     amortizationSchedule: {
       entries: scheduleEntries,
       totalPayments: totalPayments,
-      totalInterest: Math.round(totalInterest * 100) / 100,
-      totalPrincipal: Math.round(totalPrincipal * 100) / 100
+      totalInterest: PrecisionMath.round(totalInterest, 2),
+      totalPrincipal: PrecisionMath.round(totalPrincipal, 2)
     },
     extraPaymentSavings,
-    primaryValue: Math.round(totalMonthlyPayment * 100) / 100,
-    formattedPrimaryValue: `$${(Math.round(totalMonthlyPayment * 100) / 100).toFixed(2)}`,
+    primaryValue: PrecisionMath.round(totalMonthlyPayment, 2),
+    formattedPrimaryValue: `$${PrecisionMath.round(totalMonthlyPayment, 2).toFixed(2)}`,
     timestamp: new Date(),
     currency: 'USD',
     homePrice,
     downPayment,
-    monthlyPrincipalAndInterest: Math.round(monthlyPIEquivalent * 100) / 100,
-    monthlyTaxes: Math.round(monthlyTaxes * 100) / 100,
-    monthlyInsurance: Math.round(monthlyInsuranceAmount * 100) / 100,
-    monthlyPMI: Math.round(monthlyPMI * 100) / 100,
-    monthlyHOA: Math.round(monthlyHOA * 100) / 100,
-    closingCosts: Math.round(closingCosts * 100) / 100,
-    totalCashNeeded: Math.round(totalCashNeeded * 100) / 100,
-    loanToValue: Math.round(loanToValue * 100) / 100,
-    debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100
+    monthlyPrincipalAndInterest: PrecisionMath.round(monthlyPIEquivalent, 2),
+    monthlyTaxes: PrecisionMath.round(monthlyTaxes, 2),
+    monthlyInsurance: PrecisionMath.round(monthlyInsuranceAmount, 2),
+    monthlyPMI: PrecisionMath.round(monthlyPMI, 2),
+    monthlyHOA: PrecisionMath.round(monthlyHOA, 2),
+    closingCosts: PrecisionMath.round(closingCosts, 2),
+    totalCashNeeded: PrecisionMath.round(totalCashNeeded, 2),
+    loanToValue: PrecisionMath.round(loanToValue, 2),
+    debtToIncomeRatio: PrecisionMath.round(debtToIncomeRatio, 2)
   };
 };
 
