@@ -94,6 +94,11 @@ import { usePredictiveInput } from '@/hooks/use-predictive-input';
 
 export default function LoanCalculator() {
   const toolId = 'loan-calculator';
+  const toolName = 'Loan Calculator';
+  const { toast } = useToast();
+  const { user } = useAuth();
+  const { pinnedTools, togglePin, isPinned } = usePinnedTools();
+
   const { predictedValues, updatePredictions } = usePredictiveInput(toolId, {}, {
     loanAmount: '100000',
     interestRate: '5.50',
@@ -104,39 +109,6 @@ export default function LoanCalculator() {
     processingFee: '0',
     balloonPayment: '0'
   });
-
-  const [loanAmount, setLoanAmount] = useState(predictedValues.loanAmount);
-  const [interestRate, setInterestRate] = useState(predictedValues.interestRate);
-  const [loanTerm, setLoanTerm] = useState(predictedValues.loanTerm);
-  const [termUnit, setTermUnit] = useState(predictedValues.termUnit);
-  const [paymentFrequency, setPaymentFrequency] = useState(predictedValues.paymentFrequency);
-  const [extraPayment, setExtraPayment] = useState(predictedValues.extraPayment);
-  const [processingFee, setProcessingFee] = useState(predictedValues.processingFee);
-  const [balloonPayment, setBalloonPayment] = useState(predictedValues.balloonPayment);
-  const [biweeklyMode, setBiweeklyMode] = useState<'standard' | 'accelerated'>('standard');
-  const [showAmortization, setShowAmortization] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
-  const [showCharts, setShowCharts] = useState(false);
-  const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
-  const [result, setResult] = useState<LoanResult | null>(null);
-  const [isCalculating, setIsCalculating] = useState(false); // Added for loading state
-  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false); // Added for PDF generation loading state
-  const resultsRef = useRef<HTMLDivElement>(null);
-  const tableScrollRef = useRef<HTMLDivElement>(null);
-  const comparisonRef = useRef<HTMLDivElement>(null);
-  const amortizationRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
-  const [shouldAutoCalculate, setShouldAutoCalculate] = useState(false);
-  const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
-  const [isSaving, setIsSaving] = useState(false);
-  const { toast } = useToast();
-  const { user } = useAuth();
-  const { pinnedTools, togglePin, isPinned } = usePinnedTools();
-  const toolId = 'loan-calculator';
   const toolName = 'Loan Calculator';
 
   // Memoized currency formatter for better performance

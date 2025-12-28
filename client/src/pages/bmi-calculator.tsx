@@ -22,6 +22,10 @@ import { usePredictiveInput } from '@/hooks/use-predictive-input';
 
 const BMICalculator = () => {
   const toolId = 'bmi-calculator';
+  const toolName = 'BMI Calculator';
+  const { toast } = useToast();
+  const { pinnedTools, togglePin, isPinned } = usePinnedTools();
+  
   const { predictedValues, updatePredictions } = usePredictiveInput(toolId, {}, {
     weight: '',
     height: '',
@@ -31,18 +35,6 @@ const BMICalculator = () => {
     age: '',
     gender: 'male'
   });
-
-  const [weight, setWeight] = useState(predictedValues.weight);
-  const [height, setHeight] = useState(predictedValues.height);
-  const [feet, setFeet] = useState(predictedValues.feet);
-  const [inches, setInches] = useState(predictedValues.inches);
-  const [unitSystem, setUnitSystem] = useState<UnitSystem>(predictedValues.unitSystem);
-  const [age, setAge] = useState(predictedValues.age);
-  const [gender, setGender] = useState<Gender>(predictedValues.gender);
-  const [result, setResult] = useState<BMIResult | null>(null);
-  const { toast } = useToast();
-  const { pinnedTools, togglePin, isPinned } = usePinnedTools();
-  const toolId = 'bmi-calculator';
   const toolName = 'BMI Calculator';
 
   const handleCalculate = () => {
