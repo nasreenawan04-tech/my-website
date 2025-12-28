@@ -157,7 +157,7 @@ const Header = () => {
     <>
       <div className="h-[40px] hidden sm:block"><QuickAccessBar /></div>
       <header 
-        className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out min-h-[56px] sm:min-h-[64px] ${
+        className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out min-h-[50px] sm:min-h-[56px] ${
           isScrolled 
             ? 'bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
             : 'bg-white/90 dark:bg-neutral-900/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
@@ -165,7 +165,7 @@ const Header = () => {
         data-testid="header-main"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16 md:h-16 lg:h-[4.5rem]">
+          <div className="flex justify-between items-center h-12 sm:h-14 md:h-14 lg:h-16">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
               <Logo />
