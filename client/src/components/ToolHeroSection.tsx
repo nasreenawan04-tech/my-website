@@ -18,7 +18,10 @@ const ToolHeroSection = ({ title, description, testId, toolId }: ToolHeroSection
   const tool = toolId ? tools.find(t => t.id === toolId) : tools.find(t => t.href === location);
 
   return (
-    <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28" aria-labelledby="tool-hero-title">
+    <section 
+      className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28 min-h-[320px] flex items-center" 
+      aria-labelledby="tool-hero-title"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="space-y-6">
           <h1 

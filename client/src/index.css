@@ -198,16 +198,40 @@
     padding-bottom: 0.125rem;
   }
 
-  /* Ensure proper text selection rendering */
-  ::selection {
-    background-color: rgba(59, 130, 246, 0.3);
-    -webkit-text-fill-color: initial;
-    color: initial;
+  /* Prevent CLS for lazy-loaded tool pages */
+  main {
+    min-height: 60vh;
+    contain-intrinsic-size: 0 60vh;
+    content-visibility: auto;
   }
 
-  ::-moz-selection {
-    background-color: rgba(59, 130, 246, 0.3);
-    color: initial;
+  /* Optimized tool card grid to prevent layout jumps */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    min-height: 400px;
+  }
+
+  /* Touch target safety for iOS */
+  @supports (-webkit-touch-callout: none) {
+    .h-screen {
+      height: -webkit-fill-available;
+    }
+  }
+}
+
+/* Non-obvious Fix: Layout Stability for Animated Heroes */
+.gradient-hero {
+  /* Ensure height is reserved before Framer Motion kicks in */
+  min-height: 450px;
+  contain: layout;
+  isolation: isolate;
+}
+
+@media (max-width: 640px) {
+  .gradient-hero {
+    min-height: 380px;
   }
 }
 

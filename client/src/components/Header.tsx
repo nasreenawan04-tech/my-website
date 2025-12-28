@@ -155,9 +155,9 @@ const Header = () => {
 
   return (
     <>
-      <QuickAccessBar />
+      <div className="h-[40px] hidden sm:block"><QuickAccessBar /></div>
       <header 
-        className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
+        className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out min-h-[56px] sm:min-h-[64px] ${
           isScrolled 
             ? 'bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
             : 'bg-white/90 dark:bg-neutral-900/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
