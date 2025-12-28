@@ -109,7 +109,36 @@ export default function LoanCalculator() {
     processingFee: '0',
     balloonPayment: '0'
   });
-  const toolName = 'Loan Calculator';
+
+  const [loanAmount, setLoanAmount] = useState(predictedValues.loanAmount ?? '100000');
+  const [interestRate, setInterestRate] = useState(predictedValues.interestRate ?? '5.50');
+  const [loanTerm, setLoanTerm] = useState(predictedValues.loanTerm ?? '30');
+  const [termUnit, setTermUnit] = useState(predictedValues.termUnit ?? 'years');
+  const [paymentFrequency, setPaymentFrequency] = useState(predictedValues.paymentFrequency ?? 'monthly');
+  const [extraPayment, setExtraPayment] = useState(predictedValues.extraPayment ?? '0');
+  const [processingFee, setProcessingFee] = useState(predictedValues.processingFee ?? '0');
+  const [balloonPayment, setBalloonPayment] = useState(predictedValues.balloonPayment ?? '0');
+
+  const [biweeklyMode, setBiweeklyMode] = useState<'standard' | 'accelerated'>('standard');
+  const [showAmortization, setShowAmortization] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [showCharts, setShowCharts] = useState(false);
+  const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
+  const [result, setResult] = useState<LoanResult | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false); // Added for loading state
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false); // Added for PDF generation loading state
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
+  const amortizationRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [shouldAutoCalculate, setShouldAutoCalculate] = useState(false);
+  const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
+  const [isSaving, setIsSaving] = useState(false);
 
   // Memoized currency formatter for better performance
   const formatCurrency = useMemo(() => {
@@ -126,11 +155,11 @@ export default function LoanCalculator() {
     setIsCalculating(true);
     setValidationErrors({});
 
-    const principal = parseFloat(loanAmount);
-    const annualRate = parseFloat(interestRate);
-    const term = parseFloat(loanTerm);
-    const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
-    const procFee = parseFloat(processingFee);
+    const principal = parseFloat(loanAmount ?? '0');
+    const annualRate = parseFloat(interestRate ?? '0');
+    const term = parseFloat(loanTerm ?? '0');
+    const extraPmt = (extraPayment ?? '').trim() === '' ? 0 : parseFloat(extraPayment ?? '0');
+    const procFee = parseFloat(processingFee ?? '0');
 
     const balloonPmt = parseFloat(balloonPayment || '0');
     
@@ -162,22 +191,22 @@ export default function LoanCalculator() {
     trackToolUsed('Loan Calculator', 'Finance', {
       loan_amount: principal,
       interest_rate: annualRate,
-      term_months: termUnit === 'years' ? term * 12 : term,
-      payment_frequency: paymentFrequency,
+      term_months: (termUnit ?? 'years') === 'years' ? term * 12 : term,
+      payment_frequency: paymentFrequency ?? 'monthly',
       has_extra_payment: extraPmt > 0,
       processing_fee: procFee,
       has_balloon_payment: balloonPmt > 0,
-      biweekly_mode: paymentFrequency === 'biweekly' ? biweeklyMode : null
+      biweekly_mode: (paymentFrequency ?? 'monthly') === 'biweekly' ? biweeklyMode : null
     });
 
     const annualRateDecimal = annualRate / 100;
-    const termMonths = termUnit === 'years' ? term * 12 : term;
+    const termMonths = (termUnit ?? 'years') === 'years' ? term * 12 : term;
 
     // Handle biweekly payment modes
     let paymentsPerYear: number;
-    if (paymentFrequency === 'weekly') {
+    if ((paymentFrequency ?? 'monthly') === 'weekly') {
       paymentsPerYear = 52;
-    } else if (paymentFrequency === 'biweekly') {
+    } else if ((paymentFrequency ?? 'monthly') === 'biweekly') {
       paymentsPerYear = 26;
     } else {
       paymentsPerYear = 12;
@@ -206,7 +235,7 @@ export default function LoanCalculator() {
     }
     
     // For accelerated biweekly, calculate based on monthly equivalent
-    if (paymentFrequency === 'biweekly' && biweeklyMode === 'accelerated') {
+    if ((paymentFrequency ?? 'monthly') === 'biweekly' && biweeklyMode === 'accelerated') {
       const monthlyPayment = (adjustedPrincipal * (annualRateDecimal / 12) * Math.pow(1 + annualRateDecimal / 12, termMonths)) /
                             (Math.pow(1 + annualRateDecimal / 12, termMonths) - 1);
       regularPayment = monthlyPayment / 2; // Half of monthly payment every 2 weeks
@@ -275,14 +304,14 @@ export default function LoanCalculator() {
 
     setResult(calculationResult);
     updatePredictions({
-      loanAmount,
-      interestRate,
-      loanTerm,
-      termUnit,
-      paymentFrequency,
-      extraPayment,
-      processingFee,
-      balloonPayment
+      loanAmount: loanAmount || '100000',
+      interestRate: interestRate || '5.50',
+      loanTerm: loanTerm || '30',
+      termUnit: termUnit || 'years',
+      paymentFrequency: paymentFrequency || 'monthly',
+      extraPayment: extraPayment || '0',
+      processingFee: processingFee || '0',
+      balloonPayment: balloonPayment || '0'
     });
 
     setTimeout(() => {
@@ -321,11 +350,11 @@ export default function LoanCalculator() {
 
     setIsSaving(true);
     try {
-      const principal = parseFloat(loanAmount);
-      const annualRate = parseFloat(interestRate);
-      const term = parseFloat(loanTerm);
-      const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
-      const procFee = parseFloat(processingFee);
+      const principal = parseFloat(loanAmount ?? '0');
+      const annualRate = parseFloat(interestRate ?? '0');
+      const term = parseFloat(loanTerm ?? '0');
+      const extraPmt = (extraPayment ?? '').trim() === '' ? 0 : parseFloat(extraPayment ?? '0');
+      const procFee = parseFloat(processingFee ?? '0');
       const balloonPmt = parseFloat(balloonPayment || '0');
 
       await saveCalculation(
@@ -336,12 +365,12 @@ export default function LoanCalculator() {
           loanAmount: principal,
           interestRate: annualRate,
           loanTerm: term,
-          termUnit,
-          paymentFrequency,
+          termUnit: termUnit ?? 'years',
+          paymentFrequency: paymentFrequency ?? 'monthly',
           extraPayment: extraPmt,
           processingFee: procFee,
           balloonPayment: balloonPmt,
-          biweeklyMode: paymentFrequency === 'biweekly' ? biweeklyMode : undefined
+          biweeklyMode: (paymentFrequency ?? 'monthly') === 'biweekly' ? biweeklyMode : undefined
         },
         {
           monthlyPayment: result.monthlyPayment,
@@ -373,17 +402,17 @@ export default function LoanCalculator() {
     if (!result) return;
 
     const params = new URLSearchParams({
-      amount: loanAmount,
-      rate: interestRate,
-      term: loanTerm,
-      unit: termUnit,
-      freq: paymentFrequency,
-      extra: extraPayment,
-      fee: processingFee,
-      balloon: balloonPayment
+      amount: loanAmount ?? '100000',
+      rate: interestRate ?? '5.50',
+      term: loanTerm ?? '30',
+      unit: termUnit ?? 'years',
+      freq: paymentFrequency ?? 'monthly',
+      extra: extraPayment ?? '0',
+      fee: processingFee ?? '0',
+      balloon: balloonPayment ?? '0'
     });
     
-    if (paymentFrequency === 'biweekly') {
+    if ((paymentFrequency ?? 'monthly') === 'biweekly') {
       params.append('biweeklyMode', biweeklyMode);
     }
 
@@ -419,12 +448,12 @@ export default function LoanCalculator() {
 
     trackToolUsed('Loan Calculator', 'Finance', {
       action: 'share',
-      loan_amount: parseFloat(loanAmount),
-      interest_rate: parseFloat(interestRate),
-      term_months: termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm),
-      payment_frequency: paymentFrequency,
-      has_extra_payment: parseFloat(extraPayment) > 0,
-      processing_fee: parseFloat(processingFee)
+      loan_amount: parseFloat(loanAmount ?? '0'),
+      interest_rate: parseFloat(interestRate ?? '0'),
+      term_months: (termUnit ?? 'years') === 'years' ? parseFloat(loanTerm ?? '0') * 12 : parseFloat(loanTerm ?? '0'),
+      payment_frequency: paymentFrequency ?? 'monthly',
+      has_extra_payment: parseFloat(extraPayment ?? '0') > 0,
+      processing_fee: parseFloat(processingFee ?? '0')
     });
   }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, formatCurrency, toast]);
 
@@ -466,7 +495,7 @@ export default function LoanCalculator() {
       doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(71, 85, 105);
-      const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
+      const termDisplay = (termUnit ?? 'years') === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
       doc.text('Loan Term:', margin + 3, yPos + 7);
       doc.setFont('helvetica', 'normal');
       doc.text(termDisplay, margin + 28, yPos + 7);
@@ -474,7 +503,7 @@ export default function LoanCalculator() {
       doc.setFont('helvetica', 'bold');
       doc.text('Frequency:', margin + 3, yPos + 14);
       doc.setFont('helvetica', 'normal');
-      doc.text(paymentFrequency.charAt(0).toUpperCase() + paymentFrequency.slice(1), margin + 28, yPos + 14);
+      doc.text((paymentFrequency ?? 'monthly').charAt(0).toUpperCase() + (paymentFrequency ?? 'monthly').slice(1), margin + 28, yPos + 14);
 
       doc.setFont('helvetica', 'bold');
       doc.text('Generated:', margin + 3, yPos + 21);
@@ -505,8 +534,8 @@ export default function LoanCalculator() {
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(11);
       doc.setFont('helvetica', 'bold');
-      const paymentLabel = paymentFrequency === 'monthly' ? 'MONTHLY PAYMENT' : 
-                          paymentFrequency === 'biweekly' ? 'BI-WEEKLY PAYMENT' : 'WEEKLY PAYMENT';
+      const paymentLabel = (paymentFrequency ?? 'monthly') === 'monthly' ? 'MONTHLY PAYMENT' : 
+                          (paymentFrequency ?? 'monthly') === 'biweekly' ? 'BI-WEEKLY PAYMENT' : 'WEEKLY PAYMENT';
       doc.text(paymentLabel, pageWidth / 2, yPos + 7, { align: 'center' });
       doc.setFontSize(18);
       doc.text(formatCurrency(result.monthlyPayment), pageWidth / 2, yPos + 16, { align: 'center' });
@@ -538,21 +567,21 @@ export default function LoanCalculator() {
       // Table rows
       const interestPercent = ((result.totalInterest / result.totalAmount) * 100).toFixed(1);
       const metrics: { label: string; value: string; color: [number, number, number] }[] = [
-        { label: 'Loan Amount', value: formatCurrency(parseFloat(loanAmount)), color: [71, 85, 105] },
+        { label: 'Loan Amount', value: formatCurrency(parseFloat(loanAmount ?? '0')), color: [71, 85, 105] },
         { label: 'Interest Rate', value: `${interestRate}%`, color: [71, 85, 105] },
         { label: paymentLabel.split(' ')[0] + ' Payment', value: formatCurrency(result.monthlyPayment), color: [37, 99, 235] },
         { label: 'Total Amount Paid', value: formatCurrency(result.totalAmount), color: [71, 85, 105] },
-        { label: 'Principal Amount', value: formatCurrency(parseFloat(loanAmount)), color: [16, 185, 129] },
+        { label: 'Principal Amount', value: formatCurrency(parseFloat(loanAmount ?? '0')), color: [16, 185, 129] },
         { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
         { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       ];
 
-      if (parseFloat(extraPayment) > 0) {
-        metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
+      if (parseFloat(extraPayment ?? '0') > 0) {
+        metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment ?? '0')), color: [16, 185, 129] });
       }
 
-      if (parseFloat(processingFee) > 0) {
-        metrics.push({ label: 'Processing Fee', value: formatCurrency(parseFloat(processingFee)), color: [202, 138, 4] });
+      if (parseFloat(processingFee ?? '0') > 0) {
+        metrics.push({ label: 'Processing Fee', value: formatCurrency(parseFloat(processingFee ?? '0')), color: [202, 138, 4] });
       }
 
       doc.setFont('helvetica', 'normal');
@@ -608,6 +637,7 @@ export default function LoanCalculator() {
         doc.setTextColor(0, 0, 0);
         yPos += boxHeight + 6;
       }
+
 
       // Interpretation Section
       doc.setFontSize(12);

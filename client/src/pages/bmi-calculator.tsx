@@ -35,7 +35,15 @@ const BMICalculator = () => {
     age: '',
     gender: 'male'
   });
-  const toolName = 'BMI Calculator';
+
+  const [weight, setWeight] = useState(predictedValues.weight ?? '');
+  const [height, setHeight] = useState(predictedValues.height ?? '');
+  const [feet, setFeet] = useState(predictedValues.feet ?? '');
+  const [inches, setInches] = useState(predictedValues.inches ?? '');
+  const [unitSystem, setUnitSystem] = useState<UnitSystem>((predictedValues.unitSystem as UnitSystem) ?? 'metric');
+  const [age, setAge] = useState(predictedValues.age ?? '');
+  const [gender, setGender] = useState<Gender>((predictedValues.gender as Gender) ?? 'male');
+  const [result, setResult] = useState<BMIResult | null>(null);
 
   const handleCalculate = () => {
     const inputs: Partial<BMICalculatorInput> = {
@@ -52,13 +60,13 @@ const BMICalculator = () => {
       const res = calculateBMI(inputs);
       setResult(res);
       updatePredictions({
-        weight,
-        height,
-        feet,
-        inches,
-        unitSystem,
-        age,
-        gender
+        weight: weight || '',
+        height: height || '',
+        feet: feet || '',
+        inches: inches || '',
+        unitSystem: unitSystem || 'metric',
+        age: age || '',
+        gender: gender || 'male'
       });
     }
   };
