@@ -90,6 +90,23 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
       </script>
       
       <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": config.schema.name,
+          "description": config.metaDescription,
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Any",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "url": toolUrl
+        })}
+      </script>
+      
+      <script type="application/ld+json">
         {JSON.stringify(generateHowToSchema(config, toolUrl))}
       </script>
       

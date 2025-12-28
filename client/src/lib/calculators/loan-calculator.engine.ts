@@ -1,8 +1,4 @@
-/**
- * Loan Calculator Engine - Typed calculation functions
- * Implements generic CalculatorFunction type with LoanInputs and LoanCalculationResult
- */
-
+import { PrecisionMath } from '@/lib/utils/precision-engine';
 import {
   LoanInputs,
   LoanCalculationResult,
@@ -110,21 +106,21 @@ export function calculateAmortizationSchedule(
 
   let currentBalance = principal;
 
-  for (let period = 1; period <= totalPayments && currentBalance > 0.01; period++) {
-    const interestPayment = currentBalance * periodicRate;
+  for (let period = 1; period <= totalPayments && currentBalance > 0.005; period++) {
+    const interestPayment = PrecisionMath.multiply(currentBalance, periodicRate);
 
     let principalPayment: number;
     if (period === totalPayments && balloonPayment > 0) {
       principalPayment = currentBalance;
     } else {
-      principalPayment = Math.min(regularPayment - interestPayment + extraPayment, currentBalance);
+      principalPayment = Math.min(PrecisionMath.add(PrecisionMath.subtract(regularPayment, interestPayment), extraPayment), currentBalance);
     }
 
-    currentBalance -= principalPayment;
+    currentBalance = PrecisionMath.subtract(currentBalance, principalPayment);
 
     schedule.push({
       period,
-      payment: principalPayment + interestPayment,
+      payment: PrecisionMath.add(principalPayment, interestPayment),
       principal: principalPayment,
       interest: interestPayment,
       balance: Math.max(0, currentBalance)

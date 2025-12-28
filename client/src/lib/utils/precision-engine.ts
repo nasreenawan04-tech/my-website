@@ -16,14 +16,29 @@ export const PrecisionMath = {
    * Safe financial addition.
    */
   add: (a: number, b: number): number => {
-    return (Math.round(a * 100) + Math.round(b * 100)) / 100;
+    return (Math.round(a * 10000) + Math.round(b * 10000)) / 10000;
   },
 
   /**
    * Safe financial subtraction.
    */
   subtract: (a: number, b: number): number => {
-    return (Math.round(a * 100) - Math.round(b * 100)) / 100;
+    return (Math.round(a * 10000) - Math.round(b * 10000)) / 10000;
+  },
+
+  /**
+   * Safe financial multiplication.
+   */
+  multiply: (a: number, b: number): number => {
+    return Math.round((a * b + Number.EPSILON) * 10000) / 10000;
+  },
+
+  /**
+   * Safe financial division.
+   */
+  divide: (a: number, b: number): number => {
+    if (b === 0) return 0;
+    return Math.round((a / b + Number.EPSILON) * 10000) / 10000;
   },
 
   /**

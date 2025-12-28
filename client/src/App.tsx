@@ -11,7 +11,7 @@ import PerformanceMetrics from "@/components/ui/performance-metrics";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { AuthProvider } from "@/contexts/AuthContext";
 
-// Core pages (loaded immediately for performance)
+// Individually imported core pages
 import Home from "./pages/home";
 import NotFound from "./pages/not-found";
 
@@ -30,7 +30,26 @@ const RecentlyUsedTools = lazy(() => import("@/pages/recently-used-tools"));
 const FavoriteTools = lazy(() => import("@/pages/favorite-tools"));
 const UnitConverter = lazy(() => import("@/pages/unit-converter"));
 const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
+const MortgageCalculator = lazy(() => import("@/pages/mortgage-calculator"));
+const EMICalculator = lazy(() => import("@/pages/emi-calculator"));
+const SimpleInterestCalculator = lazy(() => import("@/pages/simple-interest-calculator"));
+const CompoundInterestCalculator = lazy(() => import("@/pages/compound-interest-calculator"));
+const CarLoanCalculator = lazy(() => import("@/pages/car-loan-calculator"));
+const BusinessLoanCalculator = lazy(() => import("@/pages/business-loan-calculator"));
+const BMICalculator = lazy(() => import("@/pages/bmi-calculator"));
+const BodyFatCalculator = lazy(() => import("@/pages/body-fat-calculator"));
+const CalorieCalculator = lazy(() => import("@/pages/calorie-calculator"));
+const TDEECalculator = lazy(() => import("@/pages/tdee-calculator"));
+const SleepCalculator = lazy(() => import("@/pages/sleep-calculator"));
+const WaterIntakeCalculator = lazy(() => import("@/pages/water-intake-calculator"));
 const ProteinIntakeCalculator = lazy(() => import("@/pages/protein-intake-calculator"));
+const HeartRateCalculator = lazy(() => import("@/pages/heart-rate-calculator"));
+const WordCounter = lazy(() => import("@/pages/word-counter"));
+const CharacterCounter = lazy(() => import("@/pages/character-counter"));
+const PasswordGenerator = lazy(() => import("@/pages/password-generator"));
+const UsernameGenerator = lazy(() => import("@/pages/username-generator"));
+const Base64EncoderDecoder = lazy(() => import("@/pages/base64-encoder-decoder"));
+const QRCodeScanner = lazy(() => import("@/pages/qr-code-scanner"));
 const Login = lazy(() => import("@/pages/login"));
 const Signup = lazy(() => import("@/pages/signup"));
 const ForgotPassword = lazy(() => import("@/pages/forgot-password"));
@@ -38,8 +57,7 @@ const Profile = lazy(() => import("@/pages/profile"));
 const Blog = lazy(() => import("@/pages/blog"));
 const BlogPost = lazy(() => import("@/pages/blog-post"));
 const CollectionPreview = lazy(() => import("@/pages/collection-preview"));
-
-// Individual tool components are now loaded dynamically via ToolPage for better maintainability
+const CompareTools = lazy(() => import("@/pages/compare-tools"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -74,8 +92,6 @@ function PageViewTracker() {
 
   return null;
 }
-
-const CompareTools = lazy(() => import("@/pages/compare-tools"));
 
 function Router() {
   return (
@@ -291,7 +307,26 @@ function Router() {
           {/* Specific tool routes - must come before the generic route */}
           <Route path="/tools/unit-converter" component={UnitConverter} />
           <Route path="/tools/loan-calculator" component={LoanCalculator} />
+          <Route path="/tools/mortgage-calculator" component={MortgageCalculator} />
+          <Route path="/tools/emi-calculator" component={EMICalculator} />
+          <Route path="/tools/simple-interest-calculator" component={SimpleInterestCalculator} />
+          <Route path="/tools/compound-interest-calculator" component={CompoundInterestCalculator} />
+          <Route path="/tools/car-loan-calculator" component={CarLoanCalculator} />
+          <Route path="/tools/business-loan-calculator" component={BusinessLoanCalculator} />
+          <Route path="/tools/bmi-calculator" component={BMICalculator} />
+          <Route path="/tools/body-fat-calculator" component={BodyFatCalculator} />
+          <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
+          <Route path="/tools/tdee-calculator" component={TDEECalculator} />
+          <Route path="/tools/sleep-calculator" component={SleepCalculator} />
+          <Route path="/tools/water-intake-calculator" component={WaterIntakeCalculator} />
           <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
+          <Route path="/tools/heart-rate-calculator" component={HeartRateCalculator} />
+          <Route path="/tools/word-counter" component={WordCounter} />
+          <Route path="/tools/character-counter" component={CharacterCounter} />
+          <Route path="/tools/password-generator" component={PasswordGenerator} />
+          <Route path="/tools/username-generator" component={UsernameGenerator} />
+          <Route path="/tools/base64-encoder-decoder" component={Base64EncoderDecoder} />
+          <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
           
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />
