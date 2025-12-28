@@ -137,6 +137,27 @@
       }
     </style>
     
+    <!-- Critical: Theme initialization before React hydration to prevent FOUC and CLS -->
+    <script>
+      (function() {
+        const storageKey = 'vite-ui-theme';
+        const defaultTheme = 'system';
+        
+        try {
+          const storedTheme = localStorage.getItem(storageKey) || defaultTheme;
+          const theme = storedTheme === 'system' 
+            ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+            : storedTheme;
+          
+          document.documentElement.classList.add(theme);
+        } catch (e) {
+          // Fallback if localStorage is unavailable
+          const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.classList.add(isDark ? 'dark' : 'light');
+        }
+      })();
+    </script>
+    
     <!-- Prefetch important pages -->
     <link rel="prefetch" href="/tools" />
     <link rel="prefetch" href="/finance-tools" />
