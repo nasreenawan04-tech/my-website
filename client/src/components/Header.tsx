@@ -173,7 +173,7 @@ const Header = () => {
   return (
     <>
       <header 
-        className={`sticky top-0 z-1000 w-full backdrop-blur-xl transition-all duration-300 ease-out min-h-[48px] sm:min-h-[56px] md:min-h-[60px] lg:min-h-[64px] ${
+        className={`sticky top-0 z-1000 w-full backdrop-blur-xl transition-all duration-300 ease-out min-h-[64px] sm:min-h-[72px] md:min-h-[80px] lg:min-h-[88px] ${
           isScrolled 
             ? 'bg-white/95 dark:bg-neutral-900/95 shadow-2xl border-b border-gray-200/60 dark:border-neutral-700/60' 
             : 'bg-white/85 dark:bg-neutral-900/85 shadow-md border-b border-gray-100/50 dark:border-neutral-800/30'
@@ -182,7 +182,7 @@ const Header = () => {
         data-header-sticky
       >
         <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center gap-2 sm:gap-3 md:gap-4 h-12 sm:h-14 md:h-14 lg:h-16">
+          <div className="flex justify-between items-center gap-2 sm:gap-3 md:gap-4 h-16 sm:h-18 md:h-20 lg:h-24">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
               <Logo />
