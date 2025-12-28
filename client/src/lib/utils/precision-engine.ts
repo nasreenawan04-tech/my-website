@@ -2,6 +2,10 @@
  * PrecisionMath utility for robust financial and health calculations.
  * Avoids common floating-point errors by using integer-based arithmetic for currency
  * and controlled rounding for scientific values.
+ * 
+ * DESIGN PRINCIPLE:
+ * We use a "Scale-and-Shift" approach for currency to avoid 0.1 + 0.2 !== 0.3 issues.
+ * All currency is internally treated as cents (scaled by 100) before arithmetic.
  */
 export const PrecisionMath = {
   /**
@@ -16,20 +20,22 @@ export const PrecisionMath = {
    * Safe financial addition.
    */
   add: (a: number, b: number): number => {
-    return (Math.round(a * 10000) + Math.round(b * 10000)) / 10000;
+    return (Math.round(a * 100) + Math.round(b * 100)) / 100;
   },
 
   /**
    * Safe financial subtraction.
    */
   subtract: (a: number, b: number): number => {
-    return (Math.round(a * 10000) - Math.round(b * 10000)) / 10000;
+    return (Math.round(a * 100) - Math.round(b * 100)) / 100;
   },
 
   /**
    * Safe financial multiplication.
    */
   multiply: (a: number, b: number): number => {
+    // For multiplication, we round the result to 4 decimal places of internal precision
+    // before the final UI rounding to ensure cumulative errors don't leak.
     return Math.round((a * b + Number.EPSILON) * 10000) / 10000;
   },
 
@@ -52,6 +58,14 @@ export const PrecisionMath = {
       maximumFractionDigits: 2,
     }).format(PrecisionMath.round(value, 2));
   },
+
+  /**
+   * Safe comparison for financial values.
+   * Accounts for epsilon to avoid floating point mismatch.
+   */
+  isEqual: (a: number, b: number, epsilon: number = 0.001): boolean => {
+    return Math.abs(a - b) < epsilon;
+  }
 };
 
 /**
@@ -95,22 +109,16 @@ export const PersistentStorage = {
     }
   },
 
-  /**
-   * Estimates the current localStorage usage in bytes.
-   */
   getUsage: (): number => {
     let total = 0;
     for (const key in localStorage) {
       if (Object.prototype.hasOwnProperty.call(localStorage, key)) {
-        total += (localStorage[key].length + key.length) * 2; // UTF-16 characters are 2 bytes
+        total += (localStorage[key].length + key.length) * 2;
       }
     }
     return total;
   },
 
-  /**
-   * Safely clears old history to prevent QuotaExceededError.
-   */
   preventQuotaOverflow: (key: string, limit: number = 20): void => {
     try {
       const history = PersistentStorage.load<any[]>(key, []);

@@ -57,6 +57,12 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     // to display interactive calculator widgets in search results.
     featureList: config.schema.featureList,
     
+    // SEO PERFECT FIX: Adding specialized software attributes for Rich Snippets
+    // This helps search engines understand the tool's inputs/outputs
+    applicationCategory: config.schema.applicationCategory || "FinancialApplication",
+    countriesSupported: "US",
+    contentRating: "General",
+    
     // Add interaction data for richer Search Console performance
     interactionStatistic: {
       "@type": "InteractionCounter",
