@@ -23,6 +23,23 @@ import {
 } from '@/components/ui/dropdown-menu';
 import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
+// Add custom CSS for smooth transitions
+const headerStyle = `
+  @media (max-width: 768px) {
+    [data-header-sticky] {
+      height: auto;
+    }
+  }
+  
+  [data-header-sticky] {
+    will-change: background-color, box-shadow, border-color;
+  }
+  
+  [data-mobile-nav-link] {
+    will-change: transform, opacity;
+  }
+`;
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -156,38 +173,39 @@ const Header = () => {
   return (
     <>
       <header 
-        className={`sticky top-0 z-1000 w-full backdrop-blur-md transition-all duration-300 ease-in-out min-h-[50px] sm:min-h-[56px] ${
+        className={`sticky top-0 z-1000 w-full backdrop-blur-xl transition-all duration-300 ease-out min-h-[48px] sm:min-h-[56px] md:min-h-[60px] lg:min-h-[64px] ${
           isScrolled 
-            ? 'bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
-            : 'bg-white/90 dark:bg-neutral-900/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
+            ? 'bg-white/95 dark:bg-neutral-900/95 shadow-2xl border-b border-gray-200/60 dark:border-neutral-700/60' 
+            : 'bg-white/85 dark:bg-neutral-900/85 shadow-md border-b border-gray-100/50 dark:border-neutral-800/30'
         }`}
         data-testid="header-main"
+        data-header-sticky
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-12 sm:h-14 md:h-14 lg:h-16">
+        <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="flex justify-between items-center gap-2 sm:gap-3 md:gap-4 h-12 sm:h-14 md:h-14 lg:h-16">
             {/* Logo Section */}
             <div className="flex-shrink-0 z-10">
               <Logo />
             </div>
 
             {/* Desktop Navigation - Show on md screens and above */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8 px-2 lg:px-4" aria-label="Main Navigation">
+            <nav className="hidden md:flex items-center gap-1 lg:gap-2 px-2 lg:px-6 flex-1 justify-center" aria-label="Main Navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-2 md:px-3 lg:px-4 py-2 text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group whitespace-nowrap ${
+                  className={`px-3 md:px-3.5 lg:px-4 py-2 text-xs md:text-sm lg:text-base font-medium rounded-lg transition-all duration-200 ease-out relative group whitespace-nowrap ${
                     location === link.href 
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50' 
-                      : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 shadow-sm' 
+                      : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100/70 dark:hover:bg-neutral-800/60'
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   aria-current={location === link.href ? 'page' : undefined}
                 >
                   {link.label}
                   <span 
-                    className={`absolute bottom-1 left-3 right-3 h-[2px] bg-blue-600 dark:bg-blue-400 transition-all duration-200 ease-out rounded-full ${
-                      location === link.href ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
+                    className={`absolute -bottom-0.5 left-3 right-3 h-1 bg-gradient-to-r from-blue-600 to-blue-500 dark:from-blue-400 dark:to-blue-300 transition-all duration-300 ease-out rounded-full ${
+                      location === link.href ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-95'
                     }`}
                   />
                 </Link>
@@ -195,7 +213,7 @@ const Header = () => {
             </nav>
 
             {/* Right Section - Search, Auth, and Mobile Menu */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3 ml-auto">
               {/* Offline Status */}
               <OfflineStatus />
 
@@ -203,13 +221,13 @@ const Header = () => {
               {selectedTools.length > 0 && (
                 <Link href="/compare-tools">
                   <button 
-                    className="p-2 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95 relative"
+                    className="p-2 md:p-2.5 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/60 transition-all duration-200 ease-out hover:scale-110 active:scale-95 relative group shadow-sm hover:shadow-md"
                     data-testid="button-header-compare"
                     aria-label="View comparison"
                     title="View comparison"
                   >
-                    <Scale className="w-5 h-5" />
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+                    <Scale className="w-5 h-5 md:w-5.5 md:h-5.5" />
+                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-[10px] font-bold text-white shadow-md">
                       {selectedTools.length}
                     </span>
                   </button>
@@ -218,13 +236,13 @@ const Header = () => {
 
               {/* Search Button */}
               <button 
-                className="p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
+                className="p-2 md:p-2.5 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-neutral-800/60 transition-all duration-200 ease-out hover:scale-110 active:scale-95"
                 onClick={() => setIsSearchOpen(true)}
                 data-testid="button-search"
                 aria-label="Search tools"
                 title="Search tools"
               >
-                <Search className="w-5 h-5" aria-hidden="true" />
+                <Search className="w-5 h-5 md:w-5.5 md:h-5.5" aria-hidden="true" />
               </button>
 
               {/* Desktop Auth Buttons - Hidden below md */}
@@ -337,20 +355,21 @@ const Header = () => {
         {/* Semi-transparent backdrop overlay */}
         {isMobileMenuOpen && (
           <div 
-            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 top-16"
+            className="md:hidden fixed inset-0 bg-black/40 backdrop-blur-lg z-40 top-12 sm:top-14 transition-all duration-300 ease-out"
             onClick={() => setIsMobileMenuOpen(false)}
             data-testid="mobile-menu-backdrop"
             aria-hidden="true"
           />
         )}
         <div 
-          className={`md:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden z-999 ${
+          className={`md:hidden absolute top-full left-0 right-0 bg-white/98 dark:bg-neutral-900/98 backdrop-blur-xl border-t border-gray-200/70 dark:border-neutral-700/70 shadow-2xl transition-all duration-300 ease-out overflow-hidden z-999 ${
             isMobileMenuOpen 
-              ? 'max-h-[calc(100vh-4rem)] opacity-100 visible translate-y-0' 
-              : 'max-h-0 opacity-0 invisible -translate-y-2'
+              ? 'max-h-[calc(100vh-3.5rem)] opacity-100 visible translate-y-0' 
+              : 'max-h-0 opacity-0 invisible translate-y-1'
           }`}
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
+          data-mobile-nav
         >
           <nav className="px-4 py-3 space-y-1 overflow-y-auto max-h-[calc(100vh-3.5rem)] scrollbar-thin">
             {/* Navigation Links */}
@@ -447,21 +466,21 @@ const Header = () => {
       {/* Search Modal - Optimized for all screen sizes */}
       {isSearchOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-start justify-center pt-16 sm:pt-20 md:pt-24 px-4 animate-in fade-in duration-200"
+          className="fixed inset-0 bg-black/50 backdrop-blur-xl z-50 flex items-start justify-center pt-12 sm:pt-16 md:pt-20 px-3 sm:px-4 animate-in fade-in duration-200"
           onClick={() => {
             setIsSearchOpen(false);
             setSearchQuery('');
           }}
         >
           <div 
-            className="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 ease-out border border-gray-200 dark:border-neutral-700"
+            className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-hidden animate-in slide-in-from-top-2 duration-300 ease-out border border-gray-200/80 dark:border-neutral-700/80"
             role="dialog"
             aria-label="Search tools"
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Search Input Section - Google Chrome Style */}
-            <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-neutral-700 bg-gray-50/50 dark:bg-neutral-800/30">
+            <div className="p-4 sm:p-5 md:p-6 border-b border-gray-200/60 dark:border-neutral-700/60 bg-gradient-to-br from-gray-50/70 to-blue-50/30 dark:from-neutral-800/50 dark:to-blue-950/20">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 pointer-events-none">
                   <Search className="w-5 h-5" aria-hidden="true" />
