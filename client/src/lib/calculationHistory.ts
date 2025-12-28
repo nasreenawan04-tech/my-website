@@ -200,7 +200,23 @@ export async function saveCalculation(
       timestamp: new Date().toISOString()
     };
     localHistory.unshift(newEntry);
-    PersistentStorage.save(STORAGE_KEYS.CALC_HISTORY, localHistory.slice(0, 50));
+    
+    // Non-obvious Fix: Quota Management
+    // Instead of just slicing, we check if the storage is getting full
+    // and prune more aggressively if needed to prevent QuotaExceededError
+    const MAX_LOCAL_ITEMS = 30;
+    const prunedHistory = localHistory.slice(0, MAX_LOCAL_ITEMS);
+    
+    try {
+      PersistentStorage.save(STORAGE_KEYS.CALC_HISTORY, prunedHistory);
+    } catch (e) {
+      if (e instanceof Error && e.name === 'QuotaExceededError') {
+        // Emergency prune if storage is actually full
+        PersistentStorage.save(STORAGE_KEYS.CALC_HISTORY, prunedHistory.slice(0, 10));
+      } else {
+        throw e;
+      }
+    }
   } catch (e) {
     console.warn('Failed to save to local storage:', e);
   }

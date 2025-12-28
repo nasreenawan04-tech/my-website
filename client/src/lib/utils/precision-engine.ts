@@ -84,18 +84,41 @@ export const PersistentStorage = {
     try {
       const item = localStorage.getItem(key);
       if (item === null) return defaultValue;
-      return JSON.parse(item) as T;
+      const parsed = JSON.parse(item);
+      // Basic type validation for common types
+      if (Array.isArray(defaultValue) && !Array.isArray(parsed)) return defaultValue;
+      if (typeof defaultValue === 'object' && defaultValue !== null && (typeof parsed !== 'object' || parsed === null)) return defaultValue;
+      return parsed as T;
     } catch (e) {
       console.error(`[PersistentStorage] Error loading key "${key}", using default.`, e);
       return defaultValue;
     }
   },
 
-  remove: (key: string): void => {
-    try {
-      localStorage.removeItem(key);
-    } catch (e) {
-      console.error(`[PersistentStorage] Error removing key "${key}":`, e);
+  /**
+   * Estimates the current localStorage usage in bytes.
+   */
+  getUsage: (): number => {
+    let total = 0;
+    for (const key in localStorage) {
+      if (Object.prototype.hasOwnProperty.call(localStorage, key)) {
+        total += (localStorage[key].length + key.length) * 2; // UTF-16 characters are 2 bytes
+      }
     }
+    return total;
   },
+
+  /**
+   * Safely clears old history to prevent QuotaExceededError.
+   */
+  preventQuotaOverflow: (key: string, limit: number = 20): void => {
+    try {
+      const history = PersistentStorage.load<any[]>(key, []);
+      if (history.length > limit) {
+        PersistentStorage.save(key, history.slice(0, limit));
+      }
+    } catch (e) {
+      console.error(`[PersistentStorage] Error managing quota for "${key}":`, e);
+    }
+  }
 };

@@ -1,10 +1,11 @@
 import { Tool } from '@/data/tools';
+import { PersistentStorage, STORAGE_KEYS } from './utils/precision-engine';
 
-// Local storage keys
-const FAVORITES_KEY = 'dapsiwow-favorites';
-const FAVORITE_CATEGORIES_KEY = 'dapsiwow-favorite-categories';
-const RECENT_TOOLS_KEY = 'dapsiwow-recent';
-const USER_PREFERENCES_KEY = 'dapsiwow-preferences';
+// Use the registry keys from PrecisionMath where possible for consistency
+const FAVORITES_KEY = STORAGE_KEYS.FAVORITES;
+const FAVORITE_CATEGORIES_KEY = STORAGE_KEYS.FAVORITE_CATEGORIES;
+const RECENT_TOOLS_KEY = 'dapsiwow-recent'; // Not in registry yet
+const USER_PREFERENCES_KEY = STORAGE_KEYS.USER_PREFS;
 
 export interface FavoriteTool extends Tool {
   categoryId?: string;
@@ -29,19 +30,14 @@ export interface UserPreferences {
 
 // Category Management
 export const getFavoriteCategories = (): FavoriteCategory[] => {
-  try {
-    const stored = localStorage.getItem(FAVORITE_CATEGORIES_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
+  return PersistentStorage.load<FavoriteCategory[]>(FAVORITE_CATEGORIES_KEY, []);
 };
 
 export const addFavoriteCategory = (name: string): FavoriteCategory => {
   const categories = getFavoriteCategories();
   const newCategory = { id: Math.random().toString(36).substr(2, 9), name };
   const updated = [...categories, newCategory];
-  localStorage.setItem(FAVORITE_CATEGORIES_KEY, JSON.stringify(updated));
+  PersistentStorage.save(FAVORITE_CATEGORIES_KEY, updated);
   window.dispatchEvent(new CustomEvent('favoritesCategoriesChanged', { detail: { categories: updated } }));
   return newCategory;
 };
@@ -49,19 +45,19 @@ export const addFavoriteCategory = (name: string): FavoriteCategory => {
 export const renameFavoriteCategory = (id: string, newName: string): void => {
   const categories = getFavoriteCategories();
   const updated = categories.map(cat => cat.id === id ? { ...cat, name: newName } : cat);
-  localStorage.setItem(FAVORITE_CATEGORIES_KEY, JSON.stringify(updated));
+  PersistentStorage.save(FAVORITE_CATEGORIES_KEY, updated);
   window.dispatchEvent(new CustomEvent('favoritesCategoriesChanged', { detail: { categories: updated } }));
 };
 
 export const deleteFavoriteCategory = (id: string): void => {
   const categories = getFavoriteCategories();
   const updated = categories.filter(cat => cat.id !== id);
-  localStorage.setItem(FAVORITE_CATEGORIES_KEY, JSON.stringify(updated));
+  PersistentStorage.save(FAVORITE_CATEGORIES_KEY, updated);
   
   // Also remove category from tools
   const favorites = getFavorites();
   const updatedFavorites = favorites.map(fav => fav.categoryId === id ? { ...fav, categoryId: undefined } : fav);
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
+  PersistentStorage.save(FAVORITES_KEY, updatedFavorites);
   
   window.dispatchEvent(new CustomEvent('favoritesCategoriesChanged', { detail: { categories: updated } }));
   window.dispatchEvent(new CustomEvent('favoritesChanged', { detail: { favorites: updatedFavorites } }));
@@ -69,12 +65,7 @@ export const deleteFavoriteCategory = (id: string): void => {
 
 // Favorites Management
 export const getFavorites = (): FavoriteTool[] => {
-  try {
-    const stored = localStorage.getItem(FAVORITES_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch {
-    return [];
-  }
+  return PersistentStorage.load<FavoriteTool[]>(FAVORITES_KEY, []);
 };
 
 export const addToFavorites = (tool: Tool, categoryId?: string): void => {
@@ -82,7 +73,7 @@ export const addToFavorites = (tool: Tool, categoryId?: string): void => {
     const favorites = getFavorites();
     if (!favorites.some(fav => fav.id === tool.id)) {
       const updated = [...favorites, { ...tool, categoryId }];
-      localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
+      PersistentStorage.save(FAVORITES_KEY, updated);
       
       // Dispatch custom event for UI updates
       window.dispatchEvent(new CustomEvent('favoritesChanged', { 
@@ -98,7 +89,7 @@ export const updateFavoriteCategory = (toolId: string, categoryId?: string): voi
   try {
     const favorites = getFavorites();
     const updated = favorites.map(fav => fav.id === toolId ? { ...fav, categoryId } : fav);
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
+    PersistentStorage.save(FAVORITES_KEY, updated);
     window.dispatchEvent(new CustomEvent('favoritesChanged', { detail: { favorites: updated } }));
   } catch (error) {
     console.error('Failed to update favorite category:', error);
@@ -109,7 +100,7 @@ export const removeFromFavorites = (toolId: string): void => {
   try {
     const favorites = getFavorites();
     const updated = favorites.filter(tool => tool.id !== toolId);
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
+    PersistentStorage.save(FAVORITES_KEY, updated);
     
     // Dispatch custom event for UI updates
     window.dispatchEvent(new CustomEvent('favoritesChanged', { 
@@ -126,7 +117,7 @@ export const isFavorite = (toolId: string): boolean => {
 
 export const clearAllFavorites = (): void => {
   try {
-    localStorage.removeItem(FAVORITES_KEY);
+    PersistentStorage.remove(FAVORITES_KEY);
     window.dispatchEvent(new CustomEvent('favoritesChanged', { 
       detail: { favorites: [], action: 'clear' } 
     }));
@@ -137,17 +128,12 @@ export const clearAllFavorites = (): void => {
 
 // Recent Tools Management
 export const getRecentTools = (): RecentTool[] => {
-  try {
-    const stored = localStorage.getItem(RECENT_TOOLS_KEY);
-    const recent = stored ? JSON.parse(stored) : [];
-    
-    // Sort by timestamp (most recent first) and limit to prevent memory issues
-    return recent
-      .sort((a: RecentTool, b: RecentTool) => b.timestamp - a.timestamp)
-      .slice(0, 20);
-  } catch {
-    return [];
-  }
+  const recent = PersistentStorage.load<RecentTool[]>(RECENT_TOOLS_KEY, []);
+  
+  // Sort by timestamp (most recent first) and limit to prevent memory issues
+  return recent
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, 20);
 };
 
 export const addToRecentTools = (tool: Tool): void => {
@@ -160,7 +146,7 @@ export const addToRecentTools = (tool: Tool): void => {
     // Add new entry at the beginning
     const updated = [{ tool, timestamp: Date.now() }, ...filtered].slice(0, 15);
     
-    localStorage.setItem(RECENT_TOOLS_KEY, JSON.stringify(updated));
+    PersistentStorage.save(RECENT_TOOLS_KEY, updated);
     
     // Dispatch custom event for UI updates
     window.dispatchEvent(new CustomEvent('recentToolsChanged', { 
@@ -173,7 +159,7 @@ export const addToRecentTools = (tool: Tool): void => {
 
 export const clearRecentTools = (): void => {
   try {
-    localStorage.removeItem(RECENT_TOOLS_KEY);
+    PersistentStorage.remove(RECENT_TOOLS_KEY);
     window.dispatchEvent(new CustomEvent('recentToolsChanged', { 
       detail: { recentTools: [], action: 'clear' } 
     }));
@@ -184,25 +170,17 @@ export const clearRecentTools = (): void => {
 
 // User Preferences Management
 export const getUserPreferences = (): UserPreferences => {
-  try {
-    const stored = localStorage.getItem(USER_PREFERENCES_KEY);
-    return stored ? JSON.parse(stored) : {
-      showRecentTools: true,
-      maxRecentTools: 10
-    };
-  } catch {
-    return {
-      showRecentTools: true,
-      maxRecentTools: 10
-    };
-  }
+  return PersistentStorage.load<UserPreferences>(USER_PREFERENCES_KEY, {
+    showRecentTools: true,
+    maxRecentTools: 10
+  });
 };
 
 export const updateUserPreferences = (preferences: Partial<UserPreferences>): void => {
   try {
     const current = getUserPreferences();
     const updated = { ...current, ...preferences };
-    localStorage.setItem(USER_PREFERENCES_KEY, JSON.stringify(updated));
+    PersistentStorage.save(USER_PREFERENCES_KEY, updated);
     
     window.dispatchEvent(new CustomEvent('userPreferencesChanged', { 
       detail: { preferences: updated } 
