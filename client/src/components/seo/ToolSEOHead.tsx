@@ -92,17 +92,20 @@ export function ToolSEOHead({ config }: ToolSEOHeadProps) {
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
+          "@type": ["SoftwareApplication", "CalculatorsAndTools"],
           "name": config.schema.name,
           "description": config.metaDescription,
-          "applicationCategory": "EducationalApplication",
+          "applicationCategory": "BusinessApplication",
           "operatingSystem": "Any",
           "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD"
           },
-          "url": toolUrl
+          "url": toolUrl,
+          "abstract": config.metaDescription,
+          "accessMode": ["textual", "visual"],
+          "accessibilityFeature": ["screenReaderProtocols", "highContrastDisplay"]
         })}
       </script>
       
