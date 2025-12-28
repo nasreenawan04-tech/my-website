@@ -34,29 +34,6 @@ export function generateWebApplicationSchema(config: ToolSEOConfig, categoryDefa
     alternateName: config.schema.alternateName || [],
     description: config.schema.description,
     url: `https://dapsiwow.com/${config.slug}`,
-    applicationCategory: config.schema.applicationCategory || categoryDefaults.schemaDefaults.applicationCategory,
-    applicationSubCategory: config.schema.applicationSubCategory,
-    operatingSystem: categoryDefaults.schemaDefaults.operatingSystem,
-    browserRequirements: categoryDefaults.schemaDefaults.browserRequirements,
-    softwareVersion: '2.0.0',
-    datePublished: '2024-01-15',
-    dateModified: new Date().toISOString().split('T')[0],
-    
-    offers: (config.category === 'finance' || config.slug.includes('compare')) 
-      ? generateAggregateOfferSchema()
-      : {
-          '@type': 'Offer',
-          'price': categoryDefaults.schemaDefaults.offers.price,
-          'priceCurrency': categoryDefaults.schemaDefaults.offers.priceCurrency,
-          'availability': 'https://schema.org/InStock',
-          'validFrom': '2024-01-15'
-        },
-    
-    // Non-obvious Fix: Enhanced Tool Context for Rich Snippets
-    // Adds specific features and parameter descriptions that search engines use
-    // to display interactive calculator widgets in search results.
-    featureList: config.schema.featureList,
-    
     // SEO PERFECT FIX: Adding specialized software attributes for Rich Snippets
     // This helps search engines understand the tool's inputs/outputs
     applicationCategory: config.schema.applicationCategory || "FinancialApplication",
