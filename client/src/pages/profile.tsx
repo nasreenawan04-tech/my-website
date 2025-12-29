@@ -799,41 +799,41 @@ export default function Profile() {
                       {calculationHistory.map((calculation) => (
                         <Card key={calculation.id} className="border-gray-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
                           <CardContent className="p-6">
-                            <div className="flex items-start justify-between gap-4">
-                              <div className="flex-1 space-y-3">
-                                <div className="flex items-center justify-between">
+                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                              <div className="flex-1 space-y-3 min-w-0">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                                   <Link href={calculation.toolPath}>
-                                    <Button variant="link" className="p-0 h-auto text-base font-semibold text-blue-600 hover:text-blue-700" data-testid={`link-tool-${calculation.id}`}>
-                                      {calculation.toolName}
+                                    <Button variant="link" className="p-0 h-auto text-base font-semibold text-blue-600 hover:text-blue-700 justify-start" data-testid={`link-tool-${calculation.id}`}>
+                                      <span className="truncate">{calculation.toolName}</span>
                                     </Button>
                                   </Link>
-                                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                                    <Calendar className="h-4 w-4" />
+                                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                                    <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                                     {format(calculation.timestamp, 'PPp')}
                                   </div>
                                 </div>
 
-                                <div className="grid md:grid-cols-2 gap-4">
-                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-4">
-                                    <p className="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-3">Inputs</p>
-                                    <div className="space-y-2 text-sm">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-3 sm:p-4">
+                                    <p className="font-semibold text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">Inputs</p>
+                                    <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
                                       {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
-                                        <div key={key} className="flex justify-between">
-                                          <span className="text-gray-600 dark:text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                          <span className="font-medium text-gray-900 dark:text-white">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
+                                        <div key={key} className="flex justify-between gap-2">
+                                          <span className="text-gray-600 dark:text-gray-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                          <span className="font-medium text-gray-900 dark:text-white text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                         </div>
                                       ))}
                                     </div>
                                   </div>
-                                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                                    <p className="font-semibold text-sm text-blue-900 dark:text-blue-300 mb-3">Results</p>
-                                    <div className="space-y-2 text-sm">
+                                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 sm:p-4">
+                                    <p className="font-semibold text-xs sm:text-sm text-blue-900 dark:text-blue-300 mb-2 sm:mb-3">Results</p>
+                                    <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
                                       {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
                                         if (typeof value === 'object' && value !== null) return null;
                                         return (
-                                          <div key={key} className="flex justify-between">
-                                            <span className="text-blue-700 dark:text-blue-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-semibold text-blue-900 dark:text-blue-200">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
+                                          <div key={key} className="flex justify-between gap-2">
+                                            <span className="text-blue-700 dark:text-blue-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                            <span className="font-semibold text-blue-900 dark:text-blue-200 text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                           </div>
                                         );
                                       })}
@@ -842,27 +842,29 @@ export default function Profile() {
                                 </div>
                               </div>
 
-                              <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                  <Button variant="ghost" size="icon" className="hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30" data-testid={`button-delete-${calculation.id}`}>
-                                    <Trash2 className="h-4 w-4" />
-                                  </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent>
-                                  <AlertDialogHeader>
-                                    <AlertDialogTitle>Delete this calculation?</AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                      This will permanently delete this calculation from your history.
-                                    </AlertDialogDescription>
-                                  </AlertDialogHeader>
-                                  <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)} className="bg-red-600 hover:bg-red-700">
-                                      Delete
-                                    </AlertDialogAction>
-                                  </AlertDialogFooter>
-                                </AlertDialogContent>
-                              </AlertDialog>
+                              <div className="flex sm:flex-col items-center gap-2">
+                                <AlertDialog>
+                                  <AlertDialogTrigger asChild>
+                                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30" data-testid={`button-delete-${calculation.id}`}>
+                                      <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                  </AlertDialogTrigger>
+                                  <AlertDialogContent className="w-[95vw] max-w-md">
+                                    <AlertDialogHeader>
+                                      <AlertDialogTitle>Delete this calculation?</AlertDialogTitle>
+                                      <AlertDialogDescription>
+                                        This will permanently delete this calculation from your history.
+                                      </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+                                      <AlertDialogCancel className="mt-0">Cancel</AlertDialogCancel>
+                                      <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)} className="bg-red-600 hover:bg-red-700">
+                                        Delete
+                                      </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                  </AlertDialogContent>
+                                </AlertDialog>
+                              </div>
                             </div>
                           </CardContent>
                         </Card>
