@@ -6,6 +6,9 @@ import { generateSitemap } from './server/sitemap.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+import { storage } from './server/storage.js';
+import { insertCalculationHistorySchema } from './shared/schema.js';
+
 const app = express();
 app.use(express.json());
 
@@ -17,7 +20,27 @@ app.get('/sitemap.xml', (req, res) => {
   res.send(sitemap);
 });
 
-// API routes - stubbed out or use in-memory for simple logic if storage isn't ready
+// Calculation History API
+app.get('/api/history', async (req, res) => {
+  try {
+    const history = await storage.getCalculationHistory();
+    res.json(history);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch history" });
+  }
+});
+
+app.post('/api/history', async (req, res) => {
+  try {
+    const data = insertCalculationHistorySchema.parse(req.body);
+    const result = await storage.createCalculationHistory(data);
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+// API routes - collections
 app.post('/api/collections', async (req, res) => {
     res.status(501).json({ error: "API not implemented in production server yet" });
 });

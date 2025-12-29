@@ -5,6 +5,7 @@
  */
 
 import { PersistentStorage } from './utils/persistent-storage';
+import { apiRequest } from './queryClient';
 
 export interface CalculationHistory {
   id: string;
@@ -29,14 +30,14 @@ const MAX_HISTORY_ITEMS = 100;
 
 /**
  * Save a calculation to history
- * Automatically persists to local storage
+ * Automatically persists to local storage and syncs to backend
  */
-export function saveCalculation(
+export async function saveCalculation(
   toolName: string,
   toolPath: string,
   inputs: Record<string, any>,
   results: Record<string, any>
-): void {
+): Promise<void> {
   try {
     const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
     
@@ -44,13 +45,14 @@ export function saveCalculation(
     const cleanInputs = JSON.parse(JSON.stringify(inputs));
     const cleanResults = JSON.parse(JSON.stringify(results));
     
+    const timestamp = new Date().toISOString();
     const newCalculation: StoredCalculation = {
       id: `calc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       toolName,
       toolPath,
       inputs: cleanInputs,
       results: cleanResults,
-      timestamp: new Date().toISOString()
+      timestamp
     };
     
     // Add new calculation to the beginning (most recent first)
@@ -60,6 +62,18 @@ export function saveCalculation(
     const trimmedHistory = history.slice(0, MAX_HISTORY_ITEMS);
     
     PersistentStorage.setItem(STORAGE_KEY, trimmedHistory);
+    
+    // Sync to backend automatically
+    try {
+      await apiRequest('POST', '/api/history', {
+        toolId: toolPath,
+        input: JSON.stringify(cleanInputs),
+        result: JSON.stringify(cleanResults),
+        timestamp
+      });
+    } catch (syncError) {
+      console.warn('[CalculationHistory] Backend sync failed, kept in local storage:', syncError);
+    }
     
     // Dispatch custom event for real-time UI updates
     window.dispatchEvent(new CustomEvent('calculation-history-updated'));
