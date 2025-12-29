@@ -86,7 +86,8 @@ const BMICalculator = () => {
         {
           bmi: res.bmi,
           category: res.category,
-          idealWeight: res.idealWeight
+          healthyWeightMin: res.healthyWeightMin,
+          healthyWeightMax: res.healthyWeightMax
         }
       );
     }
