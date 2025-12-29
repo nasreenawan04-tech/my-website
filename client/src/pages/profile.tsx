@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
 import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield, TrendingUp, Activity, Award, ChevronRight, Scale } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
+import { CalculationHistory, getCalculationHistory, deleteCalculation, clearAllCalculations } from '@/lib/calculationHistory';
 import { tools } from '@/data/tools';
 import { Link } from 'wouter';
 import { format, formatDistanceToNow } from 'date-fns';
@@ -214,9 +215,7 @@ export default function Profile() {
 
     setHistoryLoading(true);
     try {
-      const [calcHistory, compHistory] = await Promise.all([
-        getCalculationHistory(user.uid),
-      ]);
+      const calcHistory = await getCalculationHistory(user.uid);
       setCalculationHistory(calcHistory);
     } catch (error) {
       console.error('Failed to load history:', error);
@@ -234,7 +233,7 @@ export default function Profile() {
         description: 'Calculation has been deleted.'
       });
     } catch (error) {
-      await loadCalculationHistory();
+      await loadHistory();
       toast({
         title: 'Error',
         description: 'Failed to delete calculation.',
@@ -254,7 +253,7 @@ export default function Profile() {
         description: 'All calculation history has been cleared.'
       });
     } catch (error) {
-      await loadCalculationHistory();
+      await loadHistory();
       toast({
         title: 'Error',
         description: 'Failed to clear calculation history.',
@@ -546,44 +545,15 @@ export default function Profile() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Scale className="h-5 w-5 text-blue-600" />
+                    Comparisons
                   </CardTitle>
-                  <CardDescription>View and reload your tool comparisons</CardDescription>
+                  <CardDescription>Tool comparison feature</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {historyLoading ? (
-                    <div className="flex justify-center py-8">
-                      <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
-                    </div>
-                    <div className="text-center py-8">
-                      <Scale className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">No saved comparisons yet</p>
-                    </div>
-                  ) : (
-                    <div className="grid gap-4">
-                        <div key={comp.id} className="flex items-center justify-between p-4 rounded-xl border border-gray-100 dark:border-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all group">
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1">
-                              <Badge variant="outline" className="capitalize">{comp.category}</Badge>
-                              <span className="text-xs text-gray-500">{formatDistanceToNow(comp.timestamp, { addSuffix: true })}</span>
-                            </div>
-                            <p className="text-sm font-medium truncate">
-                              {comp.toolIds.map(id => tools.find(t => t.id === id)?.name).join(' vs ')}
-                            </p>
-                          </div>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="opacity-0 group-hover:opacity-100 transition-opacity"
-                            onClick={() => {
-                              setLocation('/compare-tools');
-                            }}
-                          >
-                            Load <ChevronRight className="h-4 w-4 ml-1" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <div className="text-center py-8">
+                    <Scale className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">Tool comparison feature coming soon</p>
+                  </div>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -851,7 +821,7 @@ export default function Profile() {
                                       {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
                                         <div key={key} className="flex justify-between">
                                           <span className="text-gray-600 dark:text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                          <span className="font-medium text-gray-900 dark:text-white">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                          <span className="font-medium text-gray-900 dark:text-white">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                         </div>
                                       ))}
                                     </div>
@@ -864,7 +834,7 @@ export default function Profile() {
                                         return (
                                           <div key={key} className="flex justify-between">
                                             <span className="text-blue-700 dark:text-blue-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-semibold text-blue-900 dark:text-blue-200">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                            <span className="font-semibold text-blue-900 dark:text-blue-200">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                           </div>
                                         );
                                       })}
