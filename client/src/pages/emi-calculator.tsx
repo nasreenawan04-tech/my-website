@@ -13,6 +13,7 @@ import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 interface EMIResult {
   emi: number;
@@ -357,6 +358,32 @@ export default function EMICalculator() {
       stepUpAnalysis,
       amortizationSchedule
     });
+
+    // Save calculation history (non-blocking)
+    saveCalculation(
+      'EMI Calculator',
+      '/tools/emi-calculator',
+      {
+        loanAmount: principal,
+        interestRate: parseFloat(interestRate),
+        loanTenure: parseFloat(loanTenure),
+        tenureType,
+        currency,
+        enablePrepayment,
+        prepaymentAmount: prepayment,
+        prepaymentAfterMonths: prepaymentAfter,
+        enableStepUp,
+        stepUpPercentage: parseFloat(stepUpPercentage)
+      },
+      {
+        emi: Math.round(baseEMI * 100) / 100,
+        totalAmount: Math.round(finalTotalAmount * 100) / 100,
+        totalInterest: Math.round(finalTotalInterest * 100) / 100,
+        interestPercentage: Math.round(interestPercentage * 100) / 100,
+        prepaymentAnalysis,
+        stepUpAnalysis
+      }
+    );
 
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
