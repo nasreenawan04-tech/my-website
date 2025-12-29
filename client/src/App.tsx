@@ -14,6 +14,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 // Individually imported core pages
 import Home from "./pages/home";
 import NotFound from "./pages/not-found";
+import Header from "./components/Header";
 
 // Lazy load all other pages for better performance
 const AllTools = lazy(() => import("./pages/all-tools"));
