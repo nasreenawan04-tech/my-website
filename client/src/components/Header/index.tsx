@@ -292,7 +292,7 @@ const Header = () => {
           />
         )}
         <div 
-          className={`md:hidden absolute top-full left-0 right-0 bg-white/98 dark:bg-neutral-900/98 backdrop-blur-xl border-t border-gray-200/70 dark:border-neutral-700/70 shadow-2xl transition-all duration-300 ease-out overflow-hidden z-999 ${
+          className={`md:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900/98 backdrop-blur-xl border-t border-gray-200/70 dark:border-neutral-700/70 shadow-2xl transition-all duration-300 ease-out overflow-hidden z-999 ${
             isMobileMenuOpen 
               ? 'max-h-[calc(100vh-3.5rem)] opacity-100 visible translate-y-0' 
               : 'max-h-0 opacity-0 invisible translate-y-1'
