@@ -554,24 +554,29 @@ export default function Profile() {
                   <CardDescription>Tool comparison feature</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-8">
+                  <div className="text-center py-8 px-4">
                     <Scale className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">Tool comparison feature coming soon</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm">No comparisons saved yet</p>
+                    <Link href="/all-tools">
+                      <Button variant="link" className="mt-2 text-blue-600">Start comparing tools</Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
 
-            {/* Profile Tab */}
-            <TabsContent value="profile">
+            <TabsContent value="profile" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Profile Information</CardTitle>
-                  <CardDescription>Update your personal details and profile picture</CardDescription>
+                  <CardTitle className="flex items-center gap-2">
+                    <User className="h-5 w-5 text-blue-600" />
+                    Personal Information
+                  </CardTitle>
+                  <CardDescription>Update your profile details</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleProfileUpdate} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="displayName">Display Name</Label>
                         <Input
@@ -613,7 +618,7 @@ export default function Profile() {
                     <Button
                       type="submit"
                       disabled={profileLoading}
-                      className="bg-blue-600 hover:bg-blue-700"
+                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700"
                       data-testid="button-update-profile"
                     >
                       {profileLoading ? (
@@ -630,11 +635,13 @@ export default function Profile() {
               </Card>
             </TabsContent>
 
-            {/* Security Tab */}
-            <TabsContent value="security">
+            <TabsContent value="security" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>Security Settings</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <Shield className="h-5 w-5 text-blue-600" />
+                    Security Settings
+                  </CardTitle>
                   <CardDescription>Keep your account secure with a strong password</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -674,7 +681,7 @@ export default function Profile() {
                         </div>
                       </div>
 
-                      <div className="grid md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <Label htmlFor="newPassword">New Password</Label>
                           <div className="relative">
@@ -727,7 +734,7 @@ export default function Profile() {
                       <Button
                         type="submit"
                         disabled={passwordLoading}
-                        className="bg-blue-600 hover:bg-blue-700"
+                        className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700"
                         data-testid="button-change-password"
                       >
                         {passwordLoading ? (
