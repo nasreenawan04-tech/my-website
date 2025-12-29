@@ -303,17 +303,17 @@ export default function Profile() {
             </div>
 
             {/* User Info */}
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white break-words">
                   {displayName || 'Welcome Back'}
                 </h1>
-                <Badge className={`${activityLevel.bgColor} ${activityLevel.color} border-0`}>
+                <Badge className={`${activityLevel.bgColor} ${activityLevel.color} border-0 shrink-0`}>
                   <Award className="h-3 w-3 mr-1" />
                   {activityLevel.label}
                 </Badge>
               </div>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-2" data-testid="text-profile-email">
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-2 truncate" data-testid="text-profile-email">
                 {user.email}
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -323,16 +323,16 @@ export default function Profile() {
             </div>
 
             {/* Quick Actions */}
-            <div className="flex gap-3">
-              <Link href="/all-tools">
-                <Button variant="outline" className="gap-2">
+            <div className="flex flex-wrap gap-3 w-full lg:w-auto">
+              <Link href="/all-tools" className="flex-1 lg:flex-none">
+                <Button variant="outline" className="w-full gap-2">
                   <Activity className="h-4 w-4" />
                   Browse Tools
                 </Button>
               </Link>
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline" className="gap-2 text-red-600 hover:text-red-700 border-red-200 hover:bg-red-50 dark:border-red-900 dark:hover:bg-red-950/30">
+                <AlertDialogTrigger asChild className="flex-1 lg:flex-none">
+                  <Button variant="outline" className="w-full gap-2 text-red-600 hover:text-red-700 border-red-200 hover:bg-red-50 dark:border-red-900 dark:hover:bg-red-950/30">
                     <LogOut className="h-4 w-4" />
                     Sign Out
                   </Button>
@@ -356,7 +356,7 @@ export default function Profile() {
           </div>
 
           {/* Stats Overview */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
@@ -420,28 +420,30 @@ export default function Profile() {
       <div className="bg-gray-50 dark:bg-neutral-900 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-            <TabsList className="grid w-full grid-cols-5 lg:w-auto lg:inline-grid">
-              <TabsTrigger value="overview" className="gap-2">
-                <Activity className="h-4 w-4" />
-                <span className="hidden sm:inline">Overview</span>
-              </TabsTrigger>
-              <TabsTrigger value="comparisons" className="gap-2">
-                <Scale className="h-4 w-4" />
-                <span className="hidden sm:inline">Comparisons</span>
-              </TabsTrigger>
-              <TabsTrigger value="profile" className="gap-2">
-                <User className="h-4 w-4" />
-                <span className="hidden sm:inline">Profile</span>
-              </TabsTrigger>
-              <TabsTrigger value="security" className="gap-2">
-                <Shield className="h-4 w-4" />
-                <span className="hidden sm:inline">Security</span>
-              </TabsTrigger>
-              <TabsTrigger value="settings" className="gap-2">
-                <Settings className="h-4 w-4" />
-                <span className="hidden sm:inline">Settings</span>
-              </TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto pb-1">
+              <TabsList className="inline-flex w-full sm:w-auto h-auto p-1 bg-gray-100/50 dark:bg-neutral-800/50">
+                <TabsTrigger value="overview" className="flex-1 sm:flex-none gap-2 py-2">
+                  <Activity className="h-4 w-4" />
+                  <span className="inline sm:inline">Overview</span>
+                </TabsTrigger>
+                <TabsTrigger value="comparisons" className="flex-1 sm:flex-none gap-2 py-2">
+                  <Scale className="h-4 w-4" />
+                  <span className="inline sm:inline">Comparisons</span>
+                </TabsTrigger>
+                <TabsTrigger value="profile" className="flex-1 sm:flex-none gap-2 py-2">
+                  <User className="h-4 w-4" />
+                  <span className="inline sm:inline">Profile</span>
+                </TabsTrigger>
+                <TabsTrigger value="security" className="flex-1 sm:flex-none gap-2 py-2">
+                  <Shield className="h-4 w-4" />
+                  <span className="inline sm:inline">Security</span>
+                </TabsTrigger>
+                <TabsTrigger value="settings" className="flex-1 sm:flex-none gap-2 py-2">
+                  <Settings className="h-4 w-4" />
+                  <span className="inline sm:inline">Settings</span>
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
             {/* Overview Tab */}
             <TabsContent value="overview" className="space-y-6">
@@ -468,7 +470,7 @@ export default function Profile() {
                     ) : (
                       <div className="space-y-3">
                         {calculationHistory.slice(0, 5).map((calc) => (
-                          <div key={calc.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
+                          <div key={calc.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors gap-2">
                             <div className="flex-1 min-w-0">
                               <Link href={calc.toolPath}>
                                 <p className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 text-sm truncate">
@@ -479,7 +481,9 @@ export default function Profile() {
                                 {formatDistanceToNow(calc.timestamp, { addSuffix: true })}
                               </p>
                             </div>
-                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                            <div className="flex items-center justify-end sm:justify-start">
+                              <ChevronRight className="h-4 w-4 text-gray-400" />
+                            </div>
                           </div>
                         ))}
                         {calculationHistory.length > 5 && (
