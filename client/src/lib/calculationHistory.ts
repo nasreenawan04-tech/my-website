@@ -1,21 +1,13 @@
-import { 
-  collection, 
-  addDoc, 
-  query, 
-  where, 
-  orderBy, 
-  getDocs, 
-  deleteDoc, 
-  doc,
-  limit,
-  Timestamp
-} from 'firebase/firestore';
-import { db, isFirebaseConfigured, isOnline } from './firebase';
-import { PersistentStorage, STORAGE_KEYS } from './utils/precision-engine';
+/**
+ * Calculation History Service
+ * Fully offline-first system using localStorage
+ * No external dependencies required
+ */
+
+import { PersistentStorage } from './utils/persistent-storage';
 
 export interface CalculationHistory {
-  id?: string;
-  userId: string;
+  id: string;
   toolName: string;
   toolPath: string;
   inputs: Record<string, any>;
@@ -23,257 +15,218 @@ export interface CalculationHistory {
   timestamp: Date;
 }
 
-const COLLECTION_NAME = 'calculationHistory';
-const OFFLINE_QUEUE_KEY = 'dapsiwow_offline_sync_queue';
-
-interface OfflineQueueItem {
-  type: 'calculation';
-  data: any;
-  timestamp: number;
+interface StoredCalculation {
+  id: string;
+  toolName: string;
+  toolPath: string;
+  inputs: Record<string, any>;
+  results: Record<string, any>;
+  timestamp: string; // ISO string for JSON serialization
 }
 
-function addToOfflineQueue(item: OfflineQueueItem) {
-  try {
-    const queue = PersistentStorage.load<OfflineQueueItem[]>(OFFLINE_QUEUE_KEY, []);
-    queue.push(item);
-    PersistentStorage.save(OFFLINE_QUEUE_KEY, queue);
-  } catch (e) {
-    console.warn('Failed to add to offline queue:', e);
-  }
-}
+const STORAGE_KEY = 'dapsiwow_calculation_history';
+const MAX_HISTORY_ITEMS = 100;
 
-export async function processOfflineQueue() {
-  if (!isOnline() || !isFirebaseConfigured || !db) return;
-
-  const queue = PersistentStorage.load<OfflineQueueItem[]>(OFFLINE_QUEUE_KEY, []);
-  if (queue.length === 0) return;
-
-  console.log(`Processing ${queue.length} offline calculation items...`);
-  const remainingItems: OfflineQueueItem[] = [];
-
-  for (const item of queue) {
-    try {
-      if (item.type === 'calculation') {
-        const { userId, toolName, toolPath, inputs, results } = item.data;
-        await addDoc(collection(db, COLLECTION_NAME), {
-          userId,
-          toolName,
-          toolPath,
-          inputs,
-          results,
-          timestamp: Timestamp.fromMillis(item.timestamp)
-        });
-      }
-    } catch (e) {
-      console.error('Failed to sync offline item:', e);
-      remainingItems.push(item);
-    }
-  }
-
-  if (remainingItems.length > 0) {
-    PersistentStorage.save(OFFLINE_QUEUE_KEY, remainingItems);
-  }
-}
-
-// Register online listener
-if (typeof window !== 'undefined') {
-  window.addEventListener('online', () => {
-    processOfflineQueue().catch(console.error);
-  });
-}
-
-export async function saveCalculation(
-  userId: string,
+/**
+ * Save a calculation to history
+ */
+export function saveCalculation(
   toolName: string,
   toolPath: string,
   inputs: Record<string, any>,
   results: Record<string, any>
-): Promise<void> {
-  // Always save to local storage as a robust fallback/cache
+): void {
   try {
-    const localHistory = PersistentStorage.load<any[]>(STORAGE_KEYS.CALC_HISTORY, []);
-    const newEntry = {
-      id: `local_${Date.now()}`,
-      userId,
+    const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
+    
+    const newCalculation: StoredCalculation = {
+      id: `calc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       toolName,
       toolPath,
       inputs,
       results,
       timestamp: new Date().toISOString()
     };
-    localHistory.unshift(newEntry);
     
-    // Non-obvious Fix: Quota Management
-    // Instead of just slicing, we check if the storage is getting full
-    // and prune more aggressively if needed to prevent QuotaExceededError
-    const MAX_LOCAL_ITEMS = 30;
-    const prunedHistory = localHistory.slice(0, MAX_LOCAL_ITEMS);
+    // Add new calculation to the beginning (most recent first)
+    history.unshift(newCalculation);
     
-    try {
-      PersistentStorage.save(STORAGE_KEYS.CALC_HISTORY, prunedHistory);
-    } catch (e) {
-      if (e instanceof Error && e.name === 'QuotaExceededError') {
-        // Emergency prune if storage is actually full
-        PersistentStorage.save(STORAGE_KEYS.CALC_HISTORY, prunedHistory.slice(0, 10));
-      } else {
-        throw e;
-      }
+    // Keep only the most recent MAX_HISTORY_ITEMS
+    const trimmedHistory = history.slice(0, MAX_HISTORY_ITEMS);
+    
+    PersistentStorage.setItem(STORAGE_KEY, trimmedHistory);
+    console.log(`[CalculationHistory] Saved: ${toolName}`);
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to save calculation:', error);
+  }
+}
+
+/**
+ * Get all calculations from history
+ */
+export function getCalculationHistory(): CalculationHistory[] {
+  try {
+    const stored = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
+    return stored.map(item => ({
+      ...item,
+      timestamp: new Date(item.timestamp)
+    }));
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to get history:', error);
+    return [];
+  }
+}
+
+/**
+ * Get calculations for a specific tool
+ */
+export function getCalculationHistoryByTool(toolName: string): CalculationHistory[] {
+  try {
+    const history = getCalculationHistory();
+    return history.filter(calc => calc.toolName === toolName);
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to filter by tool:', error);
+    return [];
+  }
+}
+
+/**
+ * Get a specific calculation by ID
+ */
+export function getCalculationById(calculationId: string): CalculationHistory | null {
+  try {
+    const history = getCalculationHistory();
+    return history.find(calc => calc.id === calculationId) || null;
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to get calculation by ID:', error);
+    return null;
+  }
+}
+
+/**
+ * Delete a specific calculation
+ */
+export function deleteCalculation(calculationId: string): void {
+  try {
+    const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
+    const filtered = history.filter(calc => calc.id !== calculationId);
+    PersistentStorage.setItem(STORAGE_KEY, filtered);
+    console.log(`[CalculationHistory] Deleted: ${calculationId}`);
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to delete calculation:', error);
+  }
+}
+
+/**
+ * Delete all calculations for a specific tool
+ */
+export function deleteCalculationsForTool(toolName: string): void {
+  try {
+    const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
+    const filtered = history.filter(calc => calc.toolName !== toolName);
+    PersistentStorage.setItem(STORAGE_KEY, filtered);
+    console.log(`[CalculationHistory] Deleted all for tool: ${toolName}`);
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to delete calculations for tool:', error);
+  }
+}
+
+/**
+ * Clear entire calculation history
+ */
+export function clearAllCalculations(): void {
+  try {
+    PersistentStorage.removeItem(STORAGE_KEY);
+    console.log('[CalculationHistory] Cleared all calculations');
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to clear all calculations:', error);
+  }
+}
+
+/**
+ * Get count of calculations
+ */
+export function getCalculationCount(): number {
+  try {
+    const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
+    return history.length;
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to get count:', error);
+    return 0;
+  }
+}
+
+/**
+ * Export history as JSON
+ */
+export function exportHistoryAsJSON(): string {
+  try {
+    const history = getCalculationHistory();
+    return JSON.stringify(history, null, 2);
+  } catch (error) {
+    console.error('[CalculationHistory] Failed to export:', error);
+    return '[]';
+  }
+}
+
+/**
+ * Import history from JSON
+ */
+export function importHistoryFromJSON(jsonData: string): void {
+  try {
+    const parsed = JSON.parse(jsonData);
+    if (!Array.isArray(parsed)) {
+      throw new Error('Invalid format: expected an array');
     }
-  } catch (e) {
-    console.warn('Failed to save to local storage:', e);
-  }
-
-  if (!isFirebaseConfigured || !db) {
-    console.warn('Firestore not configured, calculation saved to local storage only');
-    return;
-  }
-
-  if (!isOnline()) {
-    addToOfflineQueue({
-      type: 'calculation',
-      data: { userId, toolName, toolPath, inputs, results },
-      timestamp: Date.now()
-    });
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, COLLECTION_NAME), {
-      userId,
-      toolName,
-      toolPath,
-      inputs,
-      results,
-      timestamp: Timestamp.now()
-    });
+    
+    // Validate and convert
+    const validCalculations: StoredCalculation[] = parsed.map(item => ({
+      id: item.id || `calc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      toolName: item.toolName || 'Unknown',
+      toolPath: item.toolPath || '',
+      inputs: item.inputs || {},
+      results: item.results || {},
+      timestamp: item.timestamp || new Date().toISOString()
+    }));
+    
+    // Merge with existing history (new items first)
+    const existing = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
+    const merged = [...validCalculations, ...existing].slice(0, MAX_HISTORY_ITEMS);
+    
+    PersistentStorage.setItem(STORAGE_KEY, merged);
+    console.log(`[CalculationHistory] Imported ${validCalculations.length} calculations`);
   } catch (error) {
-    console.error('Error saving calculation to Firestore:', error);
-    addToOfflineQueue({
-      type: 'calculation',
-      data: { userId, toolName, toolPath, inputs, results },
-      timestamp: Date.now()
-    });
-    // We already saved to local storage, so we don't throw unless it's a critical auth issue
-    if ((error as any)?.code === 'permission-denied') {
-      throw new Error('Authentication expired. Please sign in again.');
-    }
+    console.error('[CalculationHistory] Failed to import:', error);
+    throw new Error('Invalid JSON format for calculation history');
   }
 }
 
-export async function getCalculationHistory(
-  userId: string,
-  maxResults: number = 100
-): Promise<CalculationHistory[]> {
-  if (!isFirebaseConfigured || !db) {
-    console.warn('Firestore not configured');
-    return [];
-  }
-
+/**
+ * Get statistics about the history
+ */
+export function getHistoryStats() {
   try {
-    const q = query(
-      collection(db, COLLECTION_NAME),
-      where('userId', '==', userId),
-      orderBy('timestamp', 'desc'),
-      limit(maxResults)
-    );
-
-    const querySnapshot = await getDocs(q);
-    const history: CalculationHistory[] = [];
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      history.push({
-        id: doc.id,
-        userId: data.userId,
-        toolName: data.toolName,
-        toolPath: data.toolPath,
-        inputs: data.inputs,
-        results: data.results,
-        timestamp: data.timestamp.toDate()
-      });
-    });
-
-    return history;
+    const history = getCalculationHistory();
+    const toolCounts = history.reduce((acc, calc) => {
+      acc[calc.toolName] = (acc[calc.toolName] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+    
+    return {
+      totalCalculations: history.length,
+      totalTools: Object.keys(toolCounts).length,
+      toolBreakdown: toolCounts,
+      oldestCalculation: history[history.length - 1]?.timestamp || null,
+      newestCalculation: history[0]?.timestamp || null
+    };
   } catch (error) {
-    console.error('Error getting calculation history:', error);
-    return [];
-  }
-}
-
-export async function getCalculationHistoryByTool(
-  userId: string,
-  toolName: string
-): Promise<CalculationHistory[]> {
-  if (!isFirebaseConfigured || !db) {
-    console.warn('Firestore not configured');
-    return [];
-  }
-
-  try {
-    const q = query(
-      collection(db, COLLECTION_NAME),
-      where('userId', '==', userId),
-      where('toolName', '==', toolName),
-      orderBy('timestamp', 'desc')
-    );
-
-    const querySnapshot = await getDocs(q);
-    const history: CalculationHistory[] = [];
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      history.push({
-        id: doc.id,
-        userId: data.userId,
-        toolName: data.toolName,
-        toolPath: data.toolPath,
-        inputs: data.inputs,
-        results: data.results,
-        timestamp: data.timestamp.toDate()
-      });
-    });
-
-    return history;
-  } catch (error) {
-    console.error('Error getting calculation history by tool:', error);
-    return [];
-  }
-}
-
-export async function deleteCalculation(calculationId: string): Promise<void> {
-  if (!isFirebaseConfigured || !db) {
-    console.warn('Firestore not configured');
-    return;
-  }
-
-  try {
-    await deleteDoc(doc(db, COLLECTION_NAME, calculationId));
-  } catch (error) {
-    console.error('Error deleting calculation:', error);
-    throw error;
-  }
-}
-
-export async function clearAllCalculations(userId: string): Promise<void> {
-  if (!isFirebaseConfigured || !db) {
-    console.warn('Firestore not configured');
-    return;
-  }
-
-  try {
-    const q = query(
-      collection(db, COLLECTION_NAME),
-      where('userId', '==', userId)
-    );
-
-    const querySnapshot = await getDocs(q);
-    const deletePromises = querySnapshot.docs.map((doc) => 
-      deleteDoc(doc.ref)
-    );
-
-    await Promise.all(deletePromises);
-  } catch (error) {
-    console.error('Error clearing all calculations:', error);
-    throw error;
+    console.error('[CalculationHistory] Failed to get stats:', error);
+    return {
+      totalCalculations: 0,
+      totalTools: 0,
+      toolBreakdown: {},
+      oldestCalculation: null,
+      newestCalculation: null
+    };
   }
 }

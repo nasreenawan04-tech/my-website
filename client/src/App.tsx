@@ -58,6 +58,7 @@ const Profile = lazy(() => import("./pages/profile"));
 const Blog = lazy(() => import("./pages/blog"));
 const BlogPost = lazy(() => import("./pages/blog-post"));
 const CollectionPreview = lazy(() => import("./pages/collection-preview"));
+const CalculationHistory = lazy(() => import("./pages/calculation-history"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -130,6 +131,7 @@ function Router() {
           <Route path="/signup" component={Signup} />
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/profile" component={Profile} />
+          <Route path="/calculation-history" component={CalculationHistory} />
 
           {/* Blog pages */}
           <Route path="/blog" component={Blog} />

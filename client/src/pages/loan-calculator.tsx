@@ -21,7 +21,6 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 import { useAuth } from '@/contexts/AuthContext';
 import { saveCalculation } from '@/lib/calculationHistory';
-import { isFirebaseConfigured } from '@/lib/firebase';
 import { trackToolUsed } from '@/lib/analytics';
 
 interface LoanResult {
@@ -321,24 +320,6 @@ export default function LoanCalculator() {
   }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, user, toast, formatCurrency]);
 
   const handleSaveToProfile = useCallback(async () => {
-    if (!user) {
-      toast({
-        title: "Sign in required",
-        description: "Please sign in to save calculations to your profile",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    if (!isFirebaseConfigured) {
-      toast({
-        title: "Feature unavailable",
-        description: "Calculation history is not configured. Please contact support.",
-        variant: "destructive"
-      });
-      return;
-    }
-
     if (!result) {
       toast({
         title: "No calculation to save",
@@ -357,8 +338,7 @@ export default function LoanCalculator() {
       const procFee = parseFloat(processingFee ?? '0');
       const balloonPmt = parseFloat(balloonPayment || '0');
 
-      await saveCalculation(
-        user.uid,
+      saveCalculation(
         'Loan Calculator',
         '/tools/loan-calculator',
         {
@@ -382,21 +362,21 @@ export default function LoanCalculator() {
 
       toast({
         title: "Calculation saved!",
-        description: "View in Profile → History",
+        description: "View in Calculation History",
         className: "bg-green-50 border-green-200 dark:bg-green-900/20 dark:border-green-800"
       });
     } catch (error) {
       console.error('Failed to save calculation:', error);
       const errorMessage = error instanceof Error ? error.message : "Unable to save calculation. Please try again.";
       toast({
-        title: "Save Status",
-        description: errorMessage.includes('Authentication') ? errorMessage : "Calculation saved locally. Cloud sync failed.",
-        variant: errorMessage.includes('Authentication') ? "destructive" : "default"
+        title: "Calculation saved locally",
+        description: errorMessage,
+        variant: "default"
       });
     } finally {
       setIsSaving(false);
     }
-  }, [user, isFirebaseConfigured, result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, toast]);
+  }, [user, result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, toast]);
 
   const handleShare = useCallback(async () => {
     if (!result) return;

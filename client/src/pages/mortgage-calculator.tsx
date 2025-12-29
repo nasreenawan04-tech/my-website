@@ -379,40 +379,34 @@ const MortgageCalculator = () => {
 
     setResult(calculationResult);
 
-    // Save calculation history if user is logged in (non-blocking)
-    if (user) {
-      saveCalculation(
-        user.uid,
-        'Mortgage Calculator',
-        '/mortgage-calculator',
-        {
-          homePrice: price,
-          downPayment: down,
-          interestRate: annualRate,
-          loanTerm: termYears,
-          propertyTax: taxes,
-          homeInsurance: insurance,
-          pmiRate: pmi,
-          hoaFees: hoa,
-          extraPayment: extraPmt,
-          loanType,
-          paymentFrequency
-        },
-        {
-          monthlyPayment: calculationResult.monthlyPayment,
-          totalAmount: calculationResult.totalAmount,
-          totalInterest: calculationResult.totalInterest,
-          monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
-          closingCosts: calculationResult.closingCosts,
-          totalCashNeeded: calculationResult.totalCashNeeded,
-          loanToValue: calculationResult.loanToValue,
-          extraPaymentSavings: calculationResult.extraPaymentSavings
-        }
-      ).catch((error) => {
-        // Silently log error - don't interrupt user experience
-        console.error('Failed to save calculation history:', error);
-      });
-    }
+    // Save calculation history (non-blocking)
+    saveCalculation(
+      'Mortgage Calculator',
+      '/tools/mortgage-calculator',
+      {
+        homePrice: price,
+        downPayment: down,
+        interestRate: annualRate,
+        loanTerm: termYears,
+        propertyTax: taxes,
+        homeInsurance: insurance,
+        pmiRate: pmi,
+        hoaFees: hoa,
+        extraPayment: extraPmt,
+        loanType,
+        paymentFrequency
+      },
+      {
+        monthlyPayment: calculationResult.monthlyPayment,
+        totalAmount: calculationResult.totalAmount,
+        totalInterest: calculationResult.totalInterest,
+        monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
+        closingCosts: calculationResult.closingCosts,
+        totalCashNeeded: calculationResult.totalCashNeeded,
+        loanToValue: calculationResult.loanToValue,
+        extraPaymentSavings: calculationResult.extraPaymentSavings
+      }
+    );
 
     setIsCalculating(false);
 
