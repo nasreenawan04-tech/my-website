@@ -801,27 +801,33 @@ export default function Profile() {
                                 </div>
                               </div>
 
-                              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-3 sm:p-4">
-                                  <p className="font-semibold text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">Inputs</p>
-                                  <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                                <div className="bg-gray-50 dark:bg-neutral-800/50 rounded-lg p-3 sm:p-4 border border-gray-100 dark:border-neutral-700/50">
+                                  <p className="font-semibold text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-2 sm:mb-3 flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                                    Inputs
+                                  </p>
+                                  <div className="space-y-2 text-xs sm:text-sm">
                                     {Object.entries(calculation.inputs).slice(0, 5).map(([key, value]) => (
-                                      <div key={key} className="flex justify-between gap-2">
-                                        <span className="text-gray-600 dark:text-gray-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                        <span className="font-medium text-gray-900 dark:text-white text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
+                                      <div key={key} className="flex justify-between items-baseline gap-4 border-b border-gray-100 dark:border-neutral-700/30 pb-1.5 last:border-0 last:pb-0">
+                                        <span className="text-gray-500 dark:text-gray-400 capitalize shrink-0">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                        <span className="font-medium text-gray-900 dark:text-white text-right break-all">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                       </div>
                                     ))}
                                   </div>
                                 </div>
-                                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 sm:p-4">
-                                  <p className="font-semibold text-xs sm:text-sm text-blue-900 dark:text-blue-300 mb-2 sm:mb-3">Results</p>
-                                  <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+                                <div className="bg-blue-50/50 dark:bg-blue-900/10 rounded-lg p-3 sm:p-4 border border-blue-100/50 dark:border-blue-900/30">
+                                  <p className="font-semibold text-xs sm:text-sm text-blue-700 dark:text-blue-300 mb-2 sm:mb-3 flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                    Results
+                                  </p>
+                                  <div className="space-y-2 text-xs sm:text-sm">
                                     {Object.entries(calculation.results).slice(0, 5).map(([key, value]) => {
                                       if (typeof value === 'object' && value !== null) return null;
                                       return (
-                                        <div key={key} className="flex justify-between gap-2">
-                                          <span className="text-blue-700 dark:text-blue-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                          <span className="font-semibold text-blue-900 dark:text-blue-200 text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
+                                        <div key={key} className="flex justify-between items-baseline gap-4 border-b border-blue-100/30 dark:border-blue-900/20 pb-1.5 last:border-0 last:pb-0">
+                                          <span className="text-blue-600/70 dark:text-blue-400/70 capitalize shrink-0">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                          <span className="font-bold text-blue-900 dark:text-blue-200 text-right break-all">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                         </div>
                                       );
                                     })}
