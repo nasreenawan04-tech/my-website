@@ -145,3 +145,6 @@
 [x] 113. Workflow restarted with webview on port 5000
 [x] 114. Application verified running - fully functional calculation history system live
 [x] 115. Import complete - all calculation history feature tasks done
+[x] 116. New session - December 29, 2025 - npm install completed (825 packages), workflow restarted with webview on port 5000
+[x] 117. Verified application running - DapsiWow site fully operational
+[x] 118. Import complete - all items marked done
