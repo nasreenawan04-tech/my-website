@@ -2088,18 +2088,6 @@ export default function LoanCalculator() {
                     >
                       {isCalculating ? 'Calculating...' : 'Calculate Loan'}
                     </Button>
-                    {user && result && (
-                      <Button
-                        onClick={handleSaveToProfile}
-                        disabled={isSaving}
-                        variant="outline"
-                        className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-green-300 text-green-700 hover:bg-green-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                        data-testid="button-save-to-profile"
-                      >
-                        <i className={`fas ${isSaving ? 'fa-spinner fa-spin' : 'fa-save'} mr-2`}></i>
-                        {isSaving ? 'Saving...' : 'Save to Profile'}
-                      </Button>
-                    )}
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
