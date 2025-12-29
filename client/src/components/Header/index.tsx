@@ -5,7 +5,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { useComparison } from '@/context/ComparisonContext';
 import Logo from '../Logo';
-import { TopBar } from './TopBar';
 import { MegaMenu } from './MegaMenu';
 import { SearchBar } from './SearchBar';
 import { OfflineStatus } from '../ui/OfflineStatus';
@@ -97,10 +96,8 @@ const Header = () => {
 
   return (
     <>
-      <TopBar />
-      
       <header 
-        className={`sticky top-8 z-40 w-full backdrop-blur-xl transition-all duration-300 ease-out min-h-[64px] sm:min-h-[72px] md:min-h-[80px] ${
+        className={`sticky top-0 z-40 w-full backdrop-blur-xl transition-all duration-300 ease-out min-h-[64px] sm:min-h-[72px] md:min-h-[80px] ${
           isScrolled 
             ? 'bg-white/95 dark:bg-neutral-900/95 shadow-2xl border-b border-gray-200/60 dark:border-neutral-700/60' 
             : 'bg-white/85 dark:bg-neutral-900/85 shadow-md border-b border-gray-100/50 dark:border-neutral-800/30'
