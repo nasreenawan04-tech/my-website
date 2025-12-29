@@ -727,32 +727,35 @@ export default function Profile() {
               </Card>
             </TabsContent>
 
-            {/* Settings Tab */}
+            {/* History Tab */}
             <TabsContent value="settings" className="space-y-6">
               <Card>
                 <CardHeader>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
-                      <CardTitle>Calculation History</CardTitle>
+                      <CardTitle className="flex items-center gap-2">
+                        <History className="h-5 w-5 text-blue-600" />
+                        Calculation History
+                      </CardTitle>
                       <CardDescription>View and manage your past calculations</CardDescription>
                     </div>
                     {calculationHistory.length > 0 && (
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="outline" size="sm" data-testid="button-clear-all-calculations">
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto text-red-600 hover:text-red-700 hover:bg-red-50" data-testid="button-clear-all-calculations">
                             <Trash2 className="h-4 w-4 mr-2" />
                             Clear All
                           </Button>
                         </AlertDialogTrigger>
-                        <AlertDialogContent>
+                        <AlertDialogContent className="w-[95vw] max-w-md">
                           <AlertDialogHeader>
                             <AlertDialogTitle>Clear all calculation history?</AlertDialogTitle>
                             <AlertDialogDescription>
                               This will permanently delete all your calculation history. This action cannot be undone.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+                            <AlertDialogCancel className="mt-0">Cancel</AlertDialogCancel>
                             <AlertDialogAction onClick={handleClearAllCalculations} className="bg-red-600 hover:bg-red-700">
                               Clear All
                             </AlertDialogAction>
@@ -771,8 +774,8 @@ export default function Profile() {
                     <div className="text-center py-16">
                       <History className="h-16 w-16 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
                       <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No Calculation History</h3>
-                      <p className="text-gray-600 dark:text-gray-400 mb-6">
-                        Your calculation history will appear here
+                      <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-xs mx-auto">
+                        Start using our tools to see your calculation history here.
                       </p>
                       <Link href="/all-tools">
                         <Button className="bg-blue-600 hover:bg-blue-700" data-testid="button-browse-tools">
@@ -784,55 +787,54 @@ export default function Profile() {
                     <div className="space-y-4">
                       {calculationHistory.map((calculation) => (
                         <Card key={calculation.id} className="border-gray-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
-                          <CardContent className="p-6">
-                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                              <div className="flex-1 space-y-3 min-w-0">
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                                  <Link href={calculation.toolPath}>
-                                    <Button variant="link" className="p-0 h-auto text-base font-semibold text-blue-600 hover:text-blue-700 justify-start" data-testid={`link-tool-${calculation.id}`}>
-                                      <span className="truncate">{calculation.toolName}</span>
-                                    </Button>
-                                  </Link>
-                                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                                    <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-                                    {format(calculation.timestamp, 'PPp')}
+                          <CardContent className="p-4 sm:p-6">
+                            <div className="flex flex-col gap-4">
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <Link href={calculation.toolPath}>
+                                  <Button variant="link" className="p-0 h-auto text-base font-semibold text-blue-600 hover:text-blue-700 justify-start" data-testid={`link-tool-${calculation.id}`}>
+                                    <span className="truncate">{calculation.toolName}</span>
+                                  </Button>
+                                </Link>
+                                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                                  <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                                  {format(calculation.timestamp, 'PPp')}
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-3 sm:p-4">
+                                  <p className="font-semibold text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">Inputs</p>
+                                  <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+                                    {Object.entries(calculation.inputs).slice(0, 5).map(([key, value]) => (
+                                      <div key={key} className="flex justify-between gap-2">
+                                        <span className="text-gray-600 dark:text-gray-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                        <span className="font-medium text-gray-900 dark:text-white text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
+                                      </div>
+                                    ))}
                                   </div>
                                 </div>
-
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-3 sm:p-4">
-                                    <p className="font-semibold text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">Inputs</p>
-                                    <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
-                                      {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
+                                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 sm:p-4">
+                                  <p className="font-semibold text-xs sm:text-sm text-blue-900 dark:text-blue-300 mb-2 sm:mb-3">Results</p>
+                                  <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+                                    {Object.entries(calculation.results).slice(0, 5).map(([key, value]) => {
+                                      if (typeof value === 'object' && value !== null) return null;
+                                      return (
                                         <div key={key} className="flex justify-between gap-2">
-                                          <span className="text-gray-600 dark:text-gray-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                          <span className="font-medium text-gray-900 dark:text-white text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
+                                          <span className="text-blue-700 dark:text-blue-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                          <span className="font-semibold text-blue-900 dark:text-blue-200 text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
                                         </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 sm:p-4">
-                                    <p className="font-semibold text-xs sm:text-sm text-blue-900 dark:text-blue-300 mb-2 sm:mb-3">Results</p>
-                                    <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
-                                      {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
-                                        if (typeof value === 'object' && value !== null) return null;
-                                        return (
-                                          <div key={key} className="flex justify-between gap-2">
-                                            <span className="text-blue-700 dark:text-blue-400 capitalize truncate">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-semibold text-blue-900 dark:text-blue-200 text-right">{typeof value === 'number' ? value.toLocaleString() : String(value)}</span>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
+                                      );
+                                    })}
                                   </div>
                                 </div>
                               </div>
 
-                              <div className="flex sm:flex-col items-center gap-2">
+                              <div className="flex justify-end pt-2">
                                 <AlertDialog>
                                   <AlertDialogTrigger asChild>
-                                    <Button variant="ghost" size="icon" className="h-8 w-8 sm:h-9 sm:w-9 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30" data-testid={`button-delete-${calculation.id}`}>
-                                      <Trash2 className="h-4 w-4" />
+                                    <Button variant="ghost" size="sm" className="h-8 text-red-600 hover:text-red-700 hover:bg-red-50" data-testid={`button-delete-${calculation.id}`}>
+                                      <Trash2 className="h-4 w-4 mr-2" />
+                                      Delete
                                     </Button>
                                   </AlertDialogTrigger>
                                   <AlertDialogContent className="w-[95vw] max-w-md">
