@@ -291,21 +291,21 @@ export default function Profile() {
       {/* Professional Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 border-b border-gray-200 dark:border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-col lg:flex-row items-start gap-8">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 text-center lg:text-left">
             {/* Avatar & Basic Info */}
             <div className="flex-shrink-0">
-              <Avatar className="h-32 w-32 border-4 border-white dark:border-neutral-700 shadow-2xl ring-4 ring-blue-100 dark:ring-blue-900/30">
+              <Avatar className="h-24 w-24 sm:h-32 sm:w-32 border-4 border-white dark:border-neutral-700 shadow-2xl ring-4 ring-blue-100 dark:ring-blue-900/30">
                 <AvatarImage src={photoURL || defaultAvatarUrl} alt={displayName || user.email || 'User'} />
-                <AvatarFallback className="text-3xl bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
+                <AvatarFallback className="text-2xl sm:text-3xl bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
                   {getInitials()}
                 </AvatarFallback>
               </Avatar>
             </div>
 
             {/* User Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-3 mb-2">
-                <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white break-words">
+            <div className="flex-1 min-w-0 w-full">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-2">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white break-words">
                   {displayName || 'Welcome Back'}
                 </h1>
                 <Badge className={`${activityLevel.bgColor} ${activityLevel.color} border-0 shrink-0`}>
@@ -313,17 +313,17 @@ export default function Profile() {
                   {activityLevel.label}
                 </Badge>
               </div>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-2 truncate" data-testid="text-profile-email">
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-2 break-all" data-testid="text-profile-email">
                 {user.email}
               </p>
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-gray-500 dark:text-gray-400">
                 <Calendar className="h-4 w-4" />
                 Member since {getMemberSince()}
               </div>
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-wrap gap-3 w-full lg:w-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-3 w-full lg:w-auto mt-4 lg:mt-0">
               <Link href="/all-tools" className="flex-1 lg:flex-none">
                 <Button variant="outline" className="w-full gap-2">
                   <Activity className="h-4 w-4" />
@@ -447,7 +447,7 @@ export default function Profile() {
 
             {/* Overview Tab */}
             <TabsContent value="overview" className="space-y-6">
-              <div className="grid lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Recent Activity */}
                 <Card>
                   <CardHeader>
