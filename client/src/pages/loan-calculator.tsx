@@ -302,6 +302,30 @@ export default function LoanCalculator() {
     };
 
     setResult(calculationResult);
+
+    // Save calculation history (non-blocking)
+    saveCalculation(
+      'Loan Calculator',
+      '/tools/loan-calculator',
+      {
+        loanAmount: principal,
+        interestRate: annualRate,
+        loanTerm: term,
+        termUnit: termUnit || 'years',
+        paymentFrequency: paymentFrequency || 'monthly',
+        extraPayment: extraPmt,
+        processingFee: procFee,
+        balloonPayment: balloonPmt,
+        biweeklyMode: (paymentFrequency === 'biweekly') ? biweeklyMode : undefined
+      },
+      {
+        monthlyPayment: calculationResult.monthlyPayment,
+        totalAmount: calculationResult.totalAmount,
+        totalInterest: calculationResult.totalInterest,
+        extraPaymentSavings: calculationResult.extraPaymentSavings
+      }
+    );
+
     updatePredictions({
       loanAmount: loanAmount || '100000',
       interestRate: interestRate || '5.50',
