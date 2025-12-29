@@ -743,64 +743,6 @@ export default function Profile() {
 
             {/* Settings Tab */}
             <TabsContent value="settings" className="space-y-6">
-              {/* Data Management */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Data Management</CardTitle>
-                  <CardDescription>Manage your saved preferences and data</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="justify-start" data-testid="button-clear-favorites">
-                          <Trash2 className="mr-2 h-4 w-4" />
-                          Clear Favorites ({favoritesCount})
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Clear all favorites?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This will remove all tools from your favorites list.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleClearFavorites} className="bg-blue-600 hover:bg-blue-700">
-                            Clear Favorites
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-
-                    <AlertDialog>
-                      <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="justify-start" data-testid="button-clear-history">
-                          <Trash2 className="mr-2 h-4 w-4" />
-                          Clear Recent History ({recentToolsCount})
-                        </Button>
-                      </AlertDialogTrigger>
-                      <AlertDialogContent>
-                        <AlertDialogHeader>
-                          <AlertDialogTitle>Clear recent history?</AlertDialogTitle>
-                          <AlertDialogDescription>
-                            This will remove all recently used tools from your history.
-                          </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleClearRecentTools} className="bg-blue-600 hover:bg-blue-700">
-                            Clear History
-                          </AlertDialogAction>
-                        </AlertDialogFooter>
-                      </AlertDialogContent>
-                    </AlertDialog>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Calculation History */}
               <Card>
                 <CardHeader>
                   <div className="flex items-center justify-between">
