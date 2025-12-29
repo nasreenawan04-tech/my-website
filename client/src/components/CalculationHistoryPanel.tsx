@@ -16,6 +16,14 @@ export function CalculationHistoryPanel({ toolFilter }: CalculationHistoryPanelP
 
   useEffect(() => {
     loadHistory();
+    
+    // Listen for history updates from other parts of the app
+    const handleUpdate = () => loadHistory();
+    window.addEventListener('calculation-history-updated', handleUpdate);
+    
+    return () => {
+      window.removeEventListener('calculation-history-updated', handleUpdate);
+    };
   }, [toolFilter]);
 
   const loadHistory = () => {

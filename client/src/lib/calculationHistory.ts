@@ -29,6 +29,7 @@ const MAX_HISTORY_ITEMS = 100;
 
 /**
  * Save a calculation to history
+ * Automatically persists to local storage
  */
 export function saveCalculation(
   toolName: string,
@@ -39,12 +40,16 @@ export function saveCalculation(
   try {
     const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
     
+    // Clean up inputs and results to ensure they are serializable
+    const cleanInputs = JSON.parse(JSON.stringify(inputs));
+    const cleanResults = JSON.parse(JSON.stringify(results));
+    
     const newCalculation: StoredCalculation = {
       id: `calc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       toolName,
       toolPath,
-      inputs,
-      results,
+      inputs: cleanInputs,
+      results: cleanResults,
       timestamp: new Date().toISOString()
     };
     
@@ -55,6 +60,10 @@ export function saveCalculation(
     const trimmedHistory = history.slice(0, MAX_HISTORY_ITEMS);
     
     PersistentStorage.setItem(STORAGE_KEY, trimmedHistory);
+    
+    // Dispatch custom event for real-time UI updates
+    window.dispatchEvent(new CustomEvent('calculation-history-updated'));
+    
     console.log(`[CalculationHistory] Saved: ${toolName}`);
   } catch (error) {
     console.error('[CalculationHistory] Failed to save calculation:', error);
@@ -111,6 +120,7 @@ export function deleteCalculation(calculationId: string): void {
     const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
     const filtered = history.filter(calc => calc.id !== calculationId);
     PersistentStorage.setItem(STORAGE_KEY, filtered);
+    window.dispatchEvent(new CustomEvent('calculation-history-updated'));
     console.log(`[CalculationHistory] Deleted: ${calculationId}`);
   } catch (error) {
     console.error('[CalculationHistory] Failed to delete calculation:', error);
@@ -125,6 +135,7 @@ export function deleteCalculationsForTool(toolName: string): void {
     const history = PersistentStorage.getItem<StoredCalculation[]>(STORAGE_KEY) || [];
     const filtered = history.filter(calc => calc.toolName !== toolName);
     PersistentStorage.setItem(STORAGE_KEY, filtered);
+    window.dispatchEvent(new CustomEvent('calculation-history-updated'));
     console.log(`[CalculationHistory] Deleted all for tool: ${toolName}`);
   } catch (error) {
     console.error('[CalculationHistory] Failed to delete calculations for tool:', error);
@@ -137,6 +148,7 @@ export function deleteCalculationsForTool(toolName: string): void {
 export function clearAllCalculations(): void {
   try {
     PersistentStorage.removeItem(STORAGE_KEY);
+    window.dispatchEvent(new CustomEvent('calculation-history-updated'));
     console.log('[CalculationHistory] Cleared all calculations');
   } catch (error) {
     console.error('[CalculationHistory] Failed to clear all calculations:', error);
@@ -194,6 +206,7 @@ export function importHistoryFromJSON(jsonData: string): void {
     const merged = [...validCalculations, ...existing].slice(0, MAX_HISTORY_ITEMS);
     
     PersistentStorage.setItem(STORAGE_KEY, merged);
+    window.dispatchEvent(new CustomEvent('calculation-history-updated'));
     console.log(`[CalculationHistory] Imported ${validCalculations.length} calculations`);
   } catch (error) {
     console.error('[CalculationHistory] Failed to import:', error);

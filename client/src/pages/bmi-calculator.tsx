@@ -17,6 +17,7 @@ import { usePinnedTools } from '@/hooks/use-pinned-tools';
 import { cn } from '@/lib/utils';
 import { calculateBMI, isValidBMIInputs } from '@/lib/calculators/health/bmi.engine';
 import { BMICalculatorInput, BMIResult, UnitSystem, Gender } from '@/types/health-tool.types';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 import { usePredictiveInput } from '@/hooks/use-predictive-input';
 
