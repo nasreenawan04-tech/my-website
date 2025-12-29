@@ -71,6 +71,7 @@ const Header = () => {
     { href: '/finance-tools', label: 'Finance' },
     { href: '/text-tools', label: 'Text Tools' },
     { href: '/health-tools', label: 'Health' },
+    { href: '/favorite-tools', label: 'Favorites' },
     { href: '/blog', label: 'Blog' },
   ], []);
 
