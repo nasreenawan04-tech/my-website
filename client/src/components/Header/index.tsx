@@ -5,7 +5,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { useComparison } from '@/context/ComparisonContext';
 import Logo from '../Logo';
-import { MegaMenu } from './MegaMenu';
 import { SearchBar } from './SearchBar';
 import { OfflineStatus } from '../ui/OfflineStatus';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,6 @@ import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location, setLocation] = useLocation();
   const isMobile = useIsMobile();
@@ -54,7 +52,6 @@ const Header = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsSearchOpen(false);
-    setIsMegaMenuOpen(false);
   }, [location]);
 
   // Prevent body scroll when mobile menu is open
@@ -124,21 +121,11 @@ const Header = () => {
                     }`}
                     data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                     aria-current={location === link.href ? 'page' : undefined}
-                    onMouseEnter={() => link.href === '/finance-tools' && setIsMegaMenuOpen(true)}
-                    onMouseLeave={() => link.href === '/finance-tools' && setIsMegaMenuOpen(false)}
                   >
                     {link.label}
                   </Link>
                 </div>
               ))}
-              {isMegaMenuOpen && (
-                <div
-                  onMouseEnter={() => setIsMegaMenuOpen(true)}
-                  onMouseLeave={() => setIsMegaMenuOpen(false)}
-                >
-                  <MegaMenu onClose={() => setIsMegaMenuOpen(false)} />
-                </div>
-              )}
             </nav>
 
             {/* Right Section - Search, Auth, and Mobile Menu */}
