@@ -439,8 +439,8 @@ export default function Profile() {
                   <span className="hidden sm:inline">Security</span>
                 </TabsTrigger>
                 <TabsTrigger value="settings" className="flex-1 sm:flex-none gap-2 py-2">
-                  <Settings className="h-4 w-4" />
-                  <span className="hidden sm:inline">Settings</span>
+                  <History className="h-4 w-4" />
+                  <span className="hidden sm:inline">History</span>
                 </TabsTrigger>
               </TabsList>
             </div>
