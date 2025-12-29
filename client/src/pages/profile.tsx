@@ -424,23 +424,23 @@ export default function Profile() {
               <TabsList className="inline-flex w-full sm:w-auto h-auto p-1 bg-gray-100/50 dark:bg-neutral-800/50">
                 <TabsTrigger value="overview" className="flex-1 sm:flex-none gap-2 py-2">
                   <Activity className="h-4 w-4" />
-                  <span className="inline sm:inline">Overview</span>
+                  <span className="hidden sm:inline">Overview</span>
                 </TabsTrigger>
                 <TabsTrigger value="comparisons" className="flex-1 sm:flex-none gap-2 py-2">
                   <Scale className="h-4 w-4" />
-                  <span className="inline sm:inline">Comparisons</span>
+                  <span className="hidden sm:inline">Comparisons</span>
                 </TabsTrigger>
                 <TabsTrigger value="profile" className="flex-1 sm:flex-none gap-2 py-2">
                   <User className="h-4 w-4" />
-                  <span className="inline sm:inline">Profile</span>
+                  <span className="hidden sm:inline">Profile</span>
                 </TabsTrigger>
                 <TabsTrigger value="security" className="flex-1 sm:flex-none gap-2 py-2">
                   <Shield className="h-4 w-4" />
-                  <span className="inline sm:inline">Security</span>
+                  <span className="hidden sm:inline">Security</span>
                 </TabsTrigger>
                 <TabsTrigger value="settings" className="flex-1 sm:flex-none gap-2 py-2">
                   <Settings className="h-4 w-4" />
-                  <span className="inline sm:inline">Settings</span>
+                  <span className="hidden sm:inline">Settings</span>
                 </TabsTrigger>
               </TabsList>
             </div>
