@@ -14,6 +14,7 @@ import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, B
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 interface BusinessLoanResult {
   monthlyPayment: number;
@@ -157,6 +158,29 @@ export default function BusinessLoanCalculator() {
       loanToValue: Math.round(loanToValue * 100) / 100,
       amortizationSchedule
     });
+
+    // Save calculation history (non-blocking)
+    saveCalculation(
+      'Business Loan Calculator',
+      '/tools/business-loan-calculator',
+      {
+        loanAmount: principal,
+        interestRate: parseFloat(interestRate),
+        loanTerm: parseFloat(loanTerm),
+        termUnit,
+        loanType,
+        businessRevenue: revenue,
+        collateralValue: collateral
+      },
+      {
+        monthlyPayment: Math.round(monthlyPayment * 100) / 100,
+        totalAmount: Math.round(totalAmount * 100) / 100,
+        totalInterest: Math.round(totalInterest * 100) / 100,
+        yearlyPayment: Math.round(yearlyPayment * 100) / 100,
+        debtServiceCoverage: Math.round(debtServiceCoverage * 100) / 100,
+        loanToValue: Math.round(loanToValue * 100) / 100
+      }
+    );
 
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
