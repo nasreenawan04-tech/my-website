@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Scale } from "lucide-react";
 import { tools } from "@/data/tools";
 import { useLocation } from "wouter";
 
@@ -32,14 +30,10 @@ const ToolHeroSection = ({ title, description, testId, toolId }: ToolHeroSection
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             {description}
           </p>
-          {tool?.canCompare && (
-            <div className="flex justify-center pt-4">
-              <Button
-                variant="outline"
-                className="gap-2"
-                data-testid={`button-compare-hero-${tool.id}`}
-              >
-                <Scale size={18} />
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ToolHeroSection;

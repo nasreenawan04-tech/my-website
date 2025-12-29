@@ -24,11 +24,10 @@ export interface CalculationHistory {
 }
 
 const COLLECTION_NAME = 'calculationHistory';
-const COMPARISON_COLLECTION_NAME = 'comparisonHistory';
 const OFFLINE_QUEUE_KEY = 'dapsiwow_offline_sync_queue';
 
 interface OfflineQueueItem {
-  type: 'calculation' | 'comparison';
+  type: 'calculation';
   data: any;
   timestamp: number;
 }
@@ -64,14 +63,6 @@ export async function processOfflineQueue() {
           results,
           timestamp: Timestamp.fromMillis(item.timestamp)
         });
-      } else if (item.type === 'comparison') {
-        const { userId, category, toolIds } = item.data;
-        await addDoc(collection(db, COMPARISON_COLLECTION_NAME), {
-          userId,
-          category,
-          toolIds,
-          timestamp: Timestamp.fromMillis(item.timestamp)
-        });
       }
     } catch (e) {
       console.error('Failed to sync offline item:', e);
@@ -79,9 +70,7 @@ export async function processOfflineQueue() {
     }
   }
 
-  if (remainingItems.length === 0) {
-    PersistentStorage.remove(OFFLINE_QUEUE_KEY);
-  } else {
+  if (remainingItems.length > 0) {
     PersistentStorage.save(OFFLINE_QUEUE_KEY, remainingItems);
   }
 }
@@ -91,93 +80,6 @@ if (typeof window !== 'undefined') {
   window.addEventListener('online', () => {
     processOfflineQueue().catch(console.error);
   });
-}
-
-export interface ComparisonHistory {
-  id?: string;
-  userId: string;
-  category: string;
-  toolIds: string[];
-  timestamp: Date;
-}
-
-export async function saveComparison(
-  userId: string,
-  category: string,
-  toolIds: string[]
-): Promise<void> {
-  // Always save locally first
-  try {
-    const saved = PersistentStorage.load<any[]>('saved_comparisons', []);
-    saved.push({
-      id: Math.random().toString(36).substr(2, 9),
-      userId,
-      category,
-      toolIds,
-      timestamp: new Date().toISOString()
-    });
-    PersistentStorage.save('saved_comparisons', saved.slice(-20));
-  } catch (e) {
-    console.warn('Failed to save comparison locally:', e);
-  }
-
-  if (!isFirebaseConfigured || !db) return;
-
-  if (!isOnline()) {
-    addToOfflineQueue({
-      type: 'comparison',
-      data: { userId, category, toolIds },
-      timestamp: Date.now()
-    });
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, COMPARISON_COLLECTION_NAME), {
-      userId,
-      category,
-      toolIds,
-      timestamp: Timestamp.now()
-    });
-  } catch (error) {
-    console.error('Error saving comparison:', error);
-    addToOfflineQueue({
-      type: 'comparison',
-      data: { userId, category, toolIds },
-      timestamp: Date.now()
-    });
-  }
-}
-
-export async function getComparisonHistory(userId: string): Promise<ComparisonHistory[]> {
-  if (!isFirebaseConfigured || !db) {
-    const saved = PersistentStorage.load<any[]>('saved_comparisons', []);
-    return saved.map((s: any) => ({ ...s, timestamp: new Date(s.timestamp) }));
-  }
-
-  try {
-    const q = query(
-      collection(db, COMPARISON_COLLECTION_NAME),
-      where('userId', '==', userId),
-      orderBy('timestamp', 'desc')
-    );
-    const querySnapshot = await getDocs(q);
-    const history: ComparisonHistory[] = [];
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      history.push({
-        id: doc.id,
-        userId: data.userId,
-        category: data.category,
-        toolIds: data.toolIds,
-        timestamp: data.timestamp.toDate()
-      });
-    });
-    return history;
-  } catch (error) {
-    console.error('Error getting comparison history:', error);
-    return [];
-  }
 }
 
 export async function saveCalculation(

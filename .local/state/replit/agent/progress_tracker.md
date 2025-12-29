@@ -116,3 +116,14 @@
 [x] 102. New session - December 29, 2025 - npm install completed (824 packages), workflow restarted
 [x] 103. Verified application running via screenshot - DapsiWow site fully operational with 23 tools, 3 categories
 [x] 104. Import complete - all items marked done
+[x] 105. FEATURE REMOVAL: Tool Comparison System - Removed entire comparison feature:
+   - Deleted canCompare property from Tool interface (was unused in tools.ts)
+   - Removed comparison button and logic from ToolHeroSection.tsx
+   - Removed Scale icon import from Header
+   - Removed ComparisonHistory interface from calculationHistory.ts
+   - Removed saveComparison() and getComparisonHistory() functions
+   - Removed comparison-related offline queue handling
+   - Cleaned up PersistentStorage.remove() call to use proper API
+[x] 106. New session - December 29, 2025 - npm install completed (824 packages), workflow restarted
+[x] 107. Verified application running via screenshot - DapsiWow site fully operational with 23 tools, 3 categories (no comparison system)
+[x] 108. Import complete - all comparison system removal tasks done

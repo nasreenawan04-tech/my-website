@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, X, Search, User, LogOut, Scale } from 'lucide-react';
+import { Menu, X, Search, User, LogOut } from 'lucide-react';
 import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
 const Header = () => {
