@@ -58,7 +58,6 @@ const Profile = lazy(() => import("./pages/profile"));
 const Blog = lazy(() => import("./pages/blog"));
 const BlogPost = lazy(() => import("./pages/blog-post"));
 const CollectionPreview = lazy(() => import("./pages/collection-preview"));
-const CompareTools = lazy(() => import("./pages/compare-tools"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -111,7 +110,6 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/all-tools" component={AllTools} />
           <Route path="/tools" component={AllTools} />
-          <Route path="/compare-tools" component={CompareTools} />
 
           {/* Category pages - standardized */}
           <Route path="/finance-tools" component={FinanceTools} />
@@ -331,7 +329,6 @@ function Router() {
           
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />
-          <Route path="/tools/:toolId/compare" component={CompareTools} />
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
@@ -341,21 +338,17 @@ function Router() {
   );
 }
 
-import { ComparisonProvider } from "@/context/ComparisonContext";
-
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <ThemeProvider defaultTheme="light" storageKey="dapsiwow-ui-theme">
-          <ComparisonProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Router />
-              <BackToTop />
-              <PerformanceMetrics />
-            </TooltipProvider>
-          </ComparisonProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+            <BackToTop />
+            <PerformanceMetrics />
+          </TooltipProvider>
         </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { useComparison } from '@/context/ComparisonContext';
 import Logo from '../Logo';
 import { SearchBar } from './SearchBar';
 import { OfflineStatus } from '../ui/OfflineStatus';
@@ -28,7 +27,6 @@ const Header = () => {
   const isMobile = useIsMobile();
   const { user, logout, loading } = useAuth();
   const { toast } = useToast();
-  const { selectedTools } = useComparison();
 
   // Handle scroll effect with smooth transition
   useEffect(() => {
@@ -134,22 +132,6 @@ const Header = () => {
               {/* Offline Status */}
               <OfflineStatus />
 
-              {/* Compare Button */}
-              {selectedTools.length > 0 && (
-                <Link href="/compare-tools">
-                  <button 
-                    className="p-2 md:p-2.5 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/60 transition-all duration-200 hover:scale-110 active:scale-95 relative group shadow-sm hover:shadow-md"
-                    data-testid="button-header-compare"
-                    aria-label="View comparison"
-                    title="View comparison"
-                  >
-                    <Scale className="w-5 h-5 md:w-5.5 md:h-5.5" />
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-700 text-[10px] font-bold text-white shadow-md">
-                      {selectedTools.length}
-                    </span>
-                  </button>
-                </Link>
-              )}
 
               {/* Search Button */}
               <button 

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Scale } from "lucide-react";
-import { useComparison } from "@/context/ComparisonContext";
 import { tools } from "@/data/tools";
 import { useLocation } from "wouter";
 
@@ -12,7 +11,6 @@ interface ToolHeroSectionProps {
 }
 
 const ToolHeroSection = ({ title, description, testId, toolId }: ToolHeroSectionProps) => {
-  const { addToCompare } = useComparison();
   const [location] = useLocation();
 
   const tool = toolId ? tools.find(t => t.id === toolId) : tools.find(t => t.href === location);
@@ -39,18 +37,9 @@ const ToolHeroSection = ({ title, description, testId, toolId }: ToolHeroSection
               <Button
                 variant="outline"
                 className="gap-2"
-                onClick={() => addToCompare(tool)}
                 data-testid={`button-compare-hero-${tool.id}`}
               >
                 <Scale size={18} />
-                Add to Comparison
-              </Button>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
 };
 
 export default ToolHeroSection;

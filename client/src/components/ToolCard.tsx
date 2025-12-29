@@ -4,8 +4,7 @@ import { type Tool, categories } from '@/data/tools';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useRecentTools } from '@/hooks/use-recent-tools';
 import { useFavorites } from '@/hooks/use-favorites';
-import { ArrowRight, TrendingUp, Scale, FolderPlus } from 'lucide-react';
-import { useComparison } from '@/context/ComparisonContext';
+import { ArrowRight, TrendingUp, FolderPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -35,7 +34,6 @@ const categoryGradients = {
 const ToolCard = ({ tool, onClick }: ToolCardProps) => {
   const [, setLocation] = useLocation();
   const { addRecent } = useRecentTools();
-  const { addToCompare } = useComparison();
   const { categories: favCategories, updateFavoriteCategory, isFavorite } = useFavorites();
   const isToolFavorite = isFavorite(tool.id);
 
@@ -76,25 +74,8 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
             </h3>
           </div>
           
-          {/* Favorite button & Compare button - always visible on mobile, hover on desktop */}
+          {/* Favorite button - always visible on mobile, hover on desktop */}
           <div className="flex flex-shrink-0 items-center gap-1 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200 -mt-0.5">
-            {tool.canCompare && (
-              <Button
-                size="icon"
-                variant="ghost"
-                className="h-8 w-8 text-neutral-500 hover:text-primary"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  addToCompare(tool);
-                }}
-                data-testid={`button-compare-tool-${tool.id}`}
-                aria-label={`Add ${tool.name} to comparison`}
-                title="Add to comparison"
-              >
-                <Scale size={16} aria-hidden="true" />
-              </Button>
-            )}
-
             {isToolFavorite && favCategories.length > 0 && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
