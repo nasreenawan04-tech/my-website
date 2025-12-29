@@ -426,10 +426,6 @@ export default function Profile() {
                   <Activity className="h-4 w-4" />
                   <span className="hidden sm:inline">Overview</span>
                 </TabsTrigger>
-                <TabsTrigger value="comparisons" className="flex-1 sm:flex-none gap-2 py-2">
-                  <Scale className="h-4 w-4" />
-                  <span className="hidden sm:inline">Comparisons</span>
-                </TabsTrigger>
                 <TabsTrigger value="profile" className="flex-1 sm:flex-none gap-2 py-2">
                   <User className="h-4 w-4" />
                   <span className="hidden sm:inline">Profile</span>
@@ -542,27 +538,6 @@ export default function Profile() {
                   </CardContent>
                 </Card>
               </div>
-            </TabsContent>
-
-            <TabsContent value="comparisons" className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Scale className="h-5 w-5 text-blue-600" />
-                    Comparisons
-                  </CardTitle>
-                  <CardDescription>Tool comparison feature</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center py-8 px-4">
-                    <Scale className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
-                    <p className="text-gray-600 dark:text-gray-400 text-sm">No comparisons saved yet</p>
-                    <Link href="/all-tools">
-                      <Button variant="link" className="mt-2 text-blue-600">Start comparing tools</Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
             </TabsContent>
 
             <TabsContent value="profile" className="space-y-6">
