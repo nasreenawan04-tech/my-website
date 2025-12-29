@@ -68,6 +68,26 @@ const BMICalculator = () => {
         age: age || '',
         gender: gender || 'male'
       });
+
+      // Save to calculation history
+      saveCalculation(
+        toolName,
+        '/tools/bmi-calculator',
+        {
+          weight,
+          height,
+          feet,
+          inches,
+          unitSystem,
+          age,
+          gender
+        },
+        {
+          bmi: res.bmi,
+          category: res.category,
+          idealWeightRange: res.idealWeightRange
+        }
+      );
     }
   };
 

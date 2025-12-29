@@ -15,6 +15,8 @@ import html2canvas from 'html2canvas';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
 
+import { saveCalculation } from '@/lib/calculationHistory';
+
 interface LumpSumContribution {
   year: number;
   amount: number;
@@ -505,6 +507,37 @@ export default function CompoundInterestCalculator() {
     } as any);
 
     setResult(calcResult);
+
+    // Save to calculation history
+    saveCalculation(
+      'Compound Interest Calculator',
+      '/tools/compound-interest-calculator',
+      {
+        principal,
+        interestRate,
+        timePeriod,
+        timeUnit,
+        compoundFrequency,
+        enableSIP,
+        sipAmount,
+        sipFrequency,
+        stepUpPercentage,
+        inflationRate,
+        enableGoalPlanning,
+        goalAmount,
+        enableTax,
+        taxRate,
+        enableFees,
+        expenseRatio
+      },
+      {
+        finalAmount: calcResult.finalAmount,
+        totalInterest: calcResult.totalInterest,
+        totalContributions: calcResult.totalContributions,
+        realValue: calcResult.realValue,
+        cagr: calcResult.cagr
+      }
+    );
   };
 
   const resetCalculator = () => {
