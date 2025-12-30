@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
@@ -10,6 +11,7 @@ import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe } from 
 import { AuthStatus } from '@/components/AuthStatus';
 
 const Home = () => {
+  const { user } = useAuth();
   return (
     <>
       <Helmet>

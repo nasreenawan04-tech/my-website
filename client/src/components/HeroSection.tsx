@@ -5,6 +5,7 @@ import { tools } from '@/data/tools';
 import { Search, TrendingUp, Loader2 } from 'lucide-react';
 import { useDebounce } from '@/hooks/use-debounce';
 import { motion } from 'framer-motion';
+import { useAuth } from '@/contexts/AuthContext';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,6 +14,7 @@ const HeroSection = () => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isSearching, setIsSearching] = useState(false);
   const [, setLocation] = useLocation();
+  const { user } = useAuth();
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
