@@ -15,6 +15,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import ShareResultsButton from '@/components/ShareResultsButton';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 import { calculateSimpleInterest, SimpleInterestResult } from '@/lib/calculators/interest-calculator.engine';
 
@@ -133,6 +134,23 @@ export default function SimpleInterestCalculator() {
 
     if (calculationResult) {
       setResult(calculationResult);
+
+      // Save calculation history
+      saveCalculation(
+        'Simple Interest Calculator',
+        '/tools/simple-interest-calculator',
+        {
+          principal,
+          interestRate,
+          timePeriod,
+          timeUnit,
+          currency
+        },
+        {
+          simpleInterest: calculationResult.simpleInterest,
+          totalAmount: calculationResult.totalAmount
+        }
+      );
     }
 
     toast({
