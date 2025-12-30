@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useLocation } from 'wouter';
 import { Pen, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
@@ -11,6 +12,7 @@ import { CategorySEOHead } from '@/components/seo/CategorySEOHead';
 
 const TextTools = () => {
   const [location] = useLocation();
+  const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredTools, setFilteredTools] = useState(tools.filter(tool => tool.category === 'text'));
 
@@ -254,8 +256,8 @@ const TextTools = () => {
                 <a href="#tools" className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors">
                   Browse All Tools
                 </a>
-                <a href="/signup" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors">
-                  Create Free Account
+                <a href={user ? "/profile" : "/signup"} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors">
+                  {user ? "View Profile" : "Create Free Account"}
                 </a>
               </div>
             </div>
