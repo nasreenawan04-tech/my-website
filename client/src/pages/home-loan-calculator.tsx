@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -222,8 +221,6 @@ export default function HomeLoanCalculator() {
           })}
         </script>
       </Helmet>
-      
-      <Header />
       
       <main>
         {/* Hero Section */}
