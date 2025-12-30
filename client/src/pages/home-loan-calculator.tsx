@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 interface HomeLoanResult {
   emi: number;
@@ -69,27 +70,71 @@ export default function HomeLoanCalculator() {
         if (currentBalance <= 1) break;
       }
 
-      setResult({
+      const calculationResult = {
         emi: Math.round(emi * 100) / 100,
         totalAmount: Math.round(totalAmount * 100) / 100,
         totalInterest: Math.round(totalInterest * 100) / 100,
         principalAmount: principal,
         interestPercentage: Math.round(interestPercentage * 100) / 100,
         amortizationSchedule
-      });
+      };
+
+      setResult(calculationResult);
+
+      // Save calculation history
+      saveCalculation(
+        'Home Loan Calculator',
+        '/tools/home-loan-calculator',
+        {
+          loanAmount,
+          interestRate,
+          loanTenure,
+          tenureType,
+          processingFee,
+          currency,
+          downPayment
+        },
+        {
+          emi: calculationResult.emi,
+          totalAmount: calculationResult.totalAmount,
+          totalInterest: calculationResult.totalInterest
+        }
+      );
     } else if (principal && rate === 0 && tenure) {
       // Handle 0% interest rate
       const emi = principal / tenure;
       const totalAmount = principal;
 
-      setResult({
+      const calculationResult = {
         emi: Math.round(emi * 100) / 100,
         totalAmount: Math.round(totalAmount * 100) / 100,
         totalInterest: 0,
         principalAmount: principal,
         interestPercentage: 0,
         amortizationSchedule: []
-      });
+      };
+
+      setResult(calculationResult);
+
+      // Save calculation history
+      saveCalculation(
+        'Home Loan Calculator',
+        '/tools/home-loan-calculator',
+        {
+          loanAmount,
+          interestRate,
+          loanTenure,
+          tenureType,
+          processingFee,
+          currency,
+          downPayment
+        },
+        {
+          emi: calculationResult.emi,
+          totalAmount: calculationResult.totalAmount,
+          totalInterest: calculationResult.totalInterest
+        }
+      );
     }
   };
 
