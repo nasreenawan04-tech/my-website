@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 interface CarLoanResult {
   monthlyPayment: number;
@@ -44,27 +45,69 @@ export default function CarLoanCalculator() {
       const totalAmount = monthlyPayment * term;
       const totalInterest = totalAmount - principal;
 
-      setResult({
+      const calculationResult = {
         monthlyPayment: Math.round(monthlyPayment * 100) / 100,
         totalAmount: Math.round(totalAmount * 100) / 100,
         totalInterest: Math.round(totalInterest * 100) / 100,
         loanAmount: principal,
         downPayment: down,
         carPrice: price
-      });
+      };
+
+      setResult(calculationResult);
+
+      // Save calculation history
+      saveCalculation(
+        'Car Loan Calculator',
+        '/tools/car-loan-calculator',
+        {
+          carPrice,
+          downPayment: usePercentage ? '' : downPayment,
+          downPaymentPercent: usePercentage ? downPaymentPercent : '',
+          loanTerm,
+          interestRate,
+          currency
+        },
+        {
+          monthlyPayment: calculationResult.monthlyPayment,
+          totalAmount: calculationResult.totalAmount,
+          totalInterest: calculationResult.totalInterest
+        }
+      );
     } else if (principal && rate === 0 && term) {
       // Handle 0% interest rate
       const monthlyPayment = principal / term;
       const totalAmount = principal;
       
-      setResult({
+      const calculationResult = {
         monthlyPayment: Math.round(monthlyPayment * 100) / 100,
         totalAmount: Math.round(totalAmount * 100) / 100,
         totalInterest: 0,
         loanAmount: principal,
         downPayment: down,
         carPrice: price
-      });
+      };
+
+      setResult(calculationResult);
+
+      // Save calculation history
+      saveCalculation(
+        'Car Loan Calculator',
+        '/tools/car-loan-calculator',
+        {
+          carPrice,
+          downPayment: usePercentage ? '' : downPayment,
+          downPaymentPercent: usePercentage ? downPaymentPercent : '',
+          loanTerm,
+          interestRate,
+          currency
+        },
+        {
+          monthlyPayment: calculationResult.monthlyPayment,
+          totalAmount: calculationResult.totalAmount,
+          totalInterest: calculationResult.totalInterest
+        }
+      );
     }
   };
 
