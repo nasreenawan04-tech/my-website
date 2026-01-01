@@ -256,9 +256,9 @@ const HealthTools = () => {
                 <a href="#tools" className="bg-white text-pink-600 px-8 py-3 rounded-lg font-semibold hover:bg-pink-50 transition-colors">
                   Browse All Tools
                 </a>
-                <a href={user ? "/profile" : "/signup"} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-colors">
+                <Link href={user ? "/profile" : "/signup"} className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-colors">
                   {user ? "View Profile" : "Create Free Account"}
-                </a>
+                </Link>
               </div>
             </div>
           </section>
