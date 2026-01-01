@@ -54,3 +54,4 @@ lerna-debug.log*
 
 # Bundle analysis
 dist/bundle-report.html
+.local/
