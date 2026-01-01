@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'wouter';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -680,20 +681,20 @@ const Home = () => {
                         No registration required - just click and start using any tool instantly.
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                        <a
-                          href="/finance-tools"
+                        <Link
+                          href={user ? "/profile" : "/signup"}
                           className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg text-center hover:shadow-xl transform hover:-translate-y-0.5"
-                          data-testid="link-finance-tools"
+                          data-testid="link-get-started"
                         >
-                          Explore Finance Tools
-                        </a>
-                        <a
-                          href="/health-tools"
+                          {user ? "View Profile" : "Create Free Account"}
+                        </Link>
+                        <Link
+                          href="/all-tools"
                           className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200 text-center hover:shadow-lg transform hover:-translate-y-0.5"
-                          data-testid="link-health-tools"
+                          data-testid="link-all-tools-home"
                         >
-                          Try Health Tools
-                        </a>
+                          Explore All Tools
+                        </Link>
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-neutral-600">
