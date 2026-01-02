@@ -66,6 +66,7 @@ const Home = () => {
         
         <meta name="theme-color" content="#3b82f6" />
         <meta name="application-name" content="DapsiWow Tools" />
+        <script async={true} data-cfasync="false" src="https://pl28380697.effectivegatecpm.com/30af918923a2ff0c5565292f19d5f422/invoke.js"></script>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
