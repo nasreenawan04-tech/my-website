@@ -4,7 +4,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
-import AdBanner from '@/components/Ads/AdBanner';
 import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
 import FavoritesSection from '@/components/FavoritesSection';
@@ -233,6 +232,7 @@ const Home = () => {
             ]
           })}
         </script>
+        <script async={true} data-cfasync="false" src="https://pl28380697.effectivegatecpm.com/30af918923a2ff0c5565292f19d5f422/invoke.js"></script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-home">
@@ -241,7 +241,9 @@ const Home = () => {
         <main className="flex-1">
           <HeroSection />
 
-          <AdBanner />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+            <div id="container-30af918923a2ff0c5565292f19d5f422"></div>
+          </div>
 
           {/* User-specific sections - shown if user has favorites or recent tools */}
           <FavoritesSection />
