@@ -232,7 +232,18 @@ const Home = () => {
             ]
           })}
         </script>
-        <script async={true} data-cfasync="false" src="https://pl28380697.effectivegatecpm.com/30af918923a2ff0c5565292f19d5f422/invoke.js"></script>
+        <script type="text/javascript">
+          {`
+            atOptions = {
+              'key' : '96ca3f2bcdbfe335d73817d7b1169868',
+              'format' : 'iframe',
+              'height' : 90,
+              'width' : 728,
+              'params' : {}
+            };
+          `}
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/96ca3f2bcdbfe335d73817d7b1169868/invoke.js"></script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-home">
@@ -241,8 +252,8 @@ const Home = () => {
         <main className="flex-1">
           <HeroSection />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
-            <div id="container-30af918923a2ff0c5565292f19d5f422"></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8 flex justify-center">
+            {/* Ad format: 728x90 Leaderboard */}
           </div>
 
           {/* User-specific sections - shown if user has favorites or recent tools */}
