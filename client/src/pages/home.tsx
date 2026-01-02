@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
+import AdBanner from '@/components/Ads/AdBanner';
 import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
 import FavoritesSection from '@/components/FavoritesSection';
@@ -232,18 +233,6 @@ const Home = () => {
             ]
           })}
         </script>
-        <script type="text/javascript">
-          {`
-            atOptions = {
-              'key' : '96ca3f2bcdbfe335d73817d7b1169868',
-              'format' : 'iframe',
-              'height' : 90,
-              'width' : 728,
-              'params' : {}
-            };
-          `}
-        </script>
-        <script type="text/javascript" src="https://www.highperformanceformat.com/96ca3f2bcdbfe335d73817d7b1169868/invoke.js"></script>
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-home">
@@ -252,9 +241,7 @@ const Home = () => {
         <main className="flex-1">
           <HeroSection />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8 flex justify-center">
-            {/* Ad format: 728x90 Leaderboard */}
-          </div>
+          <AdBanner />
 
           {/* User-specific sections - shown if user has favorites or recent tools */}
           <FavoritesSection />
