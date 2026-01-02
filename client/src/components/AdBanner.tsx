@@ -12,21 +12,17 @@ const AdBanner = ({ className = "" }: AdBannerProps) => {
     if (adContainerRef.current && !adContainerRef.current.firstChild) {
       console.log('AdBanner: Loading Adsterra scripts...');
       
-      const configScript = document.createElement('script');
-      configScript.type = 'text/javascript';
-      configScript.innerHTML = `atOptions = {
-        'key' : '30af918923a2ff0c5565292f19d5f422',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };`;
-      
+      const containerId = 'container-30af918923a2ff0c5565292f19d5f422';
+      const containerDiv = document.createElement('div');
+      containerDiv.id = containerId;
+      adContainerRef.current.appendChild(containerDiv);
+
       const invokeScript = document.createElement('script');
       invokeScript.type = 'text/javascript';
-      invokeScript.src = '//www.highperformancedformats.com/30af918923a2ff0c5565292f19d5f422/invoke.js';
+      invokeScript.async = true;
+      invokeScript.setAttribute('data-cfasync', 'false');
+      invokeScript.src = 'https://pl28380697.effectivegatecpm.com/30af918923a2ff0c5565292f19d5f422/invoke.js';
       
-      adContainerRef.current.appendChild(configScript);
       adContainerRef.current.appendChild(invokeScript);
     }
   }, []);
