@@ -1,6 +1,5 @@
 import { Link } from 'wouter';
 import logoImage from '@assets/logo.svg';
-import NativeAd from './NativeAd';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,11 +7,6 @@ const Footer = () => {
   return (
     <footer className="bg-neutral-800 text-neutral-100 py-16" data-testid="footer-main">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Native Ad Placement */}
-        <div className="mb-12">
-          <NativeAd placement="bottom" layout="4x1" className="opacity-80 hover:opacity-100 transition-opacity" />
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Logo and Tagline */}
           <div className="lg:col-span-1">
@@ -66,7 +60,7 @@ const Footer = () => {
         <div className="border-t border-neutral-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-neutral-400 text-center md:text-left mb-4 md:mb-0">
-              <p>© {currentYear} DapsiWow. All rights reserved. Made with ❤️ for productivity.</p>
+              <p>© {currentYear} DapsiWow.com. All rights reserved. Made with ❤️ for productivity.</p>
             </div>
             <div className="text-neutral-300 text-center md:text-right">
               <p className="flex items-center justify-center md:justify-end">

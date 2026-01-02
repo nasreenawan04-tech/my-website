@@ -6,8 +6,6 @@ import Footer from '@/components/Footer';
 import HeroSection from '@/components/HeroSection';
 import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
-import AdBanner from '@/components/AdBanner';
-import NativeAd from '@/components/NativeAd';
 import FavoritesSection from '@/components/FavoritesSection';
 import RecentToolsSection from '@/components/RecentToolsSection';
 import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe } from 'lucide-react';
@@ -242,14 +240,6 @@ const Home = () => {
         <main className="flex-1">
           <HeroSection />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <AdBanner className="shadow-sm hover:shadow-md transition-shadow" />
-          </div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <NativeAd placement="top" layout="4x1" />
-          </div>
-
           {/* User-specific sections - shown if user has favorites or recent tools */}
           <FavoritesSection />
           <RecentToolsSection />
@@ -287,11 +277,6 @@ const Home = () => {
           </section>
 
           <PopularToolsSection />
-          
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <AdBanner />
-          </div>
-
           <CategorySection />
 
           {/* About DapsiWow Section */}
