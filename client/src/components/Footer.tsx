@@ -60,7 +60,7 @@ const Footer = () => {
         <div className="border-t border-neutral-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-neutral-400 text-center md:text-left mb-4 md:mb-0">
-              <p>© {currentYear} DapsiWow.com. All rights reserved. Made with ❤️ for productivity.</p>
+              <p>© {currentYear} DapsiWow. All rights reserved. Made with ❤️ for productivity.</p>
             </div>
             <div className="text-neutral-300 text-center md:text-right">
               <p className="flex items-center justify-center md:justify-end">
