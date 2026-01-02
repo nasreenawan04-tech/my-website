@@ -22,6 +22,9 @@ const AdBanner = ({ className = "" }: AdBannerProps) => {
       invokeScript.async = true;
       invokeScript.setAttribute('data-cfasync', 'false');
       invokeScript.src = 'https://pl28380697.effectivegatecpm.com/30af918923a2ff0c5565292f19d5f422/invoke.js';
+      invokeScript.onerror = () => {
+        console.warn('AdBanner: Adsterra script failed to load. This might be due to an ad blocker.');
+      };
       
       adContainerRef.current.appendChild(invokeScript);
     }
