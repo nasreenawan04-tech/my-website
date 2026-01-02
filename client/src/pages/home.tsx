@@ -252,8 +252,8 @@ const Home = () => {
         <main className="flex-1">
           <HeroSection />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8 flex justify-center">
-            {/* Ad format: 728x90 Leaderboard */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8 flex justify-center min-h-[90px]">
+            <div id="container-96ca3f2bcdbfe335d73817d7b1169868"></div>
           </div>
 
           {/* User-specific sections - shown if user has favorites or recent tools */}
