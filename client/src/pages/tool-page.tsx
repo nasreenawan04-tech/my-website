@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import { PageLoadingSpinner } from '@/components/ui/loading-spinner';
 import ToolErrorBoundary from '@/components/ToolErrorBoundary';
 import ProgressiveLoader from '@/components/ProgressiveLoader';
+import NativeAd from '@/components/NativeAd';
 import NotFound from '@/pages/not-found';
 import { useRecentTools } from '@/hooks/use-recent-tools';
 import { ToolPageContext } from '@/contexts/ToolPageContext';
@@ -123,8 +124,12 @@ const ToolPage = () => {
           <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+                <NativeAd placement="top" layout="4x1" />
+              </div>
               <ToolComponent />
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <NativeAd placement="bottom" layout="4x1" className="mt-12" />
                 <SearchIntentSection category={tool.category} toolName={tool.name} />
                 <ToolCalculationHistory toolPath={`/tools/${tool.id}`} />
               </div>
