@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, RotateCcw, BarChart as BarChartIcon, Zap, Home, Car, User } from 'lucide-react';
+import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, RotateCcw, BarChart as BarChartIcon, Zap, Home, Car, User, Scale } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
 import { jsPDF } from 'jspdf';
@@ -2144,7 +2144,7 @@ export default function LoanCalculator() {
                           className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
                           data-testid="button-add-comparison"
                         >
-                          <BarChart className="w-4 h-4 sm:mr-1.5" />
+                          <Scale className="w-4 h-4 sm:mr-1.5" />
                           <span className="hidden sm:inline">Add to Comparison</span>
                         </Button>
                         <Button

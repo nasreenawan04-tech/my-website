@@ -206,4 +206,4 @@
 [x] 160. UI ENHANCEMENT: Removed "Show Comparison" button from Loan, Mortgage, EMI, and Business Loan calculators while keeping "Add to Comparison" as requested.
 [x] 161. New session - January 3, 2026 - npm install completed (825 packages), workflow restarted with webview on port 5000
 [x] 162. Verified application running via screenshot - DapsiWow site fully operational with 23 tools, 3 categories
-[x] 163. Import complete - all items marked done
+[x] 164. UI ENHANCEMENT: Added Scale icon to "Add to Comparison" buttons across all calculators.

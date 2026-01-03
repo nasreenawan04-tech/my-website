@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, TrendingDown, DollarSign, Info, RotateCcw, BarChart } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, TrendingDown, DollarSign, Info, RotateCcw, BarChart, Scale } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
@@ -1658,7 +1658,7 @@ export default function EMICalculator() {
                           className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-add-comparison"
                         >
-                          <BarChart className="w-4 h-4 sm:mr-1.5" />
+                          <Scale className="w-4 h-4 sm:mr-1.5" />
                           Add to Comparison
                         </Button>
                         <Button

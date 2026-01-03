@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { Slider } from '@/components/ui/slider';
-import { Info, Calculator, Home, DollarSign, TrendingDown, Download, Share2, PieChart, Clock, RotateCcw } from 'lucide-react';
+import { Info, Calculator, Home, DollarSign, TrendingDown, Download, Share2, PieChart, Clock, RotateCcw, Scale } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
@@ -2129,7 +2129,7 @@ const MortgageCalculator = () => {
                           className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-green-500 hover:bg-green-50 transition-colors"
                           data-testid="button-add-comparison"
                         >
-                          <BarChart className="w-4 h-4 sm:mr-1.5" />
+                          <Scale className="w-4 h-4 sm:mr-1.5" />
                           Add to Comparison
                         </Button>
                         <Button
