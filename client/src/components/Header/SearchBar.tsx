@@ -49,7 +49,25 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    // Use capture to ensure we catch it before other elements
+    window.addEventListener('keydown', handleEscape, true);
+    return () => window.removeEventListener('keydown', handleEscape, true);
+  }, [isOpen, onClose]);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+      onClose();
+      return;
+    }
+
     if (searchResults.length === 0) return;
 
     if (e.key === 'ArrowDown') {
@@ -63,9 +81,6 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
       if (searchResults[selectedIndex]) {
         handleToolClick(searchResults[selectedIndex].href);
       }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      onClose();
     }
   };
 
@@ -151,7 +166,7 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
             {/* Search Results */}
             <div 
               ref={scrollContainerRef}
-              className="flex-1 overflow-y-auto p-2 pb-20 sm:pb-2"
+              className="flex-1 overflow-y-auto p-2 pb-20 sm:pb-2 touch-pan-y overscroll-contain"
             >
               {searchResults.length > 0 ? (
                 <div className="space-y-1">
