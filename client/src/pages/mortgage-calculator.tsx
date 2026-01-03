@@ -2123,17 +2123,6 @@ const MortgageCalculator = () => {
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
                         <Button
-                          onClick={() => setShowComparison(!showComparison)}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
-                          data-testid="button-show-comparison"
-                          aria-expanded={showComparison}
-                          aria-label={showComparison ? 'Hide mortgage comparison' : 'Show mortgage comparison'}
-                        >
-                          {showComparison ? 'Hide' : 'Show'} Comparison
-                        </Button>
-                        <Button
                           onClick={addToComparison}
                           variant="outline"
                           size="sm"

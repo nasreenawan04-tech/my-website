@@ -2138,18 +2138,6 @@ export default function LoanCalculator() {
                           <span className="hidden sm:inline">{showAmortization ? 'Hide' : 'Show'} Amortization Schedule</span>
                         </Button>
                         <Button
-                          onClick={() => setShowComparison(!showComparison)}
-                          variant="outline"
-                          size="sm"
-                          className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
-                          data-testid="button-show-comparison"
-                          aria-expanded={showComparison}
-                          aria-label={showComparison ? 'Hide loan comparison' : 'Show loan comparison'}
-                        >
-                          <BarChartIcon className="w-4 h-4 sm:mr-1.5" />
-                          <span className="hidden sm:inline">{showComparison ? 'Hide' : 'Show'} Comparison</span>
-                        </Button>
-                        <Button
                           onClick={addToComparison}
                           variant="outline"
                           size="sm"

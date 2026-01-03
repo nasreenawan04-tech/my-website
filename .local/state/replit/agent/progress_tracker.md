@@ -203,3 +203,4 @@
 [x] 157. New session - January 3, 2026 - npm install completed (824 packages), workflow restarted with webview on port 5000
 [x] 158. Verified application running via screenshot - DapsiWow site fully operational with 23 tools, 3 categories
 [x] 159. Import complete - all items marked done
+[x] 160. UI ENHANCEMENT: Removed "Show Comparison" button from Loan, Mortgage, EMI, and Business Loan calculators while keeping "Add to Comparison" as requested.

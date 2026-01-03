@@ -1569,17 +1569,6 @@ export default function BusinessLoanCalculator() {
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
                         <Button
-                          onClick={() => setShowComparison(!showComparison)}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                          data-testid="button-show-comparison"
-                          aria-expanded={showComparison}
-                          aria-label={showComparison ? 'Hide business loan comparison' : 'Show business loan comparison'}
-                        >
-                          {showComparison ? 'Hide' : 'Show'} Comparison
-                        </Button>
-                        <Button
                           onClick={addToComparison}
                           variant="outline"
                           size="sm"
