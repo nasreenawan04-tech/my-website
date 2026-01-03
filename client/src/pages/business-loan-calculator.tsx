@@ -1575,6 +1575,7 @@ export default function BusinessLoanCalculator() {
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
                           data-testid="button-add-comparison"
                         >
+                          <BarChart className="w-4 h-4 sm:mr-1.5" />
                           Add to Comparison
                         </Button>
                         <Button

@@ -1658,6 +1658,7 @@ export default function EMICalculator() {
                           className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-add-comparison"
                         >
+                          <BarChart className="w-4 h-4 sm:mr-1.5" />
                           Add to Comparison
                         </Button>
                         <Button

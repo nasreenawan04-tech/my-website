@@ -2129,6 +2129,7 @@ const MortgageCalculator = () => {
                           className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-green-500 hover:bg-green-50 transition-colors"
                           data-testid="button-add-comparison"
                         >
+                          <BarChart className="w-4 h-4 sm:mr-1.5" />
                           Add to Comparison
                         </Button>
                         <Button

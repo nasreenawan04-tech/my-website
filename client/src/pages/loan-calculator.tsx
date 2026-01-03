@@ -2144,7 +2144,7 @@ export default function LoanCalculator() {
                           className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
                           data-testid="button-add-comparison"
                         >
-                          <PieChart className="w-4 h-4 sm:mr-1.5" />
+                          <BarChart className="w-4 h-4 sm:mr-1.5" />
                           <span className="hidden sm:inline">Add to Comparison</span>
                         </Button>
                         <Button
