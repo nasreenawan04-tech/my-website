@@ -2129,45 +2129,48 @@ export default function LoanCalculator() {
                           onClick={() => setShowAmortization(!showAmortization)}
                           variant="outline"
                           size="sm"
-                          className="rounded-full text-xs sm:text-sm"
+                          className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
                           data-testid="button-show-amortization"
                           aria-expanded={showAmortization}
                           aria-label={showAmortization ? 'Hide amortization schedule' : 'Show amortization schedule'}
                         >
-                          {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
+                          <Clock className="w-4 h-4 sm:mr-1.5" />
+                          <span className="hidden sm:inline">{showAmortization ? 'Hide' : 'Show'} Amortization Schedule</span>
                         </Button>
                         <Button
                           onClick={() => setShowComparison(!showComparison)}
                           variant="outline"
                           size="sm"
-                          className="rounded-full text-xs sm:text-sm"
+                          className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
                           data-testid="button-show-comparison"
                           aria-expanded={showComparison}
                           aria-label={showComparison ? 'Hide loan comparison' : 'Show loan comparison'}
                         >
-                          {showComparison ? 'Hide' : 'Show'} Comparison
+                          <BarChartIcon className="w-4 h-4 sm:mr-1.5" />
+                          <span className="hidden sm:inline">{showComparison ? 'Hide' : 'Show'} Comparison</span>
                         </Button>
                         <Button
                           onClick={addToComparison}
                           variant="outline"
                           size="sm"
-                          className="rounded-full text-xs sm:text-sm"
+                          className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
                           data-testid="button-add-comparison"
                         >
-                          Add to Comparison
+                          <PieChart className="w-4 h-4 sm:mr-1.5" />
+                          <span className="hidden sm:inline">Add to Comparison</span>
                         </Button>
                         <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="rounded-full text-xs sm:text-sm"
+                          className="rounded-full text-xs sm:text-sm flex-1 min-w-[40px] sm:min-w-[140px] justify-center"
                           data-testid="button-export-pdf"
                           disabled={isGeneratingPDF}
                           aria-busy={isGeneratingPDF}
                           aria-label={isGeneratingPDF ? 'Generating PDF...' : 'Export PDF'}
                         >
-                          <Download className="w-4 h-4 mr-1.5" />
-                          {isGeneratingPDF ? 'Generating...' : 'Export PDF'}
+                          <Download className={`w-4 h-4 sm:mr-1.5 ${isGeneratingPDF ? 'animate-bounce' : ''}`} />
+                          <span className="hidden sm:inline">{isGeneratingPDF ? 'Generating...' : 'Export PDF'}</span>
                         </Button>
                       </div>
 
