@@ -5,6 +5,7 @@ import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import { useLocation } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface SearchBarProps {
   isOpen: boolean;
@@ -17,6 +18,7 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
   const [searchResults, setSearchResults] = useState(tools);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [, setLocation] = useLocation();
+  const isMobile = useIsMobile();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const debouncedSearchQuery = useDebounce(searchQuery, 200);
@@ -166,41 +168,42 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
             {/* Search Results */}
             <div 
               ref={scrollContainerRef}
-              className="flex-1 overflow-y-auto p-2 pb-20 sm:pb-2 touch-pan-y overscroll-contain"
+              className="flex-1 overflow-y-auto p-2 sm:p-3 overscroll-contain touch-pan-y"
+              style={{ WebkitOverflowScrolling: 'touch' }}
             >
               {searchResults.length > 0 ? (
-                <div className="space-y-1">
+                <div className="grid grid-cols-1 gap-1 sm:gap-2">
                   {searchResults.map((tool, index) => (
                     <button
                       key={tool.id}
                       id={`search-result-${index}`}
-                      onMouseEnter={() => setSelectedIndex(index)}
+                      onMouseEnter={() => !isMobile && setSelectedIndex(index)}
                       onClick={() => handleToolClick(tool.href)}
-                      className={`w-full text-left p-3 rounded-xl transition-all flex items-center gap-4 group ${
+                      className={`w-full text-left p-3 sm:p-4 rounded-xl sm:rounded-2xl transition-all flex items-center gap-3 sm:gap-4 group relative active:scale-[0.98] sm:active:scale-100 ${
                         index === selectedIndex 
-                          ? 'bg-blue-50 dark:bg-blue-900/20 ring-1 ring-blue-100 dark:ring-blue-900/30' 
-                          : 'hover:bg-gray-50 dark:hover:bg-neutral-800/50'
+                          ? 'bg-blue-50 dark:bg-blue-900/20 ring-1 ring-blue-100/50 dark:ring-blue-900/30' 
+                          : 'hover:bg-gray-50 dark:hover:bg-neutral-800/40'
                       }`}
                     >
-                      <div className={`p-2 rounded-lg transition-colors flex-shrink-0 ${
+                      <div className={`p-2.5 sm:p-3 rounded-xl transition-all flex-shrink-0 shadow-sm ${
                         index === selectedIndex 
-                          ? 'bg-blue-600 text-white' 
-                          : 'bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400'
+                          ? 'bg-blue-600 text-white rotate-3 scale-110' 
+                          : 'bg-white dark:bg-neutral-800 text-gray-400 dark:text-neutral-500 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 group-hover:text-blue-500'
                       }`}>
-                        <Search className="w-4 h-4" />
+                        <Search className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
-                          <h3 className={`font-medium text-sm sm:text-base truncate ${
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                          <h3 className={`font-semibold text-sm sm:text-base lg:text-lg truncate ${
                             index === selectedIndex ? 'text-blue-700 dark:text-blue-400' : 'text-neutral-900 dark:text-neutral-100'
                           }`}>
                             {tool.name}
                           </h3>
-                          <span className="text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 self-start sm:self-center">
+                          <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 self-start sm:self-center border border-gray-200/50 dark:border-neutral-700/50">
                             {tool.category}
                           </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-500 dark:text-neutral-500 mt-0.5 line-clamp-1">
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-neutral-500 mt-0.5 line-clamp-1 sm:line-clamp-2">
                           {tool.description}
                         </p>
                       </div>
