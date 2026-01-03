@@ -93,13 +93,18 @@ const Header = () => {
   // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      // Prevent shortcut if user is typing in an input (except the search bar itself)
+      if (
+        (e.metaKey || e.ctrlKey) && 
+        e.key === 'k' && 
+        !(document.activeElement instanceof HTMLInputElement || document.activeElement instanceof HTMLTextAreaElement)
+      ) {
         e.preventDefault();
         setIsSearchOpen(true);
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, true);
+    return () => window.removeEventListener('keydown', handleKeyDown, true);
   }, []);
 
   return (

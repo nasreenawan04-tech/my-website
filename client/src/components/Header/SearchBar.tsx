@@ -26,29 +26,45 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
       const results = searchTools(debouncedSearchQuery);
       setSearchResults(results);
     } else {
-      setSearchResults(tools);
+      // Show default tools when empty, but limited to a reasonable number
+      setSearchResults(tools.slice(0, 8));
     }
     setSelectedIndex(0);
   }, [debouncedSearchQuery]);
 
   useEffect(() => {
-    if (isOpen && searchInputRef.current) {
-      setTimeout(() => {
-        searchInputRef.current?.focus();
-      }, 50);
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      if (searchInputRef.current) {
+        setTimeout(() => {
+          searchInputRef.current?.focus();
+        }, 50);
+      }
+    } else {
+      document.body.style.overflow = '';
+      setSearchQuery('');
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (searchResults.length === 0) return;
+
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       setSelectedIndex((prev) => (prev + 1) % searchResults.length);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       setSelectedIndex((prev) => (prev - 1 + searchResults.length) % searchResults.length);
-    } else if (e.key === 'Enter' && searchResults[selectedIndex]) {
-      handleToolClick(searchResults[selectedIndex].href);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (searchResults[selectedIndex]) {
+        handleToolClick(searchResults[selectedIndex].href);
+      }
     } else if (e.key === 'Escape') {
+      e.preventDefault();
       onClose();
     }
   };
@@ -109,12 +125,13 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
                   {searchQuery ? (
                     <button
                       onClick={() => setSearchQuery('')}
-                      className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-neutral-700 text-gray-400 transition-colors"
+                      className="p-1.5 rounded-md hover:bg-gray-200 dark:hover:bg-neutral-700 text-gray-400 dark:text-neutral-500 transition-colors"
+                      aria-label="Clear search"
                     >
                       <X className="w-4 h-4" />
                     </button>
                   ) : (
-                    <div className="hidden sm:flex items-center gap-1 px-1.5 py-1 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-[10px] font-medium text-gray-400 uppercase tracking-wider">
+                    <div className="hidden sm:flex items-center gap-1 px-1.5 py-1 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-[10px] font-medium text-gray-400 dark:text-neutral-500 uppercase tracking-wider">
                       <Command className="w-3 h-3" />
                       <span>K</span>
                     </div>
@@ -142,7 +159,7 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
                           : 'hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                       }`}
                     >
-                      <div className={`p-2 rounded-lg transition-colors ${
+                      <div className={`p-2 rounded-lg transition-colors flex-shrink-0 ${
                         index === selectedIndex 
                           ? 'bg-blue-600 text-white' 
                           : 'bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400'
@@ -150,13 +167,13 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
                         <Search className="w-4 h-4" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2">
                           <h3 className={`font-medium text-sm sm:text-base truncate ${
                             index === selectedIndex ? 'text-blue-700 dark:text-blue-400' : 'text-neutral-900 dark:text-neutral-100'
                           }`}>
                             {tool.name}
                           </h3>
-                          <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400">
+                          <span className="text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 self-start sm:self-center">
                             {tool.category}
                           </span>
                         </div>
@@ -180,20 +197,20 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
             
             <div className="px-4 py-3 border-t border-gray-100 dark:border-neutral-800 bg-gray-50/50 dark:bg-neutral-900/50 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
-                  <kbd className="px-1.5 py-0.5 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 font-sans shadow-sm">↵</kbd>
+                <div className="flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-neutral-500">
+                  <kbd className="px-1.5 py-0.5 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-sans shadow-sm">↵</kbd>
                   <span>to select</span>
                 </div>
-                <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
+                <div className="flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-neutral-500">
                   <div className="flex gap-1">
-                    <kbd className="px-1.5 py-0.5 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 font-sans shadow-sm">↑</kbd>
-                    <kbd className="px-1.5 py-0.5 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 font-sans shadow-sm">↓</kbd>
+                    <kbd className="px-1.5 py-0.5 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-sans shadow-sm">↑</kbd>
+                    <kbd className="px-1.5 py-0.5 rounded border border-gray-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 font-sans shadow-sm">↓</kbd>
                   </div>
                   <span>to navigate</span>
                 </div>
               </div>
-              <div className="text-[11px] text-gray-400 dark:text-neutral-600">
-                {searchResults.length} results
+              <div className="text-[11px] text-gray-400 dark:text-neutral-600 font-medium">
+                {searchResults.length} {searchResults.length === 1 ? 'result' : 'results'}
               </div>
             </div>
           </motion.div>
