@@ -23,16 +23,20 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const debouncedSearchQuery = useDebounce(searchQuery, 200);
 
+  const popularTools = useMemo(() => {
+    const popularIds = ['emi-calculator', 'bmi-calculator', 'word-counter', 'unit-converter', 'age-calculator', 'loan-calculator'];
+    return tools.filter(tool => popularIds.includes(tool.id));
+  }, []);
+
   useEffect(() => {
     if (debouncedSearchQuery.trim()) {
       const results = searchTools(debouncedSearchQuery);
       setSearchResults(results);
     } else {
-      // Show default tools when empty, but limited to a reasonable number
-      setSearchResults(tools.slice(0, 8));
+      setSearchResults(popularTools);
     }
     setSelectedIndex(0);
-  }, [debouncedSearchQuery]);
+  }, [debouncedSearchQuery, popularTools]);
 
   useEffect(() => {
     if (isOpen) {
@@ -171,6 +175,14 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
               className="flex-1 overflow-y-auto p-2 sm:p-3 overscroll-contain touch-pan-y"
               style={{ WebkitOverflowScrolling: 'touch' }}
             >
+              {!searchQuery && (
+                <div className="px-3 py-2 mb-2">
+                  <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-neutral-500 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    Popular Tools
+                  </h2>
+                </div>
+              )}
               {searchResults.length > 0 ? (
                 <div className="grid grid-cols-1 gap-1 sm:gap-2">
                   {searchResults.map((tool, index) => (
