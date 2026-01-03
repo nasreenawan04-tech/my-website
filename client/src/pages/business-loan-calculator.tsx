@@ -1355,11 +1355,6 @@ export default function BusinessLoanCalculator() {
             <CardContent className="p-0">
               <div className="flex flex-col">
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Business Loan Payment Calculator - Enter Your Details</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Calculate monthly payments for SBA loans, equipment financing, working capital & more. Get instant DSCR, LTV ratios and amortization schedules.</p>
-                  </div>
-
                   <TooltipProvider>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                       <div className="space-y-2 sm:space-y-3">
