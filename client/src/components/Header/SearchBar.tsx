@@ -40,7 +40,9 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
 
   useEffect(() => {
     if (isOpen) {
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
       if (searchInputRef.current) {
         setTimeout(() => {
           searchInputRef.current?.focus();
@@ -48,10 +50,12 @@ export const SearchBar = ({ isOpen, onClose, onToolSelect }: SearchBarProps) => 
       }
     } else {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
       setSearchQuery('');
     }
     return () => {
       document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     };
   }, [isOpen]);
 
