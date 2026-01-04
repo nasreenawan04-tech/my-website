@@ -41,20 +41,17 @@ export function parseLoanInputs(inputs: ParsedCalculatorInput): LoanCalculatorIn
     loanTerm: Number(inputs.loanTerm) || 0,
     termUnit: (inputs.termUnit as 'months' | 'years') || 'years',
     extraPayment: Number(inputs.extraPayment) || 0,
-    processingFee: Number(inputs.processingFee) || 0,
-    balloonPayment: Number(inputs.balloonPayment) || 0,
     paymentFrequency: (inputs.paymentFrequency as 'weekly' | 'biweekly' | 'monthly') || 'monthly',
     biweeklyMode: (inputs.biweeklyMode as 'standard' | 'accelerated') || 'standard'
   };
 }
 
 /**
- * Calculate amortization schedule with extra payments and balloon payment support
+ * Calculate amortization schedule with extra payments
  * @param principal - Loan amount in dollars
  * @param annualRate - Annual interest rate as percentage (e.g., 5.5 for 5.5%)
  * @param termMonths - Total loan term in months
  * @param extraPayment - Extra payment amount per period
- * @param balloonPayment - Balloon payment at end of loan
  * @param paymentFrequency - Payment frequency (weekly, biweekly, monthly)
  * @returns Amortization schedule entries array
  */
@@ -63,7 +60,6 @@ export function calculateAmortizationSchedule(
   annualRate: number,
   termMonths: number,
   extraPayment: number = 0,
-  balloonPayment: number = 0,
   paymentFrequency: 'weekly' | 'biweekly' | 'monthly' = 'monthly'
 ): Array<AmortizationEntry> {
   const schedule: AmortizationEntry[] = [];
@@ -90,13 +86,6 @@ export function calculateAmortizationSchedule(
 
   if (annualRateDecimal === 0) {
     regularPayment = principal / totalPayments;
-  } else if (balloonPayment > 0) {
-    // Loan with balloon payment formula
-    const discountedBalloon = balloonPayment / Math.pow(1 + periodicRate, totalPayments);
-    const principalMinusBalloon = principal - discountedBalloon;
-    regularPayment =
-      (principalMinusBalloon * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-      (Math.pow(1 + periodicRate, totalPayments) - 1);
   } else {
     // Standard amortization formula
     regularPayment =
@@ -109,12 +98,7 @@ export function calculateAmortizationSchedule(
   for (let period = 1; period <= totalPayments && currentBalance > 0.005; period++) {
     const interestPayment = PrecisionMath.multiply(currentBalance, periodicRate);
 
-    let principalPayment: number;
-    if (period === totalPayments && balloonPayment > 0) {
-      principalPayment = currentBalance;
-    } else {
-      principalPayment = Math.min(PrecisionMath.add(PrecisionMath.subtract(regularPayment, interestPayment), extraPayment), currentBalance);
-    }
+    const principalPayment = Math.min(PrecisionMath.add(PrecisionMath.subtract(regularPayment, interestPayment), extraPayment), currentBalance);
 
     currentBalance = PrecisionMath.subtract(currentBalance, principalPayment);
 
@@ -197,14 +181,12 @@ const calculateLoanInternal = (
     loanTerm,
     termUnit = 'years',
     extraPayment = 0,
-    processingFee = 0,
-    balloonPayment = 0,
     paymentFrequency = 'monthly'
   } = loanInputs;
 
   const annualRateDecimal = interestRate / 100;
   const termMonths = termUnit === 'years' ? loanTerm * 12 : loanTerm;
-  const adjustedPrincipal = loanAmount + processingFee;
+  const adjustedPrincipal = loanAmount;
 
   // Calculate payment frequency details
   const paymentsPerYear =
@@ -221,7 +203,6 @@ const calculateLoanInternal = (
     interestRate,
     termMonths,
     extraPayment,
-    balloonPayment,
     paymentFrequency
   );
 
@@ -230,18 +211,9 @@ const calculateLoanInternal = (
   const totalAmount = scheduleEntries.reduce((sum, entry) => sum + entry.payment, 0);
 
   // Calculate regular payment for comparison
-  let regularPayment: number;
-  if (balloonPayment > 0) {
-    const discountedBalloon = balloonPayment / Math.pow(1 + periodicRate, totalPayments);
-    const principalMinusBalloon = adjustedPrincipal - discountedBalloon;
-    regularPayment =
-      (principalMinusBalloon * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-      (Math.pow(1 + periodicRate, totalPayments) - 1);
-  } else {
-    regularPayment =
-      (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-      (Math.pow(1 + periodicRate, totalPayments) - 1);
-  }
+  const regularPayment =
+    (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
+    (Math.pow(1 + periodicRate, totalPayments) - 1);
 
   // Convert to monthly equivalent
   const monthlyPaymentEquivalent = regularPayment * (paymentsPerYear / 12);

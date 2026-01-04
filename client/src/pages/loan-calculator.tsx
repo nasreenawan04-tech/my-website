@@ -52,8 +52,7 @@ interface ComparisonLoan {
   monthlyPayment: number;
   totalInterest: number;
   totalCost: number;
-  apr: number; // APR including fees
-  processingFee: number;
+  apr: number; // APR
 }
 
 const loanInputSchema = z.object({
@@ -536,10 +535,6 @@ export default function LoanCalculator() {
 
       if (parseFloat(extraPayment ?? '0') > 0) {
         metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment ?? '0')), color: [16, 185, 129] });
-      }
-
-      if (parseFloat(processingFee ?? '0') > 0) {
-        metrics.push({ label: 'Processing Fee', value: formatCurrency(parseFloat(processingFee ?? '0')), color: [202, 138, 4] });
       }
 
       doc.setFont('helvetica', 'normal');
