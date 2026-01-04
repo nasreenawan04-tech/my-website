@@ -954,8 +954,7 @@ export default function LoanCalculator() {
         interest_rate: parseFloat(interestRate),
         term_months: termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm),
         payment_frequency: paymentFrequency,
-        has_extra_payment: parseFloat(extraPayment) > 0,
-        processing_fee: parseFloat(processingFee)
+        has_extra_payment: parseFloat(extraPayment) > 0
       });
     } catch (error) {
       console.error('PDF generation error:', error);
@@ -967,7 +966,7 @@ export default function LoanCalculator() {
     } finally {
       setIsGeneratingPDF(false);
     }
-  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, formatCurrency, toast, comparisonLoans, showAmortization, showComparison]);
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, biweeklyMode, formatCurrency, toast, comparisonLoans, showAmortization, showComparison]);
 
   // Load parameters from URL on mount (for shared links) with validation
   useEffect(() => {
@@ -988,7 +987,6 @@ export default function LoanCalculator() {
       const parsedRate = rate ? parseFloat(rate) : null;
       const parsedTerm = term ? parseFloat(term) : null;
       const parsedExtra = extra ? parseFloat(extra) : null;
-      const parsedFee = fee ? parseFloat(fee) : null;
 
       // Check if values are valid numbers and within acceptable ranges
       if (amount && parsedAmount && !isNaN(parsedAmount) && parsedAmount > 0 && parsedAmount <= 100000000) {
@@ -1008,15 +1006,6 @@ export default function LoanCalculator() {
       }
       if (parsedExtra !== null && !isNaN(parsedExtra) && parsedExtra >= 0) {
         setExtraPayment(extra || '0');
-      }
-      if (parsedFee !== null && !isNaN(parsedFee) && parsedFee >= 0) {
-        setProcessingFee(fee || '0');
-      }
-      
-      // Parse balloon payment
-      const parsedBalloon = balloon ? parseFloat(balloon) : null;
-      if (parsedBalloon !== null && !isNaN(parsedBalloon) && parsedBalloon >= 0) {
-        setBalloonPayment(balloon || '0');
       }
       
       // Parse biweekly mode
@@ -1103,8 +1092,6 @@ export default function LoanCalculator() {
     setTermUnit('years');
     setPaymentFrequency('monthly');
     setExtraPayment('0');
-    setProcessingFee('0');
-    setBalloonPayment('0');
     setBiweeklyMode('standard');
     setShowAmortization(false);
     setShowComparison(false);
@@ -1124,7 +1111,6 @@ export default function LoanCalculator() {
         setTermUnit('years');
         setPaymentFrequency('monthly');
         setExtraPayment('0');
-        setProcessingFee('500');
         break;
       case 'home':
         setLoanAmount('300000');
@@ -1133,7 +1119,6 @@ export default function LoanCalculator() {
         setTermUnit('years');
         setPaymentFrequency('monthly');
         setExtraPayment('0');
-        setProcessingFee('2000');
         break;
       case 'personal':
         setLoanAmount('10000');
@@ -1142,7 +1127,6 @@ export default function LoanCalculator() {
         setTermUnit('years');
         setPaymentFrequency('monthly');
         setExtraPayment('0');
-        setProcessingFee('100');
         break;
     }
     setValidationErrors({});
@@ -1155,13 +1139,11 @@ export default function LoanCalculator() {
   const addToComparison = () => {
     if (result) {
       const principal = parseFloat(loanAmount);
-      const fee = parseFloat(processingFee || '0');
       const totalCost = result.totalAmount;
       
-      // Calculate APR (Annual Percentage Rate) including fees
-      // APR formula: APR = (((fees + interest) / principal) / term in years) * 100
+      // Calculate APR (Annual Percentage Rate)
       const termYears = termUnit === 'years' ? parseFloat(loanTerm) : parseFloat(loanTerm) / 12;
-      const apr = (((fee + result.totalInterest) / principal) / termYears) * 100;
+      const apr = ((result.totalInterest / principal) / termYears) * 100;
 
       const newLoan: ComparisonLoan = {
         name: `Loan ${comparisonLoans.length + 1}`,
@@ -1173,8 +1155,7 @@ export default function LoanCalculator() {
         monthlyPayment: result.monthlyPayment,
         totalInterest: result.totalInterest,
         totalCost: totalCost,
-        apr: apr,
-        processingFee: fee
+        apr: apr
       };
       setComparisonLoans([...comparisonLoans, newLoan]);
       setShowComparison(true);
@@ -1199,8 +1180,7 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment,
-      fee: processingFee // Include processing fee
+      extra: extraPayment
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareableUrl)}`;
@@ -1217,8 +1197,7 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment,
-      fee: processingFee // Include processing fee
+      extra: extraPayment
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const tweetText = `💰 My loan calculation: ${formatCurrency(result.monthlyPayment)}/month on ${formatCurrency(parseFloat(loanAmount))} at ${interestRate}% - Calculate yours free!`;
@@ -1236,8 +1215,7 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment,
-      fee: processingFee // Include processing fee
+      extra: extraPayment
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`;
@@ -1254,8 +1232,7 @@ export default function LoanCalculator() {
       term: loanTerm,
       unit: termUnit,
       freq: paymentFrequency,
-      extra: extraPayment,
-      fee: processingFee // Include processing fee
+      extra: extraPayment
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
