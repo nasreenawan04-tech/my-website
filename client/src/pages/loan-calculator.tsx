@@ -1792,7 +1792,7 @@ export default function LoanCalculator() {
               <div className="flex flex-col">
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Configuration</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Calculator</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your loan details to get accurate payment calculations</p>
                   </div>
 
@@ -2121,6 +2121,106 @@ export default function LoanCalculator() {
                       Reset Calculator
                     </Button>
                   </div>
+
+                  {result && (
+                    <div className="p-4 sm:p-6 bg-blue-50/50 rounded-xl sm:rounded-2xl border border-blue-100 mt-4">
+                      <div className="text-center sm:text-left mb-6">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Configuration</h2>
+                        <p className="text-sm sm:text-base text-gray-600">Modify your loan details to update the results instantly</p>
+                      </div>
+
+                      <TooltipProvider>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="flex items-center gap-2">
+                              <Label htmlFor="loan-amount-result" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                                Loan Amount
+                              </Label>
+                            </div>
+                            <div className="relative">
+                              <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                              <Input
+                                id="loan-amount-result"
+                                type="number"
+                                value={loanAmount}
+                                onChange={(e) => setLoanAmount(e.target.value)}
+                                className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.loanAmount ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                                placeholder="100,000"
+                                data-testid="input-loan-amount-result"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="flex items-center gap-2">
+                              <Label htmlFor="interest-rate-result" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                                Annual Interest Rate
+                              </Label>
+                            </div>
+                            <div className="relative">
+                              <Input
+                                id="interest-rate-result"
+                                type="number"
+                                value={interestRate}
+                                onChange={(e) => setInterestRate(e.target.value)}
+                                className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                                placeholder="5.50"
+                                data-testid="input-interest-rate-result"
+                              />
+                              <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 sm:space-y-3">
+                            <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
+                            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                              <Input
+                                type="number"
+                                value={loanTerm}
+                                onChange={(e) => setLoanTerm(e.target.value)}
+                                className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.loanTerm ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                                placeholder="30"
+                                data-testid="input-loan-term-result"
+                              />
+                              <Select value={termUnit} onValueChange={setTermUnit}>
+                                <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="years">Years</SelectItem>
+                                  <SelectItem value="months">Months</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+
+                          <div className="space-y-2 sm:space-y-3">
+                            <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Payment Frequency</Label>
+                            <Select value={paymentFrequency} onValueChange={setPaymentFrequency}>
+                              <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="monthly">Monthly</SelectItem>
+                                <SelectItem value="biweekly">Bi-weekly</SelectItem>
+                                <SelectItem value="weekly">Weekly</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                      </TooltipProvider>
+
+                      <div className="flex justify-center mt-6">
+                        <Button
+                          onClick={calculateLoan}
+                          disabled={isCalculating}
+                          className="w-full sm:w-auto px-8 h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition-all"
+                        >
+                          {isCalculating ? 'Calculating...' : 'Update Results'}
+                        </Button>
+                      </div>
+                    </div>
+                  )}
 
                   {result && (
                     <>
