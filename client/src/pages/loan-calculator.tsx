@@ -71,13 +71,7 @@ const loanInputSchema = z.object({
   }).positive("Loan term must be greater than zero").max(600, "Loan term is too long").finite("Loan term must be a finite number"),
   extraPayment: z.number({
     invalid_type_error: "Extra payment must be a valid number"
-  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number"),
-  processingFee: z.number({
-    invalid_type_error: "Processing fee must be a valid number"
-  }).min(0, "Processing fee cannot be negative").finite("Processing fee must be a finite number"),
-  balloonPayment: z.number({
-    invalid_type_error: "Balloon payment must be a valid number"
-  }).min(0, "Balloon payment cannot be negative").finite("Balloon payment must be a finite number")
+  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
 });
 
 interface ValidationErrors {
@@ -85,8 +79,6 @@ interface ValidationErrors {
   interestRate?: string;
   loanTerm?: string;
   extraPayment?: string;
-  processingFee?: string;
-  balloonPayment?: string;
 }
 
 import { usePredictiveInput } from '@/hooks/use-predictive-input';
@@ -104,9 +96,7 @@ export default function LoanCalculator() {
     loanTerm: '30',
     termUnit: 'years',
     paymentFrequency: 'monthly',
-    extraPayment: '0',
-    processingFee: '0',
-    balloonPayment: '0'
+    extraPayment: '0'
   });
 
   const [loanAmount, setLoanAmount] = useState(predictedValues.loanAmount ?? '100000');
@@ -115,8 +105,6 @@ export default function LoanCalculator() {
   const [termUnit, setTermUnit] = useState(predictedValues.termUnit ?? 'years');
   const [paymentFrequency, setPaymentFrequency] = useState(predictedValues.paymentFrequency ?? 'monthly');
   const [extraPayment, setExtraPayment] = useState(predictedValues.extraPayment ?? '0');
-  const [processingFee, setProcessingFee] = useState(predictedValues.processingFee ?? '0');
-  const [balloonPayment, setBalloonPayment] = useState(predictedValues.balloonPayment ?? '0');
 
   const [biweeklyMode, setBiweeklyMode] = useState<'standard' | 'accelerated'>('standard');
   const [showAmortization, setShowAmortization] = useState(false);
@@ -158,17 +146,12 @@ export default function LoanCalculator() {
     const annualRate = parseFloat(interestRate ?? '0');
     const term = parseFloat(loanTerm ?? '0');
     const extraPmt = (extraPayment ?? '').trim() === '' ? 0 : parseFloat(extraPayment ?? '0');
-    const procFee = parseFloat(processingFee ?? '0');
-
-    const balloonPmt = parseFloat(balloonPayment || '0');
     
     const validation = loanInputSchema.safeParse({
       loanAmount: principal,
       interestRate: annualRate,
       loanTerm: term,
-      extraPayment: extraPmt,
-      processingFee: procFee,
-      balloonPayment: balloonPmt
+      extraPayment: extraPmt
     });
 
     if (!validation.success) {
@@ -193,8 +176,6 @@ export default function LoanCalculator() {
       term_months: (termUnit ?? 'years') === 'years' ? term * 12 : term,
       payment_frequency: paymentFrequency ?? 'monthly',
       has_extra_payment: extraPmt > 0,
-      processing_fee: procFee,
-      has_balloon_payment: balloonPmt > 0,
       biweekly_mode: (paymentFrequency ?? 'monthly') === 'biweekly' ? biweeklyMode : null
     });
 
@@ -214,19 +195,13 @@ export default function LoanCalculator() {
     const periodicRate = annualRateDecimal / paymentsPerYear;
     const totalPayments = termMonths * (paymentsPerYear / 12);
 
-    const adjustedPrincipal = principal + procFee;
+    const adjustedPrincipal = principal;
     
-    // Calculate regular payment (without balloon)
+    // Calculate regular payment
     let regularPayment: number;
     
     if (annualRateDecimal === 0) {
-      regularPayment = (adjustedPrincipal - balloonPmt) / totalPayments;
-    } else if (balloonPmt > 0) {
-      // Loan with balloon payment: P = (L - B/(1+r)^n) * [r(1+r)^n] / [(1+r)^n - 1]
-      const discountedBalloon = balloonPmt / Math.pow(1 + periodicRate, totalPayments);
-      const principalMinusBalloon = adjustedPrincipal - discountedBalloon;
-      regularPayment = (principalMinusBalloon * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
-                      (Math.pow(1 + periodicRate, totalPayments) - 1);
+      regularPayment = adjustedPrincipal / totalPayments;
     } else {
       // Standard amortization
       regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
@@ -249,18 +224,8 @@ export default function LoanCalculator() {
     for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
       const interestPayment = currentBalance * periodicRate;
       
-      // Check if this is the final payment with balloon
-      let principalPayment: number;
-      let actualPaymentAmount: number;
-      
-      if (payment === totalPayments && balloonPmt > 0) {
-        // Final payment includes balloon
-        principalPayment = currentBalance;
-        actualPaymentAmount = principalPayment + interestPayment;
-      } else {
-        principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
-        actualPaymentAmount = principalPayment + interestPayment;
-      }
+      const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
+      const actualPaymentAmount = principalPayment + interestPayment;
 
       currentBalance -= principalPayment;
       totalInterestPaid += interestPayment;
@@ -304,44 +269,40 @@ export default function LoanCalculator() {
     setResult(calculationResult);
 
     // Save calculation history (non-blocking)
-    saveCalculation(
-      'Loan Calculator',
-      '/tools/loan-calculator',
-      {
-        loanAmount: principal,
-        interestRate: annualRate,
-        loanTerm: term,
+      saveCalculation(
+        'Loan Calculator',
+        '/tools/loan-calculator',
+        {
+          loanAmount: principal,
+          interestRate: annualRate,
+          loanTerm: term,
+          termUnit: termUnit || 'years',
+          paymentFrequency: paymentFrequency || 'monthly',
+          extraPayment: extraPmt,
+          biweeklyMode: (paymentFrequency === 'biweekly') ? biweeklyMode : undefined
+        },
+        {
+          monthlyPayment: calculationResult.monthlyPayment,
+          totalAmount: calculationResult.totalAmount,
+          totalInterest: calculationResult.totalInterest,
+          extraPaymentSavings: calculationResult.extraPaymentSavings
+        }
+      );
+
+      updatePredictions({
+        loanAmount: loanAmount || '100000',
+        interestRate: interestRate || '5.50',
+        loanTerm: loanTerm || '30',
         termUnit: termUnit || 'years',
         paymentFrequency: paymentFrequency || 'monthly',
-        extraPayment: extraPmt,
-        processingFee: procFee,
-        balloonPayment: balloonPmt,
-        biweeklyMode: (paymentFrequency === 'biweekly') ? biweeklyMode : undefined
-      },
-      {
-        monthlyPayment: calculationResult.monthlyPayment,
-        totalAmount: calculationResult.totalAmount,
-        totalInterest: calculationResult.totalInterest,
-        extraPaymentSavings: calculationResult.extraPaymentSavings
-      }
-    );
-
-    updatePredictions({
-      loanAmount: loanAmount || '100000',
-      interestRate: interestRate || '5.50',
-      loanTerm: loanTerm || '30',
-      termUnit: termUnit || 'years',
-      paymentFrequency: paymentFrequency || 'monthly',
-      extraPayment: extraPayment || '0',
-      processingFee: processingFee || '0',
-      balloonPayment: balloonPayment || '0'
-    });
+        extraPayment: extraPayment || '0'
+      });
 
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       setIsCalculating(false);
     }, 100);
-  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, user, toast, formatCurrency]);
+  }, [loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, biweeklyMode, user, toast, formatCurrency]);
 
   const handleSaveToProfile = useCallback(async () => {
     if (!result) {
@@ -359,8 +320,6 @@ export default function LoanCalculator() {
       const annualRate = parseFloat(interestRate ?? '0');
       const term = parseFloat(loanTerm ?? '0');
       const extraPmt = (extraPayment ?? '').trim() === '' ? 0 : parseFloat(extraPayment ?? '0');
-      const procFee = parseFloat(processingFee ?? '0');
-      const balloonPmt = parseFloat(balloonPayment || '0');
 
       saveCalculation(
         'Loan Calculator',
@@ -372,8 +331,6 @@ export default function LoanCalculator() {
           termUnit: termUnit ?? 'years',
           paymentFrequency: paymentFrequency ?? 'monthly',
           extraPayment: extraPmt,
-          processingFee: procFee,
-          balloonPayment: balloonPmt,
           biweeklyMode: (paymentFrequency ?? 'monthly') === 'biweekly' ? biweeklyMode : undefined
         },
         {
@@ -400,7 +357,7 @@ export default function LoanCalculator() {
     } finally {
       setIsSaving(false);
     }
-  }, [user, result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, toast]);
+  }, [user, result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, biweeklyMode, toast]);
 
   const handleShare = useCallback(async () => {
     if (!result) return;
@@ -411,9 +368,7 @@ export default function LoanCalculator() {
       term: loanTerm ?? '30',
       unit: termUnit ?? 'years',
       freq: paymentFrequency ?? 'monthly',
-      extra: extraPayment ?? '0',
-      fee: processingFee ?? '0',
-      balloon: balloonPayment ?? '0'
+      extra: extraPayment ?? '0'
     });
     
     if ((paymentFrequency ?? 'monthly') === 'biweekly') {
@@ -456,10 +411,9 @@ export default function LoanCalculator() {
       interest_rate: parseFloat(interestRate ?? '0'),
       term_months: (termUnit ?? 'years') === 'years' ? parseFloat(loanTerm ?? '0') * 12 : parseFloat(loanTerm ?? '0'),
       payment_frequency: paymentFrequency ?? 'monthly',
-      has_extra_payment: parseFloat(extraPayment ?? '0') > 0,
-      processing_fee: parseFloat(processingFee ?? '0')
+      has_extra_payment: parseFloat(extraPayment ?? '0') > 0
     });
-  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, processingFee, balloonPayment, biweeklyMode, formatCurrency, toast]);
+  }, [result, loanAmount, interestRate, loanTerm, termUnit, paymentFrequency, extraPayment, biweeklyMode, formatCurrency, toast]);
 
   const handleDownloadPDF = useCallback(async () => {
     if (!result) return;
