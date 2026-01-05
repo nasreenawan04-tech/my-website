@@ -40,12 +40,6 @@ const mortgageInputSchema = z.object({
   homeInsurance: z.number({
     invalid_type_error: "Home insurance must be a valid number"
   }).min(0, "Home insurance cannot be negative").finite("Home insurance must be a finite number"),
-  pmiRate: z.number({
-    invalid_type_error: "PMI rate must be a valid number"
-  }).min(0, "PMI rate cannot be negative").max(10, "PMI rate cannot exceed 10%").finite("PMI rate must be a finite number"),
-  hoaFees: z.number({
-    invalid_type_error: "HOA fees must be a valid number"
-  }).min(0, "HOA fees cannot be negative").finite("HOA fees must be a finite number"),
   extraPayment: z.number({
     invalid_type_error: "Extra payment must be a valid number"
   }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
@@ -58,8 +52,6 @@ interface ValidationErrors {
   loanTerm?: string;
   propertyTax?: string;
   homeInsurance?: string;
-  pmiRate?: string;
-  hoaFees?: string;
   extraPayment?: string;
 }
 
@@ -71,11 +63,8 @@ interface MortgageResult {
   monthlyTaxes: number;
   monthlyInsurance: number;
   monthlyPMI: number;
-  monthlyHOA: number;
-  closingCosts: number;
   totalCashNeeded: number;
   loanToValue: number;
-  debtToIncomeRatio?: number;
   amortizationSchedule: Array<{
     month: number;
     payment: number;
@@ -103,7 +92,6 @@ interface ComparisonMortgage {
   propertyTax: number;
   insurance: number;
   pmi: number;
-  hoa: number;
 }
 
 const MortgageCalculator = () => {
@@ -230,9 +218,6 @@ const MortgageCalculator = () => {
     const termYears = parseFloat(loanTerm);
     const taxes = propertyTax.trim() === '' ? 0 : parseFloat(propertyTax);
     const insurance = homeInsurance.trim() === '' ? 0 : parseFloat(homeInsurance);
-    const pmi = pmiRate.trim() === '' ? 0 : parseFloat(pmiRate);
-    const hoa = hoaFees.trim() === '' ? 0 : parseFloat(hoaFees);
-    const income = parseFloat(monthlyIncome) || 0;
     const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
 
     const validation = mortgageInputSchema.safeParse({
@@ -242,8 +227,6 @@ const MortgageCalculator = () => {
       loanTerm: termYears,
       propertyTax: taxes,
       homeInsurance: insurance,
-      pmiRate: pmi,
-      hoaFees: hoa,
       extraPayment: extraPmt
     });
 
@@ -277,8 +260,7 @@ const MortgageCalculator = () => {
       return;
     }
 
-    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
-                           paymentFrequency === 'biweekly' ? 26 : 12;
+    const paymentsPerYear = 12;
     const periodicRate = (annualRate / 100) / paymentsPerYear;
     const totalPayments = termYears * paymentsPerYear;
 
@@ -296,15 +278,14 @@ const MortgageCalculator = () => {
     const monthlyTaxes = taxes / 12;
     const monthlyInsurance = insurance / 12;
     const downPaymentPercentValue = (down / price) * 100;
+    
+    // PMI estimation: 0.75% annual rate if down payment < 20%
     let monthlyPMI = 0;
-
     if (loanType === 'conventional' && downPaymentPercentValue < 20) {
-      monthlyPMI = (principal * (pmi / 100)) / 12;
+      monthlyPMI = (principal * 0.0075) / 12;
     } else if (loanType === 'fha') {
       monthlyPMI = (principal * 0.0085) / 12;
     }
-
-    const monthlyHOA = hoa;
 
     // Calculate amortization with extra payments
     const amortizationSchedule = [];
@@ -347,27 +328,23 @@ const MortgageCalculator = () => {
       };
     }
 
-    const monthlyEquivalent = monthlyPI * (paymentsPerYear / 12);
-    const totalMonthlyPayment = monthlyEquivalent + monthlyTaxes + monthlyInsurance + monthlyPMI + monthlyHOA;
+    const totalMonthlyPayment = monthlyPI + monthlyTaxes + monthlyInsurance + monthlyPMI;
 
-    const closingCosts = (price * parseFloat(closingCostPercent)) / 100;
+    const closingCostPercentValue = 3; // Default 3%
+    const closingCosts = (price * closingCostPercentValue) / 100;
     const totalCashNeeded = down + closingCosts;
     const loanToValue = (principal / price) * 100;
-    const debtToIncomeRatio = income > 0 ? (totalMonthlyPayment / income) * 100 : 0;
 
     const calculationResult = {
       monthlyPayment: Math.round(totalMonthlyPayment * 100) / 100,
       totalAmount: Math.round(totalAmountPaid * 100) / 100,
       totalInterest: Math.round(totalInterestPaid * 100) / 100,
-      monthlyPrincipalAndInterest: Math.round(monthlyEquivalent * 100) / 100,
+      monthlyPrincipalAndInterest: Math.round(monthlyPI * 100) / 100,
       monthlyTaxes: Math.round(monthlyTaxes * 100) / 100,
       monthlyInsurance: Math.round(monthlyInsurance * 100) / 100,
       monthlyPMI: Math.round(monthlyPMI * 100) / 100,
-      monthlyHOA: Math.round(monthlyHOA * 100) / 100,
-      closingCosts: Math.round(closingCosts * 100) / 100,
       totalCashNeeded: Math.round(totalCashNeeded * 100) / 100,
       loanToValue: Math.round(loanToValue * 100) / 100,
-      debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100,
       amortizationSchedule,
       extraPaymentSavings
     };
@@ -385,18 +362,14 @@ const MortgageCalculator = () => {
         loanTerm: termYears,
         propertyTax: taxes,
         homeInsurance: insurance,
-        pmiRate: pmi,
-        hoaFees: hoa,
         extraPayment: extraPmt,
-        loanType,
-        paymentFrequency
+        loanType
       },
       {
         monthlyPayment: calculationResult.monthlyPayment,
         totalAmount: calculationResult.totalAmount,
         totalInterest: calculationResult.totalInterest,
         monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
-        closingCosts: calculationResult.closingCosts,
         totalCashNeeded: calculationResult.totalCashNeeded,
         loanToValue: calculationResult.loanToValue,
         extraPaymentSavings: calculationResult.extraPaymentSavings
@@ -418,13 +391,8 @@ const MortgageCalculator = () => {
     setInterestRate('6.5');
     setPropertyTax('6000');
     setHomeInsurance('1800');
-    setPmiRate('0.5');
     setUsePercentage(true);
     setLoanType('conventional');
-    setHoaFees('0');
-    setClosingCostPercent('3');
-    setMonthlyIncome('');
-    setPaymentFrequency('monthly');
     setExtraPayment('0');
     setShowAmortization(false);
     setShowComparison(false);
@@ -451,8 +419,7 @@ const MortgageCalculator = () => {
         totalInterest: result.totalInterest,
         propertyTax: parseFloat(propertyTax),
         insurance: parseFloat(homeInsurance),
-        pmi: result.monthlyPMI,
-        hoa: parseFloat(hoaFees)
+        pmi: result.monthlyPMI
       };
       setComparisonMortgages([...comparisonMortgages, newMortgage]);
       setShowComparison(true);
@@ -611,10 +578,6 @@ const MortgageCalculator = () => {
         { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
         { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       ];
-
-      if (parseFloat(extraPayment) > 0) {
-        metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
-      }
 
       doc.setFont('helvetica', 'normal');
       metrics.forEach((metric, index) => {
