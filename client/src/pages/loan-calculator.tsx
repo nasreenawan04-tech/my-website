@@ -1940,62 +1940,6 @@ export default function LoanCalculator() {
                         </p>
                       </div>
 
-                      <div className="md:col-span-2 space-y-2 sm:space-y-3">
-                        <Label htmlFor="processing-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                          Processing/Origination Fee
-                        </Label>
-                        <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
-                          <Input
-                            id="processing-fee"
-                            type="number"
-                            value={processingFee}
-                            onChange={(e) => setProcessingFee(e.target.value)}
-                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.processingFee ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
-                            placeholder="0"
-                            min="0"
-                            step="50"
-                            data-testid="input-processing-fee"
-                          />
-                        </div>
-                        <p className="text-xs sm:text-sm text-orange-600 font-medium">
-                          ⚠️ Hidden fees banks don't always advertise upfront
-                        </p>
-                      </div>
-                      
-                      <div className="md:col-span-2 space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="balloon-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Balloon Payment (Optional)
-                          </Label>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs text-sm">Large lump sum payment due at the end of the loan term</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
-                        <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
-                          <Input
-                            id="balloon-payment"
-                            type="number"
-                            value={balloonPayment}
-                            onChange={(e) => setBalloonPayment(e.target.value)}
-                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.balloonPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
-                            placeholder="0"
-                            min="0"
-                            step="1000"
-                            data-testid="input-balloon-payment"
-                          />
-                        </div>
-                        <p className="text-xs sm:text-sm text-gray-500">
-                          Lower monthly payments now, larger payment at the end
-                        </p>
-                      </div>
-                      
                       {paymentFrequency === 'biweekly' && (
                         <div className="md:col-span-2 space-y-2 sm:space-y-3">
                           <div className="flex items-center gap-2">
