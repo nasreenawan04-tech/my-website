@@ -52,7 +52,6 @@ interface ComparisonLoan {
   monthlyPayment: number;
   totalInterest: number;
   totalCost: number;
-  apr: number; // APR
 }
 
 const loanInputSchema = z.object({
