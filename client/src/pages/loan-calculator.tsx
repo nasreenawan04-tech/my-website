@@ -1152,7 +1152,6 @@ export default function LoanCalculator() {
         monthlyPayment: result.monthlyPayment,
         totalInterest: result.totalInterest,
         totalCost: totalCost,
-        apr: apr
       };
       setComparisonLoans([...comparisonLoans, newLoan]);
       setShowComparison(true);
@@ -2111,16 +2110,6 @@ export default function LoanCalculator() {
                             </span>
                           </div>
                         </div>
-                        {parseFloat(processingFee || '0') > 0 && (
-                          <div className="bg-orange-50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm border-2 border-orange-200">
-                            <div className="flex justify-between items-center">
-                              <span className="font-medium text-orange-700 text-xs sm:text-sm md:text-base">⚠️ Hidden Processing Fee</span>
-                              <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all">
-                                {formatCurrency(parseFloat(processingFee || '0'))}
-                              </span>
-                            </div>
-                          </div>
-                        )}
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest</span>
@@ -2435,8 +2424,6 @@ export default function LoanCalculator() {
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Amount</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Rate</th>
-                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">APR</th>
-                            <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Fees</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Term</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Monthly Payment</th>
                             <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase tracking-wider">Total Interest</th>
@@ -2469,7 +2456,6 @@ export default function LoanCalculator() {
                                 </td>
                                 <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(loan.amount)}</td>
                                 <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.rate.toFixed(2)}%</td>
-                                <td className="px-4 py-3 text-sm text-right font-semibold text-purple-600">{loan.apr.toFixed(2)}%</td>
                                 <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.term} {loan.termUnit}</td>
                                 <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(loan.monthlyPayment)}</td>
                                 <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(loan.totalInterest)}</td>
