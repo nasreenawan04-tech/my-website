@@ -2471,7 +2471,6 @@ export default function LoanCalculator() {
                                 <td className="px-4 py-3 text-sm text-right text-gray-900">{formatCurrency(loan.amount)}</td>
                                 <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.rate.toFixed(2)}%</td>
                                 <td className="px-4 py-3 text-sm text-right font-semibold text-purple-600">{loan.apr.toFixed(2)}%</td>
-                                <td className="px-4 py-3 text-sm text-right text-orange-600">{formatCurrency(loan.processingFee)}</td>
                                 <td className="px-4 py-3 text-sm text-right text-gray-900">{loan.term} {loan.termUnit}</td>
                                 <td className="px-4 py-3 text-sm text-right font-semibold text-blue-600">{formatCurrency(loan.monthlyPayment)}</td>
                                 <td className="px-4 py-3 text-sm text-right font-semibold text-orange-600">{formatCurrency(loan.totalInterest)}</td>
