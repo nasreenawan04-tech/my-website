@@ -2081,7 +2081,96 @@ export default function LoanCalculator() {
                         </div>
                       </div>
 
+                      {/* Loan Comparison Section - Responsive */}
+                      {showComparison && comparisonLoans.length > 0 && (
+                        <div className="mt-8 space-y-4">
+                          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            <Scale className="w-5 h-5 text-indigo-600" />
+                            Loan Comparison
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {comparisonLoans.map((loan, idx) => (
+                              <Card key={idx} className={`relative overflow-hidden ${getBestLoanIndex() === idx ? 'ring-2 ring-emerald-500' : ''}`}>
+                                {getBestLoanIndex() === idx && (
+                                  <div className="absolute top-0 right-0 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">
+                                    BEST VALUE
+                                  </div>
+                                )}
+                                <CardContent className="p-4 space-y-3">
+                                  <div className="flex justify-between items-start">
+                                    <input
+                                      className="font-bold text-slate-900 border-none bg-transparent p-0 focus:ring-0 w-full"
+                                      value={loan.name}
+                                      onChange={(e) => editLoanName(idx, e.target.value)}
+                                    />
+                                    <Button
+                                      variant="ghost"
+                                      size="icon"
+                                      className="h-6 w-6 text-slate-400 hover:text-red-500"
+                                      onClick={() => removeLoanFromComparison(idx)}
+                                    >
+                                      <RotateCcw className="w-3 h-3" />
+                                    </Button>
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-2 text-sm">
+                                    <div className="text-slate-500">Monthly:</div>
+                                    <div className="font-bold text-right">{formatCurrency(loan.monthlyPayment)}</div>
+                                    <div className="text-slate-500">Rate:</div>
+                                    <div className="font-semibold text-right">{loan.rate}%</div>
+                                    <div className="text-slate-500">Term:</div>
+                                    <div className="text-right">{loan.term} {loan.termUnit}</div>
+                                  </div>
+                                  <div className="pt-2 border-t flex justify-between items-center">
+                                    <div className="text-xs font-bold text-slate-400 uppercase">Total Cost</div>
+                                    <div className="text-lg font-black text-indigo-600">{formatCurrency(loan.totalCost)}</div>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
+                      {/* Amortization Schedule - Responsive Table */}
+                      {showAmortization && (
+                        <div className="mt-8 space-y-4">
+                          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            <Clock className="w-5 h-5 text-blue-600" />
+                            Amortization Schedule
+                          </h3>
+                          <div
+                            className="overflow-x-auto rounded-xl border border-slate-200 shadow-sm cursor-grab active:cursor-grabbing"
+                            ref={tableScrollRef}
+                            onMouseDown={handleMouseDown}
+                            onMouseLeave={handleMouseLeave}
+                            onMouseUp={handleMouseUp}
+                            onMouseMove={handleMouseMove}
+                          >
+                            <table className="w-full text-sm text-left border-collapse min-w-[600px]">
+                              <thead className="bg-slate-50 text-slate-500 font-bold uppercase text-[10px] tracking-wider">
+                                <tr>
+                                  <th className="px-4 py-3 border-b sticky left-0 bg-slate-50 z-10 w-12 text-center">Pmt</th>
+                                  <th className="px-4 py-3 border-b">Payment</th>
+                                  <th className="px-4 py-3 border-b text-emerald-600">Principal</th>
+                                  <th className="px-4 py-3 border-b text-red-500">Interest</th>
+                                  <th className="px-4 py-3 border-b font-bold text-slate-900">Balance</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-slate-100">
+                                {result.amortizationSchedule.map((p) => (
+                                  <tr key={p.month} className="hover:bg-blue-50/50 transition-colors">
+                                    <td className="px-4 py-3 font-bold text-slate-400 text-center sticky left-0 bg-white group-hover:bg-blue-50/50 z-10 border-r">{p.month}</td>
+                                    <td className="px-4 py-3">{formatCurrency(p.payment)}</td>
+                                    <td className="px-4 py-3 text-emerald-600 font-semibold">{formatCurrency(p.principal)}</td>
+                                    <td className="px-4 py-3 text-red-500">{formatCurrency(p.interest)}</td>
+                                    <td className="px-4 py-3 font-bold text-slate-900">{formatCurrency(p.balance)}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
                     </>
                   )}
                 </div>
