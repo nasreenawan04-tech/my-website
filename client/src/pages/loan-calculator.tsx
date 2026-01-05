@@ -194,28 +194,26 @@ export default function LoanCalculator() {
     const periodicRate = annualRateDecimal / paymentsPerYear;
     const totalPayments = termMonths * (paymentsPerYear / 12);
 
-    const adjustedPrincipal = principal;
-    
     // Calculate regular payment
     let regularPayment: number;
     
     if (annualRateDecimal === 0) {
-      regularPayment = adjustedPrincipal / totalPayments;
+      regularPayment = principal / totalPayments;
     } else {
       // Standard amortization
-      regularPayment = (adjustedPrincipal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
+      regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
                       (Math.pow(1 + periodicRate, totalPayments) - 1);
     }
     
     // For accelerated biweekly, calculate based on monthly equivalent
     if ((paymentFrequency ?? 'monthly') === 'biweekly' && biweeklyMode === 'accelerated') {
-      const monthlyPayment = (adjustedPrincipal * (annualRateDecimal / 12) * Math.pow(1 + annualRateDecimal / 12, termMonths)) /
+      const monthlyPayment = (principal * (annualRateDecimal / 12) * Math.pow(1 + annualRateDecimal / 12, termMonths)) /
                             (Math.pow(1 + annualRateDecimal / 12, termMonths) - 1);
       regularPayment = monthlyPayment / 2; // Half of monthly payment every 2 weeks
     }
 
     const amortizationSchedule = [];
-    let currentBalance = adjustedPrincipal;
+    let currentBalance = principal;
     let totalInterestPaid = 0;
     let totalAmountPaid = 0;
     let actualPayments = 0;
@@ -245,7 +243,7 @@ export default function LoanCalculator() {
     let extraPaymentSavings;
     if (extraPmt > 0) {
       const regularTotalAmount = regularPayment * totalPayments;
-      const regularTotalInterest = regularTotalAmount - adjustedPrincipal;
+      const regularTotalInterest = regularTotalAmount - principal;
 
       extraPaymentSavings = {
         timeSaved: Math.max(0, totalPayments - actualPayments),
