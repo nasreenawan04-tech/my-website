@@ -2517,7 +2517,7 @@ export default function LoanCalculator() {
                     </div>
                     <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
                     <div 
-                      className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none" 
+                      className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none scroll-smooth transition-all duration-200" 
                       ref={tableScrollRef}
                       onMouseDown={handleMouseDown}
                       onMouseLeave={handleMouseLeave}
