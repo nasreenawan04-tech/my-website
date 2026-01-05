@@ -2375,7 +2375,7 @@ export default function LoanCalculator() {
                               onClick={() => setChartFilter('interest')}
                               variant={chartFilter === 'interest' ? 'default' : 'outline'}
                               size="sm"
-                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 h-8 sm:h-9 ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
                               data-testid="button-filter-interest"
                             >
                               <span className="flex items-center gap-1 sm:gap-1.5">
@@ -2388,7 +2388,7 @@ export default function LoanCalculator() {
                               onClick={() => setChartFilter('both')}
                               variant={chartFilter === 'both' ? 'default' : 'outline'}
                               size="sm"
-                              className="text-[10px] sm:text-xs px-2 sm:px-3"
+                              className="text-[10px] sm:text-xs px-2 sm:px-3 h-8 sm:h-9"
                               data-testid="button-filter-both"
                             >
                               <span className="hidden sm:inline">Showing all payments</span>
@@ -2506,8 +2506,80 @@ export default function LoanCalculator() {
                       </Button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option. The best deal (lowest total cost) is highlighted in green.</p>
-                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={comparisonRef}>
-                      <table className="w-full min-w-[900px]" data-testid="comparison-table">
+                    <div className="overflow-x-auto -mx-4 sm:mx-0 lg:overflow-visible" ref={comparisonRef}>
+                      {/* Mobile View: Cards */}
+                      <div className="block lg:hidden space-y-4 px-4 sm:px-0">
+                        {comparisonLoans.map((loan, index) => {
+                          const isBestDeal = index === getBestLoanIndex();
+                          return (
+                            <Card 
+                              key={index} 
+                              className={`relative overflow-hidden transition-colors ${isBestDeal ? 'border-green-500 bg-green-50/50' : 'hover:bg-gray-50'}`}
+                              data-testid={`comparison-card-${index}`}
+                            >
+                              {isBestDeal && (
+                                <div className="absolute top-0 right-0 px-3 py-1 bg-green-500 text-white text-[10px] font-bold uppercase tracking-wider rounded-bl-lg">
+                                  Best Deal
+                                </div>
+                              )}
+                              <CardContent className="p-4 space-y-3">
+                                <div className="flex justify-between items-start gap-4">
+                                  <div className="flex-1">
+                                    <input
+                                      type="text"
+                                      value={loan.name}
+                                      onChange={(e) => editLoanName(index, e.target.value)}
+                                      className="font-bold text-gray-900 bg-transparent border-b border-transparent focus:border-blue-500 outline-none w-full truncate"
+                                      data-testid={`input-loan-name-mobile-${index}`}
+                                    />
+                                  </div>
+                                  <Button
+                                    onClick={() => removeLoanFromComparison(index)}
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 flex-shrink-0"
+                                    data-testid={`button-remove-loan-mobile-${index}`}
+                                  >
+                                    <RotateCcw className="w-4 h-4 text-red-500" />
+                                  </Button>
+                                </div>
+                                
+                                <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                                  <div>
+                                    <p className="text-gray-500 text-xs uppercase font-semibold">Amount</p>
+                                    <p className="font-medium">{formatCurrency(loan.amount)}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-gray-500 text-xs uppercase font-semibold">Rate</p>
+                                    <p className="font-medium">{loan.rate.toFixed(2)}%</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-gray-500 text-xs uppercase font-semibold">Term</p>
+                                    <p className="font-medium">{loan.term} {loan.termUnit}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-gray-500 text-xs uppercase font-semibold">Monthly</p>
+                                    <p className="font-bold text-blue-600">{formatCurrency(loan.monthlyPayment)}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-gray-500 text-xs uppercase font-semibold">Interest</p>
+                                    <p className="font-bold text-orange-600">{formatCurrency(loan.totalInterest)}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-gray-500 text-xs uppercase font-semibold">Total Cost</p>
+                                    <p className={`font-bold ${isBestDeal ? 'text-green-700' : 'text-gray-900'}`}>
+                                      {formatCurrency(loan.totalCost)}
+                                    </p>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          );
+                        })}
+                      </div>
+
+                      {/* Desktop View: Table */}
+                      <table className="w-full min-w-[900px] hidden lg:table" data-testid="comparison-table">
                         <thead className="bg-gray-50">
                           <tr>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Loan</th>
@@ -2591,8 +2663,41 @@ export default function LoanCalculator() {
                       </Button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={amortizationRef}>
-                      <table className="w-full min-w-[600px]" data-testid="amortization-table">
+                    <div className="overflow-x-auto -mx-4 sm:mx-0 lg:overflow-visible" ref={amortizationRef}>
+                      {/* Mobile View: Cards */}
+                      <div className="block lg:hidden space-y-4 px-4 sm:px-0">
+                        {result.amortizationSchedule.map((payment, index) => (
+                          <Card 
+                            key={index} 
+                            className="bg-white border hover:bg-gray-50 transition-colors"
+                            data-testid={`amortization-card-mobile-${index}`}
+                          >
+                            <CardContent className="p-4">
+                              <div className="flex justify-between items-center mb-3 pb-2 border-b">
+                                <span className="text-xs font-bold text-gray-500 uppercase">Payment #{payment.month}</span>
+                                <span className="font-bold text-gray-900">{formatCurrency(payment.payment)}</span>
+                              </div>
+                              <div className="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                  <p className="text-gray-500 text-xs uppercase font-semibold">Principal</p>
+                                  <p className="font-bold text-green-600">{formatCurrency(payment.principal)}</p>
+                                </div>
+                                <div>
+                                  <p className="text-gray-500 text-xs uppercase font-semibold">Interest</p>
+                                  <p className="font-bold text-orange-600">{formatCurrency(payment.interest)}</p>
+                                </div>
+                                <div className="col-span-2 pt-2 border-t">
+                                  <p className="text-gray-500 text-xs uppercase font-semibold">Remaining Balance</p>
+                                  <p className="font-bold text-gray-900 text-lg">{formatCurrency(payment.balance)}</p>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+
+                      {/* Desktop View: Table */}
+                      <table className="w-full min-w-[600px] hidden lg:table" data-testid="amortization-table">
                         <thead className="bg-gray-50">
                           <tr>
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Payment #</th>
