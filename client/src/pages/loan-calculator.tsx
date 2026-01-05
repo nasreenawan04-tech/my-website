@@ -1058,12 +1058,34 @@ export default function LoanCalculator() {
     return () => window.removeEventListener('keydown', handleKeyboard);
   }, [result, calculateLoan, handleDownloadPDF, handleShare]);
 
-  // Drag scrolling handlers for amortization table
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!tableScrollRef.current) return;
+  // Drag scrolling handlers for tables
+  const handleMouseDown = (e: React.MouseEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!ref.current) return;
     setIsDragging(true);
-    setStartX(e.pageX - tableScrollRef.current.offsetLeft);
-    setScrollLeft(tableScrollRef.current.scrollLeft);
+    setStartX(e.pageX - ref.current.offsetLeft);
+    setScrollLeft(ref.current.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!isDragging || !ref.current) return;
+    e.preventDefault();
+    const x = e.pageX - ref.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    ref.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!ref.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - ref.current.offsetLeft);
+    setScrollLeft(ref.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!isDragging || !ref.current) return;
+    const x = e.touches[0].pageX - ref.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    ref.current.scrollLeft = scrollLeft - walk;
   };
 
   const handleMouseLeave = () => {
@@ -1072,28 +1094,6 @@ export default function LoanCalculator() {
 
   const handleMouseUp = () => {
     setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !tableScrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - tableScrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    tableScrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!tableScrollRef.current) return;
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - tableScrollRef.current.offsetLeft);
-    setScrollLeft(tableScrollRef.current.scrollLeft);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || !tableScrollRef.current) return;
-    const x = e.touches[0].pageX - tableScrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
   const resetCalculator = () => {
@@ -2431,7 +2431,17 @@ export default function LoanCalculator() {
                       </Button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option. The best deal (lowest total cost) is highlighted in green.</p>
-                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={comparisonRef}>
+                    <div 
+                      className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none scroll-smooth transition-all duration-200" 
+                      ref={comparisonRef}
+                      onMouseDown={(e) => handleMouseDown(e, comparisonRef)}
+                      onMouseLeave={handleMouseLeave}
+                      onMouseUp={handleMouseUp}
+                      onMouseMove={(e) => handleMouseMove(e, comparisonRef)}
+                      onTouchStart={(e) => handleTouchStart(e, comparisonRef)}
+                      onTouchMove={(e) => handleTouchMove(e, comparisonRef)}
+                      onTouchEnd={handleMouseUp}
+                    >
                       <table className="w-full min-w-[900px]" data-testid="comparison-table">
                         <thead className="bg-gray-50">
                           <tr>
@@ -2519,12 +2529,12 @@ export default function LoanCalculator() {
                     <div 
                       className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none scroll-smooth transition-all duration-200" 
                       ref={tableScrollRef}
-                      onMouseDown={handleMouseDown}
+                      onMouseDown={(e) => handleMouseDown(e, tableScrollRef)}
                       onMouseLeave={handleMouseLeave}
                       onMouseUp={handleMouseUp}
-                      onMouseMove={handleMouseMove}
-                      onTouchStart={handleTouchStart}
-                      onTouchMove={handleTouchMove}
+                      onMouseMove={(e) => handleMouseMove(e, tableScrollRef)}
+                      onTouchStart={(e) => handleTouchStart(e, tableScrollRef)}
+                      onTouchMove={(e) => handleTouchMove(e, tableScrollRef)}
                       onTouchEnd={handleMouseUp}
                     >
                       <table className="w-full min-w-[600px]" data-testid="amortization-table">
