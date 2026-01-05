@@ -1082,6 +1082,20 @@ export default function LoanCalculator() {
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!tableScrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - tableScrollRef.current.offsetLeft);
+    setScrollLeft(tableScrollRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !tableScrollRef.current) return;
+    const x = e.touches[0].pageX - tableScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   const resetCalculator = () => {
     setLoanAmount('100000');
     setInterestRate('5.50');
@@ -2502,7 +2516,17 @@ export default function LoanCalculator() {
                       </Button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                    <div className="overflow-x-auto -mx-4 sm:mx-0" ref={amortizationRef}>
+                    <div 
+                      className="overflow-x-auto -mx-4 sm:mx-0 cursor-grab active:cursor-grabbing select-none" 
+                      ref={tableScrollRef}
+                      onMouseDown={handleMouseDown}
+                      onMouseLeave={handleMouseLeave}
+                      onMouseUp={handleMouseUp}
+                      onMouseMove={handleMouseMove}
+                      onTouchStart={handleTouchStart}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleMouseUp}
+                    >
                       <table className="w-full min-w-[600px]" data-testid="amortization-table">
                         <thead className="bg-gray-50">
                           <tr>
