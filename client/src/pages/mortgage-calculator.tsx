@@ -119,6 +119,17 @@ const MortgageCalculator = () => {
   const [result, setResult] = useState<MortgageResult | null>(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+
+  // Missing state for dragging and refs
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+  const amortizationRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
+  const tableScrollRef = useRef<HTMLDivElement>(null);
   
   // Count-up animation for numbers
   const CountUp = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
