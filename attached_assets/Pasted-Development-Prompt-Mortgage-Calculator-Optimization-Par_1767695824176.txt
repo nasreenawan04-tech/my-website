@@ -1,0 +1,13 @@
+Development Prompt: Mortgage Calculator Optimization
+Part 1: Core Interface Simplification
+"Refactor the Mortgage Calculator UI to prioritize the three most critical inputs: Home Price, Down Payment (with toggle for $ or %), and Interest Rate. Move secondary fields like Property Tax and Home Insurance into a collapsed 'Advanced Costs' section. Completely remove the following redundant options to reduce user friction: PMI Rate, HOA Fees, Closing Cost Percentage, Monthly Income, and Payment Frequency (defaulting the logic to Monthly)."
+Part 2: Calculation Engine Logic Update
+"Update the backend calculation logic in mortgage-calculator.engine.ts to reflect the removed fields. Ensure the PMI calculation is now an automatic estimate (e.g., defaulting to 0.75% of the loan amount if the down payment is less than 20%) rather than a user-defined input. Hardcode the payment frequency to 12 periods per year to align with the UI simplification."
+Part 3: Data Schema and Validation Cleanup
+"Adjust the Zod validation schema and the shared/schema.ts (if applicable) to remove the deleted fields. Update the initial state and reset functions in the React component to ensure they only track the necessary parameters, preventing 'ghost' data from affecting the results or being saved to the calculation history."
+Part 4: Dynamic Visualization & UX Improvements
+"Enhance the 'Results' section by adding a more prominent 'Total Monthly Payment' display. Ensure the breakdown chart (Principal vs. Interest vs. Escrow) updates dynamically. Add a 'Quick Adjust' slider for the Home Price and Interest Rate to allow users to see how small changes impact their monthly budget in real-time."
+Part 5: PDF Report and Sharing Optimization
+"Update the PDF export logic (jsPDF) to remove the now-deleted data points. Refactor the report layout to focus on the 'Executive Summary' and the 30-year interest cost. Ensure the 'Share Result' URL generator only includes the active parameters in its query string for a cleaner, more reliable sharing experience."
+Part 6: Final Polish and Mobile Responsiveness
+"Perform a CSS audit to ensure the new simplified layout remains perfectly centered and responsive on mobile devices. Use shadcn/ui components consistently for the 'Advanced' accordion. Finally, verify that all 'data-testid' attributes are present for the remaining interactive elements to ensure testing stability."
