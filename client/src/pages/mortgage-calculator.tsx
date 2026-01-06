@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -2197,12 +2198,25 @@ const MortgageCalculator = () => {
                 </div>
 
                 {result ? (
-                  <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <motion.div
+                    key="results"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    ref={resultsRef}
+                    className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t"
+                  >
                     <div className="space-y-4 sm:space-y-6 md:space-y-8">
                       {/* Part 1: Hero Result Display */}
                       <Card className="bg-primary/5 border-primary/20 overflow-visible shadow-sm">
                         <CardContent className="pt-6 pb-6 text-center">
-                          <div className="space-y-2">
+                          <motion.div 
+                            key={result.monthlyPayment}
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="space-y-2"
+                          >
                             <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                               Total Monthly Payment
                             </p>
@@ -2215,7 +2229,7 @@ const MortgageCalculator = () => {
                             <p className="text-xs text-muted-foreground font-medium">
                               Includes Principal, Interest, Taxes, and Insurance (PITI)
                             </p>
-                          </div>
+                          </motion.div>
                         </CardContent>
                       </Card>
 
