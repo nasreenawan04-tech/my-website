@@ -206,15 +206,22 @@ const MortgageCalculator = () => {
     setIsDragging(false);
   };
 
-  // Auto-calculate when inputs change for real-time updates
+  // Auto-calculate when inputs change for real-time updates (Part 3: Dynamic Calculation Trigger)
   useEffect(() => {
     const timer = setTimeout(() => {
       if (homePrice && interestRate && loanTerm) {
-        calculateMortgage();
+        // Only trigger if we have valid primary inputs
+        const price = parseFloat(homePrice);
+        const rate = parseFloat(interestRate);
+        const term = parseFloat(loanTerm);
+        
+        if (!isNaN(price) && !isNaN(rate) && !isNaN(term) && price > 0 && rate > 0 && term > 0) {
+          calculateMortgage();
+        }
       }
     }, 100);
     return () => clearTimeout(timer);
-  }, [homePrice, downPayment, downPaymentPercent, loanTerm, interestRate, propertyTax, homeInsurance, extraPayment, usePercentage, loanType]);
+  }, [homePrice, downPayment, downPaymentPercent, loanTerm, interestRate, propertyTax, homeInsurance, extraPayment, usePercentage, loanType, paymentFrequency]);
 
   const calculateMortgage = async () => {
     setIsCalculating(true);
