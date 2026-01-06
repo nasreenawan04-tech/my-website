@@ -1825,6 +1825,17 @@ const MortgageCalculator = () => {
                             </TooltipContent>
                           </Tooltip>
                         </div>
+                        {/* Part 2: Quick Adjust Slider - Home Price */}
+                        <div className="pt-2 px-1">
+                          <Slider
+                            value={[parseFloat(homePrice) || 500000]}
+                            min={50000}
+                            max={2000000}
+                            step={1000}
+                            onValueChange={(vals) => setHomePrice(vals[0].toString())}
+                            className="py-4"
+                          />
+                        </div>
                         <div className="relative">
                           <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                           <Input
@@ -1908,6 +1919,17 @@ const MortgageCalculator = () => {
                               <p className="max-w-xs text-sm">Annual interest rate from your lender</p>
                             </TooltipContent>
                           </Tooltip>
+                        </div>
+                        {/* Part 2: Quick Adjust Slider - Interest Rate */}
+                        <div className="pt-2 px-1">
+                          <Slider
+                            value={[parseFloat(interestRate) || 6.5]}
+                            min={0.1}
+                            max={15}
+                            step={0.1}
+                            onValueChange={(vals) => setInterestRate(vals[0].toString())}
+                            className="py-4"
+                          />
                         </div>
                         <div className="relative">
                           <Input
