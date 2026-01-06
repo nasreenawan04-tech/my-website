@@ -2221,59 +2221,86 @@ const MortgageCalculator = () => {
 
                       <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left">Detailed Breakdown</h2>
 
-                      {/* Part 4: Responsive Donut Chart Breakdown */}
-                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm border border-gray-100">
-                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-6 text-center">Monthly Payment Breakdown</h3>
-                        <div className="relative h-[300px] w-full">
-                          <ResponsiveContainer width="100%" height="100%">
-                            <RechartsPieChart>
-                              <Pie
-                                data={[
-                                  { name: 'Principal & Interest', value: result.monthlyPrincipalAndInterest, color: 'hsl(var(--primary))' },
-                                  { name: 'Property Taxes', value: result.monthlyTaxes, color: 'hsl(var(--chart-2))' },
-                                  { name: 'Home Insurance', value: result.monthlyInsurance, color: 'hsl(var(--chart-3))' },
-                                  { name: 'PMI', value: result.monthlyPMI, color: 'hsl(var(--chart-4))' },
-                                ]}
-                                cx="50%"
-                                cy="50%"
-                                innerRadius="60%"
-                                outerRadius="85%"
-                                paddingAngle={2}
-                                dataKey="value"
-                              >
-                                {[
-                                  { name: 'P&I', color: 'hsl(var(--primary))' },
-                                  { name: 'Taxes', color: 'hsl(var(--chart-2))' },
-                                  { name: 'Insurance', color: 'hsl(var(--chart-3))' },
-                                  { name: 'PMI', color: 'hsl(var(--chart-4))' },
-                                ].map((entry, index) => (
-                                  <Cell key={`cell-${index}`} fill={entry.color} />
-                                ))}
-                              </Pie>
-                              <RechartsTooltip
-                                formatter={(value: number) => formatCurrency(value)}
-                                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-                              />
-                            </RechartsPieChart>
-                          </ResponsiveContainer>
-                          {/* Center Label */}
-                          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                            <span className="text-xs font-semibold text-muted-foreground uppercase">Total</span>
-                            <span className="text-xl font-bold text-primary">{formatCurrency(result.monthlyPayment)}</span>
+                      {/* Part 4 & 5: Responsive Donut Chart & Loan Summary */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Part 4: Donut Chart Breakdown */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm border border-gray-100 flex flex-col justify-center">
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-6 text-center">Monthly Payment Breakdown</h3>
+                          <div className="relative h-[250px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                              <RechartsPieChart>
+                                <Pie
+                                  data={[
+                                    { name: 'Principal & Interest', value: result.monthlyPrincipalAndInterest, color: 'hsl(var(--primary))' },
+                                    { name: 'Property Taxes', value: result.monthlyTaxes, color: 'hsl(var(--chart-2))' },
+                                    { name: 'Home Insurance', value: result.monthlyInsurance, color: 'hsl(var(--chart-3))' },
+                                    { name: 'PMI', value: result.monthlyPMI, color: 'hsl(var(--chart-4))' },
+                                  ]}
+                                  cx="50%"
+                                  cy="50%"
+                                  innerRadius="60%"
+                                  outerRadius="85%"
+                                  paddingAngle={2}
+                                  dataKey="value"
+                                >
+                                  {[
+                                    { name: 'P&I', color: 'hsl(var(--primary))' },
+                                    { name: 'Taxes', color: 'hsl(var(--chart-2))' },
+                                    { name: 'Insurance', color: 'hsl(var(--chart-3))' },
+                                    { name: 'PMI', color: 'hsl(var(--chart-4))' },
+                                  ].map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.color} />
+                                  ))}
+                                </Pie>
+                                <RechartsTooltip
+                                  formatter={(value: number) => formatCurrency(value)}
+                                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                />
+                              </RechartsPieChart>
+                            </ResponsiveContainer>
+                            {/* Center Label */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                              <span className="text-[10px] font-semibold text-muted-foreground uppercase">Total</span>
+                              <span className="text-lg font-bold text-primary">{formatCurrency(result.monthlyPayment)}</span>
+                            </div>
+                          </div>
+                          {/* Custom Legend */}
+                          <div className="grid grid-cols-2 gap-3 mt-6">
+                            {[
+                              { name: 'Principal & Interest', color: 'bg-primary' },
+                              { name: 'Property Taxes', color: 'bg-[hsl(var(--chart-2))]' },
+                              { name: 'Home Insurance', color: 'bg-[hsl(var(--chart-3))]' },
+                              { name: 'PMI', color: 'bg-[hsl(var(--chart-4))]' },
+                            ].map((item, i) => (
+                              <div key={i} className="flex items-center gap-2">
+                                <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
+                                <span className="text-[10px] sm:text-xs font-medium text-gray-600 truncate">{item.name}</span>
+                              </div>
+                            ))}
                           </div>
                         </div>
-                        {/* Custom Legend */}
-                        <div className="grid grid-cols-2 gap-4 mt-6">
+
+                        {/* Part 5: Loan Summary Cards */}
+                        <div className="grid grid-cols-2 gap-4">
                           {[
-                            { name: 'Principal & Interest', color: 'bg-primary' },
-                            { name: 'Property Taxes', color: 'bg-[hsl(var(--chart-2))]' },
-                            { name: 'Home Insurance', color: 'bg-[hsl(var(--chart-3))]' },
-                            { name: 'PMI', color: 'bg-[hsl(var(--chart-4))]' },
-                          ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-2">
-                              <div className={`w-3 h-3 rounded-full ${item.color}`} />
-                              <span className="text-xs font-medium text-gray-600">{item.name}</span>
-                            </div>
+                            { label: 'Total Interest Paid', value: formatCurrency(result.totalInterest), sub: 'Over loan life', color: 'text-orange-600' },
+                            { label: 'Total Payoff Amount', value: formatCurrency(result.totalAmount), sub: 'Principal + Interest', color: 'text-primary' },
+                            { label: 'Cash Needed at Closing', value: formatCurrency(result.totalCashNeeded), sub: 'Down + Closing costs', color: 'text-green-600' },
+                            { label: 'Loan-to-Value (LTV)', value: `${result.loanToValue.toFixed(1)}%`, sub: 'Loan amount vs price', color: 'text-indigo-600' },
+                          ].map((card, i) => (
+                            <Card key={i} className="bg-white border-gray-100 shadow-sm overflow-hidden">
+                              <CardContent className="p-3 sm:p-4 flex flex-col justify-between h-full">
+                                <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-tight mb-1 truncate">
+                                  {card.label}
+                                </p>
+                                <p className={`text-sm sm:text-base md:text-lg font-bold ${card.color} break-all`}>
+                                  {card.value}
+                                </p>
+                                <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-1 italic">
+                                  {card.sub}
+                                </p>
+                              </CardContent>
+                            </Card>
                           ))}
                         </div>
                       </div>
