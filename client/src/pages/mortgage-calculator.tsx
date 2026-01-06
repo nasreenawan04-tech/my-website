@@ -206,6 +206,16 @@ const MortgageCalculator = () => {
     setIsDragging(false);
   };
 
+  // Auto-calculate when inputs change for real-time updates
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (homePrice && interestRate && loanTerm) {
+        calculateMortgage();
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [homePrice, downPayment, downPaymentPercent, loanTerm, interestRate, propertyTax, homeInsurance, extraPayment, usePercentage, loanType]);
+
   const calculateMortgage = async () => {
     setIsCalculating(true);
     setValidationErrors({});
