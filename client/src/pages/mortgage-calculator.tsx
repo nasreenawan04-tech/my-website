@@ -117,16 +117,41 @@ const MortgageCalculator = () => {
   const [comparisonMortgages, setComparisonMortgages] = useState<ComparisonMortgage[]>([]);
   const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<MortgageResult | null>(null);
-  const resultsRef = useRef<HTMLDivElement>(null);
-  const tableScrollRef = useRef<HTMLDivElement>(null);
-  const comparisonRef = useRef<HTMLDivElement>(null);
-  const amortizationRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [isCalculating, setIsCalculating] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  
+  // Count-up animation for numbers
+  const CountUp = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
+    const [displayValue, setDisplayValue] = useState(0);
+    
+    useEffect(() => {
+      let start = displayValue;
+      const end = value;
+      if (start === end) return;
+      
+      const duration = 500; // ms
+      const startTime = performance.now();
+      
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOutQuad = (t: number) => t * (2 - t);
+        const current = start + (end - start) * easeOutQuad(progress);
+        
+        setDisplayValue(current);
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setDisplayValue(end);
+        }
+      };
+      
+      requestAnimationFrame(animate);
+    }, [value]);
+
+    return <span>{prefix}{displayValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{suffix}</span>;
+  };
   const { toast } = useToast();
   const { user } = useAuth();
 
@@ -1811,10 +1836,51 @@ const MortgageCalculator = () => {
             <CardContent className="p-0">
               <div className="flex flex-col">
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Mortgage Configuration</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Enter your home and loan details for accurate payment calculations</p>
-                  </div>
+                  <AnimatePresence mode="wait">
+                    {result ? (
+                      <motion.div 
+                        key="results-active"
+                        initial={ { opacity: 0, y: 20 } }
+                        animate={ { opacity: 1, y: 0 } }
+                        exit={ { opacity: 0, y: -20 } }
+                        transition={ { duration: 0.3 } }
+                      >
+                        {/* Redesigned Part 1 Hero Result Display (Wrapped with animations) */}
+                        <div className="bg-primary/5 border border-primary/10 rounded-2xl p-6 sm:p-8 mb-8 text-center" data-testid="card-hero-total-payment">
+                          <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Total Monthly Payment (PITI)</h3>
+                          <div className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight" data-testid="text-total-monthly-payment">
+                            <CountUp value={result.monthlyPayment} prefix="$" />
+                          </div>
+                          <p className="mt-3 text-sm text-slate-500 max-w-md mx-auto">
+                            Includes Principal, Interest, Property Taxes, Home Insurance, and PMI (if applicable).
+                          </p>
+                        </div>
+                        {/* ... existing chart and summary grid code ... */}
+                      </motion.div>
+                    ) : (
+                      <motion.div 
+                        key="results-placeholder"
+                        initial={ { opacity: 0 } }
+                        animate={ { opacity: 1 } }
+                        exit={ { opacity: 0 } }
+                        className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center"
+                      >
+                        <div className="w-20 h-20 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-6">
+                          <Calculator className="w-10 h-10 text-slate-300" />
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 mb-2">Waiting for inputs</h3>
+                        <p className="text-slate-500 max-w-xs mx-auto mb-8">
+                          Adjust the sliders or enter values to see your real-time mortgage breakdown.
+                        </p>
+                        <div className="flex justify-center gap-2">
+                          <div className="w-12 h-1 bg-slate-200 rounded-full animate-pulse" />
+                          <div className="w-12 h-1 bg-slate-200 rounded-full animate-pulse delay-75" />
+                          <div className="w-12 h-1 bg-slate-200 rounded-full animate-pulse delay-150" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                   <TooltipProvider>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
