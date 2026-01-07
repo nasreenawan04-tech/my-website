@@ -31,7 +31,7 @@ const RecentlyUsedTools = lazy(() => import("./pages/recently-used-tools"));
 const FavoriteTools = lazy(() => import("./pages/favorite-tools"));
 const UnitConverter = lazy(() => import("./pages/unit-converter"));
 const LoanCalculator = lazy(() => import("./pages/loan-calculator"));
-const MortgageCalculator = lazy(() => import("./pages/mortgage-calculator.tsx"));
+const MortgageCalculator = lazy(() => import("./pages/mortgage-calculator"));
 const EMICalculator = lazy(() => import("./pages/emi-calculator"));
 const SimpleInterestCalculator = lazy(() => import("./pages/simple-interest-calculator"));
 const CompoundInterestCalculator = lazy(() => import("./pages/compound-interest-calculator"));

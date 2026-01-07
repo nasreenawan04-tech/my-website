@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -41,6 +40,12 @@ const mortgageInputSchema = z.object({
   homeInsurance: z.number({
     invalid_type_error: "Home insurance must be a valid number"
   }).min(0, "Home insurance cannot be negative").finite("Home insurance must be a finite number"),
+  pmiRate: z.number({
+    invalid_type_error: "PMI rate must be a valid number"
+  }).min(0, "PMI rate cannot be negative").max(10, "PMI rate cannot exceed 10%").finite("PMI rate must be a finite number"),
+  hoaFees: z.number({
+    invalid_type_error: "HOA fees must be a valid number"
+  }).min(0, "HOA fees cannot be negative").finite("HOA fees must be a finite number"),
   extraPayment: z.number({
     invalid_type_error: "Extra payment must be a valid number"
   }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
@@ -53,6 +58,8 @@ interface ValidationErrors {
   loanTerm?: string;
   propertyTax?: string;
   homeInsurance?: string;
+  pmiRate?: string;
+  hoaFees?: string;
   extraPayment?: string;
 }
 
@@ -64,8 +71,11 @@ interface MortgageResult {
   monthlyTaxes: number;
   monthlyInsurance: number;
   monthlyPMI: number;
+  monthlyHOA: number;
+  closingCosts: number;
   totalCashNeeded: number;
   loanToValue: number;
+  debtToIncomeRatio?: number;
   amortizationSchedule: Array<{
     month: number;
     payment: number;
@@ -93,6 +103,7 @@ interface ComparisonMortgage {
   propertyTax: number;
   insurance: number;
   pmi: number;
+  hoa: number;
 }
 
 const MortgageCalculator = () => {
@@ -117,52 +128,16 @@ const MortgageCalculator = () => {
   const [comparisonMortgages, setComparisonMortgages] = useState<ComparisonMortgage[]>([]);
   const [chartFilter, setChartFilter] = useState<'both' | 'principal' | 'interest'>('both');
   const [result, setResult] = useState<MortgageResult | null>(null);
-  const [isCalculating, setIsCalculating] = useState(false);
-  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
-
-  // Missing state for dragging and refs
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const comparisonRef = useRef<HTMLDivElement>(null);
+  const amortizationRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-
-  const resultsRef = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<HTMLDivElement>(null);
-  const amortizationRef = useRef<HTMLDivElement>(null);
-  const comparisonRef = useRef<HTMLDivElement>(null);
-  const tableScrollRef = useRef<HTMLDivElement>(null);
-  
-  // Count-up animation for numbers
-  const CountUp = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
-    const [displayValue, setDisplayValue] = useState(0);
-    
-    useEffect(() => {
-      let start = displayValue;
-      const end = value;
-      if (start === end) return;
-      
-      const duration = 500; // ms
-      const startTime = performance.now();
-      
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeOutQuad = (t: number) => t * (2 - t);
-        const current = start + (end - start) * easeOutQuad(progress);
-        
-        setDisplayValue(current);
-        
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          setDisplayValue(end);
-        }
-      };
-      
-      requestAnimationFrame(animate);
-    }, [value]);
-
-    return <span>{prefix}{displayValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{suffix}</span>;
-  };
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [isCalculating, setIsCalculating] = useState(false);
   const { toast } = useToast();
   const { user } = useAuth();
 
@@ -243,23 +218,6 @@ const MortgageCalculator = () => {
     setIsDragging(false);
   };
 
-  // Auto-calculate when inputs change for real-time updates (Part 3: Dynamic Calculation Trigger)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (homePrice && interestRate && loanTerm) {
-        // Only trigger if we have valid primary inputs
-        const price = parseFloat(homePrice);
-        const rate = parseFloat(interestRate);
-        const term = parseFloat(loanTerm);
-        
-        if (!isNaN(price) && !isNaN(rate) && !isNaN(term) && price > 0 && rate > 0 && term > 0) {
-          calculateMortgage();
-        }
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [homePrice, downPayment, downPaymentPercent, loanTerm, interestRate, propertyTax, homeInsurance, extraPayment, usePercentage, loanType, paymentFrequency]);
-
   const calculateMortgage = async () => {
     setIsCalculating(true);
     setValidationErrors({});
@@ -272,6 +230,9 @@ const MortgageCalculator = () => {
     const termYears = parseFloat(loanTerm);
     const taxes = propertyTax.trim() === '' ? 0 : parseFloat(propertyTax);
     const insurance = homeInsurance.trim() === '' ? 0 : parseFloat(homeInsurance);
+    const pmi = pmiRate.trim() === '' ? 0 : parseFloat(pmiRate);
+    const hoa = hoaFees.trim() === '' ? 0 : parseFloat(hoaFees);
+    const income = parseFloat(monthlyIncome) || 0;
     const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
 
     const validation = mortgageInputSchema.safeParse({
@@ -281,6 +242,8 @@ const MortgageCalculator = () => {
       loanTerm: termYears,
       propertyTax: taxes,
       homeInsurance: insurance,
+      pmiRate: pmi,
+      hoaFees: hoa,
       extraPayment: extraPmt
     });
 
@@ -314,7 +277,8 @@ const MortgageCalculator = () => {
       return;
     }
 
-    const paymentsPerYear = 12;
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                           paymentFrequency === 'biweekly' ? 26 : 12;
     const periodicRate = (annualRate / 100) / paymentsPerYear;
     const totalPayments = termYears * paymentsPerYear;
 
@@ -332,14 +296,15 @@ const MortgageCalculator = () => {
     const monthlyTaxes = taxes / 12;
     const monthlyInsurance = insurance / 12;
     const downPaymentPercentValue = (down / price) * 100;
-    
-    // PMI estimation: 0.75% annual rate if down payment < 20%
     let monthlyPMI = 0;
+
     if (loanType === 'conventional' && downPaymentPercentValue < 20) {
-      monthlyPMI = (principal * 0.0075) / 12;
+      monthlyPMI = (principal * (pmi / 100)) / 12;
     } else if (loanType === 'fha') {
       monthlyPMI = (principal * 0.0085) / 12;
     }
+
+    const monthlyHOA = hoa;
 
     // Calculate amortization with extra payments
     const amortizationSchedule = [];
@@ -382,23 +347,27 @@ const MortgageCalculator = () => {
       };
     }
 
-    const totalMonthlyPayment = monthlyPI + monthlyTaxes + monthlyInsurance + monthlyPMI;
+    const monthlyEquivalent = monthlyPI * (paymentsPerYear / 12);
+    const totalMonthlyPayment = monthlyEquivalent + monthlyTaxes + monthlyInsurance + monthlyPMI + monthlyHOA;
 
-    const closingCostPercentValue = 3; // Default 3%
-    const closingCosts = (price * closingCostPercentValue) / 100;
+    const closingCosts = (price * parseFloat(closingCostPercent)) / 100;
     const totalCashNeeded = down + closingCosts;
     const loanToValue = (principal / price) * 100;
+    const debtToIncomeRatio = income > 0 ? (totalMonthlyPayment / income) * 100 : 0;
 
     const calculationResult = {
       monthlyPayment: Math.round(totalMonthlyPayment * 100) / 100,
       totalAmount: Math.round(totalAmountPaid * 100) / 100,
       totalInterest: Math.round(totalInterestPaid * 100) / 100,
-      monthlyPrincipalAndInterest: Math.round(monthlyPI * 100) / 100,
+      monthlyPrincipalAndInterest: Math.round(monthlyEquivalent * 100) / 100,
       monthlyTaxes: Math.round(monthlyTaxes * 100) / 100,
       monthlyInsurance: Math.round(monthlyInsurance * 100) / 100,
       monthlyPMI: Math.round(monthlyPMI * 100) / 100,
+      monthlyHOA: Math.round(monthlyHOA * 100) / 100,
+      closingCosts: Math.round(closingCosts * 100) / 100,
       totalCashNeeded: Math.round(totalCashNeeded * 100) / 100,
       loanToValue: Math.round(loanToValue * 100) / 100,
+      debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100,
       amortizationSchedule,
       extraPaymentSavings
     };
@@ -416,14 +385,18 @@ const MortgageCalculator = () => {
         loanTerm: termYears,
         propertyTax: taxes,
         homeInsurance: insurance,
+        pmiRate: pmi,
+        hoaFees: hoa,
         extraPayment: extraPmt,
-        loanType
+        loanType,
+        paymentFrequency
       },
       {
         monthlyPayment: calculationResult.monthlyPayment,
         totalAmount: calculationResult.totalAmount,
         totalInterest: calculationResult.totalInterest,
         monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
+        closingCosts: calculationResult.closingCosts,
         totalCashNeeded: calculationResult.totalCashNeeded,
         loanToValue: calculationResult.loanToValue,
         extraPaymentSavings: calculationResult.extraPaymentSavings
@@ -445,8 +418,13 @@ const MortgageCalculator = () => {
     setInterestRate('6.5');
     setPropertyTax('6000');
     setHomeInsurance('1800');
+    setPmiRate('0.5');
     setUsePercentage(true);
     setLoanType('conventional');
+    setHoaFees('0');
+    setClosingCostPercent('3');
+    setMonthlyIncome('');
+    setPaymentFrequency('monthly');
     setExtraPayment('0');
     setShowAmortization(false);
     setShowComparison(false);
@@ -473,7 +451,8 @@ const MortgageCalculator = () => {
         totalInterest: result.totalInterest,
         propertyTax: parseFloat(propertyTax),
         insurance: parseFloat(homeInsurance),
-        pmi: result.monthlyPMI
+        pmi: result.monthlyPMI,
+        hoa: parseFloat(hoaFees)
       };
       setComparisonMortgages([...comparisonMortgages, newMortgage]);
       setShowComparison(true);
@@ -632,6 +611,10 @@ const MortgageCalculator = () => {
         { label: 'Total Interest', value: formatCurrency(result.totalInterest), color: [239, 68, 68] },
         { label: 'Interest Portion', value: `${interestPercent}%`, color: [220, 38, 38] }
       ];
+
+      if (parseFloat(extraPayment) > 0) {
+        metrics.push({ label: 'Extra Payment', value: formatCurrency(parseFloat(extraPayment)), color: [16, 185, 129] });
+      }
 
       doc.setFont('helvetica', 'normal');
       metrics.forEach((metric, index) => {
@@ -1847,51 +1830,10 @@ const MortgageCalculator = () => {
             <CardContent className="p-0">
               <div className="flex flex-col">
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <AnimatePresence mode="wait">
-                    {result ? (
-                      <motion.div 
-                        key="results-active"
-                        initial={ { opacity: 0, y: 20 } }
-                        animate={ { opacity: 1, y: 0 } }
-                        exit={ { opacity: 0, y: -20 } }
-                        transition={ { duration: 0.3 } }
-                      >
-                        {/* Redesigned Part 1 Hero Result Display (Wrapped with animations) */}
-                        <div className="bg-primary/5 border border-primary/10 rounded-2xl p-6 sm:p-8 mb-8 text-center" data-testid="card-hero-total-payment">
-                          <h3 className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Total Monthly Payment (PITI)</h3>
-                          <div className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight" data-testid="text-total-monthly-payment">
-                            <CountUp value={result.monthlyPayment} prefix="$" />
-                          </div>
-                          <p className="mt-3 text-sm text-slate-500 max-w-md mx-auto">
-                            Includes Principal, Interest, Property Taxes, Home Insurance, and PMI (if applicable).
-                          </p>
-                        </div>
-                        {/* ... existing chart and summary grid code ... */}
-                      </motion.div>
-                    ) : (
-                      <motion.div 
-                        key="results-placeholder"
-                        initial={ { opacity: 0 } }
-                        animate={ { opacity: 1 } }
-                        exit={ { opacity: 0 } }
-                        className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl p-12 text-center"
-                      >
-                        <div className="w-20 h-20 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-6">
-                          <Calculator className="w-10 h-10 text-slate-300" />
-                        </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Waiting for inputs</h3>
-                        <p className="text-slate-500 max-w-xs mx-auto mb-8">
-                          Adjust the sliders or enter values to see your real-time mortgage breakdown.
-                        </p>
-                        <div className="flex justify-center gap-2">
-                          <div className="w-12 h-1 bg-slate-200 rounded-full animate-pulse" />
-                          <div className="w-12 h-1 bg-slate-200 rounded-full animate-pulse delay-75" />
-                          <div className="w-12 h-1 bg-slate-200 rounded-full animate-pulse delay-150" />
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Mortgage Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your home and loan details for accurate payment calculations</p>
+                  </div>
 
                   <TooltipProvider>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -1909,17 +1851,6 @@ const MortgageCalculator = () => {
                               <p className="max-w-xs text-sm">The total purchase price of the home</p>
                             </TooltipContent>
                           </Tooltip>
-                        </div>
-                        {/* Part 2: Quick Adjust Slider - Home Price */}
-                        <div className="pt-2 px-1">
-                          <Slider
-                            value={[parseFloat(homePrice) || 500000]}
-                            min={50000}
-                            max={2000000}
-                            step={1000}
-                            onValueChange={(vals) => setHomePrice(vals[0].toString())}
-                            className="py-4"
-                          />
                         </div>
                         <div className="relative">
                           <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
@@ -2004,17 +1935,6 @@ const MortgageCalculator = () => {
                               <p className="max-w-xs text-sm">Annual interest rate from your lender</p>
                             </TooltipContent>
                           </Tooltip>
-                        </div>
-                        {/* Part 2: Quick Adjust Slider - Interest Rate */}
-                        <div className="pt-2 px-1">
-                          <Slider
-                            value={[parseFloat(interestRate) || 6.5]}
-                            min={0.1}
-                            max={15}
-                            step={0.1}
-                            onValueChange={(vals) => setInterestRate(vals[0].toString())}
-                            className="py-4"
-                          />
                         </div>
                         <div className="relative">
                           <Input
@@ -2275,124 +2195,17 @@ const MortgageCalculator = () => {
                 </div>
 
                 {result ? (
-                  <motion.div
-                    key="results"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
-                    ref={resultsRef}
-                    className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t"
-                  >
+                  <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your Mortgage Results</h2>
+
                     <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                      {/* Part 1: Hero Result Display */}
-                      <Card className="bg-primary/5 border-primary/20 overflow-visible shadow-sm">
-                        <CardContent className="pt-6 pb-6 text-center">
-                          <motion.div 
-                            key={result.monthlyPayment}
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            className="space-y-2"
-                          >
-                            <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                              Total Monthly Payment
-                            </p>
-                            <div className="flex items-center justify-center gap-1">
-                              <span className="text-3xl font-bold text-primary">$</span>
-                              <span className="text-5xl md:text-6xl font-black text-primary tracking-tighter">
-                                {result.monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                              </span>
-                            </div>
-                            <p className="text-xs text-muted-foreground font-medium">
-                              Includes Principal, Interest, Taxes, and Insurance (PITI)
-                            </p>
-                          </motion.div>
-                        </CardContent>
-                      </Card>
-
-                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left">Detailed Breakdown</h2>
-
-                      {/* Part 4 & 5: Responsive Donut Chart & Loan Summary */}
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {/* Part 4: Donut Chart Breakdown */}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm border border-gray-100 flex flex-col justify-center">
-                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-6 text-center">Monthly Payment Breakdown</h3>
-                          <div className="relative h-[250px] w-full">
-                            <ResponsiveContainer width="100%" height="100%">
-                              <RechartsPieChart>
-                                <Pie
-                                  data={[
-                                    { name: 'Principal & Interest', value: result.monthlyPrincipalAndInterest, color: 'hsl(var(--primary))' },
-                                    { name: 'Property Taxes', value: result.monthlyTaxes, color: 'hsl(var(--chart-2))' },
-                                    { name: 'Home Insurance', value: result.monthlyInsurance, color: 'hsl(var(--chart-3))' },
-                                    { name: 'PMI', value: result.monthlyPMI, color: 'hsl(var(--chart-4))' },
-                                  ]}
-                                  cx="50%"
-                                  cy="50%"
-                                  innerRadius="60%"
-                                  outerRadius="85%"
-                                  paddingAngle={2}
-                                  dataKey="value"
-                                >
-                                  {[
-                                    { name: 'P&I', color: 'hsl(var(--primary))' },
-                                    { name: 'Taxes', color: 'hsl(var(--chart-2))' },
-                                    { name: 'Insurance', color: 'hsl(var(--chart-3))' },
-                                    { name: 'PMI', color: 'hsl(var(--chart-4))' },
-                                  ].map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={entry.color} />
-                                  ))}
-                                </Pie>
-                                <RechartsTooltip
-                                  formatter={(value: number) => formatCurrency(value)}
-                                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-                                />
-                              </RechartsPieChart>
-                            </ResponsiveContainer>
-                            {/* Center Label */}
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                              <span className="text-[10px] font-semibold text-muted-foreground uppercase">Total</span>
-                              <span className="text-lg font-bold text-primary">{formatCurrency(result.monthlyPayment)}</span>
-                            </div>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-2 sm:space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Estimated Monthly Payment</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all">
+                            {formatCurrency(result.monthlyPayment)}
                           </div>
-                          {/* Custom Legend */}
-                          <div className="grid grid-cols-2 gap-3 mt-6">
-                            {[
-                              { name: 'Principal & Interest', color: 'bg-primary' },
-                              { name: 'Property Taxes', color: 'bg-[hsl(var(--chart-2))]' },
-                              { name: 'Home Insurance', color: 'bg-[hsl(var(--chart-3))]' },
-                              { name: 'PMI', color: 'bg-[hsl(var(--chart-4))]' },
-                            ].map((item, i) => (
-                              <div key={i} className="flex items-center gap-2">
-                                <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
-                                <span className="text-[10px] sm:text-xs font-medium text-gray-600 truncate">{item.name}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Part 5: Loan Summary Cards */}
-                        <div className="grid grid-cols-2 gap-4">
-                          {[
-                            { label: 'Total Interest Paid', value: formatCurrency(result.totalInterest), sub: 'Over loan life', color: 'text-orange-600' },
-                            { label: 'Total Payoff Amount', value: formatCurrency(result.totalAmount), sub: 'Principal + Interest', color: 'text-primary' },
-                            { label: 'Cash Needed at Closing', value: formatCurrency(result.totalCashNeeded), sub: 'Down + Closing costs', color: 'text-green-600' },
-                            { label: 'Loan-to-Value (LTV)', value: `${result.loanToValue.toFixed(1)}%`, sub: 'Loan amount vs price', color: 'text-indigo-600' },
-                          ].map((card, i) => (
-                            <Card key={i} className="bg-white border-gray-100 shadow-sm overflow-hidden">
-                              <CardContent className="p-3 sm:p-4 flex flex-col justify-between h-full">
-                                <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-tight mb-1 truncate">
-                                  {card.label}
-                                </p>
-                                <p className={`text-sm sm:text-base md:text-lg font-bold ${card.color} break-all`}>
-                                  {card.value}
-                                </p>
-                                <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-1 italic">
-                                  {card.sub}
-                                </p>
-                              </CardContent>
-                            </Card>
-                          ))}
+                          <p className="text-xs text-gray-500">Based on monthly payment frequency</p>
                         </div>
                       </div>
 
@@ -2467,11 +2280,106 @@ const MortgageCalculator = () => {
                         </div>
                       )}
 
-                      {/* Payment Charts Section (Hidden by Default) */}
+                      {/* Payment Charts */}
                       {showCharts && (
                         <div className="space-y-4">
-                          {/* Area Chart - Payment Breakdown Over Time */}
-                          <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm border border-gray-100">
+                        <div ref={chartRef} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Total Payment Composition</h3>
+                          <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
+                            <RechartsPieChart>
+                              <Pie
+                                data={[
+                                  { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ]}
+                                cx="50%"
+                                cy="50%"
+                                labelLine={false}
+                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                                outerRadius="70%"
+                                fill="#8884d8"
+                                dataKey="value"
+                                style={{ fontSize: '11px', fontWeight: '500' }}
+                              >
+                                {[
+                                  { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), color: '#10b981' },
+                                  { name: 'Interest', value: result.totalInterest, color: '#f97316' }
+                                ].map((entry, index) => (
+                                  <Cell key={`cell-${index}`} fill={entry.color} />
+                                ))}
+                              </Pie>
+                              <RechartsTooltip 
+                                formatter={(value: number) => formatCurrency(value)}
+                                contentStyle={{ 
+                                  backgroundColor: '#fff', 
+                                  border: '1px solid #e5e7eb', 
+                                  borderRadius: '8px',
+                                  fontSize: '12px',
+                                  padding: '8px'
+                                }}
+                              />
+                              <Legend 
+                                wrapperStyle={{ fontSize: '11px' }}
+                                iconType="circle"
+                              />
+                            </RechartsPieChart>
+                          </ResponsiveContainer>
+                          <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 sm:gap-3 text-center">
+                            <div className="bg-green-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-green-700 font-medium">Principal</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-green-800 break-all">{formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}</div>
+                            </div>
+                            <div className="bg-orange-50 rounded-md sm:rounded-lg p-2 sm:p-3">
+                              <div className="text-[10px] sm:text-xs text-orange-700 font-medium">Interest</div>
+                              <div className="text-xs sm:text-sm md:text-base font-bold text-orange-800 break-all">{formatCurrency(result.totalInterest)}</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Area Chart - Payment Breakdown Over Time */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">Payment Breakdown Over Time</h3>
+                          
+                          {/* Chart Filter Toggle */}
+                          <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 flex-wrap">
+                            <Button
+                              onClick={() => setChartFilter('principal')}
+                              variant={chartFilter === 'principal' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'principal' ? 'bg-green-600 hover:bg-green-700' : ''}`}
+                              data-testid="button-filter-principal"
+                            >
+                              <span className="flex items-center gap-1 sm:gap-1.5">
+                                <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></span>
+                                <span className="hidden xs:inline">Principal</span>
+                                <span className="xs:hidden">P</span>
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('interest')}
+                              variant={chartFilter === 'interest' ? 'default' : 'outline'}
+                              size="sm"
+                              className={`text-[10px] sm:text-xs px-2 sm:px-3 ${chartFilter === 'interest' ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                              data-testid="button-filter-interest"
+                            >
+                              <span className="flex items-center gap-1 sm:gap-1.5">
+                                <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-orange-500"></span>
+                                <span className="hidden xs:inline">Interest</span>
+                                <span className="xs:hidden">I</span>
+                              </span>
+                            </Button>
+                            <Button
+                              onClick={() => setChartFilter('both')}
+                              variant={chartFilter === 'both' ? 'default' : 'outline'}
+                              size="sm"
+                              className="text-[10px] sm:text-xs px-2 sm:px-3"
+                              data-testid="button-filter-both"
+                            >
+                              <span className="hidden sm:inline">Showing all payments</span>
+                              <span className="sm:hidden">All</span>
+                            </Button>
+                          </div>
+
                           <div className="w-full overflow-x-auto">
                             <ResponsiveContainer width="100%" height={250} className="sm:!h-[280px] md:!h-[300px] lg:!h-[320px]">
                               <AreaChart
@@ -2509,7 +2417,7 @@ const MortgageCalculator = () => {
                                   tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                                 />
                                 <RechartsTooltip 
-                                  formatter={(value: number, name: string) => [formatCurrency(value), name === 'Principal' ? 'Principal' : 'Interest']}
+                                  formatter={(value: number, name: string) => [formatCurrency(value), name === 'principal' ? 'Principal' : 'Interest']}
                                   labelFormatter={(label) => `Payment #${label}`}
                                   contentStyle={{ 
                                     backgroundColor: '#fff', 
@@ -2547,17 +2455,12 @@ const MortgageCalculator = () => {
                             </ResponsiveContainer>
                           </div>
                         </div>
-                      </div>
-                    )}
+                        </div>
+                      )}
 
                       {/* Amortization Schedule Section */}
                       {showAmortization && (
-                        <motion.div 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t"
-                        >
+                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-amortization-schedule">
                               Amortization Schedule (First 5 Years)
@@ -2608,17 +2511,12 @@ const MortgageCalculator = () => {
                               </tbody>
                             </table>
                           </div>
-                        </motion.div>
+                        </div>
                       )}
 
                       {/* Mortgage Comparison Section */}
                       {showComparison && comparisonMortgages.length > 0 && (
-                        <motion.div 
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t"
-                        >
+                        <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 text-center sm:text-left" data-testid="heading-comparison-table">
                               Mortgage Comparison
@@ -2675,7 +2573,7 @@ const MortgageCalculator = () => {
                               </tbody>
                             </table>
                           </div>
-                        </motion.div>
+                        </div>
                       )}
                     </div>
                   </div>

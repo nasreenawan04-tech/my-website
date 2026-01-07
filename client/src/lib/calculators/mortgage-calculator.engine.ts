@@ -23,8 +23,12 @@ export interface MortgageCalculatorInputs extends LoanInputs {
   downPayment: number;
   propertyTax: number;
   homeInsurance: number;
-  extraPayment: number;
+  pmiRate: number;
+  hoaFees: number;
   loanType?: 'conventional' | 'fha' | 'va';
+  paymentFrequency?: 'monthly' | 'biweekly' | 'weekly';
+  monthlyIncome?: number;
+  closingCostPercent?: number;
 }
 
 /**
@@ -37,8 +41,11 @@ export interface MortgageCalculatorResult extends LoanCalculationResult {
   monthlyTaxes: number;
   monthlyInsurance: number;
   monthlyPMI: number;
+  monthlyHOA: number;
+  closingCosts: number;
   totalCashNeeded: number;
   loanToValue: number;
+  debtToIncomeRatio?: number;
 }
 
 /**
@@ -56,8 +63,13 @@ export function parseMortgageInputs(inputs: ParsedCalculatorInput): MortgageCalc
     termUnit: 'years',
     propertyTax: Number(inputs.propertyTax) || 0,
     homeInsurance: Number(inputs.homeInsurance) || 0,
+    pmiRate: Number(inputs.pmiRate) || 0,
+    hoaFees: Number(inputs.hoaFees) || 0,
     extraPayment: Number(inputs.extraPayment) || 0,
-    loanType: (inputs.loanType as 'conventional' | 'fha' | 'va') || 'conventional'
+    loanType: (inputs.loanType as 'conventional' | 'fha' | 'va') || 'conventional',
+    paymentFrequency: (inputs.paymentFrequency as 'monthly' | 'biweekly' | 'weekly') || 'monthly',
+    monthlyIncome: Number(inputs.monthlyIncome) || 0,
+    closingCostPercent: Number(inputs.closingCostPercent) || 3
   };
 }
 
@@ -68,6 +80,7 @@ export function parseMortgageInputs(inputs: ParsedCalculatorInput): MortgageCalc
  * @param termYears - Loan term in years
  * @param extraPayment - Extra payment per period
  * @param loanType - Loan type (affects rate adjustments)
+ * @param paymentFrequency - Payment frequency
  * @returns Array of amortization schedule entries
  */
 export function calculateMortgageAmortization(
@@ -75,10 +88,15 @@ export function calculateMortgageAmortization(
   annualRate: number,
   termYears: number,
   extraPayment: number = 0,
-  loanType: 'conventional' | 'fha' | 'va' = 'conventional'
+  loanType: 'conventional' | 'fha' | 'va' = 'conventional',
+  paymentFrequency: 'monthly' | 'biweekly' | 'weekly' = 'monthly'
 ): Array<AmortizationEntry> {
   const schedule: AmortizationEntry[] = [];
-  const paymentsPerYear = 12; // Defaulted to monthly
+
+  const paymentsPerYear =
+    paymentFrequency === 'weekly' ? 52 :
+    paymentFrequency === 'biweekly' ? 26 :
+    12;
 
   const annualRateDecimal = annualRate / 100;
   const periodicRate = annualRateDecimal / paymentsPerYear;
@@ -128,16 +146,17 @@ export function calculateMortgageAmortization(
  * Calculate monthly PMI based on loan type and down payment
  * @param principal - Loan amount
  * @param homePrice - Home price
+ * @param pmiRate - PMI rate as percentage
  * @param loanType - Loan type
  * @returns Monthly PMI amount
  */
 export function calculateMonthlyPMI(
   principal: number,
   homePrice: number,
+  pmiRate: number,
   loanType: 'conventional' | 'fha' | 'va'
 ): number {
   const downPaymentPercent = ((homePrice - principal) / homePrice) * 100;
-  const pmiRate = 0.75; // Default estimate
 
   if (loanType === 'conventional' && downPaymentPercent < 20) {
     return (principal * (pmiRate / 100)) / 12;
@@ -150,7 +169,7 @@ export function calculateMonthlyPMI(
 
 /**
  * Main mortgage calculator engine function
- * Calculates monthly payment with all costs (PI, taxes, insurance, PMI)
+ * Calculates monthly payment with all costs (PI, taxes, insurance, PMI, HOA)
  * Implements the CalculatorFunction generic interface with MortgageCalculatorResult as the result type
  * @param inputs - Parsed mortgage calculator inputs (validated)
  * @param config - Optional calculator configuration for metadata
@@ -168,12 +187,22 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
     loanTerm,
     propertyTax = 0,
     homeInsurance = 0,
+    pmiRate = 0,
+    hoaFees = 0,
     extraPayment = 0,
-    loanType = 'conventional'
+    loanType = 'conventional',
+    paymentFrequency = 'monthly',
+    monthlyIncome = 0,
+    closingCostPercent = 3
   } = mortgageInputs;
 
   const principal = homePrice - downPayment;
-  const paymentsPerYear = 12; // Defaulted to monthly
+
+  // Calculate payment frequency
+  const paymentsPerYear =
+    paymentFrequency === 'weekly' ? 52 :
+    paymentFrequency === 'biweekly' ? 26 :
+    12;
 
   const annualRateDecimal = interestRate / 100;
   const periodicRate = annualRateDecimal / paymentsPerYear;
@@ -200,7 +229,8 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
     interestRate,
     loanTerm,
     extraPayment,
-    loanType
+    loanType,
+    paymentFrequency
   );
 
   // Calculate totals from schedule using precision math
@@ -210,22 +240,25 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
   // Calculate monthly housing costs
   const monthlyTaxes = PrecisionMath.divide(propertyTax, 12);
   const monthlyInsuranceAmount = PrecisionMath.divide(homeInsurance, 12);
-  const monthlyPMI = calculateMonthlyPMI(principal, homePrice, loanType);
+  const monthlyPMI = calculateMonthlyPMI(principal, homePrice, pmiRate, loanType);
+  const monthlyHOA = hoaFees;
 
   // Convert PI to monthly equivalent
-  const monthlyPIEquivalent = monthlyPI;
+  const monthlyPIEquivalent = PrecisionMath.multiply(monthlyPI, paymentsPerYear / 12);
   const totalMonthlyPayment = PrecisionMath.add(
     PrecisionMath.add(PrecisionMath.add(monthlyPIEquivalent, monthlyTaxes), monthlyInsuranceAmount),
-    monthlyPMI
+    PrecisionMath.add(monthlyPMI, monthlyHOA)
   );
 
   // Calculate closing costs and total cash needed
-  const closingCostPercent = 3; // Default estimate
   const closingCosts = PrecisionMath.divide(PrecisionMath.multiply(homePrice, closingCostPercent), 100);
   const totalCashNeeded = PrecisionMath.add(downPayment, closingCosts);
 
   // Calculate loan-to-value ratio
   const loanToValue = PrecisionMath.multiply(PrecisionMath.divide(principal, homePrice), 100);
+
+  // Calculate debt-to-income ratio
+  const debtToIncomeRatio = monthlyIncome > 0 ? PrecisionMath.multiply(PrecisionMath.divide(totalMonthlyPayment, monthlyIncome), 100) : 0;
 
   // Calculate prepayment savings if extra payment
   let extraPaymentSavings: PrepaymentSavings | undefined;
@@ -269,8 +302,11 @@ export const calculateMortgage: CalculatorFunction<MortgageCalculatorResult> = (
     monthlyTaxes: PrecisionMath.round(monthlyTaxes, 2),
     monthlyInsurance: PrecisionMath.round(monthlyInsuranceAmount, 2),
     monthlyPMI: PrecisionMath.round(monthlyPMI, 2),
+    monthlyHOA: PrecisionMath.round(monthlyHOA, 2),
+    closingCosts: PrecisionMath.round(closingCosts, 2),
     totalCashNeeded: PrecisionMath.round(totalCashNeeded, 2),
-    loanToValue: PrecisionMath.round(loanToValue, 2)
+    loanToValue: PrecisionMath.round(loanToValue, 2),
+    debtToIncomeRatio: PrecisionMath.round(debtToIncomeRatio, 2)
   };
 };
 
